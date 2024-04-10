@@ -80,9 +80,9 @@ See nikomatsakis's [Team Goals Presentation](https://nikomatsakis.github.io/team
     * Bot tooling will be provided to maintain a website and remind owners to post updates
     * Goals without updates will be automatically marked as "inactive", prompting intervention
 
-## Follow-up work
+## The long-term vision (non-normative)
 
-Assuming this goal program is successful, we would like to begin another goal sourcing round in late 2024 (likely Oct 15 - Dec 15).
+Assuming this goal program is successful, we would like to begin another goal sourcing round in late 2024 (likely Oct 15 - Dec 15). We see this as fitting into a running process.
 
 ## Frequently asked questions
 
