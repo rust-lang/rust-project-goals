@@ -2,32 +2,36 @@
 
 > **Instructions:** Copy this template to a fresh file with a name based on your plan.
 > Update the text. Feel free to replace any text with anything, but there are placeholders
-> designed to help you get started.
+> designed to help you get started. Also, while this template has received some iteration,
+> it is not sacrosant. Feel free to change the titles of sections or make other changes that you think 
+> will increase clarity.
 
-## Summary
-
-*OWNER* proposes to serve as owner for *GOAL TITLE* which will adddress
-
-* Problem aspect #1
-* Problem aspect #2
+| Metadata | |
+| --- | --- |
+| Owner(s) | OWNER |
+| Teams | T1, T2 |
 
 ## Motivation
 
-Say something about the problem you aim to address. Try to answer the following questions:
+*Begin the motivation with a short (1 paragraph, ideally) summary of what the goal is trying to achieve and why it matters.*
 
-* Who is the **target audience**? Is it a particular group of Rust users, such as those working in a specific domain? Contributors? 
-* What is the **status quo**? What do they do now when they have this problem, and what are the shortcomings of that?
-* What is the **shiny future**? What is the goal you are trying to achieve?
+### The status quo
 
-The motivation section is making the case for why this particular problem is worth prioritizing with project bandwidth. That bandwidth can be a very limited resource, so it's good to give details.
+*Elaborate in more detail about the problem youa re trying to solve. This section is making the case for why this particular problem is worth prioritizing with project bandwidth. A strong status quo section will (a) identify the target audience and (b) give specifics about the problems they are facing today. Sometimes it may be useful to start sketching out how you think those problems will be addressed by your change, as well, though it's not necessary.*
 
-The most important thing in the motivation is the **status quo** -- showing the problems with the way things are now. The **shiny future** is definitely useful, but giving too many details about how you hope to address the problems risks people taking issue with your particular plan. The ideal is to cover the experience you are going for.
+### The next few steps
+
+*Sketch out the specific things you are trying to achieve in 2024. This should be short and high-level -- we don't want to see the design!*
+
+### The "shiny future" we are working towards
+
+*If this goal is part of a larger plan that will extend beyond this goal period, sketch out the goal you are working towards. It may be worth adding some text about why these particular goals were chosen as the next logical step to focus on.*
 
 ## Design axioms
 
 *Add your [design axioms][da] here. Design axioms clarify the constraints and tradeoffs you will use as you do your design work. These are most important for project goals where the route to the solution has significant ambiguity (e.g., designing a language feature or an API), as they communicate to your reader how you plan to approach the problem. If this goal is more aimed at implementation, then design axioms are less important. [Read more about design axioms][da].*
 
-[da]: XXX
+[da]: ../about/design_axioms.md
 
 ## Ownership and other resources
 
@@ -48,16 +52,6 @@ The most important thing in the motivation is the **status quo** -- showing the 
     * Creating rust-lang repositories?
     * Issuing rust-lang-hosted libraries on crates.io?
     * Posting blog posts on the Rust blog? (The Inside Rust blog is always ok.)
-
-## Milestones and rough plan
-
-*Lay out a rough plan for your goal. What milestones do you aim to achieve and by when? The most important thing is the end-date, but including steps along the way is helpful to increase confidence that you will be able to create your plan -- and to help **you** know if you are on track!*
-
-*Examples of milestones you might include would be .*
-
-## Follow-up work
-
-*The goal only covers the next 6 months of work. What is your vision longer term?*
 
 ## Frequently asked questions
 
