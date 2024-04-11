@@ -1,23 +1,15 @@
 # Project goal slate
 
-## Summary
-
-nikomatsakis proposes to own an **experimental goal program** that intends to find some solution for:
-
-* Identifying the top priority items being pursued by the participating teams.
-* Ensuring those items have owners who are empowered to solve them.
-* Tracking progress to provide accountability.
-
-The outcome of this program will be
-
-* an initial slate of project goals for the second half of 2024
-    * Each goal will have a committed owner.
-    * Each goal will be approved by one or more project teams that are expected to support it.
-    * The slate may include "candidate goals" that are desired but lack owners; these can be approved later if owners can be found.
-* an RFC proposing a process to assemble future goals
-    * To enable us to move quickly, nikomatsakis will design the experimental process according to the axioms and principles found in this goal document. Experiences from this process will be used to design the finalized process which will be submitted to be ratified by the leadership council.
+| Metadata | |
+| --- | --- |
+| Owner(s) | nikomatsakis |
+| Teams | Leadership Council |
 
 ## Motivation
+
+This goal proposes to run an experimental goal program during the second half of 2024 as a first step towards an ongoing Rust roadmap. The proposed outcomes for 2024 are (1) select an initial slate of goals using an experimental process; (2) track progress over the year; (3) drawing on the lessons from that, propose a durable process in the form of an RFC to be accepted by the leadership council.
+
+### The status quo
 
 The Rust project last published an annual roadmap in 2021. Even before that, maintaining and running the roadmap process had proved logistically challenging. And yet there are a number of challenges that the project faces for which having an established roadmap, along with a clarified ownership for particular tasks, would be useful:
 
@@ -33,6 +25,12 @@ The Rust project last published an annual roadmap in 2021. Even before that, mai
 * Helping people to get paid for working on Rust
     * A challenge for people who are looking to work on Rust as part of their job -- whether that be full-time work, part-time work, or contracting -- is that the employer would like to have some confidence that the work will make progress. Too often, people find that they open RFCs or PRs which do not receive review, or which are misaligned with project priorities. A secondary problem is that there can be a perceived conflict-of-interest because people's job performance will be judged on their ability to finish a task, such as stabilizing a language feature, which can lead them to pressure project teams to make progress.
     * **Having the project agree before-hand that it is a priority to make progress in an area and in particular to aim for achieving particular goals by particular dates will align the incentives and make it easier for people to make commitments to would-be employers.**
+
+### The plan for 2024
+
+### The "shiny future" we are working towards
+
+Assuming this goal program is successful, we would like to begin another goal sourcing round in late 2024 (likely Oct 15 - Dec 15). We see this as fitting into a running process.
 
 ## Design axioms
 
@@ -99,10 +97,6 @@ The owner plans to author up a proposed process but rough plans are as follows:
     * Likely mechanism is a "check box" from the leads of all teams that represents the team consensus
 
 It is not yet clear how much work it will be to drive this process. If needed, the owner will assemble a "goals committee" to assist in assist in reading over goals, proposing improvements, and generally making progress towards a coherent final slate. This committee is not intended to be a decision making body.
-
-## The long-term vision (non-normative)
-
-Assuming this goal program is successful, we would like to begin another goal sourcing round in late 2024 (likely Oct 15 - Dec 15). We see this as fitting into a running process.
 
 ## Frequently asked questions
 
