@@ -2,11 +2,20 @@
 
 ## Summary
 
-nikomatsakis proposes to serve as owner for an **experimental goal program** that intends to find some solution for:
+nikomatsakis proposes to own an **experimental goal program** that intends to find some solution for:
 
 * Identifying the top priority items being pursued by the participating teams.
 * Ensuring those items have owners who are empowered to solve them.
 * Tracking progress to provide accountability.
+
+The outcome of this program will be
+
+* an initial slate of project goals for the second half of 2024
+    * Each goal will have a committed owner.
+    * Each goal will be approved by one or more project teams that are expected to support it.
+    * The slate may include "candidate goals" that are desired but lack owners; these can be approved later if owners can be found.
+* an RFC proposing a process to assemble future goals
+    * To enable us to move quickly, nikomatsakis will design the experimental process according to the axioms and principles found in this goal document. Experiences from this process will be used to design the finalized process which will be submitted to be ratified by the leadership council.
 
 ## Motivation
 
@@ -37,16 +46,11 @@ The Rust project last published an annual roadmap in 2021. Even before that, mai
 
 **Owner:** nikomatsakis
 
-* nikomatsakis can commit 20% time (avg of 1 days per week) to pursue this task.
-* nikomatsakis expects to recruit a "goal committee" consisting of experienced leaders from the Rust project. The committee will...
-    * author blog posts
-    * review proposed goals
-    * talk to goal authors and teams regarding proposed goals
-    * participate in deliberations about the final goal slate that we will propose to the participating teams
+* nikomatsakis can commit 20% time (avg of 1 days per week) to pursue this task, which he estimates to be sufficient.
 
 ### Support needed from the project
 
-* We expect to use project website resources to do things like
+* Project website resources to do things like
     * post blog posts on both Inside Rust and the main Rust blog;
     * create a tracking page (e.g., `https://rust-lang.org/goals`);
     * create repositories etc.
@@ -54,31 +58,47 @@ The Rust project last published an annual roadmap in 2021. Even before that, mai
     * they need to meet with the goal committee to review proposed goals, discuss priorities;
     * they need to decide in a timely fashion whether they can commit the proposed resources
 
-## Milestones and rough plan
+## Outputs and milestones
 
-Per the axiom that **goals cover a problem, not a solution**, this goal does not lay out the complete plan. The general expectation is that:
+### Outputs
 
-* nikomatsakis will establish a goal committee with seasoned, high-judgment members of the Rust community. The role of this committee is to work with the teams to create a balanced, realistic slate of goals, and then to help in the work of tracking progress on those goals. Teams will ultimately have final decision over what goals they take.
-* We will begin by sourcing goals over a 2-month period and then publish the assembled slate.
-* We will create bot support to automate the process of tracking progress as much as possible.
-* We will publish regular updates on progress (cadence TBD).
+There are three specific outputs from this process:
 
-See nikomatsakis's [Team Goals Presentation](https://nikomatsakis.github.io/team-goals-2024/) and [blog post on project goals](https://smallcultfollowing.com/babysteps/blog/2023/11/28/project-goals/) for further thoughts.
+* A **goal slate** for the second half of 2024, which will include
+    * a set of goals, each with an owner and with approval from their associated teams
+    * a high-level write-up of why this particular set of goals was chosen and what impact we expect for Rust
+* **Regular reporting** on the progress towards these goals over the course of the year
+* An **RFC with a finalized process** that we can use going forward
 
 ### Milestones
 
-* Begin a "goal sourcing" period with participating teams, beginning on Apr 15
-    * Team members and community members submit proposed goals
-    * As owner, nikomatsakis will assemble a "goal committee" to read over goals, propose improvements, and drive towards a coherent final slate.
-    * Goals will have completion dates by end of 2024 or early in 2025
-* Announce an initial slate of goals on or around Jun 15
-    * Participating teams will ultimately need to a TODO
-* Track progress of goals
-    * Each goal will have a corresponding tracking issue 
-    * Goal owners are expected to provide regular updates on progress
-    * These updates will be aggregated and broadcast as progress updates and reflected on rust-lang.org
-    * Bot tooling will be provided to maintain a website and remind owners to post updates
-    * Goals without updates will be automatically marked as "inactive", prompting intervention
+The long-term vision is to create a sustainable goals process for the project. Per the axiom that **goals cover a problem, not a solution**, this goal does not propose a specific process. **Rather, the goal is to devise the process.** To help us get going quickly, the intent is that the goal owner will design and drive an experiental process, including (a) selecting a slate of goals that will be confirmed by the teams they affect; (b) monitoring and reporting on progress towards those goals; and (c) developing infrastructure to support that monitoring and lessen the load. Experience from that will be used to shape an RFC that describes the process to use for the future (assuming the experiment is a success). 
+
+Key milestones along the way (with the most impactful highlighted in bold):
+
+| Date | Milestone |
+| --- | --- |
+| **Apr 26** | **Kick off the goal collection process** |
+| May 24 | Publish draft goal slate, take feedback from teams |
+| June 14 | Approval process for goal slate begins |
+| **June 28** | Publish final goal slate |
+| July 15 | Open RFC with future goals process |
+| **Sep** | **RFC for Future Goals Process approved by leadership council** |
+| Oct | begin next round of goal process, expected to cover first half of 2025 |
+
+### Process to be followed
+
+The owner plans to author up a proposed process but rough plans are as follows:
+
+* Create a repository rust-lang/project-goals that will be used to track proposed goals.
+* Initial blog post and emails soliciting goal proposals, authored using the same format as this goal.
+* Owner will consult proposals along with discussions with Rust team members to assemble a draft set of goals
+* Owner will publish a draft set of goals from those that were proposed
+* Owner will read this set with relevant teams to get feedback and ensure consensus
+* Final slate will be approved by each team involved:
+    * Likely mechanism is a "check box" from the leads of all teams that represents the team consensus
+
+It is not yet clear how much work it will be to drive this process. If needed, the owner will assemble a "goals committee" to assist in assist in reading over goals, proposing improvements, and generally making progress towards a coherent final slate. This committee is not intended to be a decision making body.
 
 ## The long-term vision (non-normative)
 
@@ -94,6 +114,17 @@ In this case, the idea is to run a ~6-month trial, so having goals that are far 
 
 Certainly I expect some of the goals to be items that will help us to ship a Rust 2024 edition -- and likely a goal for the edition itself (presuming we don't delay it to Rust 2025).
 
-### I'm interested in being on the goals committee, what do I do?
+### Do we really need a "goal slate" and a "goal season"?
 
-Talk to nikomatsakis.
+Some early drafts of project goals were framing in a purely bottom-up fashion, with teams approving goals on a rolling basis. That approach though has the downside that the project will *always* be in planning mode which will be a continuing time sink and morale drain. Deliberating on goals one at a time also makes it hard to weigh competing goals and decide which should have priority.
+
+There is another downside to the "rolling basis" as well -- it's hard to decide on next steps if you don't know where you are going. Having the concept of a "goal slate" allows us to package up the goals along with longer term framing and vision and make sure that they are a coherent set of items that work well together. Otherwise it can be very easy for one team to be solving half of a problem while other teams neglect the other half.
+
+### Do we really need an owner?
+
+Simply put, yes. I don't expect
+xxx
+
+### Why the six months horizon?
+
+Per the previous points, it is helpful to have a "season" for goals, but having e.g. an annual process prevents us from reacting to new ideas in a nimble fashion. At the same time, doing quarterly planning, as some companies do, is quite regular overhead. Six months seemed like a nice compromise, and it leaves room for a hefty discussion period of about 2 months, which sems like a good fit for an open-source project.
