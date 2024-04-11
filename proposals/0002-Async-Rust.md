@@ -6,12 +6,36 @@
 
 ## Summary
 
-*OWNER* proposes to serve as owner for *GOAL TITLE* which will adddress
+nikomatsakis/tmandry propose to serve as owner for a goal to extend the Async Rust vision. The specific goals proposed for 2024 are as follows:
 
-* Problem aspect #1
-* Problem aspect #2
+* Stabilize a solution for RTN (owner: compiler-errs?)
+* Stabilize async closures (owner: compiler-errs)
+* Prototype candidates for a std runtime API
 
 ## Motivation
+
+### Async Rust has seen large scale growth
+
+Rust has seen wide-scale adoption in network services due to its ability to
+combine high-level coding a style with a high-level of efficiency. 
+
+#### High-scale network services
+
+Rust's advantages for typical network services include:
+
+* "predictably low" tail latency (P99.9, P99.99, etc) due to not requiring a garbage collector. For large-scale services, tail latency bounds are often directly correlated with scaling.
+* "consistently low" memory usage, enabling the use of smaller, less expensive instances
+* an overall focus on reliability that helps to guarantee high availability
+* high-level programming paradigm that makes it easy to stand up a server, deserialize requests, etc -- at least some of the time.
+
+#### High-scale network services
+
+Async Rust is also popular in small-scale, embedded devices, such as sensor nodes and the like.
+Rust's advantages in this domain include:
+
+##
+
+with tight memory usage. Rust's async fn design has proven to be a large growth area and 
 
 Say something about the problem you aim to address. Try to answer the following questions:
 
