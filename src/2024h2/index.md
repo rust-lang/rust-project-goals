@@ -13,3 +13,21 @@ You can read more about it in the delightfully meta [Project Goal #1](./0001-Pro
 
 We are currently collecting **proposed** goals. You can see the current set on the left.
 If you'd like to propose a goal, read more in the [how to propose a goal](../how_to/propose_a_goal.md) section.
+
+## Metadata for individual goals
+
+Each goal identifies the following metadata
+
+| Metadata | |
+| --- | --- |
+| Owner(s) | Who are the owners identified in the goal? |
+| Teams | The teams who are being asked to commit to the goal |
+| Status | One of the goal status items below |
+
+Status:
+
+* WIP -- actively being edited
+* Review -- ready for review by teams
+* Accepted -- This goal should be a part of the final slate
+* Preapproved -- The team is committed to the goal, but it lacks an owner (this may be because owner is seeking funding)
+* Not accepted -- The team does not want to commit to this goal, either because it doesn't seem like sufficiently high priority or because they do not have sufficient confidence that the goal as framed will get done.

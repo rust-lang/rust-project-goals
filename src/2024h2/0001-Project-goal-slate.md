@@ -4,6 +4,7 @@
 | --- | --- |
 | Owner(s) | nikomatsakis |
 | Teams | Leadership Council |
+| Status | Review |
 
 ## Motivation
 
@@ -123,8 +124,19 @@ There is another downside to the "rolling basis" as well -- it's hard to decide 
 
 ### Do we really need an owner?
 
-Simply put, yes. I don't expect
-xxx
+[Nothing good happens without an owner][owners]. The owner plays a few important roles:
+
+[owners]: https://smallcultfollowing.com/babysteps/blog/2024/04/05/ownership-in-rust/
+
+* Publicizing and organizing the process, authoring blog posts on update, and the like.
+* Working with individual goal proposals to sharpen them, improve the language, identify milestones.
+* Meeting with teams to discuss relative priorities.
+* Ensuring a coherent slate of goals.
+    * For example, if the cargo team is working to improve build times in CI, but the compiler team is focused on build times on individual laptops, that should be surfaced. It may be that its worth doing both, but there may be an opportunity to do more by focusing our efforts on the same target use cases.
+
+### Isn't the owner basically a BDFL?
+
+Simply put, no. The owner will review the goals and ensure a quality slate, but it is up to the teams to approve that slate and commit to the goals.
 
 ### Why the six months horizon?
 

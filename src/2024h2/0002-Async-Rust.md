@@ -4,6 +4,7 @@
 | --- | --- |
 | Owner(s) | nikomatsakis, tmandry; compiler-errors |
 | Teams | Lang |
+| Status | WIP |
 
 ## Motivation
 
