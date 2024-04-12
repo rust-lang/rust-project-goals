@@ -2,10 +2,11 @@
 
 - [👋 Introduction](./introduction.md)
 - [👉 2024 goal process](./2024h2/index.md)
-    - [Proposed](./2024h2/proposed.md)
+    - [WIP](./2024h2/wip.md)
         - [0000: Template](./2024h2/0000-TEMPLATE.md)
-        - [0001: Project goal slate](./2024h2/0001-Project-goal-slate.md)
         - [0002: Async Rust](./2024h2/0002-Async-Rust.md)
+    - [Under eview](./2024h2/review.md)
+        - [0001: Project goal slate](./2024h2/0001-Project-goal-slate.md)
     - [Accepted](./2024h2/accepted.md)
     - [Pre-approved but need owner](./2024h2/preapproved.md)
     - [Not accepted](./2024h2/not_accepted.md)
