@@ -28,6 +28,13 @@ The Rust project last published an annual roadmap in 2021. Even before that, mai
 
 ### The plan for 2024
 
+The plan is to do a "dry run" of the process in the remainder of 2024. The 2024 process will be driven by nikomatsakis; one of the outputs will be an RFC that proposes a more permanent process for use going forward. The short version of the plan is that we will
+
+* **ASAP (April):** Have a ~2 month period for selecting the initial slate of goals. Goals will be sourced from Rust teams and the broader community. They will cover the highest priority work to be completed in the second half of 2024.
+* **June:** Teams will approve the final slate of goals, making them 'official', and we will author an RFC proposing a refined process.
+* **Remainder of the year:** Regular updates on goal progress will be posted
+* **October:** Presuming all goes well, the process for 2025 H1 begins.
+
 ### The "shiny future" we are working towards
 
 Assuming this goal program is successful, we would like to begin another goal sourcing round in late 2024 (likely Oct 15 - Dec 15). We see this as fitting into a running process.
