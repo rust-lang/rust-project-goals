@@ -26,8 +26,8 @@ Each goal identifies the following metadata
 
 Status:
 
-* WIP -- actively being edited
-* Review -- ready for review by teams
-* Accepted -- This goal should be a part of the final slate
-* Preapproved -- The team is committed to the goal, but it lacks an owner (this may be because owner is seeking funding)
-* Not accepted -- The team does not want to commit to this goal, either because it doesn't seem like sufficiently high priority or because they do not have sufficient confidence that the goal as framed will get done.
+* [WIP](./wip.md) -- actively being edited
+* [Review](./under_review.md) -- ready for review by teams
+* [Accepted](./accepted.md) -- This goal should be a part of the final slate
+* [Preapproved](./preapproved.md) -- The team is committed to the goal, but it lacks an owner (this may be because owner is seeking funding)
+* [Not accepted](./not_accepted.md) -- The team does not want to commit to this goal, either because it doesn't seem like sufficiently high priority or because they do not have sufficient confidence that the goal as framed will get done.
