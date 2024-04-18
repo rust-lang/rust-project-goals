@@ -2,9 +2,13 @@
 
 | Metadata | |
 | --- | --- |
-| Owner(s) | nikomatsakis, tmandry; compiler-errors |
+| Owner(s) | nikomatsakis, tmandry |
 | Teams | Lang |
 | Status | WIP |
+
+## WIP
+
+This is a very rough draft! It has not been reviewed by, well, anyone, and currently represents nikomatsakis's starting opinion. Expect it to change.
 
 ## Motivation
 
@@ -43,8 +47,9 @@ We have identified three "subgoals" for 2024:
 
 * Solve the "Send Bound" problem
 * Stabilize async closures
-* XXX Async drop -- what is petrochenkov doing?
 * Prototype possible designs for a Rust "async standard library"
+
+* XXX Async drop -- what is petrochenkov doing?
 
 ### Looking further out
 
@@ -63,7 +68,7 @@ This is an "umbrella goal" with a number of subparts.
 | What | Owners |
 | ---  | --- |
 | Overall effort | tmandry, nikomatsakis |
-| Stabilize async closures | compiler-errors |
+| Stabilize async closures | compiler-errors? |
 | Resolve send bounds | ? |
 | Prototype Rust async stdlib | ? |
 
