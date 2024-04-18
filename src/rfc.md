@@ -1,16 +1,15 @@
-# Project goal slate
+- Feature Name: N/A
+- Start Date: 2024-04-18
+- RFC PR: [rust-lang/rfcs#0000](https://github.com/rust-lang/rfcs/pull/0000)
+- Rust Issue: N/A
 
-| Metadata | |
-| --- | --- |
-| Owner(s) | nikomatsakis |
-| Teams | Leadership Council |
-| Status | Review |
+# Summary
+[summary]: #summary
 
-## Motivation
+This RFC proposes to run an experimental goal program during the second half of 2024 with nikomatsakis as owner/organizer. This program is a first step towards an ongoing Rust roadmap. The proposed outcomes for 2024 are (1) select an initial slate of goals using an experimental process; (2) track progress over the year; (3) drawing on the lessons from that, propose a durable process in the form of an RFC to be accepted by the leadership council.
 
-This goal proposes to run an experimental goal program during the second half of 2024 as a first step towards an ongoing Rust roadmap. The proposed outcomes for 2024 are (1) select an initial slate of goals using an experimental process; (2) track progress over the year; (3) drawing on the lessons from that, propose a durable process in the form of an RFC to be accepted by the leadership council.
-
-### The status quo
+# Motivation
+[motivation]: #motivation
 
 The Rust project last published an annual roadmap in 2021. Even before that, maintaining and running the roadmap process had proved logistically challenging. And yet there are a number of challenges that the project faces for which having an established roadmap, along with a clarified ownership for particular tasks, would be useful:
 
@@ -27,7 +26,16 @@ The Rust project last published an annual roadmap in 2021. Even before that, mai
     * A challenge for people who are looking to work on Rust as part of their job -- whether that be full-time work, part-time work, or contracting -- is that the employer would like to have some confidence that the work will make progress. Too often, people find that they open RFCs or PRs which do not receive review, or which are misaligned with project priorities. A secondary problem is that there can be a perceived conflict-of-interest because people's job performance will be judged on their ability to finish a task, such as stabilizing a language feature, which can lead them to pressure project teams to make progress.
     * **Having the project agree before-hand that it is a priority to make progress in an area and in particular to aim for achieving particular goals by particular dates will align the incentives and make it easier for people to make commitments to would-be employers.**
 
-### The plan for 2024
+For more details, see
+
+* [Blog post on nikomatsakis's blog about project goals](https://smallcultfollowing.com/babysteps/blog/2023/11/28/project-goals/)
+* [Blog post on nikomatsakis's goal about goal ownership](https://smallcultfollowing.com/babysteps/blog/2024/04/05/ownership-in-rust/)
+* [nikomatsakis's slides from the Rust leadership summit](https://github.com/nikomatsakis/team-goals-2024)
+
+# Guide-level explanation
+[guide-level-explanation]: #guide-level-explanation
+
+## The plan for 2024
 
 The plan is to do a "dry run" of the process in the remainder of 2024. The 2024 process will be driven by nikomatsakis; one of the outputs will be an RFC that proposes a more permanent process for use going forward. The short version of the plan is that we will
 
@@ -36,7 +44,7 @@ The plan is to do a "dry run" of the process in the remainder of 2024. The 2024 
 * **Remainder of the year:** Regular updates on goal progress will be posted
 * **October:** Presuming all goes well, the process for 2025 H1 begins.
 
-### The "shiny future" we are working towards
+## The "shiny future" we are working towards
 
 Assuming this goal program is successful, we would like to begin another goal sourcing round in late 2024 (likely Oct 15 - Dec 15). We see this as fitting into a running process where the project evaluates its program and re-establishes goals every six months.
 
@@ -47,6 +55,11 @@ Assuming this goal program is successful, we would like to begin another goal so
 * **Goals cover a problem, not a solution.** As much as possible, the goal should describe the problem to be solved, not the precise solution. This also implies that accepting a goal means the project is committing that the **problem** is a priority: we are not committing to accept any particular solution.
 * **Nothing good happens without an owner.** Rust endeavors to run an open, participatory process, but ultimately achieving any concrete goal requires someone (or a small set of people) to take ownership of that goal. Owners are entrusted to listen, take broad input, and steer a well-reasoned course in the tradeoffs they make towards implementing the goal. But this power is not unlimited: owners make proposals, but teams are ultimately the ones that decide whether to accept them.
 * **To everything, there is a season.** While there will be room for accepting new goals that come up during the year, we primarily want to pick goals during a fixed time period and use the rest of the year to execute.
+
+# Reference-level explanation
+[reference-level-explanation]: #reference-level-explanation
+
+The long-term vision is to create a sustainable goals process for the project. Per the axiom that **goals cover a problem, not a solution**, this RFC does not propose a specific process. **Rather, the goal is to devise the process.** To help us get going quickly, the intent is that the goal owner will design and drive an experiental process, including (a) selecting a slate of goals that will be confirmed by the teams they affect; (b) monitoring and reporting on progress towards those goals; and (c) developing infrastructure to support that monitoring and lessen the load. Experience from that will be used to shape an RFC that describes the process to use for the future (assuming the experiment is a success). 
 
 ## Ownership and other resources
 
@@ -59,7 +72,7 @@ Assuming this goal program is successful, we would like to begin another goal so
 * Project website resources to do things like
     * post blog posts on both Inside Rust and the main Rust blog;
     * create a tracking page (e.g., `https://rust-lang.org/goals`);
-    * create repositories etc.
+    * create repositories, etc.
 * For teams opting to participate in this experimental run:
     * they need to meet with the goal committee to review proposed goals, discuss priorities;
     * they need to decide in a timely fashion whether they can commit the proposed resources
@@ -77,8 +90,6 @@ There are three specific outputs from this process:
 * An **RFC with a finalized process** that we can use going forward
 
 ### Milestones
-
-The long-term vision is to create a sustainable goals process for the project. Per the axiom that **goals cover a problem, not a solution**, this goal does not propose a specific process. **Rather, the goal is to devise the process.** To help us get going quickly, the intent is that the goal owner will design and drive an experiental process, including (a) selecting a slate of goals that will be confirmed by the teams they affect; (b) monitoring and reporting on progress towards those goals; and (c) developing infrastructure to support that monitoring and lessen the load. Experience from that will be used to shape an RFC that describes the process to use for the future (assuming the experiment is a success). 
 
 Key milestones along the way (with the most impactful highlighted in bold):
 
@@ -106,7 +117,19 @@ The owner plans to author up a proposed process but rough plans are as follows:
 
 It is not yet clear how much work it will be to drive this process. If needed, the owner will assemble a "goals committee" to assist in assist in reading over goals, proposing improvements, and generally making progress towards a coherent final slate. This committee is not intended to be a decision making body.
 
+# Drawbacks
+[drawbacks]: #drawbacks
+
+None identified.
+
+# Rationale and alternatives
+[rationale-and-alternatives]: #rationale-and-alternatives
+
 ## Frequently asked questions
+
+### Is there a template for project goals?
+
+This RFC does not specify details, so the following should not be considered normative. However, you can see a preview of what the project goal process would look like at the [nikomatsakis/rust-project-goals](https://github.com/nikomatsakis/rust-project-goals) repository; it contains a [goal template](https://nikomatsakis.github.io/rust-project-goals/2024h2/0000-TEMPLATE.html). This RFC is in fact a "repackaged" vesion of [2024's proposed Project Goal #1](https://nikomatsakis.github.io/rust-project-goals/2024h2/0001-Project-goal-slate.html).
 
 ### Why is the goal completion date targeting end of year?
 
@@ -141,3 +164,32 @@ Simply put, no. The owner will review the goals and ensure a quality slate, but 
 ### Why the six months horizon?
 
 Per the previous points, it is helpful to have a "season" for goals, but having e.g. an annual process prevents us from reacting to new ideas in a nimble fashion. At the same time, doing quarterly planning, as some companies do, is quite regular overhead. Six months seemed like a nice compromise, and it leaves room for a hefty discussion period of about 2 months, which sems like a good fit for an open-source project.
+
+# Prior art
+[prior-art]: #prior-art
+
+## The Rust roadmap process
+
+Proposed in RFC 1728, the Rust roadmap process resembled the project goal process in a number of ways.
+The intention was to publish an annual roadmap RFC with regular tracking updates.
+Several such roadmaps were published between 2018 and 2021.
+The project goal process proposed here can be considered a successor to that roadmap process,
+incorporating several lessons:
+
+* The roadmap process did not assign *owners* to goals and therefore did not explicitly account for available resources.
+* The roadmap process didn't have an effective mechanism for tracking progress.
+* The roadmap process didn't account for the work of authoring the roadmap -- no explicit owner was assigned. The process also lacked mechanisms for sourcing goals from teams. The core team attempted on some occasions to drive such work but without an explicit owner it (in this RFC author's opinion) floundered.
+
+## Corporate planning processes
+
+There are a variety of planning processes around corporate goals. This proposed goal process (6 month horizon, outcome-oriented, but qualitative and not quantitative) is modeled on those processes but intentionally simplified to account for Rust project needs.
+
+# Unresolved questions
+[unresolved-questions]: #unresolved-questions
+
+None: this RFC does not specify an explicit process but that will come as a follow-up RFC.
+
+# Future possibilities
+[future-possibilities]: #future-possibilities
+
+See [earlier section](#the-shiny-future-we-are-working-towards).
