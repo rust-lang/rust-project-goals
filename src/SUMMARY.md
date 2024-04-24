@@ -5,6 +5,7 @@
     - [WIP](./2024h2/wip.md)
         - [0000: Template](./2024h2/0000-TEMPLATE.md)
         - [0002: Async Rust](./2024h2/0002-Async-Rust.md)
+        - [0003: Rust 2024 Edition](./2024h2/0003-Rust-2024-Edition.md)
     - [Under review](./2024h2/review.md)
         - [0001: Project goal slate](./2024h2/0001-Project-goal-slate.md)
     - [Accepted](./2024h2/accepted.md)
