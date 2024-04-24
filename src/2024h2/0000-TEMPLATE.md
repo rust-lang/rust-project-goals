@@ -54,6 +54,16 @@
     * Issuing rust-lang-hosted libraries on crates.io?
     * Posting blog posts on the Rust blog? (The Inside Rust blog is always ok.)
 
+## Outputs and milestones
+
+### Outputs
+
+*Final outputs that will be produced*
+
+### Milestones
+
+*Milestones you will reach along the way*
+
 ## Frequently asked questions
 
 ### What do I do with this space?
