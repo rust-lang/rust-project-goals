@@ -4,3 +4,11 @@ language = "en"
 multilingual = false
 src = "src"
 title = "Rust Project Goals"
+
+[output.html]
+git-repository-url = "https://github.com/nikomatsakis/rust-project-goals"
+edit-url-template = "https://github.com/nikomatsakis/rust-project-goals/edit/<branch>/{path}"
+
+[output.html.fold]
+enable = true
+level = 1
