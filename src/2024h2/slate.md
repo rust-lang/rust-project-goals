@@ -19,7 +19,7 @@ None
 
 ## WIP goals
 
-*These goals are still in draft form. They do not represent consensus. Expect changes. The goal column should describe the specific things you aim to get done in 2024H2; the theme ties those into a larger theme (it's ok to put N/A).*
+*These goals are still in draft form. They do not represent consensus. Expect changes. The goal column should describe the specific things you aim to get done in 2024H2; the theme ties those into a larger theme (it's ok to put N/A). [Would you like to propose a goal?](../how_to/propose_a_goal.md)*
 
 | Id    | Goal                                     | Theme                 |
 | ----- | ---------------------------------------- | --------------------- |
