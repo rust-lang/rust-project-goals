@@ -25,7 +25,7 @@ None
 | [Stabilize Rust 2024 edition][]     | Rust 2024 edition         | [LC]               |
 | [Standard abstractions for async][] | [nikomatsakis], [tmandry] | [Lang], [Libs-API] |
 | ↳ [Async closures][]                | [compiler-errors]         |                    |
-| ↳ [Return type notation][]          |                           |                    |
+| ↳ [Send bound problem][]            |                           |                    |
 | Low-level systems development       |                           |                    |
 | ↳ [Intrusive linked lists][]        | ![Owner needed][own]      | [Lang]             |
 | ↳ [Fallible allocation][]           | ![Owner needed][own]      |                    |
@@ -42,7 +42,7 @@ None.
 [Stabilize Rust 2024 edition]: ./Rust-2024-Edition.md
 [Standard abstractions for async]: ./Async.md
 [Async closures]: ./Async--AsyncClosures.md
-[Return type notation]: ./Async--AsyncClosures.md
+[Return type notation]: Async--SendBounds.md
 [Intrusive linked lists]: ./Async--AsyncClosures.md
 [Fallible allocation]: ./Async--AsyncClosures.md
 [Return type notation]: ./Async--AsyncClosures.md
