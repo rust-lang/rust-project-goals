@@ -1,26 +1,27 @@
-# TEMPLATE (replace with title of your goal)
+# Polonius
 
-> **Instructions:** Copy this template to a fresh file with a name based on your plan.
-> Update the text. Feel free to replace any text with anything, but there are placeholders
-> designed to help you get started. Also, while this template has received some iteration,
-> it is not sacrosant. Feel free to change the titles of sections or make other changes that you think 
-> will increase clarity.
+| Metadata |                 |
+| -------- | --------------- |
+| Owner(s) | [lqd]           |
+| Teams    | [Lang], [Types] |
+| Status   | WIP             |
 
-| Metadata | |
-| --- | --- |
-| Owner(s) | *Github usernames or other identifying info for goal owners* |
-| Teams | *Names of teams being asked to commit to the goal* |
-| Status | WIP |
+[lqd]: https://github.com/lqd
+[Lang]: https://www.rust-lang.org/governance/teams/lang
+[Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
 
 ## Motivation
 
-*Begin the motivation with a short (1 paragraph, ideally) summary of what the goal is trying to achieve and why it matters.*
+Polonius is an improved version of the borrow checker that [resolves common limitations of the borrow checker][pc3] and which is needed to support future patterns such as ["lending iterators"][#92985].
+
+[pc3]: https://blog.rust-lang.org/inside-rust/2023/10/06/polonius-update.html#background-on-polonius
+[#92985]: https://github.com/rust-lang/rust/issues/92985
 
 ### The status quo
 
-*Elaborate in more detail about the problem youa re trying to solve. This section is making the case for why this particular problem is worth prioritizing with project bandwidth. A strong status quo section will (a) identify the target audience and (b) give specifics about the problems they are facing today. Sometimes it may be useful to start sketching out how you think those problems will be addressed by your change, as well, though it's not necessary.*
-
 ### The next few steps
+
+* Land polonius on nightly
 
 *Sketch out the specific things you are trying to achieve in 2024. This should be short and high-level -- we don't want to see the design!*
 
@@ -36,36 +37,30 @@
 
 ## Ownership and other resources
 
-**Owner:** *Identify a specific person or small group of people if possible, else the group that will provide the owner*
+**Owner:** lqd
 
-*This section describes the resources that you the contributors are putting forward to address this goal. This includes people: you can list specific people or a number of people -- e.g., 2 experienced Rust engineers working 2 days/wk. Including details about experience level and background will help the reader to judge your ability to complete the work.*
-
-*You can also include other resources as relevant, such as hardware, domain names, or whatever else.*
+Other support provided by Amanda Stjerna.
 
 ### Support needed from the project
 
-*Identify which teams you need support from -- ideally reference the "menu" of support those teams provide. Some common considerations:*
-
-* Will you be authoring RFCs? How many do you expect? Which team will be approving them?
-    * Will you need design meetings along the way? And on what cadence?
-* Will you be authoring code? If there is going to be a large number of PRs, or a very complex PR, it may be a good idea to talk to the compiler or other team about getting a dedicated reviewer.
-* Will you want to use "Rust project resources"...?
-    * Creating rust-lang repositories?
-    * Issuing rust-lang-hosted libraries on crates.io?
-    * Posting blog posts on the Rust blog? (The Inside Rust blog is always ok.)
+XXX
 
 ## Outputs and milestones
 
 ### Outputs
 
-*Final outputs that will be produced*
+* Nightly implementation of polonius that passes [problem case #3][pc3] and accepts [lending iterators][#92985].
 
 ### Milestones
 
-*Milestones you will reach along the way*
+| Milestone                                                              | Expected date |
+| ---------------------------------------------------------------------- | ------------- |
+| Factoring out higher-ranked concerns from the main path                | TBD           |
+| Location-insensitive loans in scope                                    | TBD           |
+| Verify full test suite passes with location-insensitive Polonius       | TBD           |
+| Replace parts of the borrow checker with location-insensitive Polonius | TBD           |
+| Location-sensitive pass on nightly                                     | TBD           |
 
 ## Frequently asked questions
 
-### What do I do with this space?
-
-*This is a good place to elaborate on your reasoning above -- for example, why did you put the design axioms in the order that you did? It's also a good place to put the answers to any questions that come up during discussion. The expectation is that this FAQ section will grow as the goal is discussed and eventually shoudl contain a complete summary of the points raised along the way.*
+None yet.

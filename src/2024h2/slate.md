@@ -53,7 +53,7 @@ None.
 
 [nikomatsakis]: https://github.com/nikomatsakis
 [tmandry]: https://github.com/tmandry
-[lqd]: https://github.com/tmandry
+[lqd]: https://github.com/lqd
 [compiler-errors]: https://github.com/compiler-errors
 [oli-obk]: https://github.com/oli-obk
 
