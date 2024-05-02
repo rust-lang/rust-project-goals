@@ -4,12 +4,11 @@
 
 *These goals have been accepted by the relevant teams and have an assigned owner.*
 
-| Goal                    | Theme         | Owner            | Accepted                                                |
-| ----------------------- | ------------- | ---------------- | ------------------------------------------------------- |
-| [Assemble goal slate][] | Project goals | [nikomatsakis][] | [RFC 3614](https://github.com/rust-lang/rfcs/pull/3614) |
+| Goal                    | Theme         | Owner            | Accepted by...                                                  |
+| ----------------------- | ------------- | ---------------- | --------------------------------------------------------------- |
+| [Assemble goal slate][] | Project goals | [nikomatsakis][] | [LC] in [RFC 3614](https://github.com/rust-lang/rfcs/pull/3614) |
 
 [nikomatsakis]: https://github.com/nikomatsakis/
-[Leadership council]: https://www.rust-lang.org/governance/teams/leadership-council
 
 ## Preapproved goals in need of owners
 
@@ -21,16 +20,18 @@ None
 
 *These goals are still in draft form. They do not represent consensus. Expect changes. The goal column should describe the specific things you aim to get done in 2024H2; the theme ties those into a larger theme (it's ok to put N/A). [Would you like to propose a goal?](../how_to/propose_a_goal.md)*
 
-| Goal                                     | Owner                 | Teams |
-| ---------------------------------------- | --------------------- | ----- |
-| [Stabilize Rust 2024 edition][3]         | Rust 2024 edition     |       |
-| [Standard abstractions for async][]      | nikomatsakis, tmandry |       |
-| [Async closures][]                       |                       |       |
-| [Return type notation][]                 |                       |       |
-| [Closures, RTN, Prototype]               | Async Rust            |       |
-| [Derive(SmartPointer)][4]                | Rust for Linux        |       |
-| [Polonius on nightly][6]                 | Polonius              |       |
-| [Associated type position impl trait][5] | Impl trait everywhere |       |
+| Goal                                | Owner                     | Teams              |
+| ----------------------------------- | ------------------------- | ------------------ |
+| [Stabilize Rust 2024 edition][]     | Rust 2024 edition         | [LC]               |
+| [Standard abstractions for async][] | [nikomatsakis], [tmandry] | [Lang], [Libs-API] |
+| ↳ [Async closures][]                | [compiler-errors]         |                    |
+| ↳ [Return type notation][]          |                           |                    |
+| Low-level systems development       |                           |                    |
+| ↳ [Intrusive linked lists][]        | ![Owner needed][own]      | [Lang]             |
+| ↳ [Fallible allocation][]           | ![Owner needed][own]      |                    |
+| [Polonius on nightly][]             | [lqd]                     | [Lang], [Types]    |
+| [Polonius on nightly][]             | [lqd]                     | [Lang], [Types]    |
+| [Impl trait everywhere][]           | [oli-obk]                 | [Lang], [Types]    |
 
 ## Not accepted goals
 
@@ -39,3 +40,25 @@ None
 None.
 
 [Assemble goal slate]: ./Project-goal-slate.md
+[Stabilize Rust 2024 edition]: ./Rust-2024-Edition.md
+[Standard abstractions for async]: ./Async.md
+[Async closures]: ./Async--AsyncClosures.md
+[Return type notation]: ./Async--AsyncClosures.md
+[Intrusive linked lists]: ./Async--AsyncClosures.md
+[Fallible allocation]: ./Async--AsyncClosures.md
+[Return type notation]: ./Async--AsyncClosures.md
+[Polonius on nightly]: ./Polonius.md
+[Impl trait everywhere]: ./Impl-trait-everywhere.md
+
+[own]: https://img.shields.io/badge/Owned%20Needed-blue
+
+[nikomatsakis]: https://github.com/nikomatsakis
+[tmandry]: https://github.com/tmandry
+[lqd]: https://github.com/tmandry
+[compiler-errors]: https://github.com/compiler-errors
+[oli-obk]: https://github.com/oli-obk
+
+[LC]: https://www.rust-lang.org/governance/teams/leadership-council
+[Lang]: https://www.rust-lang.org/governance/teams/lang
+[Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
+[Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
