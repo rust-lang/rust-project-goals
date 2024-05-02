@@ -1,12 +1,12 @@
 # Design axioms
 
-Each project goal includes a **design axioms** section. Design axioms capture the guidelines you will use to drive your design. Since goals genearlly come early in the process, the final design is not known -- axioms are a way to clarify the constraints you will be keeping in mind as you work on your design. Axioms will also help you operate more efficienctly, since you can refer back to them to help resolve tradeoffs more quickly.
+Each project goal includes a **design axioms** section. Design axioms capture the guidelines you will use to drive your design. Since goals genearlly come early in the process, the final design is not known -- axioms are a way to clarify the constraints you will be keeping in mind as you work on your design. Axioms will also help you operate more efficiently, since you can refer back to them to help resolve tradeoffs more quickly.
 
 ## Examples
 
 ### Axioms about axioms
 
-* **Axioms capture constraints.** Axioms capture the things you are trying to achieve. The goal ultimately is that your design satifies all of them as much as possible.
+* **Axioms capture constraints.** Axioms capture the things you are trying to achieve. The goal ultimately is that your design satisfies all of them as much as possible.
 * **Axioms express tradeoffs.** Axioms are ordered, and -- in case of conflict -- the axioms that come earlier in the list take precedence. Since *axioms capture constraints*, this doesn't mean you just ignore the axioms that take lower precedence, but it usually means you meet them in a "less good" way. For example, maybe consider a lint instead of a hard error?
 * **Axioms should be specific to your goal.** Rust has general design axioms that 
 * **Axioms are short and memorable.** The structure of an axiom should begin with a short, memorable bolded phrase -- something you can recite in meetings. Then a few sentences that explain in more detail or elaborate.
@@ -21,7 +21,7 @@ Each project goal includes a **design axioms** section. Design axioms capture th
 
 ### Axioms about Rust itself
 
-Still a work in progress! See the [Rust design axioms](https://nikomatsakis.github.io/rust-design-axioms) repostiory.
+Still a work in progress! See the [Rust design axioms](https://nikomatsakis.github.io/rust-design-axioms) repository.
 
 ## Frequently asked questions
 
