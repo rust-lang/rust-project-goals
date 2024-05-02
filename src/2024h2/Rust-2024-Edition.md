@@ -1,10 +1,10 @@
 # Rust 2024 Edition
 
-| Metadata | |
-| --- | --- |
-| Owner(s) | *Github usernames or other identifying info for goal owners* |
-| Teams | lang, types |
-| Status | WIP |
+| Metadata |             |
+| -------- | ----------- |
+| Owner(s) | TC          |
+| Teams    | lang, types |
+| Status   | WIP         |
 
 ## Motivation
 
@@ -58,16 +58,16 @@ The "Edition Axioms" were [laid out in RFC 3085](https://rust-lang.github.io/rfc
 
 ### Milestones
 
-| Date | Milestone |
-| ---- | --------- |
-|      | Code complete |
-|      | Implementation done |
-|      | First crater test of new edition |
-|      | Call for testing |
-|      | All features stabilized on nightly (edition itself may not be) |
-| **Oct 17** | **1.83.0 branches** |
-| Nov | Edition guide, blog post ready |
-| **Nov 28** | **1.83.0 publicly available** |
+| Date       | Milestone                                                      |
+| ---------- | -------------------------------------------------------------- |
+|            | Code complete                                                  |
+|            | Implementation done                                            |
+|            | First crater test of new edition                               |
+|            | Call for testing                                               |
+|            | All features stabilized on nightly (edition itself may not be) |
+| **Oct 17** | **1.83.0 branches**                                            |
+| Nov        | Edition guide, blog post ready                                 |
+| **Nov 28** | **1.83.0 publicly available**                                  |
 
 
 ## Frequently asked questions

@@ -1,10 +1,4 @@
-# Associated type position impl trait
-
-> **Instructions:** Copy this template to a fresh file with a name based on your plan.
-> Update the text. Feel free to replace any text with anything, but there are placeholders
-> designed to help you get started. Also, while this template has received some iteration,
-> it is not sacrosant. Feel free to change the titles of sections or make other changes that you think 
-> will increase clarity.
+# Impl trait everywhere
 
 | Metadata | |
 | --- | --- |
