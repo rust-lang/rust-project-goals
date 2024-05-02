@@ -2,64 +2,82 @@
 
 | Metadata | |
 | --- | --- |
-| Owner(s) | *Github usernames or other identifying info for goal owners* |
-| Teams | *Names of teams being asked to commit to the goal* |
+| Owner(s) | [oli-obk] |
+| Teams | [Lang], [Types] |
 | Status | WIP |
+
+[oli-obk]: https://github.com/oli-obk
+
+[Lang]: https://www.rust-lang.org/governance/teams/lang
+[Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
 
 ## Motivation
 
-*Begin the motivation with a short (1 paragraph, ideally) summary of what the goal is trying to achieve and why it matters.*
+The `impl Trait` syntax is a key enabler for Rust libraries.
+It not only permits shorter, more meaningful type signatures and documentation,
+it also enables developers to name types (like futures and closures) that are otherwise anonymous.
 
 ### The status quo
 
-*Elaborate in more detail about the problem youa re trying to solve. This section is making the case for why this particular target audience and (b) give specifics about the problems they are facing today. Sometimes it may be useful to start sketching out how you think those problems will 
+Impl trait is supported in the following positions:
+
+* Argument position impl Trait ("APIT"), in inherent/item/trait functions 
+* Return type position in inherent/item functions ("RPIT") and in trait ("RPITIT") functions
 
 ### The next few steps
 
-*Sketch out the specific things you are trying to achieve in 2024. This should be short and high-level -- we don't want to see the design!*
+The plan for 2024 is to
+
+* Stabilize new capture rules for the [Rust 2024 edition](./Rust-2024-Edition.md).
+    * RFC proposing `use<T>` syntax was recently opened.
+* Stabilize Associated Type Position Impl Trait (ATPIT):
+    * Permits `impl Foo for Bar { type Baz = impl Trait; }`.
+    * This is useful for associated types whose value is a future, iterator, closure, or simpler type.
+* Stabilize Type Alias Impl Trait (TAIT) -- stretch goal.
+    * Permits `type Foo = impl Trait;`
+    * This is a core feature that many other uses of impl Trait effectively desugar to, and thus can be used to close gaps where those features don't quite do what is needed.
+    * It allows the inferred types to be referenced in struct fields or other unusual places; it also allows for those types to be part of a module's public API.
 
 ### The "shiny future" we are working towards
 
-*If this goal is part of a larger plan that will extend beyond this goal period, sketch out the goal you are working towards. It may be worth adding some text about why these particular goals were chosen as the next logical step to focus on.*
+Long-term, we wish to enable impl trait syntax "everywhere", meaning in any position where it makes sense.
+We are nearing the end of this journey.
+Some of the remaining extensions that could be considered in the future:
+
+* dyn safety for traits that make use of RTPIT and async functions;
+* in where-clauses in functions or other locations;
+* in struct fields.
+
+See also: the [explainer](https://rust-lang.github.io/impl-trait-initiative/explainer.html) here for a "user's guide" style introduction, though it's not been recently updated and may be wrong in the details (especially around TAIT).
 
 ## Design axioms
 
-*Add your [design axioms][da] here. Design axioms clarify the constraints and tradeoffs you will use as you do your design work. These are most important for project goals where the route to the solution has significant ambiguity (e.g., designing a language feature or an API), as they communicate to your reader how you plan to approach the problem. If this goal is more aimed at implementation, then design axioms are less important. [Read more about design axioms][da].*
-
-[da]: ../about/design_axioms.md
+TODO
 
 ## Ownership and other resources
 
-**Owner:** *Identify a specific person or small group of people if possible, else the group that will provide the owner*
-
-*This section describes the resources that you the contributors are putting forward to address this goal. This includes people: you can list specific people or a number of people -- e.g., 2 experienced Rust engineers working 2 days/wk. Including details about experience level and background will help the reader to judge your ability to complete the work.*
-
-*You can also include other resources as relevant, such as hardware, domain names, or whatever else.*
+**Owner:** oli-obk owns this goal, work sponsored by Amazon.
 
 ### Support needed from the project
 
-*Identify which teams you need support from -- ideally reference the "menu" of support those teams provide. Some common considerations:*
-
-* Will you be authoring RFCs? How many do you expect? Which team will be approving them?
-    * Will you need design meetings along the way? And on what cadence?
-* Will you be authoring code? If there is going to be a large number of PRs, or a very complex PR, it may be a good idea to talk to the compiler or other team about getting a dedicated reviewer.
-* Will you want to use "Rust project resources"...?
-    * Creating rust-lang repositories?
-    * Issuing rust-lang-hosted libraries on crates.io?
-    * Posting blog posts on the Rust blog? (The Inside Rust blog is always ok.)
+* Lang team:
+    * Design meetings to discuss design changes
+    * RFC reviews
+* Types team:
+    * Design reviews to ensure compatibility with upcoming scheduler
 
 ## Outputs and milestones
 
 ### Outputs
 
-*Final outputs that will be produced*
+* Stable version of ATPIT
+* Stable version of TAIT
 
 ### Milestones
 
-*Milestones you will reach along the way*
+* ATPIT
+* 
 
 ## Frequently asked questions
 
-### What do I do with this space?
-
-*This is a good place to elaborate on your reasoning above -- for example, why did you put the design axioms in the order that you did? It's also a good place to put the answers to any questions that come up during discussion. The expectation is that this FAQ section will grow as the goal is discussed and eventually shoudl contain a complete summary of the points raised along the way.*
+None yet.

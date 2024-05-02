@@ -30,7 +30,6 @@ None
 | ↳ [Intrusive linked lists][]        | ![Owner needed][own]      | [Lang]             |
 | ↳ [Fallible allocation][]           | ![Owner needed][own]      |                    |
 | [Polonius on nightly][]             | [lqd]                     | [Lang], [Types]    |
-| [Polonius on nightly][]             | [lqd]                     | [Lang], [Types]    |
 | [Impl trait everywhere][]           | [oli-obk]                 | [Lang], [Types]    |
 
 ## Not accepted goals
