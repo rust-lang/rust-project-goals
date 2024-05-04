@@ -42,10 +42,9 @@ None.
 [Stabilize Rust 2024 edition]: ./Rust-2024-Edition.md
 [Standard abstractions for async]: ./Async.md
 [Async closures]: ./Async--AsyncClosures.md
-[Return type notation]: Async--SendBounds.md
-[Intrusive linked lists]: ./Async--AsyncClosures.md
-[Fallible allocation]: ./Async--AsyncClosures.md
-[Return type notation]: ./Async--AsyncClosures.md
+[Send bound problem]: Async--SendBounds.md
+[Intrusive linked lists]: ./Intrusive-linked-lists.md
+[Fallible allocation]: ./Fallible-allocation.md
 [Polonius on nightly]: ./Polonius.md
 [Impl trait everywhere]: ./Impl-trait-everywhere.md
 
