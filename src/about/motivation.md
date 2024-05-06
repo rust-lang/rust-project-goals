@@ -1,11 +1,17 @@
-# Motivation
+# Goal motivations
 
-Say something about the problem you aim to address. Try to answer the following questions:
+The **motivation** section for a goal should sell the reader on why this is an important problem to address.
+
+The first paragraph should begin with a concise summary of the high-level goal and why it's important.
+This is a kind of summary that helps the reader to get oriented.
+
+The **status quo** section then goes into deeper detail on the problem and how things work today.
+It should answer the following questions
 
 * Who is the **target audience**? Is it a particular group of Rust users, such as those working in a specific domain? Contributors? 
-* What is the **status quo**? What do they do now when they have this problem, and what are the shortcomings of that?
-* What is the **shiny future**? What is the goal you are trying to achieve?
+* What do these users do now when they have this problem, and what are the shortcomings of that?
 
-The motivation section is making the case for why this particular problem is worth prioritizing with project bandwidth. That bandwidth can be a very limited resource, so it's good to give details.
+The **next few steps** can explain how you plan to change that and why these are the right next steps to take.
 
-The most important thing in the motivation is the **status quo** -- showing the problems with the way things are now. The **shiny future** is definitely useful, but giving too many details about how you hope to address the problems risks people taking issue with your particular plan. The ideal is to cover the experience you are going for.
+Finally, the **shiny future** section can put the goal into a longer term context. It's ok if the goal doesn't have a shiny future beyond the next few steps.
+
