@@ -1,8 +1,6 @@
 # Project goals
 
-![Status: Experimental](https://img.shields.io/badge/Status-Experimental-yellow)
-
-This repo tracks an experimental effort to set and track goals for the Rust project.
+This repo tracks the effort to set and track goals for the Rust project.
 
 We are currently working on assembling a [slate of goals for 2024H2 -- the second half of 2024](./2024h2/slate.md).
 

@@ -4,7 +4,7 @@ To be fully accepted, a goal must have a designated **owner**. This is ideally a
 
 Goals without owners can only be accepted in [provisional form](./provisional_goals.md).
 
-## Owners shape the proposal and keep things moving
+## Owners keep things moving
 
 Owners are the ones ultimately responsible for the goal being completed. They stay on top of the current status and make sure that things keep moving. When there is disagreement about the best path forward, owners are expected to make sure they understand the tradeoffs involved and then to use their good judgment to resolve it in the best way.
 

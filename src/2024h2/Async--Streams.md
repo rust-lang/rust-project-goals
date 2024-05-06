@@ -1,21 +1,17 @@
-# Rust for Linux
-# TEMPLATE (replace with title of your goal)
-
-> **Instructions:** Copy this template to a fresh file with a name based on your plan.
-> Update the text. Feel free to replace any text with anything, but there are placeholders
-> designed to help you get started. Also, while this template has received some iteration,
-> it is not sacrosant. Feel free to change the titles of sections or make other changes that you think 
-> will increase clarity.
+# Stabilize trait for async streams
 
 | Metadata | |
 | --- | --- |
-| Owner(s) | *Github usernames or other identifying info for goal owners* |
-| Teams | *Names of teams being asked to commit to the goal* |
+| Owner(s) | eholk |
+| Teams | [Libs-API] |
 | Status | WIP |
+
+[eholk]: https://github.com/eholk
+[Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
 
 ## Motivation
 
-*Begin the motivation with a short (1 paragraph, ideally) summary of what the goal is trying to achieve and why it matters.*
+
 
 ### The status quo
 
