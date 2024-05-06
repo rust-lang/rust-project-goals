@@ -1,10 +1,13 @@
 # Async Rust
 
-| Metadata | |
-| --- | --- |
-| Owner(s) | nikomatsakis, tmandry |
-| Teams | Lang |
-| Status | WIP |
+| Metadata |                    |
+| -------- | ------------------ |
+| Owner(s) | tmandry            |
+| Teams    | [Lang], [Libs-API] |
+| Status   | WIP                |
+
+[Lang]: https://www.rust-lang.org/governance/teams/lang
+[Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
 
 ## WIP
 
@@ -12,44 +15,30 @@ This is a very rough draft! It has not been reviewed by, well, anyone, and curre
 
 ## Motivation
 
-This is an umbrella goal to advance Rust's Async I/O roadmap. The specific plans for 2024 are:
+We propose authoring an evaluation document exploring the options for standard Rust async abstractions. The goal is to find ways to address the perception that "async Rust is Rust on hard mode", especially the [characteristic async bugs][reliability] that arise from the use of [`select!`][select], cancellation, and [stream buffering][buffering]. This work proceeds in parallel with the work on stabilizing async fundamentals, such as [async closures](./async_closures.md).
 
-* Stabilize a solution for RTN (owner: compiler-errs)
-* Stabilize async closures (owner: compiler-errs)
-* Prototype candidates for a std runtime API (owner:)
+[reliability]: https://tmandry.gitlab.io/blog/posts/making-async-reliable/
+[select]: https://rust-lang.github.io/wg-async/vision/submitted_stories/status_quo/barbara_gets_burned_by_select.html
+[buffering]: https://rust-lang.github.io/wg-async/vision/submitted_stories/status_quo/barbara_battles_buffered_streams.html
 
-### State of play for async Rust
-
-Async Rust continues to be a "killer app" for Rust. Growth is driven by three key advantages:
-
-* **Performance and resource usage:** "At-scale services" benefit from Rust's *predictably low tail latency* and *reduced memory usage*. These reduce hardware costs, permitting services to run on smaller, cheaper instances or on fewer instances.
-* **Reliability:** When a desktop app crashes, the user is annoyed, but they just start it up again. When a network service crashes, at least one with a high level of availability, somebody gets paged. Network service authors thus have significant incentive to produce robust, reliable applications.
-* **Systems level capabilities:** Embedded and low-level applications are able to use Rust's `async fn` to write much higher-level async software than was possible in C, where async I/O state machines have to be coded by hand.
-
-Of course, async Rust does wind up getting used for all sorts of things. One particularly common pattern is that teams will adopt Rust to achieve better scale in a few critical systems (similar to the service that [Discord described in this blog post][d]). As they get more experienced with Rust, they enjoy Rust's reliability and productivity benefits, and begin using it for more and more services, even in areas that don't particularly need Rust's advantages.
-
-[d]: https://discord.com/blog/why-discord-is-switching-from-go-to-rust
-
-### Challenges for async Rust
+### The status quo
 
 Despite the growth of async Rust, it continues to be significantly more difficult to use. As one engineer from Amazon put it, Async Rust is "Rust on hard mode". Some of the key challenges to address are:
 
-* **Overall complexity:**
-* **Fragmentation:** The Rust standard library lacks common traits like `Read`, `Write`, and `Iterator` that are suitable for async programs.
-* **Cancellation, `select!`, and other primitives considered harmful:** Many widely used APIs 
-* **Poll model scales poorly sometimes:** Complex futures like `FuturesUnordered` or joining a large number of tasks can have very poor performance because of the limits of the poll API.
-* **Optimizing poll times is hard:** 
-* **Lack of async cleanup**
+- Getting started:
+    - **Good learning material is out there, but hard to find.** The lack of "standard" recommendations makes it [harder to direct people who are just getting started](https://rust-lang.github.io/wg-async/vision/submitted_stories/status_quo/niklaus_wants_to_share_knowledge.html).
+    - **Fragmentation:** Every Rust async program must pick a runtime. Libraries that make use of non-trivial functionality must be written for one runtime. Combining runtimes sometimes works and sometimes doesn't, leading to [surprise failures when you try to run your program](https://rust-lang.github.io/wg-async/vision/submitted_stories/status_quo/alan_started_trusting_the_rust_compiler_but_then_async.html).
+- Getting your program to do what you want:
+    - **Cancellation, `select!`, and other primitives considered harmful:** Many widely used APIs have sharp edges, such as [buffering issues](https://rust-lang.github.io/wg-async/vision/submitted_stories/status_quo/barbara_battles_buffered_streams.html), surprise cancellation, [difficult resource cleanup](https://rust-lang.github.io/wg-async/vision/submitted_stories/status_quo/alan_finds_database_drops_hard.html), etc.
+    - **Cannot use references from inside tasks:** Spawning tasks are the solution to many of the above problems, but tasks cannot share references.
+    - **Poll model scales poorly sometimes:** Complex futures like `FuturesUnordered` or joining a large number of tasks can have very poor performance because of the limits of the poll API.
+- Getting your program to run as fast as you want -- mostly works, but some challenges:
+    - **Optimizing poll times is hard:**
+    - **Future sizes are too big:**
 
 ### Our plan for 2024
 
-We have identified three "subgoals" for 2024:
-
-* Solve the "Send Bound" problem
-* Stabilize async closures
-* Prototype possible designs for a Rust "async standard library"
-
-* XXX Async drop -- what is petrochenkov doing?
+Author an evaluation. XXX expand on this
 
 ### Looking further out
 
@@ -57,51 +46,34 @@ Our overall vision for async is that using async Rust should feel very similar t
 
 ## Design axioms
 
-These axioms guide our designs. They are in tension. Earlier axioms take precedence.
-
-* **Design for the 99.9th percentile.** Rust's success in the networking domain is driven by its ability to occupy extreme niches, such as at-scale services or running on tiny embedded devices without an operating system. When designing APIs and features, it's easy to ignore these extreme cases since they are small in number, but Rust's magic occurs precisely *because* we are able to target the extremes and the normal case reasonably well.
+* **We lay the foundations for a thriving ecosystem.**
+* **Uphold sync's Rust bar for reliability.**
+* **Zero-cost.**
+* **From embedded to the cloud.**
+* **Consistent, incremental progress.**
 
 ## Ownership and other resources
 
-This is an "umbrella goal" with a number of subparts. 
+**Owner:** tmandry
 
-| What | Owners |
-| ---  | --- |
-| Overall effort | tmandry, nikomatsakis |
-| Stabilize async closures | compiler-errors? |
-| Resolve send bounds | ? |
-| Prototype Rust async stdlib | ? |
-
-**Overall effort:** These owners are responsible for shaping the overall vision and general progress. Each has approximately 10% time to devote to general leadership.
-
-**Async closures:** This owner is responsible for implementation and design of async closures.
-
-**Prototype Rust saync stdlib:** This owner is responsible for implementation and design of async closures.
+XXXX
 
 ### Support needed from the project
 
-Primarily support is needed from the lang team:
+_Identify which teams you need support from -- ideally reference the "menu" of support those teams provide. Some common considerations:_
 
-* Async closures: N design meetings
-* Prompt response on an RFC RFC and stabilization reports
-* Prompt response on an async closures RFC and stabilization reports
+## Outputs and milestones
 
-Libs team will need to:
+### Outputs
 
-* Review the async closures design which will include new traits
+_Final outputs that will be produced_
 
-Special compiler team support is not needed:
+### Milestones
 
-* Most of the implementation work for async closures and RTN is done, no special requests.
-
-## Milestones and rough plan
-
-| Date | Milestone |
-| --- | --- |
-| **Month Day** | **Do the first thing!** |
-| Month Day | A step towards the second thing |
-| **Month Day** | **Do the second meaningful thing!** |
-| Sep 5 | Rust 1.82.0 enters beta |
-| Oct 17 | Rust 1.82.0 is released |
+_Milestones you will reach along the way_
 
 ## Frequently asked questions
+
+### What do I do with this space?
+
+_This is a good place to elaborate on your reasoning above -- for example, why did you put the design axioms in the order that you did? It's also a good place to put the answers to any questions that come up during discussion. The expectation is that this FAQ section will grow as the goal is discussed and eventually should contain a complete summary of the points raised along the way._
