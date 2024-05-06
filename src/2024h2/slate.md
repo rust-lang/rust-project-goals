@@ -31,6 +31,8 @@ None
 | ↳ [Fallible allocation][]           | ![Owner needed][own]      |                    |
 | [Polonius on nightly][]             | [lqd]                     | [Lang], [Types]    |
 | [Impl trait everywhere][]           | [oli-obk]                 | [Lang], [Types]    |
+| [Seamless C Support][]              | ![Owner needed][own]      | [Lang]             |
+| [Relaxing the Orphan Rule][]        | ![Owner needed][own]      | [Lang]             |
 
 ## Not accepted goals
 
@@ -48,6 +50,8 @@ None.
 [Return type notation]: ./Async--AsyncClosures.md
 [Polonius on nightly]: ./Polonius.md
 [Impl trait everywhere]: ./Impl-trait-everywhere.md
+[Seamless C Support]: ./Seamless-C-Support.md
+[Relaxing the Orphan Rule]: ./Relaxing-the-Orphan-Rule.md
 
 [own]: https://img.shields.io/badge/Owned%20Needed-blue
 
