@@ -4,7 +4,7 @@
 - [👉 2024 goal process](./2024h2/index.md)
     - [The slate](./2024h2/slate.md)
     - [All candidates](./2024h2/candidates.md)
-        - [Template](./2024h2/TEMPLATE.md)
+        - [Template](./TEMPLATE.md)
         - [Project goal slate](./2024h2/Project-goal-slate.md)
         - [Rust 2024 Edition](./2024h2/Rust-2024-Edition.md)
         - [Standard abstractions for async](./2024h2/Async.md)

@@ -23,7 +23,7 @@ One of the key responsibilities of the owner is **regular reporting**. Each acti
 
 Giving someone ownership of a goal is an act of faith — it means that we consider them to be an individual of high judgment who understands Rust and its values and will act accordingly. This implies to me that we are unlikely to take a goal if the owner is not known to the project. They don’t necessarily have to have worked on Rust, but they have to have enough of a reputation that we can evaluate whether they’re going to do a good job.’
 
-The [project goal template](../2024h2/TEMPLATE.md) includes a number of elements designed to increase trust:
+The [project goal template](../TEMPLATE.md) includes a number of elements designed to increase trust:
 
 * The "shiny future" and [design axioms](./design_axioms.md) give a "preview" of how owner is thinking about the problem and the way that tradeoffs will be resolved.
 * The milestones section indicates the rough order in which they will approach the problem.
