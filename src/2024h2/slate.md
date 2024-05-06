@@ -10,9 +10,9 @@
 
 [nikomatsakis]: https://github.com/nikomatsakis/
 
-## Preapproved goals in need of owners
+## Provisional goals in need of owners
 
-*The team would like to commit to the goal, but the goal lacks an owner (this may be because owner is seeking funding)*
+*The team would like to commit to the goal, but the goal lacks an owner (this may be because owner is seeking funding). Learn more about [provisional goals](../about/provisional_goals.md) here.*
 
 None
 
