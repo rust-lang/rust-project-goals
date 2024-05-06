@@ -17,6 +17,7 @@
 - [📖 Learn about](./about/index.md)
     - [Motivation](./about/motivation.md)
     - [Owners](./about/owners.md)
+    - [Provisional goals](./about/provisional_goals.md)
     - [Design axioms](./about/design_axioms.md)
 - [❓ How to](./how_to/index.md)
     - [Proposal a new goal](./how_to/propose_a_goal.md)

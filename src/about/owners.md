@@ -1,6 +1,8 @@
 # Owners
 
-To be accepted, a goal must have a designated **owner**. This is ideally a single, concrete person, though it *can* be a small group.
+To be fully accepted, a goal must have a designated **owner**. This is ideally a single, concrete person, though it *can* be a small group.
+
+Goals without owners can only be accepted in [provisional form](./provisional_goals.md).
 
 ## Owners shape the proposal and keep things moving
 
