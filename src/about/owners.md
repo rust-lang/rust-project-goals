@@ -19,7 +19,7 @@ Teams can ultimately overrule an owner: they can ask the owner to come back with
 
 ## Owners report regularly on progress
 
-One of the key responsibilities of the owner is **regular reporting**. Each active project goal is given a tracking issue. Owners are expected to post updates on that tracking issue when they are pinged by the bot. The project will be posting regular blog posts that are generated in a semi-automated fashion from these updates: if the post doesn't have new information, then we will simply report that the owner has not provided an update. We will also reach out to owners who are not providing updates to see whether the goal is in fact stalled and should be removed from the active list.
+One of the key responsibilities of the owner is [regular status reporting](../how_to/report_status.md). Each active project goal is given a tracking issue. Owners are expected to post updates on that tracking issue when they are pinged by the bot. The project will be posting regular blog posts that are generated in a semi-automated fashion from these updates: if the post doesn't have new information, then we will simply report that the owner has not provided an update. We will also reach out to owners who are not providing updates to see whether the goal is in fact stalled and should be removed from the active list.
 
 ## Ownership is a position of trust
 
