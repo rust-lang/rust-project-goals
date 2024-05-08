@@ -33,6 +33,7 @@ None
 | [Impl trait everywhere][]           | [oli-obk]                 | [Lang], [Types]    |
 | [Seamless C Support][]              | ![Owner needed][own]      | [Lang]             |
 | [Relaxing the Orphan Rule][]        | ![Owner needed][own]      | [Lang]             |
+| [Patterns of empty types][]         | [Nadrieril]               | [Lang], [Compiler] |
 
 ## Not accepted goals
 
@@ -45,6 +46,7 @@ None.
 [Fallible allocation]: ./Fallible-allocation.md
 [Impl trait everywhere]: ./Impl-trait-everywhere.md
 [Intrusive linked lists]: ./Intrusive-linked-lists.md
+[Patterns of empty types]: ./Patterns-of-empty-types.md
 [Polonius on nightly]: ./Polonius.md
 [Relaxing the Orphan Rule]: ./Relaxing-the-Orphan-Rule.md
 [Seamless C Support]: ./Seamless-C-Support.md
@@ -56,10 +58,12 @@ None.
 
 [compiler-errors]: https://github.com/compiler-errors
 [lqd]: https://github.com/lqd
+[Nadrieril]: https://github.com/Nadrieril
 [nikomatsakis]: https://github.com/nikomatsakis
 [oli-obk]: https://github.com/oli-obk
 [tmandry]: https://github.com/tmandry
 
+[Compiler]: https://www.rust-lang.org/governance/teams/compiler
 [Lang]: https://www.rust-lang.org/governance/teams/lang
 [LC]: https://www.rust-lang.org/governance/teams/leadership-council
 [Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
