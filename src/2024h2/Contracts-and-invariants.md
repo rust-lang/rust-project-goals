@@ -140,7 +140,7 @@ celinval is also assisting. celinval is part of the Amazon team producing the Ka
 
 * Libs-impl: We will need libs-impl team engagement to ensure we design a contract language that the standard library implementors are willing to use. To put it simply: If we land support for contracts without uptake within the Rust standard library, then the effort will have failed.
 
-* Lang: We need approval for a lang team experiment to design the contract surface language. However, we do not expect this surface language to be stabilized in 2024, and therefore the language team involvement can be restricted to "whomever is interested in the effort."
+* Lang: We need approval for a lang team experiment to design the contract surface language. However, we do not expect this surface language to be stabilized in 2024, and therefore the language team involvement can be restricted to "whomever is interested in the effort." In addition, it seems likely that at least *some* of the contracts work will dovetail with the [ghost-code initiative](https://github.com/rust-lang/lang-team/issues/161)
 
 
 * WG-formal-methdos: We need engagement with the formal-methods community to ensure our contract system is serving their needs.
