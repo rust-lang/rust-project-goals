@@ -55,8 +55,6 @@ My shiny future is that the people "naturally" write Rust crates that can be com
 
 ## Design axioms
 
-*Add your [design axioms][da] here. Design axioms clarify the constraints and tradeoffs you will use as you do your design work. These are most important for project goals where the route to the solution has significant ambiguity (e.g., designing a language feature or an API), as they communicate to your reader how you plan to approach the problem. If this goal is more aimed at implementation, then design axioms are less important. [Read more about design axioms][da].*
-
 [da]: ../about/design_axioms.md
 
 Felix [presented these axioms][rw2024] as "Shared Values" at the 2024 Rust Verification Workshop.
