@@ -1,6 +1,6 @@
 # Design axioms
 
-Each project goal includes a **design axioms** section. Design axioms capture the guidelines you will use to drive your design. Since goals genearlly come early in the process, the final design is not known -- axioms are a way to clarify the constraints you will be keeping in mind as you work on your design. Axioms will also help you operate more efficiently, since you can refer back to them to help resolve tradeoffs more quickly.
+Each project goal includes a **design axioms** section. Design axioms capture the guidelines you will use to drive your design. Since goals generally come early in the process, the final design is not known -- axioms are a way to clarify the constraints you will be keeping in mind as you work on your design. Axioms will also help you operate more efficiently, since you can refer back to them to help resolve tradeoffs more quickly.
 
 ## Examples
 
