@@ -32,8 +32,9 @@ Second, directly expressing contracts as an assertion mixes it in with the rest 
 
 As an example for why a tool might want to extract the contracts, the Kani model checker works by translating a whole program (including its calls to library code) into a form that is passed to an off-the-shelf model checker. Kani would like to use contracts as a way to divide-and-conquer the verification effort. The API for a method is abstracted by its associated contract. Instead of reasoning about the whole program, it now has two subproblems: Prove that the method on its own satisfies its associated contract, and in the rest of the program, replace calls to that method by the range of behaviors permitted by the contract.
 
-Third: the Racket language has demonstrated that when you have dynamic dispatch (via higher-order functions or OOP), then assertions embedded in procedure bodies are a subpar way of expressing specifications. This is because when you compose software components, it is non-trivial to take an isolated assertion failure and map it to which module was actually *at fault*. Having a separate contract language might enable new tools to record enough metadata to do proper "blame tracking." But to get there, we first have to have a way to write contracts down in the first place.
+Third: the Racket language [has demonstrated][findler-felleisen] that when you have dynamic dispatch (via higher-order functions or OOP), then assertions embedded in procedure bodies are a subpar way of expressing specifications. This is because when you compose software components, it is non-trivial to take an isolated assertion failure and map it to which module was actually *at fault*. Having a separate contract language might enable new tools to record enough metadata to do proper "blame tracking." But to get there, we first have to have a way to write contracts down in the first place.
 
+[findler-felleisen]: https://www2.ccs.neu.edu/racket/pubs/icfp2002-ff.pdf
 
 ### The next few steps
 
