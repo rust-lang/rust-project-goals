@@ -53,6 +53,8 @@ Third: the Racket language [has demonstrated][findler-felleisen] that when you h
 
 My shiny future is that the people "naturally" write Rust crates that can be combined with distinct dynamic-validation and verification tools. Today, if you want to use any verification tool, you usually have to pick one and orient your whole code base around using it. (E.g., the third-party verification tools often have their own (rewrite of a subset of the) Rust standard library, if only so that they can provide the contracts that our standard library is missing.)
 
+But in my shiny future, people get to reuse the majority of their contracts and just "plug in" different dynamic-validation and static-verification tools, and all the tools know how to leverage the common contract language that is built into Rust.
+
 ## Design axioms
 
 [da]: ../about/design_axioms.md
