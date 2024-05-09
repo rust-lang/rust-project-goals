@@ -22,7 +22,7 @@ Our motivation for this is that contracts are key for reasoning about software c
 
 ### The status quo
 
-Currently, if you want to specify the behavior of a Rust method and check that the specification is correct, you can either attempt construct a test suite that covers the entirety of your specification, or you can manually embed contract-like predicates into your code. Embedding contract-like predicates is typically done via variations of either 1. `assert!`, 2. `debug_assert!`, or 3. similar `cfg`-guarded code sequences that abort/panic on when a predicate fails to hold.
+Currently, if you want to specify the behavior of a Rust method and check that the specification is correct, you can either attempt construct a test suite that covers the entirety of your specification, or you can manually embed contract-like predicates into your code. Embedding contract-like predicates is typically done via variations of either 1. `assert!`, 2. `debug_assert!`, or 3. similar `cfg`-guarded code sequences that abort/panic when a predicate fails to hold.
 
 All of the existing options are limited.
 
