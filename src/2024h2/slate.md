@@ -33,6 +33,7 @@ None
 | [Impl trait everywhere][]           | [oli-obk]                 | [Lang], [Types]    |
 | [Seamless C Support][]              | ![Owner needed][own]      | [Lang]             |
 | [Relaxing the Orphan Rule][]        | ![Owner needed][own]      | [Lang]             |
+| [Patterns of empty types][]         | [Nadrieril]               | [Lang], [Compiler] |
 
 ## Not accepted goals
 
@@ -41,26 +42,29 @@ None
 None.
 
 [Assemble goal slate]: ./Project-goal-slate.md
+[Async closures]: ./Async--AsyncClosures.md
+[Fallible allocation]: ./Fallible-allocation.md
+[Impl trait everywhere]: ./Impl-trait-everywhere.md
+[Intrusive linked lists]: ./Intrusive-linked-lists.md
+[Patterns of empty types]: ./Patterns-of-empty-types.md
+[Polonius on nightly]: ./Polonius.md
+[Relaxing the Orphan Rule]: ./Relaxing-the-Orphan-Rule.md
+[Seamless C Support]: ./Seamless-C-Support.md
+[Send bound problem]: Async--SendBounds.md
 [Stabilize Rust 2024 edition]: ./Rust-2024-Edition.md
 [Standard abstractions for async]: ./Async.md
-[Async closures]: ./Async--AsyncClosures.md
-[Send bound problem]: Async--SendBounds.md
-[Intrusive linked lists]: ./Intrusive-linked-lists.md
-[Fallible allocation]: ./Fallible-allocation.md
-[Polonius on nightly]: ./Polonius.md
-[Impl trait everywhere]: ./Impl-trait-everywhere.md
-[Seamless C Support]: ./Seamless-C-Support.md
-[Relaxing the Orphan Rule]: ./Relaxing-the-Orphan-Rule.md
 
 [own]: https://img.shields.io/badge/Owned%20Needed-blue
 
-[nikomatsakis]: https://github.com/nikomatsakis
-[tmandry]: https://github.com/tmandry
-[lqd]: https://github.com/lqd
 [compiler-errors]: https://github.com/compiler-errors
+[lqd]: https://github.com/lqd
+[Nadrieril]: https://github.com/Nadrieril
+[nikomatsakis]: https://github.com/nikomatsakis
 [oli-obk]: https://github.com/oli-obk
+[tmandry]: https://github.com/tmandry
 
-[LC]: https://www.rust-lang.org/governance/teams/leadership-council
+[Compiler]: https://www.rust-lang.org/governance/teams/compiler
 [Lang]: https://www.rust-lang.org/governance/teams/lang
-[Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
+[LC]: https://www.rust-lang.org/governance/teams/leadership-council
 [Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
+[Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
