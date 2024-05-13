@@ -30,7 +30,7 @@ First, most specifications rely on quantified forms, such as "for all X, P(X) im
 
 Second, directly expressing contracts as an assertion mixes it in with the rest of the code, which makes it difficult or impossible for third-party verification tools to extract the contracts in order to reason about them.
 
-As an example for why a tool might want to extract the contracts, the Kani model checker works by translating a whole program (including its calls to library code) into a form that is passed to an off-the-shelf model checker. Kani would like to use contracts as a way to divide-and-conquer the verification effort. The API for a method is abstracted by its associated contract. Instead of reasoning about the whole program, it now has two subproblems: Prove that the method on its own satisfies its associated contract, and in the rest of the program, replace calls to that method by the range of behaviors permitted by the contract.
+As an example for why a tool might want to extract the contracts, the Kani model checker works by translating a whole program (including its calls to library code) into a form that is passed to an off-the-shelf model checker. Kani would like to use contracts as a way to divide-and-conquer the verification effort. The API for a method is abstracted by its associated contract. Instead of reasoning about the whole program, it now has two subproblems: prove that the method on its own satisfies its associated contract, and in the rest of the program, replace calls to that method by the range of behaviors permitted by the contract.
 
 Third: the Racket language [has demonstrated][findler-felleisen] that when you have dynamic dispatch (via higher-order functions or OOP), then assertions embedded in procedure bodies are a subpar way of expressing specifications. This is because when you compose software components, it is non-trivial to take an isolated assertion failure and map it to which module was actually *at fault*. Having a separate contract language might enable new tools to record enough metadata to do proper "blame tracking." But to get there, we first have to have a way to write contracts down in the first place.
 
@@ -67,15 +67,15 @@ Felix [presented these axioms][rw2024] as "Shared Values" at the 2024 Rust Verif
 
 Contracts have proven useful under the "Design by Contract" philosophy, which usually focuses on pre + post + frame conditions (also known as "requires", "ensures", and "modifies" clauses in systems such as the Java Modelling Language). In other words, attaching predicates to the API boundaries of code, which makes contracts a *specification mechanism*.
 
-There are other potential uses for attaching predicates to points in the code, largely for encoding formal correcttness arguments. My main examples of these are Representation Invariants, Loop Invariants, and Termination Measures (aka "decreasing functions").
+There are other potential uses for attaching predicates to points in the code, largely for encoding formal correctness arguments. My main examples of these are Representation Invariants, Loop Invariants, and Termination Measures (aka "decreasing functions").
 
-In an ideal world, contracts would be useful for both purposes. But if we have to make choices about what to prioritize, we should focus on the things that make contracts useful as an API specifcation mechanism. In my opinion, API specification is the use-case that is going to benefit the broadest set of developers.
+In an ideal world, contracts would be useful for both purposes. But if we have to make choices about what to prioritize, we should focus on the things that make contracts useful as an API specification mechanism. In my opinion, API specification is the use-case that is going to benefit the broadest set of developers.
 
 ### 2. Contracts should be (semi-)useful out-of-the-box
 
 This has two parts: 
 
-Anyone can eat: I want any Rust developer to be able to turn on "contract checking" in some form without having to change toolchain nor install 3rd-party tool, and get *some* utility from the result. (Its entirely possible that contracts become *even more* useful when used in concert with a suitable 3rd-party tool; that's a separate matter.)
+Anyone can eat: I want any Rust developer to be able to turn on "contract checking" in some form without having to change toolchain nor install 3rd-party tool, and get *some* utility from the result. (It's entirely possible that contracts become *even more* useful when used in concert with a suitable 3rd-party tool; that's a separate matter.)
 
 Anyone can cook: Any Rust developer can also *add contracts* to their own code, without having to change their toolchain.
 
@@ -87,11 +87,11 @@ Contracts have both a dynamic semantics and a static semantics.
 
 In an ideal dynamic semantics, a broken contract will identify *which component* is at fault for breaking the contract. (We do acknowledge that precise blame assignment becomes non-trivial with dynamic dispatch.)
 
-In an ideal static semantics, contracts enable theorem provers to choose, instead of reasoining about `F(G)`, to instead allow independent correctnes proofs for `F(...)` and ``... G ...`.
+In an ideal static semantics, contracts enable theorem provers to choose, instead of reasoning about `F(G)`, to instead allow independent correctness proofs for `F(...)` and `... G ...`.
 
 ### 4. Balance accessibility over power
 
-For accessibilty to the developer community, Rust contracts should strive for a syntax that is, or closely matches, the syntax of Rust code itself. Deviations from existing syntax *or semantics* must meet a high bar to be accepted for contract language.
+For accessibility to the developer community, Rust contracts should strive for a syntax that is, or closely matches, the syntax of Rust code itself. Deviations from existing syntax *or semantics* must meet a high bar to be accepted for contract language.
 
 But some deviations should be possible, if justified by their necessity for correct expression of specifications. Contracts may *need* forms that are not valid Rust code. For example, for-all quantifiers will presumably need to be supported, and will likely have a dynamic semantics that is necessarily incomplete compared to an idealized static semantics used by a verification tool. (Note that middle grounds exist here, such as adding a `forall(|x: Type| { pred(x) })` intrinsic that is fine from a syntax point of view and is only troublesome in terms of what semantics to assign to it.)
 
@@ -101,7 +101,7 @@ Some expressive forms might be intentionally unavailable to normal object code. 
 
 Not all properties of interest can be checked/6 at runtime; similarly, not all statements can be proven true or false.
 
-Full functional correctness specfifications are often not economically feasiable to develop and maintain.
+Full functional correctness specifications are often not economically feasible to develop and maintain.
 
 We must accept limitations on both dynamic validation and static verification strategies, and must choose our approximations accordingly.
 
@@ -109,7 +109,7 @@ An impoverished contract system may still be useful for specifying a coarser ran
 
 ### 6. Embrace tool diversity
 
-Different static verification systems require or support differing levels of expresiveness. And the same is true for dynamic validation tools! (E.g. consider injecting assertions into code via `rustc`, vs interpreters like `miri` or binary instrumentation via `valgrind`).
+Different static verification systems require or support differing levels of expressiveness. And the same is true for dynamic validation tools! (E.g. consider injecting assertions into code via `rustc`, vs interpreters like `miri` or binary instrumentation via `valgrind`).
 
 An ideal contract system needs to deal with this diversity in some manner. For example, we may need to allow third-party tools to swap in different contracts (and then also have to meet some added proof obligation to justify the swap).
 
@@ -143,7 +143,7 @@ celinval is also assisting. celinval is part of the Amazon team producing the Ka
 * Lang: We need approval for a lang team experiment to design the contract surface language. However, we do not expect this surface language to be stabilized in 2024, and therefore the language team involvement can be restricted to "whomever is interested in the effort." In addition, it seems likely that at least *some* of the contracts work will dovetail with the [ghost-code initiative](https://github.com/rust-lang/lang-team/issues/161)
 
 
-* WG-formal-methdos: We need engagement with the formal-methods community to ensure our contract system is serving their needs.
+* WG-formal-methods: We need engagement with the formal-methods community to ensure our contract system is serving their needs.
 
 * Stable-MIR: if we deliver a contract system that leverages Stable-MIR, it may serve as a useful "carrot" to encourage 3rd party tools to invest in adopting Stable-MIR for their own tools.
 
@@ -187,7 +187,7 @@ See next question for an answer to this.
 A dynamic check of the construct `forall(|x:T| { … })` sounds problematic for most T of interest
 
 
-pnkfelix'x expectation here is that we would *not* actually expect to support `forall(|x:T| ...)` in a dynamic context, not in the general case of arbitrary `T`.
+pnkfelix's expectation here is that we would *not* actually expect to support `forall(|x:T| ...)` in a dynamic context, not in the general case of arbitrary `T`.
 
 pnkfelix's current favorite solution for cracking this nut: a new form, `forall!(|x:T| suchas: [x_expr1, x_expr2, …] { … })`,
 where the semantics is "this is saying that the predicate must hold for all T, but in particular, we are hinting to the dynamic semantics that it can draw from the given sample population denoted by `x_expr1`, `x_expr2`, etc.
