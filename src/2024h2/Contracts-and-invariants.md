@@ -145,7 +145,10 @@ celinval is also assisting. celinval is part of the Amazon team producing the Ka
 
 * WG-formal-methods: We need engagement with the formal-methods community to ensure our contract system is serving their needs.
 
-* Stable-MIR: if we deliver a contract system that leverages Stable-MIR, it may serve as a useful "carrot" to encourage 3rd party tools to invest in adopting Stable-MIR for their own tools.
+* Stable-MIR: Contracts and invariants both require evaluation of predicates, and linking those predicates with intermediate states of the Rust abstract machine.
+Such predicates and their linkage with the code itself can be encoded in various ways.
+While this goal proposal does not commit to any particular choice of encoding, we want to avoid introducing unnecessary coupling with compiler-internal structures.
+If Stable-MIR can be made capable of meeting the technical needs of contracts, then it may be a useful option to consider in the design space of predicate encoding and linkage.
 
 * Miri: We would like assistance from the miri developers on the right way to extend miri to have configurable contract-checking (i.e. to equip `miri` with enhanced contract checking that is not available in normal object code).
 
