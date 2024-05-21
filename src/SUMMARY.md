@@ -12,7 +12,7 @@
             - [Async: Send bound problem](./2024h2/Async--SendBounds.md)
             - [Async: Streams](2024h2/Async--Streams.md)
         - [Linux kernel builds on stable Rust](./2024h2/rfl_stable.md)
-            - [DeriveSmartPointer](./2024h2/derive_smart_pointer.md)
+            - [Unsizing in RFL Arc](./2024h2/rfl_arc_unsizing.md)
         - [Joyful, scalable Rust teams](./2024h2/rust_team_org.md)
             - [Project goal slate](./2024h2/Project-goal-slate.md)
         - [The other 90%](./2024h2/other_90.md)
