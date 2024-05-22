@@ -71,6 +71,7 @@ Many of the most impactful changes to Rust are not tied to a particular domain. 
 | [Impl trait everywhere][]            | ![WIP][wip]                 | [oli-obk]            | [Lang], [Types]    |
 | *Team decision needed*               |                             |                      |                    |
 | ↳ [Patterns of empty types][]        | ![WIP][wip]                 | [Nadrieril]          | [Lang], [Compiler] |
+| ↳ [Contracts and invariants][]        | ![WIP][wip]                 | [pnkfelix]          | [Lang], [Compiler] |
 | *Owners and/or team decision needed* |                             |                      |                    |
 | ↳ [Relaxing the Orphan Rule][]       | ![WIP][wip]                 | ![Owner needed][own] | [Lang]             |
 | ↳ [Seamless C support][]             | ![WIP][wip]                 | ![Owner needed][own] | [Lang]             |
@@ -80,7 +81,7 @@ Many of the most impactful changes to Rust are not tied to a particular domain. 
 
 [Assemble goal slate]: ./Project-goal-slate.md
 [rfc3614]: https://github.com/rust-lang/rfcs/pull/3614
-
+[Contracts and invariants]: ./Contracts-and-invariants.md
 [Stabilize Rust 2024 edition]: ./Rust-2024-Edition.md
 [Intrusive linked lists]: ./Intrusive-linked-lists.md
 [Fallible allocation]: ./Fallible-allocation.md
@@ -104,6 +105,7 @@ Many of the most impactful changes to Rust are not tied to a particular domain. 
 [oli-obk]: https://github.com/oli-obk
 [tmandry]: https://github.com/tmandry
 [petrochenkov]: https://github.com/petrochenkov
+[pnkfelix]: https://github.com/pnkfelix
 
 [Compiler]: https://www.rust-lang.org/governance/teams/compiler
 [Lang]: https://www.rust-lang.org/governance/teams/lang

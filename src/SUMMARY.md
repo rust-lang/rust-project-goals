@@ -23,6 +23,7 @@
             - [Impl trait everywhere](./2024h2/Impl-trait-everywhere.md)
             - [Seamless C support](./2024h2/Seamless-C-Support.md)
             - [Patterns of empty types](./2024h2/Patterns-of-empty-types.md)
+            - [Patterns of empty types](./2024h2/Contracts-and-invariants.md)
 - [📖 Learn about](./about/index.md)
     - [Goal motivations](./about/motivation.md)
     - [Goal owners](./about/owners.md)
