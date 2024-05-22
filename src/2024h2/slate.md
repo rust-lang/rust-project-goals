@@ -2,101 +2,55 @@
 
 > *![Status: Experimental](https://img.shields.io/badge/Status-Experimental-yellow) These goals are still in draft form. They do not represent consensus. Expect changes. The goal column should describe the specific things you aim to get done in 2024H2; the theme ties those into a larger theme (it's ok to put N/A). [Would you like to propose a goal?](../how_to/propose_a_goal.md)*
 
-This page describes the draft roadmap for 2024H2 (second half of 2024). Through conversations with Rust teams and customers, we have identified two **key flagship goals** that will help advance Rust in particular domains:
+The goals vary in scope and size. Some of them are prominent, flagship goals (such as [improved async support][AFE] or [stabilizing the features required by the linux kernel][LK]) that will take multiple goal periods to complete. Others are smaller, discrete items that can be completed in six months. The table below is sorted so that the more prominent goals are listed towards the front (and goals that have been approved are listed first of all).
 
-* **Language support for trait-based async APIs**: Extend Rust language support with the features blocking trait-based, combinator APIs like async iterators, most notably [async closures][AC], and produce a new revision of the Async Vision Doc laying out the plan looking forward.
-* **Linux kernel builds on stable Rust**: Stabilize features that block the Rust For Linux project from building on stable Rust.
+Note that committing to a goal means that the teams support the next few steps and are aligned on the overall vision. It is not a committment to accept any particular RFC or design and it is also not a commitment to continue working on the goal once the current goal period ends. We may find that, after taking the next few steps, we are no longer aligned to this goal.
 
-In addition, we've assembled a list of **cross-cutting Rust improvements** that will improve the experience of using Rust across the board in ways big and small. Some of these improvements are targeting the functioning of the Rust open-source project itself (assembling this list of goals is one).
+| Goal                                                                   | Status                      | Owner             | Teams                                   |
+| ---------------------------------------------------------------------- | --------------------------- | ----------------- | --------------------------------------- |
+| [Assemble goal slate][AGS]                                             | [![Accepted][acc]][rfc3614] | [nikomatsakis][]  | [LC]                                    |
+| [Stabilize Rust 2024 edition][R2024]                                   | ![Accepted][acc]            | [TC][]            | [LC]                                    |
+| [Towards async/sync parity][AFE]                                       | ![WIP][wip]                 | [tmandry][]       | [Lang], [Libs-API]                      |
+| [Towards Linux kernel builds on stable Rust][LK] [![Help wanted]][LKH] | ![WIP][wip]                 | [Josh-Triplett][] | [Lang], [Libs-API], [Compiler], [Infra] |
+| [Towards seamless C support][SCS]                                      | ![WIP][wip]                 | [Josh-Triplett][] | [Lang], [Compiler]                      |
+| [Towards contracts and invariants][CI]                                 | ![WIP][wip]                 | [pnkfelix]        | [Lang], [Compiler]                      |
+| [Towards new Rust trait solver][NTS]                                   | ![WIP][wip]                 | [lcnr]            | [Types]                                 |
+| [Towards a formal model of Rust][AMF]                                  | ![WIP][wip]                 | [nikomatsakis]    | [Types]                                 |
+| [Polonius on Nightly][NBNLB]                                           | ![WIP][wip]                 | [lqd]             | [Lang], [Types]                         |
+| [impl trait everywhere][ITE]                                           | ![WIP][wip]                 | [oli-obk]         | [Lang], [Types]                         |
+| [Patterns of empty types][PET]                                         | ![WIP][wip]                 | [Nadrieril]       | [Lang], [Compiler]                      |
+| [Relaxing the Orphan Rule][RTOR]                                       | ![WIP][wip]                 | [Josh-Triplett][] | [Lang]                                  |
 
-## Language support for trait-based async APIs
+[AFE]: ./async_fn_everywhere.md
+[LK]: ./rfl_stable.md
+[LKH]: ./rfl_stable.md#ownership-and-other-resources
+[SCS]: ./Seamless-C-Support.md
+[CI]: ./Contracts-and-invariants.md
+[NTS]: ./New-trait-solver.md
+[AMF]: ./a-mir-formality.md
+[AGS]: ./Project-goal-slate.md
+[R2024]: ./Rust-2024-Edition.md
+[NBNLB]: ./Polonius.md
+[PET]: ./Patterns-of-empty-types.md
+[RTOR]: ./Relaxing-the-Orphan-Rule.md
+[ITE]: ./Impl-trait-everywhere.md
 
-Async Rust is a crucial growth area, with a full 52% of the respondents in the [2023 Rust survey](https://blog.rust-lang.org/2024/02/19/2023-Rust-Annual-Survey-2023-results.html) indicating that they use Rust to build server-side or backend applications. Despite that success, async is *also* the most frequently reported challenge to learning Rust. 
-
-Our goals for 2024H2 are to stabilize async closures; solve the send bound problem; and stabilize a trait for async iteration (also called streams). These goals will help propel us towards our long-term vision that async Rust should feel the same as sync Rust, with access to the same range of language support (traits, closures, dynamic dispatch, destructors), library support (including a clear "getting started" experience), and documentation (coverage in the Rust book).
-
-| Goal                                                | Status      | Owner               | Teams              |
-| --------------------------------------------------- | ----------- | ------------------- | ------------------ |
-| [Revise async vision doc][AVD]                      | ![WIP][wip] | [tmandry][]         | [Lang], [Libs-API] |
-| [Stablilize async closures][AC]                     | ![WIP][wip] | [compiler-errors][] | [Lang], [Libs-API] |
-| [Stable solution for the "Send bound problem"][ASB] | ![WIP][wip] | [nikomatsakis][]    | [Lang], [Libs-API] |
-| [Stable trait for async iteration][AI]              | ![WIP][wip] | [eholk][]           | [Lang], [Libs-API] |
-| [Complete async drop experiments][AD]               | ![WIP][wip] | [petrochenkov][]    | [Compiler]         |
-
-[AVD]: ./Async.md
-[AC]: ./Async--AsyncClosures.md
-[ASB]: Async--SendBounds.md
-[AI]: ./Async--Streams.md
-[AD]: ./Async--Drop.md
-
-## Linux Kernel builds on Stable Rust
-
-The experimental support for Rust development in the Linux kernel is a watershed moment for Rust, demonstrating to the world that Rust is indeed capable of targeting all manner of low-level systems applications. And yet that support today rests on a number of unstable features, blocking the effort from ever going beyond experimental status.
-
-Our goal for 2024H2 is to stabilize the [features required by the Rust for Linux project][rfl]. This works towards our long-term goal of seeing Rust usage throughout kernels and low-level system software.
-
-| Goal                                            | Status      | Owner                | Teams              |
-| ----------------------------------------------- | ----------- | -------------------- | ------------------ |
-| [Unsizing in RFL Arc][]                         | ![WIP][wip] | [Alice Ryhl][]       | [Lang]             |
-| [Arbitrary self types][]                        | ![WIP][wip] | [Adrian Taylor][]    | [Compiler], [Libs] |
-| *Owners needed*                                 |             |                      |                    |
-| ↳ RFL on Rust CI                                | ![WIP][wip] | ![Owner needed][own] | [Infra]            |
-| ↳ Pointers to statics in constants              | ![WIP][wip] | ![Owner needed][own] | [Lang]             |
-| ↳ Code-generation features and compiler options | ![WIP][wip] | ![Owner needed][own] | [Compiler]         |
-| ↳ Compiling core/alloc                          | ![WIP][wip] | ![Owner needed][own] |                    |
-
-[Alice Ryhl]: https://github.com/Darksonn/
-
-Other issues that may merit goals but would need owners:
-
-* `asm_goto` [#119364][] : Implemented, needs testing
-* `offset_of` [#120140][], [#120141][]: Implemented, needs stabilization report and final decision on syntax
-
-[Unsizing in RFL Arc]: ./rfl_arc_unsizing.md
-[Arbitrary self types]: ./arbitrary_self_types.md
-[Adrian Taylor]: https://github.com/adetaylor
-[#119364]: https://github.com/rust-lang/rust/issues/119364
-[#120140]: https://github.com/rust-lang/rust/issues/120140
-[#120141]: https://github.com/rust-lang/rust/issues/120141
-
-## Cross-cutting Rust improvements
-
-Many of the most impactful changes to Rust are not tied to a particular domain. This section collects goals of this kind: general-purpose extensions or improvements that impact every Rust user. These can be major changes or they can be addressing a common papercut. In some cases, the goals here are targeted at improving the functioning of the Rust open-source organization, making contributing to and maintaining Rust a more joyful and productive experience.
-
-| Goal                                 | Status                      | Owner                | Teams              |
-| ------------------------------------ | --------------------------- | -------------------- | ------------------ |
-| [Assemble goal slate][]              | [![Accepted][acc]][rfc3614] | nikomatsakis         | [LC]               |
-| [Stabilize Rust 2024 edition][]      | ![Accepted][acc]            | TC                   | [LC]               |
-| [Polonius on nightly][]              | ![WIP][wip]                 | [lqd]                | [Lang], [Types]    |
-| [Impl trait everywhere][]            | ![WIP][wip]                 | [oli-obk]            | [Lang], [Types]    |
-| *Team decision needed*               |                             |                      |                    |
-| ↳ [Patterns of empty types][]        | ![WIP][wip]                 | [Nadrieril]          | [Lang], [Compiler] |
-| ↳ [Contracts and invariants][]        | ![WIP][wip]                 | [pnkfelix]          | [Lang], [Compiler] |
-| *Owners and/or team decision needed* |                             |                      |                    |
-| ↳ [Relaxing the Orphan Rule][]       | ![WIP][wip]                 | ![Owner needed][own] | [Lang]             |
-| ↳ [Seamless C support][]             | ![WIP][wip]                 | ![Owner needed][own] | [Lang]             |
-| ↳ Track feature stabilization        | ![WIP][wip]                 | ![Owner needed][own] |                    |
-| ↳ Finer-grained infra permissions    | ![WIP][wip]                 | ![Owner needed][own] | [Infra]            |
-| ↳ Host Rust contributor event        | ![WIP][wip]                 | ![Owner needed][own] |                    |
-
-[Assemble goal slate]: ./Project-goal-slate.md
 [rfc3614]: https://github.com/rust-lang/rfcs/pull/3614
-[Contracts and invariants]: ./Contracts-and-invariants.md
-[Stabilize Rust 2024 edition]: ./Rust-2024-Edition.md
 [Intrusive linked lists]: ./Intrusive-linked-lists.md
 [Fallible allocation]: ./Fallible-allocation.md
-[Impl trait everywhere]: ./Impl-trait-everywhere.md
 [Intrusive linked lists]: ./Intrusive-linked-lists.md
-[Patterns of empty types]: ./Patterns-of-empty-types.md
-[Polonius on nightly]: ./Polonius.md
-[Relaxing the Orphan Rule]: ./Relaxing-the-Orphan-Rule.md
-[Seamless C support]: ./Seamless-C-Support.md
 
 [own]: https://img.shields.io/badge/Owned%20Needed-blue
 
 [acc]: https://img.shields.io/badge/Accepted-green
 [prov]: https://img.shields.io/badge/Provisional-yellow
 [wip]: https://img.shields.io/badge/WIP-yellow
+
+[Compiler]: https://www.rust-lang.org/governance/teams/compiler
+[Lang]: https://www.rust-lang.org/governance/teams/lang
+[LC]: https://www.rust-lang.org/governance/teams/leadership-council
+[Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
+
 
 [compiler-errors]: https://github.com/compiler-errors
 [lqd]: https://github.com/lqd
@@ -106,8 +60,7 @@ Many of the most impactful changes to Rust are not tied to a particular domain. 
 [tmandry]: https://github.com/tmandry
 [petrochenkov]: https://github.com/petrochenkov
 [pnkfelix]: https://github.com/pnkfelix
+[TC]: https://github.com/TC
+[josh-triplett]: https://github.com/Josh-Triplett
 
-[Compiler]: https://www.rust-lang.org/governance/teams/compiler
-[Lang]: https://www.rust-lang.org/governance/teams/lang
-[LC]: https://www.rust-lang.org/governance/teams/leadership-council
-[Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
+[Help wanted]: https://img.shields.io/badge/Help%20wanted-blue
