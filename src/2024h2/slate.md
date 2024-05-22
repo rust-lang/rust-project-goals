@@ -78,6 +78,7 @@ Many of the most impactful changes to Rust are not tied to a particular domain. 
 | ↳ Track feature stabilization        | ![WIP][wip]                 | ![Owner needed][own] |                    |
 | ↳ Finer-grained infra permissions    | ![WIP][wip]                 | ![Owner needed][own] | [Infra]            |
 | ↳ Host Rust contributor event        | ![WIP][wip]                 | ![Owner needed][own] |                    |
+| [Scientific Computing][]             | ![WIP][wip]                 | [ZuseZ4]             | [Lang], [Types]    |
 
 [Assemble goal slate]: ./Project-goal-slate.md
 [rfc3614]: https://github.com/rust-lang/rfcs/pull/3614
@@ -90,7 +91,11 @@ Many of the most impactful changes to Rust are not tied to a particular domain. 
 [Patterns of empty types]: ./Patterns-of-empty-types.md
 [Polonius on nightly]: ./Polonius.md
 [Relaxing the Orphan Rule]: ./Relaxing-the-Orphan-Rule.md
-[Seamless C support]: ./Seamless-C-Support.md
+[Seamless C Support]: ./Seamless-C-Support.md
+[Send bound problem]: Async--SendBounds.md
+[Stabilize Rust 2024 edition]: ./Rust-2024-Edition.md
+[Standard abstractions for async]: ./Async.md
+[Scientific Computing]: ./Rust-for-SciComp.md
 
 [own]: https://img.shields.io/badge/Owned%20Needed-blue
 
