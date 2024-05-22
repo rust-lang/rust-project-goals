@@ -1,79 +1,32 @@
-# Stabilize async closures
+# TEMPLATE (replace with title of your goal)
+
+> **Instructions:** Copy this template to a fresh file with a name based on your plan.
+> Update the text. Feel free to replace any text with anything, but there are placeholders
+> designed to help you get started. Also, while this template has received some iteration,
+> it is not sacrosant. Feel free to change the titles of sections or make other changes that you think 
+> will increase clarity.
 
 | Metadata | |
 | --- | --- |
-| Owner(s) | [compiler-errors] |
-| Teams | [Lang] |
+| Owner(s) | *Github usernames or other identifying info for goal owners* |
+| Teams | *Names of teams being asked to commit to the goal* |
 | Status | WIP |
-
-[Lang]: https://www.rust-lang.org/governance/teams/lang
-[Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
 
 ## Motivation
 
-The goal is to add support for *async closures* to Rust.
-Async closures are required to support constructing async APIs that feature combinators, like [streams](./Async--Streams.md).
+*Begin the motivation with a short (1 paragraph, ideally) summary of what the goal is trying to achieve and why it matters.*
 
 ### The status quo
 
-Async combinator-like APIs today typically make use an ordinary Rust closure that returns a future,
-such as the `filter` API from [`StreamExt`](https://docs.rs/futures/latest/futures/prelude/stream/trait.StreamExt.html#method.filter):
-
-```rust
-fn filter<Fut, F>(self, f: F) -> Filter<Self, Fut, F>
-where
-    F: FnMut(&Self::Item) -> Fut,
-    Fut: Future<Output = bool>,
-    Self: Sized,
-```
-
-This approach however does not allow the closure to access variables captured by reference from its environment:
-
-```rust
-let mut accept_list = vec!["foo", "bar"]
-stream
-    .filter(|s| async { accept_list.contains(s) })
-```
-
-The reason is that data captured from the environment is stored in `self`.
-But the signature for sync closures does not permit the return value (`Self::Output`) to borrow from `self`:
-
-```rust
-trait FnMut<A>: FnOnce<A> {
-    fn call_mut(&mut self, args: A) -> Self::Output;
-}
-```
-
-To support natural async closures, a trait is needed where `call_mut` is an `async fn`. Or, desugared, something that is equivalent to:
-
-```rust
-trait AsyncFnMut<A>: AsyncFnOnce<A> {
-    fn call_mut<'s>(&'s mut self, args: A) -> use<'s, A> impl Future<Output = Self::Output>;
-    //                                        ^^^^^^^^^^ note that this captures `'s`
-}
-```
+*Elaborate in more detail about the problem you are trying to solve. This section is making the case for why this particular problem is worth prioritizing with project bandwidth. A strong status quo section will (a) identify the target audience and (b) give specifics about the problems they are facing today. Sometimes it may be useful to start sketching out how you think those problems will be addressed by your change, as well, though it's not necessary.*
 
 ### The next few steps
 
-The goal for this year to be able to 
-
-* support some "async equivalent" to `Fn`, `FnMut`, and `FnOnce` bounds
-    * this should be usable in all the usual places
-* support some way to author async closure expressions
-
-These features should be sufficient to support methods like `filter` above.
-
-The details (syntax, precise semantics) will be determined via experimentation and subject to RFC.
+*Sketch out the specific things you are trying to achieve in 2024. This should be short and high-level -- we don't want to see the design!*
 
 ### The "shiny future" we are working towards
 
-This goal is part of a path to extend Rust's async support for all the places one might write `fn`:
-
-* async fn in inherent methods (done in 2019)
-* async fn in traits, static dispatch (done in 2023)
-* 
-* async fn in traits, dynamic dispatch
-See the [async abstractions](./Async--Abstractions.md) goal.
+*If this goal is part of a larger plan that will extend beyond this goal period, sketch out the goal you are working towards. It may be worth adding some text about why these particular goals were chosen as the next logical step to focus on.*
 
 ## Design axioms
 

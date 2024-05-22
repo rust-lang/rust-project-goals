@@ -1,1 +1,0 @@
-# Joyful, scalable Rust teams
