@@ -38,7 +38,15 @@ Despite the growth of async Rust, it continues to be significantly more difficul
 
 ### Our plan for 2024
 
-Author an evaluation. XXX expand on this
+Author an RFC that will lay out a vision for the Async Rust experience:
+
+* What works well and what challenges exist in the Status Quo of Async Rust
+* Long-term goals (e.g., over next 3-5 years) for async Rust
+    * Free of accidental complexity
+    * 
+* Problems we need to solve to achieve those goals along with possible solutions
+* 
+
 
 ### Looking further out
 

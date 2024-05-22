@@ -14,7 +14,7 @@
 
 The goal for 2024H2 is to allow the [Rust for Linux's customized ARC type][arc] to use unsized types. The Linux kernel makes extensive use of intrusive linked lists due to their ability to separate *allocation* of a list entry from *insertion* of that entry into the list. While it is possible to safely model intrusive linked lists in Rust with `Pin`, it is complex and unergonomic.
 
-[arc]: XXX
+[arc]: https://rust-for-linux.com/arc-in-the-linux-kernel
 
 ### The status quo
 
