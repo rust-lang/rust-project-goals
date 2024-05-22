@@ -52,7 +52,7 @@ We plan to revise the Async Vision Doc and restructure it as an RFC. This RFC wi
         * cleanup and teardown
             * ordered destruction
     * how should async drop work (`?Leak` vs `?Drop` vs whatever):
-        * how to prevent async drop from occuring in sync contexts?
+        * how to prevent async drop from occurring in sync contexts?
     * what does runtime interface look like?
         * Can/should we be generic over runtime
 * Strategy for how to get where we are going
