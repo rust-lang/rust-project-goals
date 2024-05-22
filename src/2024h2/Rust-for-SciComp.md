@@ -47,45 +47,43 @@ like JAX or PyTorch.
 **Owner:** ZuseZ4 / Manuel S. Drehwald
 
 Manuel S. Drehwald working 5 days/wk, sponsored by LLNL and the University of Toronto (UofT).
+He has a background in HPC and worked on a rust compiler fork, as well as an LLVM based autodiff tool 
+for the last 3 years during his undergrad. He is now in a research based Master Program. 
 Supervision and Discussion on the LLVM side with Johannes Doerfert and Tom Scogland.
 
 Resources:
 Domain and CI for the autodiff work provided by MIT. Might be moved to the LLVM org later this year.
 Hardware for Benchmarks provided by LLNL and UofT.
-
-
-
-*This section describes the resources that you the contributors are putting forward to address this goal. This includes people: you can list specific people or a number of people -- e.g., 2 experienced Rust engineers working 2 days/wk. Including details about experience level and background will help the reader to judge your ability to complete the work.*
+CI for the offloading work provided by LLNL or LLVM(?, see below).
 
 *You can also include other resources as relevant, such as hardware, domain names, or whatever else.*
 
 ### Support needed from the project
 
-* Discussion on CI 
+* Discussion on CI: It would be nice to test the Offloading support on at least all 3 mayor GPU Vendors. I am somewhat confident that I can find someone to set up something, but it would be good to discuss how to maintain this best.
 
-* Identify which teams you need support from -- ideally reference the "menu" of support those teams provide. Some common considerations:*
-
-* Will you be authoring RFCs? How many do you expect? Which team will be approving them?
-    * Will you need design meetings along the way? And on what cadence?
-* Will you be authoring code? If there is going to be a large number of PRs, or a very complex PR, it may be a good idea to talk to the compiler or other team about getting a dedicated reviewer.
-* Will you want to use "Rust project resources"...?
-    * Creating rust-lang repositories?
-    * Issuing rust-lang-hosted libraries on crates.io?
-    * Posting blog posts on the Rust blog? (The Inside Rust blog is always ok.)
+* Discussions on Design and Maintainability: I expect Feedback regarding usability from Users. However, I will probably keep asking questions on zulip, which might take some time (either from lang/compiler, or other teams).
 
 ## Outputs and milestones
 
 ### Outputs
 
-*Final outputs that will be produced*
+An `#[Offload]` rustc-builtin-macro which makes a function definition known to the LLVM offloading backend.
+A bikeshead `offload!([GPU1, GPU2, TPU1], foo(x, y,z));` macro which will execute function foo on the specified devices.
+An `#[Autodiff]` rustc-builtin-macro which differentiates a given function.
+A `#[Batching]` rustc-builtin-macro which fuses N function calls into one call, enabling better vectorization. 
 
 ### Milestones
 
 *Milestones you will reach along the way*
 
 ## Frequently asked questions
-Do these changes have to happen in the compiler?
+
+### Do these changes have to happen in the compiler?
 - No! Both features could be implemented in user-space, if the Rust compiler would support Reflection. In this case I could ask the compiler for the optimized backend IR for a given function. I would then need use either the AD or Offloading abilities of the LLVM library to modify the IR, generating a new function. The user would then be able to call that newly generated function. This would require some discussion on how we can have crates in the ecosystem that work with various LLVM versions, since crates are usually expected to have a MSRV, but the LLVM (and like GCC/Cranelift) backend will have breaking changes.
+
+### Batching? 
+- Offered by all autodiff tool, JAX has an extra command for it, whereas Enzyme (the autodiff backend) combines Batching with AutoDiff. We might want to split these since both have value on their own.
 
 ### What do I do with this space?
 
