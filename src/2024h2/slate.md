@@ -65,8 +65,8 @@ Many of the most impactful changes to Rust are not tied to a particular domain. 
 
 | Goal                                 | Status                      | Owner                | Teams              |
 | ------------------------------------ | --------------------------- | -------------------- | ------------------ |
-| [Assemble goal slate][]              | [![Accepted][acc]][rfc3614] | nikomatsakis         | [LC]               |
-| [Stabilize Rust 2024 edition][]      | ![Accepted][acc]            | TC                   | [LC]               |
+| [Assemble goal slate][]              | [![Accepted][acc]][rfc3614] | [nikomatsakis]       | [LC]               |
+| [Stabilize Rust 2024 edition][]      | ![Accepted][acc]            | [TC]                 | [LC]               |
 | [Polonius on nightly][]              | ![WIP][wip]                 | [lqd]                | [Lang], [Types]    |
 | [Impl trait everywhere][]            | ![WIP][wip]                 | [oli-obk]            | [Lang], [Types]    |
 | *Team decision needed*               |                             |                      |                    |
@@ -99,6 +99,7 @@ Many of the most impactful changes to Rust are not tied to a particular domain. 
 [wip]: https://img.shields.io/badge/WIP-yellow
 
 [compiler-errors]: https://github.com/compiler-errors
+[eholk]: https://github.com/eholk
 [lqd]: https://github.com/lqd
 [Nadrieril]: https://github.com/Nadrieril
 [nikomatsakis]: https://github.com/nikomatsakis
@@ -106,8 +107,12 @@ Many of the most impactful changes to Rust are not tied to a particular domain. 
 [tmandry]: https://github.com/tmandry
 [petrochenkov]: https://github.com/petrochenkov
 [pnkfelix]: https://github.com/pnkfelix
+[TC]: https://github.com/traviscross
 
 [Compiler]: https://www.rust-lang.org/governance/teams/compiler
+[Infra]: https://www.rust-lang.org/governance/teams/infra
 [Lang]: https://www.rust-lang.org/governance/teams/lang
 [LC]: https://www.rust-lang.org/governance/teams/leadership-council
+[Libs]: https://www.rust-lang.org/governance/teams/library#team-libs
 [Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
+[Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
