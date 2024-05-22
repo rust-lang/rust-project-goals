@@ -14,13 +14,21 @@
 
 ## Motivation
 
-*Begin the motivation with a short (1 paragraph, ideally) summary of what the goal is trying to achieve and why it matters.*
+Scientific Computing, High Performance Computing, and Machine Learning share the interesting challenge that they (to different degrees)
+care about (very) efficient library and algorithm implementations, but are not always used by people knowledgeable in computer science.
+Rust is in a nice position because Ownership, Lifetimes, and the strong Type system can prevent a descent amount of bugs. At the same
+time strong alias information allows very nice performance optimizations in these fields, with performance gains well beyond what you
+see in normal C++ vs. Rust Performance Comparisons. We hope to extend this by integrating Automatic Differentiation, Batching/Vectorization,
+and GPU/TPU/... Offloading into the Rust language. This would put Rust on pair with the most popular features from popular Python libraries 
+like JAX or PyTorch.  
 
 ### The status quo
+
 
 *Elaborate in more detail about the problem you are trying to solve. This section is making the case for why this particular problem is worth prioritizing with project bandwidth. A strong status quo section will (a) identify the target audience and (b) give specifics about the problems they are facing today. Sometimes it may be useful to start sketching out how you think those problems will be addressed by your change, as well, though it's not necessary.*
 
 ### The next few steps
+
 
 *Sketch out the specific things you are trying to achieve in 2024. This should be short and high-level -- we don't want to see the design!*
 
@@ -36,7 +44,16 @@
 
 ## Ownership and other resources
 
-**Owner:** *Identify a specific person or small group of people if possible, else the group that will provide the owner*
+**Owner:** ZuseZ4 / Manuel S. Drehwald
+
+Manuel S. Drehwald working 5 days/wk, sponsored by LLNL and the University of Toronto (UofT).
+Supervision and Discussion on the LLVM side with Johannes Doerfert and Tom Scogland.
+
+Resources:
+Domain and CI for the autodiff work provided by MIT. Might be moved to the LLVM org later this year.
+Hardware for Benchmarks provided by LLNL and UofT.
+
+
 
 *This section describes the resources that you the contributors are putting forward to address this goal. This includes people: you can list specific people or a number of people -- e.g., 2 experienced Rust engineers working 2 days/wk. Including details about experience level and background will help the reader to judge your ability to complete the work.*
 
@@ -44,7 +61,9 @@
 
 ### Support needed from the project
 
-*Identify which teams you need support from -- ideally reference the "menu" of support those teams provide. Some common considerations:*
+* Discussion on CI 
+
+* Identify which teams you need support from -- ideally reference the "menu" of support those teams provide. Some common considerations:*
 
 * Will you be authoring RFCs? How many do you expect? Which team will be approving them?
     * Will you need design meetings along the way? And on what cadence?
@@ -65,6 +84,8 @@
 *Milestones you will reach along the way*
 
 ## Frequently asked questions
+Do these changes have to happen in the compiler?
+- No! Both features could be implemented in user-space, if the Rust compiler would support Reflection. In this case I could ask the compiler for the optimized backend IR for a given function. I would then need use either the AD or Offloading abilities of the LLVM library to modify the IR, generating a new function. The user would then be able to call that newly generated function. This would require some discussion on how we can have crates in the ecosystem that work with various LLVM versions, since crates are usually expected to have a MSRV, but the LLVM (and like GCC/Cranelift) backend will have breaking changes.
 
 ### What do I do with this space?
 
