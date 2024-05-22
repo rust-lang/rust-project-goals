@@ -92,7 +92,7 @@ Many of the most impactful changes to Rust are not tied to a particular domain. 
 [Relaxing the Orphan Rule]: ./Relaxing-the-Orphan-Rule.md
 [Seamless C support]: ./Seamless-C-Support.md
 
-[own]: https://img.shields.io/badge/Owned%20Needed-blue
+[own]: https://img.shields.io/badge/Owner%20Needed-blue
 
 [acc]: https://img.shields.io/badge/Accepted-green
 [prov]: https://img.shields.io/badge/Provisional-yellow
