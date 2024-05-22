@@ -26,7 +26,7 @@ Presentations on Rust For Linux that give more information:
 
 The following incremental steps are required
 
-* [Arbirary self types v2](https://github.com/rust-lang/rfcs/pull/3519), or equivalent functionality
+* [Arbitrary self types v2](https://github.com/rust-lang/rfcs/pull/3519), or equivalent functionality
 * [Derive Smart Pointer](https://github.com/rust-lang/rfcs/pull/3621), or equivalent functionality
 
 ### The "shiny future" we are working towards
