@@ -23,65 +23,75 @@ We propose authoring an evaluation document exploring the options for standard R
 
 ### The status quo
 
-Despite the growth of async Rust, it continues to be significantly more difficult to use. As one engineer from Amazon put it, Async Rust is "Rust on hard mode". Some of the key challenges to address are:
-
-- Getting started:
-    - **Good learning material is out there, but hard to find.** The lack of "standard" recommendations makes it [harder to direct people who are just getting started](https://rust-lang.github.io/wg-async/vision/submitted_stories/status_quo/niklaus_wants_to_share_knowledge.html).
-    - **Fragmentation:** Every Rust async program must pick a runtime. Libraries that make use of non-trivial functionality must be written for one runtime. Combining runtimes sometimes works and sometimes doesn't, leading to [surprise failures when you try to run your program](https://rust-lang.github.io/wg-async/vision/submitted_stories/status_quo/alan_started_trusting_the_rust_compiler_but_then_async.html).
-- Getting your program to do what you want:
-    - **Cancellation, `select!`, and other primitives considered harmful:** Many widely used APIs have sharp edges, such as [buffering issues](https://rust-lang.github.io/wg-async/vision/submitted_stories/status_quo/barbara_battles_buffered_streams.html), surprise cancellation, [difficult resource cleanup](https://rust-lang.github.io/wg-async/vision/submitted_stories/status_quo/alan_finds_database_drops_hard.html), etc.
-    - **Cannot use references from inside tasks:** Spawning tasks are the solution to many of the above problems, but tasks cannot share references.
-    - **Poll model scales poorly sometimes:** Complex futures like `FuturesUnordered` or joining a large number of tasks can have very poor performance because of the limits of the poll API.
-- Getting your program to run as fast as you want -- mostly works, but some challenges:
-    - **Optimizing poll times is hard:**
-    - **Future sizes are too big:**
+Despite the growth of async Rust, it continues to be significantly more difficult to use. As one engineer from Amazon put it, Async Rust is "Rust on hard mode". Addressing these challenges from the Rust org has been challenging due to lack of coherence around a vision and clear steps. Discussion gets stuck not only on technical details but also on what problems to be resolving first. The lack of a centrally agreed upon vision has also made it hard for general purpose teams such as [Lang][] or [Libs-API][] to decide how to respond to requests to e.g. stabilize particular async-related constructs, as they lack a means to judge whether stabilizing any particular construct is really the right step forward and whether it meets its design needs.
 
 ### Our plan for 2024
 
-Author an RFC that will lay out a vision for the Async Rust experience:
+We plan to revise the Async Vision Doc and restructure it as an RFC. This RFC will lay out a "plan of attack" for async, including both obvious good things (similar to [async closures][]) but also "known unknowns" and ways to resolve them. A rough outline of the RFC may be as follows:
 
-* What works well and what challenges exist in the Status Quo of Async Rust
-* Long-term goals (e.g., over next 3-5 years) for async Rust
+[Making Async Rust Reliable]: https://tmandry.gitlab.io/blog/posts/making-async-reliable/
+
+* Status quo, covering biggest challenges
+    * Lack of strong learning material
+    * Common idioms contain footguns that cause unexpected failures (see e.g., Tyler's blog post [Making Async Rust Reliable][])
+    * Low-level performance hurdles, such as large future sizes and downsides of the poll model
+    * Fragmentation between runtimes
+* Design axioms to pursue for async (see e.g. axioms proposed)
+* Goals, some variant of
     * Free of accidental complexity
-    * 
-* Problems we need to solve to achieve those goals along with possible solutions
-* 
-
+    * Easy to get started
+    * Easy to pick executor and integrate with other systems (e.g., mobile runtimes, company-specific threadpools, etc)
+    * Moderately easy to adapt to "extreme" embedded environments
+    * Good performance by default, peak performance with tuning
+* Key unknowns in terms of how to achieve the above goals, for example 
+    * how to replace footgun-prone APIs with more reliable alternatives:
+        * buffered-streams, cancellation (esp. due to use of select)
+        * patterns to express
+            * merged streams -- processing one stream of data with occasional control events
+            * task parallelism
+        * cleanup and teardown
+            * ordered destruction
+    * how should async drop work (`?Leak` vs `?Drop` vs whatever):
+        * how to prevent async drop from occuring in sync contexts?
+    * what does runtime interface look like?
+        * Can/should we be generic over runtime
+* Strategy for how to get where we are going
+    * What problems to attack first
+    * How to reduce or find solutions to the above unknowns
 
 ### Looking further out
 
-Our overall vision for async is that using async Rust should feel very similar to sync Rust, but with extra superpowers. The standard library should offer interop traits as well as traits for doing structured concurrency, similar to what is found in Kotlin. Standing up a simple service should use some executor to implement this functionality by default, but it should be easy to change, and most of the standard library support should work just as well in embedded environments as it does in multicore server setups.
+Our overall vision for async is that using async Rust should feel very similar to sync Rust, but with extra superpowers.
 
-## Design axioms
+## Design axiom
 
-* **We lay the foundations for a thriving ecosystem.**
-* **Uphold sync's Rust bar for reliability.**
-* **Zero-cost.**
-* **From embedded to the cloud.**
-* **Consistent, incremental progress.**
+* **We lay the foundations for a thriving ecosystem.** In the Rust org, our role is to focus on the rudiments that support an interoperable and thriving async crates.io ecosystem.
+* **Uphold sync's Rust bar for reliability.** Sync Rust famously delivers on the general feeling of "if it compiles, in works" -- async Rust should do the same.
+* **Zero-cost, guided by performance.** People adopt async Rust because they know it can deliver them both high reliability *and* peak performance. As we build out our designs, we want to ensure that they don't introduce an "abstraction tax" for using them.
+* **From embedded to GUI to the cloud.** Async Rust covers a wide variety of use cases and we aim to make designs that can span those differing constraints with ease.
+* **Consistent, incremental progress.** People are building async Rust systems *today* -- we need to ship incremental improvements while also steering towards the overall outcome we want.
 
 ## Ownership and other resources
 
-**Owner:** tmandry
+**Owner:** [tmandry][]
 
-XXXX
+[tmandry]: https://github.com/tmandry
 
 ### Support needed from the project
 
-_Identify which teams you need support from -- ideally reference the "menu" of support those teams provide. Some common considerations:_
+From [Lang] and [Libs-API][], agreement to review RFC (and drafts of RFC) and provide feedback, as well as agreement on using this process as the way to chart our async story.
 
 ## Outputs and milestones
 
 ### Outputs
 
-_Final outputs that will be produced_
+An RFC for the Rust async vision doc.
 
 ### Milestones
 
-_Milestones you will reach along the way_
+* First draft document
+* RFC opened
 
 ## Frequently asked questions
 
-### What do I do with this space?
-
-_This is a good place to elaborate on your reasoning above -- for example, why did you put the design axioms in the order that you did? It's also a good place to put the answers to any questions that come up during discussion. The expectation is that this FAQ section will grow as the goal is discussed and eventually should contain a complete summary of the points raised along the way._
+None.
