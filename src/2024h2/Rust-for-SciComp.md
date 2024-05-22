@@ -25,16 +25,29 @@ like JAX or PyTorch.
 ### The status quo
 
 
+Rust has an excellent Pyton InterOp Story thanks to PyO3. C++ has a weak interop story and as such I've seen cases where a slower C library is 
+used as the backend for some Python libraries, because it was easier to bundle. Fortran is mostly used in legacy places and hardly used for new 
+projects. As a solution, many researchers try to limit themself to features which are offered by compilers and libraries build on top of Python,
+like JAX, PyTorch, or newly Mojo. Rust has a lot of features which make it more suitable to develop a fast and reliable backend for performance 
+critical software than those languages. However, it lacks features which developers now got used to. These features are *trivial GPU usage*. 
+Almost every language has some way of calling hand-written CUDA/ROCm/Sycl Kernels, but the interesting feature of languages like Julia, or libraries
+like JAX is that they offer users to write Kernels in a (subset) of their already known language, without having to learn anything new. Minor 
+performance penalties are not that critical in such cases, if the alternative are CPU only solution, because projects like Rust-CUDA end up being unmaintained
+due to beeing too much effort to maintain outside of the LLVM or Rust project. 
+
+
 *Elaborate in more detail about the problem you are trying to solve. This section is making the case for why this particular problem is worth prioritizing with project bandwidth. A strong status quo section will (a) identify the target audience and (b) give specifics about the problems they are facing today. Sometimes it may be useful to start sketching out how you think those problems will be addressed by your change, as well, though it's not necessary.*
 
 ### The next few steps
 
-
-*Sketch out the specific things you are trying to achieve in 2024. This should be short and high-level -- we don't want to see the design!*
+1) Merge the `#[autodiff]` fork.
+2) Expose the experimental Batching feature of Enzyme, preferably by a new contributor.
+3) Merge a MVP `#[offloading]` fork which is able to run simple functions using rayong parallelism on a GPU or TPU, showing a speed-up.
 
 ### The "shiny future" we are working towards
 
-*If this goal is part of a larger plan that will extend beyond this goal period, sketch out the goal you are working towards. It may be worth adding some text about why these particular goals were chosen as the next logical step to focus on.*
+All three proposed features (batching, autodiff, offloading) can be combined and work nicely together. We have State-of-the-art support libraries like faer to cover linear
+algebra and we start to see more and more libraries in other languages use Rust with these features as their backend. Cases which don't require interactive exploration also become more popular in pure Rust.
 
 ## Design axioms
 
