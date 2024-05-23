@@ -1,11 +1,5 @@
 # Towards a higher level Rust
 
-> **Instructions:** Copy this template to a fresh file with a name based on your plan.
-> Update the text. Feel free to replace any text with anything, but there are placeholders
-> designed to help you get started. Also, while this template has received some iteration,
-> it is not sacrosant. Feel free to change the titles of sections or make other changes that you think
-> will increase clarity.
-
 | Metadata | |
 | --- | --- |
 | Owner(s) | [jkelleyrtp][] |
@@ -184,11 +178,38 @@ Generally, a "high level Rust" would be fast-to-compile and maximally performant
 
 ## Ownership and other resources
 
-**Owner:** *Identify a specific person or small group of people if possible, else the group that will provide the owner*
+Here is a detailed list of the work to be done and who is expected to do it. This table includes the work to be done by owners and the work to be done by Rust teams (subject to approval by the team in an RFC/FCP).
 
-*This section describes the resources that you the contributors are putting forward to address this goal. This includes people: you can list specific people or a number of people -- e.g., 2 experienced Rust engineers working 2 days/wk. Including details about experience level and background will help the reader to judge your ability to complete the work.*
+* The ![Funded][] badge indicates that the owner has committed and work will be funded by their employer or other sources.
+* The ![Team][] badge indicates a requirement where Team support is needed.
 
-*You can also include other resources as relevant, such as hardware, domain names, or whatever else.*
+| Subgoal                             | Owner(s) or team(s)                     | Status            |
+| ----------------------------------- | --------------------------------------- | ----------------- |
+| overall program management          | [tmandry][], [nikomatsakis][]           | ![Funded][]       |
+| author draft RFC for async vision   |                                         | ![Funded][]       |
+| ↳ author RFC                        | [tmandry][]                             | ![Funded][]       |
+| ↳ approve RFC                       | ![Team][] [Lang], [Libs-API]            | ![Not approved][] |
+| stabilize async closures            |                                         | ![Funded][]       |
+| ↳ ~~implementation~~                | ~~[compiler-errors][]~~                 | ![Complete][]     |
+| ↳ author RFC                        | [nikomatsakis][] or [compiler-errors][] | ![Funded][]       |
+| ↳ approve RFC                       | ![Team][] [Lang]                        | ![Not funded][]   |
+| ↳ stabilization                     | [compiler-errors][]                     | ![Not funded][]   |
+| stabilize trait for async iteration |                                         | ![Funded][]       |
+| ↳ author RFC                        | [eholk][]                               | ![Funded][]       |
+| ↳ approve RFC                       | ![Team][] [Libs-API]                    | ![Funded][]       |
+| ↳ implementation                    | [eholk][]                               | ![Funded][]       |
+| complete async drop experiments     |                                         |                   |
+| ↳ ~~author MCP~~                    | ~~[petrochenkov][]~~                    | ![Complete][]     |
+| ↳ ~~approve MCP~~                   | ~~[Compiler]~~                          | ![Complete][]     |
+| ↳ implementation work               | [petrochenkov][]                        | ![Not funded][]   |
+
+[Funded]: https://img.shields.io/badge/Funded-yellow
+[Not funded]: https://img.shields.io/badge/Not%20yet%20funded-red
+[Approved]: https://img.shields.io/badge/Approved-green
+[Not approved]: https://img.shields.io/badge/Not%20yet%20approved-red
+[Complete]: https://img.shields.io/badge/Complete-green
+[TBD]: https://img.shields.io/badge/TBD-red
+[Team]: https://img.shields.io/badge/Team%20ask-red
 
 ### Support needed from the project
 
