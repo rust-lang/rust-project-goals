@@ -19,7 +19,7 @@ However, Rust today isn't a great choice for the consumption of these libraries 
 
 Rust has recently seen tremendous adoption in a number of high-profile projects. These include but are not limited to: Firecracker, Pingora, Zed, Datafusion, Candle, Gecko, Turbopack, React Compiler, Deno, Tauri, InfluxDB, SWC, Ruff, Polars, SurrealDB, NPM and more. These projects tend to power a particular field of development: SWC, React, and Turbopack powering web development, Candle powering AI/ML, Ruff powering Python, InfluxDB and Datafusion powering data science etc.
 
-These projects tend to focus on accelerating development in higher level languages. In theory, Rust itself would be an ideal choice for development in the respective spaces. A Rust webserver can be faster and more reliable than a JavaScript webserver. However, Rust's perceived difficulty, verbosity, compile times, and iteration velocity limit its adoption in these spaces. Various language constructs nudge developers to a particular program structure that might be nonobvious at its outset, resulting in slower development times. Other language constructs influence the final architecture of a Rust program, making it harder to migrate one's mental model as they transition to using Rust. Other Rust language limitations lead to unnecessarily verbose or noisy code. While Rust is not necessarily a bad choice for any of these fields, the analogous frameworks (Axum, Bevy, Dioxus, Polars, etc) are rather nascent and frequently butt up against language limitations.
+These projects tend to focus on accelerating development in higher level languages. In theory, Rust itself would be an ideal choice for development in the respective spaces. A Rust webserver can be faster and more reliable than a JavaScript webserver. However, Rust's perceived difficulty, verbosity, compile times, and iteration velocity limit its adoption in these spaces. Various language constructs nudge developers to a particular program structure that might be non-obvious at its outset, resulting in slower development times. Other language constructs influence the final architecture of a Rust program, making it harder to migrate one's mental model as they transition to using Rust. Other Rust language limitations lead to unnecessarily verbose or noisy code. While Rust is not necessarily a bad choice for any of these fields, the analogous frameworks (Axum, Bevy, Dioxus, Polars, etc) are rather nascent and frequently butt up against language limitations.
 
 If we could make Rust a better choice for "higher level" programming - apps, games, UIs, webservers, datascience, high-performance-computing, scripting - then Rust would see much greater adoption outside its current bubble. This would result in more corporate interest, excited contributors, and generally positive growth for the language. With more "higher level" developers using Rust, we might see an uptick in adoption by startups, research-and-development teams, and the physical sciences which could lead to more general innovation.
 
@@ -37,7 +37,7 @@ The two key areas we've identified as places to cut down on verbosity and make R
 - Reducing the frequency of an explicit ".clone()" for cheaply clonable items
 - Partial borrows for structs
 
-The key areas we've identifed as avenues to speed up iterative development include:
+The key areas we've identified as avenues to speed up iterative development include:
 
 - Speeding up or caching proc macro expansion
 - A per-user cache for compiled artifacts
@@ -60,7 +60,7 @@ There are other longer term projects that would be interesting to pursue but don
 
 #### Reducing `.clone()` frequency
 
-Across web, game, UI, app, and even systems development, it's common to share sempaphores across scopes. These come in the form of channels, queues, signals, and immutable state typically wrapped in Arc/Rc. In Rust, to use these items across scopes - like `tokio::spawn` or `'static` closures, a programmer must explicitly call `.clone()`. This is frequently accompanied by a rename of an item:
+Across web, game, UI, app, and even systems development, it's common to share semaphores across scopes. These come in the form of channels, queues, signals, and immutable state typically wrapped in Arc/Rc. In Rust, to use these items across scopes - like `tokio::spawn` or `'static` closures, a programmer must explicitly call `.clone()`. This is frequently accompanied by a rename of an item:
 
 ```rust
 let state = Arc::new(some_state);
