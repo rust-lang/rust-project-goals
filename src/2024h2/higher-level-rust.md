@@ -34,7 +34,7 @@ Generally we believe this boils down two focuses:
 
 The two key areas we've identified as places to cut down on verbosity and make Rust easier to work are:
 
-- Reducing the frequency of an explicit ".clone()" for cheaply clonable items
+- Reducing the frequency of an explicit ".clone()" for cheaply cloneable items
 - Partial borrows for structs
 
 The key areas we've identified as avenues to speed up iterative development include:
@@ -150,7 +150,7 @@ For example, a syntax-less approach to solving this problem might be simply turn
 
 #### Procedural macro expansion caching or speedup
 
-Today, the Rust compiler does not necesarily cache the tokens from procedural macro expansion. On every `cargo check`, and `cargo build`, Rust will run procedural macros to expand code for the compiler. The vast majority of procedural macros in Rust are idempotent: their output tokens are simply a deterministic function of their input tokens. If we assumed a procedural macro was free of side-effects, then we would only need to re-run procedural macros when the input tokens change. This has been shown in prototypes to drastically improve incremental compile times (30% speedup), especially for codebases that employ lots of derives (Debug, Clone, PartialEq, Hash, serde::Serialize).
+Today, the Rust compiler does not necessarily cache the tokens from procedural macro expansion. On every `cargo check`, and `cargo build`, Rust will run procedural macros to expand code for the compiler. The vast majority of procedural macros in Rust are idempotent: their output tokens are simply a deterministic function of their input tokens. If we assumed a procedural macro was free of side-effects, then we would only need to re-run procedural macros when the input tokens change. This has been shown in prototypes to drastically improve incremental compile times (30% speedup), especially for codebases that employ lots of derives (Debug, Clone, PartialEq, Hash, serde::Serialize).
 
 A solution here could either be manual or automatic: macro authors could opt-in to caching or the compiler could automatically cache macros it knows are side-effect free.
 
@@ -168,7 +168,48 @@ Generally, a "high level Rust" would be fast-to-compile and maximally performant
 
 ### The "shiny future" we are working towards
 
-*If this goal is part of a larger plan that will extend beyond this goal period, sketch out the goal you are working towards. It may be worth adding some text about why these particular goals were chosen as the next logical step to focus on.*
+A "high level Rust" would be a Rust that has a strong focus on iteration speed. Developers would benefit from Rust's performance, safety, and reliability guarantees without the current status quo of long compile times, verbose code, and program architecture limitations.
+
+A "high level" Rust would:
+- Compile quickly, even for fresh builds
+- Be terse in the common case
+- Produce performant programs even in debug mode
+- Provide language shortcuts to get to running code faster
+
+In our "shiny future," an aspiring genomics researcher would:
+- be able to quickly jump into a new project
+- add powerful dependencies with little compile-time cost
+- use various procedural macros with little compile-time cost
+- cleanly migrate their existing program architecture to Rust with few lifetime issues
+- employ various shortcuts like unwrap to get to running code quicker
+
+----
+
+To imagine a fictional scenario, let's take the case of "Alex."
+
+Alex is a genomics researcher studying ligand receptor interaction to improve drug therapy for cancer. They work with very large datasets and need to design new algorithms to process genomics data and simulate drug interactions. Alex recently heard that Rust has a great genomics library (Genomix) and decides to try out Rust for their next project.
+
+Alex creates a new project and starts adding various libraries. To start, they add Polars and Genomix. They also realize they want to wrap their research code in a web frontend and allow remote data, so they add Tokio, Reqwest, Axum, and Dioxus. They write a simple program that fetches data from their research lab's S3 bucket, downloads it, cleans it, processes, and then displays it.
+
+For the first time, they type `cargo run.` The project builds in 10 seconds and their code starts running. The analysis completes churns for a bit and Alex is greeted with a basic webpage visualizing their results. They start working on the visualization interface, adding interactivity with new callbacks and async routines. Thanks to hotreloading, the webpage updates without fully recompiling and losing program state.
+
+Once satisfied, Alex decides to refactor their messy program into different structs so that they can reuse the different pieces for other projects. They add basic improvements like multithreading and swap out the unwraps for proper error handling.
+
+Alex heard Rust was difficult to learn, but they're generally happy. Their Rust program is certainly faster than their previous Python work. They didn't need to learn JavaScript to wrap it in a web frontend. The `Cargo.toml` is a cool - they can share their work with the research lab without messing with Python installs and dependency management. They heard Rust had long compile times but didn't run into that.
+
+---
+
+Unfortunately, today's Rust provides a different experience.
+
+- Upfront compile times would be in the order of minutes
+- Adding new dependencies would also incur a strong compile time cost
+- Iterating on the program would take several seconds per build
+- Adding a web UI would be arduous with copious calls `.clone()` to shuffle state around
+- Lots of explicit unwraps pollute the codebase
+- Refactoring to a collection of structs might take much longer than they anticipated
+
+
+
 
 ## Design axioms
 
