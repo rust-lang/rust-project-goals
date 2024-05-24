@@ -204,9 +204,59 @@ let res = Client::new()!
 A "higher level Rust" would provide similar affordances to prototype code that it provides to production code. All production code was once prototype code. Today's Rust makes it harder to write prototype code than it does production code. This language-level opinion is seemingly unique to Rust and arguably a major factor in why Rust has seen slower adoption in higher level programming paradigms.
 
 
-#### Named and Optional Arguments (Contentious)
+#### Named and Optional Arguments or Partial Defaults (Contentious)
 
-<todo>
+Beyond `.clone()` and `.unwrap()`, the next biggest polluter for "high level" Rust code tends to be the lack of a way to properly supply optional arguments to various operations. This has received lots of discussion already and we don't want to belabor the point anymore than it already has.
+
+The main thing we want to add here is that we believe the builder pattern is *not* a great solution for this problem, especially during prototyping and in paradigms where iteration time is important.
+
+```rust
+struct PlotCfg {
+   title: Option<String>,
+   height: Option<u32>,
+   width: Option<u32>,
+   dpi: Option<u32>,
+   style: Option<Style>
+}
+
+impl PlotCfg {
+    pub fn title(&mut self, title: Option<u32>) -> &mut self {
+        self.title = title;
+        self
+    }
+    pub fn height(&mut self, height: Option<u32>) -> &mut self {
+        self.height = height;
+        self
+    }
+    pub fn width(&mut self, width: Option<u32>) -> &mut self {
+        self.width = width;
+        self
+    }
+    pub fn dpi(&mut self, dpi: Option<u32>) -> &mut self {
+        self.dpi = dpi;
+        self
+    }
+    pub fn style(&mut self, style: Option<u32>) -> &mut self {
+        self.style = style;
+        self
+    }
+    pub fn build() -> Plot {
+	    todo!()
+    }
+}
+```
+
+A solution to this problem could in any number of forms:
+- Partial Defaults to structs
+- Named and optional function arguments
+- Anonymous structs
+
+We don't want to specify any particular solution:
+- Partial defaults simply feel like an extension of the language
+- Named function arguments would be a very welcome change for many high-level interfaces
+- Anonymous structs would be useful outside of replacing builders
+
+Generally though, we feel like this another core problem that needs to be solved for Rust to see more traction in higher-level programming paradigms.
 
 #### Procedural macro expansion caching or speedup
 
@@ -269,40 +319,32 @@ Unfortunately, today's Rust provides a different experience.
 - Refactoring to a collection of structs might take much longer than they anticipated
 
 
+## Design axioms[da]
 
-
-## Design axioms
-
-*Add your [design axioms][da] here. Design axioms clarify the constraints and tradeoffs you will use as you do your design work. These are most important for project goals where the route to the solution has significant ambiguity (e.g., designing a language feature or an API), as they communicate to your reader how you plan to approach the problem. If this goal is more aimed at implementation, then design axioms are less important. [Read more about design axioms][da].*
+- Preference for minimally invasive changes that have the greatest potential benefit
+- No or less syntax is preferable to more syntax for the same goal
+- Prototype code should receive similar affordances as production code
+- Attention to the end-to-end experience of a Rust developer
+- Willingness to make appropriate tradeoffs in favor of implementation speed and intuitiveness
 
 [da]: ../about/design_axioms.md
 
 ## Ownership and other resources
 
-Here is a detailed list of the work to be done and who is expected to do it. This table includes the work to be done by owners and the work to be done by Rust teams (subject to approval by the team in an RFC/FCP).
+The work here is proposed by Jonathan Kelley on behalf of Dioxus Labs. We have funding for 1-2 engineers depending on the scope of work. Dioxus Labs is willing to take ownership and commit funding to solve these problems.
 
-* The ![Funded][] badge indicates that the owner has committed and work will be funded by their employer or other sources.
-* The ![Team][] badge indicates a requirement where Team support is needed.
 
 | Subgoal                             | Owner(s) or team(s)                     | Status            |
 | ----------------------------------- | --------------------------------------- | ----------------- |
-| overall program management          | [tmandry][], [nikomatsakis][]           | ![Funded][]       |
-| author draft RFC for async vision   |                                         | ![Funded][]       |
-| ↳ author RFC                        | [tmandry][]                             | ![Funded][]       |
-| ↳ approve RFC                       | ![Team][] [Lang], [Libs-API]            | ![Not approved][] |
-| stabilize async closures            |                                         | ![Funded][]       |
-| ↳ ~~implementation~~                | ~~[compiler-errors][]~~                 | ![Complete][]     |
-| ↳ author RFC                        | [nikomatsakis][] or [compiler-errors][] | ![Funded][]       |
-| ↳ approve RFC                       | ![Team][] [Lang]                        | ![Not funded][]   |
-| ↳ stabilization                     | [compiler-errors][]                     | ![Not funded][]   |
-| stabilize trait for async iteration |                                         | ![Funded][]       |
-| ↳ author RFC                        | [eholk][]                               | ![Funded][]       |
-| ↳ approve RFC                       | ![Team][] [Libs-API]                    | ![Funded][]       |
-| ↳ implementation                    | [eholk][]                               | ![Funded][]       |
-| complete async drop experiments     |                                         |                   |
-| ↳ ~~author MCP~~                    | ~~[petrochenkov][]~~                    | ![Complete][]     |
-| ↳ ~~approve MCP~~                   | ~~[Compiler]~~                          | ![Complete][]     |
-| ↳ implementation work               | [petrochenkov][]                        | ![Not funded][]   |
+| `.clone()` problem                  |  [jkelleyrtp] + tbd                     | ![Funded][]       |
+| `.unwrap()` problem                 |  [jkelleyrtp] + tbd                     | ![Funded][]       |
+| partial borrows                     |  [jkelleyrtp] + tbd                     | ![Funded][]       |
+| proc macro expansion caching        |  [jkelleyrtp] + tbd                     | ![Funded][]       |
+| global dependency cache             |  [jkelleyrtp] + tbd                     | ![Funded][]       |
+| Named/Optional arguments            |  [jkelleyrtp] + tbd                     | ![Funded][]       |
+
+* The ![Funded][] badge indicates that the owner has committed and work will be funded by their employer or other sources.
+* The ![Team][] badge indicates a requirement where Team support is needed.
 
 [Funded]: https://img.shields.io/badge/Funded-yellow
 [Not funded]: https://img.shields.io/badge/Not%20yet%20funded-red
@@ -314,15 +356,10 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 
 ### Support needed from the project
 
-*Identify which teams you need support from -- ideally reference the "menu" of support those teams provide. Some common considerations:*
-
-* Will you be authoring RFCs? How many do you expect? Which team will be approving them?
-    * Will you need design meetings along the way? And on what cadence?
-* Will you be authoring code? If there is going to be a large number of PRs, or a very complex PR, it may be a good idea to talk to the compiler or other team about getting a dedicated reviewer.
-* Will you want to use "Rust project resources"...?
-    * Creating rust-lang repositories?
-    * Issuing rust-lang-hosted libraries on crates.io?
-    * Posting blog posts on the Rust blog? (The Inside Rust blog is always ok.)
+- We are happy to author RFCs and/or work with other experienced RFC authors.
+- We are happy to host design meetings, facilitate work streams, logistics, and any other administration required to execute. Some subgoals proposed might be contentious or take longer than this goals period, and we're committed to timelines beyond six months.
+- We are happy to author code or fund the work for an experienced Rustlang contributor to do the implementation. For the language goals, we expect more design required than actual implementation. For cargo-related goals, we expected more engineering required than design. We are also happy to back any existing efforts as there is ongoing work in cargo itself to add various types of caching.
+- We would be excited to write blog posts about this effort. This goals program is a great avenue for us to get more corporate support and see more Rust adoption for higher-level paradigms. Having a blog post talking about this work would be a significant step in changing the perception of Rust for use in high-level codebases.
 
 ## Outputs and milestones
 
