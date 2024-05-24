@@ -11,9 +11,9 @@
 
 ## Motivation
 
-Rust is beginning to pick up momentum in a variety of spaces traditionally deemed "higher level." This includes fields like app, game, and web development as well as data science and and scientific computing. Rust's inherent low-level nature lends itself as a solid foundation for these fields in the form of frameworks and libraries.
+Rust is beginning to pick up momentum in a variety of spaces traditionally deemed "higher level." This includes fields like app, game, and web development as well as data science and scientific computing. Rust's inherent low-level nature lends itself as a solid foundation for these fields in the form of frameworks and libraries.
 
-However, Rust today isn't a great choice for the consumption of these libraries - many projects expose bindings for languages like Python and JavaScript. The motivation of this project goal is to make Rust a better choice for higher level programming subfields by identifying and remedying language papercuts with minimally invasive language changes.
+However, Rust today isn't a great choice for the consumption of these libraries - many projects instead choose to expose bindings for languages like Python and JavaScript. The motivation of this project goal is to make Rust a better choice for higher level programming subfields by identifying and remedying language papercuts with minimally invasive language changes.
 
 ### The status quo
 
@@ -23,9 +23,7 @@ These projects tend to focus on accelerating development in higher level languag
 
 If we could make Rust a better choice for "higher level" programming - apps, games, UIs, webservers, datascience, high-performance-computing, scripting - then Rust would see much greater adoption outside its current bubble. This would result in more corporate interest, excited contributors, and generally positive growth for the language. With more "higher level" developers using Rust, we might see an uptick in adoption by startups, research-and-development teams, and the physical sciences which could lead to more general innovation.
 
-While new languages focused on high-level applications are gaining traction, the thesis of this project goal is that Rust itself can be tweaked to make it a better choice overall.
-
-Generally we believe this boils down two focuses:
+Generally we believe this boils down to two focuses:
 
 - Make Rust programs faster to write
 - Shorten the iteration cycle of a Rust program
@@ -47,7 +45,7 @@ Additional - more contentious - "wants" include:
 
 - A less verbose approach for "unwrap" in prototype code
 - Named and/or optional/default function arguments
-- Succinct usage of a framework's types without top-level "use" imports (enums, structs)
+- Succinct usage of a library's types without top-level "use" imports (enums, structs)
 
 There are other longer term projects that would be interesting to pursue but don't necessarily fit in the 2024 goals:
 
@@ -141,11 +139,11 @@ let o1 = modify_something();
 println!("o: {:?}", o2);
 ```
 
-This is a very frequent papercut for both beginner and experience Rust programmers. A developer might design a valid abstraction for a particular problem, but the Rust compiler rejects it even though said design does obey the core axioms of the borrow checker.
+This is a very frequent papercut for both beginner and experienced Rust programmers. A developer might design a valid abstraction for a particular problem, but the Rust compiler rejects it even though said design does obey the axioms of the borrow checker.
 
 As part of the "higher level Rust" effort, we want to reduce the frequency of this papercut, making it easier for developers to model and iterate on their program architecture.
 
-For example, a syntax-less approach to solving this problem might be simply turning on disjoint capture for *private methods only*. Alternatively, we could implement a syntax or attribute that allows developers to explicitly opt in to the partial borrow system. Again, we don't want to necessarily prescribe a solution here, but the best outcome would be a solution that reduces mental overhead with as little new syntax as possible.
+For example, a syntax-free approach to solving this problem might be simply turning on disjoint capture for *private methods only*. Alternatively, we could implement a syntax or attribute that allows developers to explicitly opt in to the partial borrow system. Again, we don't want to necessarily prescribe a solution here, but the best outcome would be a solution that reduces mental overhead with as little new syntax as possible.
 
 #### Faster Unwrap Syntax (Contentious)
 
@@ -176,9 +174,9 @@ It's clear that `.unwrap()` plays a large role in the early steps of every Rust 
 
 A "higher level Rust" would be a Rust that enables programmers to quickly prototype their solution, iterating on architecture and functionality before finally deciding to "productionize" their code. In today's Rust this is equivalent to replacing `.unwrap()` with proper error handling (or `.expect()`), adding documentation, and adding tests.
 
-Programmers generally understand the difference between prototype code and production code - they don't necessarily need to be so strongly reminded that their code is prototype code by forcing a verbose `.unwrap()` at every corner. In many ways, Rust today feels hostile to prototype code. We believe that a "higher level Rust" should be *welcoming* to prototype code. The easier it is for developers to write prototype code, the more code will likely convert to production code. Prototype code by design is the first step to production ready code.
+Programmers generally understand the difference between prototype code and production code - they don't necessarily need to be so strongly reminded that their code is prototype code by forcing a verbose `.unwrap()` at every corner. In many ways, Rust today feels hostile to prototype code. We believe that a "higher level Rust" should be *welcoming* to prototype code. The easier it is for developers to write prototype code, the more code will likely convert to production code. Prototype code by design is the first step to production code.
 
-When this topic comes up, folks will invariably bring up `Result` plus `?` as a solution. In practice, we've not found it to be a suitable bandaid. Adopting question mark syntax requires you to change the signatures of your code at every turn. While prototyping you can no longer think in terms of `A -> B` but now you need to think of every `A -> B?` as a potentially fallible operation. The final production ready iteration of your code will likely not be fallible in every method, forcing yet another level of refactoring. Plus, question mark syntax tends to bubble errors *without* line information, generally making it difficult to locate *where* the error is occurring in the first place. And finally, question mark syntax doesn't work on `Option<T>`, meaning `.unwrap()` or pattern matching are the only valid options.
+When this topic comes up, folks will invariably bring up `Result` plus `?` as a solution. In practice, we've not found it to be a suitable bandaid. Adopting question mark syntax requires you to change the signatures of your code at every turn. While prototyping you can no longer think in terms of `A -> B` but now you need to think of every `A -> B?` as a potentially fallible operation. The final production-ready iteration of your code will likely not be fallible in every method, forcing yet another level of refactoring. Plus, question mark syntax tends to bubble errors *without* line information, generally making it difficult to locate *where* the error is occurring in the first place. And finally, question mark syntax doesn't work on `Option<T>`, meaning `.unwrap()` or pattern matching are the only valid options.
 
 ```rust
 let items = vec![1,2,3,4];
@@ -256,7 +254,7 @@ We don't want to specify any particular solution:
 - Named function arguments would be a very welcome change for many high-level interfaces
 - Anonymous structs would be useful outside of replacing builders
 
-Generally though, we feel like this another core problem that needs to be solved for Rust to see more traction in higher-level programming paradigms.
+Generally though, we feel like this is another core problem that needs to be solved for Rust to see more traction in higher-level programming paradigms.
 
 #### Procedural macro expansion caching or speedup
 
@@ -265,13 +263,13 @@ Today, the Rust compiler does not necessarily cache the tokens from procedural m
 A solution here could either be manual or automatic: macro authors could opt-in to caching or the compiler could automatically cache macros it knows are side-effect free.
 
 
-#### Faster fresh builds
+#### Faster fresh builds and higher default optimization levels
 
 A "higher level Rust" would be a Rust where a programmer would be able to start a new project, add several large dependencies, and get to work quickly without waiting minutes for a fresh compile. A web developer would be able to jump into a Tokio/Axum heavy project, a game developer into a Bevy/WGPU heavy project, or a data scientist into a Polars project and start working without incurring a 2-5 minute penalty. In today's world, an incoming developer interested in using Rust for their next project immediately runs into a compile wall. In reality, Rust's incremental compile times are rather good, but Rust's perception is invariably shaped by the "new to Rust" experience which is almost always a long upfront compile time.
 
-Cargo's current compilation model involves downloading and compiling dependencies on a per-project basis. Workspaces allow you to share a set of dependency compilation artifacts across several projects at once, deduplicating compilation time and reducing disk space usage.
+Cargo's current compilation model involves downloading and compiling dependencies on a per-project basis. Workspaces allow you to share a set of dependency compilation artifacts across several related crates at once, deduplicating compilation time and reducing disk space usage.
 
-A "higher level Rust" might employ some form of caching - either per-user, per-machine, per-organization, per-library, otherwise - such that fresh builds are just as fast as incremental builds. If the caching was sufficiently capable, it could even cache dependency artifacts at higher optimization levels. This is particularly important for game development, data science, and procedural macros where debug builds of dependencies run *significantly* slower than their release variant. Projects like Bevy and WGPU explicitly guide developers to manually increase the optimization level of dependencies since the default is unusably slow for game and graphics development.
+A "higher level Rust" might employ some form of caching - either per-user, per-machine, per-organization, per-library, or otherwise - such that fresh builds are just as fast as incremental builds. If the caching was sufficiently capable, it could even cache dependency artifacts at higher optimization levels. This is particularly important for game development, data science, and procedural macros where debug builds of dependencies run *significantly* slower than their release variant. Projects like Bevy and WGPU explicitly guide developers to manually increase the optimization level of dependencies since the default is unusably slow for game and graphics development.
 
 Generally, a "high level Rust" would be fast-to-compile and maximally performant by default. The tweaks here do not require language changes and are generally a question of engineering effort rather than design consensus.
 
@@ -295,17 +293,17 @@ In our "shiny future," an aspiring genomics researcher would:
 
 ----
 
-To imagine a fictional scenario, let's take the case of "Alex."
+To imagine a fictional scenario, let's take the case of "Alex" using a fictional library "Genomix."
 
 Alex is a genomics researcher studying ligand receptor interaction to improve drug therapy for cancer. They work with very large datasets and need to design new algorithms to process genomics data and simulate drug interactions. Alex recently heard that Rust has a great genomics library (Genomix) and decides to try out Rust for their next project.
 
 Alex creates a new project and starts adding various libraries. To start, they add Polars and Genomix. They also realize they want to wrap their research code in a web frontend and allow remote data, so they add Tokio, Reqwest, Axum, and Dioxus. They write a simple program that fetches data from their research lab's S3 bucket, downloads it, cleans it, processes, and then displays it.
 
-For the first time, they type `cargo run.` The project builds in 10 seconds and their code starts running. The analysis completes churns for a bit and Alex is greeted with a basic webpage visualizing their results. They start working on the visualization interface, adding interactivity with new callbacks and async routines. Thanks to hotreloading, the webpage updates without fully recompiling and losing program state.
+For the first time, they type `cargo run.` The project builds in 10 seconds and their code starts running. The analysis churns for a bit and then Alex is greeted with a basic webpage visualizing their results. They start working on the visualization interface, adding interactivity with new callbacks and async routines. Thanks to hotreloading, the webpage updates without fully recompiling and losing program state.
 
-Once satisfied, Alex decides to refactor their messy program into different structs so that they can reuse the different pieces for other projects. They add basic improvements like multithreading and swap out the unwraps for proper error handling.
+Once satisfied, Alex decides to refactor their messy program into different structs so that they can reuse the different pieces for other projects. They add basic improvements like multithreading and swap out the unwrap shortcuts for proper error handling.
 
-Alex heard Rust was difficult to learn, but they're generally happy. Their Rust program is certainly faster than their previous Python work. They didn't need to learn JavaScript to wrap it in a web frontend. The `Cargo.toml` is a cool - they can share their work with the research lab without messing with Python installs and dependency management. They heard Rust had long compile times but didn't run into that.
+Alex heard Rust was difficult to learn, but they're generally happy. Their Rust program is certainly faster than their previous Python work. They didn't need to learn JavaScript to wrap it in a web frontend. The `Cargo.toml` is a cool - they can share their work with the research lab without messing with Python installs and dependency management. They heard Rust had long compile times but didn't run into that. Being able to add async and multithreading was easier than they thought - interacting with channels and queues was as easy as it was in Go.
 
 ---
 
@@ -318,6 +316,7 @@ Unfortunately, today's Rust provides a different experience.
 - Lots of explicit unwraps pollute the codebase
 - Refactoring to a collection of structs might take much longer than they anticipated
 
+The shiny future is one where Rust compiles fast, has minimal syntax noise, runs fast, and is easy to take from prototype to production.
 
 ## Design axioms[da]
 
