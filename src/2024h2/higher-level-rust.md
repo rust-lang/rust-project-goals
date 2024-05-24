@@ -147,6 +147,66 @@ As part of the "higher level Rust" effort, we want to reduce the frequency of th
 
 For example, a syntax-less approach to solving this problem might be simply turning on disjoint capture for *private methods only*. Alternatively, we could implement a syntax or attribute that allows developers to explicitly opt in to the partial borrow system. Again, we don't want to necessarily prescribe a solution here, but the best outcome would be a solution that reduces mental overhead with as little new syntax as possible.
 
+#### Faster Unwrap Syntax (Contentious)
+
+Another common criticism of Rust in prototype-heavy programming subfields is its pervasive verbosity - especially when performing rather simple or innocuous transformations. Admittedly, even as experienced Rust programmers, we find ourselves bogged down by the noisiness of various language constructs. In our opinion, the single biggest polluter of prototype Rust codebase is the need to call `.unwrap()` everywhere. While yes, many operations can fail and it's a good idea to handle errors, we've generally found that `.unwrap()` drastically hinders development in higher level paradigms.
+
+Whether it be simple operations like getting the last item from a vec:
+```rust
+let items = vec![1,2,3,4];
+let last = items.last().unwrap();
+```
+
+Or slightly more involved operations like fetching from a server:
+```rust
+let res = Client::new()
+	.unwrap()
+	.get("https://dog.ceo/api/breeds/list/all")
+	.header("content/text".parse().unwrap())
+	.send()
+	.unwrap()
+	.await
+	.unwrap()
+	.json::<DogApi>()
+	.await
+	.unwrap();
+```
+
+It's clear that `.unwrap()` plays a large role in the early steps of every Rust codebase.
+
+A "higher level Rust" would be a Rust that enables programmers to quickly prototype their solution, iterating on architecture and functionality before finally deciding to "productionize" their code. In today's Rust this is equivalent to replacing `.unwrap()` with proper error handling (or `.expect()`), adding documentation, and adding tests.
+
+Programmers generally understand the difference between prototype code and production code - they don't necessarily need to be so strongly reminded that their code is prototype code by forcing a verbose `.unwrap()` at every corner. In many ways, Rust today feels hostile to prototype code. We believe that a "higher level Rust" should be *welcoming* to prototype code. The easier it is for developers to write prototype code, the more code will likely convert to production code. Prototype code by design is the first step to production ready code.
+
+When this topic comes up, folks will invariably bring up `Result` plus `?` as a solution. In practice, we've not found it to be a suitable bandaid. Adopting question mark syntax requires you to change the signatures of your code at every turn. While prototyping you can no longer think in terms of `A -> B` but now you need to think of every `A -> B?` as a potentially fallible operation. The final production ready iteration of your code will likely not be fallible in every method, forcing yet another level of refactoring. Plus, question mark syntax tends to bubble errors *without* line information, generally making it difficult to locate *where* the error is occurring in the first place. And finally, question mark syntax doesn't work on `Option<T>`, meaning `.unwrap()` or pattern matching are the only valid options.
+
+```rust
+let items = vec![1,2,3,4];
+let last = items.last().unwrap(); // <--- this can't be question-marked!
+```
+
+We don't prescribe any particular solution, but ideally Rust would provide a similar shortcut for `.unwrap()` as it does for `return Err(e)`. Other languages tend to use a `!` operator for this case:
+
+```rust
+let items = vec![1,2,3,4];
+let last = items.last()!;
+
+let res = Client::new()!
+	.get("https://dog.ceo/api/breeds/list/all")
+	.header("content/text".parse()!)
+	.send()!
+	.await!
+	.json::<DogApi>()
+	.await!;
+```
+
+
+A "higher level Rust" would provide similar affordances to prototype code that it provides to production code. All production code was once prototype code. Today's Rust makes it harder to write prototype code than it does production code. This language-level opinion is seemingly unique to Rust and arguably a major factor in why Rust has seen slower adoption in higher level programming paradigms.
+
+
+#### Named and Optional Arguments (Contentious)
+
+<todo>
 
 #### Procedural macro expansion caching or speedup
 
