@@ -72,8 +72,6 @@ trait AsyncFnMut<A>: AsyncFnOnce<A> {
 
 **Async drop.** There is no defined way to manage resource cleanup in async Rust. 
 
-**Async drop.** There is no defined way to manage resource cleanup in async Rust. 
-
 **Missing interop traits.** For sync Rust, the standard library supplies core interop traits like `Read`, `Write` and `Iterator` as well as core functionality like thread spawning and sleeping. In async Rust, those core operations are currently defined differently by each executor (e.g., `tokio`, `async-std`, or `embassy` but also special purpose executors like the one used for Fuchsia or custom executors used internally at many companies). This creates an interop problem: common crates like `hyper` cannot code against generic interfaces but must define either pick one executor or define their own interop traits. Even when crates (like `hyper`) are careful to define such traits, implementing those traits is difficult and it is difficult to do things like run hyper's internal test suite to verify that the implementations are working correctly. Combining crates can also lead to [surprising panics][].
 
 [surprising panics]: https://rust-lang.github.io/wg-async/vision/submitted_stories/status_quo/alan_started_trusting_the_rust_compiler_but_then_async.html
