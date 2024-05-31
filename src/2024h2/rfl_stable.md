@@ -85,7 +85,7 @@ Both have been implemented but more experience and/or may be needed before stabi
 
 #### RFL on Rust CI
 
-Rust sometimes integrate external projects of paticular importance or interest into its CI.
+Rust sometimes integrates external projects of particular importance or interest into its CI.
 This gives us early notice when changes to the compiler or stdlib impact that project.
 Some of that breakage is accidental, and CI integration ensures we can fix it without the project ever being impacted.
 Otherwise the breakage is intentional, and this gives us an early way to notify the project so they can get ahead of it.
@@ -196,7 +196,7 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 [TBD]: https://img.shields.io/badge/TBD-red
 [Team]: https://img.shields.io/badge/Team%20ask-red
 [Gary Guo]: https://github.com/nbdd0121
-[Owner Needed]: https://img.shields.io/badge/Owned%20Needed-blue
+[Owner Needed]: https://img.shields.io/badge/Owner%20Needed-blue
 [Help wanted]: https://img.shields.io/badge/Help%20wanted-blue
 [#748]: https://github.com/rust-lang/compiler-team/issues/748
 [Lang]: https://www.rust-lang.org/governance/teams/lang

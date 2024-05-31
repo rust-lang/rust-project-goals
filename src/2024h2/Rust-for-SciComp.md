@@ -17,7 +17,7 @@ offloading, both cases which benefit strongly from knowing which pointers or ref
 
 ### The status quo
 
-Rust has an excellent Pyton InterOp Story thanks to PyO3. C++ has a weak interop story and as such I've seen cases where a slower C library is 
+Rust has an excellent Python InterOp Story thanks to PyO3. C++ has a weak interop story and as such I've seen cases where a slower C library is
 used as the backend for some Python libraries, because it was easier to bundle. Fortran is mostly used in legacy places and hardly used for new 
 projects. As a solution, many researchers try to limit themself to features which are offered by compilers and libraries build on top of Python,
 like JAX, PyTorch, or newly Mojo. Rust has a lot of features which make it more suitable to develop a fast and reliable backend for performance 
@@ -25,7 +25,7 @@ critical software than those languages. However, it lacks features which develop
 Almost every language has some way of calling hand-written CUDA/ROCm/Sycl Kernels, but the interesting feature of languages like Julia, or libraries
 like JAX is that they offer users to write Kernels in a (subset) of their already known language, without having to learn anything new. Minor 
 performance penalties are not that critical in such cases, if the alternative are CPU only solution, because projects like Rust-CUDA end up being unmaintained
-due to beeing too much effort to maintain outside of the LLVM or Rust project. 
+due to being too much effort to maintain outside of the LLVM or Rust project.
 
 
 *Elaborate in more detail about the problem you are trying to solve. This section is making the case for why this particular problem is worth prioritizing with project bandwidth. A strong status quo section will (a) identify the target audience and (b) give specifics about the problems they are facing today. Sometimes it may be useful to start sketching out how you think those problems will be addressed by your change, as well, though it's not necessary.*
@@ -48,7 +48,7 @@ algebra and we start to see more and more libraries in other languages use Rust 
 - We try to provide a safe, simple and opaque offloading interface. 
 - The "unit" of offloading is a function. 
 - We try to not expose explicit data movement if Ownership gives us enough information.
-- Users can offload functions which contains parallel CPU code, but do not have final control over how the paralelism will be translated to co-processors.
+- Users can offload functions which contains parallel CPU code, but do not have final control over how the parallelism will be translated to co-processors.
 - We accept that hand-written CUDA/ROCm/.. Kernels might be faster, but actively try to reduce differences.
 - We accept that we might need to provide additional control to the user to guide parallelism, if performance differences remain unacceptable large.
 - Offloaded code might not return exact same values as code executed on the CPU. We will work with t-(opsem?) to develop clear rules.
@@ -103,7 +103,7 @@ A `#[Batching]` rustc-builtin-macro which fuses N function calls into one call, 
 
 - The second offloading step is the automatic translation of a (default) Clone implementation to create a Host2Device and Device2Host copy implementation for user types.
 
-- The third offloading step is to run some embarassingly parallel Rust code (e.g. scalar times Vector) on the GPU. 
+- The third offloading step is to run some embarrassingly parallel Rust code (e.g. scalar times Vector) on the GPU.
 
 - Fourth we have examples of how rayon code runs faster on a co-processor using offloading.
 
@@ -113,7 +113,7 @@ A `#[Batching]` rustc-builtin-macro which fuses N function calls into one call, 
 
 ### Why do you implement these features only on the LLVM Backend? 
 - Performance wise we have LLVM and GCC as performant backends. Modularity wise we have LLVM and especially Cranelift being nice to modify.
-  It seems resonable that LLVM thus is the first backend to have support for new features in this field. Especially the offloading support 
+  It seems reasonable that LLVM thus is the first backend to have support for new features in this field. Especially the offloading support
   should be supportable by other compiler backends, given pre-existing work like OpenMP Offloading and WebGPU.
 
 ### Do these changes have to happen in the compiler?
