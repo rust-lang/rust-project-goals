@@ -66,6 +66,7 @@ In many cases the work being described will definitely happen, but it is not cle
 [RTOR]: ./Relaxing-the-Orphan-Rule.md
 [ITE]: ./Impl-trait-everywhere.md
 [HLR]: ./higher-level-rust.md
+[SCI]: ./Rust-for-SciComp.md
 
 [Intrusive linked lists]: ./Intrusive-linked-lists.md
 [Fallible allocation]: ./Fallible-allocation.md
