@@ -20,6 +20,7 @@
         - [Polonius](./2024h2/Polonius.md)
         - [Impl trait everywhere](./2024h2/Impl-trait-everywhere.md)
         - [Patterns of empty types](./2024h2/Patterns-of-empty-types.md)
+        - [Rust for Sci Comp](./2024h2/Rust-for-SciComp.md)
 - [📖 Learn about](./about/index.md)
     - [Goal motivations](./about/motivation.md)
     - [Goal owners](./about/owners.md)
