@@ -40,6 +40,7 @@ In many cases the work being described will definitely happen, but it is not cle
 | 2024 goal                              | Long-term ambition              | Status      | Owner             | Teams              |
 | -------------------------------------- | ------------------------------- | ----------- | ----------------- | ------------------ |
 | [Faster iterative builds][FIB]         | Entry-level Rust dev experience | ![WIP][wip] | [jkelleyrtp][]    | [Lang], [Compiler] |
+| [Rust for Scientific Computing][SCI]         | Rust for Scientific Computing | ![WIP][wip] | [Manuel S. Drehwald][]    | [Lang], [Compiler] |
 | [Towards seamless C support][SCS]      |                                 | ![WIP][wip] | [Josh-Triplett][] | [Lang], [Compiler] |
 | [Towards contracts and invariants][CI] |                                 | ![WIP][wip] | [pnkfelix]        | [Lang], [Compiler] |
 | [Towards new Rust trait solver][NTS]   |                                 | ![WIP][wip] | [lcnr]            | [Types]            |
