@@ -161,8 +161,6 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | ↳ stabilization decision                             | ![Team][] [Compiler]                |                   |
 | ↳ research and summarization for other flags         | ![Help wanted][]                    |                   |
 | Custom builds of core/alloc                          |                                     |                   |
-| ↳ stabilization proposal for `-Zbuild-std` mechanism | ![Help wanted][]                    |                   |
-| ↳ stabilize `-Zbuild-std` mechanism                  | ![Team][] [Cargo]                   | ![Not approved][] |
 | ↳ stabilization proposal for subsetting std          |                                     |                   |
 | ↳ stabilize subset of std                            | ![Team][] [Libs-API]                | ![Not approved][] |
 
