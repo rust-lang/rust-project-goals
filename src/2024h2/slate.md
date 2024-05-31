@@ -22,16 +22,15 @@ These are goals that have been formally accepted.
 
 These are goals that the slate owner is strongly considering submitting as RFCs.
 
-| 2024 goal                                                                        | Long-term ambition                    | Owner                               | Teams                       |
-| -------------------------------------------------------------------------------- | ------------------------------------- | ----------------------------------- | --------------------------- |
-| [Async closures and send bounds][AFE]                                            | Async/sync parity                     | [nikomatsakis][], [tmandry][]       | [Lang], [Libs-API]          |
-| [Stabilize key RFL features, RFL on CI][LK] [![Help wanted]][LKH]                | Linux builds on stable Rust           | [nikomatsakis][], [Josh-Triplett][] | [Lang], [Libs-API], [Infra] |
-| [Reduce clones and unwraps, support partial borrows](./ergonomics-initiative.md) | Entry-level Rust developer experience | [jkelleyrtp][]                      | [Lang]                      |
+| 2024 goal                                                         | Long-term ambition                    | Owner                               | Teams                       |
+| ----------------------------------------------------------------- | ------------------------------------- | ----------------------------------- | --------------------------- |
+| [Async closures and send bounds][AFE]                             | Async/sync parity                     | [nikomatsakis][], [tmandry][]       | [Lang], [Libs-API]          |
+| [Stabilize key RFL features, RFL on CI][LK] [![Help wanted]][LKH] | Linux builds on stable Rust           | [nikomatsakis][], [Josh-Triplett][] | [Lang], [Libs-API], [Infra] |
+| [Ergonomics initiative: clones and partial borrows][EI]           | Entry-level Rust developer experience | [jkelleyrtp][]                      | [Lang]                      |
 
 Some notes to highlight:
 
 * The Rust For Linux goal has some "unfunded" elements around stabilizing compiler flags and customized variants of the library API. These are likely out of scope for 2024H2 but if resourcing could be found would be great to tackle.
-* 
 
 ## Goals under discussion
 
@@ -40,7 +39,7 @@ In many cases the work being described will definitely happen, but it is not cle
 
 | 2024 goal                              | Long-term ambition              | Status      | Owner             | Teams              |
 | -------------------------------------- | ------------------------------- | ----------- | ----------------- | ------------------ |
-| [Towards a higher level Rust][HLR]     | Entry-level Rust dev experience | ![WIP][wip] | [jkelleyrtp][]    | [Lang], [Compiler] |
+| [Faster iterative builds][FIB]         | Entry-level Rust dev experience | ![WIP][wip] | [jkelleyrtp][]    | [Lang], [Compiler] |
 | [Towards seamless C support][SCS]      |                                 | ![WIP][wip] | [Josh-Triplett][] | [Lang], [Compiler] |
 | [Towards contracts and invariants][CI] |                                 | ![WIP][wip] | [pnkfelix]        | [Lang], [Compiler] |
 | [Towards new Rust trait solver][NTS]   |                                 | ![WIP][wip] | [lcnr]            | [Types]            |
@@ -50,6 +49,8 @@ In many cases the work being described will definitely happen, but it is not cle
 | [Patterns of empty types][PET]         |                                 | ![WIP][wip] | [Nadrieril]       | [Lang], [Compiler] |
 | [Relaxing the Orphan Rule][RTOR]       |                                 | ![WIP][wip] | [Josh-Triplett][] | [Lang]             |
 
+[EI]: ./ergonomics-initiative.md
+[FIB]: ./faster-iterative-builds.md
 [AFE]: ./async_fn_everywhere.md
 [LK]: ./rfl_stable.md
 [LKH]: ./rfl_stable.md#ownership-and-other-resources
