@@ -6,8 +6,8 @@ src = "src"
 title = "Rust Project Goals"
 
 [output.html]
-git-repository-url = "https://github.com/nikomatsakis/rust-project-goals"
-edit-url-template = "https://github.com/nikomatsakis/rust-project-goals/edit/main/{path}"
+git-repository-url = "https://github.com/rust-lang/rust-project-goals"
+edit-url-template = "https://github.com/rust-lang/rust-project-goals/edit/main/{path}"
 
 [output.html.fold]
 enable = true
