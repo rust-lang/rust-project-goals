@@ -10,8 +10,8 @@ Note that committing to a goal means that the teams support the next few steps a
 | ---------------------------------------------------------------------- | --------------------------- | ----------------- | --------------------------------------- |
 | [Assemble goal slate][AGS]                                             | [![Accepted][acc]][rfc3614] | [nikomatsakis][]  | [LC]                                    |
 | [Stabilize Rust 2024 edition][R2024]                                   | ![Accepted][acc]            | [TC][]            | [LC]                                    |
-| [Towards async/sync parity][AFE]                                       | ![WIP][wip]                 | [tmandry][]       | [Lang], [Libs-API]                      |
-| [Towards Linux kernel builds on stable Rust][LK] [![Help wanted]][LKH] | ![WIP][wip]                 | [Josh-Triplett][] | [Lang], [Libs-API], [Compiler], [Infra] |
+| [Async closures and send bounds][AFE]                                  | ![WIP][wip]                 | [tmandry][]       | [Lang], [Libs-API]                      |
+| [Stabilize language features used by RFL][LK] [![Help wanted]][LKH] | ![WIP][wip]                 | [Josh-Triplett][] | [Lang], [Libs-API], [Compiler], [Infra] |
 | [Towards seamless C support][SCS]                                      | ![WIP][wip]                 | [Josh-Triplett][] | [Lang], [Compiler]                      |
 | [Towards contracts and invariants][CI]                                 | ![WIP][wip]                 | [pnkfelix]        | [Lang], [Compiler]                      |
 | [Towards new Rust trait solver][NTS]                                   | ![WIP][wip]                 | [lcnr]            | [Types]                                 |

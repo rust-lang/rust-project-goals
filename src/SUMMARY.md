@@ -6,7 +6,7 @@
     - [General notes](./2024h2/notes.md)
     - [All candidates](./2024h2/candidates.md)
         - [Template](./TEMPLATE.md)
-        - [Async fn everywhere](./2024h2/async_fn_everywhere.md)
+        - [Async closures and send bounds](./2024h2/async_fn_everywhere.md)
         - [Linux kernel builds on stable Rust](./2024h2/rfl_stable.md)
         - [Seamless C support](./2024h2/Seamless-C-Support.md)
         - [Contracts and invariants](./2024h2/Contracts-and-invariants.md)

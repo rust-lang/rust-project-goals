@@ -1,4 +1,4 @@
-# Async fn everywhere
+# Async closures and Send bounds
 
 | Metadata |                               |
 | -------- | ----------------------------- |
@@ -12,21 +12,19 @@
 
 ## Motivation
 
-This is a multi-year program with the focus of raising the experience of authoring "async Rust" to the same level of quality as "sync Rust". Async Rust is a crucial growth area, with a full 52% of the respondents in the [2023 Rust survey](https://blog.rust-lang.org/2024/02/19/2023-Rust-Annual-Survey-2023-results.html) indicating that they use Rust to build server-side or backend applications. 
+In 2024 we plan to deliver several critical async Rust building block features, most notably support for *async closures* and *`Send` bounds*. This is part of a multi-year program aiming to raise the experience of authoring "async Rust" to the same level of quality as "sync Rust". Async Rust is a crucial growth area, with 52% of the respondents in the [2023 Rust survey](https://blog.rust-lang.org/2024/02/19/2023-Rust-Annual-Survey-2023-results.html) indicating that they use Rust to build server-side or backend applications. 
 
 ### The status quo
 
 #### Async Rust performs great, but can be hard to use
 
-Rust is a great fit for networked systems, especially in the extremes:
+Async Rust is the most common Rust application area according to our [2023 Rust survey](https://blog.rust-lang.org/2024/02/19/2023-Rust-Annual-Survey-2023-results.html). Rust is a great fit for networked systems, especially in the extremes:
 
 * **Rust scales up**. Async Rust reduces cost for large dataplanes because a single server can serve high load without significantly increasing tail latency.
 * **Rust scales down.** Async Rust can be run without requiring a garbage collector or [even an operating system](https://github.com/embassy-rs/embassy), making it a great fit for embedded systems.
 * **Rust is reliable.** Networked services often run 24/7, so Rust's "if it compiles, it works" mantra means unexpected failures and, in turn, fewer pages in the middle of the night.
 
-These advantages have made Async Rust a very popular application area, with a full 52% of the respondents in the [2023 Rust survey](https://blog.rust-lang.org/2024/02/19/2023-Rust-Annual-Survey-2023-results.html) indicating that they use Rust to build server-side or backend applications.
-
-Despite that success, using async I/O makes Rust significantly harder to use. As one Rust user memorably put it, "Async Rust is Rust on hard mode." Several years back the async working group collected a number of ["status quo" stories](https://rust-lang.github.io/wg-async/vision/submitted_stories/status_quo.html) as part of authoring an async vision doc. These stories reveal a number of characteristic challenges:
+Despite async Rust's popularity, using async I/O makes Rust significantly harder to use. As one Rust user memorably put it, "Async Rust is Rust on hard mode." Several years back the async working group collected a number of ["status quo" stories](https://rust-lang.github.io/wg-async/vision/submitted_stories/status_quo.html) as part of authoring an async vision doc. These stories reveal a number of characteristic challenges:
 
 * Common language features like traits, closures, and drop do not support async, meaning that users cannot write Rust code in the way they are accustomed to. In many cases there are workarounds or crates that can close the gap, but users have to learn about and find those crates.
 * Common async idioms have "sharp edges" that lead to unexpected failures (see e.g., tmandry's blog post on [Making async Rust reliable](https://tmandry.gitlab.io/blog/posts/making-async-reliable/))
