@@ -6,21 +6,49 @@ The goals vary in scope and size. Some of them are prominent, flagship goals (su
 
 Note that committing to a goal means that the teams support the next few steps and are aligned on the overall vision. It is not a committment to accept any particular RFC or design and it is also not a commitment to continue working on the goal once the current goal period ends. We may find that, after taking the next few steps, we are no longer aligned to this goal.
 
-| Goal                                                                   | Status                      | Owner             | Teams                                   |
-| ---------------------------------------------------------------------- | --------------------------- | ----------------- | --------------------------------------- |
-| [Assemble goal slate][AGS]                                             | [![Accepted][acc]][rfc3614] | [nikomatsakis][]  | [LC]                                    |
-| [Stabilize Rust 2024 edition][R2024]                                   | ![Accepted][acc]            | [TC][]            | [LC]                                    |
-| [Async closures and send bounds][AFE]                                  | ![WIP][wip]                 | [tmandry][]       | [Lang], [Libs-API]                      |
-| [Stabilize language features used by RFL][LK] [![Help wanted]][LKH] | ![WIP][wip]                 | [Josh-Triplett][] | [Lang], [Libs-API], [Compiler], [Infra] |
-| [Towards seamless C support][SCS]                                      | ![WIP][wip]                 | [Josh-Triplett][] | [Lang], [Compiler]                      |
-| [Towards contracts and invariants][CI]                                 | ![WIP][wip]                 | [pnkfelix]        | [Lang], [Compiler]                      |
-| [Towards new Rust trait solver][NTS]                                   | ![WIP][wip]                 | [lcnr]            | [Types]                                 |
-| [Towards a formal model of Rust][AMF]                                  | ![WIP][wip]                 | [nikomatsakis]    | [Types]                                 |
-| [Polonius on Nightly][NBNLB]                                           | ![WIP][wip]                 | [lqd]             | [Lang], [Types]                         |
-| [impl trait everywhere][ITE]                                           | ![WIP][wip]                 | [oli-obk]         | [Lang], [Types]                         |
-| [Patterns of empty types][PET]                                         | ![WIP][wip]                 | [Nadrieril]       | [Lang], [Compiler]                      |
-| [Relaxing the Orphan Rule][RTOR]                                       | ![WIP][wip]                 | [Josh-Triplett][] | [Lang]                                  |
-| [Towards a higher level Rust][RTOR]                                    | ![WIP][wip]                 | [jkelleyrtp][]    | [Lang], [Compiler]                      |
+## Accepted goals
+
+These are goals that have been formally accepted.
+
+| 2024 goal                            | Working towards    | Accepted in   | Owner            |
+| ------------------------------------ | ------------------ | ------------- | ---------------- |
+| [Assemble goal slate][AGS]           | Smooth project ops | [RFC #3614][] | [nikomatsakis][] |
+| [Stabilize Rust 2024 edition][R2024] | Smooth project ops | [RFC #3501][] | [TC][]           |
+
+[RFC #3614]: https://github.com/rust-lang/rfcs/pull/3614
+[RFC #3501]: https://rust-lang.github.io/rfcs/3501-edition-2024.html
+
+## Top candidate goals
+
+These are goals that the slate owner is strongly considering submitting as RFCs.
+
+| 2024 goal                                                                        | Long-term ambition                    | Owner                               | Teams                       |
+| -------------------------------------------------------------------------------- | ------------------------------------- | ----------------------------------- | --------------------------- |
+| [Async closures and send bounds][AFE]                                            | Async/sync parity                     | [nikomatsakis][], [tmandry][]       | [Lang], [Libs-API]          |
+| [Stabilize key RFL features, RFL on CI][LK] [![Help wanted]][LKH]                | Linux builds on stable Rust           | [nikomatsakis][], [Josh-Triplett][] | [Lang], [Libs-API], [Infra] |
+| [Reduce clones and unwraps, support partial borrows](./ergonomics-initiative.md) | Entry-level Rust developer experience | [jkelleyrtp][]                      | [Lang]                      |
+
+Some notes to highlight:
+
+* The Rust For Linux goal has some "unfunded" elements around stabilizing compiler flags and customized variants of the library API. These are likely out of scope for 2024H2 but if resourcing could be found would be great to tackle.
+* 
+
+## Goals under discussion
+
+These are goals that are still being workshopped. They are sorted roughly by progress and likelihood to become top candidates.
+In many cases the work being described will definitely happen, but it is not clear if they ought to become a "Project Goal".
+
+| 2024 goal                              | Long-term ambition              | Status      | Owner             | Teams              |
+| -------------------------------------- | ------------------------------- | ----------- | ----------------- | ------------------ |
+| [Towards a higher level Rust][HLR]     | Entry-level Rust dev experience | ![WIP][wip] | [jkelleyrtp][]    | [Lang], [Compiler] |
+| [Towards seamless C support][SCS]      |                                 | ![WIP][wip] | [Josh-Triplett][] | [Lang], [Compiler] |
+| [Towards contracts and invariants][CI] |                                 | ![WIP][wip] | [pnkfelix]        | [Lang], [Compiler] |
+| [Towards new Rust trait solver][NTS]   |                                 | ![WIP][wip] | [lcnr]            | [Types]            |
+| [Towards a formal model of Rust][AMF]  |                                 | ![WIP][wip] | [nikomatsakis]    | [Types]            |
+| [Polonius on Nightly][NBNLB]           |                                 | ![WIP][wip] | [lqd]             | [Lang], [Types]    |
+| [impl trait everywhere][ITE]           |                                 | ![WIP][wip] | [oli-obk]         | [Lang], [Types]    |
+| [Patterns of empty types][PET]         |                                 | ![WIP][wip] | [Nadrieril]       | [Lang], [Compiler] |
+| [Relaxing the Orphan Rule][RTOR]       |                                 | ![WIP][wip] | [Josh-Triplett][] | [Lang]             |
 
 [AFE]: ./async_fn_everywhere.md
 [LK]: ./rfl_stable.md
@@ -37,7 +65,6 @@ Note that committing to a goal means that the teams support the next few steps a
 [ITE]: ./Impl-trait-everywhere.md
 [HLR]: ./higher-level-rust.md
 
-[rfc3614]: https://github.com/rust-lang/rfcs/pull/3614
 [Intrusive linked lists]: ./Intrusive-linked-lists.md
 [Fallible allocation]: ./Fallible-allocation.md
 [Intrusive linked lists]: ./Intrusive-linked-lists.md
@@ -52,7 +79,7 @@ Note that committing to a goal means that the teams support the next few steps a
 [Lang]: https://www.rust-lang.org/governance/teams/lang
 [LC]: https://www.rust-lang.org/governance/teams/leadership-council
 [Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
-
+[Infra]: https://www.rust-lang.org/governance/teams/infra
 
 [compiler-errors]: https://github.com/compiler-errors
 [lqd]: https://github.com/lqd
