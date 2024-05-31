@@ -1,9 +1,9 @@
-# Linux kernel builds on stable Rust
+# Stabilize key RFL features, RFL on CI
 
 | Metadata |                                                  |
 | -------- | ------------------------------------------------ |
 | Owner(s) | [nikomatsakis][], [Josh-Triplett][]              |
-| Teams    | [Lang], [Libs-API], [Compiler], [Infra], [Cargo] |
+| Teams    | [Lang], [Libs-API], [Infra] |
 | Status   | WIP                                              |
 
 ## Motivation
@@ -100,18 +100,16 @@ as we now have enough examples to generalize somewhat.
 
 The RFL project has a need to create vtables in read-only memory (unique address not required). The current implementation relies on the `const_mut_refs` and `const_refs_to_static` features ([representative example](https://godbolt.org/z/r58jP6YM4)).
 
-#### Custom builds of core/alloc with specialized configuration options
-
-The RFL project builds the stdlib with a number of configuration options to eliminate undesired aspects of libcore (listed in [RFL#2][]). They need a standard way to build a custom version of core as well as agreement on the options that the kernel will continue using.
-
-#### Code-generation features and compiler options
-
-The RFL project requires various code-generation options. Some of these are related to custom features of the kernel, such as [X18 support][#748] but others are codegen options like sanitizers and the like. Some subset of the options listed on [RFL#2][] will need to be stabilized to support being built with all required configurations, but working out the precise set will require more effort.
-
 ### The "shiny future" we are working towards
 
 The ultimate goal is to enable smooth and ergonomic interop between Rust and the Linux kernel's idiomatic data structures.
-Possible future work includes more ergonomic versions of the [special patterns for safe pinned initialization](https://rust-for-linux.com/the-safe-pinned-initialization-problem) or a solution to [custom field projection for pinned types or other smart pointers](https://github.com/rust-lang/rfcs/pull/3318).
+
+In addition to the work listed above, there are a few other obvious items that the Rust For Linux project needs. If we can find owners for these this year, we could even get them done as a "stretch goal":
+
+* **Custom builds of core/alloc with specialized configuration options:** The RFL project builds the stdlib with a number of configuration options to eliminate undesired aspects of libcore (listed in [RFL#2][]). They need a standard way to build a custom version of core as well as agreement on the options that the kernel will continue using.
+* **Code-generation features and compiler options:** The RFL project requires various code-generation options. Some of these are related to custom features of the kernel, such as [X18 support][#748] but others are codegen options like sanitizers and the like. Some subset of the options listed on [RFL#2][] will need to be stabilized to support being built with all required configurations, but working out the precise set will require more effort.
+
+Looking further afield, possible future work includes more ergonomic versions of the [special patterns for safe pinned initialization](https://rust-for-linux.com/the-safe-pinned-initialization-problem) or a solution to [custom field projection for pinned types or other smart pointers](https://github.com/rust-lang/rfcs/pull/3318).
 
 ## Design axioms
 
