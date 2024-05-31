@@ -40,7 +40,7 @@ Note that committing to a goal means that the teams support the next few steps a
 [Fallible allocation]: ./Fallible-allocation.md
 [Intrusive linked lists]: ./Intrusive-linked-lists.md
 
-[own]: https://img.shields.io/badge/Owned%20Needed-blue
+[own]: https://img.shields.io/badge/Owner%20Needed-blue
 
 [acc]: https://img.shields.io/badge/Accepted-green
 [prov]: https://img.shields.io/badge/Provisional-yellow

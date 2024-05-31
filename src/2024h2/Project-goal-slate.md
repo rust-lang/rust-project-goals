@@ -134,7 +134,7 @@ It is not yet clear how much work it will be to drive this process. If needed, t
 
 ### Is there a template for project goals?
 
-This RFC does not specify details, so the following should not be considered normative. However, you can see a preview of what the project goal process would look like at the [nikomatsakis/rust-project-goals](https://github.com/nikomatsakis/rust-project-goals) repository; it contains a [goal template](https://nikomatsakis.github.io/rust-project-goals/2024h2/0000-TEMPLATE.html). This RFC is in fact a "repackaged" vesion of [2024's proposed Project Goal #1](https://nikomatsakis.github.io/rust-project-goals/2024h2/0001-Project-goal-slate.html).
+This RFC does not specify details, so the following should not be considered normative. However, you can see a preview of what the project goal process would look like at the [nikomatsakis/rust-project-goals](https://github.com/nikomatsakis/rust-project-goals) repository; it contains a [goal template](https://nikomatsakis.github.io/rust-project-goals/2024h2/0000-TEMPLATE.html). This RFC is in fact a "repackaged" version of [2024's proposed Project Goal #1](https://nikomatsakis.github.io/rust-project-goals/2024h2/0001-Project-goal-slate.html).
 
 ### Why is the goal completion date targeting end of year?
 
