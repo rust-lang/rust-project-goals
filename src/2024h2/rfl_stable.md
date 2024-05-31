@@ -156,7 +156,7 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | ↳ stabilization decision                             | ![Team][] [Lang]                    | ![Not approved][] |
 | Code-generation features and compiler options        |                                     |                   |
 | ↳ ~~propose unstable `-Zfixed-x18` flag ([#748][])~~ | ~~[Alice Ryhl][]~~                  | ![Complete][]     |
-| ↳ implement  `-Zfixed-x18` flag                      | [Xiang][]                           | ![Volunteer][]    |
+| ↳ ~~implement  `-Zfixed-x18` flag ([#124655])~~      | ~~[Alice Ryhl][]~~                  | ![Complete][]     |
 | ↳ stabilization PR for `-Zfixed-x18`                 | [Xiang][]                           | ![Volunteer][]    |
 | ↳ stabilization decision                             | ![Team][] [Compiler]                |                   |
 | ↳ research and summarization for other flags         | ![Help wanted][]                    |                   |
@@ -199,6 +199,7 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 [Owner Needed]: https://img.shields.io/badge/Owner%20Needed-blue
 [Help wanted]: https://img.shields.io/badge/Help%20wanted-blue
 [#748]: https://github.com/rust-lang/compiler-team/issues/748
+[#124655]: https://github.com/rust-lang/rust/pull/124655
 [Lang]: https://www.rust-lang.org/governance/teams/lang
 [Compiler]: https://www.rust-lang.org/governance/teams/infra
 [Infra]: https://www.rust-lang.org/governance/teams/infra
