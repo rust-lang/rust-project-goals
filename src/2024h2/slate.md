@@ -40,7 +40,7 @@ In many cases the work being described will definitely happen, but it is not cle
 | 2024 goal                              | Long-term ambition              | Status      | Owner             | Teams              |
 | -------------------------------------- | ------------------------------- | ----------- | ----------------- | ------------------ |
 | [Faster iterative builds][FIB]         | Entry-level Rust dev experience | ![WIP][wip] | [jkelleyrtp][]    | [Lang], [Compiler] |
-| [Rust for Scientific Computing][SCI]         | Rust for Scientific Computing | ![WIP][wip] | [Manuel S. Drehwald][]    | [Lang], [Compiler] |
+| [Rust for Scientific Computing][SCI]         | Rust for Scientific Computing | ![WIP][wip] | [ZuseZ4][]    | [Lang], [Compiler] |
 | [Towards seamless C support][SCS]      |                                 | ![WIP][wip] | [Josh-Triplett][] | [Lang], [Compiler] |
 | [Towards contracts and invariants][CI] |                                 | ![WIP][wip] | [pnkfelix]        | [Lang], [Compiler] |
 | [Towards new Rust trait solver][NTS]   |                                 | ![WIP][wip] | [lcnr]            | [Types]            |
@@ -94,5 +94,6 @@ In many cases the work being described will definitely happen, but it is not cle
 [TC]: https://github.com/TC
 [josh-triplett]: https://github.com/Josh-Triplett
 [jkelleyrtp]: https://github.com/jkelleyrtp
+[ZuseZ4]: https://github.com/ZuseZ4
 
 [Help wanted]: https://img.shields.io/badge/Help%20wanted-blue
