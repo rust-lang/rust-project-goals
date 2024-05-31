@@ -8,6 +8,8 @@
         - [Template](./TEMPLATE.md)
         - [Async closures and send bounds](./2024h2/async_fn_everywhere.md)
         - [Linux kernel builds on stable Rust](./2024h2/rfl_stable.md)
+        - [Ergonomics initiative](./2024h2/ergonomics-initiative.md)
+        - [Faster iterative builds](./2024h2/faster-iterative-builds.md)
         - [Seamless C support](./2024h2/Seamless-C-Support.md)
         - [Contracts and invariants](./2024h2/Contracts-and-invariants.md)
         - [New trait solver](./2024h2/New-trait-solver.md)
