@@ -20,6 +20,7 @@ Note that committing to a goal means that the teams support the next few steps a
 | [impl trait everywhere][ITE]                                           | ![WIP][wip]                 | [oli-obk]         | [Lang], [Types]                         |
 | [Patterns of empty types][PET]                                         | ![WIP][wip]                 | [Nadrieril]       | [Lang], [Compiler]                      |
 | [Relaxing the Orphan Rule][RTOR]                                       | ![WIP][wip]                 | [Josh-Triplett][] | [Lang]                                  |
+| [Towards a higher level Rust][RTOR]                                    | ![WIP][wip]                 | [jkelleyrtp][]    | [Lang], [Compiler]                      |
 
 [AFE]: ./async_fn_everywhere.md
 [LK]: ./rfl_stable.md
@@ -34,6 +35,7 @@ Note that committing to a goal means that the teams support the next few steps a
 [PET]: ./Patterns-of-empty-types.md
 [RTOR]: ./Relaxing-the-Orphan-Rule.md
 [ITE]: ./Impl-trait-everywhere.md
+[HLR]: ./higher-level-rust.md
 
 [rfc3614]: https://github.com/rust-lang/rfcs/pull/3614
 [Intrusive linked lists]: ./Intrusive-linked-lists.md
@@ -62,5 +64,6 @@ Note that committing to a goal means that the teams support the next few steps a
 [pnkfelix]: https://github.com/pnkfelix
 [TC]: https://github.com/TC
 [josh-triplett]: https://github.com/Josh-Triplett
+[jkelleyrtp]: https://github.com/jkelleyrtp
 
 [Help wanted]: https://img.shields.io/badge/Help%20wanted-blue
