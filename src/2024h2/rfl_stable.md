@@ -2,7 +2,7 @@
 
 | Metadata |                                                  |
 | -------- | ------------------------------------------------ |
-| Owner(s) | [nikomatsakis][], [Josh-Triplett][]              |
+| Owner(s) | [nikomatsakis][], [joshtriplett][]               |
 | Teams    | [Lang], [Libs-API], [Infra] |
 | Status   | WIP                                              |
 
@@ -129,7 +129,7 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 
 | Subgoal                                              | Owner(s) or team(s)                 | Status            |
 | ---------------------------------------------------- | ----------------------------------- | ----------------- |
-| overall program management                           | [nikomatsakis][], [Josh-Triplett][] | ![Funded][]       |
+| overall program management                           | [nikomatsakis][], [joshtriplett][]  | ![Funded][]       |
 | arbitrary self types v2                              |                                     |                   |
 | ↳ ~~author [RFC][RFC 3519]~~                         | ~~[Adrian Taylor][]~~               | ![Complete][]     |
 | ↳ ~~approve [RFC][RFC 3519]~~                        | ~~[Lang]~~                          | ![Complete][]     |
@@ -209,6 +209,6 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 [Xiang]: https://github.com/dingxiangfei2009
 [Jakub Beránek]: https://github.com/Kobzol
 [nikomatsakis]: https://github.com/nikomatsakis/
-[Josh-Triplett]: https://github.com/Josh-Triplett/
+[joshtriplett]: https://github.com/joshtriplett/
 
 
