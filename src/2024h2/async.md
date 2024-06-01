@@ -119,7 +119,7 @@ We plan to revise the [Async Vision Doc][AVD] and restructure it as a draft RFC,
 
 This RFC will lay out a "plan of attack" for async, including both obvious good things (similar to [async closures][]) but also "known unknowns" and ways to resolve them. Areas the RFC is expected to cover are as follows:
 
-[Async Vision Doc]: 
+[Async Vision Doc]: https://rust-lang.github.io/wg-async/vision
 [Making Async Rust Reliable]: https://tmandry.gitlab.io/blog/posts/making-async-reliable/
 
 * Status quo, covering biggest challenges
