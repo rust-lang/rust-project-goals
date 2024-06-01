@@ -82,10 +82,31 @@ Addressing these challenges from the Rust org has been challenging due to lack o
 
 For 2024H2 we are planning four subgoals:
 
-* author draft RFC for async vision
-* stabilize async closures
-* stabilize trait for async iteration
-* complete async drop experiments
+* [stabilize async closures](#stabilize-async-closures)
+* [resolve the "Send bound" problem](#stabilize-async-closures)
+* [stabilize trait for async iteration](#stabilize-trait-for-async-iteration)
+* [author draft RFC for async vision](#author-draft-rfc-for-async-vision)
+* [complete async drop experiments](#complete-async-drop-experiments)
+
+#### Stabilize async closures
+
+The goal for this year to be able to 
+
+* support some "async equivalent" to `Fn`, `FnMut`, and `FnOnce` bounds
+    * this should be usable in all the usual places
+* support some way to author async closure expressions
+
+These features should be sufficient to support methods like `filter` above.
+
+The details (syntax, precise semantics) will be determined via experimentation and subject to RFC.
+
+#### Stabilize trait for async iteration
+
+There has been extensive discussion about the best form of the trait for async iteration (sometimes called `Stream` and sometimes `AsyncIter`). We believe the design space has been sufficiently explored that it should be possible to author an RFC laying out the options and proposing a specific plan.
+
+#### Resolve the "send bound" problem
+
+The goal for the year is to stabilize a solution to the ["send bound" problem][sb].
 
 #### Author draft RFC for async vision
 
@@ -125,22 +146,6 @@ This RFC will lay out a "plan of attack" for async, including both obvious good 
 * Strategy for how to get where we are going
     * What problems to attack first
     * How to reduce or find solutions to the above unknowns
-
-#### Stabilize async closures
-
-The goal for this year to be able to 
-
-* support some "async equivalent" to `Fn`, `FnMut`, and `FnOnce` bounds
-    * this should be usable in all the usual places
-* support some way to author async closure expressions
-
-These features should be sufficient to support methods like `filter` above.
-
-The details (syntax, precise semantics) will be determined via experimentation and subject to RFC.
-
-#### Stabilize trait for async iteration
-
-There has been extensive discussion about the best form of the trait for async iteration (sometimes called `Stream` and sometimes `AsyncIter`). We believe the design space has been sufficiently explored that it should be possible to author an RFC laying out the options and proposing a specific plan.
 
 #### Complete async drop experiments
 
