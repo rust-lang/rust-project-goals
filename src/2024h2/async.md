@@ -113,7 +113,7 @@ Although async functions in traits were stabilized, there is currently no way to
 
 #### Author draft RFC for async vision
 
-We plan to revise the [Async Vision Doc][AVD] and restructure it as a draft RFC, most likely to be approved by the [Lang][] and [Libs-API][] teams (we do not necessarily expect that RFC to be accepted by end of year). Our observation is that the previous version of the async vision doc, which was never RFC'd, never attained the legitimacy of being the "plan of record". In addition, a number of things have changed in the intervening years (for example, async functions in traits are now stable) and we are in a position to identify clearer next steps. The 
+We plan to revise the [Async Vision Doc][AVD] and restructure it as a draft RFC, most likely to be approved by the [Lang][] and [Libs-API][] teams (we do not necessarily expect that RFC to be accepted by end of year). Our observation is that the previous version of the async vision doc, which was never RFC'd, never attained the legitimacy of being the "plan of record". In addition, a number of things have changed in the intervening years (for example, async functions in traits are now stable) and we are in a position to identify clearer next steps.
 
 [AVD]: https://rust-lang.github.io/wg-async/vision.html
 
