@@ -1,100 +1,89 @@
 # The 2024H2 goal slate
 
-> *![Status: Experimental](https://img.shields.io/badge/Status-Experimental-yellow) These goals are still in draft form. They do not represent consensus. Expect changes. The goal column should describe the specific things you aim to get done in 2024H2; the theme ties those into a larger theme (it's ok to put N/A). [Would you like to propose a goal?](../how_to/propose_a_goal.md)*
+This document explains the 2024H2 goal slate and how it was chosen. If you just want to see a table of goals, see the [all candidates](./candidates.md) page.
 
-The goals vary in scope and size. Some of them are prominent, flagship goals (such as [improved async support][AFE] or [stabilizing the features required by the linux kernel][LK]) that will take multiple goal periods to complete. Others are smaller, discrete items that can be completed in six months. The table below is sorted so that the more prominent goals are listed towards the front (and goals that have been approved are listed first of all).
+> *![Status: Experimental](https://img.shields.io/badge/Status-Experimental-yellow) This document is a draft. The reasoning and [goal slate](./slate.md) are still evolving. If you have thoughts or suggestions, please reach out to nikomatsakis on the [#project-goals-2024h2](https://rust-lang.zulipchat.com/#narrow/stream/435869-project-goals-2024h2) Zulip stream.*
 
-Note that committing to a goal means that the teams support the next few steps and are aligned on the overall vision. It is not a committment to accept any particular RFC or design and it is also not a commitment to continue working on the goal once the current goal period ends. We may find that, after taking the next few steps, we are no longer aligned to this goal.
+## Rust’s mission
 
-## Accepted goals
+Rust’s mission is to *empower everyone to build reliable and efficient programs*. Overall our goal is to continue to grow adoption, but specifically in ways that will help us in driving this mission. 
 
-These are goals that have been formally accepted.
+## Axioms for Rust adoption
 
-| 2024 goal                            | Working towards    | Accepted in   | Owner            |
-| ------------------------------------ | ------------------ | ------------- | ---------------- |
-| [Assemble goal slate][AGS]           | Smooth project ops | [RFC #3614][] | [nikomatsakis][] |
-| [Stabilize Rust 2024 edition][R2024] | Smooth project ops | [RFC #3501][] | [TC][]           |
+The slate was chosen according to the following axioms.
 
-[RFC #3614]: https://github.com/rust-lang/rfcs/pull/3614
-[RFC #3501]: https://rust-lang.github.io/rfcs/3501-edition-2024.html
+* **Slow and steady wins the race.** For this first round of goals, we want a small set that can be completed without undue stress. As the Rust open source org continues to grow, the set of goals can grow in size.
+* **Rust must deliver on its promise of peak performance and high reliability.** Rust’s maximum advantage is in applications that require peak performance or low-level systems capabilities. We must continue to innovate and support those areas above all.
+* **Rust must be “good enough” for much more.** If Rust is *only* worth using for those programs that truly need its advantages, that will not be enough value to justify its continued existence. Our goal is that Rust is productive enough to be worth using even when its full power is not required — and this in turn makes using Rust more pleasant for those critical applications.
 
-## Top candidate goals
+## Areas where Rust is best suited and how it grows
 
-These are goals that the slate owner is strongly considering submitting as RFCs.
+Rust offers particular advantages in two areas:
 
-| 2024 goal                                                         | Long-term ambition                    | Owner                               | Teams                       |
-| ----------------------------------------------------------------- | ------------------------------------- | ----------------------------------- | --------------------------- |
-| [Async closures and send bounds][AFE]                             | Async/sync parity                     | [nikomatsakis][], [tmandry][]       | [Lang], [Libs-API]          |
-| [Stabilize key RFL features, RFL on CI][LK] [![Help wanted]][LKH] | Linux builds on stable Rust           | [nikomatsakis][], [Josh-Triplett][] | [Lang], [Libs-API], [Infra] |
-| [Ergonomics initiative: clones and partial borrows][EI]           | Entry-level Rust developer experience | [jkelleyrtp][]                      | [Lang]                      |
+* **Latency sensitive or high scale network services**, which benefit from Rust’s lack of garbage collection pauses (in comparison to GC’d languages).
+* **Low-level systems applications**, like kernels and embedded development, benefit from Rust’s memory safety guarantees and high-level productivity (in comparison to C or C++).
+* **Developer tooling** has proven to be an unexpected growth area, with tools ranging from IDEs to build systems being written in Rust.
 
-Some notes to highlight:
+### How Rust adoption grows
 
-* The Rust For Linux goal has some "unfunded" elements around stabilizing compiler flags and customized variants of the library API. These are likely out of scope for 2024H2 but if resourcing could be found would be great to tackle.
+The typical pattern is that Rust adoption begins in a system where Rust offers particular advantage. For example, a company building network services may begin with a highly scaled service. In this setting, the need to learn Rust is justified by its advantage. 
 
-## Goals under discussion
+Once users are past the initial learning curve, they find that Rust can be quite productive. They spend more time getting their program to build, but less time debugging; they are able to complete major refactorings successfully. They begin to use it for projects where Rust’s advantage is less and less — and in some cases in areas where other languages might have allowed for faster iteration, but Rust is “good enough”.
 
-These are goals that are still being workshopped. They are sorted roughly by progress and likelihood to become top candidates.
-In many cases the work being described will definitely happen, but it is not clear if they ought to become a "Project Goal".
+While it is not a goal for Rust to be used for all programs, Rust’s versatility — its ability to be “good enough” for a broad range of programs, even when other languages are strictly better — is a key part of making it a success. It both helps to make Rust adoption more practical (there are advantages to using one language for as many projects as possible) and the work to make Rust usage practical and ergonomic makes it more pleasant in all cases, making it even more effective when it is "in its element".
 
-| 2024 goal                              | Long-term ambition              | Status      | Owner             | Teams              |
-| -------------------------------------- | ------------------------------- | ----------- | ----------------- | ------------------ |
-| [Faster iterative builds][FIB]         | Entry-level Rust dev experience | ![WIP][wip] | [jkelleyrtp][]    | [Lang], [Compiler] |
-| [Rust for Scientific Computing][SCI]         | Rust for Scientific Computing | ![WIP][wip] | [ZuseZ4][]    | [Lang], [Compiler] |
-| [Towards seamless C support][SCS]      |                                 | ![WIP][wip] | [Josh-Triplett][] | [Lang], [Compiler] |
-| [Towards contracts and invariants][CI] |                                 | ![WIP][wip] | [pnkfelix]        | [Lang], [Compiler] |
-| [Towards new Rust trait solver][NTS]   |                                 | ![WIP][wip] | [lcnr]            | [Types]            |
-| [Towards a formal model of Rust][AMF]  |                                 | ![WIP][wip] | [nikomatsakis]    | [Types]            |
-| [Polonius on Nightly][NBNLB]           |                                 | ![WIP][wip] | [lqd]             | [Lang], [Types]    |
-| [impl trait everywhere][ITE]           |                                 | ![WIP][wip] | [oli-obk]         | [Lang], [Types]    |
-| [Patterns of empty types][PET]         |                                 | ![WIP][wip] | [Nadrieril]       | [Lang], [Compiler] |
-| [Relaxing the Orphan Rule][RTOR]       |                                 | ![WIP][wip] | [Josh-Triplett][] | [Lang]             |
+### How Rust adoption stalls
 
-[EI]: ./ergonomics-initiative.md
-[FIB]: ./faster-iterative-builds.md
-[AFE]: ./async_fn_everywhere.md
-[LK]: ./rfl_stable.md
-[LKH]: ./rfl_stable.md#ownership-and-other-resources
-[SCS]: ./Seamless-C-Support.md
-[CI]: ./Contracts-and-invariants.md
-[NTS]: ./New-trait-solver.md
-[AMF]: ./a-mir-formality.md
-[AGS]: ./Project-goal-slate.md
-[R2024]: ./Rust-2024-Edition.md
-[NBNLB]: ./Polonius.md
-[PET]: ./Patterns-of-empty-types.md
-[RTOR]: ./Relaxing-the-Orphan-Rule.md
-[ITE]: ./Impl-trait-everywhere.md
-[HLR]: ./higher-level-rust.md
-[SCI]: ./Rust-for-SciComp.md
+Anecdotally, the most commonly cited reasons to stop using Rust is a feeling that development is "too slow" or "too complex". There is not any one cause for this.
 
-[Intrusive linked lists]: ./Intrusive-linked-lists.md
-[Fallible allocation]: ./Fallible-allocation.md
-[Intrusive linked lists]: ./Intrusive-linked-lists.md
+* **Language complexity:** Most users that get frustrated with Rust do not cite the borrow checker but rather the myriad workarounds needed to overcome various obstacles and inconsistencies. Often "idomatic Rust" involves a number of crates to cover gaps in core functionality (e.g., `anyhow` as a better error type, or `async_recursion` to permit recursive async functions). Language complexity is a particular problem
+* **Picking crates:** Rust intentionally offeres a lean standard library, preferring instead to support a rich set of crates. But when getting started users are often overwhelmed by the options available and unsure which one would be best to use. Making matters worse, Rust documentation often doesn't show examples making use of these crates in an effort to avoid picking favorites, making it harder for users to learn how to do things.
+* **Build times and slow iteration:** Being able to make a change and quickly see its effect makes learning and debugging effortless. Despite our best efforts, real-world Rust programs do still have bugs, and finding and resolving those can be frustratingly slow when every change requires waiting minutes and minutes for a build to complete.
 
-[own]: https://img.shields.io/badge/Owner%20Needed-blue
+### Additioanl concerns faced by companies
 
-[acc]: https://img.shields.io/badge/Accepted-green
-[prov]: https://img.shields.io/badge/Provisional-yellow
-[wip]: https://img.shields.io/badge/WIP-yellow
+For larger users, such as companies, there are additional concerns:
 
-[Compiler]: https://www.rust-lang.org/governance/teams/compiler
-[Lang]: https://www.rust-lang.org/governance/teams/lang
-[LC]: https://www.rust-lang.org/governance/teams/leadership-council
-[Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
-[Infra]: https://www.rust-lang.org/governance/teams/infra
+* **Uneven support for cross-language invocations:** Most companies have large existing codebases in other languages. Rewriting those codebases from scratch is not an option. Sometimes it possible to integrate at a microservice or process boundary, but many would like a way to rewrite individual modules in Rust, passing data structures easily back and forth. Rust's support for this kind of interop is uneven and often requires knowing the right crate to use for any given language.
+* **Spotty ecosystem support, especially for older things:** There are a number of amazing crates in the Rust ecosystem, but there are also a number of notable gaps, particularly for older technologies. Larger companies though often have to interact with legacy systems. Lacking quality libraries makes that harder.
+* **Supply chain security:** Leaning on the ecosystem also means increased concerns about supply chain security and business continuity. In short, crates maintained by a few volunteers rather than being officially supported by Rust are a risk. 
+* **Limited hiring pool:** Hiring developers skilled in Rust remains a challenge. Companies have to be ready to onboard new developers and to help them learn Rust. Although there are many strong Rust books available, as well as a number of well regarded Rust training organizations, companies must still pick and choose between them to create a "how to learn Rust" workflow, and many do not have the extra time or skills to do that.
 
-[compiler-errors]: https://github.com/compiler-errors
-[lqd]: https://github.com/lqd
-[Nadrieril]: https://github.com/Nadrieril
-[nikomatsakis]: https://github.com/nikomatsakis
-[oli-obk]: https://github.com/oli-obk
-[tmandry]: https://github.com/tmandry
-[petrochenkov]: https://github.com/petrochenkov
-[pnkfelix]: https://github.com/pnkfelix
-[TC]: https://github.com/TC
-[josh-triplett]: https://github.com/Josh-Triplett
-[jkelleyrtp]: https://github.com/jkelleyrtp
-[ZuseZ4]: https://github.com/ZuseZ4
+## Flagship goals
 
-[Help wanted]: https://img.shields.io/badge/Help%20wanted-blue
+Flagship goals are the most impactful, most ambitious goals that we will attempt to complete. They are often part of a larger program and effort that is expected to span over multiple years. For 2024h2, our flagship goals are listed below. Pursuant to our [selection axioms](#axioms-for-rust-adoption), we are focused primarily on closing gaps around async Rust and low-level systems programming (the Rust for Linux project, specifically) but we include some goals that target general productivity.
+
+* [**Bringing the Async Rust experience closer to parity with sync Rust**](./async_fn_everywhere.md) [via](./async_fn_everywhere.md#the-next-few-steps):
+    * stabilizing async closures, thus enabling richer, combinator APIs like sync Rust's [`Iterator`](https://doc.rust-lang.org/std/iter/trait.Iterator.html);
+    * [resolving the "send bound problem"](./async_fn_everywhere.md#resolve-the-send-bound-problem), thus enabling foundational, generic traits like Tower's [`Service`]() trait;
+    * [stabilizing a trait in libstd for async iteration](./async_fn_everywhere.md#stabilize-trait-for-async-iteration), thus enabling the ecosystem to build atop a stable foundation;
+    * [authoring a draft RFC for async vision](./async_fn_everywhere.md#author-draft-rfc-for-async-vision), thus aligning the project around a coherent vision;
+    * [completing the async drop experiments](./async_fn_everywhere.md#complete-async-drop-experiments) proposed in [MCP 727][], laying the groundwork for resolving the the next most
+* [**Resolving the biggest blockers to Linux building on stable Rust**](./rfl_stable.md) [via](./rfl_stable.md#the-next-few-steps):
+    * [stabilizing support for arbitrary `self` types and unsizeable smart pointers](./rfl_stable.md#stable-support-for-rfls-customized-arc-type), thus permitting ergonomic support for [in-place linked lists](https://rust-for-linux.com/arc-in-the-linux-kernel) on stable;
+    * [stabilizing features for labeled goto in inline assembler and extended `offset_of!` support](./rfl_stable.md#labeled-goto-in-inline-assembler-and-extended-offset_of-support), needed for various bts of low-level coding;
+    * [adding Rust For Linux project on Rust CI](./rfl_stable.md#rfl-on-rust-ci), thus ensuring we don't accidentally cause regressions for this highly visible project.
+    *  ![Owner Needed][] We would also like to do the following but currently lack owners:
+        * [stabilizing support for pointers to statics in constants](./rfl_stable.md#pointers-to-statics-in-constants), permitting the construction of vtables for kernel modules
+        * [stabilize options for building core/alloc with fewer features](./rfl_stable.md#custom-builds-of-corealloc-with-specialized-configuration-options), allowing the kernel to forbid infallible allocation and other aspects of the standard libraries that it does not want;
+        * [code-generation features and compiler options](./rfl_stable.md#code-generation-features-and-compiler-options), allowing Rust to match the compilers given to gcc/clang when building the kernel.
+* [**Improving Rust ergonomics for higher-level code**](./ergonomics-initiative.md) [via](./rfl_stable.md#the-next-few-steps):
+    * [reducing the need to explicitly `clone` O(1) things](./ergonomics-initiative.md#reducing-clone-frequency), thus removing boilerplate;
+    * [supporting `&mut self` methods (particularly privated methods) that only borrow a subset of the fields in a struct](./ergonomics-initiative.md#partial-borrows-for-structs), thus making it easier to refactor part of a function body into a helper function without creating artifical borrow check conflicts.
+
+> **WIP:** There are several other [candidate flagship goals](./candidates.md#candidate-flagship-goals) and it is possible that this list may change to include more items or to replace one of the above with goals with something else.
+
+[MCP 727]: https://github.com/rust-lang/compiler-team/issues/727
+
+## Team goals
+
+In addition to our flagship goals, we include a number of "team goals" that the various Rust teams would like to advertise. These goals tend to be smaller in scope and more "solution-oriented". They aren't generally the big deadlines that will grab peoples' attention. But don't be deceived, their impact on your daily coding can be as big or greater!
+
+Accepted team goals include:
+
+* [Preparing this slate of goals](./Project-goal-slate.md)
+* [Release the Rust 2024 edition](./Rust-2024-Edition.md)
+
+> **WIP:** There are several other [candidate team goals](./candidates.md#candidate-teams-goals) and it is likely that some of them will be added to this list.
+
+[Owner Needed]: https://img.shields.io/badge/Owned%20Needed-blue
