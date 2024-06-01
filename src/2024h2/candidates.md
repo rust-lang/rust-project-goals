@@ -118,7 +118,7 @@ In many cases the work being described will definitely happen, but it is not cle
 [tmandry]: https://github.com/tmandry
 [petrochenkov]: https://github.com/petrochenkov
 [pnkfelix]: https://github.com/pnkfelix
-[TC]: https://github.com/TC
+[TC]: https://github.com/traviscross
 [joshtriplett]: https://github.com/joshtriplett
 [jkelleyrtp]: https://github.com/jkelleyrtp
 [ZuseZ4]: https://github.com/ZuseZ4
