@@ -13,7 +13,7 @@ Both kinds of goals use the same [template](../TEMPLATE.md), the difference is i
 
 ### Would you like to propose a goal?
 
-Do it! [Instructons for proposing goals can be found here.](../how_to/propose_a_goal.md)*
+Do it! [Instructions for proposing goals can be found here.](../how_to/propose_a_goal.md)*
 
 ## Flagship goals
 
