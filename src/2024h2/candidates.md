@@ -40,9 +40,9 @@ The following goals were submitted and are sitll "under revision". They are unli
 | 2024 goal                                                         | Working towards                       | Owner                               | Teams                       |
 | ----------------------------------------------------------------- | ------------------------------------- | ----------------------------------- | --------------------------- |
 | [Ergonomics initiative: clones and partial borrows][EI]           | Entry-level Rust developer experience | [jkelleyrtp][]                      | [Lang]                      |
-| [Faster iterative builds][FIB]                                    | Entry-level Rust dev experience       | ![WIP][wip]                         | [jkelleyrtp][]              | [Lang], [Compiler]
-| [Rust for Scientific Computing][SCI]                              | Rust for Scientific Computing         | ![WIP][wip]                         | [ZuseZ4][]                  | [Lang], [Compiler]
-| [Towards seamless C support][SCS]                                 |                                       | ![WIP][wip]                         | [joshtriplett][]            | [Lang], [Compiler]
+| [Faster iterative builds][FIB] ![WIP][wip]                        | Entry-level Rust dev experience       | [jkelleyrtp][]                      | [Lang], [Compiler]          |
+| [Rust for Scientific Computing][SCI] ![WIP][wip]                  | Rust for Scientific Computing         | [ZuseZ4][]                          | [Lang], [Compiler]          |
+| [Towards seamless C support][SCS] ![WIP][wip]                     |                                       | [joshtriplett][]                    | [Lang], [Compiler]          |
 
 Some notes to highlight:
 
