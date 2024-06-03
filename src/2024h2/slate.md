@@ -40,7 +40,7 @@ Anecdotally, the most commonly cited reasons to stop using Rust is a feeling tha
 * **Picking crates:** Rust intentionally offeres a lean standard library, preferring instead to support a rich set of crates. But when getting started users are often overwhelmed by the options available and unsure which one would be best to use. Making matters worse, Rust documentation often doesn't show examples making use of these crates in an effort to avoid picking favorites, making it harder for users to learn how to do things.
 * **Build times and slow iteration:** Being able to make a change and quickly see its effect makes learning and debugging effortless. Despite our best efforts, real-world Rust programs do still have bugs, and finding and resolving those can be frustratingly slow when every change requires waiting minutes and minutes for a build to complete.
 
-### Additioanl concerns faced by companies
+### Additional concerns faced by companies
 
 For larger users, such as companies, there are additional concerns:
 
