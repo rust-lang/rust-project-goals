@@ -1,0 +1,317 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/home/yaahc/git/rust-lang/rust-project-goals/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	//
+1. Purpose: Specification Mechanism first, Verification Mechanism second	src/2024h2/Contracts-and-invariants.md	/^### 1. Purpose: Specification Mechanism first, Verification Mechanism second$/;"	S	section:Contracts and Invariants""Design axioms
+2. Contracts should be (semi-)useful out-of-the-box	src/2024h2/Contracts-and-invariants.md	/^### 2. Contracts should be (semi-)useful out-of-the-box$/;"	S	section:Contracts and Invariants""Design axioms
+3. Contracts are not just assertions	src/2024h2/Contracts-and-invariants.md	/^### 3. Contracts are not just assertions$/;"	S	section:Contracts and Invariants""Design axioms
+4. Balance accessibility over power	src/2024h2/Contracts-and-invariants.md	/^### 4. Balance accessibility over power$/;"	S	section:Contracts and Invariants""Design axioms
+5. Accept incompleteness	src/2024h2/Contracts-and-invariants.md	/^### 5. Accept incompleteness$/;"	S	section:Contracts and Invariants""Design axioms
+6. Embrace tool diversity	src/2024h2/Contracts-and-invariants.md	/^### 6. Embrace tool diversity$/;"	S	section:Contracts and Invariants""Design axioms
+7. Verification cannot be bolted on, ... but validation can	src/2024h2/Contracts-and-invariants.md	/^### 7. Verification cannot be bolted on, ... but validation can$/;"	S	section:Contracts and Invariants""Design axioms
+A fictional scenario: Alex	src/2024h2/ergonomics-initiative.md	/^#### A fictional scenario: Alex$/;"	t	subsection:Reduce clones and unwraps, support partial borrows""Motivation""The status quo
+A real world scenario, lightly fictionalized	src/2024h2/ergonomics-initiative.md	/^#### A real world scenario, lightly fictionalized$/;"	t	subsection:Reduce clones and unwraps, support partial borrows""Motivation""The status quo
+Accepted flagship goals	src/2024h2/candidates.md	/^### Accepted flagship goals$/;"	S	section:The 2024H2 goal candidates""Flagship goals
+Accepted team goals	src/2024h2/candidates.md	/^### Accepted team goals$/;"	S	section:The 2024H2 goal candidates""Team goals
+Additioanl concerns faced by companies	src/2024h2/slate.md	/^### Additioanl concerns faced by companies$/;"	S	section:The 2024H2 goal slate""Areas where Rust is best suited and how it grows
+After these two items, are we done? What comes next?	src/2024h2/ergonomics-initiative.md	/^### After these two items, are we done? What comes next?$/;"	S	section:Reduce clones and unwraps, support partial borrows""Frequently asked questions
+Areas where Rust is best suited and how it grows	src/2024h2/slate.md	/^## Areas where Rust is best suited and how it grows$/;"	s	chapter:The 2024H2 goal slate
+Assemble Project Goal slate	src/2024h2/Project-goal-slate.md	/^# Assemble Project Goal slate$/;"	c
+Async Rust performs great, but can be hard to use	src/2024h2/async_fn_everywhere.md	/^#### Async Rust performs great, but can be hard to use$/;"	t	subsection:Async closures and Send bounds""Motivation""The status quo
+Async closures and Send bounds	src/2024h2/async_fn_everywhere.md	/^# Async closures and Send bounds$/;"	c
+Author draft RFC for async vision	src/2024h2/async_fn_everywhere.md	/^#### Author draft RFC for async vision$/;"	t	subsection:Async closures and Send bounds""Motivation""The next few steps
+Autodiff	src/2024h2/Rust-for-SciComp.md	/^### Autodiff$/;"	S	section:Scientific Computing in Rust""Design axioms
+Axioms about Rust itself	src/about/design_axioms.md	/^### Axioms about Rust itself$/;"	S	section:Design axioms""Examples
+Axioms about axioms	src/about/design_axioms.md	/^### Axioms about axioms$/;"	S	section:Design axioms""Examples
+Axioms about the project goal program	src/about/design_axioms.md	/^### Axioms about the project goal program$/;"	S	section:Design axioms""Examples
+Axioms for Rust adoption	src/2024h2/slate.md	/^## Axioms for Rust adoption$/;"	s	chapter:The 2024H2 goal slate
+Batching?	src/2024h2/Rust-for-SciComp.md	/^### Batching? $/;"	S	section:Scientific Computing in Rust""Frequently asked questions
+Bot interactions	src/how_to/report_status.md	/^## Bot interactions$/;"	s	chapter:Report status
+Candidate flagship goals	src/2024h2/candidates.md	/^### Candidate flagship goals$/;"	S	section:The 2024H2 goal candidates""Flagship goals
+Candidate team goals	src/2024h2/candidates.md	/^## Candidate team goals$/;"	s	chapter:The 2024H2 goal candidates
+Code-generation features and compiler options	src/2024h2/rfl_stable.md	/^#### Code-generation features and compiler options$/;"	t	subsection:Stabilize key RFL features, RFL on CI""Motivation""The "shiny future" we are working towards
+Complete async drop experiments	src/2024h2/async_fn_everywhere.md	/^#### Complete async drop experiments$/;"	t	subsection:Async closures and Send bounds""Motivation""The next few steps
+Contracts and Invariants	src/2024h2/Contracts-and-invariants.md	/^# Contracts and Invariants$/;"	c
+Custom builds of core/alloc with specialized configuration options	src/2024h2/rfl_stable.md	/^#### Custom builds of core\/alloc with specialized configuration options$/;"	t	subsection:Stabilize key RFL features, RFL on CI""Motivation""The "shiny future" we are working towards
+Design axiom	src/2024h2/async_fn_everywhere.md	/^## Design axiom$/;"	s	chapter:Async closures and Send bounds
+Design axioms	src/2024h2/Contracts-and-invariants.md	/^## Design axioms$/;"	s	chapter:Contracts and Invariants
+Design axioms	src/2024h2/Impl-trait-everywhere.md	/^## Design axioms$/;"	s	chapter:Impl trait everywhere
+Design axioms	src/2024h2/New-trait-solver.md	/^## Design axioms$/;"	s	chapter:TEMPLATE (replace with title of your goal)
+Design axioms	src/2024h2/Patterns-of-empty-types.md	/^## Design axioms$/;"	s	chapter:Patterns of empty types
+Design axioms	src/2024h2/Polonius.md	/^## Design axioms$/;"	s	chapter:Polonius
+Design axioms	src/2024h2/Project-goal-slate.md	/^## Design axioms$/;"	s	chapter:Assemble Project Goal slate
+Design axioms	src/2024h2/Relaxing-the-Orphan-Rule.md	/^## Design axioms$/;"	s	chapter:Relaxing the Orphan Rule
+Design axioms	src/2024h2/Rust-2024-Edition.md	/^## Design axioms$/;"	s	chapter:Rust 2024 Edition
+Design axioms	src/2024h2/Rust-for-SciComp.md	/^## Design axioms$/;"	s	chapter:Scientific Computing in Rust
+Design axioms	src/2024h2/Seamless-C-Support.md	/^## Design axioms$/;"	s	chapter:Seamless C support
+Design axioms	src/2024h2/a-mir-formality.md	/^## Design axioms$/;"	s	chapter:TEMPLATE (replace with title of your goal)
+Design axioms	src/2024h2/burnout.md	/^## Design axioms$/;"	s	chapter:Minimize Burnout In The Rust Project
+Design axioms	src/2024h2/rfl_stable.md	/^## Design axioms$/;"	s	chapter:Stabilize key RFL features, RFL on CI
+Design axioms	src/TEMPLATE.md	/^## Design axioms$/;"	s	chapter:TEMPLATE (replace with title of your goal)
+Design axioms	src/about/design_axioms.md	/^# Design axioms$/;"	c
+Design axioms[da]	src/2024h2/faster-iterative-builds.md	/^## Design axioms[da]$/;"	s	chapter:Faster build experience
+Development in the Async Rust ecosystem is stalled by missing language features and interop traits	src/2024h2/async_fn_everywhere.md	/^#### Development in the Async Rust ecosystem is stalled by missing language features and interop/;"	t	subsection:Async closures and Send bounds""Motivation""The status quo
+Do these changes have to happen in the compiler?	src/2024h2/Rust-for-SciComp.md	/^### Do these changes have to happen in the compiler?$/;"	S	section:Scientific Computing in Rust""Frequently asked questions
+Do we really need a "goal slate" and a "goal season"?	src/2024h2/Project-goal-slate.md	/^### Do we really need a "goal slate" and a "goal season"?$/;"	S	section:Assemble Project Goal slate""Frequently asked questions
+Do we really need an owner?	src/2024h2/Project-goal-slate.md	/^### Do we really need an owner?$/;"	S	section:Assemble Project Goal slate""Frequently asked questions
+Examples	src/about/design_axioms.md	/^## Examples$/;"	s	chapter:Design axioms
+Faster Unwrap Syntax (Contentious)	src/2024h2/ergonomics-initiative.md	/^#### Faster Unwrap Syntax (Contentious)$/;"	t	subsection:Reduce clones and unwraps, support partial borrows""Frequently asked questions""After these two items, are we done? What comes next?
+Faster build experience	src/2024h2/faster-iterative-builds.md	/^# Faster build experience$/;"	c
+Faster fresh builds and higher default optimization levels	src/2024h2/faster-iterative-builds.md	/^#### Faster fresh builds and higher default optimization levels$/;"	t	subsection:Faster build experience""Motivation""The next few steps
+Flagship goals	src/2024h2/candidates.md	/^## Flagship goals$/;"	s	chapter:The 2024H2 goal candidates
+Flagship goals	src/2024h2/slate.md	/^## Flagship goals$/;"	s	chapter:The 2024H2 goal slate
+Flagship vs team goals	src/2024h2/candidates.md	/^## Flagship vs team goals$/;"	s	chapter:The 2024H2 goal candidates
+Frequently asked questions	src/2024h2/Contracts-and-invariants.md	/^## Frequently asked questions$/;"	s	chapter:Contracts and Invariants
+Frequently asked questions	src/2024h2/Impl-trait-everywhere.md	/^## Frequently asked questions$/;"	s	chapter:Impl trait everywhere
+Frequently asked questions	src/2024h2/New-trait-solver.md	/^## Frequently asked questions$/;"	s	chapter:TEMPLATE (replace with title of your goal)
+Frequently asked questions	src/2024h2/Patterns-of-empty-types.md	/^## Frequently asked questions$/;"	s	chapter:Patterns of empty types
+Frequently asked questions	src/2024h2/Polonius.md	/^## Frequently asked questions$/;"	s	chapter:Polonius
+Frequently asked questions	src/2024h2/Project-goal-slate.md	/^## Frequently asked questions$/;"	s	chapter:Assemble Project Goal slate
+Frequently asked questions	src/2024h2/Relaxing-the-Orphan-Rule.md	/^## Frequently asked questions$/;"	s	chapter:Relaxing the Orphan Rule
+Frequently asked questions	src/2024h2/Rust-2024-Edition.md	/^## Frequently asked questions$/;"	s	chapter:Rust 2024 Edition
+Frequently asked questions	src/2024h2/Rust-for-SciComp.md	/^## Frequently asked questions$/;"	s	chapter:Scientific Computing in Rust
+Frequently asked questions	src/2024h2/Seamless-C-Support.md	/^## Frequently asked questions$/;"	s	chapter:Seamless C support
+Frequently asked questions	src/2024h2/a-mir-formality.md	/^## Frequently asked questions$/;"	s	chapter:TEMPLATE (replace with title of your goal)
+Frequently asked questions	src/2024h2/async_fn_everywhere.md	/^## Frequently asked questions$/;"	s	chapter:Async closures and Send bounds
+Frequently asked questions	src/2024h2/burnout.md	/^## Frequently asked questions$/;"	s	chapter:Minimize Burnout In The Rust Project
+Frequently asked questions	src/2024h2/ergonomics-initiative.md	/^## Frequently asked questions$/;"	s	chapter:Reduce clones and unwraps, support partial borrows
+Frequently asked questions	src/2024h2/faster-iterative-builds.md	/^## Frequently asked questions$/;"	s	chapter:Faster build experience
+Frequently asked questions	src/2024h2/rfl_stable.md	/^## Frequently asked questions$/;"	s	chapter:Stabilize key RFL features, RFL on CI
+Frequently asked questions	src/TEMPLATE.md	/^## Frequently asked questions$/;"	s	chapter:TEMPLATE (replace with title of your goal)
+Frequently asked questions	src/about/design_axioms.md	/^## Frequently asked questions$/;"	s	chapter:Design axioms
+General notes	src/2024h2/notes.md	/^# General notes$/;"	c
+Goal motivations	src/about/motivation.md	/^# Goal motivations$/;"	c
+Goals without updates can be paused	src/how_to/report_status.md	/^## Goals without updates can be paused$/;"	s	chapter:Report status
+How Rust adoption grows	src/2024h2/slate.md	/^### How Rust adoption grows$/;"	S	section:The 2024H2 goal slate""Areas where Rust is best suited and how it grows
+How Rust adoption stalls	src/2024h2/slate.md	/^### How Rust adoption stalls$/;"	S	section:The 2024H2 goal slate""Areas where Rust is best suited and how it grows
+How about Safety?	src/2024h2/Rust-for-SciComp.md	/^### How about Safety?$/;"	S	section:Scientific Computing in Rust""Frequently asked questions
+How does the goal completion date interact with the Rust 2024 edition?	src/2024h2/Project-goal-slate.md	/^### How does the goal completion date interact with the Rust 2024 edition?$/;"	S	section:Assemble Project Goal slate""Frequently asked questions
+How to write a status update	src/how_to/report_status.md	/^## How to write a status update$/;"	s	chapter:Report status
+Impl trait everywhere	src/2024h2/Impl-trait-everywhere.md	/^# Impl trait everywhere$/;"	c
+Is there a template for project goals?	src/2024h2/Project-goal-slate.md	/^### Is there a template for project goals?$/;"	S	section:Assemble Project Goal slate""Frequently asked questions
+Isn't the owner basically a BDFL?	src/2024h2/Project-goal-slate.md	/^### Isn't the owner basically a BDFL?$/;"	S	section:Assemble Project Goal slate""Frequently asked questions
+Labeled goto in inline assembler and extended `offset_of!` support	src/2024h2/rfl_stable.md	/^#### Labeled goto in inline assembler and extended `offset_of!` support$/;"	t	subsection:Stabilize key RFL features, RFL on CI""Motivation""The next few steps
+Lack of internal alignment within the Rust org about the direction for async	src/2024h2/async_fn_everywhere.md	/^#### Lack of internal alignment within the Rust org about the direction for async$/;"	t	subsection:Async closures and Send bounds""Motivation""The status quo
+Milestones	src/2024h2/Contracts-and-invariants.md	/^### Milestones$/;"	S	section:Contracts and Invariants""Outputs and milestones
+Milestones	src/2024h2/Impl-trait-everywhere.md	/^### Milestones$/;"	S	section:Impl trait everywhere""Outputs and milestones
+Milestones	src/2024h2/New-trait-solver.md	/^### Milestones$/;"	S	section:TEMPLATE (replace with title of your goal)""Outputs and milestones
+Milestones	src/2024h2/Patterns-of-empty-types.md	/^### Milestones$/;"	S	section:Patterns of empty types""Outputs and milestones
+Milestones	src/2024h2/Polonius.md	/^### Milestones$/;"	S	section:Polonius""Outputs and milestones
+Milestones	src/2024h2/Project-goal-slate.md	/^### Milestones$/;"	S	section:Assemble Project Goal slate""Outputs and milestones
+Milestones	src/2024h2/Relaxing-the-Orphan-Rule.md	/^### Milestones$/;"	S	section:Relaxing the Orphan Rule""Outputs and milestones
+Milestones	src/2024h2/Rust-2024-Edition.md	/^### Milestones$/;"	S	section:Rust 2024 Edition""Outputs and milestones
+Milestones	src/2024h2/Rust-for-SciComp.md	/^### Milestones$/;"	S	section:Scientific Computing in Rust""Outputs and milestones
+Milestones	src/2024h2/Seamless-C-Support.md	/^### Milestones$/;"	S	section:Seamless C support""Outputs and milestones
+Milestones	src/2024h2/a-mir-formality.md	/^### Milestones$/;"	S	section:TEMPLATE (replace with title of your goal)""Outputs and milestones
+Milestones	src/2024h2/burnout.md	/^### Milestones$/;"	S	section:Minimize Burnout In The Rust Project""Outputs and milestones
+Milestones	src/2024h2/ergonomics-initiative.md	/^### Milestones$/;"	S	section:Reduce clones and unwraps, support partial borrows""Outputs and milestones
+Milestones	src/2024h2/faster-iterative-builds.md	/^### Milestones$/;"	S	section:Faster build experience""Outputs and milestones
+Milestones	src/2024h2/rfl_stable.md	/^### Milestones$/;"	S	section:Stabilize key RFL features, RFL on CI""Outputs and milestones
+Milestones	src/TEMPLATE.md	/^### Milestones$/;"	S	section:TEMPLATE (replace with title of your goal)""Outputs and milestones
+Minimize Burnout In The Rust Project	src/2024h2/burnout.md	/^# Minimize Burnout In The Rust Project$/;"	c
+Motivation	src/2024h2/Contracts-and-invariants.md	/^## Motivation$/;"	s	chapter:Contracts and Invariants
+Motivation	src/2024h2/Impl-trait-everywhere.md	/^## Motivation$/;"	s	chapter:Impl trait everywhere
+Motivation	src/2024h2/New-trait-solver.md	/^## Motivation$/;"	s	chapter:TEMPLATE (replace with title of your goal)
+Motivation	src/2024h2/Patterns-of-empty-types.md	/^## Motivation$/;"	s	chapter:Patterns of empty types
+Motivation	src/2024h2/Polonius.md	/^## Motivation$/;"	s	chapter:Polonius
+Motivation	src/2024h2/Project-goal-slate.md	/^## Motivation$/;"	s	chapter:Assemble Project Goal slate
+Motivation	src/2024h2/Relaxing-the-Orphan-Rule.md	/^## Motivation$/;"	s	chapter:Relaxing the Orphan Rule
+Motivation	src/2024h2/Rust-2024-Edition.md	/^## Motivation$/;"	s	chapter:Rust 2024 Edition
+Motivation	src/2024h2/Rust-for-SciComp.md	/^## Motivation$/;"	s	chapter:Scientific Computing in Rust
+Motivation	src/2024h2/Seamless-C-Support.md	/^## Motivation$/;"	s	chapter:Seamless C support
+Motivation	src/2024h2/a-mir-formality.md	/^## Motivation$/;"	s	chapter:TEMPLATE (replace with title of your goal)
+Motivation	src/2024h2/async_fn_everywhere.md	/^## Motivation$/;"	s	chapter:Async closures and Send bounds
+Motivation	src/2024h2/burnout.md	/^## Motivation$/;"	s	chapter:Minimize Burnout In The Rust Project
+Motivation	src/2024h2/ergonomics-initiative.md	/^## Motivation$/;"	s	chapter:Reduce clones and unwraps, support partial borrows
+Motivation	src/2024h2/faster-iterative-builds.md	/^## Motivation$/;"	s	chapter:Faster build experience
+Motivation	src/2024h2/rfl_stable.md	/^## Motivation$/;"	s	chapter:Stabilize key RFL features, RFL on CI
+Motivation	src/TEMPLATE.md	/^## Motivation$/;"	s	chapter:TEMPLATE (replace with title of your goal)
+Named and Optional Arguments or Partial Defaults (Contentious)	src/2024h2/ergonomics-initiative.md	/^#### Named and Optional Arguments or Partial Defaults (Contentious)$/;"	t	subsection:Reduce clones and unwraps, support partial borrows""Frequently asked questions""After these two items, are we done? What comes next?
+Offloading	src/2024h2/Rust-for-SciComp.md	/^### Offloading$/;"	S	section:Scientific Computing in Rust""Design axioms
+Outputs	src/2024h2/Contracts-and-invariants.md	/^### Outputs$/;"	S	section:Contracts and Invariants""Outputs and milestones
+Outputs	src/2024h2/Impl-trait-everywhere.md	/^### Outputs$/;"	S	section:Impl trait everywhere""Outputs and milestones
+Outputs	src/2024h2/New-trait-solver.md	/^### Outputs$/;"	S	section:TEMPLATE (replace with title of your goal)""Outputs and milestones
+Outputs	src/2024h2/Patterns-of-empty-types.md	/^### Outputs$/;"	S	section:Patterns of empty types""Outputs and milestones
+Outputs	src/2024h2/Polonius.md	/^### Outputs$/;"	S	section:Polonius""Outputs and milestones
+Outputs	src/2024h2/Project-goal-slate.md	/^### Outputs$/;"	S	section:Assemble Project Goal slate""Outputs and milestones
+Outputs	src/2024h2/Relaxing-the-Orphan-Rule.md	/^### Outputs$/;"	S	section:Relaxing the Orphan Rule""Outputs and milestones
+Outputs	src/2024h2/Rust-2024-Edition.md	/^### Outputs$/;"	S	section:Rust 2024 Edition""Outputs and milestones
+Outputs	src/2024h2/Rust-for-SciComp.md	/^### Outputs$/;"	S	section:Scientific Computing in Rust""Outputs and milestones
+Outputs	src/2024h2/Seamless-C-Support.md	/^### Outputs$/;"	S	section:Seamless C support""Outputs and milestones
+Outputs	src/2024h2/a-mir-formality.md	/^### Outputs$/;"	S	section:TEMPLATE (replace with title of your goal)""Outputs and milestones
+Outputs	src/2024h2/burnout.md	/^### Outputs$/;"	S	section:Minimize Burnout In The Rust Project""Outputs and milestones
+Outputs	src/2024h2/ergonomics-initiative.md	/^### Outputs$/;"	S	section:Reduce clones and unwraps, support partial borrows""Outputs and milestones
+Outputs	src/2024h2/faster-iterative-builds.md	/^### Outputs$/;"	S	section:Faster build experience""Outputs and milestones
+Outputs	src/2024h2/rfl_stable.md	/^### Outputs$/;"	S	section:Stabilize key RFL features, RFL on CI""Outputs and milestones
+Outputs	src/TEMPLATE.md	/^### Outputs$/;"	S	section:TEMPLATE (replace with title of your goal)""Outputs and milestones
+Outputs and milestones	src/2024h2/Contracts-and-invariants.md	/^## Outputs and milestones$/;"	s	chapter:Contracts and Invariants
+Outputs and milestones	src/2024h2/Impl-trait-everywhere.md	/^## Outputs and milestones$/;"	s	chapter:Impl trait everywhere
+Outputs and milestones	src/2024h2/New-trait-solver.md	/^## Outputs and milestones$/;"	s	chapter:TEMPLATE (replace with title of your goal)
+Outputs and milestones	src/2024h2/Patterns-of-empty-types.md	/^## Outputs and milestones$/;"	s	chapter:Patterns of empty types
+Outputs and milestones	src/2024h2/Polonius.md	/^## Outputs and milestones$/;"	s	chapter:Polonius
+Outputs and milestones	src/2024h2/Project-goal-slate.md	/^## Outputs and milestones$/;"	s	chapter:Assemble Project Goal slate
+Outputs and milestones	src/2024h2/Relaxing-the-Orphan-Rule.md	/^## Outputs and milestones$/;"	s	chapter:Relaxing the Orphan Rule
+Outputs and milestones	src/2024h2/Rust-2024-Edition.md	/^## Outputs and milestones$/;"	s	chapter:Rust 2024 Edition
+Outputs and milestones	src/2024h2/Rust-for-SciComp.md	/^## Outputs and milestones$/;"	s	chapter:Scientific Computing in Rust
+Outputs and milestones	src/2024h2/Seamless-C-Support.md	/^## Outputs and milestones$/;"	s	chapter:Seamless C support
+Outputs and milestones	src/2024h2/a-mir-formality.md	/^## Outputs and milestones$/;"	s	chapter:TEMPLATE (replace with title of your goal)
+Outputs and milestones	src/2024h2/async_fn_everywhere.md	/^## Outputs and milestones$/;"	s	chapter:Async closures and Send bounds
+Outputs and milestones	src/2024h2/burnout.md	/^## Outputs and milestones$/;"	s	chapter:Minimize Burnout In The Rust Project
+Outputs and milestones	src/2024h2/ergonomics-initiative.md	/^## Outputs and milestones$/;"	s	chapter:Reduce clones and unwraps, support partial borrows
+Outputs and milestones	src/2024h2/faster-iterative-builds.md	/^## Outputs and milestones$/;"	s	chapter:Faster build experience
+Outputs and milestones	src/2024h2/rfl_stable.md	/^## Outputs and milestones$/;"	s	chapter:Stabilize key RFL features, RFL on CI
+Outputs and milestones	src/TEMPLATE.md	/^## Outputs and milestones$/;"	s	chapter:TEMPLATE (replace with title of your goal)
+Owners	src/about/owners.md	/^# Owners$/;"	c
+Owners keep things moving	src/about/owners.md	/^## Owners keep things moving$/;"	s	chapter:Owners
+Owners own the proposal, teams own the decision	src/about/owners.md	/^## Owners own the proposal, teams own the decision$/;"	s	chapter:Owners
+Owners report regularly on progress	src/about/owners.md	/^## Owners report regularly on progress$/;"	s	chapter:Owners
+Ownership and other resources	src/2024h2/Contracts-and-invariants.md	/^## Ownership and other resources$/;"	s	chapter:Contracts and Invariants
+Ownership and other resources	src/2024h2/Impl-trait-everywhere.md	/^## Ownership and other resources$/;"	s	chapter:Impl trait everywhere
+Ownership and other resources	src/2024h2/New-trait-solver.md	/^## Ownership and other resources$/;"	s	chapter:TEMPLATE (replace with title of your goal)
+Ownership and other resources	src/2024h2/Patterns-of-empty-types.md	/^## Ownership and other resources$/;"	s	chapter:Patterns of empty types
+Ownership and other resources	src/2024h2/Polonius.md	/^## Ownership and other resources$/;"	s	chapter:Polonius
+Ownership and other resources	src/2024h2/Project-goal-slate.md	/^## Ownership and other resources$/;"	s	chapter:Assemble Project Goal slate
+Ownership and other resources	src/2024h2/Relaxing-the-Orphan-Rule.md	/^## Ownership and other resources$/;"	s	chapter:Relaxing the Orphan Rule
+Ownership and other resources	src/2024h2/Rust-2024-Edition.md	/^## Ownership and other resources$/;"	s	chapter:Rust 2024 Edition
+Ownership and other resources	src/2024h2/Rust-for-SciComp.md	/^## Ownership and other resources$/;"	s	chapter:Scientific Computing in Rust
+Ownership and other resources	src/2024h2/Seamless-C-Support.md	/^## Ownership and other resources$/;"	s	chapter:Seamless C support
+Ownership and other resources	src/2024h2/a-mir-formality.md	/^## Ownership and other resources$/;"	s	chapter:TEMPLATE (replace with title of your goal)
+Ownership and other resources	src/2024h2/async_fn_everywhere.md	/^## Ownership and other resources$/;"	s	chapter:Async closures and Send bounds
+Ownership and other resources	src/2024h2/burnout.md	/^## Ownership and other resources$/;"	s	chapter:Minimize Burnout In The Rust Project
+Ownership and other resources	src/2024h2/ergonomics-initiative.md	/^## Ownership and other resources$/;"	s	chapter:Reduce clones and unwraps, support partial borrows
+Ownership and other resources	src/2024h2/faster-iterative-builds.md	/^## Ownership and other resources$/;"	s	chapter:Faster build experience
+Ownership and other resources	src/2024h2/rfl_stable.md	/^## Ownership and other resources$/;"	s	chapter:Stabilize key RFL features, RFL on CI
+Ownership and other resources	src/TEMPLATE.md	/^## Ownership and other resources$/;"	s	chapter:TEMPLATE (replace with title of your goal)
+Ownership is a position of trust	src/about/owners.md	/^## Ownership is a position of trust$/;"	s	chapter:Owners
+Partial borrows for structs	src/2024h2/ergonomics-initiative.md	/^#### Partial borrows for structs$/;"	t	subsection:Reduce clones and unwraps, support partial borrows""Motivation""The next few steps
+Patterns of empty types	src/2024h2/Patterns-of-empty-types.md	/^# Patterns of empty types$/;"	c
+Pointers to statics in constants	src/2024h2/rfl_stable.md	/^#### Pointers to statics in constants$/;"	t	subsection:Stabilize key RFL features, RFL on CI""Motivation""The next few steps
+Polonius	src/2024h2/Polonius.md	/^# Polonius$/;"	c
+Procedural macro expansion caching or speedup	src/2024h2/faster-iterative-builds.md	/^#### Procedural macro expansion caching or speedup$/;"	t	subsection:Faster build experience""Motivation""The next few steps
+Process to be followed	src/2024h2/Project-goal-slate.md	/^### Process to be followed$/;"	S	section:Assemble Project Goal slate""Outputs and milestones
+Project goals	src/introduction.md	/^# Project goals$/;"	c
+Proposal a new goal	src/how_to/propose_a_goal.md	/^# Proposal a new goal$/;"	c
+Provisional goals	src/about/provisional_goals.md	/^# Provisional goals$/;"	c
+Q: Doesn't formal specifications need stuff like unbounded arithmetic?	src/2024h2/Contracts-and-invariants.md	/^### Q: Doesn't formal specifications need stuff like unbounded arithmetic?$/;"	S	section:Contracts and Invariants""Frequently asked questions
+Q: How are you planning to dynamically check arbitrary contracts?	src/2024h2/Contracts-and-invariants.md	/^### Q: How are you planning to dynamically check arbitrary contracts?$/;"	S	section:Contracts and Invariants""Frequently asked questions
+Q: How do contracts help static verification tools?	src/2024h2/Contracts-and-invariants.md	/^### Q: How do contracts help static verification tools?$/;"	S	section:Contracts and Invariants""Frequently asked questions
+Q: What about unsafe code?	src/2024h2/Contracts-and-invariants.md	/^### Q: What about unsafe code?$/;"	S	section:Contracts and Invariants""Frequently asked questions
+Q: Why do you differentiate between the semantics for dynamic validation vs static verification?	src/2024h2/Contracts-and-invariants.md	/^### Q: Why do you differentiate between the semantics for dynamic validation vs static verificat/;"	S	section:Contracts and Invariants""Frequently asked questions
+RFC	src/rfc.md	/^# RFC$/;"	c
+RFL on Rust CI	src/2024h2/rfl_stable.md	/^#### RFL on Rust CI$/;"	t	subsection:Stabilize key RFL features, RFL on CI""Motivation""The next few steps
+Reduce clones and unwraps, support partial borrows	src/2024h2/ergonomics-initiative.md	/^# Reduce clones and unwraps, support partial borrows$/;"	c
+Reducing `.clone()` frequency	src/2024h2/ergonomics-initiative.md	/^#### Reducing `.clone()` frequency$/;"	t	subsection:Reduce clones and unwraps, support partial borrows""Motivation""The next few steps
+Relaxing the Orphan Rule	src/2024h2/Relaxing-the-Orphan-Rule.md	/^# Relaxing the Orphan Rule$/;"	c
+Report status	src/how_to/report_status.md	/^# Report status$/;"	c
+Resolve the "send bound" problem	src/2024h2/async_fn_everywhere.md	/^#### Resolve the "send bound" problem$/;"	t	subsection:Async closures and Send bounds""Motivation""The next few steps
+Revisiting Alex and Genomix	src/2024h2/ergonomics-initiative.md	/^#### Revisiting Alex and Genomix$/;"	t	subsection:Reduce clones and unwraps, support partial borrows""Motivation""The "shiny future" we are working towards
+Rust 2024 Edition	src/2024h2/Rust-2024-Edition.md	/^# Rust 2024 Edition$/;"	c
+Rust Specific Magic?	src/2024h2/Rust-for-SciComp.md	/^### Rust Specific Magic?$/;"	S	section:Scientific Computing in Rust""Frequently asked questions
+Rust’s mission	src/2024h2/slate.md	/^## Rust’s mission$/;"	s	chapter:The 2024H2 goal slate
+Scientific Computing in Rust	src/2024h2/Rust-for-SciComp.md	/^# Scientific Computing in Rust$/;"	c
+Seamless C support	src/2024h2/Seamless-C-Support.md	/^# Seamless C support$/;"	c
+Stabilize async closures	src/2024h2/async_fn_everywhere.md	/^#### Stabilize async closures$/;"	t	subsection:Async closures and Send bounds""Motivation""The next few steps
+Stabilize key RFL features, RFL on CI	src/2024h2/rfl_stable.md	/^# Stabilize key RFL features, RFL on CI$/;"	c
+Stabilize trait for async iteration	src/2024h2/async_fn_everywhere.md	/^#### Stabilize trait for async iteration$/;"	t	subsection:Async closures and Send bounds""Motivation""The next few steps
+Stable support for RFL's customized ARC type	src/2024h2/rfl_stable.md	/^#### Stable support for RFL's customized ARC type$/;"	t	subsection:Stabilize key RFL features, RFL on CI""Motivation""The next few steps
+Status update template	src/how_to/report_status.md	/^## Status update template$/;"	s	chapter:Report status
+Status updates are reported out	src/how_to/report_status.md	/^## Status updates are reported out$/;"	s	chapter:Report status
+Summary	src/SUMMARY.md	/^# Summary$/;"	c
+Support needed from the project	src/2024h2/Contracts-and-invariants.md	/^### Support needed from the project$/;"	S	section:Contracts and Invariants""Ownership and other resources
+Support needed from the project	src/2024h2/Impl-trait-everywhere.md	/^### Support needed from the project$/;"	S	section:Impl trait everywhere""Ownership and other resources
+Support needed from the project	src/2024h2/New-trait-solver.md	/^### Support needed from the project$/;"	S	section:TEMPLATE (replace with title of your goal)""Ownership and other resources
+Support needed from the project	src/2024h2/Patterns-of-empty-types.md	/^### Support needed from the project$/;"	S	section:Patterns of empty types""Ownership and other resources
+Support needed from the project	src/2024h2/Polonius.md	/^### Support needed from the project$/;"	S	section:Polonius""Ownership and other resources
+Support needed from the project	src/2024h2/Project-goal-slate.md	/^### Support needed from the project$/;"	S	section:Assemble Project Goal slate""Ownership and other resources
+Support needed from the project	src/2024h2/Relaxing-the-Orphan-Rule.md	/^### Support needed from the project$/;"	S	section:Relaxing the Orphan Rule""Ownership and other resources
+Support needed from the project	src/2024h2/Rust-2024-Edition.md	/^### Support needed from the project$/;"	S	section:Rust 2024 Edition""Ownership and other resources
+Support needed from the project	src/2024h2/Rust-for-SciComp.md	/^### Support needed from the project$/;"	S	section:Scientific Computing in Rust""Ownership and other resources
+Support needed from the project	src/2024h2/Seamless-C-Support.md	/^### Support needed from the project$/;"	S	section:Seamless C support""Ownership and other resources
+Support needed from the project	src/2024h2/a-mir-formality.md	/^### Support needed from the project$/;"	S	section:TEMPLATE (replace with title of your goal)""Ownership and other resources
+Support needed from the project	src/2024h2/async_fn_everywhere.md	/^### Support needed from the project$/;"	S	section:Async closures and Send bounds""Ownership and other resources
+Support needed from the project	src/2024h2/burnout.md	/^### Support needed from the project$/;"	S	section:Minimize Burnout In The Rust Project""Ownership and other resources
+Support needed from the project	src/2024h2/ergonomics-initiative.md	/^### Support needed from the project$/;"	S	section:Reduce clones and unwraps, support partial borrows""Ownership and other resources
+Support needed from the project	src/2024h2/faster-iterative-builds.md	/^### Support needed from the project$/;"	S	section:Faster build experience""Ownership and other resources
+Support needed from the project	src/2024h2/rfl_stable.md	/^### Support needed from the project$/;"	S	section:Stabilize key RFL features, RFL on CI""Ownership and other resources
+Support needed from the project	src/TEMPLATE.md	/^### Support needed from the project$/;"	S	section:TEMPLATE (replace with title of your goal)""Ownership and other resources
+TEMPLATE (replace with title of your goal)	src/2024h2/New-trait-solver.md	/^# TEMPLATE (replace with title of your goal)$/;"	c
+TEMPLATE (replace with title of your goal)	src/2024h2/a-mir-formality.md	/^# TEMPLATE (replace with title of your goal)$/;"	c
+TEMPLATE (replace with title of your goal)	src/TEMPLATE.md	/^# TEMPLATE (replace with title of your goal)$/;"	c
+Team goals	src/2024h2/candidates.md	/^## Team goals$/;"	s	chapter:The 2024H2 goal candidates
+Team goals	src/2024h2/slate.md	/^## Team goals$/;"	s	chapter:The 2024H2 goal slate
+The "shiny future" we are working towards	src/2024h2/Contracts-and-invariants.md	/^### The "shiny future" we are working towards$/;"	S	section:Contracts and Invariants""Motivation
+The "shiny future" we are working towards	src/2024h2/Impl-trait-everywhere.md	/^### The "shiny future" we are working towards$/;"	S	section:Impl trait everywhere""Motivation
+The "shiny future" we are working towards	src/2024h2/New-trait-solver.md	/^### The "shiny future" we are working towards$/;"	S	section:TEMPLATE (replace with title of your goal)""Motivation
+The "shiny future" we are working towards	src/2024h2/Patterns-of-empty-types.md	/^### The "shiny future" we are working towards$/;"	S	section:Patterns of empty types""Motivation
+The "shiny future" we are working towards	src/2024h2/Polonius.md	/^### The "shiny future" we are working towards$/;"	S	section:Polonius""Motivation
+The "shiny future" we are working towards	src/2024h2/Project-goal-slate.md	/^### The "shiny future" we are working towards$/;"	S	section:Assemble Project Goal slate""Motivation
+The "shiny future" we are working towards	src/2024h2/Relaxing-the-Orphan-Rule.md	/^### The "shiny future" we are working towards$/;"	S	section:Relaxing the Orphan Rule""Motivation
+The "shiny future" we are working towards	src/2024h2/Rust-2024-Edition.md	/^### The "shiny future" we are working towards$/;"	S	section:Rust 2024 Edition""Motivation
+The "shiny future" we are working towards	src/2024h2/Rust-for-SciComp.md	/^### The "shiny future" we are working towards$/;"	S	section:Scientific Computing in Rust""Motivation
+The "shiny future" we are working towards	src/2024h2/Seamless-C-Support.md	/^### The "shiny future" we are working towards$/;"	S	section:Seamless C support""Motivation
+The "shiny future" we are working towards	src/2024h2/a-mir-formality.md	/^### The "shiny future" we are working towards$/;"	S	section:TEMPLATE (replace with title of your goal)""Motivation
+The "shiny future" we are working towards	src/2024h2/async_fn_everywhere.md	/^### The "shiny future" we are working towards$/;"	S	section:Async closures and Send bounds""Motivation
+The "shiny future" we are working towards	src/2024h2/burnout.md	/^### The "shiny future" we are working towards$/;"	S	section:Minimize Burnout In The Rust Project""Motivation
+The "shiny future" we are working towards	src/2024h2/ergonomics-initiative.md	/^### The "shiny future" we are working towards$/;"	S	section:Reduce clones and unwraps, support partial borrows""Motivation
+The "shiny future" we are working towards	src/2024h2/faster-iterative-builds.md	/^### The "shiny future" we are working towards$/;"	S	section:Faster build experience""Motivation
+The "shiny future" we are working towards	src/2024h2/rfl_stable.md	/^### The "shiny future" we are working towards$/;"	S	section:Stabilize key RFL features, RFL on CI""Motivation
+The "shiny future" we are working towards	src/TEMPLATE.md	/^### The "shiny future" we are working towards$/;"	S	section:TEMPLATE (replace with title of your goal)""Motivation
+The 2024H2 goal candidates	src/2024h2/candidates.md	/^# The 2024H2 goal candidates$/;"	c
+The 2024H2 goal slate	src/2024h2/slate.md	/^# The 2024H2 goal slate$/;"	c
+The next few steps	src/2024h2/Contracts-and-invariants.md	/^### The next few steps$/;"	S	section:Contracts and Invariants""Motivation
+The next few steps	src/2024h2/Impl-trait-everywhere.md	/^### The next few steps$/;"	S	section:Impl trait everywhere""Motivation
+The next few steps	src/2024h2/New-trait-solver.md	/^### The next few steps$/;"	S	section:TEMPLATE (replace with title of your goal)""Motivation
+The next few steps	src/2024h2/Patterns-of-empty-types.md	/^### The next few steps$/;"	S	section:Patterns of empty types""Motivation
+The next few steps	src/2024h2/Polonius.md	/^### The next few steps$/;"	S	section:Polonius""Motivation
+The next few steps	src/2024h2/Relaxing-the-Orphan-Rule.md	/^### The next few steps$/;"	S	section:Relaxing the Orphan Rule""Motivation
+The next few steps	src/2024h2/Rust-2024-Edition.md	/^### The next few steps$/;"	S	section:Rust 2024 Edition""Motivation
+The next few steps	src/2024h2/Rust-for-SciComp.md	/^### The next few steps$/;"	S	section:Scientific Computing in Rust""Motivation
+The next few steps	src/2024h2/Seamless-C-Support.md	/^### The next few steps$/;"	S	section:Seamless C support""Motivation
+The next few steps	src/2024h2/a-mir-formality.md	/^### The next few steps$/;"	S	section:TEMPLATE (replace with title of your goal)""Motivation
+The next few steps	src/2024h2/async_fn_everywhere.md	/^### The next few steps$/;"	S	section:Async closures and Send bounds""Motivation
+The next few steps	src/2024h2/burnout.md	/^### The next few steps$/;"	S	section:Minimize Burnout In The Rust Project""Motivation
+The next few steps	src/2024h2/ergonomics-initiative.md	/^### The next few steps$/;"	S	section:Reduce clones and unwraps, support partial borrows""Motivation
+The next few steps	src/2024h2/faster-iterative-builds.md	/^### The next few steps$/;"	S	section:Faster build experience""Motivation
+The next few steps	src/2024h2/rfl_stable.md	/^### The next few steps$/;"	S	section:Stabilize key RFL features, RFL on CI""Motivation
+The next few steps	src/TEMPLATE.md	/^### The next few steps$/;"	S	section:TEMPLATE (replace with title of your goal)""Motivation
+The plan for 2024	src/2024h2/Project-goal-slate.md	/^### The plan for 2024$/;"	S	section:Assemble Project Goal slate""Motivation
+The status quo	src/2024h2/Contracts-and-invariants.md	/^### The status quo$/;"	S	section:Contracts and Invariants""Motivation
+The status quo	src/2024h2/Impl-trait-everywhere.md	/^### The status quo$/;"	S	section:Impl trait everywhere""Motivation
+The status quo	src/2024h2/New-trait-solver.md	/^### The status quo$/;"	S	section:TEMPLATE (replace with title of your goal)""Motivation
+The status quo	src/2024h2/Patterns-of-empty-types.md	/^### The status quo$/;"	S	section:Patterns of empty types""Motivation
+The status quo	src/2024h2/Polonius.md	/^### The status quo$/;"	S	section:Polonius""Motivation
+The status quo	src/2024h2/Project-goal-slate.md	/^### The status quo$/;"	S	section:Assemble Project Goal slate""Motivation
+The status quo	src/2024h2/Relaxing-the-Orphan-Rule.md	/^### The status quo$/;"	S	section:Relaxing the Orphan Rule""Motivation
+The status quo	src/2024h2/Rust-2024-Edition.md	/^### The status quo$/;"	S	section:Rust 2024 Edition""Motivation
+The status quo	src/2024h2/Rust-for-SciComp.md	/^### The status quo$/;"	S	section:Scientific Computing in Rust""Motivation
+The status quo	src/2024h2/Seamless-C-Support.md	/^### The status quo$/;"	S	section:Seamless C support""Motivation
+The status quo	src/2024h2/a-mir-formality.md	/^### The status quo$/;"	S	section:TEMPLATE (replace with title of your goal)""Motivation
+The status quo	src/2024h2/async_fn_everywhere.md	/^### The status quo$/;"	S	section:Async closures and Send bounds""Motivation
+The status quo	src/2024h2/ergonomics-initiative.md	/^### The status quo$/;"	S	section:Reduce clones and unwraps, support partial borrows""Motivation
+The status quo	src/2024h2/faster-iterative-builds.md	/^### The status quo$/;"	S	section:Faster build experience""Motivation
+The status quo	src/2024h2/rfl_stable.md	/^### The status quo$/;"	S	section:Stabilize key RFL features, RFL on CI""Motivation
+The status quo	src/TEMPLATE.md	/^### The status quo$/;"	S	section:TEMPLATE (replace with title of your goal)""Motivation
+What do I do with this space?	src/2024h2/New-trait-solver.md	/^### What do I do with this space?$/;"	S	section:TEMPLATE (replace with title of your goal)""Frequently asked questions
+What do I do with this space?	src/2024h2/Rust-for-SciComp.md	/^### What do I do with this space?$/;"	S	section:Scientific Computing in Rust""Frequently asked questions
+What do I do with this space?	src/2024h2/a-mir-formality.md	/^### What do I do with this space?$/;"	S	section:TEMPLATE (replace with title of your goal)""Frequently asked questions
+What do I do with this space?	src/2024h2/burnout.md	/^### What do I do with this space?$/;"	S	section:Minimize Burnout In The Rust Project""Frequently asked questions
+What do I do with this space?	src/2024h2/faster-iterative-builds.md	/^### What do I do with this space?$/;"	S	section:Faster build experience""Frequently asked questions
+What do I do with this space?	src/2024h2/rfl_stable.md	/^### What do I do with this space?$/;"	S	section:Stabilize key RFL features, RFL on CI""Frequently asked questions
+What do I do with this space?	src/TEMPLATE.md	/^### What do I do with this space?$/;"	S	section:TEMPLATE (replace with title of your goal)""Frequently asked questions
+Where can I read more about axioms?	src/about/design_axioms.md	/^### Where can I read more about axioms?$/;"	S	section:Design axioms""Frequently asked questions
+Why do you implement these features only on the LLVM Backend?	src/2024h2/Rust-for-SciComp.md	/^### Why do you implement these features only on the LLVM Backend? $/;"	S	section:Scientific Computing in Rust""Frequently asked questions
+Why is the goal completion date targeting end of year?	src/2024h2/Project-goal-slate.md	/^### Why is the goal completion date targeting end of year?$/;"	S	section:Assemble Project Goal slate""Frequently asked questions
+Why the six months horizon?	src/2024h2/Project-goal-slate.md	/^### Why the six months horizon?$/;"	S	section:Assemble Project Goal slate""Frequently asked questions
+Won't this create incompatibilities between libraries that implement the same trait for the same type?	src/2024h2/Relaxing-the-Orphan-Rule.md	/^### Won't this create incompatibilities between libraries that implement the same trait for the /;"	S	section:Relaxing the Orphan Rule""Frequently asked questions
+Would you like to propose a goal?	src/2024h2/candidates.md	/^### Would you like to propose a goal?$/;"	S	section:The 2024H2 goal candidates""Flagship vs team goals
+Writing a GPU Backend in 6 months sounds tough..	src/2024h2/Rust-for-SciComp.md	/^### Writing a GPU Backend in 6 months sounds tough..$/;"	S	section:Scientific Computing in Rust""Frequently asked questions
+[Design axioms][da]	src/2024h2/ergonomics-initiative.md	/^## [Design axioms][da]$/;"	s	chapter:Reduce clones and unwraps, support partial borrows
+rust-project-goals	README.md	/^# rust-project-goals$/;"	c
+👉 2024 goal process	src/2024h2/index.md	/^# 👉 2024 goal process$/;"	c
