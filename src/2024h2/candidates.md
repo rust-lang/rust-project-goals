@@ -19,20 +19,30 @@ Do it! [Instructons for proposing goals can be found here.](../how_to/propose_a_
 
 ### Accepted flagship goals
 
-No flagship goals currently accepted.
+| 2024 goal                            | Working towards | Owner  | Accepted in   |
+| ------------------------------------ | --------------- | ------ | ------------- |
+| [Stabilize Rust 2024 edition][R2024] |                 | [TC][] | [RFC #3501][] |
 
 ### Candidate flagship goals
 
-The following goals are the most likely to be converted into RFCs:
+The following goals are nearing completion and expected to be converted into RFCs.
 
 | 2024 goal                                                         | Working towards                       | Owner                               | Teams                       |
 | ----------------------------------------------------------------- | ------------------------------------- | ----------------------------------- | --------------------------- |
 | [Async closures and send bounds][AFE]                             | Async/sync parity                     | [nikomatsakis][], [tmandry][]       | [Lang], [Libs-API]          |
 | [Stabilize key RFL features, RFL on CI][LK] [![Help wanted]][LKH] | Linux builds on stable Rust           | [nikomatsakis][], [Josh-Triplett][] | [Lang], [Libs-API], [Infra] |
+
+
+### WIP flagship goals
+
+The following goals were submitted and are sitll "under revision". They are unlikely to become flagship goals this round, but some parts of them may be adopted as team goals.
+
+| 2024 goal                                                         | Working towards                       | Owner                               | Teams                       |
+| ----------------------------------------------------------------- | ------------------------------------- | ----------------------------------- | --------------------------- |
 | [Ergonomics initiative: clones and partial borrows][EI]           | Entry-level Rust developer experience | [jkelleyrtp][]                      | [Lang]                      |
-| [Faster iterative builds][FIB]                                    | Entry-level Rust dev experience       | ![WIP][wip]                         | [jkelleyrtp][]              | [Lang], [Compiler] 
-| [Rust for Scientific Computing][SCI]                              | Rust for Scientific Computing         | ![WIP][wip]                         | [ZuseZ4][]                  | [Lang], [Compiler] 
-| [Towards seamless C support][SCS]                                 |                                       | ![WIP][wip]                         | [Josh-Triplett][]           | [Lang], [Compiler] 
+| [Faster iterative builds][FIB]                                    | Entry-level Rust dev experience       | ![WIP][wip]                         | [jkelleyrtp][]              | [Lang], [Compiler]
+| [Rust for Scientific Computing][SCI]                              | Rust for Scientific Computing         | ![WIP][wip]                         | [ZuseZ4][]                  | [Lang], [Compiler]
+| [Towards seamless C support][SCS]                                 |                                       | ![WIP][wip]                         | [Josh-Triplett][]           | [Lang], [Compiler]
 
 Some notes to highlight:
 
@@ -42,10 +52,9 @@ Some notes to highlight:
 
 ### Accepted team goals
 
-| 2024 goal                            | Accepted in   | Owner            |
-| ------------------------------------ | ------------- | ---------------- |
-| [Assemble goal slate][AGS]           | [RFC #3614][] | [nikomatsakis][] |
-| [Stabilize Rust 2024 edition][R2024] | [RFC #3501][] | [TC][]           |
+| 2024 goal                  | Accepted in   | Owner            |
+| -------------------------- | ------------- | ---------------- |
+| [Assemble goal slate][AGS] | [RFC #3614][] | [nikomatsakis][] |
 
 [RFC #3614]: https://github.com/rust-lang/rfcs/pull/3614
 [RFC #3501]: https://rust-lang.github.io/rfcs/3501-edition-2024.html
