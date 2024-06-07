@@ -19,7 +19,16 @@ Editions are a powerful tool for Rust but organizing them continues to be a "fir
 
 ### The next few steps
 
-The major goal this year is to release the edition on nightly.
+The major goal this year is to release the edition on nightly. Top priority items are as follows:
+
+| Item | Tracking | RFC | More to do? |
+|---|---|---|---|
+| Reserve `gen` keyword |  https://github.com/rust-lang/rust/issues/123904 | https://github.com/rust-lang/rust/pull/116447 | No. |
+| Lifetime Capture Rules 2024 | https://github.com/rust-lang/rust/issues/117587 | https://github.com/rust-lang/rfcs/pull/3498 | Yes. |
+| Precise capturing (dependency) | https://github.com/rust-lang/rust/issues/123432 | https://github.com/rust-lang/rfcs/pull/3617 | Yes. |
+| Change fallback to `!` | https://github.com/rust-lang/rust/issues/123748 | N/A | Yes. |
+
+The full list of tracked items [can be found using the `A-edition-2024` label.](https://github.com/rust-lang/rust/issues?q=label%3AC-tracking-issue+label%3AA-edition-2024).
 
 ### The "shiny future" we are working towards
 
@@ -58,17 +67,12 @@ The "Edition Axioms" were [laid out in RFC 3085](https://rust-lang.github.io/rfc
 
 ### Milestones
 
-| Date       | Milestone                                                      |
-| ---------- | -------------------------------------------------------------- |
-|            | Code complete                                                  |
-|            | Implementation done                                            |
-|            | First crater test of new edition                               |
-|            | Call for testing                                               |
-|            | All features stabilized on nightly (edition itself may not be) |
-| **Oct 17** | **1.83.0 branches**                                            |
-| Nov        | Edition guide, blog post ready                                 |
-| **Nov 28** | **1.83.0 publicly available**                                  |
-
+| Date       | Version       | Edition stage           |
+|------------|---------------|-------------------------|
+| 2024-10-11 | Branch  v1.83 | Go / no go on all items |
+| 2024-10-17 | Release v1.82 | Rust 2024 nightly beta  |
+| 2025-01-03 | Branch  v1.85 | Cut Rust 2024 to beta   |
+| 2025-02-20 | Release v1.85 | Release Rust 2024       |
 
 ## Frequently asked questions
 
