@@ -40,7 +40,7 @@ Anecdotally, the most commonly cited reasons to stop using Rust is a feeling tha
 * **Picking crates:** Rust intentionally offeres a lean standard library, preferring instead to support a rich set of crates. But when getting started users are often overwhelmed by the options available and unsure which one would be best to use. Making matters worse, Rust documentation often doesn't show examples making use of these crates in an effort to avoid picking favorites, making it harder for users to learn how to do things.
 * **Build times and slow iteration:** Being able to make a change and quickly see its effect makes learning and debugging effortless. Despite our best efforts, real-world Rust programs do still have bugs, and finding and resolving those can be frustratingly slow when every change requires waiting minutes and minutes for a build to complete.
 
-### Additioanl concerns faced by companies
+### Additional concerns faced by companies
 
 For larger users, such as companies, there are additional concerns:
 
@@ -53,6 +53,12 @@ For larger users, such as companies, there are additional concerns:
 
 Flagship goals are the most impactful, most ambitious goals that we will attempt to complete. They are often part of a larger program and effort that is expected to span over multiple years. For 2024h2, our flagship goals are listed below. Pursuant to our [selection axioms](#axioms-for-rust-adoption), we are focused primarily on closing gaps around async Rust and low-level systems programming (the Rust for Linux project, specifically) but we include some goals that target general productivity.
 
+* [**Release the Rust 2024 edition**](./Rust-2024-Edition.md), accepted in [RFC ], [will contain](./Rust-2024-Edition.md#the-next-few-steps)
+    * a change in how `impl Trait` capture bounds work ([RFC #3498](https://github.com/rust-lang/rfcs/pull/3498) and [RFC #3617](https://github.com/rust-lang/rfcs/pull/3617))
+    * reserving the `gen` keyword to allow for generators ([RFC #3513](https://github.com/rust-lang/rfcs/pull/3513))
+    * along with an [assortment of other possible changes](TODO)
+    * never type fallback ([#123748](https://github.com/rust-lang/rust/issues/123748))
+    * and a [number of other potential changes](https://github.com/rust-lang/rust/issues?q=label%3AC-tracking-issue+label%3AA-edition-2024+label%3AS-tracking-ready-to-stabilize%2CS-tracking-needs-documentation+-label%3AS-tracking-impl-incomplete%2CS-tracking-design-concerns) that may be included if they make enough progress
 * [**Bringing the Async Rust experience closer to parity with sync Rust**](./async_fn_everywhere.md) [via](./async_fn_everywhere.md#the-next-few-steps):
     * stabilizing async closures, thus enabling richer, combinator APIs like sync Rust's [`Iterator`](https://doc.rust-lang.org/std/iter/trait.Iterator.html);
     * [resolving the "send bound problem"](./async_fn_everywhere.md#resolve-the-send-bound-problem), thus enabling foundational, generic traits like Tower's [`Service`]() trait;
@@ -67,9 +73,6 @@ Flagship goals are the most impactful, most ambitious goals that we will attempt
         * [stabilizing support for pointers to statics in constants](./rfl_stable.md#pointers-to-statics-in-constants), permitting the construction of vtables for kernel modules
         * [stabilize options for building core/alloc with fewer features](./rfl_stable.md#custom-builds-of-corealloc-with-specialized-configuration-options), allowing the kernel to forbid infallible allocation and other aspects of the standard libraries that it does not want;
         * [code-generation features and compiler options](./rfl_stable.md#code-generation-features-and-compiler-options), allowing Rust to match the compilers given to gcc/clang when building the kernel.
-* [**Improving Rust ergonomics for higher-level code**](./ergonomics-initiative.md) [via](./rfl_stable.md#the-next-few-steps):
-    * [reducing the need to explicitly `clone` O(1) things](./ergonomics-initiative.md#reducing-clone-frequency), thus removing boilerplate;
-    * [supporting `&mut self` methods (particularly privated methods) that only borrow a subset of the fields in a struct](./ergonomics-initiative.md#partial-borrows-for-structs), thus making it easier to refactor part of a function body into a helper function without creating artifical borrow check conflicts.
 
 > **WIP:** There are several other [candidate flagship goals](./candidates.md#candidate-flagship-goals) and it is possible that this list may change to include more items or to replace one of the above with goals with something else.
 
@@ -82,7 +85,8 @@ In addition to our flagship goals, we include a number of "team goals" that the 
 Accepted team goals include:
 
 * [Preparing this slate of goals](./Project-goal-slate.md)
-* [Release the Rust 2024 edition](./Rust-2024-Edition.md)
+
+
 
 > **WIP:** There are several other [candidate team goals](./candidates.md#candidate-teams-goals) and it is likely that some of them will be added to this list.
 
