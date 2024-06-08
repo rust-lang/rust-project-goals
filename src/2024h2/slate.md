@@ -6,48 +6,45 @@ This document explains the 2024H2 goal slate and how it was chosen. If you just 
 
 ## Rust’s mission
 
-Rust’s mission is to *empower everyone to build reliable and efficient programs*. Overall our goal is to continue to grow adoption, but specifically in ways that will help us in driving this mission. 
+Rust's mission is to empower everyone to build reliable and efficient software.
+Rust targets programs that prioritize
 
-## Axioms for Rust adoption
+* reliability and robustness;
+* performance, memory usage, and resource consumption; and
+* long-term maintenance and extensibility.
 
-The slate was chosen according to the following axioms.
+We consider "any two out of the three" to the right heuristic for projects where Rust is a strong contender or possibly the best option.
 
-* **Slow and steady wins the race.** For this first round of goals, we want a small set that can be completed without undue stress. As the Rust open source org continues to grow, the set of goals can grow in size.
+## Axioms for selecting goals
+
+We believe that...
+
 * **Rust must deliver on its promise of peak performance and high reliability.** Rust’s maximum advantage is in applications that require peak performance or low-level systems capabilities. We must continue to innovate and support those areas above all.
-* **Rust must be “good enough” for much more.** If Rust is *only* worth using for those programs that truly need its advantages, that will not be enough value to justify its continued existence. Our goal is that Rust is productive enough to be worth using even when its full power is not required — and this in turn makes using Rust more pleasant for those critical applications.
+* **Rust's goals require high productivity and ergonomics.** Being attentive to ergonomics broadens Rust impact by making it more appealing for projects that value reliability and maintenance but which don't have strict performance requirements.
+* **Slow and steady wins the race.** For this first round of goals, we want a small set that can be completed without undue stress. As the Rust open source org continues to grow, the set of goals can grow in size.
 
-## Areas where Rust is best suited and how it grows
+## How the goal process works
 
-Rust offers particular advantages in two areas:
+Goals are proposed bottom-up by Rust users who want to see them get done.the people who are willing to commit resources to see them get done.
+Each goal describes a **problem** to be solved along with a **rough sketch of the solution**.
+Although goals are often part of a longer term ambition, they themselves cover about 6 months of effort.
 
-* **Latency sensitive or high scale network services**, which benefit from Rust’s lack of garbage collection pauses (in comparison to GC’d languages).
-* **Low-level systems applications**, like kernels and embedded development, benefit from Rust’s memory safety guarantees and high-level productivity (in comparison to C or C++).
-* **Developer tooling** has proven to be an unexpected growth area, with tools ranging from IDEs to build systems being written in Rust.
+To be accepted, each goal requires both an **owner** and **team approval**:
 
-### How Rust adoption grows
+* The **owner** is an individual (or set of individuals) who have committed to devote time and resources to getting the work done.
+  Requiring an owner helps to avoid overpromising, announcing goals that lack the resources to make progress.
+* **Team approval** indicates that the team agrees the problem is real and that the proposed solution sounds right.
+  It also means the team has budgeted time to support the owner in trying to solve it.
+  Requiring team approval ensures that owners don't invest in work only to see it be rejected or simply languish without feedback.
 
-The typical pattern is that Rust adoption begins in a system where Rust offers particular advantage. For example, a company building network services may begin with a highly scaled service. In this setting, the need to learn Rust is justified by its advantage. 
+The balance between owners and teams also helps to drive prioritization.
+Having an owner is a signal of the goal's importance: it means that *somebody* cares enough to put forward time/money.
+The team's job is to ensure that goals are congruent with Rust's mission overall as well as selecting goals with the broadest impact.
 
-Once users are past the initial learning curve, they find that Rust can be quite productive. They spend more time getting their program to build, but less time debugging; they are able to complete major refactorings successfully. They begin to use it for projects where Rust’s advantage is less and less — and in some cases in areas where other languages might have allowed for faster iteration, but Rust is “good enough”.
+No matter how it is approved, taking on a goal never means the project **must** make a change.
+Goals are taken before a solution is known, and it may be that an acceptable solution cannot be found.
+Final decisions are made the same way they've ever been, with RFCs to spell out the design and stabilization to mark a complete implementation.
 
-While it is not a goal for Rust to be used for all programs, Rust’s versatility — its ability to be “good enough” for a broad range of programs, even when other languages are strictly better — is a key part of making it a success. It both helps to make Rust adoption more practical (there are advantages to using one language for as many projects as possible) and the work to make Rust usage practical and ergonomic makes it more pleasant in all cases, making it even more effective when it is "in its element".
-
-### How Rust adoption stalls
-
-Anecdotally, the most commonly cited reasons to stop using Rust is a feeling that development is "too slow" or "too complex". There is not any one cause for this.
-
-* **Language complexity:** Most users that get frustrated with Rust do not cite the borrow checker but rather the myriad workarounds needed to overcome various obstacles and inconsistencies. Often "idomatic Rust" involves a number of crates to cover gaps in core functionality (e.g., `anyhow` as a better error type, or `async_recursion` to permit recursive async functions). Language complexity is a particular problem
-* **Picking crates:** Rust intentionally offeres a lean standard library, preferring instead to support a rich set of crates. But when getting started users are often overwhelmed by the options available and unsure which one would be best to use. Making matters worse, Rust documentation often doesn't show examples making use of these crates in an effort to avoid picking favorites, making it harder for users to learn how to do things.
-* **Build times and slow iteration:** Being able to make a change and quickly see its effect makes learning and debugging effortless. Despite our best efforts, real-world Rust programs do still have bugs, and finding and resolving those can be frustratingly slow when every change requires waiting minutes and minutes for a build to complete.
-
-### Additional concerns faced by companies
-
-For larger users, such as companies, there are additional concerns:
-
-* **Uneven support for cross-language invocations:** Most companies have large existing codebases in other languages. Rewriting those codebases from scratch is not an option. Sometimes it possible to integrate at a microservice or process boundary, but many would like a way to rewrite individual modules in Rust, passing data structures easily back and forth. Rust's support for this kind of interop is uneven and often requires knowing the right crate to use for any given language.
-* **Spotty ecosystem support, especially for older things:** There are a number of amazing crates in the Rust ecosystem, but there are also a number of notable gaps, particularly for older technologies. Larger companies though often have to interact with legacy systems. Lacking quality libraries makes that harder.
-* **Supply chain security:** Leaning on the ecosystem also means increased concerns about supply chain security and business continuity. In short, crates maintained by a few volunteers rather than being officially supported by Rust are a risk. 
-* **Limited hiring pool:** Hiring developers skilled in Rust remains a challenge. Companies have to be ready to onboard new developers and to help them learn Rust. Although there are many strong Rust books available, as well as a number of well regarded Rust training organizations, companies must still pick and choose between them to create a "how to learn Rust" workflow, and many do not have the extra time or skills to do that.
 
 ## Flagship goals
 
