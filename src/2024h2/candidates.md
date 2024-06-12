@@ -35,7 +35,7 @@ The following goals are nearing completion and expected to be converted into RFC
 
 ### WIP flagship goals
 
-The following goals were submitted and are sitll "under revision". They are unlikely to become flagship goals this round, but some parts of them may be adopted as team goals.
+The following goals were submitted and are still "under revision". They are unlikely to become flagship goals this round, but some parts of them may be adopted as team goals.
 
 | 2024 goal                                                         | Working towards                       | Owner                               | Teams                       |
 | ----------------------------------------------------------------- | ------------------------------------- | ----------------------------------- | --------------------------- |
