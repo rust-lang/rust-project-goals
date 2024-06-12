@@ -73,6 +73,7 @@ In many cases the work being described will definitely happen, but it is not cle
 | [impl trait everywhere][ITE]     | [oli-obk]         | [Lang], [Types]    |
 | [Patterns of empty types][PET]   | [Nadrieril]       | [Lang], [Compiler] |
 | [Relaxing the Orphan Rule][RTOR] | [Josh-Triplett][] | [Lang]             |
+| [Cargo Script][CS]               | [epage]           | [Cargo]            |
 
 [EI]: ./ergonomics-initiative.md
 [FIB]: ./faster-iterative-builds.md
@@ -91,6 +92,7 @@ In many cases the work being described will definitely happen, but it is not cle
 [ITE]: ./Impl-trait-everywhere.md
 [HLR]: ./higher-level-rust.md
 [SCI]: ./Rust-for-SciComp.md
+[CS]: ./cargo-script.md
 
 [Intrusive linked lists]: ./Intrusive-linked-lists.md
 [Fallible allocation]: ./Fallible-allocation.md
@@ -107,6 +109,7 @@ In many cases the work being described will definitely happen, but it is not cle
 [LC]: https://www.rust-lang.org/governance/teams/leadership-council
 [Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
 [Infra]: https://www.rust-lang.org/governance/teams/infra
+[Cargo]: https://www.rust-lang.org/governance/teams/dev-tools#team-cargo
 
 [compiler-errors]: https://github.com/compiler-errors
 [lqd]: https://github.com/lqd
@@ -120,5 +123,6 @@ In many cases the work being described will definitely happen, but it is not cle
 [josh-triplett]: https://github.com/Josh-Triplett
 [jkelleyrtp]: https://github.com/jkelleyrtp
 [ZuseZ4]: https://github.com/ZuseZ4
+[epage]: https://github.com/epage
 
 [Help wanted]: https://img.shields.io/badge/Help%20wanted-blue
