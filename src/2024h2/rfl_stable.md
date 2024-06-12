@@ -148,7 +148,7 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | extended `offset_of` syntax                          |                                     |                   |
 | ↳ stabilization                                      | ![Owner Needed][]                   | ![Volunteer][]    |
 | RFL on Rust CI                                       |                                     |                   |
-| ↳ implementation                                     | [Jakub Beránek][]                   | ![Funded][]       |
+| ↳ ~~implementation ([#125209][])~~                   | [Jakub Beránek][]                   | ![Funded][]       |
 | ↳ policy draft                                       | [Jakub Beránek][]                   | ![Funded][]       |
 | ↳ policy approval                                    | ![Team][] [Infra]                   | ![Not approved][] |
 | Pointers to static in constants                      |                                     |                   |
@@ -198,6 +198,7 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 [Help wanted]: https://img.shields.io/badge/Help%20wanted-blue
 [#748]: https://github.com/rust-lang/compiler-team/issues/748
 [#124655]: https://github.com/rust-lang/rust/pull/124655
+[#125209]: https://github.com/rust-lang/rust/pull/125209
 [Lang]: https://www.rust-lang.org/governance/teams/lang
 [Compiler]: https://www.rust-lang.org/governance/teams/infra
 [Infra]: https://www.rust-lang.org/governance/teams/infra
