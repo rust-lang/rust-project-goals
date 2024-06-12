@@ -12,3 +12,6 @@ edit-url-template = "https://github.com/rust-lang/rust-project-goals/edit/main/{
 [output.html.fold]
 enable = true
 level = 1
+
+[output.html.redirect]
+"/2024h2/async_fn_everywhere.html" = "/2024h2/async.html"

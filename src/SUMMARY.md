@@ -5,7 +5,7 @@
     - [The slate](./2024h2/slate.md)
     - [All candidates](./2024h2/candidates.md)
         - [Template](./TEMPLATE.md)
-        - [Async closures and send bounds](./2024h2/async_fn_everywhere.md)
+        - [Async Rust](./2024h2/async.md)
         - [Linux kernel builds on stable Rust](./2024h2/rfl_stable.md)
         - [Ergonomics initiative](./2024h2/ergonomics-initiative.md)
         - [Faster iterative builds](./2024h2/faster-iterative-builds.md)

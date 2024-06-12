@@ -56,12 +56,12 @@ Flagship goals are the most impactful, most ambitious goals that we will attempt
     * along with an [assortment of other possible changes](TODO)
     * never type fallback ([#123748](https://github.com/rust-lang/rust/issues/123748))
     * and a [number of other potential changes](https://github.com/rust-lang/rust/issues?q=label%3AC-tracking-issue+label%3AA-edition-2024+label%3AS-tracking-ready-to-stabilize%2CS-tracking-needs-documentation+-label%3AS-tracking-impl-incomplete%2CS-tracking-design-concerns) that may be included if they make enough progress
-* [**Bringing the Async Rust experience closer to parity with sync Rust**](./async_fn_everywhere.md) [via](./async_fn_everywhere.md#the-next-few-steps):
+* [**Bringing the Async Rust experience closer to parity with sync Rust**](./async.md) [via](./async.md#the-next-few-steps):
     * stabilizing async closures, thus enabling richer, combinator APIs like sync Rust's [`Iterator`](https://doc.rust-lang.org/std/iter/trait.Iterator.html);
-    * [resolving the "send bound problem"](./async_fn_everywhere.md#resolve-the-send-bound-problem), thus enabling foundational, generic traits like Tower's [`Service`]() trait;
-    * [stabilizing a trait in libstd for async iteration](./async_fn_everywhere.md#stabilize-trait-for-async-iteration), thus enabling the ecosystem to build atop a stable foundation;
-    * [authoring a draft RFC for async vision](./async_fn_everywhere.md#author-draft-rfc-for-async-vision), thus aligning the project around a coherent vision;
-    * [completing the async drop experiments](./async_fn_everywhere.md#complete-async-drop-experiments) proposed in [MCP 727][], laying the groundwork for resolving the the next most
+    * [resolving the "send bound problem"](./async.md#resolve-the-send-bound-problem), thus enabling foundational, generic traits like Tower's [`Service`]() trait;
+    * [stabilizing a trait in libstd for async iteration](./async.md#stabilize-trait-for-async-iteration), thus enabling the ecosystem to build atop a stable foundation;
+    * [authoring a draft RFC for async vision](./async.md#author-draft-rfc-for-async-vision), thus aligning the project around a coherent vision;
+    * [completing the async drop experiments](./async.md#complete-async-drop-experiments) proposed in [MCP 727][], laying the groundwork for resolving the the next most
 * [**Resolving the biggest blockers to Linux building on stable Rust**](./rfl_stable.md) [via](./rfl_stable.md#the-next-few-steps):
     * [stabilizing support for arbitrary `self` types and unsizeable smart pointers](./rfl_stable.md#stable-support-for-rfls-customized-arc-type), thus permitting ergonomic support for [in-place linked lists](https://rust-for-linux.com/arc-in-the-linux-kernel) on stable;
     * [stabilizing features for labeled goto in inline assembler and extended `offset_of!` support](./rfl_stable.md#labeled-goto-in-inline-assembler-and-extended-offset_of-support), needed for various bts of low-level coding;

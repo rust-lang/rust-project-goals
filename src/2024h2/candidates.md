@@ -76,7 +76,7 @@ In many cases the work being described will definitely happen, but it is not cle
 
 [EI]: ./ergonomics-initiative.md
 [FIB]: ./faster-iterative-builds.md
-[AFE]: ./async_fn_everywhere.md
+[AFE]: ./async.md
 [LK]: ./rfl_stable.md
 [LKH]: ./rfl_stable.md#ownership-and-other-resources
 [SCS]: ./Seamless-C-Support.md
