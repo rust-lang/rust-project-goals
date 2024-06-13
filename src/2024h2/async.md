@@ -1,10 +1,12 @@
-# Async closures and Send bounds
+# Bringing the Async Rust experience closer to parity with sync Rust
 
 | Metadata |                               |
 | -------- | ----------------------------- |
 | Owner(s) | [tmandry][], [nikomatsakis][] |
 | Teams    | [Lang], [Libs-API]            |
-| Status   | WIP                           |
+| Status   | Proposed as [RFC #3657]       |
+
+[RFC #3657]: https://github.com/rust-lang/rfcs/pull/3657
 
 [Lang]: https://www.rust-lang.org/governance/teams/lang
 [Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
