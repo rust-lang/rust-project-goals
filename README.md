@@ -1,2 +1,3 @@
 # rust-project-goals
-Rust project goals
+
+Check out the github pages site.
