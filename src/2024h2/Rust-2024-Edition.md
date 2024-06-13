@@ -4,14 +4,14 @@
 | -------- | ----------- |
 | Owner(s) | TC          |
 | Teams    | lang, types |
-| Status   | WIP         |
+| Status   | Accepted in [RFC #3501]         |
 
 ## Motivation
 
-[RFC 3501][] confirmed the desire to ship a Rust edition in 2024, continuing the pattern of shipping a new Rust edition every 3 years. Our goal for 2024 H2 is to stabilize a new edition on nightly by the end of 2024.
+[RFC #3501][] confirmed the desire to ship a Rust edition in 2024, continuing the pattern of shipping a new Rust edition every 3 years. Our goal for 2024 H2 is to stabilize a new edition on nightly by the end of 2024.
 
-[RFC 3501]: https://rust-lang.github.io/rfcs/3501-edition-2024.html
-[RFC 3085]: https://rust-lang.github.io/rfcs/3085-edition-2021.html
+[RFC #3501]: https://rust-lang.github.io/rfcs/3501-edition-2024.html
+[RFC #3085]: https://rust-lang.github.io/rfcs/3085-edition-2021.html
 
 ### The status quo
 
@@ -36,7 +36,7 @@ The Edition will be better integrated into our release train. Nightly users will
 
 ## Design axioms
 
-The "Edition Axioms" were [laid out in RFC 3085](https://rust-lang.github.io/rfcs/3085-edition-2021.html#guide-level-explanation):
+The "Edition Axioms" were [laid out in RFC #3085](https://rust-lang.github.io/rfcs/3085-edition-2021.html#guide-level-explanation):
 
 * **Editions do not split the ecosystem.** The most important rule for editions is that crates in one edition can interoperate seamlessly with crates compiled in other editions.
 * **Edition migration is easy and largely automated.** Whenever we release a new edition, we also release tooling to automate the migration. The tooling is not necessarily perfect: it may not cover all corner cases, and manual changes may still be required. 

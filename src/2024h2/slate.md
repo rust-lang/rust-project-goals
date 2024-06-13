@@ -25,7 +25,8 @@ We believe that...
 
 ## How the goal process works
 
-Goals are proposed bottom-up by Rust users who want to see them get done.the people who are willing to commit resources to see them get done.
+Goals are proposed bottom-up by Rust users who are willing to commit resources to see them get done, either by serving as owner,
+or by funding, mentoring, or otherwise helping to find an owner.
 Each goal describes a **problem** to be solved along with a **rough sketch of the solution**.
 Although goals are often part of a longer term ambition, they themselves cover about 6 months of effort.
 
@@ -48,20 +49,23 @@ Final decisions are made the same way they've ever been, with RFCs to spell out 
 
 ## Flagship goals
 
-Flagship goals are the most impactful, most ambitious goals that we will attempt to complete. They are often part of a larger program and effort that is expected to span over multiple years. For 2024h2, our flagship goals are listed below. Pursuant to our [selection axioms](#axioms-for-rust-adoption), we are focused primarily on closing gaps around async Rust and low-level systems programming (the Rust for Linux project, specifically) but we include some goals that target general productivity.
+Flagship goals are the most impactful, most ambitious goals that we will attempt to complete. They are often part of a larger program and effort that is expected to span over multiple years. For 2024h2, our flagship goals are listed below. Pursuant to our [selection axioms](#axioms-for-rust-adoption), we are focused primarily on closing gaps around async Rust and low-level systems programming (the Rust for Linux project, specifically) but we include some goals that target general productivity. Flagship goals are accepted by RFC.
 
-* [**Release the Rust 2024 edition**](./Rust-2024-Edition.md), accepted in [RFC ], [will contain](./Rust-2024-Edition.md#the-next-few-steps)
+[RFC #3501]: https://rust-lang.github.io/rfcs/3501-edition-2024.html
+[RFC #3657]: https://github.com/rust-lang/rfcs/pull/3657
+
+* [**Release the Rust 2024 edition**](./Rust-2024-Edition.md), accepted in [RFC #3501][], [will contain](./Rust-2024-Edition.md#the-next-few-steps)
     * a change in how `impl Trait` capture bounds work ([RFC #3498](https://github.com/rust-lang/rfcs/pull/3498) and [RFC #3617](https://github.com/rust-lang/rfcs/pull/3617))
     * reserving the `gen` keyword to allow for generators ([RFC #3513](https://github.com/rust-lang/rfcs/pull/3513))
     * along with an [assortment of other possible changes](TODO)
     * never type fallback ([#123748](https://github.com/rust-lang/rust/issues/123748))
     * and a [number of other potential changes](https://github.com/rust-lang/rust/issues?q=label%3AC-tracking-issue+label%3AA-edition-2024+label%3AS-tracking-ready-to-stabilize%2CS-tracking-needs-documentation+-label%3AS-tracking-impl-incomplete%2CS-tracking-design-concerns) that may be included if they make enough progress
-* [**Bringing the Async Rust experience closer to parity with sync Rust**](./async.md) [via](./async.md#the-next-few-steps):
+* [**Bringing the Async Rust experience closer to parity with sync Rust**](./async.md), proposed in [RFC #3657][], [via](./async.md#the-next-few-steps):
     * stabilizing async closures, thus enabling richer, combinator APIs like sync Rust's [`Iterator`](https://doc.rust-lang.org/std/iter/trait.Iterator.html);
     * [resolving the "send bound problem"](./async.md#resolve-the-send-bound-problem), thus enabling foundational, generic traits like Tower's [`Service`]() trait;
     * [stabilizing a trait in libstd for async iteration](./async.md#stabilize-trait-for-async-iteration), thus enabling the ecosystem to build atop a stable foundation;
     * [authoring a draft RFC for async vision](./async.md#author-draft-rfc-for-async-vision), thus aligning the project around a coherent vision;
-    * [completing the async drop experiments](./async.md#complete-async-drop-experiments) proposed in [MCP 727][], laying the groundwork for resolving the the next most
+    * [completing the async drop experiments](./async.md#complete-async-drop-experiments) proposed in [MCP 727][], laying the groundwork for resolving the the next major gap in language feature support.
 * [**Resolving the biggest blockers to Linux building on stable Rust**](./rfl_stable.md) [via](./rfl_stable.md#the-next-few-steps):
     * [stabilizing support for arbitrary `self` types and unsizeable smart pointers](./rfl_stable.md#stable-support-for-rfls-customized-arc-type), thus permitting ergonomic support for [in-place linked lists](https://rust-for-linux.com/arc-in-the-linux-kernel) on stable;
     * [stabilizing features for labeled goto in inline assembler and extended `offset_of!` support](./rfl_stable.md#labeled-goto-in-inline-assembler-and-extended-offset_of-support), needed for various bts of low-level coding;
@@ -78,6 +82,7 @@ Flagship goals are the most impactful, most ambitious goals that we will attempt
 ## Team goals
 
 In addition to our flagship goals, we include a number of "team goals" that the various Rust teams would like to advertise. These goals tend to be smaller in scope and more "solution-oriented". They aren't generally the big deadlines that will grab peoples' attention. But don't be deceived, their impact on your daily coding can be as big or greater!
+Team goals are accepted by the relevant team lead and do not require individual RFCs.
 
 Accepted team goals include:
 
