@@ -1,15 +1,16 @@
 # Stabilize key RFL features, RFL on CI
 
-| Metadata |                                                  |
-| -------- | ------------------------------------------------ |
-| Owner(s) | [nikomatsakis][], [joshtriplett][]               |
-| Teams    | [Lang], [Libs-API], [Infra] |
-| Status   | WIP                                              |
+| Metadata |                                    |
+| -------- | ---------------------------------- |
+| Owner(s) | [nikomatsakis][], [joshtriplett][] |
+| Teams    | [Lang], [Libs-API]                 |
+| Status   | WIP                                |
 
 ## Motivation
 
-The experimental support for Rust development in the Linux kernel is a watershed moment for Rust, demonstrating to the world that Rust is indeed capable of targeting all manner of low-level systems applications. And yet that support today rests on a number of unstable features, blocking the effort from ever going beyond experimental status. For 2024H2 we will work to close the largest gaps that block support.
+The [experimental support for Rust development in the Linux kernel][RFL] is a watershed moment for Rust, demonstrating to the world that Rust is indeed capable of targeting all manner of low-level systems applications. And yet today that support rests on a [number of unstable features][RFL#2], blocking the effort from ever going beyond experimental status. For 2024H2 we will work to close the largest gaps that block support.
 
+[RFL]: https://rust-for-linux.com/
 [RFL#2]: https://github.com/Rust-for-Linux/linux/issues/2
 
 ### The status quo
@@ -17,8 +18,6 @@ The experimental support for Rust development in the Linux kernel is a watershed
 The [Rust For Linux (RFL)][RFL] project has been accepted into the Linux kernel in experimental status.
 RFL permits authoring Rust-based modules that are compiled and linked into the Linux kernel.
 This is a very exciting milestone for Rust, but it's also a big challenge.
-
-[RFL]: https://rust-for-linux.com/
 
 Integrating Rust into the Linux kernel means that Rust must be able to interoperate with the kernel's low-level C primitives for things like locking, linked lists, allocation, and so forth.
 Integration requires Rust to expose low-level capabilities that don't all have stable interfaces.
@@ -127,42 +126,42 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 * The ![Funded][] badge indicates that the owner has committed and work will be funded by their employer or other sources.
 * The ![Team][] badge indicates a requirement where Team support is needed.
 
-| Subgoal                                              | Owner(s) or team(s)                 | Status            |
-| ---------------------------------------------------- | ----------------------------------- | ----------------- |
-| overall program management                           | [nikomatsakis][], [joshtriplett][]  | ![Funded][]       |
-| arbitrary self types v2                              |                                     |                   |
-| ↳ ~~author [RFC][RFC 3519]~~                         | ~~[Adrian Taylor][]~~               | ![Complete][]     |
-| ↳ ~~approve [RFC][RFC 3519]~~                        | ~~[Lang]~~                          | ![Complete][]     |
-| ↳ implementation                                     | [Adrian Taylor][]                   | ![Funded][]       |
-| ↳ assigned reviewer                                  | ![Team] [Compiler]                  | ![Not approved][] |
-| ↳ stabilization                                      | [Adrian Taylor][]                   | ![Funded][]       |
-| derive smart pointer                                 |                                     |                   |
-| ↳ ~~author [RFC][RFC 3621]~~                         | ~~[Alice Ryhl][]~~                  | ![Complete][]     |
-| ↳ approve [RFC][RFC 3621]                            | ![Team][] [Lang]                    | ![Approved][]     |
-| ↳ implementation                                     | [Xiang][]                           | ![Volunteer][]    |
-| ↳ stabilization                                      | [Xiang][]                           | ![Volunteer][]    |
-| `asm_goto`                                           |                                     |                   |
-| ↳ ~~implementation~~                                 | -                                   | ![Complete][]     |
-| ↳ real-world usage in Linux kernel                   | [Gary Guo]                          | ![Volunteer][]    |
-| ↳ stabilization                                      | [Gary Guo]                          | ![Volunteer][]    |
-| extended `offset_of` syntax                          |                                     |                   |
-| ↳ stabilization                                      | [Xiang][]                           | ![Volunteer][]    |
-| RFL on Rust CI                                       |                                     |                   |
-| ↳ ~~implementation ([#125209][])~~                   | [Jakub Beránek][]                   | ![Funded][]       |
-| ↳ policy draft                                       | [Jakub Beránek][]                   | ![Funded][]       |
-| ↳ policy approval                                    | ![Team][] [Infra]                   | ![Not approved][] |
-| Pointers to static in constants                      |                                     |                   |
-| ↳ stabilization proposal                             | ![Help wanted][]                    |                   |
-| ↳ stabilization decision                             | ![Team][] [Lang]                    | ![Not approved][] |
-| Code-generation features and compiler options        |                                     |                   |
-| ↳ ~~propose unstable `-Zfixed-x18` flag ([#748][])~~ | ~~[Alice Ryhl][]~~                  | ![Complete][]     |
-| ↳ ~~implement  `-Zfixed-x18` flag ([#124655])~~      | ~~[Alice Ryhl][]~~                  | ![Complete][]     |
-| ↳ stabilization PR for `-Zfixed-x18`                 | [Xiang][]                           | ![Volunteer][]    |
-| ↳ stabilization decision                             | ![Team][] [Compiler]                |                   |
-| ↳ research and summarization for other flags         | ![Help wanted][]                    |                   |
-| Custom builds of core/alloc                          |                                     |                   |
-| ↳ stabilization proposal for subsetting std          |                                     |                   |
-| ↳ stabilize subset of std                            | ![Team][] [Libs-API]                | ![Not approved][] |
+| Subgoal                                              | Owner(s) or team(s)                | Status            |
+| ---------------------------------------------------- | ---------------------------------- | ----------------- |
+| overall program management                           | [nikomatsakis][], [joshtriplett][] | ![Funded][]       |
+| arbitrary self types v2                              |                                    |                   |
+| ↳ ~~author [RFC][RFC 3519]~~                         | ~~[Adrian Taylor][]~~              | ![Complete][]     |
+| ↳ ~~approve [RFC][RFC 3519]~~                        | ~~[Lang]~~                         | ![Complete][]     |
+| ↳ implementation                                     | [Adrian Taylor][]                  | ![Funded][]       |
+| ↳ assigned reviewer                                  | ![Team] [Compiler]                 | ![Not approved][] |
+| ↳ stabilization                                      | [Adrian Taylor][]                  | ![Funded][]       |
+| derive smart pointer                                 |                                    |                   |
+| ↳ ~~author [RFC][RFC 3621]~~                         | ~~[Alice Ryhl][]~~                 | ![Complete][]     |
+| ↳ approve [RFC][RFC 3621]                            | ![Team][] [Lang]                   | ![Approved][]     |
+| ↳ implementation                                     | [Xiang][]                          | ![Volunteer][]    |
+| ↳ stabilization                                      | [Xiang][]                          | ![Volunteer][]    |
+| `asm_goto`                                           |                                    |                   |
+| ↳ ~~implementation~~                                 | -                                  | ![Complete][]     |
+| ↳ real-world usage in Linux kernel                   | [Gary Guo]                         | ![Volunteer][]    |
+| ↳ stabilization                                      | [Gary Guo]                         | ![Volunteer][]    |
+| extended `offset_of` syntax                          |                                    |                   |
+| ↳ stabilization                                      | [Xiang][]                          | ![Volunteer][]    |
+| ~~RFL on Rust CI~~                                   |                                    | ![Complete][]     |
+| ↳ ~~implementation ([#125209][])~~                   | ~~[Jakub Beránek][]~~              |                   |
+| ↳ ~~policy draft~~                                   | ~~[Jakub Beránek][]~~              |                   |
+| ↳ ~~policy approval~~                                |                                    |                   |
+| Pointers to static in constants                      |                                    |                   |
+| ↳ stabilization proposal                             | ![Help wanted][]                   |                   |
+| ↳ stabilization decision                             | ![Team][] [Lang]                   | ![Not approved][] |
+| Code-generation features and compiler options        |                                    |                   |
+| ↳ ~~propose unstable `-Zfixed-x18` flag ([#748][])~~ | ~~[Alice Ryhl][]~~                 | ![Complete][]     |
+| ↳ ~~implement  `-Zfixed-x18` flag ([#124655])~~      | ~~[Alice Ryhl][]~~                 | ![Complete][]     |
+| ↳ stabilization PR for `-Zfixed-x18`                 | [Xiang][]                          | ![Volunteer][]    |
+| ↳ stabilization decision                             | ![Team][] [Compiler]               |                   |
+| ↳ research and summarization for other flags         | ![Help wanted][]                   |                   |
+| Custom builds of core/alloc                          |                                    |                   |
+| ↳ stabilization proposal for subsetting std          |                                    |                   |
+| ↳ stabilize subset of std                            | ![Team][] [Libs-API]               | ![Not approved][] |
 
 ### Support needed from the project
 
