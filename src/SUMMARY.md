@@ -7,6 +7,7 @@
         - [Template](./TEMPLATE.md)
         - [Async Rust](./2024h2/async.md)
         - [Linux kernel builds on stable Rust](./2024h2/rfl_stable.md)
+        - [Cargo Script](./2024h2/cargo-script.md)
         - [Ergonomics initiative](./2024h2/ergonomics-initiative.md)
         - [Faster iterative builds](./2024h2/faster-iterative-builds.md)
         - [Seamless C support](./2024h2/Seamless-C-Support.md)
