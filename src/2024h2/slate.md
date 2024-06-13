@@ -92,4 +92,4 @@ Accepted team goals include:
 
 > **WIP:** There are several other [candidate team goals](./candidates.md#candidate-teams-goals) and it is likely that some of them will be added to this list.
 
-[Owner Needed]: https://img.shields.io/badge/Owned%20Needed-blue
+[Owner Needed]: https://img.shields.io/badge/Owner%20Needed-blue
