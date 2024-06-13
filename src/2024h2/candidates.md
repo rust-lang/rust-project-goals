@@ -113,8 +113,8 @@ In many cases the work being described will definitely happen, but it is not cle
 [lcnr]: https://github.com/lcnr
 [lqd]: https://github.com/lqd
 [Nadrieril]: https://github.com/Nadrieril
-[nikomatsakis]: https://github.com/nikomatsakis
 [oli-obk]: https://github.com/oli-obk
+[nikomatsakis]: https://github.com/nikomatsakis
 [tmandry]: https://github.com/tmandry
 [petrochenkov]: https://github.com/petrochenkov
 [pnkfelix]: https://github.com/pnkfelix
