@@ -146,7 +146,7 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | ↳ real-world usage in Linux kernel                   | [Gary Guo]                          | ![Volunteer][]    |
 | ↳ stabilization                                      | [Gary Guo]                          | ![Volunteer][]    |
 | extended `offset_of` syntax                          |                                     |                   |
-| ↳ stabilization                                      | ![Owner Needed][]                   | ![Volunteer][]    |
+| ↳ stabilization                                      | [Xiang][]                           | ![Volunteer][]    |
 | RFL on Rust CI                                       |                                     |                   |
 | ↳ ~~implementation ([#125209][])~~                   | [Jakub Beránek][]                   | ![Funded][]       |
 | ↳ policy draft                                       | [Jakub Beránek][]                   | ![Funded][]       |
