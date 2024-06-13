@@ -3,11 +3,12 @@
 | Metadata | |
 | --- | --- |
 | Owner(s) | [jkelleyrtp][] |
- Teams    | [Lang], [Compiler]            |
+| Teams    | [Lang], [Compiler], [Cargo]            |
 | Status | WIP |
 
 [Lang]: https://www.rust-lang.org/governance/teams/lang
-[Compiler]: https://www.rust-lang.org/governance/teams/library#team-compiler
+[Compiler]: https://www.rust-lang.org/governance/teams/compiler
+[Cargo]: https://www.rust-lang.org/governance/teams/dev-tools#team-cargo
 
 ## Motivation
 
