@@ -13,7 +13,7 @@ Both kinds of goals use the same [template](../TEMPLATE.md), the difference is i
 
 ### Would you like to propose a goal?
 
-Do it! [Instructons for proposing goals can be found here.](../how_to/propose_a_goal.md)*
+Do it! [Instructions for proposing goals can be found here.](../how_to/propose_a_goal.md)*
 
 ## Flagship goals
 
@@ -30,19 +30,19 @@ The following goals are nearing completion and expected to be converted into RFC
 | 2024 goal                                                         | Working towards                       | Owner                               | Teams                       |
 | ----------------------------------------------------------------- | ------------------------------------- | ----------------------------------- | --------------------------- |
 | [Async closures and send bounds][AFE]                             | Async/sync parity                     | [nikomatsakis][], [tmandry][]       | [Lang], [Libs-API]          |
-| [Stabilize key RFL features, RFL on CI][LK] [![Help wanted]][LKH] | Linux builds on stable Rust           | [nikomatsakis][], [Josh-Triplett][] | [Lang], [Libs-API], [Infra] |
+| [Stabilize key RFL features, RFL on CI][LK] [![Help wanted]][LKH] | Linux builds on stable Rust           | [nikomatsakis][], [joshtriplett][]  | [Lang], [Libs-API], [Infra] |
 
 
 ### WIP flagship goals
 
-The following goals were submitted and are sitll "under revision". They are unlikely to become flagship goals this round, but some parts of them may be adopted as team goals.
+The following goals were submitted and are still "under revision". They are unlikely to become flagship goals this round, but some parts of them may be adopted as team goals.
 
 | 2024 goal                                                         | Working towards                       | Owner                               | Teams                       |
 | ----------------------------------------------------------------- | ------------------------------------- | ----------------------------------- | --------------------------- |
 | [Ergonomics initiative: clones and partial borrows][EI]           | Entry-level Rust developer experience | [jkelleyrtp][]                      | [Lang]                      |
-| [Faster iterative builds][FIB]                                    | Entry-level Rust dev experience       | ![WIP][wip]                         | [jkelleyrtp][]              | [Lang], [Compiler]
-| [Rust for Scientific Computing][SCI]                              | Rust for Scientific Computing         | ![WIP][wip]                         | [ZuseZ4][]                  | [Lang], [Compiler]
-| [Towards seamless C support][SCS]                                 |                                       | ![WIP][wip]                         | [Josh-Triplett][]           | [Lang], [Compiler]
+| [Faster iterative builds][FIB] ![WIP][wip]                        | Entry-level Rust dev experience       | [jkelleyrtp][]                      | [Lang], [Compiler]          |
+| [Rust for Scientific Computing][SCI] ![WIP][wip]                  | Rust for Scientific Computing         | [ZuseZ4][]                          | [Lang], [Compiler]          |
+| [Towards seamless C support][SCS] ![WIP][wip]                     |                                       | [joshtriplett][]                    | [Lang], [Compiler]          |
 
 Some notes to highlight:
 
@@ -72,7 +72,7 @@ In many cases the work being described will definitely happen, but it is not cle
 | [Polonius on Nightly][NBNLB]     | [lqd]             | [Lang], [Types]    |
 | [impl trait everywhere][ITE]     | [oli-obk]         | [Lang], [Types]    |
 | [Patterns of empty types][PET]   | [Nadrieril]       | [Lang], [Compiler] |
-| [Relaxing the Orphan Rule][RTOR] | [Josh-Triplett][] | [Lang]             |
+| [Relaxing the Orphan Rule][RTOR] | [joshtriplett][]  | [Lang]             |
 
 [EI]: ./ergonomics-initiative.md
 [FIB]: ./faster-iterative-builds.md
@@ -107,8 +107,10 @@ In many cases the work being described will definitely happen, but it is not cle
 [LC]: https://www.rust-lang.org/governance/teams/leadership-council
 [Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
 [Infra]: https://www.rust-lang.org/governance/teams/infra
+[Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
 
 [compiler-errors]: https://github.com/compiler-errors
+[lcnr]: https://github.com/lcnr
 [lqd]: https://github.com/lqd
 [Nadrieril]: https://github.com/Nadrieril
 [nikomatsakis]: https://github.com/nikomatsakis
@@ -116,8 +118,8 @@ In many cases the work being described will definitely happen, but it is not cle
 [tmandry]: https://github.com/tmandry
 [petrochenkov]: https://github.com/petrochenkov
 [pnkfelix]: https://github.com/pnkfelix
-[TC]: https://github.com/TC
-[josh-triplett]: https://github.com/Josh-Triplett
+[TC]: https://github.com/traviscross
+[joshtriplett]: https://github.com/joshtriplett
 [jkelleyrtp]: https://github.com/jkelleyrtp
 [ZuseZ4]: https://github.com/ZuseZ4
 

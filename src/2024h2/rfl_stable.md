@@ -2,7 +2,7 @@
 
 | Metadata |                                                  |
 | -------- | ------------------------------------------------ |
-| Owner(s) | [nikomatsakis][], [Josh-Triplett][]              |
+| Owner(s) | [nikomatsakis][], [joshtriplett][]               |
 | Teams    | [Lang], [Libs-API], [Infra] |
 | Status   | WIP                                              |
 
@@ -85,7 +85,7 @@ Both have been implemented but more experience and/or may be needed before stabi
 
 #### RFL on Rust CI
 
-Rust sometimes integrate external projects of paticular importance or interest into its CI.
+Rust sometimes integrates external projects of particular importance or interest into its CI.
 This gives us early notice when changes to the compiler or stdlib impact that project.
 Some of that breakage is accidental, and CI integration ensures we can fix it without the project ever being impacted.
 Otherwise the breakage is intentional, and this gives us an early way to notify the project so they can get ahead of it.
@@ -129,7 +129,7 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 
 | Subgoal                                              | Owner(s) or team(s)                 | Status            |
 | ---------------------------------------------------- | ----------------------------------- | ----------------- |
-| overall program management                           | [nikomatsakis][], [Josh-Triplett][] | ![Funded][]       |
+| overall program management                           | [nikomatsakis][], [joshtriplett][]  | ![Funded][]       |
 | arbitrary self types v2                              |                                     |                   |
 | ↳ ~~author [RFC][RFC 3519]~~                         | ~~[Adrian Taylor][]~~               | ![Complete][]     |
 | ↳ ~~approve [RFC][RFC 3519]~~                        | ~~[Lang]~~                          | ![Complete][]     |
@@ -148,7 +148,7 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | extended `offset_of` syntax                          |                                     |                   |
 | ↳ stabilization                                      | ![Owner Needed][]                   | ![Volunteer][]    |
 | RFL on Rust CI                                       |                                     |                   |
-| ↳ implementation                                     | [Jakub Beránek][]                   | ![Funded][]       |
+| ↳ ~~implementation ([#125209][])~~                   | [Jakub Beránek][]                   | ![Funded][]       |
 | ↳ policy draft                                       | [Jakub Beránek][]                   | ![Funded][]       |
 | ↳ policy approval                                    | ![Team][] [Infra]                   | ![Not approved][] |
 | Pointers to static in constants                      |                                     |                   |
@@ -156,13 +156,11 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | ↳ stabilization decision                             | ![Team][] [Lang]                    | ![Not approved][] |
 | Code-generation features and compiler options        |                                     |                   |
 | ↳ ~~propose unstable `-Zfixed-x18` flag ([#748][])~~ | ~~[Alice Ryhl][]~~                  | ![Complete][]     |
-| ↳ implement  `-Zfixed-x18` flag                      | [Xiang][]                           | ![Volunteer][]    |
+| ↳ ~~implement  `-Zfixed-x18` flag ([#124655])~~      | ~~[Alice Ryhl][]~~                  | ![Complete][]     |
 | ↳ stabilization PR for `-Zfixed-x18`                 | [Xiang][]                           | ![Volunteer][]    |
 | ↳ stabilization decision                             | ![Team][] [Compiler]                |                   |
 | ↳ research and summarization for other flags         | ![Help wanted][]                    |                   |
 | Custom builds of core/alloc                          |                                     |                   |
-| ↳ stabilization proposal for `-Zbuild-std` mechanism | ![Help wanted][]                    |                   |
-| ↳ stabilize `-Zbuild-std` mechanism                  | ![Team][] [Cargo]                   | ![Not approved][] |
 | ↳ stabilization proposal for subsetting std          |                                     |                   |
 | ↳ stabilize subset of std                            | ![Team][] [Libs-API]                | ![Not approved][] |
 
@@ -196,9 +194,11 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 [TBD]: https://img.shields.io/badge/TBD-red
 [Team]: https://img.shields.io/badge/Team%20ask-red
 [Gary Guo]: https://github.com/nbdd0121
-[Owner Needed]: https://img.shields.io/badge/Owned%20Needed-blue
+[Owner Needed]: https://img.shields.io/badge/Owner%20Needed-blue
 [Help wanted]: https://img.shields.io/badge/Help%20wanted-blue
 [#748]: https://github.com/rust-lang/compiler-team/issues/748
+[#124655]: https://github.com/rust-lang/rust/pull/124655
+[#125209]: https://github.com/rust-lang/rust/pull/125209
 [Lang]: https://www.rust-lang.org/governance/teams/lang
 [Compiler]: https://www.rust-lang.org/governance/teams/infra
 [Infra]: https://www.rust-lang.org/governance/teams/infra
@@ -210,6 +210,6 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 [Xiang]: https://github.com/dingxiangfei2009
 [Jakub Beránek]: https://github.com/Kobzol
 [nikomatsakis]: https://github.com/nikomatsakis/
-[Josh-Triplett]: https://github.com/Josh-Triplett/
+[joshtriplett]: https://github.com/joshtriplett/
 
 
