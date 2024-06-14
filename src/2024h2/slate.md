@@ -69,11 +69,10 @@ Flagship goals are the most impactful, most ambitious goals that we will attempt
 * [**Resolving the biggest blockers to Linux building on stable Rust**](./rfl_stable.md) [via](./rfl_stable.md#the-next-few-steps):
     * [stabilizing support for arbitrary `self` types and unsizeable smart pointers](./rfl_stable.md#stable-support-for-rfls-customized-arc-type), thus permitting ergonomic support for [in-place linked lists](https://rust-for-linux.com/arc-in-the-linux-kernel) on stable;
     * [stabilizing features for labeled goto in inline assembler and extended `offset_of!` support](./rfl_stable.md#labeled-goto-in-inline-assembler-and-extended-offset_of-support), needed for various bts of low-level coding;
-    * [adding Rust For Linux project on Rust CI](./rfl_stable.md#rfl-on-rust-ci), thus ensuring we don't accidentally cause regressions for this highly visible project.
-    *  ![Owner Needed][] We would also like to do the following but currently lack owners:
-        * [stabilizing support for pointers to statics in constants](./rfl_stable.md#pointers-to-statics-in-constants), permitting the construction of vtables for kernel modules
-        * [stabilize options for building core/alloc with fewer features](./rfl_stable.md#custom-builds-of-corealloc-with-specialized-configuration-options), allowing the kernel to forbid infallible allocation and other aspects of the standard libraries that it does not want;
-        * [code-generation features and compiler options](./rfl_stable.md#code-generation-features-and-compiler-options), allowing Rust to match the compilers given to gcc/clang when building the kernel.
+    * [adding Rust For Linux project on Rust CI](./rfl_stable.md#rfl-on-rust-ci), thus ensuring we don't accidentally cause regressions for this highly visible project (done!);
+    * [stabilizing support for pointers to statics in constants](./rfl_stable.md#pointers-to-statics-in-constants), permitting the construction of vtables for kernel modules;
+    * [code-generation features and compiler options](./rfl_stable.md#code-generation-features-and-compiler-options), allowing Rust to match the compilers given to gcc/clang when building the kernel;
+    * and, if possible, [stabilize options for building core/alloc with fewer features](./rfl_stable.md#custom-builds-of-corealloc-with-specialized-configuration-options), allowing the kernel to forbid infallible allocation and other aspects of the standard libraries that it does not want (this requires further investigation).
 
 > **WIP:** There are several other [candidate flagship goals](./candidates.md#candidate-flagship-goals) and it is possible that this list may change to include more items or to replace one of the above with goals with something else.
 
