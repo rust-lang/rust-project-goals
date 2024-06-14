@@ -15,9 +15,7 @@ The [experimental support for Rust development in the Linux kernel][RFL] is a wa
 
 ### The status quo
 
-The [Rust For Linux (RFL)][RFL] project has been accepted into the Linux kernel in experimental status.
-RFL permits authoring Rust-based modules that are compiled and linked into the Linux kernel.
-This is a very exciting milestone for Rust, but it's also a big challenge.
+The [Rust For Linux (RFL)][RFL] project has been accepted into the Linux kernel in experimental status. RFL permits authoring Rust-based modules that are compiled and linked into the Linux kernel. Rust would be the only other general purpose language apart from C used to author Kernel modules. This is a very exciting milestone for Rust, but it's also a big challenge.
 
 Integrating Rust into the Linux kernel means that Rust must be able to interoperate with the kernel's low-level C primitives for things like locking, linked lists, allocation, and so forth.
 Integration requires Rust to expose low-level capabilities that don't all have stable interfaces.
@@ -26,31 +24,24 @@ In some cases, the needed features may be stable, but may not be enough to provi
 [pinned-init]: https://rust-for-linux.com/pinned-init
 [arclk]: https://rust-for-linux.com/arc-in-the-linux-kernel
 
-In the short term, the biggest blocker to the RFL exiting "experimental" status is its use of unstable features.
-Because unstable features have no kind of reliability guarantee, this in turn means that RFL can only be built with a specific, pinned version of the Rust compiler.
-This is a challenge for distributions which wish to be able to build a range of kernel sources with the same compiler, rather than having to select a particular toolchain for a particular kernel version.
+In the short term, the biggest blocker to the RFL exiting "experimental" status is its use of unstable features. Because unstable features have no kind of reliability guarantee, this in turn means that RFL can only be built with a specific, pinned version of the Rust compiler. This is a challenge for distributions which wish to be able to build a range of kernel sources with the same compiler, rather than having to select a particular toolchain for a particular kernel version.
 
-Longer term, having Rust in the Linux kernel is an opportunity to expose more C developers to the benefits of using Rust.
-But that exposure can go both ways.
-If Rust is constantly causing pain related to toolchain instability,
-or if Rust isn't able to interact gracefully with the kernel's data structures,
-kernel developers may have a bad first impression that causes them to write off Rust altogether.
-We wish to avoid that outcome.
-And besides, the Linux kernel is exactly the sort of low-level systems application we want Rust to be great for!
+Longer term, having Rust in the Linux kernel is an opportunity to expose more C developers to the benefits of using Rust. But that exposure can go both ways. If Rust is constantly causing pain related to toolchain instability, or if Rust isn't able to interact gracefully with the kernel's data structures, kernel developers may have a bad first impression that causes them to write off Rust altogether. We wish to avoid that outcome. And besides, the Linux kernel is exactly the sort of low-level systems application we want Rust to be great for!
 
-For deeper background, please refer to these presentations on Rust For Linux that give more information:
+For deeper background, please refer to these materials:
 
-* [Rust in the linux kernel / RustLab 2023 / Alice Ryhl](https://www.youtube.com/watch?v=CEznkXjYFb4)
+* [Original RFC proposing Rust support](https://lore.kernel.org/lkml/20210414184604.23473-1-ojeda@kernel.org/)
+* [Articles on LWN about Kangrejos over the years](https://lwn.net/Archives/ConferenceIndex/#Kangrejos)
+* [Rust in the linux kernel, by Alice Ryhl](https://www.youtube.com/watch?v=CEznkXjYFb4)
+* [Using Rust in the binder driver, by Alice Ryhl](https://www.youtube.com/watch?v=Kt3hpvMZv8o)
 
 ### The next few steps
 
-The RFL project has a [tracking issue][rfl2] listing the unstable features that they rely upon.
-After discussion with the RFL team, we identified the following subgoals as the ones most urgent to address in 2024.
-Closing these issues gets us within striking distance of being able to build the RFL codebase on stable Rust.
+The RFL project has a [tracking issue][rfl2] listing the unstable features that they rely upon. After discussion with the RFL team, we identified the following subgoals as the ones most urgent to address in 2024. Closing these issues gets us within striking distance of being able to build the RFL codebase on stable Rust.
 
 * Stable support for RFL's customized ARC type
 * Labeled goto in inline assembler and extended `offset_of!` support
-* RFL on Rust CI
+* RFL on Rust CI ([done now!])
 * Pointers to statics in constants [![Owner Needed][]](#ownership-and-other-resources)
 * Custom builds of core/alloc with specialized configuration options [![Owner Needed][]](#ownership-and-other-resources)
 * Code-generation features and compiler options [![Owner Needed][]](#ownership-and-other-resources)
@@ -84,6 +75,10 @@ Both have been implemented but more experience and/or may be needed before stabi
 
 #### RFL on Rust CI
 
+> **Update**: This was completed in [PR #125209] by Jakub Beránek during the planning process!
+
+[PR #125209]: https://github.com/rust-lang/rust/pull/125209
+
 Rust sometimes integrates external projects of particular importance or interest into its CI.
 This gives us early notice when changes to the compiler or stdlib impact that project.
 Some of that breakage is accidental, and CI integration ensures we can fix it without the project ever being impacted.
@@ -97,7 +92,7 @@ as we now have enough examples to generalize somewhat.
 
 #### Pointers to statics in constants
 
-The RFL project has a need to create vtables in read-only memory (unique address not required). The current implementation relies on the `const_mut_refs` and `const_refs_to_static` features ([representative example](https://godbolt.org/z/r58jP6YM4)).
+The RFL project has a need to create vtables in read-only memory (unique address not required). The current implementation relies on the `const_mut_refs` and `const_refs_to_static` features ([representative example](https://godbolt.org/z/r58jP6YM4)). Discussion has identified some questions that need to be resolved but no major blockers.
 
 ### The "shiny future" we are working towards
 
@@ -109,6 +104,10 @@ In addition to the work listed above, there are a few other obvious items that t
 
 The RFL project builds the stdlib with a number of configuration options to eliminate undesired aspects of libcore (listed in [RFL#2][]). They need a standard way to build a custom version of core as well as agreement on the options that the kernel will continue using.
 
+#### Stable sanitizer support
+
+Support for building and using sanitizers, in particular KASAN.
+
 #### Code-generation features and compiler options
 
 The RFL project requires various code-generation options. Some of these are related to custom features of the kernel, such as [X18 support][#748] but others are codegen options like sanitizers and the like. Some subset of the options listed on [RFL#2][] will need to be stabilized to support being built with all required configurations, but working out the precise set will require more effort.
@@ -117,7 +116,8 @@ Looking further afield, possible future work includes more ergonomic versions of
 
 ## Design axioms
 
-None authored.
+* **First, do no harm.** If we want to make a good first impression on kernel developers, the minimum we can do is fit comfortably within their existing workflows so that people not using Rust don't have to do extra work to support it. So long as Linux relies on unstable features, users will have to ensure they have the correct version of Rust installed, which means imposing labor on all Kernel developers.
+* **Don't let perfect be the enemy of good.** The primary goal is to offer stable support for the particular use cases that the Linux kernel requires. Wherever possible we aim to stabilize features completely, but if necessary, we can try to stabilize a subset of functionality that meets the kernel developers' needs while leaving other aspects unstable.
 
 ## Ownership and other resources
 
@@ -151,8 +151,10 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | ↳ ~~policy draft~~                                   | ~~[Jakub Beránek][]~~              |                   |
 | ↳ ~~policy approval~~                                |                                    |                   |
 | Pointers to static in constants                      |                                    |                   |
-| ↳ stabilization proposal                             | ![Help wanted][]                   |                   |
-| ↳ stabilization decision                             | ![Team][] [Lang]                   | ![Not approved][] |
+| ↳ stabilization proposal                             | [nikomatsakis][]                   | ![Funded][]       |
+| ↳ stabilization decision                             | ![Team][] [Lang]                   |                   |
+| Stable sanitizer support                             | [WesleyWiser][]                    | ![Funded][]       |
+| ↳ stabilization decision                             | ![Team][] [Compiler]               |                   |
 | Code-generation features and compiler options        |                                    |                   |
 | ↳ ~~propose unstable `-Zfixed-x18` flag ([#748][])~~ | ~~[Alice Ryhl][]~~                 | ![Complete][]     |
 | ↳ ~~implement  `-Zfixed-x18` flag ([#124655])~~      | ~~[Alice Ryhl][]~~                 | ![Complete][]     |
@@ -161,7 +163,11 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | ↳ research and summarization for other flags         | ![Help wanted][]                   |                   |
 | Custom builds of core/alloc                          |                                    |                   |
 | ↳ stabilization proposal for subsetting std          |                                    |                   |
-| ↳ stabilize subset of std                            | ![Team][] [Libs-API]               | ![Not approved][] |
+| ↳ stabilize subset of std                            | ![Team][] [Libs-API]               |                   |
+
+[oli-obk]: https://github.com/oli-obk/
+[wesleywiser]: https://github.com/wesleywiser
+
 
 ### Support needed from the project
 

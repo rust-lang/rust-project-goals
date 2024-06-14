@@ -1,4 +1,4 @@
-# Proposal a new goal
+# Propose a new goal
 
 * Clone the [GitHub repository](https://github.com/rust-lang/rust-project-goals) and copy the [`TEMPLATE.md`](../TEMPLATE.md) to a file like `2024h2/your-goal-name.md`.
 * Fill out the `your-goal-name.md` file with details, using the template and other goals as an example.
