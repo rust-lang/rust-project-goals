@@ -49,7 +49,7 @@ Final decisions are made the same way they've ever been, with RFCs to spell out 
 
 ## Flagship goals
 
-Flagship goals are the most impactful, most ambitious goals that we will attempt to complete. They are often part of a larger program and effort that is expected to span over multiple years. For 2024h2, our flagship goals are listed below. Pursuant to our [selection axioms](#axioms-for-rust-adoption), we are focused primarily on closing gaps around async Rust and low-level systems programming (the Rust for Linux project, specifically) but we include some goals that target general productivity. Flagship goals are accepted by RFC.
+Flagship goals are the most impactful, most ambitious goals that we will attempt to complete. They are often part of a larger program and effort that is expected to span over multiple years. For 2024h2, our flagship goals are listed below. Flagship goals are accepted by RFC.
 
 [RFC #3501]: https://rust-lang.github.io/rfcs/3501-edition-2024.html
 [RFC #3657]: https://github.com/rust-lang/rfcs/pull/3657
@@ -87,7 +87,7 @@ Team goals are accepted by the relevant team lead and do not require individual 
 Accepted team goals include:
 
 * [Preparing this slate of goals](./Project-goal-slate.md)
-
+* [Cargo Script](./cargo-script.md)
 
 
 > **WIP:** There are several other [candidate team goals](./candidates.md#candidate-teams-goals) and it is likely that some of them will be added to this list.
