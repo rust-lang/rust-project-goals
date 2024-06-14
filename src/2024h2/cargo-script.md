@@ -4,7 +4,7 @@
 | --- | --- |
 | Owner(s) | epage |
 | Teams | Cargo |
-| Status | WIP |
+| Status | Accepted in [rust-lang/rust-project-goals#22](https://github.com/rust-lang/rust-project-goals/issues/22) |
 
 ## Motivation
 
