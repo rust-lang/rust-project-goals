@@ -53,6 +53,7 @@ Flagship goals are the most impactful, most ambitious goals that we will attempt
 
 [RFC #3501]: https://rust-lang.github.io/rfcs/3501-edition-2024.html
 [RFC #3657]: https://github.com/rust-lang/rfcs/pull/3657
+[RFC #3658]: https://github.com/rust-lang/rfcs/pull/3658
 
 * [**Release the Rust 2024 edition**](./Rust-2024-Edition.md), accepted in [RFC #3501][], [will contain](./Rust-2024-Edition.md#the-next-few-steps)
     * a change in how `impl Trait` capture bounds work ([RFC #3498](https://github.com/rust-lang/rfcs/pull/3498) and [RFC #3617](https://github.com/rust-lang/rfcs/pull/3617))
@@ -66,7 +67,7 @@ Flagship goals are the most impactful, most ambitious goals that we will attempt
     * [stabilizing a trait in libstd for async iteration](./async.md#stabilize-trait-for-async-iteration), thus enabling the ecosystem to build atop a stable foundation;
     * [authoring a draft RFC for async vision](./async.md#author-draft-rfc-for-async-vision), thus aligning the project around a coherent vision;
     * [completing the async drop experiments](./async.md#complete-async-drop-experiments) proposed in [MCP 727][], laying the groundwork for resolving the the next major gap in language feature support.
-* [**Resolving the biggest blockers to Linux building on stable Rust**](./rfl_stable.md) [via](./rfl_stable.md#the-next-few-steps):
+* [**Resolving the biggest blockers to Linux building on stable Rust**](./rfl_stable.md), proposed in [RFC #3658][], [via](./rfl_stable.md#the-next-few-steps):
     * [stabilizing support for arbitrary `self` types and unsizeable smart pointers](./rfl_stable.md#stable-support-for-rfls-customized-arc-type), thus permitting ergonomic support for [in-place linked lists](https://rust-for-linux.com/arc-in-the-linux-kernel) on stable;
     * [stabilizing features for labeled goto in inline assembler and extended `offset_of!` support](./rfl_stable.md#labeled-goto-in-inline-assembler-and-extended-offset_of-support), needed for various bts of low-level coding;
     * [adding Rust For Linux project on Rust CI](./rfl_stable.md#rfl-on-rust-ci), thus ensuring we don't accidentally cause regressions for this highly visible project (done!);
