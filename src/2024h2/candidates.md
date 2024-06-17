@@ -64,16 +64,16 @@ Some notes to highlight:
 These are goals that are still being workshopped. They are sorted roughly by progress and likelihood to become top candidates.
 In many cases the work being described will definitely happen, but it is not clear if they ought to become a "Project Goal".
 
-| 2024 goal                        | Owner             | Teams              |
-| -------------------------------- | ----------------- | ------------------ |
-| [Contracts and invariants][CI]   | [pnkfelix]        | [Lang], [Compiler] |
-| [New Rust trait solver][NTS]     | [lcnr]            | [Types]            |
-| [Formal model of Rust][AMF]      | [nikomatsakis]    | [Types]            |
-| [Polonius on Nightly][NBNLB]     | [lqd]             | [Lang], [Types]    |
-| [impl trait everywhere][ITE]     | [oli-obk]         | [Lang], [Types]    |
-| [Patterns of empty types][PET]   | [Nadrieril]       | [Lang], [Compiler] |
-| [Relaxing the Orphan Rule][RTOR] | [Josh-Triplett][] | [Lang]             |
-| [Cargo Script][CS]               | [epage]           | [Cargo]            |
+| 2024 goal                           | Owner             | Teams              |
+| ----------------------------------- | ----------------- | ------------------ |
+| [Contracts and invariants][CI]      | [pnkfelix]        | [Lang], [Compiler] |
+| [Next-generation trait solver][NTS] | [lcnr]            | [Types]            |
+| [Formal model of Rust][AMF]         | [nikomatsakis]    | [Types]            |
+| [Polonius on Nightly][NBNLB]        | [lqd]             | [Lang], [Types]    |
+| [impl trait everywhere][ITE]        | [oli-obk]         | [Lang], [Types]    |
+| [Patterns of empty types][PET]      | [Nadrieril]       | [Lang], [Compiler] |
+| [Relaxing the Orphan Rule][RTOR]    | [Josh-Triplett][] | [Lang]             |
+| [Cargo Script][CS]                  | [epage]           | [Cargo]            |
 
 [EI]: ./ergonomics-initiative.md
 [FIB]: ./faster-iterative-builds.md
@@ -82,7 +82,7 @@ In many cases the work being described will definitely happen, but it is not cle
 [LKH]: ./rfl_stable.md#ownership-and-other-resources
 [SCS]: ./Seamless-C-Support.md
 [CI]: ./Contracts-and-invariants.md
-[NTS]: ./New-trait-solver.md
+[NTS]: ./next-solver.md
 [AMF]: ./a-mir-formality.md
 [AGS]: ./Project-goal-slate.md
 [R2024]: ./Rust-2024-Edition.md
