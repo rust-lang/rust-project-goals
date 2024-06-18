@@ -90,6 +90,18 @@ Accepted team goals include:
 * [Cargo Script](./cargo-script.md)
 
 
+The current "draft set" of other team goals is as follows (expect changes):
+
+* Types
+  * [Next-generation trait solver](./2024h2/next-solver.md) 
+  * [a-mir-formality](./a-mir-formality.md)
+  * [polonius on nightly](./Polonius.md)
+  * [stabilize ATPIT](./Impl-trait-everywhere.md)
+* Lang
+  * [Patterns of empty types](./Patterns-of-empty-types.md), owner 
+* Compiler
+
+
 > **WIP:** There are several other [candidate team goals](./candidates.md#candidate-teams-goals) and it is likely that some of them will be added to this list.
 
 [Owner Needed]: https://img.shields.io/badge/Owner%20Needed-blue

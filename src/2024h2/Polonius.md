@@ -1,13 +1,12 @@
 # Polonius
 
-| Metadata |                 |
-| -------- | --------------- |
-| Owner(s) | [lqd]           |
-| Teams    | [Lang], [Types] |
-| Status   | WIP             |
+| Metadata |         |
+| -------- | ------- |
+| Owner(s) | [lqd]   |
+| Teams    | [Types] |
+| Status   | WIP     |
 
 [lqd]: https://github.com/lqd
-[Lang]: https://www.rust-lang.org/governance/teams/lang
 [Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
 
 ## Motivation
@@ -46,8 +45,6 @@ Other support provided by [Amanda Stjerna][amanda] as part of her PhD.
 ### Support needed from the project
 
 We expect most support to be needed from the types team, for design, reviews, interactions with the trait solver, and so on. We expect [Niko Matsakis][niko], leading the polonius working group and design, to provide guidance and design time, and [Michael Goulet][errs] and [Matthew Jasper][matthew] to help with reviews.
-
-We expect little design input to be needed from the lang team, compared to two-way communication. Niko Matsakis co-leading the lang team would be able to be a liaison when needed.
 
 [niko]: https://github.com/nikomatsakis
 [errs]: https://github.com/compiler-errors
