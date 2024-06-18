@@ -17,63 +17,56 @@ Do it! [Instructions for proposing goals can be found here.](../how_to/propose_a
 
 ## Flagship goals
 
-### Accepted flagship goals
+### Accepted and proposed flagship goals
 
-| 2024 goal                            | Working towards | Owner  | Accepted in   |
-| ------------------------------------ | --------------- | ------ | ------------- |
-| [Stabilize Rust 2024 edition][R2024] |                 | [TC][] | [RFC #3501][] |
+| 2024 goal                                                                 | Working towards             | Owner                              | RFC           |
+| ------------------------------------------------------------------------- | --------------------------- | ---------------------------------- | ------------- |
+| [Stabilize Rust 2024 edition][R2024]                                      |                             | [TC][]                             | [RFC #3501][] |
+| [Bringing the Async Rust experience closer to parity with sync Rust][AFE] | Async/sync parity           | [nikomatsakis][], [tmandry][]      | [RFC #3657][] |
+| [Resolving the biggest blockers to Linux building on stable Rust][LK]     | Linux builds on stable Rust | [nikomatsakis][], [joshtriplett][] | [RFC #3658][] |
 
-### Candidate flagship goals
+[RFC #3657]: https://github.com/rust-lang/rfcs/pull/3657
+[RFC #3658]: https://github.com/rust-lang/rfcs/pull/3658
 
-The following goals are nearing completion and expected to be converted into RFCs.
+### Flagship goals not accepted
 
-| 2024 goal                                                         | Working towards                       | Owner                               | Teams                       |
-| ----------------------------------------------------------------- | ------------------------------------- | ----------------------------------- | --------------------------- |
-| [Async closures and send bounds][AFE]                             | Async/sync parity                     | [nikomatsakis][], [tmandry][]       | [Lang], [Libs-API]          |
-| [Stabilize key RFL features, RFL on CI][LK] [![Help wanted]][LKH] | Linux builds on stable Rust           | [nikomatsakis][], [joshtriplett][]  | [Lang], [Libs-API], [Infra] |
+The following goals were deemed premature to be considered flagship goals. However, parts of them are being proposed team-level goals, and they may be considered for flagship goals in the future.
 
-
-### WIP flagship goals
-
-The following goals were submitted and are still "under revision". They are unlikely to become flagship goals this round, but some parts of them may be adopted as team goals.
-
-| 2024 goal                                                         | Working towards                       | Owner                               | Teams                       |
-| ----------------------------------------------------------------- | ------------------------------------- | ----------------------------------- | --------------------------- |
-| [Ergonomics initiative: clones and partial borrows][EI]           | Entry-level Rust developer experience | [jkelleyrtp][]                      | [Lang]                      |
-| [Faster iterative builds][FIB] ![WIP][wip]                        | Entry-level Rust dev experience       | [jkelleyrtp][]                      | [Lang], [Compiler]          |
-| [Rust for Scientific Computing][SCI] ![WIP][wip]                  | Rust for Scientific Computing         | [ZuseZ4][]                          | [Lang], [Compiler]          |
-| [Towards seamless C support][SCS] ![WIP][wip]                     |                                       | [joshtriplett][]                    | [Lang], [Compiler]          |
-
-Some notes to highlight:
-
-* The Rust For Linux goal has some "unfunded" elements around stabilizing compiler flags and customized variants of the library API. These are likely out of scope for 2024H2 but if resourcing could be found would be great to tackle.
+| 2024 goal                                               | Working towards                       | Owner            | Teams              |
+| ------------------------------------------------------- | ------------------------------------- | ---------------- | ------------------ |
+| [Ergonomics initiative: clones and partial borrows][EI] | Entry-level Rust developer experience | [jkelleyrtp][]   | [Lang]             |
+| [Faster iterative builds][FIB] ![WIP][wip]              | Entry-level Rust dev experience       | [jkelleyrtp][]   | [Lang], [Compiler] |
+| [Rust for Scientific Computing][SCI] ![WIP][wip]        | Rust for Scientific Computing         | [ZuseZ4][]       | [Lang], [Compiler] |
+| [Towards seamless C support][SCS] ![WIP][wip]           |                                       | [joshtriplett][] | [Lang], [Compiler] |
 
 ## Team goals
 
-### Accepted team goals
+### Top candidates
 
-| 2024 goal                  | Accepted in   | Owner            |
-| -------------------------- | ------------- | ---------------- |
-| [Assemble goal slate][AGS] | [RFC #3614][] | [nikomatsakis][] |
+| 2024 goal                                              | Accepted or proposed in | Owner            | Team    |
+| ------------------------------------------------------ | ----------------------- | ---------------- | ------- |
+| [Assemble goal slate][AGS]                             | [RFC #3614][]           | [nikomatsakis][] | [LC]    |
+| [Cargo Script][CS]                                     | [#22][]                 | [epage]          | [Cargo] |
+| [Next-generation trait solver][NTS]                    | (not yet accepted)      | [lcnr]           | [Types] |
+| [Formal model of Rust][AMF]                            | (not yet accepted)      | [nikomatsakis]   | [Types] |
+| [Polonius on Nightly][NBNLB]                           | (not yet accepted)      | [lqd]            | [Types] |
+| [Stabilize Associated type positiom impl trait][ATPIT] | (not yet accepted)      | [oli-obk]        | [Types] |
+| [Patterns of empty types][PET]                         | (not yet accepted)      | [Nadrieril]      | [Lang]  |         
+| [Ergonomic ref-counting][RC]                           | (not yet accepted)      | [jkelleyrtp]     | [Lang]  |         
 
+[#22]: https://github.com/rust-lang/rust-project-goals/issues/22
 [RFC #3614]: https://github.com/rust-lang/rfcs/pull/3614
 [RFC #3501]: https://rust-lang.github.io/rfcs/3501-edition-2024.html
 
-## Candidate team goals
+## Other proposed goals
 
 These are goals that are still being workshopped. They are sorted roughly by progress and likelihood to become top candidates.
 In many cases the work being described will definitely happen, but it is not clear if they ought to become a "Project Goal".
 
-| 2024 goal                           | Owner             | Teams              |
-| ----------------------------------- | ----------------- | ------------------ |
-| [Contracts and invariants][CI]      | [pnkfelix]        | [Lang], [Compiler] |
-| [Next-generation trait solver][NTS] | [lcnr]            | [Types]            |
-| [Formal model of Rust][AMF]         | [nikomatsakis]    | [Types]            |
-| [Polonius on Nightly][NBNLB]        | [lqd]             | [Lang], [Types]    |
-| [impl trait everywhere][ITE]        | [oli-obk]         | [Lang], [Types]    |
-| [Patterns of empty types][PET]      | [Nadrieril]       | [Lang], [Compiler] |
-| [Relaxing the Orphan Rule][RTOR]    | [Josh-Triplett][] | [Lang]             |
-| [Cargo Script][CS]                  | [epage]           | [Cargo]            |
+| 2024 goal                        | Owner             | Teams              |
+| -------------------------------- | ----------------- | ------------------ |
+| [Contracts and invariants][CI]   | [pnkfelix]        | [Lang], [Compiler] |
+| [Relaxing the Orphan Rule][RTOR] | [Josh-Triplett][] | [Lang]             |
 
 [EI]: ./ergonomics-initiative.md
 [FIB]: ./faster-iterative-builds.md
@@ -89,10 +82,11 @@ In many cases the work being described will definitely happen, but it is not cle
 [NBNLB]: ./Polonius.md
 [PET]: ./Patterns-of-empty-types.md
 [RTOR]: ./Relaxing-the-Orphan-Rule.md
-[ITE]: ./Impl-trait-everywhere.md
+[ATPIT]: ./Impl-trait-everywhere.md
 [HLR]: ./higher-level-rust.md
 [SCI]: ./Rust-for-SciComp.md
 [CS]: ./cargo-script.md
+[RC]: ./ergonomic-rc.md
 
 [Intrusive linked lists]: ./Intrusive-linked-lists.md
 [Fallible allocation]: ./Fallible-allocation.md

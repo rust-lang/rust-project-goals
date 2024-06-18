@@ -1,10 +1,10 @@
 # Patterns of empty types
 
-| Metadata | |
-| --- | --- |
+| Metadata |             |
+| -------- | ----------- |
 | Owner(s) | [Nadrieril] |
-| Teams | [Lang], [Compiler] |
-| Status | WIP |
+| Teams    | [Lang]      |
+| Status   | WIP         |
 
 [Nadrieril]: https://github.com/Nadrieril
 [Compiler]: https://www.rust-lang.org/governance/teams/compiler
@@ -92,7 +92,7 @@ already for several months.
   a different approach).
     * The feature may require one design meeting.
 * Implementation work is 80% done, which leaves about 80% more to do. This will require reviews from
-  the compiler team.
+  the compiler team, but not more than the ordinary.
 
 ## Outputs and milestones
 
@@ -103,12 +103,12 @@ already for several months.
 
 ### Milestones
 
-| Milestone                                       | Expected date |
-| ----------------------------------------------- | ------------- |
-| Stabilization of `min_exhaustive_patterns`      | May 12th      |
-| Publish never patterns RFC                      | TBD           |
-| Stabilization of `never_patterns`               | TBD           |
-| Deprecate `exhaustive_patterns`                 | TBD           |
+| Milestone                                  | Expected date |
+| ------------------------------------------ | ------------- |
+| Stabilization of `min_exhaustive_patterns` | TBD           |
+| Publish never patterns RFC                 | TBD           |
+| Stabilization of `never_patterns`          | TBD           |
+| Deprecate `exhaustive_patterns`            | TBD           |
 
 ## Frequently asked questions
 

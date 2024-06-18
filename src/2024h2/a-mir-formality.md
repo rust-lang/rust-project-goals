@@ -1,42 +1,42 @@
-# TEMPLATE (replace with title of your goal)
-
-> **Instructions:** Copy this template to a fresh file with a name based on your plan.
-> Update the text. Feel free to replace any text with anything, but there are placeholders
-> designed to help you get started. Also, while this template has received some iteration,
-> it is not sacrosant. Feel free to change the titles of sections or make other changes that you think 
-> will increase clarity.
+# a-mir-formality modeling the borrow checker, coherence
 
 | Metadata | |
 | --- | --- |
-| Owner(s) | *Github usernames or other identifying info for goal owners* |
-| Teams | *Names of teams being asked to commit to the goal* |
+| Owner(s) | [nikomatsakis] |
+| Teams | [Types] |
 | Status | WIP |
+
+[nikomatsakis]: https://github.com/lqd
+[Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
 
 ## Motivation
 
-*Begin the motivation with a short (1 paragraph, ideally) summary of what the goal is trying to achieve and why it matters.*
+Our goal is to get the a-mir-fornality project off the ground by offering initial models of the trait solver and borrow checking. 
 
 ### The status quo
 
-*Elaborate in more detail about the problem you are trying to solve. This section is making the case for why this particular problem is worth prioritizing with project bandwidth. A strong status quo section will (a) identify the target audience and (b) give specifics about the problems they are facing today. Sometimes it may be useful to start sketching out how you think those problems will be addressed by your change, as well, though it's not necessary.*
+Most communication and definition of Rust's type/trait system today takes place through informal argument and with reference to compiler internals. a-mir-formality offers a model of Rust at a much higher level, but it remains very incomplete compared to Rust and, thus far, it has been primarily developed by nikomatsakis.
 
 ### The next few steps
 
-*Sketch out the specific things you are trying to achieve in 2024. This should be short and high-level -- we don't want to see the design!*
+The goal for a-mir-formality this year is to get in place to perform minimal modeling:
+
+* ability to run simple `.rs` files as tests (to be contributed by nikomatsakis)
+* ability to run 
 
 ### The "shiny future" we are working towards
 
-*If this goal is part of a larger plan that will extend beyond this goal period, sketch out the goal you are working towards. It may be worth adding some text about why these particular goals were chosen as the next logical step to focus on.*
+The eventual goal is for a-mir-formality to serve as the official model of how the Rust type system works.
 
 ## Design axioms
 
-*Add your [design axioms][da] here. Design axioms clarify the constraints and tradeoffs you will use as you do your design work. These are most important for project goals where the route to the solution has significant ambiguity (e.g., designing a language feature or an API), as they communicate to your reader how you plan to approach the problem. If this goal is more aimed at implementation, then design axioms are less important. [Read more about design axioms][da].*
-
-[da]: ../about/design_axioms.md
+**
 
 ## Ownership and other resources
 
-**Owner:** *Identify a specific person or small group of people if possible, else the group that will provide the owner*
+**Owner:** nikomatsakis
+
+
 
 *This section describes the resources that you the contributors are putting forward to address this goal. This includes people: you can list specific people or a number of people -- e.g., 2 experienced Rust engineers working 2 days/wk. Including details about experience level and background will help the reader to judge your ability to complete the work.*
 
