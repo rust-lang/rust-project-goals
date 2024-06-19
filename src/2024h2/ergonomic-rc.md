@@ -102,7 +102,7 @@ The work here is proposed by Jonathan Kelley on behalf of Dioxus Labs. We have f
 | Author RFC                 | TBD                 | ![Funded][] |
 | Design meeting             | ![Team][] [Lang] |
 | Accept RFC                 | ![Team][] [Lang] |
-| Nightly implementation     | TBD                 | ![Funded][] |
+| Nightly implementation     | [spastorino]        | ![Funded][] |
 
 * The ![Funded][] badge indicates that the owner has committed and work will be funded by their employer or other sources.
 * The ![Team][] badge indicates a requirement where Team support is needed.
@@ -139,6 +139,7 @@ The primary project support will be design bandwidth from the [lang team].
 ## Frequently asked questions
 
 [jkelleyrtp]: https://github.com/jkelleyrtp
+[spastorino]: https://github.com/spastorino
 
 ### After this, are we done? Will high-level Rust be great?
 
