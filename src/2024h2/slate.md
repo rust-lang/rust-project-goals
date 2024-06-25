@@ -79,22 +79,6 @@ What follows are the additional project goals. These goals range from internal r
 
 **Orphaned goals.** In some cases there are elements of the plan that are "orphaned", meaning that there is no person who has has the time/resources/interest in doing them. Accepting these goals is a way for the Rust project to signal that this is work we would like to see happen and thus to encourage people to show up to do it. The Rust Foundation and other sponsors may also use these goals as a component in deciding when to offer grants or financial support.
 
-Project goals under consideration include:
-
-
-| 2024 goal                                              | Accepted or proposed in | Owner            | Team    |
-| ------------------------------------------------------ | ----------------------- | ---------------- | ------- |
-| [Assemble goal slate][AGS]                             | [RFC #3614][]           | [nikomatsakis][] | [LC]    |
-| [Cargo Script][CS]                                     | [#22][]                 | [epage]          | [Cargo] |
-| [Next-generation trait solver][NTS]                    | (not yet accepted)      | [lcnr]           | [Types] |
-| [Formal model of Rust][AMF]                            | (not yet accepted)      | [nikomatsakis]   | [Types] |
-| [Polonius on Nightly][NBNLB]                           | (not yet accepted)      | [lqd]            | [Types] |
-| [Stabilize Associated type positiom impl trait][ATPIT] | (not yet accepted)      | [oli-obk]        | [Types] |
-| [Patterns of empty types][PET]                         | (not yet accepted)      | [Nadrieril]      | [Lang]  |         
-| [Ergonomic ref-counting][RC]                           | (not yet accepted)      | [jkelleyrtp]     | [Lang]  |         
-
-
-
-> **WIP:** There are several other [candidate team goals](./candidates.md#candidate-teams-goals) and it is likely that some of them will be added to this list.
+**Goals under consideration:** For the list of project goals under considation, see the [candidates page](./candidates.md#project-goals-under-consideration).
 
 [Owner Needed]: https://img.shields.io/badge/Owner%20Needed-blue
