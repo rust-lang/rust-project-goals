@@ -7,7 +7,7 @@
 | Status   | WIP                |
 
 [Lang]: https://www.rust-lang.org/governance/teams/lang
-[Lang]: https://www.rust-lang.org/governance/teams/lang
+[Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
 
 ## Motivation
 
