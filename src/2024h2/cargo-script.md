@@ -3,7 +3,7 @@
 | Metadata | |
 | --- | --- |
 | Owner(s) | epage |
-| Teams | Cargo |
+| Teams | Cargo, Lang |
 | Status | Accepted in [rust-lang/rust-project-goals#22](https://github.com/rust-lang/rust-project-goals/issues/22) |
 
 ## Motivation
@@ -28,9 +28,10 @@ script in the path that calls `cargo run --manifest-path ...`).
 
 ### The next few steps
 
-With [RFC 3502](https://github.com/rust-lang/rfcs/pull/3502)
-and [RFC 3503](https://github.com/rust-lang/rfcs/pull/3503)
-approved, the next steps are being tracked in [#12207](https://github.com/rust-lang/cargo/issues/12207).
+With [RFC 3502][] and [RFC 3503][] approved, the next steps are being tracked in [#12207](https://github.com/rust-lang/cargo/issues/12207).
+
+[RFC 3502]: https://github.com/rust-lang/rfcs/pull/3502
+[RFC 3503]: https://github.com/rust-lang/rfcs/pull/3503
 
 At a high-level, this is
 - Add support to the compiler for the frontmatter syntax
@@ -54,6 +55,7 @@ At a high-level, this is
 ### Support needed from the project
 
 - Review support from T-compiler.  Worse case, some mentorship as well.
+- Lang has already approved [RFC 3503][] but other questions may come up.
 
 ## Outputs and milestones
 

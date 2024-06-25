@@ -44,7 +44,7 @@ Do it! [Instructions for proposing goals can be found here.](../how_to/propose_a
 | 2024 goal                                              | Accepted or proposed in | Owner            | Team    |
 | ------------------------------------------------------ | ----------------------- | ---------------- | ------- |
 | [Assemble goal slate][AGS]                             | [RFC #3614][]           | [nikomatsakis][] | [LC]    |
-| [Cargo Script][CS]                                     | [#22][]                 | [epage]          | [Cargo] |
+| [Cargo Script][CS]                                     | [#22][]                 | [epage]          | [Cargo], [Lang] |
 | [Next-generation trait solver][NTS]                    | (not yet accepted)      | [lcnr]           | [Types] |
 | [Formal model of Rust][AMF]                            | (not yet accepted)      | [nikomatsakis]   | [Types] |
 | [Polonius on Nightly][NBNLB]                           | (not yet accepted)      | [lqd]            | [Types] |
