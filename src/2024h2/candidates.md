@@ -2,14 +2,19 @@
 
 This page lists all goals that have been proposed thus far. 
 
-## Flagship vs team goals
+## Project goals
 
-Goal proposals come in two varieties
+Project goals represent a specific goal that the Rust teams would like to make progress on. Each goal is proposed by an **owner**, someone who will take responsibility for moving it forward. The goal identifies the problem and provides a rough outline of the solution along with an action plan for the work to be done. Teams review the goal to see that they are aligned with the plan and priorities of the owner and they can provide the various asks that the owner has made (e.g., to review RFCs and provide prompt feedback). If they are aligned, they teams accept the goal, and it becomes official.
 
-* **Flagship goals** are larger in scope and often cross-cutting. They typically have a number of "subgoals" representing individual deliverables. We pick a small number  of flagship goals each time, and truly completing a flagship goal will often take multiple goal periods.
-* **Team goals** are smaller in scope and are often focused on a particular feature or other solution (as opposed to being a set of goals at a problem domain). They also include things like internal refactorings that most users wouldn't even be aware of.
+### Flagship goals
 
-Both kinds of goals use the same [template](../TEMPLATE.md), the difference is in the contents.
+Of the project goals, a small number are selected as **flagship** goals. These are the most impactful and ambitious goals that we will be the focus of our public messaging. The goal owner puts extra "top-down" effort into helping to shape these goals into a workable plan and find resources to complete that plan.
+
+Factors considered to determine flagship goals:
+
+* **Impact:** which Rust users will be affected and how?
+* **Shovel-ready:** do we have a fairly concrete idea how to proceed, or is there early research to be done figuring things out?
+* **Unsurprising:** a good flagship goal represents an established consensus. It's not a good thing if we declare a flagship goal that takes the Rust community (especially the Rust teams!) completely by surprise.
 
 ### Would you like to propose a goal?
 
@@ -28,18 +33,11 @@ Do it! [Instructions for proposing goals can be found here.](../how_to/propose_a
 [RFC #3657]: https://github.com/rust-lang/rfcs/pull/3657
 [RFC #3658]: https://github.com/rust-lang/rfcs/pull/3658
 
-### Flagship goals not accepted
+[R2024]: ./Rust-2024-Edition.md
+[LK]: ./rfl_stable.md
+[AFE]: ./async.md
 
-The following goals were deemed premature to be considered flagship goals. However, parts of them are being proposed team-level goals, and they may be considered for flagship goals in the future.
-
-| 2024 goal                                               | Working towards                       | Owner            | Teams              |
-| ------------------------------------------------------- | ------------------------------------- | ---------------- | ------------------ |
-| [Ergonomics initiative: clones and partial borrows][EI] | Entry-level Rust developer experience | [jkelleyrtp][]   | [Lang]             |
-| [Faster iterative builds][FIB] ![WIP][wip]              | Entry-level Rust dev experience       | [jkelleyrtp][]   | [Lang], [Compiler] |
-| [Rust for Scientific Computing][SCI] ![WIP][wip]        | Rust for Scientific Computing         | [ZuseZ4][]       | [Lang], [Compiler] |
-| [Towards seamless C support][SCS] ![WIP][wip]           |                                       | [joshtriplett][] | [Lang], [Compiler] |
-
-## Team goals
+## Project goals
 
 ### Top candidates
 
@@ -53,6 +51,16 @@ The following goals were deemed premature to be considered flagship goals. Howev
 | [Stabilize Associated type positiom impl trait][ATPIT] | (not yet accepted)      | [oli-obk]        | [Types] |
 | [Patterns of empty types][PET]                         | (not yet accepted)      | [Nadrieril]      | [Lang]  |         
 | [Ergonomic ref-counting][RC]                           | (not yet accepted)      | [jkelleyrtp]     | [Lang]  |         
+
+[AGS]: ./Project-goal-slate.md
+[CS]: ./cargo-script.md
+[NTS]: ./next-solver.md
+[AMF]: ./a-mir-formality.md
+[NBNLB]: ./Polonius.md
+[ATPIT]: ./Impl-trait-everywhere.md
+[PET]: ./Patterns-of-empty-types.md
+[RC]: ./ergonomic-rc.md
+
 
 [#22]: https://github.com/rust-lang/rust-project-goals/issues/22
 [RFC #3614]: https://github.com/rust-lang/rfcs/pull/3614
@@ -68,25 +76,26 @@ In many cases the work being described will definitely happen, but it is not cle
 | [Contracts and invariants][CI]   | [pnkfelix]        | [Lang], [Compiler] |
 | [Relaxing the Orphan Rule][RTOR] | [Josh-Triplett][] | [Lang]             |
 
+[CI]: ./Contracts-and-invariants.md
+[RTOR]: ./Relaxing-the-Orphan-Rule.md
+
+## Goals not accepted
+
+### Deferred flagship goals
+
+The following goals were deemed to be too large in scope and insufficiently baked to be considered for flagship goals in this round (however noble their intent). In many cases we have identified smaller pieces of these goals and pulled them out as project goals. Looking forward we will continue iterating to determine if the goal can be used in a future round of goal planning.
+
+| 2024 goal                                               | Working towards                       | Owner            | Teams              |
+| ------------------------------------------------------- | ------------------------------------- | ---------------- | ------------------ |
+| [Ergonomics initiative: clones and partial borrows][EI] | Entry-level Rust developer experience | [jkelleyrtp][]   | [Lang]             |
+| [Faster iterative builds][FIB] ![WIP][wip]              | Entry-level Rust dev experience       | [jkelleyrtp][]   | [Lang], [Compiler] |
+| [Rust for Scientific Computing][SCI] ![WIP][wip]        | Rust for Scientific Computing         | [ZuseZ4][]       | [Lang], [Compiler] |
+| [Towards seamless C support][SCS] ![WIP][wip]           |                                       | [joshtriplett][] | [Lang], [Compiler] |
+
 [EI]: ./ergonomics-initiative.md
 [FIB]: ./faster-iterative-builds.md
-[AFE]: ./async.md
-[LK]: ./rfl_stable.md
-[LKH]: ./rfl_stable.md#ownership-and-other-resources
-[SCS]: ./Seamless-C-Support.md
-[CI]: ./Contracts-and-invariants.md
-[NTS]: ./next-solver.md
-[AMF]: ./a-mir-formality.md
-[AGS]: ./Project-goal-slate.md
-[R2024]: ./Rust-2024-Edition.md
-[NBNLB]: ./Polonius.md
-[PET]: ./Patterns-of-empty-types.md
-[RTOR]: ./Relaxing-the-Orphan-Rule.md
-[ATPIT]: ./Impl-trait-everywhere.md
-[HLR]: ./higher-level-rust.md
 [SCI]: ./Rust-for-SciComp.md
-[CS]: ./cargo-script.md
-[RC]: ./ergonomic-rc.md
+[SCS]: ./Seamless-C-Support.md
 
 [Intrusive linked lists]: ./Intrusive-linked-lists.md
 [Fallible allocation]: ./Fallible-allocation.md
