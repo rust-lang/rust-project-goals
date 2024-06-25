@@ -3,12 +3,13 @@
 | Metadata | |
 | --- | --- |
 | Owner(s) | [oli-obk] |
-| Teams | [Types] |
+| Teams | [Types], [Lang] |
 | Status | WIP |
 
 [oli-obk]: https://github.com/oli-obk
 
 [Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
+[Lang]: https://www.rust-lang.org/governance/teams/lang
 
 ## Motivation
 
@@ -56,12 +57,14 @@ None.
 
 ## Ownership and other resources
 
-**Owner:** oli-obk owns this goal, work sponsored by Amazon.
+**Owner:** oli-obk owns this goal.
 
 ### Support needed from the project
 
 * Types team:
     * Respond promptly to relevant FCPs to align next generation trait solver and old solver.
+* Lang team:
+    * Stabilization decision.
 
 ## Outputs and milestones
 
