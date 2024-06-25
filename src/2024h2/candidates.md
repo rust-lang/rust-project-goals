@@ -74,7 +74,7 @@ In many cases the work being described will definitely happen, but it is not cle
 | 2024 goal                        | Owner             | Teams              |
 | -------------------------------- | ----------------- | ------------------ |
 | [Contracts and invariants][CI]   | [pnkfelix]        | [Lang], [Compiler] |
-| [Relaxing the Orphan Rule][RTOR] | [Josh-Triplett][] | [Lang]             |
+| [Relaxing the Orphan Rule][RTOR] | [JoshTriplett][] | [Lang]             |
 
 [CI]: ./Contracts-and-invariants.md
 [RTOR]: ./Relaxing-the-Orphan-Rule.md
