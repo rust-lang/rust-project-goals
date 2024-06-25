@@ -1,16 +1,17 @@
 # Ergonomic ref-counting
 
-| Metadata |                |
-| -------- | -------------- |
-| Owner(s) | [jkelleyrtp][] |
-| Teams    | [Lang]         |
-| Status   | WIP            |
+| Metadata |                    |
+| -------- | ------------------ |
+| Owner(s) | [jkelleyrtp][]     |
+| Teams    | [Lang], [Libs-API] |
+| Status   | WIP                |
 
+[Lang]: https://www.rust-lang.org/governance/teams/lang
 [Lang]: https://www.rust-lang.org/governance/teams/lang
 
 ## Motivation
 
-For 2024H2 we propose to improve ergonomics of working with "cheaply cloneable" data, most commonly  reference-counted values (`Rc` or `Arc`). Like many ergonomic issues, these impact all users, but the impact is particularly severe for newer Rust users, who have not yet learned the workarounds, or those doing higher-level development, where the ergonomics of Rust are being compared against garbage-collected languages like Python, TypeScript, or Swift.
+For 2024H2 we propose to improve ergonomics of working with "cheaply cloneable" data, most commonly reference-counted values (`Rc` or `Arc`). Like many ergonomic issues, these impact all users, but the impact is particularly severe for newer Rust users, who have not yet learned the workarounds, or those doing higher-level development, where the ergonomics of Rust are being compared against garbage-collected languages like Python, TypeScript, or Swift.
 
 ### The status quo
 
@@ -59,36 +60,18 @@ Users in higher-level domains are accustomed to the ergonomics of Python or Type
 
 The goal for the next six months is to 
 
-* author and accept an RFC for avoiding explicit clones of reference-counted data;
+* author and accept an RFC that reduces the burden of working with clone, particularly around closures
 * land a prototype nightly implementation.
 
 ### The "shiny future" we are working towards
 
-This proposal is self-standing, but for maximum impact, it would be combined with a larger rejuvenation of the 2018 [ergonomics initiative].
-
-A "high level Rust" would be a Rust that has a strong focus on iteration speed. Developers would benefit from Rust's performance, safety, and reliability guarantees without the current status quo of long compile times, verbose code, and program architecture limitations.
-
-A "high level" Rust would:
-- Compile quickly, even for fresh builds
-- Be terse in the common case
-- Produce performant programs even in debug mode
-- Provide language shortcuts to get to running code faster
-
-In our "shiny future," an aspiring genomics researcher would:
-- be able to quickly jump into a new project
-- add powerful dependencies with little compile-time cost
-- use various procedural macros with little compile-time cost
-- cleanly migrate their existing program architecture to Rust with few lifetime issues
-- employ various shortcuts like unwrap to get to running code quicker
-
+This goal is scoped around reducing (or eliminating entirely) the need for explicit clones for reference-counted data. See the [FAQ](#frequently-asked-questions) for other potential future work that we are not asking the teams to agree upon now.
 
 ## [Design axioms][da]
 
-- Preference for minimally invasive changes that have the greatest potential benefit
-- No or less syntax is preferable to more syntax for the same goal
-- Prototype code should receive similar affordances as production code
-- Attention to the end-to-end experience of a Rust developer
-- Willingness to make appropriate tradeoffs in favor of implementation speed and intuitiveness
+* Explicit ref-counting is a major ergonomic pain point impacting both high- and low-level, performance oriented code.
+* The worst ergonomic pain arises around closures that need to clone their upvars.
+* Some code will want the ability to precisely track reference count increments.
 
 [da]: ../about/design_axioms.md
 
@@ -96,13 +79,13 @@ In our "shiny future," an aspiring genomics researcher would:
 
 The work here is proposed by Jonathan Kelley on behalf of Dioxus Labs. We have funding for 1-2 engineers depending on the scope of work. Dioxus Labs is willing to take ownership and commit funding to solve these problems.
 
-| Subgoal                    | Owner(s) or team(s) | Status      |
-| -------------------------- | ------------------- | ----------- |
-| Overall program management | [jkelleyrtp]        | ![Funded][] |
-| Author RFC                 | TBD                 | ![Funded][] |
-| Design meeting             | ![Team][] [Lang] |
-| Accept RFC                 | ![Team][] [Lang] |
-| Nightly implementation     | [spastorino]        | ![Funded][] |
+| Subgoal                    | Owner(s) or team(s)         | Status      |
+| -------------------------- | --------------------------- | ----------- |
+| Overall program management | [jkelleyrtp]                | ![Funded][] |
+| Author RFC                 | TBD                         | TBD         |
+| Design meeting             | ![Team][] [Lang]            |             |
+| Accept RFC                 | ![Team][] [Lang] [Libs-API] |             |
+| Nightly implementation     | [spastorino]                | ![Funded][] |
 
 * The ![Funded][] badge indicates that the owner has committed and work will be funded by their employer or other sources.
 * The ![Team][] badge indicates a requirement where Team support is needed.
@@ -143,8 +126,4 @@ The primary project support will be design bandwidth from the [lang team].
 
 ### After this, are we done? Will high-level Rust be great?
 
-Avoiding explicit clones for reference-counted data is the item of largest impact, but there are a number of other papercuts that we have observed coming up frequently:
-
-* ability to write methods that only borrow a subset of fields
-* faster unwrap syntax, such as `foo!`
-* named and optional arguments to functions, partial defaults on structs
+Accepting this goal only implies alignment around reducing (or eliminating entirely) the need for explicit clones for reference-counted data. For people attempting to use Rust as part of higher-level frameworks like Dioxus, this is an important step, but one that would hopefully be followed by further ergonomics work. Examples of language changes that would be helpful are described in the (not accepted) goals around a renewed [ergonomics initiative](./ergonomics-initiative.md) and [improve compilation speed](./faster-iterative-builds.md).
