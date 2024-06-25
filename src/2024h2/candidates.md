@@ -37,7 +37,7 @@ Do it! [Instructions for proposing goals can be found here.](../how_to/propose_a
 [LK]: ./rfl_stable.md
 [AFE]: ./async.md
 
-## Project goals
+## Project goals under consideration
 
 ### Top candidates
 
