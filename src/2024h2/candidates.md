@@ -50,7 +50,7 @@ Do it! [Instructions for proposing goals can be found here.](../how_to/propose_a
 | [Polonius on Nightly][NBNLB]                           | (not yet accepted)      | [lqd]            | [Types] |
 | [Stabilize Associated type positiom impl trait][ATPIT] | (not yet accepted)      | [oli-obk]        | [Types], [Lang] |
 | [Patterns of empty types][PET]                         | (not yet accepted)      | [Nadrieril]      | [Lang]  |         
-| [Ergonomic ref-counting][RC]                           | (not yet accepted)      | [jkelleyrtp]     | [Lang]  |         
+| [Ergonomic ref-counting][RC]                           | (not yet accepted)      | [jkelleyrtp]     | [Lang], [Libs-API][]  |         
 
 [AGS]: ./Project-goal-slate.md
 [CS]: ./cargo-script.md
