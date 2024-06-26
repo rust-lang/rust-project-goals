@@ -22,6 +22,8 @@
         - [Associated type position impl trait](./2024h2/ATPIT.md)
         - [Patterns of empty types](./2024h2/Patterns-of-empty-types.md)
         - [Rust for Sci Comp](./2024h2/Rust-for-SciComp.md)
+        - [Min generics const argument](./2024h2/min_generic_const_arguments.md)
+        - [Const traits](./2024h2/const-traits.md)
     - [General notes](./2024h2/notes.md)
 - [📖 Learn about](./about/index.md)
     - [Goal motivations](./about/motivation.md)

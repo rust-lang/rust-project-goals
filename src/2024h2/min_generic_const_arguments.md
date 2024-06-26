@@ -3,8 +3,8 @@
 | Metadata | |
 | --- | --- |
 | Owner(s) | BoxyUwU |
-| Teams | lang |
-| Status | WIP |
+| Teams | Types |
+| Status | Under active consideration |
 
 ## Motivation
 

@@ -4,7 +4,7 @@
 | --- | --- |
 | Owner(s) | [nikomatsakis] |
 | Teams | [Types] |
-| Status | WIP |
+| Status | Under active consideration |
 
 [nikomatsakis]: https://github.com/lqd
 [Types]: https://www.rust-lang.org/governance/teams/compiler#team-types

@@ -4,7 +4,7 @@
 | --- | --- |
 | Owner(s) | [@lcnr] |
 | Teams | [Types] |
-| Status | WIP |
+| Status | Under active consideration |
 
 ## Motivation
 

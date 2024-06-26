@@ -4,7 +4,7 @@
 | --- | --- |
 | Owner(s) | [oli-obk] |
 | Teams | [Types], [Lang] |
-| Status | WIP |
+| Status | Under active consideration |
 
 [oli-obk]: https://github.com/oli-obk
 
