@@ -19,40 +19,30 @@ Most communication and definition of Rust's type/trait system today takes place 
 
 ### The next few steps
 
-The goal for a-mir-formality this year is to get in place to perform minimal modeling:
+The goal for a-mir-formality this year is to bootstrap it as a live, maintained project:
 
-* ability to run simple `.rs` files as tests (to be contributed by nikomatsakis)
-* ability to run 
+* Achieve 2 regular contributors from T-types in addition to nikomatsakis
+* Support fuzz testing and/or the ability to test against rustc
 
 ### The "shiny future" we are working towards
 
 The eventual goal is for a-mir-formality to serve as the official model of how the Rust type system works.
+We have found that having a model enables us to evaluate designs and changes much more quickly than trying to do everything in the real compiler.
+We envision a-mir-formality being updated with new features prior to stabilization which will require it to be a living codebase with many contributors.
+We also envision it being tested both through fuzzing and by comparing its results to the compiler to detect drift.
 
 ## Design axioms
 
-**
+* **Designed for exploration and extension by ordinary Rust developers.** Editing and maintaing formality should not require a PhD. We prefer lightweight formal methods over strong static proof.
+* **Focused on the Rust's static checking.** There are many things that a-mir-formality could model. We are focused on those things that we need to evaluate Rust's static checks. This includes the type system and trait system.
+* **Clarity over efficiency.** Formality's codebase is only meant to scale up to small programs. Efficiency is distinctly secondary.
+* **The compiler approximates a-mir-formality, a-mir-formality approximates the truth.** Rust's type system is Turing Complete and cannot be fully evaluated. We expect the compiler to have safeguards (for example, overflow detection) that may be more conservative than those imposed by a-mir-formality. In other words, formality may accept some programs the compiler cannot evaluate for practical reasons. Similarly, formality will have to make approximations relative to the "platonic ideal" of what Rust's type system would accept.
 
 ## Ownership and other resources
 
 **Owner:** nikomatsakis
 
-
-
-*This section describes the resources that you the contributors are putting forward to address this goal. This includes people: you can list specific people or a number of people -- e.g., 2 experienced Rust engineers working 2 days/wk. Including details about experience level and background will help the reader to judge your ability to complete the work.*
-
-*You can also include other resources as relevant, such as hardware, domain names, or whatever else.*
-
-### Support needed from the project
-
-*Identify which teams you need support from -- ideally reference the "menu" of support those teams provide. Some common considerations:*
-
-* Will you be authoring RFCs? How many do you expect? Which team will be approving them?
-    * Will you need design meetings along the way? And on what cadence?
-* Will you be authoring code? If there is going to be a large number of PRs, or a very complex PR, it may be a good idea to talk to the compiler or other team about getting a dedicated reviewer.
-* Will you want to use "Rust project resources"...?
-    * Creating rust-lang repositories?
-    * Issuing rust-lang-hosted libraries on crates.io?
-    * Posting blog posts on the Rust blog? (The Inside Rust blog is always ok.)
+We will require participation from at least 2 other members of T-types. Current candidates are lcnr + compiler-errors.
 
 ## Outputs and milestones
 

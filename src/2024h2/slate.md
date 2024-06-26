@@ -46,7 +46,10 @@ We believe that...
 * **Rust's goals require high productivity and ergonomics.** Being attentive to ergonomics broadens Rust impact by making it more appealing for projects that value reliability and maintenance but which don't have strict performance requirements.
 * **Slow and steady wins the race.** For this first round of goals, we want a small set that can be completed without undue stress. As the Rust open source org continues to grow, the set of goals can grow in size.
 
-## Flagship goals
+## Guide-level explanation
+[guide-level-explanation]: #guide-level-explanation
+
+### Flagship goals
 
 The flagship goals proposed for this roadmap are as follows:
 
@@ -67,7 +70,7 @@ The flagship goals proposed for this roadmap are as follows:
 
 [MCP 727]: https://github.com/rust-lang/compiler-team/issues/727
 
-### Why these particular flagship goals?
+#### Why these particular flagship goals?
 
 **2024 Edition.** 2024 will mark the 4th Rust edition, following on the 2015, 2018, and 2021 editions. Similar to the [2021 edition](https://github.com/nikomatsakis/rfcs/blob/rfl-project-goal/text/3085-edition-2021.md), the 2024 edition is not a "major marketing push" but rather an opportunity to correct small ergonomic issues with Rust that will make it overall much easier to use. The changes planned for the 2024 edition will (1) support `-> impl Trait` and `async fn` in traits by aligning capture behavior; (2) permit (async) generators to be added in the future by reserving the `gen` keyword; and (3) alter fallback for the `!` type.
 
@@ -75,10 +78,61 @@ The flagship goals proposed for this roadmap are as follows:
 
 **Rust for Linux.** The [experimental support for Rust development in the Linux kernel][RFL] is a watershed moment for Rust, demonstrating to the world that Rust is indeed capable of targeting all manner of low-level systems applications. And yet today that support rests on a [number of unstable features][RFL#2], blocking the effort from ever going beyond experimental status. For 2024H2 we will work to close the largest gaps that block support.
 
-## Project goals
+### Project goals
 
 The slate of project goals is still being selected. For the list of project goals under considation, see the [candidates page](./candidates.md#project-goals-under-consideration). These goals range from internal refactorings to important end-user features. What they have in common is that they have the backing of the Rust team(s) that own the areas they impact.
 
 **Resourcing and plan.** Each goal requires an *overall owner* responsible for its progress as well as a **plan**, a fairly detailed list of the "tasks to be done" over the next six months along with the people responsible for those items (these may or may not be the owner).
 
 **Orphaned goals.** In some cases there are elements of the plan that are "orphaned", meaning that there is no person who has has the time/resources/interest in doing them. Accepting these goals is a way for the Rust project to signal that this is work we would like to see happen and thus to encourage people to show up to do it. The Rust Foundation and other sponsors may also use these goals as a component in deciding when to offer grants or financial support.
+
+# Reference-level explanation
+[reference-level-explanation]: #reference-level-explanation
+
+The following table highlights the asks from each affected team.
+The "owner" in the column is the person expecting to do the design/implementation work that the team will be approving.
+
+| Team        | Goal                           | Owner                 | Ask                                                                         |
+| ----------- | ------------------------------ | --------------------- | --------------------------------------------------------------------------- |
+| ![Lang]     | [Async][]                      | nikomatsakis          | Approve RTN RFC and stabilization                                           |
+|             | [Async][]                      | nikomatsakis, tmandry | Approve new team structure to replace async-wg                              |
+|             | [Async][]                      | TBD                   | Approve async closure RFC and stabilization                                 |
+|             | [Async][]                      | eholk                 | Provide feedback on async iteration RFC (stretch goal)                      |
+|             | [Async][]                      | n/a                   | An estimated 4–5 design meetings                                            |
+|             | [RFL][]                        | Adrian Taylor         | Stabilization decision for arbitrary self types v2                          |
+|             | [RFL][]                        | Alice Ryhl            | Approve [RFC #3621][] and stabilize implementation                          |
+|             | [RFL][]                        | Gary Guo              | Stabilize `asm_goto`                                                        |
+|             | [Cargo Script][CS]             | Ed Page               | Stabilize cargo script backtick syntax                                      |
+|             | [ATPIT][]                      | Oli Scherer           | Stabilize ATPIT                                                             |
+|             | [Patterns of empty types][PET] | Nadrieril             | Review of "never patterns" RFC and stabilization decision                   |
+|             | [Ergonomic Ref Counting][ERC]  | Jonathan Kelley       | Primary review and acceptance of "never patterns" RFC                       |
+| ![Libs]     | [Async][]                      | nikomatsakis, tmandry | Approve new team structure to replace async-wg                              |
+| ![Libs-API] | [Async][]                      | eholk                 | Approve async iteration RFC and stabilization (stretch goal)                |
+|             | [RFL][]                        | Ding Xiang Fei        | Stabilize `offset_of!` syntax for struct fields                             |
+|             | [RFL][]                        | Ding Xiang Fei        | Stabilize `offset_of!` syntax for struct fields                             |
+|             | [Ergonomic Ref Counting][ERC]  | [Jonathan Kelley]     | Secondary review of Ergonomic Ref Counting RFC                              |
+| ![Compiler] | [RFL][]                        | Adrian Taylor         | Review support and guidance for impl of arbitrary self types v2             |
+|             | [RFL][]                        | Jakub Beránek         | Review and approve guidelines for RFL in CI                                 |
+| ![Types]    | [Next-gen Solver][NGS]         | lcnr                  | stabilize the use of the next-generation trait solver in coherence checking |
+|             | [ATPIT][]                      | Oli Scherer           | Stabilize ATPIT                                                             |
+|             | [AMF][AMF]                     | nikomatsakis          | Participaton from 2 types team members in a-mir-formality                   |
+|             | [Polonius][NBNLB]              | lqd                   | Review and support                                                          |
+
+[RFC #3621]: https://github.com/rust-lang/rfcs/pull/3621
+
+[Lang]: https://img.shields.io/badge/Lang-red
+[Libs]: https://img.shields.io/badge/Libs-red
+[Libs-API]: https://img.shields.io/badge/Libs--api-red
+[Compiler]: https://img.shields.io/badge/Compiler-red
+[Types]: https://img.shields.io/badge/Types-red
+
+[RFL]: ./rfl_stable.md
+[CS]: ./cargo-script.md
+[Async]: ./async.md
+[R]: ./rfl_stable.md
+[ATPIT]: ./ATPIT.md
+[NGS]: ./next-solver.md
+[AMF]: ./a-mir-formality.md
+[NBNLB]: ./Polonius.md
+[PET]: ./Patterns-of-empty-types.md
+[ERC]: ./ergonomic-rc.md
