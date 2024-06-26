@@ -4,10 +4,33 @@ This document explains the 2024H2 goal slate and how it was chosen. If you just 
 
 > *![Status: Experimental](https://img.shields.io/badge/Status-Experimental-yellow) This document is a draft. The reasoning and [goal slate](./slate.md) are still evolving. If you have thoughts or suggestions, please reach out to nikomatsakis on the [#project-goals-2024h2](https://rust-lang.zulipchat.com/#narrow/stream/435869-project-goals-2024h2) Zulip stream.*
 
-## Rust’s mission
+## Summary
 
-Rust's mission is to empower everyone to build reliable and efficient software.
-Rust targets programs that prioritize
+This RFC presents the Rust project goal slate for 2024H2. The slate consists of NN total project goals of which we have selected three as our "flagship goals":
+
+* Release the Rust 2024 edition (owner: TC)
+* Bringing the Async Rust experience closer to parity with sync Rust (owners: tmandry, nikomatsakis)
+* Resolving the biggest blockers to Linux building on stable Rust (owners: joshtriplett, nikomatsakis)
+
+Flagship goals represent the goals expected to have the broadest overall impact. 
+
+## Motivation
+
+This RFC marks the first goal slate proposed under the experimental new roadmap process described in [RFC #3614][]. It consists of NN project goals, of which we have selected three as **flagship goals**. Flagship goals represent the goals expected to have the broadest overall impact. 
+
+[RFC #3614]: https://github.com/rust-lang/rfcs/pull/3614
+
+### How the goal process works
+
+**Project goals** are proposed bottom-up by an **owner**, somebody who is willing to commit resources (time, money, leadership) to seeing the work get done. The owner identifies the problem they want to address and sketches the solution of how they want to do so. They also identify the support they will need from the Rust teams (typically things like review bandwidth or feedback on RFCs). Teams then read the goals and provide feedback. If the goal is approved, teams are committing to support the owner in their work. 
+
+Project goals can vary in scope from an internal refactoring that affects only one team to a larger cross-cutting initiative. No matter its scope, accepting a goal should never be interpreted as a promise that the team will make any future decision (e.g., accepting an RFC that has yet to be written). Rather, it is a promise that the team are aligned on the contents of the goal thus far (including the design axioms and other notes) and will prioritize giving feedback and support as needed.
+
+Of the proposed goals, a small subset are selected by the roadmap owner as **flagship goals**. Flagship goals are chosen for their high impact (many Rust users will be impacted) and their shovel-ready nature (the org is well-aligned around a concrete plan). Flagship goals are the ones that will feature most prominently in our public messaging and which should be prioritized by Rust teams where needed.
+
+### Rust’s mission
+
+Our goals are selected to further Rust's mission of **empowering everyone to build reliable and efficient software**. Rust targets programs that prioritize
 
 * reliability and robustness;
 * performance, memory usage, and resource consumption; and
@@ -15,7 +38,7 @@ Rust targets programs that prioritize
 
 We consider "any two out of the three" to the right heuristic for projects where Rust is a strong contender or possibly the best option.
 
-## Axioms for selecting goals
+### Axioms for selecting goals
 
 We believe that...
 
@@ -23,53 +46,34 @@ We believe that...
 * **Rust's goals require high productivity and ergonomics.** Being attentive to ergonomics broadens Rust impact by making it more appealing for projects that value reliability and maintenance but which don't have strict performance requirements.
 * **Slow and steady wins the race.** For this first round of goals, we want a small set that can be completed without undue stress. As the Rust open source org continues to grow, the set of goals can grow in size.
 
-## How the goal process works
-
-Goals are proposed bottom-up by Rust users who are willing to commit resources to see them get done, either by serving as owner,
-or by funding, mentoring, or otherwise helping to find an owner.
-Each goal describes a **problem** to be solved along with a **rough sketch of the solution**.
-Although goals are often part of a longer term ambition, they themselves cover about 6 months of effort.
-
-To be accepted, each goal requires both an **owner** and **team approval**:
-
-* The **owner** is an individual (or set of individuals) who have committed to devote time and resources to getting the work done.
-  Requiring an owner helps to avoid overpromising, announcing goals that lack the resources to make progress.
-* **Team approval** indicates that the team agrees the problem is real and that the proposed solution sounds right.
-  It also means the team has budgeted time to support the owner in trying to solve it.
-  Requiring team approval ensures that owners don't invest in work only to see it be rejected or simply languish without feedback.
-
-The balance between owners and teams also helps to drive prioritization.
-Having an owner is a signal of the goal's importance: it means that *somebody* cares enough to put forward time/money.
-The team's job is to ensure that goals are congruent with Rust's mission overall as well as selecting goals with the broadest impact.
-
-No matter how it is approved, taking on a goal never means the project **must** make a change.
-Goals are taken before a solution is known, and it may be that an acceptable solution cannot be found.
-Final decisions are made the same way they've ever been, with RFCs to spell out the design and stabilization to mark a complete implementation.
-
 ## Flagship goals
 
-Flagship goals represent the most impactful and ambitious goals that we aim to achieve. They are often part of a larger program that will extend started before the current six month goal period and which will extend into the future. Because of their importance, flagship goals are accepted by RFC (as linked below).
+The flagship goals proposed for this roadmap are as follows:
 
-[RFC #3501]: https://rust-lang.github.io/rfcs/3501-edition-2024.html
-[RFC #3657]: https://github.com/rust-lang/rfcs/pull/3657
-[RFC #3658]: https://github.com/rust-lang/rfcs/pull/3658
-
-* [**Release the Rust 2024 edition**](./Rust-2024-Edition.md), accepted in [RFC #3501][], [will contain](./Rust-2024-Edition.md#the-next-few-steps)
+* [**Release the Rust 2024 edition**](./Rust-2024-Edition.md), which will contain
     * a change in how `impl Trait` capture bounds work ([RFC #3498](https://github.com/rust-lang/rfcs/pull/3498) and [RFC #3617](https://github.com/rust-lang/rfcs/pull/3617))
     * reserving the `gen` keyword to allow for generators ([RFC #3513](https://github.com/rust-lang/rfcs/pull/3513))
     * never type fallback ([#123748](https://github.com/rust-lang/rust/issues/123748))
     * and a [number of other potential changes](https://github.com/rust-lang/rust/issues?q=label%3AC-tracking-issue+label%3AA-edition-2024+label%3AS-tracking-ready-to-stabilize%2CS-tracking-needs-documentation+-label%3AS-tracking-impl-incomplete%2CS-tracking-design-concerns) that may be included if they make enough progress
-* [**Bringing the Async Rust experience closer to parity with sync Rust**](./async.md), proposed in [RFC #3657][], [via](./async.md#the-next-few-steps):
+* [**Bringing the Async Rust experience closer to parity with sync Rust**](./async.md) via:
     * resolving the "send bound problem", thus enabling foundational, generic traits like Tower's [`Service`]() trait;
     * stabilizing async closures, thus enabling richer, combinator APIs like sync Rust's [`Iterator`](https://doc.rust-lang.org/std/iter/trait.Iterator.html);
     * reorganizing the async WG, so the project can benefit from a group of async rust experts with deep knowledge of the space that can align around a shared vision.
-* [**Resolving the biggest blockers to Linux building on stable Rust**](./rfl_stable.md), proposed in [RFC #3658][], [via](./rfl_stable.md#the-next-few-steps):
+* [**Resolving the biggest blockers to Linux building on stable Rust**](./rfl_stable.md) via:
     * stabilizing support for arbitrary `self` types and unsizeable smart pointers, thus permitting ergonomic support for [in-place linked lists](https://rust-for-linux.com/arc-in-the-linux-kernel) on stable;
     * stabilizing features for labeled goto in inline assembler and extended `offset_of!` support, needed for various bts of low-level coding;
     * adding Rust For Linux project on Rust CI, thus ensuring we don't accidentally cause regressions for this highly visible project (done!);
     * stabilizing support for pointers to statics in constants, permitting the construction of vtables for kernel modules;
 
 [MCP 727]: https://github.com/rust-lang/compiler-team/issues/727
+
+### Why these particular flagship goals?
+
+**2024 Edition.** 2024 will mark the 4th Rust edition, following on the 2015, 2018, and 2021 editions. Similar to the [2021 edition](https://github.com/nikomatsakis/rfcs/blob/rfl-project-goal/text/3085-edition-2021.md), the 2024 edition is not a "major marketing push" but rather an opportunity to correct small ergonomic issues with Rust that will make it overall much easier to use. The changes planned for the 2024 edition will (1) support `-> impl Trait` and `async fn` in traits by aligning capture behavior; (2) permit (async) generators to be added in the future by reserving the `gen` keyword; and (3) alter fallback for the `!` type.
+
+**Async.** In 2024 we plan to deliver several critical async Rust building block features, most notably support for *async closures* and *`Send` bounds*. This is part of a multi-year program aiming to raise the experience of authoring "async Rust" to the same level of quality as "sync Rust". Async Rust is a crucial growth area, with 52% of the respondents in the [2023 Rust survey](https://blog.rust-lang.org/2024/02/19/2023-Rust-Annual-Survey-2023-results.html) indicating that they use Rust to build server-side or backend applications. 
+
+**Rust for Linux.** The [experimental support for Rust development in the Linux kernel][RFL] is a watershed moment for Rust, demonstrating to the world that Rust is indeed capable of targeting all manner of low-level systems applications. And yet today that support rests on a [number of unstable features][RFL#2], blocking the effort from ever going beyond experimental status. For 2024H2 we will work to close the largest gaps that block support.
 
 ## Project goals
 
@@ -82,3 +86,7 @@ What follows are the additional project goals. These goals range from internal r
 **Goals under consideration:** For the list of project goals under considation, see the [candidates page](./candidates.md#project-goals-under-consideration).
 
 [Owner Needed]: https://img.shields.io/badge/Owner%20Needed-blue
+
+## Frequently asked questions
+
+None yet.
