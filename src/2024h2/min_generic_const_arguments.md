@@ -29,7 +29,7 @@ As a stretch goal, we will attempt to review the design with the lang team in th
 The larger goal here is to lift most of the restrictions that const generics currently have:
 - Arbitrary types can be used in const generics instead of just: integers, floats, bool and char.
     - implemented under `feature(adt_const_params)` and is relatively close to stabilization
-- Generic parameters are allowed to be used in const generic arguments.
+- Generic parameters are allowed to be used in const generic arguments (e.g. `Foo<{ <T as Trait>::ASSOC_CONST }>`).
 - Users can specify `_` as the argument to a const generic, allowing inferring the value just like with types.
     - implemented under `feature(generic_arg_infer)` and is relatively close to stabilization
 - Associated const items can introduce generic parameters to bring feature parity with type aliases
