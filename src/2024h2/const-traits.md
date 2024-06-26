@@ -8,8 +8,8 @@
 
 | Metadata | |
 | --- | --- |
-| Owner(s) | *Github usernames or other identifying info for goal owners* |
-| Teams | *Names of teams being asked to commit to the goal* |
+| Owner(s) | feel1-dead |
+| Teams | 
 | Status | WIP |
 
 ## Motivation

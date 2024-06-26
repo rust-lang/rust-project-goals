@@ -1,10 +1,10 @@
 # Patterns of empty types
 
-| Metadata |             |
-| -------- | ----------- |
-| Owner(s) | [Nadrieril] |
-| Teams    | [Lang]      |
-| Status   | WIP         |
+| Metadata |                      |
+| -------- | -------------------- |
+| Owner(s) | [Nadrieril]          |
+| Teams    | [Lang]               |
+| Status | Under active consideration |
 
 [Nadrieril]: https://github.com/Nadrieril
 [Compiler]: https://www.rust-lang.org/governance/teams/compiler
