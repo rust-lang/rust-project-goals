@@ -20,11 +20,9 @@ It is possible to use generic parameters with const generics by using `feature(g
 
 ### The next few steps
 
-In no particular order:
-- Author a document outlining everything wrong with `generic_const_exprs` as a sort of "design retrospective"
-- Implement a `min_generic_const_args` that would be ready for stabilization pending an accepted RFC (and potentially the new trait solver being stable)
-- Remove all hacks in the compiler relating to `generic_const_exprs`
-- Write an RFC for `min_generic_const_args`'s design once we know for certain it is a coherent design
+We have a design for `min_generic_const_args` approach in mind but we want to validate it through implementation as const generics has a history of unforseen issues showing up during implementation. Therefore we will pursue a prototype implementation in 2024.
+
+As a stretch goal, we will attempt to review the design with the lang team in the form of a design meeting or RFC. Doing so will likely also involve authoring a design retrospective for `generic_const_exprs` in order to communicate why that design did not work out and why the constraints imposed by `min_generic_const_args` makes sense.
 
 ### The "shiny future" we are working towards
 
@@ -52,7 +50,10 @@ Allowing generic parameters to be used in const generic arguments is the only pa
 
 ## Ownership and other resources
 
-**Owner:** BoxyUwU, project-const-generics lead
+**Owner:** @BoxyUwU, project-const-generics lead, T-types member
+
+@compiler-errors (T-types member) has mentioned being able to help contribute to implementation and reviews
+@camelid has mentioned being able to dedicate some time for a bit until fall
 
 ### Support needed from the project
 
@@ -60,20 +61,22 @@ Allowing generic parameters to be used in const generic arguments is the only pa
     - Potential review of a `min_generic_const_args` RFC
     - Occasional bikeshedding
 
+Having additional review bandwidth would be nice but I think we will be okay without it as there is enough people to trade PRs back and forth.
+
 ## Outputs and milestones
 
 ### Outputs
 
 - A sound, fully implemented `feature(min_generic_const_args)` available on nightly
-- All issues with `generic_const_exprs`'s design have been comprehensively documented
-- RFC for `min_generic_const_args`'s design
+- All issues with `generic_const_exprs`'s design have been comprehensively documented (stretch goal)
+- RFC for `min_generic_const_args`'s design (stretch goal)
 
 ### Milestones
 
-- Document detailing `generic_const_exprs` issues
 - Prerequisite refactorings for `min_generic_const_args` have taken place
 - Initial implementation of `min_generic_const_args` lands and is useable on nightly
 - All known issues are resolved with `min_generic_const_args`
+- Document detailing `generic_const_exprs` issues
 - RFC is written and filed for `min_generic_const_args`
 
 ## Frequently asked questions
