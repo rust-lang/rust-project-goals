@@ -8,9 +8,9 @@
 
 ## Motivation
 
-The [experimental support for Rust development in the Linux kernel][RFL] is a watershed moment for Rust, demonstrating to the world that Rust is indeed capable of targeting all manner of low-level systems applications. And yet today that support rests on a [number of unstable features][RFL#2], blocking the effort from ever going beyond experimental status. For 2024H2 we will work to close the largest gaps that block support.
+The [experimental support for Rust development in the Linux kernel][RFL.com] is a watershed moment for Rust, demonstrating to the world that Rust is indeed capable of targeting all manner of low-level systems applications. And yet today that support rests on a [number of unstable features][RFL#2], blocking the effort from ever going beyond experimental status. For 2024H2 we will work to close the largest gaps that block support.
  
-[RFL]: https://rust-for-linux.com/
+[RFL.com]: https://rust-for-linux.com/
 [RFL#2]: https://github.com/Rust-for-Linux/linux/issues/2
 
 ### The status quo
