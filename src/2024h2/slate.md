@@ -77,16 +77,8 @@ The flagship goals proposed for this roadmap are as follows:
 
 ## Project goals
 
-What follows are the additional project goals. These goals range from internal refactorings to important end-user features. What they have in common is that they have the backing of the Rust team(s) that own the areas they impact. Project goals are accepted by pinging the leads of the teams affected, who are expected to consult with their team. This lightweight process avoids undue overhead.
+The slate of project goals is still being selected. For the list of project goals under considation, see the [candidates page](./candidates.md#project-goals-under-consideration). These goals range from internal refactorings to important end-user features. What they have in common is that they have the backing of the Rust team(s) that own the areas they impact.
 
 **Resourcing and plan.** Each goal requires an *overall owner* responsible for its progress as well as a **plan**, a fairly detailed list of the "tasks to be done" over the next six months along with the people responsible for those items (these may or may not be the owner).
 
 **Orphaned goals.** In some cases there are elements of the plan that are "orphaned", meaning that there is no person who has has the time/resources/interest in doing them. Accepting these goals is a way for the Rust project to signal that this is work we would like to see happen and thus to encourage people to show up to do it. The Rust Foundation and other sponsors may also use these goals as a component in deciding when to offer grants or financial support.
-
-**Goals under consideration:** For the list of project goals under considation, see the [candidates page](./candidates.md#project-goals-under-consideration).
-
-[Owner Needed]: https://img.shields.io/badge/Owner%20Needed-blue
-
-## Frequently asked questions
-
-None yet.
