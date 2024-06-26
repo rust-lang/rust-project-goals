@@ -150,8 +150,10 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | ↳ real-world usage in Linux kernel | [Gary Guo]                         | ![Volunteer][]    |
 | ↳ extend to cover full RFC         | [Gary Guo]                         | ![Volunteer][]    |
 | ↳ stabilization                    | [Gary Guo]                         | ![Volunteer][]    |
+| ↳ stabilization decision           | ![Team][] [Lang]                   |                   |
 | extended `offset_of` syntax        |                                    |                   |
-| ↳ stabilization                    | [Xiang][]                          | ![Volunteer][]    |
+| ↳ stabilization report             | [Xiang][]                          | ![Volunteer][]    |
+| ↳ stabilization decision           | ![Team][] [Libs-API]               |                   |
 | ~~RFL on Rust CI~~                 |                                    | ![Complete][]     |
 | ↳ ~~implementation ([#125209][])~~ | ~~[Jakub Beránek][]~~              |                   |
 | ↳ policy draft                     | [Jakub Beránek][]                  |                   |

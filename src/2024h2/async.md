@@ -3,7 +3,7 @@
 | Metadata |                               |
 | -------- | ----------------------------- |
 | Owner(s) | [tmandry][], [nikomatsakis][] |
-| Teams    | [Lang], [Libs], [Libs-API]            |
+| Teams    | [Lang], [Libs], [Libs-API]    |
 | Status   | Basically complete            |
 
 ## Motivation
@@ -182,6 +182,7 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | ↳ stabilization                          | [compiler-errors][]                     | ![Funded][]         |
 | stabilize trait for async iteration      |                                         |                     |
 | ↳ author RFC                             | [eholk][]                               | ![Funded][]         |
+| ↳ RFC feedback                           | ![Team][] [Lang]                        | ![Funded][]         |
 | ↳ approve RFC                            | ![Team][] [Libs-API]                    | ![Funded][]         |
 | ↳ implementation                         | [eholk][]                               | ![Funded][]         |
 | complete async drop experiments          |                                         |                     |

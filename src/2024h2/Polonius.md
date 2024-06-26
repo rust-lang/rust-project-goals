@@ -22,17 +22,13 @@ Polonius is an improved version of the borrow checker that [resolves common limi
 
 * Land polonius on nightly
 
-*Sketch out the specific things you are trying to achieve in 2024. This should be short and high-level -- we don't want to see the design!*
-
 ### The "shiny future" we are working towards
 
-*If this goal is part of a larger plan that will extend beyond this goal period, sketch out the goal you are working towards. It may be worth adding some text about why these particular goals were chosen as the next logical step to focus on.*
+Stable support for Polonius.
 
 ## Design axioms
 
-*Add your [design axioms][da] here. Design axioms clarify the constraints and tradeoffs you will use as you do your design work. These are most important for project goals where the route to the solution has significant ambiguity (e.g., designing a language feature or an API), as they communicate to your reader how you plan to approach the problem. If this goal is more aimed at implementation, then design axioms are less important. [Read more about design axioms][da].*
-
-[da]: ../about/design_axioms.md
+N/A
 
 ## Ownership and other resources
 
