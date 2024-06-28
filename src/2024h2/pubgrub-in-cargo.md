@@ -1,4 +1,4 @@
-# Use pubgrub for modular dependency resolution in Cargo
+# Extend pubgrub to match cargo's dependency resolution
 
 | Metadata | |
 | --- | --- |
