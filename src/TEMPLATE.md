@@ -60,7 +60,7 @@ This section defines the specific work items that are planned and who is expecte
 | ↳ implementation                               |                      |        |
 | ↳ design meeting                               | ![Team][] [Lang]     |        |
 | ↳ approve RFC                                  | ![Team][] [Lang]     |        |
-| ↳ stabilization report                         | ![Team][] [Lang]     |        |
+| ↳ stabilization report                         |                      |        |
 | ↳ stabilization decision                       | ![Team][] [Lang]     |        |
 | Nightly experiment for X                       |                      |        |
 | ↳ author RFC                                   |                      |        |
