@@ -1,16 +1,16 @@
 # TEMPLATE (replace with title of your goal)
 
 > **Instructions:** Copy this template to a fresh file with a name based on your plan.
-> Update the text. Feel free to replace any text with anything, but there are placeholders
-> designed to help you get started. Also, while this template has received some iteration,
-> it is not sacrosant. Feel free to change the titles of sections or make other changes that you think 
-> will increase clarity.
+> Give it a title that describes what you plan to get done in the next 6 months
+> (e.g., "stabilize X" or "nightly support for X" or "gather data about X").
+> Feel free to replace any text with anything, but there are placeholders
+> designed to help you get started. 
 
-| Metadata | |
-| --- | --- |
+| Metadata |                                                              |
+| -------- | ------------------------------------------------------------ |
 | Owner(s) | *Github usernames or other identifying info for goal owners* |
-| Teams | *Names of teams being asked to commit to the goal* |
-| Status | WIP |
+| Teams    | *Names of teams being asked to commit to the goal*           |
+| Status   | WIP                                                          |
 
 ## Motivation
 
@@ -20,17 +20,19 @@
 
 *Elaborate in more detail about the problem you are trying to solve. This section is making the case for why this particular problem is worth prioritizing with project bandwidth. A strong status quo section will (a) identify the target audience and (b) give specifics about the problems they are facing today. Sometimes it may be useful to start sketching out how you think those problems will be addressed by your change, as well, though it's not necessary.*
 
-### The next few steps
+### The next 6 months
 
-*Sketch out the specific things you are trying to achieve in 2024. This should be short and high-level -- we don't want to see the design!*
+*Sketch out the specific things you are trying to achieve in this goal period. This should be short and high-level -- we don't want to see the design!*
 
 ### The "shiny future" we are working towards
 
 *If this goal is part of a larger plan that will extend beyond this goal period, sketch out the goal you are working towards. It may be worth adding some text about why these particular goals were chosen as the next logical step to focus on.*
 
+*This text is NORMATIVE, in the sense that teams should review this and make sure they are aligned. If not, then the shiny future should be moved to frequently asked questions with a title like "what might we do next".*
+
 ## Design axioms
 
-*Add your [design axioms][da] here. Design axioms clarify the constraints and tradeoffs you will use as you do your design work. These are most important for project goals where the route to the solution has significant ambiguity (e.g., designing a language feature or an API), as they communicate to your reader how you plan to approach the problem. If this goal is more aimed at implementation, then design axioms are less important. [Read more about design axioms][da].*
+*This section is optional, but including [design axioms][da] can help you signal how you intend to balance constraints and tradeoffs (e.g., "prefer ease of use over performance" or vice versa). Teams should review the axioms and make sure they agree. [Read more about design axioms][da].*
 
 [da]: ../about/design_axioms.md
 
@@ -38,31 +40,45 @@
 
 **Owner:** *Identify a specific person or small group of people if possible, else the group that will provide the owner*
 
-*This section describes the resources that you the contributors are putting forward to address this goal. This includes people: you can list specific people or a number of people -- e.g., 2 experienced Rust engineers working 2 days/wk. Including details about experience level and background will help the reader to judge your ability to complete the work.*
+This section defines the specific work items that are planned and who is expected to do them. It should also include what will be needed from Rust teams.
 
-*You can also include other resources as relevant, such as hardware, domain names, or whatever else.*
+* Subgoal:
+    * Describe the work to be done and use `↳` to mark "subitems".
+* Owner(s) or team(s):
+    * List the owner for this item (who will do the work) or ![Help wanted][] if an owner is needed.
+    * If the item is a "team ask" (i.e., approve an RFC), put ![Team][] and the team name(s).
+* Status:
+    * List ![Help wanted][] if there is an owner but they need support, for example funding.
+    * Other needs (e.g., complete, in FCP, etc) are also fine.
 
-### Support needed from the project
+*Adjust the table below; some common examples are shown below.*
 
-*Identify which teams you need support from -- ideally reference the "menu" of support those teams provide. Some common considerations:*
+| Subgoal                                        | Owner(s) or team(s) | Status |
+| ---------------------------------------------- | ------------------- | ------ |
+| Stabilize Feature X (typical language feature) |                     |        |
+| ↳ author RFC                                   |                     |        |
+| ↳ implementation                               |                     |        |
+| ↳ design meeting                               | ![Team][] [Lang]    |        |
+| ↳ approve RFC                                  | ![Team][] [Lang]    |        |
+| ↳ stabilization report                         | ![Team][] [Lang]    |        |
+| ↳ stabilization decision                       | ![Team][] [Lang]    |        |
+| Nightly experiment for X                       |                     |        |
+| ↳ author RFC                                   |                     |        |
+| ↳ approve lang-team experiment                 | ![Team][] [Lang]    |        |
+| ↳ implementation                               |                     |        |
+| ↳ dedicated reviewer (not normally needed)     |                     |        |
 
-* Will you be authoring RFCs? How many do you expect? Which team will be approving them?
-    * Will you need design meetings along the way? And on what cadence?
-* Will you be authoring code? If there is going to be a large number of PRs, or a very complex PR, it may be a good idea to talk to the compiler or other team about getting a dedicated reviewer.
-* Will you want to use "Rust project resources"...?
-    * Creating rust-lang repositories?
-    * Issuing rust-lang-hosted libraries on crates.io?
-    * Posting blog posts on the Rust blog? (The Inside Rust blog is always ok.)
+[Help wanted]: https://img.shields.io/badge/Help%20wanted-yellow
+[Complete]: https://img.shields.io/badge/Complete-green
+[TBD]: https://img.shields.io/badge/TBD-red
 
-## Outputs and milestones
-
-### Outputs
-
-*Final outputs that will be produced*
-
-### Milestones
-
-*Milestones you will reach along the way*
+[Compiler]: https://www.rust-lang.org/governance/teams/compiler
+[Lang]: https://www.rust-lang.org/governance/teams/lang
+[LC]: https://www.rust-lang.org/governance/teams/leadership-council
+[Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
+[Infra]: https://www.rust-lang.org/governance/teams/infra
+[Cargo]: https://www.rust-lang.org/governance/teams/dev-tools#team-cargo
+[Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
 
 ## Frequently asked questions
 
