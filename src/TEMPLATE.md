@@ -71,6 +71,7 @@ This section defines the specific work items that are planned and who is expecte
 [Help wanted]: https://img.shields.io/badge/Help%20wanted-yellow
 [Complete]: https://img.shields.io/badge/Complete-green
 [TBD]: https://img.shields.io/badge/TBD-red
+[Team]: https://img.shields.io/badge/Team%20ask-red
 
 [Compiler]: https://www.rust-lang.org/governance/teams/compiler
 [Lang]: https://www.rust-lang.org/governance/teams/lang
