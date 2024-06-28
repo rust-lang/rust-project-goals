@@ -9,7 +9,7 @@
 ## Motivation
 
 
-Cargo's dependency resolver is brittle and under tested. Detangling implementation details, performance optimizations, and user facing functionality will require a rewrite.
+Cargo's dependency resolver is brittle and under-tested. Disentangling implementation details, performance optimizations, and user-facing functionality will require a rewrite. Making the resolver a standalone modular library will make it easier to test and maintain.
 
 
 ### The status quo
