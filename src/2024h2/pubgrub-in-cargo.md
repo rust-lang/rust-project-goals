@@ -27,7 +27,7 @@ Eventually we should replace the existing entangled resolver in cargo with one b
 ## Design axioms
 
 - **Correct**: The new resolver must perform dependency resolution correctly, which generally means matching the behavior of the existing resolver, and switching to it must not break Rust projects.
-- **Explainable/Understandable**: The output from the new resolver should be demonstrably correct. There should be enough information associated with the output to determine that it made the right decision.
+- **Complete output**: The output from the new resolver should be demonstrably correct. There should be enough information associated with the output to determine that it made the right decision.
 - **Modular**: There should be a stack of abstractions, each one of which can be understood, tested, and improved on its own without requiring complete knowledge of the entire stack from the smallest implementation details to the largest overall use cases.
 - **Fast**: The resolver can be a slow part of people's workflow. Overall performance must be a high priority and a focus.
 
@@ -65,4 +65,4 @@ There are some crates where pubgrub takes a long time to do resolution, and many
 
 ### If the existing resolver defines correct behavior then how does a rewrite help?
 
-Unless we find critical bugs with the existing resolver, the new resolver and cargo's resolver should be 100% compatible. This means that any observable behavior from the existing resolver will need to be matched in the new resolver. The benefits of this work will come not from changes in behavior, but from a more flexible, reusable, testable, and maintainable code base.
+Unless we find critical bugs with the existing resolver, the new resolver and cargo's resolver should be 100% compatible. This means that any observable behavior from the existing resolver will need to be matched in the new resolver. The benefits of this work will come not from changes in behavior, but from a more flexible, reusable, testable, and maintainable code base. For example: the base `pubgrub` crate solves a simpler version of the dependency resolution problem. This allows for a more structured internal algorithm which enables complete error messages. It's also general enough not only to be used in cargo but also in other package managers. We already have contributions from the maintainers of [`uv`](https://pypi.org/project/uv/) who **are** using the library in production.
