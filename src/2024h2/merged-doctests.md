@@ -14,7 +14,7 @@ Most of the time in doctests is spent in compilation. Merging doctests and compi
 
 ### The status quo
 
-### The next few steps
+### The next six months
 
 * Finish reviewing the [pull request](https://github.com/rust-lang/rust/pull/126245)
 * Run crater with the feature enabled by default.

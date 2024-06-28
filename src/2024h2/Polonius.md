@@ -18,7 +18,7 @@ Polonius is an improved version of the borrow checker that [resolves common limi
 
 ### The status quo
 
-### The next few steps
+### The next six months
 
 * Land polonius on nightly
 

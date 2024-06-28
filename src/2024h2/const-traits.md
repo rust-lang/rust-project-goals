@@ -28,7 +28,7 @@ There are also language features that require the use of traits, such as iterati
 [build scripts]: https://github.com/search?q=path%3A**%2Fbuild.rs+NOT+is%3Afork&type=code
 [const fns]: https://github.com/search?q=%22const+fn%22+language%3Arust+NOT+is%3Afork&type=code
 
-### The next few steps
+### The next six months
 
 In 2024, we plan to:
 * Finish experimenting with an effects-based desugaring for ensuring correctness of const code with trait bounds

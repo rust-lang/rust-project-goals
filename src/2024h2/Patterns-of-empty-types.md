@@ -58,7 +58,7 @@ The unstable [`exhaustive_patterns`] allows all patterns of empty type to be omi
 been stabilized because it goes against design axiom n.1 "Pattern semantics are predictable" when
 interacting to possibly-uninitialized data.
 
-### The next few steps
+### The next six months
 
 The first step is already about to complete: the [`min_exhaustive_patterns`][] feature is in FCP and
 about to be stabilized. This covers a large number of use-cases.

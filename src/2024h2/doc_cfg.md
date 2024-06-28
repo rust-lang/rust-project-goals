@@ -14,7 +14,7 @@ The `doc_cfg` features would allow to provide more information to crate users re
 
 ### The status quo
 
-### The next few steps
+### The next six months
 
 * Merge the [RFC](https://github.com/rust-lang/rfcs/pull/3631).
 * Implement it.

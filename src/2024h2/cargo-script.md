@@ -26,7 +26,7 @@ To create a utility, a developer will need to run `cargo new`, update the
 `Cargo.toml` and `main.rs`, and decide on a strategy to run this (e.g. a shell
 script in the path that calls `cargo run --manifest-path ...`).
 
-### The next few steps
+### The next six months
 
 The support is already implemented on nightly.
 The goal is to stabilize support.

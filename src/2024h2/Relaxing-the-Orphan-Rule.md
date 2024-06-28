@@ -53,7 +53,7 @@ particular, all of them are much more difficult than actually writing the trait
 impl. All of them tend to take longer, as well, slowing down whatever goal
 depended on having the trait impl.
 
-### The next few steps
+### The next six months
 
 As an initial experiment, try relaxing the orphan rule for binary crates, since
 this cannot create library incompatibilities in the ecosystem. Allow binary

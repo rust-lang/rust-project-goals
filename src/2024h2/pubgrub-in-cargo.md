@@ -16,7 +16,7 @@ Cargo's dependency resolver is brittle and under-tested. Disentangling implement
 
 Big changes are required in cargo's resolver: there is lots of new functionality that will require changes to the resolver and the existing resolver's error messages are terrible. Cargo's dependency resolver solves the NP-Hard problem of taking a list of direct dependencies and an index of all available crates and returning an exact list of versions that should be built. This functionality is exposed in cargo's CLI interface as generating/updating a lock file. Nonetheless, any change to the current resolver in situ is extremely treacherous. Because the problem is NP-Hard it is not easy to tell what code changes break load-bearing performance or correctness guarantees. It is difficult to abstract and separate the existing resolver from the code base, because the current resolver relies on concrete datatypes from other modules in cargo to determine if a set of versions have any of the many ways two crate versions can be incompatible.
 
-### The next few steps
+### The next six months
 
 Develop a standalone library for doing dependency resolution with all the functionality already supported by cargo's resolver. Extensively test this library to ensure maximum compatibility with existing behavior. Prepare for experimental use of this library inside cargo.
 
