@@ -36,7 +36,7 @@ Third: the Racket language [has demonstrated][findler-felleisen] that when you h
 
 [findler-felleisen]: https://www2.ccs.neu.edu/racket/pubs/icfp2002-ff.pdf
 
-### The next few steps
+### The next six months
 
 1. Develop a contract predicate sublanguage, suitable for interpretation by rustc, miri, and third-party verification tools.
 

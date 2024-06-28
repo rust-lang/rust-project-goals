@@ -42,7 +42,7 @@ Based on the above analysis, the Rust org has been focused on driving async/sync
 
 Progress on async-related issues within the Rust org has been slowed due to lack of coherence around a vision and clear steps. General purpose teams such as [Lang][] and [Libs-API][] have a hard time determining how to respond to, e.g., particular async stabilization requests, as they lack a means to judge whether any given decision is really the right step forward. Theoretically, the async working group could play this role, but it has not really been structured with this purpose in mind. For example, the [criteria for membership](https://rust-lang.github.io/wg-async/CHARTER.html#membership-requirements) is loose and the group would benefit from more representation from async ecosystem projects. This is an example of a larger piece of Rust "organizational debt", where the term "working group" has been used for many different purposes over the years.
 
-### The next few steps
+### The next six months
 
 In the second half of 2024 we are planning on the following work items. The following three items are what we consider to be the highest priority, as they do the most to lay a foundation for future progress (and they themselves are listed in priority order):
 

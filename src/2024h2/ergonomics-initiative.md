@@ -52,7 +52,7 @@ Key points:
 
 Major cloud developer is "all in" on Rust. As they build out code, though, they notice some problems leading to copying-and-pasting or awkward code throughout their codebase. Spawning threads and tasks tends to involve a large number of boilerplate feeling "clone" calls to copy out specific handles from data structures -- it's tough to get rid of them, even with macros. There are a few Rust experts at the company, and they're in high demand helping users resolve seemingly simple problems -- many of them have known workaround patterns, but those patterns are non-obvious, and sometimes rather involved. For example, sometimes they have to make "shadow structs" that have all the same fields, but just contain different kinds of references, to avoid conflicting borrows. For the highest impact systems, Rust remains popular, but for a lot of stuff "on the edge", developers shy away from it. "I'd like to use Rust there," they say, "since it would help me find bugs and get higher performance, but it's just too annoying. It's not worth it."
 
-### The next few steps
+### The next six months
 
 For 2024H2 we have identified two key changes that would make Rust significantly easier to write across a wide variety of domains:
 

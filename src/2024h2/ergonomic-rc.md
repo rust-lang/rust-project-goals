@@ -56,7 +56,7 @@ The impact of this kind of friction can be severe. While experinced users have l
 
 Users in higher-level domains are accustomed to the ergonomics of Python or TypeScript, and hence ergonomic friction can make Rust a non-starter. Those users that stick with Rust long enough to learn the workarounds, however, often find significant value in its emphasis on reliability and long-term maintenance (not to mention performance). Small changes like avoiding explicit clones for reference-counted data can both help to make Rust more appealing in these domains **and** help Rust in other domains where it is already widespead. 
 
-### The next few steps
+### The next six months
 
 The goal for the next six months is to 
 

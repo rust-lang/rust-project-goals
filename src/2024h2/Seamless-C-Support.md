@@ -37,7 +37,7 @@ established C project.
 
 This is the level of integration we should aspire to for Rust and C.
 
-### The next few steps
+### The next six months
 
 To provide seamless integration between Rust and C, we need a single compiler
 to understand both Rust and C. Thus, the first step will be to integrate a C

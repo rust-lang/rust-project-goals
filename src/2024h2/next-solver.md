@@ -16,7 +16,7 @@ There are multiple type system unsoundnesses blocked on the next-generation trai
 
 Fixing these issues in the existing implementation is prohibitively difficult as the required changes are interconnected and require major changes to the underlying structure of the trait solver. The Types Team therefore decided to rewrite the trait solver in-tree, and has been working on it since EOY 2022.
 
-### The next few steps
+### The next six months
 
 - stabilize the use of the next-generation trait solver in coherence checking
 - use the new implementation in rustdoc and lints where applicable 

@@ -18,7 +18,7 @@ It is possible to use generic parameters with const generics by using `feature(g
 - When users hit a wall with `min_const_generics` they cannot reach for the `generic_const_exprs` feature because it is either broken or has no path to stabilization.
 - In the compiler, to work around the fundamental issues with `generic_const_exprs`, we have a number of hacks which negatively affect the quality of the codebase and the general experience of contributing to the type system.
 
-### The next few steps
+### The next six months
 
 We have a design for `min_generic_const_args` approach in mind but we want to validate it through implementation as const generics has a history of unforseen issues showing up during implementation. Therefore we will pursue a prototype implementation in 2024.
 

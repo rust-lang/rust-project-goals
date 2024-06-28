@@ -17,7 +17,7 @@
 
 Editions are a powerful tool for Rust but organizing them continues to be a "fire drill" each time. We have a preliminary set of 2024 features assembled but work needs to be done to marshal and drive (some subset of...) them to completion.
 
-### The next few steps
+### The next six months
 
 The major goal this year is to release the edition on nightly. Top priority items are as follows:
 

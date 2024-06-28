@@ -26,7 +26,7 @@ Rust's answer to these sorts of problems is `impl Trait` notation, which is used
 
 ATPIT follows the second pattern, creating a new opaque type.
 
-### The next few steps
+### The next six months
 
 The plan for 2024 is to stabilize Associated Type Position Impl Trait (ATPIT). The design has been finalized from the lang team perspective for some time, but the types team is still working out final details. In particular, the types team is trying to ensure that whatever programs are accepted will also be accepted by the [next generation trait solver](./next-solver.md), which handles opaque types in a new and simplified way.
 

@@ -17,7 +17,7 @@ Our goal is to get the a-mir-fornality project off the ground by offering initia
 
 Most communication and definition of Rust's type/trait system today takes place through informal argument and with reference to compiler internals. a-mir-formality offers a model of Rust at a much higher level, but it remains very incomplete compared to Rust and, thus far, it has been primarily developed by nikomatsakis.
 
-### The next few steps
+### The next six months
 
 The goal for a-mir-formality this year is to bootstrap it as a live, maintained project:
 

@@ -20,7 +20,7 @@ Almost every language has some way of calling hand-written CUDA/ROCm/Sycl kernel
 
 *Elaborate in more detail about the problem you are trying to solve. This section is making the case for why this particular problem is worth prioritizing with project bandwidth. A strong status quo section will (a) identify the target audience and (b) give specifics about the problems they are facing today. Sometimes it may be useful to start sketching out how you think those problems will be addressed by your change, as well, though it's not necessary.*
 
-### The next few steps
+### The next six months
 
 1) Merge the `#[autodiff]` fork.
 2) Expose the experimental batching feature of Enzyme, preferably by a new contributor.
