@@ -53,6 +53,7 @@ Do it! [Instructions for proposing goals can be found here.](../how_to/propose_a
 | [Ergonomic ref-counting][RC]                           | (not yet accepted)      | [jkelleyrtp]     | [Lang], [Libs-API][] |
 | [Min generics const argument][MGCA]                    | (not yet accepted)      | BoxyUwU     | [Types][] |
 | [Const traits][CT]                                     | (not yet accepted)      | feel1-dead     | [Lang], [Libs-API][] |
+| [Extend pubgrub to match cargo's dependency resolution][PGC] | (not yet accepted)      | Eh2406     | [Cargo][] |
 
 [AGS]: ./Project-goal-slate.md
 [CS]: ./cargo-script.md
@@ -64,7 +65,7 @@ Do it! [Instructions for proposing goals can be found here.](../how_to/propose_a
 [RC]: ./ergonomic-rc.md
 [MGCA]: ./min_generic_const_arguments.md
 [CT]: ./const-traits.md
-
+[PGC]: ./pubgrub-in-cargo.md
 
 [#22]: https://github.com/rust-lang/rust-project-goals/issues/22
 [RFC #3614]: https://github.com/rust-lang/rfcs/pull/3614
