@@ -53,20 +53,20 @@ This section defines the specific work items that are planned and who is expecte
 
 *Adjust the table below; some common examples are shown below.*
 
-| Subgoal                                        | Owner(s) or team(s) | Status |
-| ---------------------------------------------- | ------------------- | ------ |
-| Stabilize Feature X (typical language feature) |                     |        |
-| ↳ author RFC                                   |                     |        |
-| ↳ implementation                               |                     |        |
-| ↳ design meeting                               | ![Team][] [Lang]    |        |
-| ↳ approve RFC                                  | ![Team][] [Lang]    |        |
-| ↳ stabilization report                         | ![Team][] [Lang]    |        |
-| ↳ stabilization decision                       | ![Team][] [Lang]    |        |
-| Nightly experiment for X                       |                     |        |
-| ↳ author RFC                                   |                     |        |
-| ↳ approve lang-team experiment                 | ![Team][] [Lang]    |        |
-| ↳ implementation                               |                     |        |
-| ↳ dedicated reviewer (not normally needed)     |                     |        |
+| Subgoal                                        | Owner(s) or team(s)  | Status |
+| ---------------------------------------------- | -------------------- | ------ |
+| Stabilize Feature X (typical language feature) |                      |        |
+| ↳ author RFC                                   |                      |        |
+| ↳ implementation                               |                      |        |
+| ↳ design meeting                               | ![Team][] [Lang]     |        |
+| ↳ approve RFC                                  | ![Team][] [Lang]     |        |
+| ↳ stabilization report                         | ![Team][] [Lang]     |        |
+| ↳ stabilization decision                       | ![Team][] [Lang]     |        |
+| Nightly experiment for X                       |                      |        |
+| ↳ author RFC                                   |                      |        |
+| ↳ approve lang-team experiment                 | ![Team][] [Lang]     |        |
+| ↳ implementation                               |                      |        |
+| ↳ dedicated reviewer (not normally needed)     | ![Team][] [Compiler] |        |
 
 [Help wanted]: https://img.shields.io/badge/Help%20wanted-yellow
 [Complete]: https://img.shields.io/badge/Complete-green
