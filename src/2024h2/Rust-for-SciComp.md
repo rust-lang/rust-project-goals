@@ -6,6 +6,10 @@
 | Teams | t-lang, t-compiler |
 | Status | WIP |
 
+## Summary
+
+Enable experimental access to LLVM features for automatic differentiation and GPU offloading.
+
 ## Motivation
 
 Scientific computing, high performance computing (HPC), and machine learning (ML) all share the interesting challenge in that they each, to different degrees, care about highly efficient library and algorithm implementations, but that these libraries and algorithms are not always used by people with deep experience in computer science. Rust is in a unique position because ownership, lifetimes, and the strong type system can prevent many bugs. At the same time strong alias information allows compelling performance optimizations in these fields, with performance gains well beyond that otherwise seen when comparing C++ with Rust. This is due to how automatic differentiation and GPU offloading strongly benefit from aliasing information.

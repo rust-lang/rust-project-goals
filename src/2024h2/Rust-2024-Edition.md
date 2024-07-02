@@ -6,6 +6,10 @@
 | Teams    | lang, types |
 | Status   | Accepted in [RFC #3501]         |
 
+## Summary
+
+Feature complete status for Rust 2024, with final release to occur in early 2025.
+
 ## Motivation
 
 [RFC #3501][] confirmed the desire to ship a Rust edition in 2024, continuing the pattern of shipping a new Rust edition every 3 years. Our goal for 2024 H2 is to stabilize a new edition on nightly by the end of 2024.

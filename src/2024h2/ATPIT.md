@@ -11,9 +11,13 @@
 [Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
 [Lang]: https://www.rust-lang.org/governance/teams/lang
 
+## Summary
+
+Stable support for `impl Trait` in the values of associated types (aka "associated type position impl trait" or ATPIT)
+
 ## Motivation
 
-Our goal for 2024 is to stabilize support `impl Trait` notation in the values of associated types (aka "associated type position impl trait" or ATPIT). This allows impls to provide more complex types as the value of an associated type, including types like closures or futures which are anonymous; it also allows impls to hide the precise type they are using for an associated type, leaving room for future changes. This is the latest step towards the overall vision of support `impl Trait` notation in various parts of the Rust language.
+Rust has been on a long-term quest to support `impl Trait` in more and more locations ("impl Trait everywhere"). The next step in that journey is supporting `impl Trait` in the values of associated types (aka "associated type position impl trait" or ATPIT), which allows impls to provide more complex types as the value of an associated type, particularly anonymous types like closures and futures. It also allows impls to hide the precise type they are using for an associated type, leaving room for future changes. This is the latest step towards the overall vision of support `impl Trait` notation in various parts of the Rust language.
 
 ### The status quo
 

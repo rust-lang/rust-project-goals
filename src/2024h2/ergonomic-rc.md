@@ -9,6 +9,10 @@
 [Lang]: https://www.rust-lang.org/governance/teams/lang
 [Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
 
+## Summary
+
+Deliver nightly support some solution to reduce the ergonomic pain of working with ref-counted and cheaply cloneable types.
+
 ## Motivation
 
 For 2024H2 we propose to improve ergonomics of working with "cheaply cloneable" data, most commonly reference-counted values (`Rc` or `Arc`). Like many ergonomic issues, these impact all users, but the impact is particularly severe for newer Rust users, who have not yet learned the workarounds, or those doing higher-level development, where the ergonomics of Rust are being compared against garbage-collected languages like Python, TypeScript, or Swift.

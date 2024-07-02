@@ -6,6 +6,10 @@
 | Teams | Types |
 | Status | Under active consideration |
 
+## Summary
+
+Experiment with a new `min_generic_const_args` implementation to address challenges found with the existing approach
+
 ## Motivation
 
 `min_const_generics` was stabilized with the restriction that const-generic arguments may not use generic parameters other than a bare const parameter, e.g. `Foo<N>` is legal but not `Foo<{ T::ASSOC }>`. This restriction is lifted under `feature(generic_const_exprs)` however its design is fundamentally flawed and introduces significant complexity to the compiler. A ground up rewrite of the feature with a significantly limited scope (e.g. `min_generic_const_args`) would give a viable path to stabilization and result in large cleanups to the compiler.

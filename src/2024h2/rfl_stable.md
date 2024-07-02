@@ -6,6 +6,15 @@
 | Teams    | [Lang], [Libs-API], [Compiler]     |
 | Status   | Basically complete                 |
 
+## Summary
+
+Stabilize unstable features required by Rust for Linux project including
+
+* Stable support for RFL's customized ARC type
+* Labeled goto in inline assembler and extended `offset_of!` support
+* RFL on Rust CI ([done now!])
+* Pointers to statics in constants [![Owner Needed][]](#ownership-and-other-resources)
+
 ## Motivation
 
 The [experimental support for Rust development in the Linux kernel][RFL.com] is a watershed moment for Rust, demonstrating to the world that Rust is indeed capable of targeting all manner of low-level systems applications. And yet today that support rests on a [number of unstable features][RFL#2], blocking the effort from ever going beyond experimental status. For 2024H2 we will work to close the largest gaps that block support.
