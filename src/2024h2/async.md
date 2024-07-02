@@ -6,9 +6,17 @@
 | Teams    | [Lang], [Libs], [Libs-API]    |
 | Status   | Basically complete            |
 
+## Summary
+
+Over the next six months, we will deliver several critical async Rust building block features
+
+* [resolve the "Send bound" problem](#stabilize-async-closures), which blocks the widespread usage of async functions in traits;
+* [reorganize the async WG](#reorganize-the-async-wg), so that we can be better aligned and move more swiftly from here out;
+* [stabilize async closures](#stabilize-async-closures), allowing for a much wider variety of async related APIs (async closures are implemented on nightly).
+
 ## Motivation
 
-In 2024 we plan to deliver several critical async Rust building block features, most notably support for *async closures* and *`Send` bounds*. This is part of a multi-year program aiming to raise the experience of authoring "async Rust" to the same level of quality as "sync Rust". Async Rust is a crucial growth area, with 52% of the respondents in the [2023 Rust survey](https://blog.rust-lang.org/2024/02/19/2023-Rust-Annual-Survey-2023-results.html) indicating that they use Rust to build server-side or backend applications. 
+This goal represents the next step on a multi-year program aiming to raise the experience of authoring "async Rust" to the same level of quality as "sync Rust". Async Rust is a crucial growth area, with 52% of the respondents in the [2023 Rust survey](https://blog.rust-lang.org/2024/02/19/2023-Rust-Annual-Survey-2023-results.html) indicating that they use Rust to build server-side or backend applications. 
 
 ### The status quo
 

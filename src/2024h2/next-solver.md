@@ -6,6 +6,15 @@
 | Teams | [Types] |
 | Status | Under active consideration |
 
+## Summary
+
+In the next 6 months we plan to extend the next-generation trait solver as follows:
+
+- stabilize the use of the next-generation trait solver in coherence checking
+- use the new implementation in rustdoc and lints where applicable 
+- share the solver with rust-analyser
+- successfully bootstrap the compiler when exclusively using the new implementation and run crater
+
 ## Motivation
 
 The existing trait system implementation has many bugs, inefficiencies and rough corners which require major changes to its implementation. To fix existing unsound issues, accomodate future improvements, and to improve compile times, we are reimplementing the core trait solver to replace the existing implementations of `select` and `fulfill`.
