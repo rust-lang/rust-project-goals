@@ -71,13 +71,14 @@ The goal for the next six months is to
 
 This goal is scoped around reducing (or eliminating entirely) the need for explicit clones for reference-counted data. See the [FAQ](#frequently-asked-questions) for other potential future work that we are not asking the teams to agree upon now.
 
-## [Design axioms][da]
+## Design consensus points
+
+We don't have consensus around a full set of "design axioms" for this design, but we do have alignment around the following basic points:
 
 * Explicit ref-counting is a major ergonomic pain point impacting both high- and low-level, performance oriented code.
 * The worst ergonomic pain arises around closures that need to clone their upvars.
 * Some code will want the ability to precisely track reference count increments.
-
-[da]: ../about/design_axioms.md
+* The design should allow user-defined types to "opt-in" to the lightweight cloning behavior.
 
 ## Ownership and other resources
 
