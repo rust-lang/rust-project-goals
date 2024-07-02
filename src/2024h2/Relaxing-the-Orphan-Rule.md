@@ -8,7 +8,7 @@
 
 ## Summary
 
-Experimental implementation and draft RFCs related to relaxing orphan rule
+Experimental implementation and draft RFCs to relax the orphan rule
 
 ## Motivation
 
@@ -123,7 +123,7 @@ This section defines the specific work items that are planned and who is expecte
 | --------------------------------- | ------------------------ | ------ |
 | Ownership and implementation      | ![Help wanted][]         |        |
 | RFC authoring                     | ![Help wanted][]         |        |
-| Design consultation               | Josh Triplett            |        |
+| Design consultation/iteration     | Josh Triplett            |        |
 | Up to 1 design meetings as needed | ![Team][] [Lang] [Types] |        |
 
 [Help wanted]: https://img.shields.io/badge/Help%20wanted-yellow
