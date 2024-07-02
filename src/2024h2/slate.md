@@ -109,7 +109,7 @@ The "owner" in the column is the person expecting to do the design/implementatio
 |             | [Cargo Script][CS]             | Ed Page               | Stabilize cargo script backtick syntax                                      |
 |             | [ATPIT][]                      | Oli Scherer           | Stabilize ATPIT                                                             |
 |             | [Patterns of empty types][PET] | Nadrieril             | Review of "never patterns" RFC and stabilization decision                   |
-|             | [Ergonomic Ref Counting][ERC]  | Jonathan Kelley       | Primary review and acceptance of "never patterns" RFC                       |
+|             | [Ergonomic Ref Counting][ERC]  | Jonathan Kelley       | Primary review and acceptance of Ergonomic Ref Counting RFC                       |
 | ![Libs]     | [Async][]                      | nikomatsakis, tmandry | Approve new team structure to replace async-wg                              |
 | ![Libs-API] | [Async][]                      | eholk                 | Approve async iteration RFC and stabilization (stretch goal)                |
 |             | [RFL][]                        | Ding Xiang Fei        | Stabilize `offset_of!` syntax for struct fields                             |
