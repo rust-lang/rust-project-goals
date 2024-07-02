@@ -1,14 +1,14 @@
-# Relaxing the Orphan Rule
+# Experiment with relaxing the Orphan Rule
 
-| Metadata | |
-| --- | --- |
-| Owner(s) | |
-| Teams | *lang* |
-| Status | WIP |
+| Metadata |                     |
+| -------- | ------------------- |
+| Owner(s) | ![Help wanted][]    |
+| Teams    | [Lang][], [Types][] |
+| Status   | WIP                 |
 
 ## Summary
 
-Experimental work to relax orphan rule
+Experimental implementation and draft RFCs to relax the orphan rule
 
 ## Motivation
 
@@ -59,16 +59,19 @@ depended on having the trait impl.
 
 ### The next six months
 
-As an initial experiment, try relaxing the orphan rule for binary crates, since
+We propose to
+
+- Experiment on nightly with alternate orphan rules
+  - Idea 1. Try relaxing the orphan rule for binary crates, since
 this cannot create library incompatibilities in the ecosystem. Allow binary
 crates to implement third-party traits for third-party types, possibly
 requiring a marker on either the trait or type or both. See how well this works
 for users.
-
-As a second experiment, try allowing library crates to provide third-party
+  - Idea 2. Try allowing library crates to provide third-party
 impls as long as no implementations actually conflict. Perhaps require marking
 traits and/or types that permit third-party impls, to ensure that crates can
 always implement traits for their own types.
+- Draft RFCs for features above, presuming experiments turn out well
 
 ### The "shiny future" we are working towards
 
@@ -103,26 +106,38 @@ matter where they appear in the dependency tree.
 
 ## Ownership and other resources
 
-**Owner:** TODO
+**Owner:** ![Help wanted][]
 
-### Support needed from the project
+This section defines the specific work items that are planned and who is expected to do them. It should also include what will be needed from Rust teams.
 
-* Lang team:
-    * Design meetings to discuss design changes
-    * RFC reviews
-* Blog post inviting testing, evaluation, and feedback
+* Subgoal:
+    * Describe the work to be done and use `↳` to mark "subitems".
+* Owner(s) or team(s):
+    * List the owner for this item (who will do the work) or ![Help wanted][] if an owner is needed.
+    * If the item is a "team ask" (i.e., approve an RFC), put ![Team][] and the team name(s).
+* Status:
+    * List ![Help wanted][] if there is an owner but they need support, for example funding.
+    * Other needs (e.g., complete, in FCP, etc) are also fine.
 
-## Outputs and milestones
+| Subgoal                           | Owner(s) or team(s)      | Status |
+| --------------------------------- | ------------------------ | ------ |
+| Ownership and implementation      | ![Help wanted][]         |        |
+| RFC authoring                     | ![Help wanted][]         |        |
+| Design consultation/iteration     | Josh Triplett            |        |
+| Up to 1 design meetings as needed | ![Team][] [Lang] [Types] |        |
 
-### Outputs
+[Help wanted]: https://img.shields.io/badge/Help%20wanted-yellow
+[Complete]: https://img.shields.io/badge/Complete-green
+[TBD]: https://img.shields.io/badge/TBD-red
+[Team]: https://img.shields.io/badge/Team%20ask-red
 
-The output will be a pair of RFCs:
-- A lang RFC proposing a very simple system for binaries to ignore the orphan rule.
-- A lang RFC proposing a system with more careful safeguards, to relax the orphan rule for publishable library crates.
-
-### Milestones
-
-- Accepted RFCs.
+[Compiler]: https://www.rust-lang.org/governance/teams/compiler
+[Lang]: https://www.rust-lang.org/governance/teams/lang
+[LC]: https://www.rust-lang.org/governance/teams/leadership-council
+[Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
+[Infra]: https://www.rust-lang.org/governance/teams/infra
+[Cargo]: https://www.rust-lang.org/governance/teams/dev-tools#team-cargo
+[Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
 
 ## Frequently asked questions
 

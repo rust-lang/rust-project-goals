@@ -54,6 +54,7 @@ Do it! [Instructions for proposing goals can be found here.](../how_to/propose_a
 | [Patterns of empty types][PET]                               | (not yet accepted)      | [Nadrieril]      | [Lang]               |
 | [Ergonomic ref-counting][RC]                                 | (not yet accepted)      | [jkelleyrtp]     | [Lang], [Libs-API][] |
 | [Const traits][CT]                                           | (not yet accepted)      | feel1-dead       | [Lang], [Libs-API][] |
+| [Relaxing the Orphan Rule][RTOR]                             | (not yet accepted)      | ![Help wanted][] | [Lang], [Types][]    |
 
 [AGS]: ./Project-goal-slate.md
 [CS]: ./cargo-script.md
@@ -76,10 +77,9 @@ Do it! [Instructions for proposing goals can be found here.](../how_to/propose_a
 These are goals that are still being workshopped. They are sorted roughly by progress and likelihood to become top candidates.
 In many cases the work being described will definitely happen, but it is not clear if they ought to become a "Project Goal".
 
-| 2024 goal                        | Owner            | Teams              |
-| -------------------------------- | ---------------- | ------------------ |
-| [Contracts and invariants][CI]   | [pnkfelix]       | [Lang], [Compiler] |
-| [Relaxing the Orphan Rule][RTOR] | [JoshTriplett][] | [Lang]             |
+| 2024 goal                      | Owner      | Teams              |
+| ------------------------------ | ---------- | ------------------ |
+| [Contracts and invariants][CI] | [pnkfelix] | [Lang], [Compiler] |
 
 [CI]: ./Contracts-and-invariants.md
 [RTOR]: ./Relaxing-the-Orphan-Rule.md
