@@ -71,6 +71,8 @@ This section defines the specific work items that are planned and who is expecte
 | ↳ approve lang-team experiment                 | ![Team][] [Lang]     |        |
 | ↳ implementation                               |                      |        |
 | ↳ dedicated reviewer (not normally needed)     | ![Team][] [Compiler] |        |
+| Inside Rust blog post inviting feedback        |                      |        |
+| Top-level Rust blog post inviting feedback     | ![Team][] [LC]       |        |
 
 [Help wanted]: https://img.shields.io/badge/Help%20wanted-yellow
 [Complete]: https://img.shields.io/badge/Complete-green
