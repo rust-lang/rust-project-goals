@@ -9,9 +9,14 @@
 [nikomatsakis]: https://github.com/lqd
 [Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
 
-## Motivation
+## Summary
 
-Our goal is to get the a-mir-fornality project off the ground by offering initial models of the trait solver and borrow checking. 
+The goal for a-mir-formality this year is to bootstrap it as a live, maintained project:
+
+* Achieve 2 regular contributors from T-types in addition to nikomatsakis
+* Support fuzz testing and/or the ability to test against rustc
+
+## Motivation
 
 ### The status quo
 
