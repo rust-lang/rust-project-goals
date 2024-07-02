@@ -47,7 +47,7 @@ Do it! [Instructions for proposing goals can be found here.](../how_to/propose_a
 | [Cargo Script][CS]                                     | [#22][]                 | [epage]          | [Cargo], [Lang]      |
 | [Extend pubgrub to match cargo's dependency resolution][PGC] | (not yet accepted)      | Eh2406     | [Cargo][] |
 | [Next-generation trait solver][NTS]                    | (not yet accepted)      | [lcnr]           | [Types]              |
-| [Formal model of Rust][AMF]                            | (not yet accepted)      | [nikomatsakis]   | [Types]              |
+| [Testing infra + contributors for a-mir-formality][AMF]                            | (not yet accepted)      | [nikomatsakis]   | [Types]              |
 | [Polonius on Nightly][NBNLB]                           | (not yet accepted)      | [lqd]            | [Types]              |
 | [Stabilize Associated type position impl trait][ATPIT] | (not yet accepted)      | [oli-obk]        | [Types], [Lang]      |
 | [Patterns of empty types][PET]                         | (not yet accepted)      | [Nadrieril]      | [Lang]               |
