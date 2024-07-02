@@ -1,10 +1,10 @@
 # Ergonomic ref-counting
 
-| Metadata |                    |
-| -------- | ------------------ |
-| Owner(s) | [jkelleyrtp][]     |
-| Teams    | [Lang], [Libs-API] |
-| Status | Under active consideration |
+| Metadata |                            |
+| -------- | -------------------------- |
+| Owner(s) | [jkelleyrtp][]             |
+| Teams    | [Lang], [Libs-API]         |
+| Status   | Under active consideration |
 
 [Lang]: https://www.rust-lang.org/governance/teams/lang
 [Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
@@ -91,6 +91,7 @@ The work here is proposed by Jonathan Kelley on behalf of Dioxus Labs. We have f
 | Design meeting             | ![Team][] [Lang]            |             |
 | Accept RFC                 | ![Team][] [Lang] [Libs-API] |             |
 | Nightly implementation     | [spastorino]                | ![Funded][] |
+| Blog post on Inside Rust   |                             |             |
 
 * The ![Funded][] badge indicates that the owner has committed and work will be funded by their employer or other sources.
 * The ![Team][] badge indicates a requirement where Team support is needed.
