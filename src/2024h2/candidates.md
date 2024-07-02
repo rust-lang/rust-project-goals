@@ -41,19 +41,19 @@ Do it! [Instructions for proposing goals can be found here.](../how_to/propose_a
 
 ### Top candidates
 
-| 2024 goal                                              | Accepted or proposed in | Owner            | Team                 |
-| ------------------------------------------------------ | ----------------------- | ---------------- | -------------------- |
-| [Assemble goal slate][AGS]                             | [RFC #3614][]           | [nikomatsakis][] | [LC]                 |
-| [Cargo Script][CS]                                     | [#22][]                 | [epage]          | [Cargo], [Lang]      |
-| [Extend pubgrub to match cargo's dependency resolution][PGC] | (not yet accepted)      | Eh2406     | [Cargo][] |
-| [Next-generation trait solver][NTS]                    | (not yet accepted)      | [lcnr]           | [Types]              |
-| [Testing infra + contributors for a-mir-formality][AMF]                            | (not yet accepted)      | [nikomatsakis]   | [Types]              |
-| [Polonius on Nightly][NBNLB]                           | (not yet accepted)      | [lqd]            | [Types]              |
-| [Stabilize Associated type position impl trait][ATPIT] | (not yet accepted)      | [oli-obk]        | [Types], [Lang]      |
-| [Patterns of empty types][PET]                         | (not yet accepted)      | [Nadrieril]      | [Lang]               |
-| [Ergonomic ref-counting][RC]                           | (not yet accepted)      | [jkelleyrtp]     | [Lang], [Libs-API][] |
-| [Min generics const argument][MGCA]                    | (not yet accepted)      | BoxyUwU     | [Types][] |
-| [Const traits][CT]                                     | (not yet accepted)      | feel1-dead     | [Lang], [Libs-API][] |
+| 2024 goal                                                    | Accepted or proposed in | Owner            | Team                 |
+| ------------------------------------------------------------ | ----------------------- | ---------------- | -------------------- |
+| [Assemble goal slate][AGS]                                   | [RFC #3614][]           | [nikomatsakis][] | [LC]                 |
+| [Cargo Script][CS]                                           | [#22][]                 | [epage]          | [Cargo], [Lang]      |
+| [Extend pubgrub to match cargo's dependency resolution][PGC] | (not yet accepted)      | Eh2406           | [Cargo][]            |
+| [Next-generation trait solver][NTS]                          | (not yet accepted)      | [lcnr]           | [Types]              |
+| [Testing infra + contributors for a-mir-formality][AMF]      | (not yet accepted)      | [nikomatsakis]   | [Types]              |
+| [Scalable Polonius support on nightly][NBNLB]                | (not yet accepted)      | [lqd]            | [Types]              |
+| [Stabilize Associated type position impl trait][ATPIT]       | (not yet accepted)      | [oli-obk]        | [Types], [Lang]      |
+| [Min generics const argument][MGCA]                          | (not yet accepted)      | BoxyUwU          | [Types][]            |
+| [Patterns of empty types][PET]                               | (not yet accepted)      | [Nadrieril]      | [Lang]               |
+| [Ergonomic ref-counting][RC]                                 | (not yet accepted)      | [jkelleyrtp]     | [Lang], [Libs-API][] |
+| [Const traits][CT]                                           | (not yet accepted)      | feel1-dead       | [Lang], [Libs-API][] |
 
 [AGS]: ./Project-goal-slate.md
 [CS]: ./cargo-script.md

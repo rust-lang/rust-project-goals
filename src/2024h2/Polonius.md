@@ -1,4 +1,4 @@
-# Polonius
+# Scalable Polonius support on nightly
 
 | Metadata |         |
 | -------- | ------- |
@@ -11,7 +11,7 @@
 
 ## Summary
 
-Nightly support for [Polonius][pc3], next generation borrow checking
+Improve the Nightly support for [Polonius][pc3], next generation borrow checking, so that it can scale
 
 ## Motivation
 
