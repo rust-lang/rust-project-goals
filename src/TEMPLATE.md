@@ -12,9 +12,13 @@
 | Teams    | *Names of teams being asked to commit to the goal*           |
 | Status   | WIP                                                          |
 
+## Summary
+
+*Short description of what you will do over the next 6 months.*
+
 ## Motivation
 
-*Begin the motivation with a short (1 paragraph, ideally) summary of what the goal is trying to achieve and why it matters.*
+*Begin with a few sentences summarizing the problem you are attacking and why it is important.*
 
 ### The status quo
 

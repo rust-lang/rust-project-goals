@@ -10,6 +10,10 @@
 [Compiler]: https://www.rust-lang.org/governance/teams/compiler
 [Lang]: https://www.rust-lang.org/governance/teams/lang
 
+## Summary
+
+Introduce an RFC for never patterns or other solutions for patterns involving uninhabited types.
+
 ## Motivation
 
 The story about pattern-matching is incomplete with regards to empty types: users sometimes have to

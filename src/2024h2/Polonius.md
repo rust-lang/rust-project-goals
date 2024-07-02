@@ -9,6 +9,10 @@
 [lqd]: https://github.com/lqd
 [Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
 
+## Summary
+
+Nightly support for [Polonius][pc3], next generation borrow checking
+
 ## Motivation
 
 Polonius is an improved version of the borrow checker that [resolves common limitations of the borrow checker][pc3] and which is needed to support future patterns such as ["lending iterators"][#92985]. Its model also prepares us for further improvements in the future.

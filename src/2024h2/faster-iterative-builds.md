@@ -10,6 +10,10 @@
 [Compiler]: https://www.rust-lang.org/governance/teams/compiler
 [Cargo]: https://www.rust-lang.org/governance/teams/dev-tools#team-cargo
 
+## Summary
+
+Improvements to make iterative builds faster.
+
 ## Motivation
 
 For 2024H2, we propose to create better caching to speed up build times, particularly in iterative, local development. Build time affects all Rust users, but it can be a particular blocker for Rust users in "higher-level" domains like app/game/web development, data science, and scientific computing. These developers are often coming from interpreted languages like Python and are accustomed to making small, quick changes and seeing immediate feedback. In those domains, Rust has picked up momentum as a language for building underlying frameworks and libraries thanks to its lower-level nature. The motivation of this project goal is to make Rust a better choice for higher level programming subfields by improving the build experience (see also the partner goal related to [language papercuts](./ergonomics-initiative.md)). 

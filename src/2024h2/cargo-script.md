@@ -1,10 +1,14 @@
 # cargo-scrpt
 
-| Metadata | |
-| --- | --- |
-| Owner(s) | epage |
-| Teams | Cargo, Lang |
-| Status | Accepted in [rust-lang/rust-project-goals#22](https://github.com/rust-lang/rust-project-goals/issues/22) |
+| Metadata |                                                                                                          |
+| -------- | -------------------------------------------------------------------------------------------------------- |
+| Owner(s) | epage                                                                                                    |
+| Teams    | Cargo, Lang                                                                                              |
+| Status   | Accepted in [rust-lang/rust-project-goals#22](https://github.com/rust-lang/rust-project-goals/issues/22) |
+
+## Summary
+
+Stablize support for "cargo script", the ability to have a single file that contains both Rust code and a `Cargo.toml`.
 
 ## Motivation
 
@@ -54,22 +58,32 @@ At a high-level, this is
 
 **Owner:** epage
 
-### Support needed from the project
+This section defines the specific work items that are planned and who is expected to do them. It should also include what will be needed from Rust teams.
 
-- Review support from T-compiler.  Worse case, some mentorship as well.
-- Stabilization decision from lang for [RFC 3503][] feature.
+* Subgoal:
+    * Describe the work to be done and use `↳` to mark "subitems".
+* Owner(s) or team(s):
+    * List the owner for this item (who will do the work) or ![Help wanted][] if an owner is needed.
+    * If the item is a "team ask" (i.e., approve an RFC), put ![Team][] and the team name(s).
+* Status:
+    * List ![Help wanted][] if there is an owner but they need support, for example funding.
+    * Other needs (e.g., complete, in FCP, etc) are also fine.
 
-## Outputs and milestones
+| Subgoal                           | Owner(s) or team(s) | Status |
+| --------------------------------- | ------------------- | ------ |
+| Implementation                    | Ed Page             |        |
+| Stabilization decision from lang  | ![Team][] [Lang]    |        |
+| Stabilization decision from cargo | ![Team][] [Cargo]   |        |
 
-### Outputs
+[Help wanted]: https://img.shields.io/badge/Help%20wanted-yellow
+[Complete]: https://img.shields.io/badge/Complete-green
+[TBD]: https://img.shields.io/badge/TBD-red
+[Team]: https://img.shields.io/badge/Team%20ask-red
 
-Support for cargo scripts on stable.
-
-### Milestones
-
-- [x] Prototype
-- [x] RFC
-- [ ] Feature complete
-- [ ] Stable
-
-## Frequently asked questions
+[Compiler]: https://www.rust-lang.org/governance/teams/compiler
+[Lang]: https://www.rust-lang.org/governance/teams/lang
+[LC]: https://www.rust-lang.org/governance/teams/leadership-council
+[Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
+[Infra]: https://www.rust-lang.org/governance/teams/infra
+[Cargo]: https://www.rust-lang.org/governance/teams/dev-tools#team-cargo
+[Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
