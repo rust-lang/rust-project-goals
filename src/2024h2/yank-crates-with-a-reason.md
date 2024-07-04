@@ -12,7 +12,7 @@
 
 ## Summary
 
-Over the next 6 months, we will first implement a feature in crates.io that asks for a reason when a administrator yanks a crate. After this feature has been up and running for a while, we'll open it up to Cargo to support filling in the reason for yanking. Make it an optional parameter of the registry yank API.
+Over the next 6 months, we will first implement a feature in crates.io that asks for a reason when an administrator yanks a crate. After this feature has been up and running for a while, we'll open it up to Cargo to support filling in the reason for yanking, making it an optional parameter of the registry yank API.
 
 ## Motivation
 
