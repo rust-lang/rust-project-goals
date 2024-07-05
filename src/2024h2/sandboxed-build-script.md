@@ -102,7 +102,7 @@ In order of importance, a sandboxed build script feature should provide the foll
   Cargo is guaranteed to work on [tier 1] platforms.
   This is not a must have for experiments,
   but is a requirement for stabilization.
-* **Easy to configure for using system (C) libraries.**
+* **Ensure `-sys` crates can be built within the sandbox.**
   Probing and building from system libraries is the major use case of build scripts.
   We should support it as a first-class citizen.
 * **Declarative configuration interface to grant permissions to packages.**
