@@ -89,8 +89,6 @@ These could become future goals if this one succeeds:
 * The runtime of the sandbox environment is swappable,
   enabling the potential support of remote execution without waiting for a first-party solution.
   It also opens a door to hermetic builds.
-* If we choose something like WebAssembly as the runtime of the sandbox environment,
-  the build script binaries could be pre-built and downloadable from user-defined pre-built binary servers.
 
 [`cargo info`]: https://crates.io/crates/cargo-information
 
