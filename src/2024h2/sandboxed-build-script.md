@@ -118,6 +118,10 @@ Currently out of scope:
 * Hermetic builds, though this extension should be considered.
 * Support for all tier-1 and tier-2 with-host-tools platforms.
   As an experiment, we follow what the chosen sandbox runtime provides us.
+* On-par build times.
+  The build time is expected to be impacted because build script artifacts are going to build for the sandbox runtime.
+  This prevents an optimization that when "host" and "target" platforms are the same,
+  Cargo tries to share artifacts between build scripts and applications.
 
 ## Ownership and other resources
 
