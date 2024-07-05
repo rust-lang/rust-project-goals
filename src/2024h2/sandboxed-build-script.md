@@ -29,12 +29,16 @@ helping the caching story for the ecosystem in the long run.
 Build scripts in Cargo can do literally anything from network requests to executing arbitrary binaries.
 This isn't deemed a security issue as it is "by design".
 Unfortunately, this "by design" virtue relies on trust among developers within the community.
-When the trust is broken by some incidents,
+When trust is broken by some incidents,
 even just once,
 the community has no choice but to intensively review build scripts in their dependencies.
+
 Although there are collaborative code review tools like [cargo-vet] and [cargo-crev] to help build trust,
-that is not realistic and still requires non-negligible efforts on code reviews,
-especially when compared to the speed at which new versions are coming out.
+comprehensive review is still impractical,
+especially considering the pace of new version releases.
+In Rust, the `unsafe` keyword helps reviewers identify code sections that require extra scrutiny.
+However, an unsandboxed build script is effectively an enormous `unsafe` block,
+making comprehensive review impractical for the community.
 
 Besides the security and trust issues,
 in an unsandboxed build script,
