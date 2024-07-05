@@ -97,6 +97,10 @@ These could become future goals if this one succeeds:
 In order of importance, a sandboxed build script feature should provide the following properties:
 
 * **Restrict runtime file system and network access**, unless allowed explicitly.
+* **Cross-platform supports.**
+  Cargo is guaranteed to work on [tier 1] platforms.
+  This is not a must have for experiments,
+  but is a requirement for stabilization.
 * **Easy to configure for using system (C) libraries.**
   Probing and building from system libraries is the major use case of build scripts.
   We should support it as a first-class citizen.
@@ -116,12 +120,14 @@ Currently out of scope:
 * Terminal user interface.
 * Pre-built build script binaries.
 * Hermetic builds, though this extension should be considered.
-* Support for all tier-1 and tier-2 with-host-tools platforms.
+* Support for all tier 2 with-host-tools platforms.
   As an experiment, we follow what the chosen sandbox runtime provides us.
 * On-par build times.
   The build time is expected to be impacted because build script artifacts are going to build for the sandbox runtime.
   This prevents an optimization that when "host" and "target" platforms are the same,
   Cargo tries to share artifacts between build scripts and applications.
+
+[tier 1]: https://doc.rust-lang.org/rustc/platform-support.html#tier-1-with-host-tools
 
 ## Ownership and other resources
 
