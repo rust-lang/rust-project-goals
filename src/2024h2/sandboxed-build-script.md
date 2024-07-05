@@ -96,7 +96,8 @@ These could become future goals if this one succeeds:
 
 In order of importance, a sandboxed build script feature should provide the following properties:
 
-* **Restrict runtime file system and network access**, unless allowed explicitly.
+* **Restrict runtime file system and network access, as well as process spawning,**
+  unless allowed explicitly.
 * **Cross-platform supports.**
   Cargo is guaranteed to work on [tier 1] platforms.
   This is not a must have for experiments,
