@@ -1,0 +1,9 @@
+[package]
+name = "extract-output-table"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.86"
+regex = "1.10.5"
+structopt = "0.3.26"
