@@ -42,37 +42,28 @@
 
 ## Ownership and other resources
 
-**Owner:** *Identify a specific person or small group of people if possible, else the group that will provide the owner*
+**Owner:** *Identify a specific person or small group of people if possible, else the group that will provide the owner. Github user names are commonly used to remove ambiguity.*
 
-This section defines the specific work items that are planned and who is expected to do them. It should also include what will be needed from Rust teams.
+*This section defines the specific work items that are planned and who is expected to do them. It should also include what will be needed from Rust teams. The table below shows some common sets of asks and work, but feel free to adjust it as needed. Every row in the table should either correspond to something done by a contributor or something asked of a team. For items done by a contributor, list the contributor, or ![Heap wanted][] if you don't yet know who will do it. For things asked of teams, list ![Team][] and the name of the team. The things typically asked of teams are defined in the [Definitions](#definitions) section below.*
 
-* Subgoal:
-    * Describe the work to be done and use `↳` to mark "subitems".
-* Owner(s) or team(s):
-    * List the owner for this item (who will do the work) or ![Help wanted][] if an owner is needed.
-    * If the item is a "team ask" (i.e., approve an RFC), put ![Team][] and the team name(s).
-* Status:
-    * List ![Help wanted][] if there is an owner but they need support, for example funding.
-    * Other needs (e.g., complete, in FCP, etc) are also fine.
-
-*Adjust the table below; some common examples are shown below.*
-
-| Subgoal                                        | Owner(s) or team(s)  | Status |
-| ---------------------------------------------- | -------------------- | ------ |
-| Stabilize Feature X (typical language feature) |                      |        |
-| ↳ author RFC                                   |                      |        |
-| ↳ implementation                               |                      |        |
-| ↳ design meeting                               | ![Team][] [Lang]     |        |
-| ↳ approve RFC                                  | ![Team][] [Lang]     |        |
-| ↳ stabilization report                         |                      |        |
-| ↳ stabilization decision                       | ![Team][] [Lang]     |        |
-| Nightly experiment for X                       |                      |        |
-| ↳ author RFC                                   |                      |        |
-| ↳ approve lang-team experiment                 | ![Team][] [Lang]     |        |
-| ↳ implementation                               |                      |        |
-| ↳ dedicated reviewer (not normally needed)     | ![Team][] [Compiler] |        |
-| Inside Rust blog post inviting feedback        |                      |        |
-| Top-level Rust blog post inviting feedback     | ![Team][] [LC]       |        |
+| Subgoal                                        | Owner(s) or team(s)     | Notes |
+| ---------------------------------------------- | ----------------------- | ----- |
+| Stabilize Feature X (typical language feature) |                         |       |
+| ↳ Author RFC                                   | *Goal owner, typically* |       |
+| ↳ Implementation                               | *Goal owner, typically* |       |
+| ↳ Standard reviews                             | ![Team][] [Compiler]    |       |
+| ↳ Design meeting                               | ![Team][] [Lang]        |       |
+| ↳ RFC decision                                 | ![Team][] [Lang]        |       |
+| ↳ Secondary RFC review                         | ![Team][] [Lang]        |       |
+| ↳ Author stabilization report                  | *Goal owner, typically* |       |
+| ↳ Stabilization decision                       | ![Team][] [Lang]        |       |
+| Nightly experiment for X                       |                         |       |
+| ↳ Lang-team experiment                         | ![Team][] [Lang]        |       |
+| ↳ Author RFC                                   | *Goal owner, typically* |       |
+| ↳ Implementation                               | *Goal owner, typically* |       |
+| ↳ Standard reviews                             | ![Team][] [Compiler]    |       |
+| Inside Rust blog post inviting feedback        | ![Team][] (any team)    |       |
+| Top-level Rust blog post inviting feedback     | ![Team][] [LC]          |       |
 
 [Help wanted]: https://img.shields.io/badge/Help%20wanted-yellow
 [Complete]: https://img.shields.io/badge/Complete-green
@@ -86,6 +77,23 @@ This section defines the specific work items that are planned and who is expecte
 [Infra]: https://www.rust-lang.org/governance/teams/infra
 [Cargo]: https://www.rust-lang.org/governance/teams/dev-tools#team-cargo
 [Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
+
+### Definitions
+
+Definitions for terms used above:
+
+* *Author RFC* and *Implementation* means actually writing the code, document, whatever.
+* *Design meeting* means holding a synchronous meeting to review a proposal and provide feedback (no decision expected).
+* *RFC decisions* means reviewing an RFC and deciding whether to accept.
+* *Org decisions* means reaching a decision on an organizational or policy matter.
+* *Secondary review* of an RFC means that the team is "tangentially" involved in the RFC and should be expected to briefly review.
+* *Stabilizations* means reviewing a stabilization and report and deciding whether to stabilize.
+* *Standard reviews* refers to reviews for PRs against the repository; these PRs are not expected to be unduly large or complicated.
+* *Dedicated review* means identifying an individual (or group of individuals) who will review the changes, as they're expected to require significant context.
+* Other kinds of decisions:
+    * [Lang team experiments](https://lang-team.rust-lang.org/how_to/experiment.html) are used to add nightly features that do not yet have an RFC. They are limited to trusted contributors and are used to resolve design details such that an RFC can be written.
+    * Compiler [Major Change Proposal (MCP)](https://forge.rust-lang.org/compiler/mcp.html) is used to propose a 'larger than average' change and get feedback from the compiler team.
+    * Library [API Change Proposal (ACP)](https://std-dev-guide.rust-lang.org/development/feature-lifecycle.html) describes a change to the standard library.
 
 ## Frequently asked questions
 

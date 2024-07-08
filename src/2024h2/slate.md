@@ -121,34 +121,65 @@ The "owner" in the column is the person expecting to do the design/implementatio
 
 | Team        | Goal                           | Owner                     | Ask                                                                         |
 | ----------- | ------------------------------ | ------------------------- | --------------------------------------------------------------------------- |
-| ![Lang]     | [Async][]                      | [nikomatsakis]            | Approve RTN RFC and stabilization                                           |
-|             | [Async][]                      | [nikomatsakis], [tmandry] | Approve new team structure to replace async-wg                              |
-|             | [Async][]                      | TBD                       | Approve async closure RFC and stabilization                                 |
-|             | [Async][]                      | [eholk]                   | Provide feedback on async iteration RFC (stretch goal)                      |
+| ![Lang]     | *Design meetings*              |                           |                                                                             |
 |             | [Async][]                      | n/a                       | An estimated 4–5 design meetings                                            |
-|             | [RFL][]                        | [Adrian Taylor]           | Stabilization decision for arbitrary self types v2                          |
+|             | [Async][]                      | [eholk]                   | Provide feedback on async iteration RFC (stretch goal)                      |
+| ![Lang]     | *RFC decisions*                |                           |                                                                             |
+|             | [Async][]                      | [compiler-errors][]       | Review async closure [RFC #3668]                                            |
+|             | [Ergonomic Ref Counting][ERC]  | Jonathan Kelley           | Review future Ergonomic Ref Counting RFC                                    |
+| ![Lang]     | *Stabilizations*               |                           |                                                                             |
+|             | [Async][]                      | [nikomatsakis]            | Stabilize RTN from [RFC #3654]                                              |
+|             | [Async][]                      | [compiler-errors][]       | Stabilize async closure [RFC #3668]                                         |
 |             | [RFL][]                        | [Alice Ryhl]              | Approve [RFC #3621][] and stabilize implementation                          |
+|             | [RFL][]                        | [Adrian Taylor]           | Stabilization decision for arbitrary self types v2                          |
 |             | [RFL][]                        | [Gary Guo]                | Stabilize `asm_goto`                                                        |
 |             | [Cargo Script][CS]             | [epage]                   | Stabilize cargo script backtick syntax                                      |
 |             | [ATPIT][]                      | [oli-obk]                 | Stabilize ATPIT                                                             |
 |             | [Patterns of empty types][PET] | [Nadrieril]               | Review of "never patterns" RFC and stabilization decision                   |
-|             | [Ergonomic Ref Counting][ERC]  | Jonathan Kelley           | Primary review and acceptance of Ergonomic Ref Counting RFC                 |
-| ![Libs]     | [Async][]                      | [nikomatsakis], [tmandry] | Approve new team structure to replace async-wg                              |
-| ![Libs-API] | [Async][]                      | [eholk]                   | Approve async iteration RFC and stabilization (stretch goal)                |
-|             | [RFL][]                        | [Ding Xiang Fei]          | Stabilize `offset_of!` syntax for struct fields                             |
-|             | [RFL][]                        | [Ding Xiang Fei]          | Stabilize `offset_of!` syntax for struct fields                             |
+| ![Lang]     | *Org decisions*                |                           |                                                                             |
+|             | [Async][]                      | [nikomatsakis], [tmandry] | Review new team structure to replace async-wg                               |
+| ![Libs]     | *Org decisions*                |                           |                                                                             |
+|             | [Async][]                      | [nikomatsakis], [tmandry] | Approve new team structure to replace async-wg                              |
+| ![Libs-API] | *RFC decisions*                |                           |                                                                             |
+|             | [Async][]                      | [compiler-errors][]       | Secondary review of async closure [RFC #3668]                               |
+|             | [Async][]                      | [eholk]                   | Approve async iteration RFC and stabilization (stretch goal)                |
 |             | [Ergonomic Ref Counting][ERC]  | [Jonathan Kelley]         | Secondary review of Ergonomic Ref Counting RFC                              |
-| ![Compiler] | [RFL][]                        | [Adrian Taylor]           | Review support and guidance for impl of arbitrary self types v2             |
+| ![Libs-API] | *Stabilizations*               |                           |                                                                             |
+|             | [RFL][]                        | [Ding Xiang Fei]          | Stabilize `offset_of!` syntax for struct fields                             |
+|             | [RFL][]                        | [Ding Xiang Fei]          | Stabilize `offset_of!` syntax for struct fields                             |
+| ![Compiler] | *Standard reviews*             |                           |                                                                             |
+|             | [RFL][]                        | [Adrian Taylor]           | Review support and guidance for impl of arbitrary self types v2             |
+| ![Compiler] | *Org decisions*                |                           |                                                                             |
 |             | [RFL][]                        | [Jakub Beránek]           | Review and approve guidelines for RFL in CI                                 |
-| ![Types]    | [Next-gen Solver][NGS]         | [lcnr]                    | stabilize the use of the next-generation trait solver in coherence checking |
+| ![Types]    | *Stabilization decisions*      |                           |                                                                             |
+|             | [Next-gen Solver][NGS]         | [lcnr]                    | stabilize the use of the next-generation trait solver in coherence checking |
 |             | [ATPIT][]                      | [oli-obk]                 | Stabilize ATPIT                                                             |
 |             | [AMF][AMF]                     | [nikomatsakis]            | Participaton from 2 types team members in a-mir-formality                   |
 |             | [Polonius][NBNLB]              | [lqd]                     | Review and support                                                          |
+
+### Definitions
+
+Definitions for terms used above:
+
+* *Author RFC* and *Implementation* means actually writing the code, document, whatever.
+* *Design meeting* means holding a synchronous meeting to review a proposal and provide feedback (no decision expected).
+* *RFC decisions* means reviewing an RFC and deciding whether to accept.
+* *Org decisions* means reaching a decision on an organizational or policy matter.
+* *Secondary review* of an RFC means that the team is "tangentially" involved in the RFC and should be expected to briefly review.
+* *Stabilizations* means reviewing a stabilization and report and deciding whether to stabilize.
+* *Standard reviews* refers to reviews for PRs against the repository; these PRs are not expected to be unduly large or complicated.
+* Other kinds of decisions:
+    * [Lang team experiments](https://lang-team.rust-lang.org/how_to/experiment.html) are used to add nightly features that do not yet have an RFC. They are limited to trusted contributors and are used to resolve design details such that an RFC can be written.
+    * Compiler [Major Change Proposal (MCP)](https://forge.rust-lang.org/compiler/mcp.html) is used to propose a 'larger than average' change and get feedback from the compiler team.
+    * Library [API Change Proposal (ACP)](https://std-dev-guide.rust-lang.org/development/feature-lifecycle.html) describes a change to the standard library.
+
 
 [RFC #3621]: https://github.com/rust-lang/rfcs/pull/3621
 [#22]: https://github.com/rust-lang/rust-project-goals/issues/22
 [RFC #3614]: https://github.com/rust-lang/rfcs/pull/3614
 [RFC #3501]: https://rust-lang.github.io/rfcs/3501-edition-2024.html
+[RFC #3654]: https://github.com/rust-lang/rfcs/pull/3654
+[RFC #3668]: https://github.com/rust-lang/rfcs/pull/3668
 
 <!-- Teams -->
 
@@ -185,7 +216,9 @@ The "owner" in the column is the person expecting to do the design/implementatio
 [Alice Ryhl]: https://github.com/Darksonn/
 [blyxyas]: https://github.com/blyxyas
 [BoxyUwU]: https://github.com/BoxyUwU
+[compiler-errors]: https://github.com/compiler-errors
 [Eh2406]: https://github.com/Eh2406
+[eholk]: https://github.com/eholk
 [Ding Xiang Fei]: https://github.com/dingxiangfei2009
 [Jakub Beránek]: https://github.com/Kobzol
 [epage]: https://github.com/epage
