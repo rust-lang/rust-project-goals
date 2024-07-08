@@ -126,11 +126,12 @@ The "owner" in the column is the person expecting to do the design/implementatio
 |             | [Async][]                      | [eholk]                   | Provide feedback on async iteration RFC (stretch goal)                      |
 | ![Lang]     | *RFC decisions*                |                           |                                                                             |
 |             | [Async][]                      | [compiler-errors][]       | Review async closure [RFC #3668]                                            |
-|             | [Ergonomic Ref Counting][ERC]  | Jonathan Kelley           | Review future Ergonomic Ref Counting RFC                                    |
+|             | [Ergonomic Ref Counting][ERC]  | [Jonathan Kelley]         | Review future Ergonomic Ref Counting RFC                                    |
+|             | [RFL][]                        | [Alice Ryhl]              | Approve [RFC #3621][]                                                       |
 | ![Lang]     | *Stabilizations*               |                           |                                                                             |
 |             | [Async][]                      | [nikomatsakis]            | Stabilize RTN from [RFC #3654]                                              |
 |             | [Async][]                      | [compiler-errors][]       | Stabilize async closure [RFC #3668]                                         |
-|             | [RFL][]                        | [Alice Ryhl]              | Approve [RFC #3621][] and stabilize implementation                          |
+|             | [RFL][]                        | [Alice Ryhl]              | Stabilize implementation of [RFC #3621][]                                   |
 |             | [RFL][]                        | [Adrian Taylor]           | Stabilization decision for arbitrary self types v2                          |
 |             | [RFL][]                        | [Gary Guo]                | Stabilize `asm_goto`                                                        |
 |             | [Cargo Script][CS]             | [epage]                   | Stabilize cargo script backtick syntax                                      |
