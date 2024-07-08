@@ -178,8 +178,8 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | resolve the ["send bound"][sb] problem   |                                         |                     |
 | ↳ ~~RTN implementation~~                 | ~~[compiler-errors][]~~                 | ![Complete][]       |
 | ↳ ~~RTN RFC~~                            | [nikomatsakis][]                        | ![Complete][]       |
-| ↳ approve RTN RFC or provide alternative | ![Team][] [Lang]                        | (in FCP)            |
-| ↳ stabilization                          | [compiler-errors][]                     | ![Funded][]         |
+| ↳ approve RTN RFC or provide alternative |                                         | ![Complete][]       |
+| ↳ stabilization                          | ![Team][] [Lang] [compiler-errors][]    |                     |
 | reorganize the async WG                  |                                         |                     |
 | ↳ author proposal                        | [tmandry][], [nikomatsakis][]           | ![Funded][]         |
 | ↳ approve changes to team structure      | ![Team][] [Libs], [Lang]                |                     |
@@ -197,6 +197,7 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | ↳ ~~author MCP~~                         | ~~[petrochenkov][]~~                    | ![Complete][]       |
 | ↳ ~~approve MCP~~                        | ~~[Compiler]~~                          | ![Complete][]       |
 | ↳ implementation work                    | [petrochenkov][]                        | ![Not funded][] (*) |
+| ↳ standard reviews                                | ![Team][] [Compiler]                    | |
 
 (*) Implementation work on async drop experiments is currently unfunded. We are trying to figure out next steps.
 
