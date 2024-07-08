@@ -27,6 +27,7 @@
         - [Extend pubgrub to match cargo's dependency resolution](./2024h2/pubgrub-in-cargo.md)
         - [Sandboxed Build Script](./2024h2/sandboxed-build-script.md)
         - [Yank crates with a reason](./2024h2/yank-crates-with-a-reason.md)
+        - [Clippy performance improvements](./2024h2/optimize-clippy.md)
     - [General notes](./2024h2/notes.md)
 - [📖 Learn about](./about/index.md)
     - [Goal motivations](./about/motivation.md)

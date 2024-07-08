@@ -1,4 +1,4 @@
-# Sandboxed build scripts
+# Explore sandboxed build scripts
 
 | Metadata |             |
 | ---------| ----------- |
