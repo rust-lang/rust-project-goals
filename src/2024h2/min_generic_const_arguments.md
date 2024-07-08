@@ -1,10 +1,10 @@
-# Minimum generic const arguments
+# "Stabilizable" prototype for expanded const generics
 
-| Metadata | |
-| --- | --- |
-| Owner(s) | BoxyUwU |
-| Teams | Types |
-| Status | Under active consideration |
+| Metadata |                            |
+| -------- | -------------------------- |
+| Owner(s) | BoxyUwU                    |
+| Teams    | Types                      |
+| Status   | Under active consideration |
 
 ## Summary
 
@@ -56,16 +56,36 @@ Allowing generic parameters to be used in const generic arguments is the only pa
 
 **Owner:** @BoxyUwU, project-const-generics lead, T-types member
 
-@compiler-errors (T-types member) has mentioned being able to help contribute to implementation and reviews
-@camelid has mentioned being able to dedicate some time for a bit until fall
+This section defines the specific work items that are planned and who is expected to do them. It should also include what will be needed from Rust teams.
 
-### Support needed from the project
+* Subgoal:
+    * Describe the work to be done and use `↳` to mark "subitems".
+* Owner(s) or team(s):
+    * List the owner for this item (who will do the work) or ![Help wanted][] if an owner is needed.
+    * If the item is a "team ask" (i.e., approve an RFC), put ![Team][] and the team name(s).
+* Status:
+    * List ![Help wanted][] if there is an owner but they need support, for example funding.
+    * Other needs (e.g., complete, in FCP, etc) are also fine.
 
-- Lang
-    - Potential review of a `min_generic_const_args` RFC
-    - Occasional bikeshedding
+| Subgoal                           | Owner(s) or team(s) | Status |
+| --------------------------------- | ------------------- | ------ |
+| Implementation and mentoring      | BoxyUwu             |        |
+| Implementation                    | camelid             |        |
+| Reviewer                          | errs                |        |
+| Up to 2 design meetings as needed | ![Team][] [Lang]    |        |
 
-Having additional review bandwidth would be nice but I think we will be okay without it as there is enough people to trade PRs back and forth.
+[Help wanted]: https://img.shields.io/badge/Help%20wanted-yellow
+[Complete]: https://img.shields.io/badge/Complete-green
+[TBD]: https://img.shields.io/badge/TBD-red
+[Team]: https://img.shields.io/badge/Team%20ask-red
+
+[Compiler]: https://www.rust-lang.org/governance/teams/compiler
+[Lang]: https://www.rust-lang.org/governance/teams/lang
+[LC]: https://www.rust-lang.org/governance/teams/leadership-council
+[Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
+[Infra]: https://www.rust-lang.org/governance/teams/infra
+[Cargo]: https://www.rust-lang.org/governance/teams/dev-tools#team-cargo
+[Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
 
 ## Outputs and milestones
 

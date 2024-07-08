@@ -41,19 +41,20 @@ Do it! [Instructions for proposing goals can be found here.](../how_to/propose_a
 
 ### Top candidates
 
-| 2024 goal                                              | Accepted or proposed in | Owner            | Team                 |
-| ------------------------------------------------------ | ----------------------- | ---------------- | -------------------- |
-| [Assemble goal slate][AGS]                             | [RFC #3614][]           | [nikomatsakis][] | [LC]                 |
-| [Cargo Script][CS]                                     | [#22][]                 | [epage]          | [Cargo], [Lang]      |
-| [Next-generation trait solver][NTS]                    | (not yet accepted)      | [lcnr]           | [Types]              |
-| [Formal model of Rust][AMF]                            | (not yet accepted)      | [nikomatsakis]   | [Types]              |
-| [Polonius on Nightly][NBNLB]                           | (not yet accepted)      | [lqd]            | [Types]              |
-| [Stabilize Associated type positiom impl trait][ATPIT] | (not yet accepted)      | [oli-obk]        | [Types], [Lang]      |
-| [Patterns of empty types][PET]                         | (not yet accepted)      | [Nadrieril]      | [Lang]               |
-| [Ergonomic ref-counting][RC]                           | (not yet accepted)      | [jkelleyrtp]     | [Lang], [Libs-API][] |
-| [Min generics const argument][MGCA]                    | (not yet accepted)      | BoxyUwU     | [Types][] |
-| [Const traits][CT]                                     | (not yet accepted)      | feel1-dead     | [Lang], [Libs-API][] |
-| [Extend pubgrub to match cargo's dependency resolution][PGC] | (not yet accepted)      | Eh2406     | [Cargo][] |
+| 2024 goal                                                    | Accepted or proposed in | Owner            | Team                 |
+| ------------------------------------------------------------ | ----------------------- | ---------------- | -------------------- |
+| [Assemble goal slate][AGS]                                   | [RFC #3614][]           | [nikomatsakis][] | [LC]                 |
+| [Cargo Script][CS]                                           | [#22][]                 | [epage]          | [Cargo], [Lang]      |
+| [Extend pubgrub to match cargo's dependency resolution][PGC] | (not yet accepted)      | Eh2406           | [Cargo][]            |
+| [Next-generation trait solver][NTS]                          | (not yet accepted)      | [lcnr]           | [Types]              |
+| [Testing infra + contributors for a-mir-formality][AMF]      | (not yet accepted)      | [nikomatsakis]   | [Types]              |
+| [Scalable Polonius support on nightly][NBNLB]                | (not yet accepted)      | [lqd]            | [Types]              |
+| [Stabilize Associated type position impl trait][ATPIT]       | (not yet accepted)      | [oli-obk]        | [Types], [Lang]      |
+| [Min generics const argument][MGCA]                          | (not yet accepted)      | BoxyUwU          | [Types][]            |
+| [Patterns of empty types][PET]                               | (not yet accepted)      | [Nadrieril]      | [Lang]               |
+| [Ergonomic ref-counting][RC]                                 | (not yet accepted)      | [jkelleyrtp]     | [Lang], [Libs-API][] |
+| [Const traits][CT]                                           | (not yet accepted)      | feel1-dead       | [Lang], [Libs-API][] |
+| [Relaxing the Orphan Rule][RTOR]                             | (not yet accepted)      | ![Help wanted][] | [Lang], [Types][]    |
 
 [AGS]: ./Project-goal-slate.md
 [CS]: ./cargo-script.md
@@ -76,10 +77,9 @@ Do it! [Instructions for proposing goals can be found here.](../how_to/propose_a
 These are goals that are still being workshopped. They are sorted roughly by progress and likelihood to become top candidates.
 In many cases the work being described will definitely happen, but it is not clear if they ought to become a "Project Goal".
 
-| 2024 goal                        | Owner            | Teams              |
-| -------------------------------- | ---------------- | ------------------ |
-| [Contracts and invariants][CI]   | [pnkfelix]       | [Lang], [Compiler] |
-| [Relaxing the Orphan Rule][RTOR] | [JoshTriplett][] | [Lang]             |
+| 2024 goal                      | Owner      | Teams              |
+| ------------------------------ | ---------- | ------------------ |
+| [Contracts and invariants][CI] | [pnkfelix] | [Lang], [Compiler] |
 
 [CI]: ./Contracts-and-invariants.md
 [RTOR]: ./Relaxing-the-Orphan-Rule.md
