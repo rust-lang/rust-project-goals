@@ -6,6 +6,10 @@
 | Teams | Cargo |
 | Status | WIP |
 
+## Summary
+
+Implement a standalone library based on pubgrub that model's cargo dependency resolution and validate its accurate with testing against crates found on crates.io. This lays the groundwork for improved cargo error messages, extensions for hotly requested features (e.g., better MSRV support, CVE-aware resolution, etc), and support for a richer ecosystem of cargo extensions.
+
 ## Motivation
 
 

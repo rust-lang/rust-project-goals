@@ -1,4 +1,4 @@
-# a-mir-formality modeling the borrow checker, coherence
+# Testing infra + contributors for a-mir-formality
 
 | Metadata | |
 | --- | --- |
