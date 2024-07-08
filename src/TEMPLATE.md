@@ -10,7 +10,6 @@
 | -------- | ------------------------------------------------------------ |
 | Owner(s) | *Github usernames or other identifying info for goal owners* |
 | Teams    | *Names of teams being asked to commit to the goal*           |
-| Status   | WIP                                                          |
 
 ## Summary
 
@@ -89,6 +88,7 @@ Definitions for terms used above:
 * *Secondary review* of an RFC means that the team is "tangentially" involved in the RFC and should be expected to briefly review.
 * *Stabilizations* means reviewing a stabilization and report and deciding whether to stabilize.
 * *Standard reviews* refers to reviews for PRs against the repository; these PRs are not expected to be unduly large or complicated.
+* *Prioritized nominations* refers to prioritized lang-team response to nominated issues, with the expectation that there will be *some* response from the next weekly triage meeting.
 * *Dedicated review* means identifying an individual (or group of individuals) who will review the changes, as they're expected to require significant context.
 * Other kinds of decisions:
     * [Lang team experiments](https://lang-team.rust-lang.org/how_to/experiment.html) are used to add nightly features that do not yet have an RFC. They are limited to trusted contributors and are used to resolve design details such that an RFC can be written.
