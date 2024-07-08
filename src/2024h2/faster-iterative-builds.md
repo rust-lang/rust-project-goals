@@ -4,7 +4,7 @@
 | --- | --- |
 | Owner(s) | [jkelleyrtp][] |
 | Teams    | [Lang], [Compiler], [Cargo]            |
-| Status | WIP |
+| Status | Not accepted |
 
 [Lang]: https://www.rust-lang.org/governance/teams/lang
 [Compiler]: https://www.rust-lang.org/governance/teams/compiler

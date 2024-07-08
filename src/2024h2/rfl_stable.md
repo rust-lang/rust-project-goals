@@ -1,10 +1,11 @@
 # Resolving the biggest blockers to Linux building on stable Rust
 
-| Metadata |                                    |
-| -------- | ---------------------------------- |
-| Owner(s) | [nikomatsakis][], [joshtriplett][] |
-| Teams    | [Lang], [Libs-API], [Compiler]     |
-| Status   | Basically complete                 |
+| Metadata    |                                    |
+| ----------- | ---------------------------------- |
+| Short title | Rust-for-Linux                     |
+| Owner(s)    | [nikomatsakis][], [joshtriplett][] |
+| Teams       | [Lang], [Libs-API], [Compiler]     |
+| Status      | Basically complete                 |
 
 ## Summary
 
@@ -140,36 +141,37 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 * The ![Funded][] badge indicates that the owner has committed and work will be funded by their employer or other sources.
 * The ![Team][] badge indicates a requirement where Team support is needed.
 
-| Subgoal                            | Owner(s) or team(s)                | Status            |
-| ---------------------------------- | ---------------------------------- | ----------------- |
-| overall program management         | [nikomatsakis][], [joshtriplett][] | ![Funded][]       |
-| arbitrary self types v2            |                                    |                   |
-| ↳ ~~author [RFC][RFC 3519]~~       | ~~[Adrian Taylor][]~~              | ![Complete][]     |
-| ↳ ~~approve [RFC][RFC 3519]~~      | ~~[Lang]~~                         | ![Complete][]     |
-| ↳ implementation                   | [Adrian Taylor][]                  | ![Funded][]       |
-| ↳ assigned reviewer                | ![Team] [Compiler]                 | ![Not approved][] |
-| ↳ stabilization                    | [Adrian Taylor][]                  | ![Funded][]       |
-| derive smart pointer               |                                    |                   |
-| ↳ ~~author [RFC][RFC 3621]~~       | ~~[Alice Ryhl][]~~                 | ![Complete][]     |
-| ↳ approve [RFC][RFC 3621]          | ![Team][] [Lang]                   | ![Approved][]     |
-| ↳ implementation                   | [Xiang][]                          | ![Volunteer][]    |
-| ↳ stabilization                    | [Xiang][]                          | ![Volunteer][]    |
-| `asm_goto`                         |                                    |                   |
-| ↳ ~~implementation~~               | -                                  | ![Complete][]     |
-| ↳ real-world usage in Linux kernel | [Gary Guo]                         | ![Volunteer][]    |
-| ↳ extend to cover full RFC         | [Gary Guo]                         | ![Volunteer][]    |
-| ↳ stabilization                    | [Gary Guo]                         | ![Volunteer][]    |
-| ↳ stabilization decision           | ![Team][] [Lang]                   |                   |
-| extended `offset_of` syntax        |                                    |                   |
-| ↳ stabilization report             | [Xiang][]                          | ![Volunteer][]    |
-| ↳ stabilization decision           | ![Team][] [Libs-API]               |                   |
-| ~~RFL on Rust CI~~                 |                                    | ![Complete][]     |
-| ↳ ~~implementation ([#125209][])~~ | ~~[Jakub Beránek][]~~              |                   |
-| ↳ policy draft                     | [Jakub Beránek][]                  |                   |
-| ↳ policy approval                  | ![Team][] [Compiler]               |                   |
-| Pointers to static in constants    |                                    |                   |
-| ↳ stabilization proposal           | [nikomatsakis][]                   | ![Funded][]       |
-| ↳ stabilization decision           | ![Team][] [Lang]                   |                   |
+| Subgoal                            | Owner(s) or team(s)                | Status        |
+| ---------------------------------- | ---------------------------------- | ------------- |
+| Overall program management         | [nikomatsakis][], [joshtriplett][] |               |
+| Arbitrary self types v2            |                                    |               |
+| ↳ ~~author [RFC][RFC 3519]~~       | ~~[Adrian Taylor][]~~              | ![Complete][] |
+| ↳ ~~RFC decision~~                 | ~~[Lang]~~                         | ![Complete][] |
+| ↳ Implementation                   | [Adrian Taylor][]                  |               |
+| ↳ Assigned reviewer                | ![Team] [Compiler]                 |               |
+| ↳ Stabilization                    | [Adrian Taylor][]                  |               |
+| Derive smart pointer               |                                    |               |
+| ↳ ~~author [RFC][RFC 3621]~~       | ~~[Alice Ryhl][]~~                 |               |
+| ↳ RFC decision                     | ![Team][] [Lang]                   |               |
+| ↳ Implementation                   | [Xiang][]                          |               |
+| ↳ Stabilization                    | [Xiang][]                          |               |
+| ↳ Stabilization decision           | ![Team][] [Lang]                   |               |
+| `asm_goto`                         |                                    |               |
+| ↳ ~~implementation~~               | -                                  | ![Complete][] |
+| ↳ Real-world usage in Linux kernel | [Gary Guo]                         |               |
+| ↳ Extend to cover full RFC         | [Gary Guo]                         |               |
+| ↳ Author stabilization report      | [Gary Guo]                         |               |
+| ↳ Stabilization decision           | ![Team][] [Lang]                   |               |
+| Extended `offset_of` syntax        |                                    |               |
+| ↳ Stabilization report             | [Xiang][]                          |               |
+| ↳ Stabilization decision           | ![Team][] [Libs-API]               |               |
+| ~~RFL on Rust CI~~                 |                                    | ![Complete][] |
+| ↳ ~~implementation ([#125209][])~~ | ~~[Jakub Beránek][]~~              |               |
+| ↳ Policy draft                     | [Jakub Beránek][]                  |               |
+| ↳ Policy decision                  | ![Team][] [Compiler]               |               |
+| Pointers to static in constants    |                                    |               |
+| ↳ Stabilization proposal           | [nikomatsakis][]                   |               |
+| ↳ Stabilization decision           | ![Team][] [Lang]                   |               |
 
 [oli-obk]: https://github.com/oli-obk/
 [wesleywiser]: https://github.com/wesleywiser

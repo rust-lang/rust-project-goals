@@ -4,7 +4,7 @@
 | --- | --- |
 | Owner(s) | pnkfelix |
 | Teams | Lang, Libs, Compiler |
-| Status | WIP |
+| Status | Not accepted |
 
 ## Motivation
 
