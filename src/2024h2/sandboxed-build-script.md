@@ -143,7 +143,15 @@ I would be happy to support them as a Cargo maintainer.
 | Standard reviews                                   | ![Team][] [Cargo]    |             |
 | Collaboration with [GSoC proc-macro project][GSoC] | ![Team][] [Compiler] |             |
 | Summary of experiments or RFC                      | [weihanglo][]        | (or mentee) |
-  
+
+> For security reviews,
+> I'd like assistance from experts in security domains.
+> Ideally those experts would be from within the community,
+> such as the [Security Response] or [Secure Code] working groups.
+> However,
+> I don't want to pressure that goal since comprehensive security reviews are extremely time-consuming.
+> Outside experts are also welcome.
+
 [Help wanted]: https://img.shields.io/badge/Help%20wanted-yellow
 [Complete]: https://img.shields.io/badge/Complete-green
 [TBD]: https://img.shields.io/badge/TBD-red
@@ -151,6 +159,8 @@ I would be happy to support them as a Cargo maintainer.
 
 [Compiler]: https://www.rust-lang.org/governance/teams/compiler
 [Infra]: https://www.rust-lang.org/governance/teams/infra
+[Security Response]: https://www.rust-lang.org/governance/wgs/wg-security-response
+[Secure Code]: https://www.rust-lang.org/governance/wgs/wg-secure-code
 
 ## Outputs and milestones
 
