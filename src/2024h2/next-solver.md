@@ -1,10 +1,10 @@
 # Next-generation trait solver
 
-| Metadata | |
-| --- | --- |
-| Owner(s) | [@lcnr] |
-| Teams | [Types] |
-| Status | Under active consideration |
+| Metadata |          |
+| -------- | -------- |
+| Owner(s) | [lcnr]   |
+| Teams    | [Types]  |
+| Status   | Proposed |
 
 ## Summary
 
@@ -51,7 +51,23 @@ In order of importance, the next-generation trait solver should be:
 
 ## Ownership and other resources
 
-**Owner:** [@lcnr] owns this goal, and is sponsored by TODO.
+**Owner:** [lcnr]
+
+Add'l implementation work: [compiler-errors][]
+
+| Subgoal                               | Owner(s) or team(s)            | Notes |
+| ------------------------------------- | ------------------------------ | ----- |
+| Discussion and moral support          | ![Team][] [Types]              |       |
+| Stabilize coherence coherence support |                                |       |
+| ↳ Implementation                      | owner and others               |       |
+| ↳ Standard reviews                    | ![Team][] [Types]              |       |
+| ↳ Standard reviews                    | ![Team][] [Rust-Analyzer][r-a] |       |
+| ↳ Stabilization decision              | ![Team][] [Types][]            |       |
+| Support in rust-analyzer              |                                |       |
+| ↳ Implementation (library side)       | owner and others               |       |
+| ↳ Implementation (rust-analyzer side) | TBD                            |       |
+| ↳ Standard reviews                    | ![Team][] [Types]              |       |
+| ↳ Standard reviews                    | ![Team][] [Rust-Analyzer][r-a] |       |
 
 ### Support needed from the project
 
@@ -76,7 +92,8 @@ See next few steps :3
 
 *This is a good place to elaborate on your reasoning above -- for example, why did you put the design axioms in the order that you did? It's also a good place to put the answers to any questions that come up during discussion. The expectation is that this FAQ section will grow as the goal is discussed and eventually should contain a complete summary of the points raised along the way.*
 
-[@lcnr]: https://github.com/lcnr
+[lcnr]: https://github.com/lcnr
+[compiler-errors]: https://github.com/compiler-errors
 [Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
 [unsoundnesses]: https://github.com/orgs/rust-lang/projects/44
 [r-a]: https://github.com/rust-lang/rust-analyzer

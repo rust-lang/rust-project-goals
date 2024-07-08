@@ -1,4 +1,4 @@
-# Expose wxperimental LLVM features for automatic differentiation and GPU offloading
+# Expose experimental LLVM features for automatic differentiation and GPU offloading
 
 | Metadata |                             |
 | -------- | --------------------------- |
@@ -8,7 +8,7 @@
 
 ## Summary
 
-Enable experimental access to LLVM features for automatic differentiation and GPU offloading.
+Expose experimental LLVM features for automatic differentiation and GPU offloading.
 
 ## Motivation
 

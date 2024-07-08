@@ -53,9 +53,11 @@ A developer shouldn't have to get a high-end machine to run a compiler swiftly; 
 
 **Owner:** Alejandra Gonzalez, a.k.a. [@blyxyas][blyxyas]
 
-<!-- I'm not sure if anyone else is interested in actively working on the CPP -->
-
-<!-- Due to the dynamic nature of the project, I'm not sure what else to put here -->
+| Subgoal            | Owner(s) or team(s) | Notes |
+| ------------------ | ------------------- | ----- |
+| Optimization work  |                     |       |
+| ↳ Implementation   | *Goal owner*        |       |
+| ↳ Standard reviews | ![Team][] [Clippy]  |       |
 
 ### Frequently Asked Questions
 

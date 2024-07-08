@@ -47,6 +47,7 @@
 
 | Subgoal                                        | Owner(s) or team(s)     | Notes |
 | ---------------------------------------------- | ----------------------- | ----- |
+| Discussion and moral support                   | ![Team][] Cargo         |       |
 | Stabilize Feature X (typical language feature) |                         |       |
 | ↳ Author RFC                                   | *Goal owner, typically* |       |
 | ↳ Implementation                               | *Goal owner, typically* |       |
@@ -56,7 +57,7 @@
 | ↳ Secondary RFC review                         | ![Team][] [Lang]        |       |
 | ↳ Author stabilization report                  | *Goal owner, typically* |       |
 | ↳ Stabilization decision                       | ![Team][] [Lang]        |       |
-| Nightly experiment for X                       |                         |       |
+| Nightly experiment for X                       |                         | pla   |
 | ↳ Lang-team experiment                         | ![Team][] [Lang]        |       |
 | ↳ Author RFC                                   | *Goal owner, typically* |       |
 | ↳ Implementation                               | *Goal owner, typically* |       |
@@ -81,6 +82,7 @@
 
 Definitions for terms used above:
 
+* *Discussion and moral support* is the lowest level offering, basically committing the team to nothing but good vibes and general support for this endeavor.
 * *Author RFC* and *Implementation* means actually writing the code, document, whatever.
 * *Design meeting* means holding a synchronous meeting to review a proposal and provide feedback (no decision expected).
 * *RFC decisions* means reviewing an RFC and deciding whether to accept.
