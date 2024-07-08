@@ -1,10 +1,10 @@
 # Const traits
 
-| Metadata | |
-| --- | --- |
-| Owner(s) | feel1-dead |
-| Teams | 
-| Status | WIP |
+| Metadata |                      |
+| -------- | -------------------- |
+| Owner(s) | fee1-dead            |
+| Teams    | project-const-traits |
+| Status   | WIP                  |
 
 ## Summary
 
@@ -16,7 +16,7 @@ Rust's compile time functionalities (`const fn`, `const`s, etc.) are greatly lim
 
 ### The status quo
 
-People write a lot of code that will be run in compile time. They include procedural macros, build scripts ((42.8k hits)[build scripts] on GitHub for `build.rs`), and const functions/consts ((108k hits)[const fns] on GitHub for `const fn`). Not being able to write const functions with generic behavior is often cited as a pain point of Rust's compile time capabilities. Because of the limited expressiveness of `const fn`, people may decide to move some compile time logic to a build script, which could increase build times, or simply choose not to do it in compile time (even though it would have helped runtime performance).
+People write a lot of code that will be run in compile time. They include procedural macros, build scripts ([42.8k hits][build scripts] on GitHub for `build.rs`), and const functions/consts ([108k hits][const fns] on GitHub for `const fn`). Not being able to write const functions with generic behavior is often cited as a pain point of Rust's compile time capabilities. Because of the limited expressiveness of `const fn`, people may decide to move some compile time logic to a build script, which could increase build times, or simply choose not to do it in compile time (even though it would have helped runtime performance).
 
 There are also language features that require the use of traits, such as iterating with `for` and handling errors with `?`. Because the `Iterator` and `Try` traits currently cannot be used in constant contexts, people are unable to use `?` to handle results, nor use iterators e.g. `for x in 0..5`.
 
@@ -44,7 +44,7 @@ None.
 
 ## Ownership and other resources
 
-**Owner:** @feel1-dead
+**Owner:** @fee1-dead
 
 This section defines the specific work items that are planned and who is expected to do them. It should also include what will be needed from Rust teams.
 
@@ -57,12 +57,10 @@ This section defines the specific work items that are planned and who is expecte
     * List ![Help wanted][] if there is an owner but they need support, for example funding.
     * Other needs (e.g., complete, in FCP, etc) are also fine.
 
-| Subgoal                           | Owner(s) or team(s) | Status |
-| --------------------------------- | ------------------- | ------ |
-| Implementation and mentoring      | BoxyUwu             |        |
-| Implementation                    | camelid             |        |
-| Reviewer                          | errs                |        |
-| Up to 2 design meetings as needed | ![Team][] [Lang]    |        |
+| Subgoal                           | Owner(s) or team(s)  | Status |
+| --------------------------------- | -------------------- | ------ |
+| Implementation                    | fee1-dead            |        |
+| Reviewer                          | project-const-traits |        |
 
 [Help wanted]: https://img.shields.io/badge/Help%20wanted-yellow
 [Complete]: https://img.shields.io/badge/Complete-green
