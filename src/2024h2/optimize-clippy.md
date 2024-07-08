@@ -1,11 +1,11 @@
 # Optimizing Clippy & linting
 (a.k.a The Clippy Performance Project)
 
-| Metadata |                                                              |
-| -------- | ------------------------------------------------------------ |
-| Owner(s) | [@blyxyas][blyxyas]                                          |
-| Teams    | [Clippy team][clippy]                                                      |
-| Status   | WIP                                                          |
+| Metadata |                       |
+| -------- | --------------------- |
+| Owner(s) | [blyxyas][]           |
+| Teams    | [Clippy team][clippy] |
+| Status   | WIP                   |
 
 ## Summary
 

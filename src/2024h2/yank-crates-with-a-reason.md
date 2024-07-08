@@ -1,4 +1,4 @@
-# Yank crates with a reason
+# Administrator-provided reasons for yanked crates
 
 | Metadata |                      |
 | -------- | -------------------- |

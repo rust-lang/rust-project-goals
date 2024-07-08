@@ -84,11 +84,34 @@ The flagship goals proposed for this roadmap are as follows:
 
 ### Project goals
 
-The slate of project goals is still being selected. For the list of project goals under considation, see the [candidates page](./candidates.md#project-goals-under-consideration). These goals range from internal refactorings to important end-user features. What they have in common is that they have the backing of the Rust team(s) that own the areas they impact.
+The slate of additional project goals are as follows. These goals all have identified owners who will drive the work forward as well as a viable work plan. The goals include asks from the listed Rust teams, which are cataloged in the [reference-level explanation](#reference-level-explanation) section below. Some goals are actively looking for volunteers; these goals are tagged with ![Heap wanted][].
 
-**Resourcing and plan.** Each goal requires an *overall owner* responsible for its progress as well as a **plan**, a fairly detailed list of the "tasks to be done" over the next six months along with the people responsible for those items (these may or may not be the owner).
+| 2024 goal                                                                                | Owner                  | Team                 |
+| ---------------------------------------------------------------------------------------- | ---------------------- | -------------------- |
+| [Assemble goal slate][AGS]                                                               | [nikomatsakis][]       | [LC]                 |
+| [Cargo Script][CS]                                                                       | [epage]                | [Cargo], [Lang]      |
+| [Extend pubgrub to match cargo's dependency resolution][PGC]                             | [Eh2406]               | [Cargo][]            |
+| [Explore sandboxed build scripts][SBS]                                                   | [weihanglo]            | [Cargo][]            |
+| [Administrator-provided reasons for yanked crates][YKR]                                  | [hi-rustin]            | [Cargo][]            |
+| [Clippy performance improvements][OC]                                                    | [blyxyas]              | [Clippy][]           |
+| [Next-generation trait solver][NTS]                                                      | [lcnr]                 | [Types]              |
+| [Testing infra + contributors for a-mir-formality][AMF]                                  | [nikomatsakis]         | [Types]              |
+| [Scalable Polonius support on nightly][NBNLB]                                            | [lqd]                  | [Types]              |
+| [Stabilize Associated type position impl trait][ATPIT]                                   | [oli-obk]              | [Types], [Lang]      |
+| ["Stabilizable" prototype for expanded const generics][MGCA]                             | [BoxyUwU]              | [Types][]            |
+| [Patterns of empty types][PET]                                                           | [Nadrieril]            | [Lang]               |
+| [Ergonomic ref-counting][RC]                                                             | [jkelleyrtp]           | [Lang], [Libs-API][] |
+| [Const traits][CT]                                                                       | [fee1-dead]            | [Lang], [Libs-API][] |
+| [Expose wxperimental LLVM features for automatic differentiation and GPU offloading][SC] | [Manuel S. Drehwald][] | [Compiler][]         |
 
-**Orphaned goals.** In some cases there are elements of the plan that are "orphaned", meaning that there is no person who has has the time/resources/interest in doing them. Accepting these goals is a way for the Rust project to signal that this is work we would like to see happen and thus to encourage people to show up to do it. The Rust Foundation and other sponsors may also use these goals as a component in deciding when to offer grants or financial support.
+### Orphaned goals ![Heap wanted][]
+
+Goals in this section are "pre-approved" by the team but lack an owner. These indicate a place where we are looking for someone to step up and help drive the goal the goal to completion. Every orphaned goal has someone who is willing and able to serve as mentor, but lacks the time or resources to truly *own* the goal. If you are interested in serving as the owner for one of these orphaned goals, reach out to the listed mentor to discuss. Orphaned goals may also be used as the basis of applying for grants from the Rust Foundation or elsewhere.
+
+
+| 2024 goal                        | Owner            | Mentor         | Team              |
+| -------------------------------- | ---------------- | -------------- | ----------------- |
+| [Relaxing the Orphan Rule][RTOR] | ![Help wanted][] | [JoshTriplett] | [Lang], [Types][] |
 
 # Reference-level explanation
 [reference-level-explanation]: #reference-level-explanation
@@ -96,47 +119,85 @@ The slate of project goals is still being selected. For the list of project goal
 The following table highlights the asks from each affected team.
 The "owner" in the column is the person expecting to do the design/implementation work that the team will be approving.
 
-| Team        | Goal                           | Owner                 | Ask                                                                         |
-| ----------- | ------------------------------ | --------------------- | --------------------------------------------------------------------------- |
-| ![Lang]     | [Async][]                      | nikomatsakis          | Approve RTN RFC and stabilization                                           |
-|             | [Async][]                      | nikomatsakis, tmandry | Approve new team structure to replace async-wg                              |
-|             | [Async][]                      | TBD                   | Approve async closure RFC and stabilization                                 |
-|             | [Async][]                      | eholk                 | Provide feedback on async iteration RFC (stretch goal)                      |
-|             | [Async][]                      | n/a                   | An estimated 4–5 design meetings                                            |
-|             | [RFL][]                        | Adrian Taylor         | Stabilization decision for arbitrary self types v2                          |
-|             | [RFL][]                        | Alice Ryhl            | Approve [RFC #3621][] and stabilize implementation                          |
-|             | [RFL][]                        | Gary Guo              | Stabilize `asm_goto`                                                        |
-|             | [Cargo Script][CS]             | Ed Page               | Stabilize cargo script backtick syntax                                      |
-|             | [ATPIT][]                      | Oli Scherer           | Stabilize ATPIT                                                             |
-|             | [Patterns of empty types][PET] | Nadrieril             | Review of "never patterns" RFC and stabilization decision                   |
-|             | [Ergonomic Ref Counting][ERC]  | Jonathan Kelley       | Primary review and acceptance of Ergonomic Ref Counting RFC                       |
-| ![Libs]     | [Async][]                      | nikomatsakis, tmandry | Approve new team structure to replace async-wg                              |
-| ![Libs-API] | [Async][]                      | eholk                 | Approve async iteration RFC and stabilization (stretch goal)                |
-|             | [RFL][]                        | Ding Xiang Fei        | Stabilize `offset_of!` syntax for struct fields                             |
-|             | [RFL][]                        | Ding Xiang Fei        | Stabilize `offset_of!` syntax for struct fields                             |
-|             | [Ergonomic Ref Counting][ERC]  | [Jonathan Kelley]     | Secondary review of Ergonomic Ref Counting RFC                              |
-| ![Compiler] | [RFL][]                        | Adrian Taylor         | Review support and guidance for impl of arbitrary self types v2             |
-|             | [RFL][]                        | Jakub Beránek         | Review and approve guidelines for RFL in CI                                 |
-| ![Types]    | [Next-gen Solver][NGS]         | lcnr                  | stabilize the use of the next-generation trait solver in coherence checking |
-|             | [ATPIT][]                      | Oli Scherer           | Stabilize ATPIT                                                             |
-|             | [AMF][AMF]                     | nikomatsakis          | Participaton from 2 types team members in a-mir-formality                   |
-|             | [Polonius][NBNLB]              | lqd                   | Review and support                                                          |
+| Team        | Goal                           | Owner                     | Ask                                                                         |
+| ----------- | ------------------------------ | ------------------------- | --------------------------------------------------------------------------- |
+| ![Lang]     | [Async][]                      | [nikomatsakis]            | Approve RTN RFC and stabilization                                           |
+|             | [Async][]                      | [nikomatsakis], [tmandry] | Approve new team structure to replace async-wg                              |
+|             | [Async][]                      | TBD                       | Approve async closure RFC and stabilization                                 |
+|             | [Async][]                      | [eholk]                   | Provide feedback on async iteration RFC (stretch goal)                      |
+|             | [Async][]                      | n/a                       | An estimated 4–5 design meetings                                            |
+|             | [RFL][]                        | [Adrian Taylor]           | Stabilization decision for arbitrary self types v2                          |
+|             | [RFL][]                        | [Alice Ryhl]              | Approve [RFC #3621][] and stabilize implementation                          |
+|             | [RFL][]                        | [Gary Guo]                | Stabilize `asm_goto`                                                        |
+|             | [Cargo Script][CS]             | [epage]                   | Stabilize cargo script backtick syntax                                      |
+|             | [ATPIT][]                      | [oli-obk]                 | Stabilize ATPIT                                                             |
+|             | [Patterns of empty types][PET] | [Nadrieril]               | Review of "never patterns" RFC and stabilization decision                   |
+|             | [Ergonomic Ref Counting][ERC]  | Jonathan Kelley           | Primary review and acceptance of Ergonomic Ref Counting RFC                 |
+| ![Libs]     | [Async][]                      | [nikomatsakis], [tmandry] | Approve new team structure to replace async-wg                              |
+| ![Libs-API] | [Async][]                      | [eholk]                   | Approve async iteration RFC and stabilization (stretch goal)                |
+|             | [RFL][]                        | [Ding Xiang Fei]          | Stabilize `offset_of!` syntax for struct fields                             |
+|             | [RFL][]                        | [Ding Xiang Fei]          | Stabilize `offset_of!` syntax for struct fields                             |
+|             | [Ergonomic Ref Counting][ERC]  | [Jonathan Kelley]         | Secondary review of Ergonomic Ref Counting RFC                              |
+| ![Compiler] | [RFL][]                        | [Adrian Taylor]           | Review support and guidance for impl of arbitrary self types v2             |
+|             | [RFL][]                        | [Jakub Beránek]           | Review and approve guidelines for RFL in CI                                 |
+| ![Types]    | [Next-gen Solver][NGS]         | [lcnr]                    | stabilize the use of the next-generation trait solver in coherence checking |
+|             | [ATPIT][]                      | [oli-obk]                 | Stabilize ATPIT                                                             |
+|             | [AMF][AMF]                     | [nikomatsakis]            | Participaton from 2 types team members in a-mir-formality                   |
+|             | [Polonius][NBNLB]              | [lqd]                     | Review and support                                                          |
 
 [RFC #3621]: https://github.com/rust-lang/rfcs/pull/3621
+[#22]: https://github.com/rust-lang/rust-project-goals/issues/22
+[RFC #3614]: https://github.com/rust-lang/rfcs/pull/3614
+[RFC #3501]: https://rust-lang.github.io/rfcs/3501-edition-2024.html
+
+<!-- Teams -->
 
 [Lang]: https://img.shields.io/badge/Lang-red
 [Libs]: https://img.shields.io/badge/Libs-red
 [Libs-API]: https://img.shields.io/badge/Libs--api-red
 [Compiler]: https://img.shields.io/badge/Compiler-red
 [Types]: https://img.shields.io/badge/Types-red
+[clippy]: https://github.com/rust-lang/rust-clippy
 
-[RFL]: ./rfl_stable.md
-[CS]: ./cargo-script.md
-[Async]: ./async.md
-[R]: ./rfl_stable.md
-[ATPIT]: ./ATPIT.md
-[NGS]: ./next-solver.md
+<!-- Goals -->
+
+[AGS]: ./Project-goal-slate.md
 [AMF]: ./a-mir-formality.md
-[NBNLB]: ./Polonius.md
-[PET]: ./Patterns-of-empty-types.md
+[Async]: ./async.md
+[ATPIT]: ./ATPIT.md
+[CS]: ./cargo-script.md
+[CT]: ./const-traits.md
 [ERC]: ./ergonomic-rc.md
+[MGCA]: ./min_generic_const_arguments.md
+[NBNLB]: ./Polonius.md
+[NGS]: ./next-solver.md
+[PET]: ./Patterns-of-empty-types.md
+[PGC]: ./pubgrub-in-cargo.md
+[RFL]: ./rfl_stable.md
+[SBS]: ./sandboxed-build-script.md
+[YKR]: ./yank-crates-with-a-reason.md
+[SC]: ./Rust-for-SciComp.md
+[OC]: ./optimize-clippy.md
+
+<!-- Github usernames -->
+
+[Adrian Taylor]: https://github.com/adetaylor
+[Alice Ryhl]: https://github.com/Darksonn/
+[blyxyas]: https://github.com/blyxyas
+[BoxyUwU]: https://github.com/BoxyUwU
+[Eh2406]: https://github.com/Eh2406
+[Ding Xiang Fei]: https://github.com/dingxiangfei2009
+[Jakub Beránek]: https://github.com/Kobzol
+[epage]: https://github.com/epage
+[epage]: https://github.com/eholk
+[fee1-dead]: https://github.com/fee1-dead
+[hi-rustin]: https://github.com/hi-rustin
+[lcnr]: https://github.com/lcnr
+[lqd]: https://github.com/lqd
+[Nadrieril]: https://github.com/Nadrieril
+[Manuel S. Drehwald]: https://github.com/ZuseZ4
+[Gary Guo]: https://github.com/nbdd0121
+[nikomatsakis]: https://github.com/nikomatsakis
+[oli-obk]: https://github.com/oli-obk
+[tmandry]: https://github.com/tmandry
+[weihanglo]: https://github.com/weihanglo

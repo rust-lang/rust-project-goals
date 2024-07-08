@@ -1,10 +1,10 @@
-# Scientific Computing in Rust
+# Expose wxperimental LLVM features for automatic differentiation and GPU offloading
 
-| Metadata | |
-| --- | --- |
+| Metadata |                             |
+| -------- | --------------------------- |
 | Owner(s) | ZuseZ4 / Manuel S. Drehwald |
-| Teams | t-lang, t-compiler |
-| Status | WIP |
+| Teams    | t-lang, t-compiler          |
+| Status   | WIP                         |
 
 ## Summary
 
@@ -68,11 +68,15 @@ Manuel S. Drehwald is working 5 days per week on this, sponsored by LLNL and the
 
 Resources: Domain and CI for the autodiff work is being provided by MIT. This might be moved to the LLVM org later this year. Hardware for benchmarks is being provided by LLNL and UofT. CI for the offloading work will be provided by LLNL or LLVM (see below).
 
-### Support needed from the project
+| Subgoal                            | Owner(s) or team(s)    | Status     |
+| ---------------------------------- | ---------------------- | ---------- |
+| Development                        | ZuseZ4                 |            |
+| ↳ Lang-team experiment             | ![Team][] [Lang][]     | (approved) |
+| ↳ "Smoke test" reviews (see below) | ![Team][] [Compiler][] |            |
 
-- Discussion on CI: It would be nice to test the offloading support on at least hardware from all 3 major GPU Vendors.
+[Team]: https://img.shields.io/badge/Team%20ask-red
 
-- Discussions on design and maintainability: To achieve the best possible designs, there will be continued conversations on Zulip involving lang, compiler, and other teams.
+Minimal "smoke test" reviews will be needed from the compiler-team. The Rust language changes at this stage are expected to be a minimal wrapper around the underlying LLVM functionality and the compiler team need only vet that the feature will not hinder usability for ordinary Rust users or cause undue burden on the compiler architecture itself. There is no requirement to vet the quality or usability of the design.
 
 ## Outputs and milestones
 
@@ -129,7 +133,3 @@ TODO
 ### How about Safety?
 
 We want all these features to be safe by default, and are happy to not expose some features if the gain is too small for the safety risk. As an example, Enzyme can compute the derivative with respect to a global. That's probably too niche, and could be discouraged (and unsafe) for Rust.
-
-### What do I do with this space?
-
-*This is a good place to elaborate on your reasoning above -- for example, why did you put the design axioms in the order that you did? It's also a good place to put the answers to any questions that come up during discussion. The expectation is that this FAQ section will grow as the goal is discussed and eventually should contain a complete summary of the points raised along the way.*
