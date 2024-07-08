@@ -1,7 +1,7 @@
 # Explore sandboxed build scripts
 
 | Metadata |             |
-| ---------| ----------- |
+| -------- | ----------- |
 | Owner(s) | [weihanglo] |
 | Teams    | [Cargo]     |
 | Status   | WIP         |
@@ -141,14 +141,13 @@ I would be happy to support them as a Cargo maintainer.
 | Subgoal                                        | Owner(s) or team(s)  | Status |
 | ---------------------------------------------- | -------------------- | ------ |
 | Experiments for sandboxed build script         |                      |        |
-| ↳ design                                       | ![TBD][]             |        |
-| ↳ general design review                        | ![Team][] [Cargo]    |        |
-| ↳ security reviews                             | ![Help wanted][]     |        |
+| ↳ Design                                       | owner or mentee      |        |
+| ↳ Discussion and moral support                 | ![Team][] [Cargo]    |        |
+| ↳ Security reviews                             | ![Help wanted][]     |        |
 | ↳ WASI runtime design review (if chosen)       | ![Help wanted][]     |        |
-| ↳ code reviews                                 | ![Team][] [Cargo]    |        |
-| ↳ collaboration with [GSoC] proc-macro project | ![Team][] [Compiler] |        |
-| ↳ sandbox runtime distribution (if needed)     | ![Team][] [Infra]    |        |
-| ↳ Summary of experiments or RFC                | ![TBD][]             |        |
+| ↳ Standard reviews                             | ![Team][] [Cargo]    |        |
+| ↳ Collaboration with [GSoC] proc-macro project | ![Team][] [Compiler] |        |
+| ↳ Summary of experiments or RFC                | owner or mentee      |        |
   
 [Help wanted]: https://img.shields.io/badge/Help%20wanted-yellow
 [Complete]: https://img.shields.io/badge/Complete-green
