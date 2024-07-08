@@ -25,6 +25,7 @@
         - ["Stabilizable" prototype for expanded const generics](./2024h2/min_generic_const_arguments.md)
         - [Const traits](./2024h2/const-traits.md)
         - [Extend pubgrub to match cargo's dependency resolution](./2024h2/pubgrub-in-cargo.md)
+        - [Sandboxed Build Script](./2024h2/sandboxed-build-script.md)
         - [Yank crates with a reason](./2024h2/yank-crates-with-a-reason.md)
     - [General notes](./2024h2/notes.md)
 - [📖 Learn about](./about/index.md)
