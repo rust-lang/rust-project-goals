@@ -163,7 +163,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             }
         }
 
-        Ok(())
+        self.replace_goal_lists(chapter)
     }
 
     /// Look for `<!-- TEAM ASKS -->` in the chapter content and replace it with the team asks.
