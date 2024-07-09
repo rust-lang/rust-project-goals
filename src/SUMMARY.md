@@ -2,9 +2,9 @@
 
 [👋 Introduction](./introduction.md)
 
-# 👉 2024 goal process
+# 👉 2024H2 goal process
 
-- [The slate](./2024h2/README.md)
+- [RFC draft](./2024h2/README.md)
 - [Flagship goals](./2024h2/flagship.md)
 - [Proposed goals](./2024h2/proposed.md)
 - [Orphaned goals](./2024h2/orphaned.md)
