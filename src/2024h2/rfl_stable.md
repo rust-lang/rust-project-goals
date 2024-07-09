@@ -53,9 +53,7 @@ The RFL project has a [tracking issue][rfl2] listing the unstable features that 
 * Stable support for RFL's customized ARC type
 * Labeled goto in inline assembler and extended `offset_of!` support
 * RFL on Rust CI ([done now!])
-* Pointers to statics in constants [![Owner Needed][]](#ownership-and-other-resources)
-* Custom builds of core/alloc with specialized configuration options [![Owner Needed][]](#ownership-and-other-resources)
-* Code-generation features and compiler options [![Owner Needed][]](#ownership-and-other-resources)
+* Pointers to statics in constants
 
 #### Stable support for RFL's customized ARC type
 
