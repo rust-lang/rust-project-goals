@@ -1,10 +1,10 @@
 # Contracts and Invariants
 
-| Metadata | |
-| --- | --- |
-| Owner(s) | pnkfelix |
-| Teams | Lang, Libs, Compiler |
-| Status | Not accepted |
+| Metadata |                            |
+| -------- | -------------------------- |
+| Owner(s) | @pnkfelix                  |
+| Teams    | [Lang], [Libs], [Compiler] |
+| Status   | Not accepted               |
 
 ## Motivation
 

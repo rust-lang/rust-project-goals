@@ -2,8 +2,8 @@
 
 | Metadata |          |
 | -------- | -------- |
-| Owner(s) | eh2406   |
-| Teams    | Cargo    |
+| Owner(s) | @eh2406   |
+| Teams    | [Cargo]    |
 | Status   | Proposed |
 
 ## Summary
@@ -37,9 +37,9 @@ Eventually we should replace the existing entangled resolver in cargo with one b
 
 ## Ownership and team asks
 
-**Owner:** eh2406 will own and lead the effort.
+**Owner:** @eh2406 will own and lead the effort.
 
-I (eh2406) will be working full time on this effort. I am a member of the Cargo Team and a maintainer of pubgrub-rs.
+I (@eh2406) will be working full time on this effort. I am a member of the Cargo Team and a maintainer of pubgrub-rs.
 
 Integrating the new resolver into Cargo and reaching the shiny future will require extensive collaboration and review from the Cargo Team. However, the next milestones involve independent work exhaustively searching for differences in behavior between the new and old resolvers and fixing them. So only occasional consultation-level conversations will be needed during this proposal.
 

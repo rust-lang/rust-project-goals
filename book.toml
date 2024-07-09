@@ -5,13 +5,42 @@ multilingual = false
 src = "src"
 title = "Rust Project Goals"
 
+[preprocessor.goals]
+command = "cargo run -p mdbook-goals --"
+
+[preprocessor.goals.links]
+"Compiler" = "https://www.rust-lang.org/governance/teams/compiler"
+"Lang" = "https://www.rust-lang.org/governance/teams/lang"
+"LC" = "https://www.rust-lang.org/governance/teams/leadership-council"
+"Libs" = "https://www.rust-lang.org/governance/teams/library"
+"Libs-API" = "https://www.rust-lang.org/governance/teams/library#team-libs-api"
+"Infra" = "https://www.rust-lang.org/governance/teams/infra"
+"Cargo" = "https://www.rust-lang.org/governance/teams/dev-tools#team-cargo"
+"crates.io" = "https://www.rust-lang.org/governance/teams/dev-tools#team-crates-io"
+"Clippy" = "https://www.rust-lang.org/governance/teams/dev-tools#team-clippy"
+"Types" = "https://www.rust-lang.org/governance/teams/compiler#team-types"
+"Rustdoc" = "https://www.rust-lang.org/governance/teams/dev-tools#team-rustdoc"
+"Help wanted" = "https://img.shields.io/badge/Help%20wanted-yellow"
+"Complete" = "https://img.shields.io/badge/Complete-green"
+"TBD" = "https://img.shields.io/badge/TBD-red"
+"Team" = "https://img.shields.io/badge/Team%20ask-red"
+"Not funded" = "https://img.shields.io/badge/Not%20yet%20funded-red"
+
+[preprocessor.goals.linkifiers]
+"RFC #([0-9]+)" = "https://github.com/rust-lang/rfcs/pull/$1"
+"([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)#([0-9]+)" = "https://github.com/$1/$2/issue/$3"
+"#([0-9]+)" = "https://github.com/rust-lang/rust/issue/$1"
+
 [output.html]
 git-repository-url = "https://github.com/rust-lang/rust-project-goals"
 edit-url-template = "https://github.com/rust-lang/rust-project-goals/edit/main/{path}"
 
 [output.html.fold]
 enable = true
-level = 1
+level = 0
 
 [output.html.redirect]
-"/2024h2/async_fn_everywhere.html" = "/2024h2/async.html"
+"/2024h2/async_fn_everywhere.html" = "rust-project-goals/2024h2/async.html"
+"/2024h2/slate.html" = "rust-project-goals/2024h2/index.html"
+
+[output.markdown]

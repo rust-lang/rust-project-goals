@@ -2,12 +2,9 @@
 
 | Metadata |          |
 | -------- | -------- |
-| Owner(s) | [lqd]    |
+| Owner(s) | @lqd     |
 | Teams    | [Types]  |
 | Status   | Proposed |
-
-[lqd]: https://github.com/lqd
-[Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
 
 ## Summary
 
@@ -15,10 +12,9 @@ Improve the Nightly support for [Polonius][pc3], next generation borrow checking
 
 ## Motivation
 
-Polonius is an improved version of the borrow checker that [resolves common limitations of the borrow checker][pc3] and which is needed to support future patterns such as ["lending iterators"][#92985]. Its model also prepares us for further improvements in the future.
+Polonius is an improved version of the borrow checker that [resolves common limitations of the borrow checker][pc3] and which is needed to support future patterns such as "lending iterators" (see [#92985]). Its model also prepares us for further improvements in the future.
 
 [pc3]: https://blog.rust-lang.org/inside-rust/2023/10/06/polonius-update.html#background-on-polonius
-[#92985]: https://github.com/rust-lang/rust/issues/92985
 
 ### The status quo
 
@@ -38,29 +34,25 @@ N/A
 
 **Owner:** lqd
 
-Other support provided by [Amanda Stjerna][amanda] as part of her PhD.
+Other support provided by @amandasystems as part of her PhD.
 
 [amanda]: https://github.com/amandasystems
 
-| Subgoal          | Owner(s) or team(s)     | Notes            |
-| ---------------- | ----------------------- | ---------------- |
-| Design review    | [nikomatsakis]          |                  |
-| Implementation   | [lqd], [Amanda Stjerna] |                  |
-| Standard reviews | ![Team][] [Types]       | [Matthew Jasper] |
+| Subgoal          | Owner(s) or team(s)  | Notes          |
+| ---------------- | -------------------- | -------------- |
+| Design review    | @nikomatsakis        |                |
+| Implementation   | @lqd, @amandasystems |                |
+| Standard reviews | ![Team][] [Types]    | @matthewjasper |
 
 ### Support needed from the project
 
-We expect most support to be needed from the types team, for design, reviews, interactions with the trait solver, and so on. We expect [Niko Matsakis][niko], leading the polonius working group and design, to provide guidance and design time, and [Michael Goulet][errs] and [Matthew Jasper][matthew] to help with reviews.
-
-[niko]: https://github.com/nikomatsakis
-[errs]: https://github.com/compiler-errors
-[matthew]: https://github.com/matthewjasper
+We expect most support to be needed from the types team, for design, reviews, interactions with the trait solver, and so on. We expect @nikomatsakis, leading the polonius working group and design, to provide guidance and design time, and @compiler-errors and @matthewjasper to help with reviews.
 
 ## Outputs and milestones
 
 ### Outputs
 
-Nightly implementation of polonius that passes [NLL problem case #3][pc3] and accepts [lending iterators][#92985].
+Nightly implementation of polonius that passes [NLL problem case #3][pc3] and accepts lending iterators ([#92985]).
 
 Performance should be reasonable enough that we can run the full test suite, do crater runs, and test it on CI, without significant slowdowns. We do not expect to be production-ready yet by then, and therefore the implementation would still be gated under a nightly -Z feature flag.
 

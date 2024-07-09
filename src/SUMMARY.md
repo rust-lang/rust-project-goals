@@ -1,41 +1,25 @@
 # Summary
 
-- [👋 Introduction](./introduction.md)
-- [👉 2024 goal process](./2024h2/index.md)
-    - [The slate](./2024h2/slate.md)
-    - [Candidate details](./2024h2/candidates.md)
-        - [Template](./TEMPLATE.md)
-        - [Async Rust](./2024h2/async.md)
-        - [Linux kernel builds on stable Rust](./2024h2/rfl_stable.md)
-        - [Cargo Script](./2024h2/cargo-script.md)
-        - [Ergonomic ref-counting](./2024h2/ergonomic-rc.md)
-        - [Next-generation trait solver](./2024h2/next-solver.md)
-        - [a-mir-formality](./2024h2/a-mir-formality.md)
-        - [Project goal slate](./2024h2/Project-goal-slate.md)
-        - [Rust 2024 Edition](./2024h2/Rust-2024-Edition.md)
-        - [Relaxing the orphan rule](./2024h2/Relaxing-the-Orphan-Rule.md)
-        - [Polonius](./2024h2/Polonius.md)
-        - [Associated type position impl trait](./2024h2/ATPIT.md)
-        - [Patterns of empty types](./2024h2/Patterns-of-empty-types.md)
-        - [Experimental support autodiff/GPU offloading](./2024h2/Rust-for-SciComp.md)
-        - ["Stabilizable" prototype for expanded const generics](./2024h2/min_generic_const_arguments.md)
-        - [Const traits](./2024h2/const-traits.md)
-        - [Extend pubgrub to match cargo's dependency resolution](./2024h2/pubgrub-in-cargo.md)
-        - [Sandboxed Build Script](./2024h2/sandboxed-build-script.md)
-        - [Yank crates with a reason](./2024h2/yank-crates-with-a-reason.md)
-        - [Clippy performance improvements](./2024h2/optimize-clippy.md)
-    - [Not accepted](./2024h2/not_accepted.md)
-        - [Seamless C support](./2024h2/Seamless-C-Support.md)
-        - [Contracts and invariants](./2024h2/Contracts-and-invariants.md)
-        - [Faster iterative builds](./2024h2/faster-iterative-builds.md)
-        - [Ergonomics initiative](./2024h2/ergonomics-initiative.md)
-    - [General notes](./2024h2/notes.md)
-- [📖 Learn about](./about/index.md)
-    - [Goal motivations](./about/motivation.md)
-    - [Goal owners](./about/owners.md)
-    - [Provisional goals](./about/provisional_goals.md)
-    - [Design axioms](./about/design_axioms.md)
-- [❓ How to](./how_to/index.md)
-    - [Proposal a new goal](./how_to/propose_a_goal.md)
-    - [Report status on active goal](./how_to/report_status.md)
+[👋 Introduction](./introduction.md)
+
+# 👉 2024H2 goal process
+
+- [RFC draft](./2024h2/README.md)
+- [Flagship goals](./2024h2/flagship.md)
+- [Proposed goals](./2024h2/proposed.md)
+- [Orphaned goals](./2024h2/orphaned.md)
+- [Goals not accepted](./2024h2/not_accepted.md)
+- [General notes](./2024h2/notes.md)
+
+# 📖 Learn about
+
+- [Goal motivations](./about/motivation.md)
+- [Goal owners](./about/owners.md)
+- [Provisional goals](./about/provisional_goals.md)
+- [Design axioms](./about/design_axioms.md)
 - [RFC](./rfc.md)
+
+# ❓ How to
+
+- [Proposal a new goal](./how_to/propose_a_goal.md)
+- [Report status on active goal](./how_to/report_status.md)

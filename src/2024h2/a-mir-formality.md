@@ -2,31 +2,28 @@
 
 | Metadata |                |
 | -------- | -------------- |
-| Owner(s) | [nikomatsakis] |
+| Owner(s) | @nikomatsakis |
 | Teams    | [Types]        |
 | Status   | Proposed       |
-
-[nikomatsakis]: https://github.com/lqd
-[Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
 
 ## Summary
 
 The goal for a-mir-formality this year is to bootstrap it as a live, maintained project:
 
-* Achieve 2 regular contributors from T-types in addition to nikomatsakis
+* Achieve 2 regular contributors from T-types in addition to @nikomatsakis
 * Support fuzz testing and/or the ability to test against rustc
 
 ## Motivation
 
 ### The status quo
 
-Most communication and definition of Rust's type/trait system today takes place through informal argument and with reference to compiler internals. a-mir-formality offers a model of Rust at a much higher level, but it remains very incomplete compared to Rust and, thus far, it has been primarily developed by nikomatsakis.
+Most communication and definition of Rust's type/trait system today takes place through informal argument and with reference to compiler internals. a-mir-formality offers a model of Rust at a much higher level, but it remains very incomplete compared to Rust and, thus far, it has been primarily developed by @nikomatsakis.
 
 ### The next six months
 
 The goal for a-mir-formality this year is to bootstrap it as a live, maintained project:
 
-* Achieve 2 regular contributors from T-types in addition to nikomatsakis
+* Achieve 2 regular contributors from T-types in addition to @nikomatsakis
 * Support fuzz testing and/or the ability to test against rustc
 
 ### The "shiny future" we are working towards
@@ -45,13 +42,13 @@ We also envision it being tested both through fuzzing and by comparing its resul
 
 ## Ownership and team asks
 
-**Owner:** nikomatsakis
+**Owner:** @nikomatsakis
 
 We will require participation from at least 2 other members of T-types. Current candidates are lcnr + compiler-errors.
 
 | Subgoal          | Owner(s) or team(s)            | Notes |
 | ---------------- | ------------------------------ | ----- |
-| Implementation   | nikomatsakis, lcnr, and others |       |
+| Implementation   | @nikomatsakis, lcnr, and others |       |
 | Standard reviews | ![Team][] [Types]              |       |
 
 ## Frequently asked questions

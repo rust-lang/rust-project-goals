@@ -1,12 +1,12 @@
-# merged doctests
+# Implement "merged doctests" to save doctest time
 
-| Metadata |                  |
-| -------- | ---------------- |
-| Owner(s) | [GuillaumeGomez] |
-| Teams    | rustdoc          |
-| Status   | Proposed         |
+| Metadata |                 |
+| -------- | --------------- |
+| Owner(s) | @GuillaumeGomez |
+| Teams    | [Rustdoc]       |
+| Status   | Proposed        |
 
-[GuillaumeGomez]: https://github.com/GuillaumeGomez
+@GuillaumeGomez: https://github.com/GuillaumeGomez
 
 ## Motivation
 
@@ -30,11 +30,11 @@ N/A
 
 ## Ownership and team asks
 
-**Owner:** [GuillaumeGomez]
+**Owner:** @GuillaumeGomez
 
 | Subgoal          | Owner(s) or team(s) | Notes |
 | ---------------- | ------------------- | ----- |
-| Implementation   | [GuillaumeGomez]    |       |
+| Implementation   | @GuillaumeGomez     |       |
 | Standard reviews | ![Team][] [Rustdoc] |       |
 
 ## Frequently asked questions

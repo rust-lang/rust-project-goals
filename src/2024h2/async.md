@@ -1,11 +1,11 @@
 ## Bringing the Async Rust experience closer to parity with sync Rust
 
-| Metadata    |                               |
-| ----------- | ----------------------------- |
-| Short title | Async                         |
-| Owner(s)    | [tmandry][], [nikomatsakis][] |
-| Teams       | [Lang], [Libs], [Libs-API]    |
-| Status      | Proposed                      |
+| Metadata    |                            |
+| ----------- | -------------------------- |
+| Short title | Async                      |
+| Owner(s)    | @tmandry, @nikomatsakis    |
+| Teams       | [Lang], [Libs], [Libs-API] |
+| Status      | Flagship                   |
 
 ## Summary
 
@@ -66,9 +66,7 @@ We have also identified two "stretch goals" that we believe could be completed:
 
 #### Resolve the ["send bound"][sb] problem
 
-Although async functions in traits were stabilized, there is currently no way to write a generic function that requires impls where the returned futures are `Send`. This blocks the use of async function in traits in some core ecosystem crates, such as [tower](https://crates.io/crates/tower), which want to work across all kinds of async executors. This problem is called the ["send bound"][sb] problem and there has been extensive discussion of the various ways to solve it. [RFC #3654][] has been opened proposing one solution and describing why that path is preferred. Our goal for the year is to adopt *some* solution on stable.
-
-[RFC #3654]: https://github.com/rust-lang/rfcs/pull/3654
+Although async functions in traits were stabilized, there is currently no way to write a generic function that requires impls where the returned futures are `Send`. This blocks the use of async function in traits in some core ecosystem crates, such as [tower](https://crates.io/crates/tower), which want to work across all kinds of async executors. This problem is called the ["send bound"][sb] problem and there has been extensive discussion of the various ways to solve it. [RFC #3654] has been opened proposing one solution and describing why that path is preferred. Our goal for the year is to adopt *some* solution on stable.
 
 #### Reorganize the Async WG
 
@@ -167,39 +165,37 @@ Our eventual goal is to provide Rust users building on async with
 
 ## Ownership and team asks
 
-Here is a detailed list of the work to be done and who is expected to do it. This table includes the work to be done by owners and the work to be done by Rust teams (subject to approval by the team in an RFC/FCP). The overall owners of the async effort (and authors of this goal document) are [tmandry][] and [nikomatsakis][]. We have identified owners for subitems below; these may change over time.
+Here is a detailed list of the work to be done and who is expected to do it. This table includes the work to be done by owners and the work to be done by Rust teams (subject to approval by the team in an RFC/FCP). The overall owners of the async effort (and authors of this goal document) are @tmandry and @nikomatsakis. We have identified owners for subitems below; these may change over time.
 
-| Subgoal                    | Owner(s) or team(s)                     | Notes               |
-| -------------------------- | --------------------------------------- | ------------------- |
-| Overall program management | [tmandry][], [nikomatsakis][]           |                     |
-| ["Send bound"][sb] problem |                                         |                     |
-| ↳ ~~RTN implementation~~   | ~~[compiler-errors][]~~                 | ![Complete][]       |
-| ↳ ~~author RTN RFC~~       | [nikomatsakis][]                        | ![Complete][]       |
-| ↳ RFC decision             | [compiler-errors][]                     | ![Complete][]       |
-| ↳ Stabilization            | ![Team][] [Lang]                        |                     |
-| Async WG reorganization    |                                         |                     |
-| ↳ Author proposal          | [tmandry][], [nikomatsakis][]           |                     |
-| ↳ Org decision             | ![Team][] [Libs], [Lang]                |                     |
-| Async closures             |                                         |                     |
-| ↳ ~~implementation~~       | ~~[compiler-errors][]~~                 | ![Complete][]       |
-| ↳ Author RFC               | [nikomatsakis][] or [compiler-errors][] |                     |
-| ↳ RFC decision             | ![Team][] [Lang]                        |                     |
-| ↳ Stabilization            | [compiler-errors][]                     |                     |
-| Trait for async iteration  |                                         |                     |
-| ↳ Author RFC               | [eholk][]                               |                     |
-| ↳ RFC decision             | ![Team][] [Libs-API]                    |                     |
-| ↳ Secondary RFC review     | ![Team][] [Lang]                        |                     |
-| ↳ Implementation           | [eholk][]                               |                     |
-| Async drop experiments     |                                         |                     |
-| ↳ ~~author MCP~~           | ~~[petrochenkov][]~~                    | ![Complete][]       |
-| ↳ ~~approve MCP~~          | ~~[Compiler]~~                          | ![Complete][]       |
-| ↳ Implementation work      | [petrochenkov][]                        | ![Not funded][] (*) |
-| ↳ Standard reviews         | ![Team][] [Compiler]                    |                     |
+| Subgoal                    | Owner(s) or team(s)      | Notes               |
+| -------------------------- | ------------------------ | ------------------- |
+| Overall program management | @tmandry, @nikomatsakis  |                     |
+| "Send bound" problem       | @nikomatsakis            |                     |
+| ↳ ~~Implementation~~       | ~~@compiler-errors~~     | ![Complete][]       |
+| ↳ ~~Author RFC~~           | @nikomatsakis            | ![Complete][]       |
+| ↳ RFC decision             | ![Team][] [Lang]         | ![Complete][]       |
+| ↳ Stabilization            | ![Team][] [Lang]         |                     |
+| Async WG reorganization    | @nikomatsakis            |                     |
+| ↳ Author proposal          |                          |                     |
+| ↳ Org decision             | ![Team][] [Libs], [Lang] |                     |
+| Async closures             | @compiler-errors         |                     |
+| ↳ ~~implementation~~       |                          | ![Complete][]       |
+| ↳ Author RFC               |                          |                     |
+| ↳ RFC decision             | ![Team][] [Lang]         |                     |
+| ↳ Stabilization            |                          |                     |
+| Trait for async iteration  | @eholk                   |                     |
+| ↳ Author RFC               |                          |                     |
+| ↳ RFC decision             | ![Team][] [Libs-API]     |                     |
+| ↳ Secondary RFC review     | ![Team][] [Lang]         |                     |
+| ↳ Implementation           |                          |                     |
+| Async drop experiments     | @petrochenkov            |                     |
+| ↳ ~~author MCP~~           |                          | ![Complete][]       |
+| ↳ ~~MCP decision~~         | ~~[Compiler]~~           | ![Complete][]       |
+| ↳ Implementation work      |                          | ![Not funded][] (*) |
+| ↳ Standard reviews         | ![Team][] [Compiler]     |                     |
 
 (*) Implementation work on async drop experiments is currently unfunded. We are trying to figure out next steps.
 
-[Funded]: https://img.shields.io/badge/Funded-yellow
-[Not funded]: https://img.shields.io/badge/Not%20yet%20funded-red
 [Approved]: https://img.shields.io/badge/Approved-green
 [Not approved]: https://img.shields.io/badge/Not%20yet%20approved-red
 [Complete]: https://img.shields.io/badge/Complete-green
@@ -235,7 +231,7 @@ Async fn in traits do not currently support native dynamic dispatch. We have exp
 
 There has been extensive discussion about the best design for the "Stream" or "async iter" trait and we judge that the design space is well understood. We would like to unblock generator syntax in 2025 which will require some form of trait.
 
-The majority of the debate about the trait has been on the topic of whether to base the trait on a `poll_next` function, as we do today, or to try and make the trait use `async fn next`, making it more anaologous with the `Iterator` trait (and potentially even making it be two versions of a single trait). We will definitely explore forwards compatibility questions as part of this discussion. nikomatsakis for example still wants to explore maybe-async-like designs, especially for combinator APIs like `map`. However, we also refer to the design axiom that "when in doubt, zero-cost is our compass" -- we believe we should be able to stabilize a trait that does the low-level details right, and then design higher level APIs atop that.
+The majority of the debate about the trait has been on the topic of whether to base the trait on a `poll_next` function, as we do today, or to try and make the trait use `async fn next`, making it more anaologous with the `Iterator` trait (and potentially even making it be two versions of a single trait). We will definitely explore forwards compatibility questions as part of this discussion. @nikomatsakis for example still wants to explore maybe-async-like designs, especially for combinator APIs like `map`. However, we also refer to the design axiom that "when in doubt, zero-cost is our compass" -- we believe we should be able to stabilize a trait that does the low-level details right, and then design higher level APIs atop that.
 
 ### Why do you say that we lack a vision, don't we have an [async vision doc][avd]?
 
@@ -245,14 +241,5 @@ Yes, we do, and the [existing document][avd] has been very helpful in understand
 
 Keyword generics is an ambitious initiative to enable code that is "maybe async". It has generated significant controversy, with some people feeling it is necessary for Rust to scale and others judging it to be overly complex. One of the reasons to [reorganize the async WG](#reorganize-the-async-wg) is to help us come to a consensus around this point (though this topic is broader than async).
 
-[tmandry]: https://github.com/tmandry
-[nikomatsakis]: https://github.com/nikomatsakis
-[compiler-errors]: https://github.com/compiler-errors
-[eholk]: https://github.com/eholk
-[petrochenkov]: https://github.com/petrochenkov
-[Team]: https://img.shields.io/badge/Team%20ask-red
 [MCP 727]: https://github.com/rust-lang/compiler-team/issues/727
-[Lang]: https://www.rust-lang.org/governance/teams/lang
-[Libs]: https://www.rust-lang.org/governance/teams/library
-[Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
 [sb]: https://smallcultfollowing.com/babysteps/blog/2023/02/01/async-trait-send-bounds-part-1-intro/

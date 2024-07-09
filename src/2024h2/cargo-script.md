@@ -1,10 +1,10 @@
-# cargo-script
+# Stabilize cargo-script
 
-| Metadata |             |
-| -------- | ----------- |
-| Owner(s) | [epage]     |
-| Teams    | Cargo, Lang |
-| Status   | Proposed    |
+| Metadata |                 |
+| -------- | --------------- |
+| Owner(s) | @epage          |
+| Teams    | [Cargo], [Lang] |
+| Status   | Proposed        |
 
 ## Summary
 
@@ -34,10 +34,7 @@ script in the path that calls `cargo run --manifest-path ...`).
 
 The support is already implemented on nightly.
 The goal is to stabilize support.
-With [RFC 3502][] and [RFC 3503][] approved, the next steps are being tracked in [#12207](https://github.com/rust-lang/cargo/issues/12207).
-
-[RFC 3502]: https://github.com/rust-lang/rfcs/pull/3502
-[RFC 3503]: https://github.com/rust-lang/rfcs/pull/3503
+With [RFC #3502] and [RFC #3503] approved, the next steps are being tracked in [rust-lang/cargo#12207].
 
 At a high-level, this is
 - Add support to the compiler for the frontmatter syntax
@@ -71,20 +68,5 @@ This section defines the specific work items that are planned and who is expecte
 
 | Subgoal                | Owner(s) or team(s)      | Notes |
 | ---------------------- | ------------------------ | ----- |
-| Implementation         | [epage]                  |       |
+| Implementation         | @epage                   |       |
 | Stabilization decision | ![Team][] [Lang] [Cargo] |       |
-
-[Help wanted]: https://img.shields.io/badge/Help%20wanted-yellow
-[Complete]: https://img.shields.io/badge/Complete-green
-[TBD]: https://img.shields.io/badge/TBD-red
-[Team]: https://img.shields.io/badge/Team%20ask-red
-
-[Compiler]: https://www.rust-lang.org/governance/teams/compiler
-[Lang]: https://www.rust-lang.org/governance/teams/lang
-[LC]: https://www.rust-lang.org/governance/teams/leadership-council
-[Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
-[Infra]: https://www.rust-lang.org/governance/teams/infra
-[Cargo]: https://www.rust-lang.org/governance/teams/dev-tools#team-cargo
-[Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
-
-[epage]: https://github.com/epage
