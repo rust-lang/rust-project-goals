@@ -144,12 +144,12 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | ↳ ~~RFC decision~~                 | ~~[Lang]~~                   | ![Complete][]             |
 | ↳ Implementation                   |                              |                           |
 | ↳ Assigned reviewer                | ![Team] [Compiler]           |                           |
-| ↳ Stabilization                    |                              |                           |
+| ↳ Stabilization decision           | ![Team] [Lang]               |                           |
 | Derive smart pointer               | @Darksonn                    |                           |
 | ↳ ~~author RFC~~                   |                              | [RFC #3621]               |
 | ↳ RFC decision                     | ![Team][] [Lang]             |                           |
 | ↳ Implementation                   | @dingxiangfei2009            |                           |
-| ↳ Stabilization                    | @dingxiangfei2009            |                           |
+| ↳ Author stabilization report      | @dingxiangfei2009            |                           |
 | ↳ Stabilization decision           | ![Team][] [Lang]             |                           |
 | `asm_goto`                         | @nbdd0121                    |                           |
 | ↳ ~~implementation~~               |                              | ![Complete][]             |
@@ -165,7 +165,7 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | ↳ Policy draft                     |                              |                           |
 | ↳ Policy decision                  | ![Team][] [Compiler]         |                           |
 | Pointers to static in constants    | @nikomatsakis                |                           |
-| ↳ Stabilization proposal           |                              |                           |
+| ↳ Stabilization report             |                              |                           |
 | ↳ Stabilization decision           | ![Team][] [Lang]             |                           |
 
 ### Support needed from the project
