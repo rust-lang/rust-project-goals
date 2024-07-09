@@ -3,7 +3,7 @@
 | Metadata |          |
 | -------- | -------- |
 | Owner(s) | @BoxyUwU |
-| Teams    | Types    |
+| Teams    | [Types]  |
 | Status   | Proposed |
 
 ## Summary
@@ -72,7 +72,7 @@ This section defines the specific work items that are planned and who is expecte
 | Implementation and mentoring | @BoxyUwu            |                    |
 | Implementation               | @camelid            |                    |
 | Reviewer                     | @compiler-errors    |                    |
-| Design meeting              | ![Team][] [Lang]    | Up to 1, if needed |
+| Design meeting               | ![Team][] [Lang]    | Up to 1, if needed |
 
 ## Outputs and milestones
 

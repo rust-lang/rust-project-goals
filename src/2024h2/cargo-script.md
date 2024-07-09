@@ -1,10 +1,10 @@
 # cargo-script
 
-| Metadata |             |
-| -------- | ----------- |
-| Owner(s) | @epage     |
-| Teams    | Cargo, Lang |
-| Status   | Proposed    |
+| Metadata |                 |
+| -------- | --------------- |
+| Owner(s) | @epage          |
+| Teams    | [Cargo], [Lang] |
+| Status   | Proposed        |
 
 ## Summary
 
@@ -68,5 +68,5 @@ This section defines the specific work items that are planned and who is expecte
 
 | Subgoal                | Owner(s) or team(s)      | Notes |
 | ---------------------- | ------------------------ | ----- |
-| Implementation         | @epage                  |       |
+| Implementation         | @epage                   |       |
 | Stabilization decision | ![Team][] [Lang] [Cargo] |       |

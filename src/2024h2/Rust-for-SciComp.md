@@ -3,7 +3,7 @@
 | Metadata |                    |
 | -------- | ------------------ |
 | Owner(s) | @ZuseZ4            |
-| Teams    | t-lang, t-compiler |
+| Teams    | [Lang], [Compiler] |
 | Status   | Proposed           |
 
 ## Summary
