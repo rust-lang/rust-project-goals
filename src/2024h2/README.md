@@ -16,9 +16,7 @@ Flagship goals represent the goals expected to have the broadest overall impact.
 
 ## Motivation
 
-This RFC marks the first goal slate proposed under the experimental new roadmap process described in [RFC #3614][]. It consists of NN project goals, of which we have selected three as **flagship goals**. Flagship goals represent the goals expected to have the broadest overall impact. 
-
-[RFC #3614]: https://github.com/rust-lang/rfcs/pull/3614
+This RFC marks the first goal slate proposed under the experimental new roadmap process described in [RFC #3614]. It consists of NN project goals, of which we have selected three as **flagship goals**. Flagship goals represent the goals expected to have the broadest overall impact. 
 
 ### How the goal process works
 
@@ -54,9 +52,9 @@ We believe that...
 The flagship goals proposed for this roadmap are as follows:
 
 * [**Release the Rust 2024 edition**](./Rust-2024-Edition.md), which will contain
-    * a change in how `impl Trait` capture bounds work ([RFC #3498](https://github.com/rust-lang/rfcs/pull/3498) and [RFC #3617](https://github.com/rust-lang/rfcs/pull/3617))
-    * reserving the `gen` keyword to allow for generators ([RFC #3513](https://github.com/rust-lang/rfcs/pull/3513))
-    * never type fallback ([#123748](https://github.com/rust-lang/rust/issues/123748))
+    * a change in how `impl Trait` capture bounds work ([RFC #3498] and [RFC #3617])
+    * reserving the `gen` keyword to allow for generators ([RFC #3513])
+    * never type fallback ([#123748])
     * and a [number of other potential changes](https://github.com/rust-lang/rust/issues?q=label%3AC-tracking-issue+label%3AA-edition-2024+label%3AS-tracking-ready-to-stabilize%2CS-tracking-needs-documentation+-label%3AS-tracking-impl-incomplete%2CS-tracking-design-concerns) that may be included if they make enough progress
 * [**Bringing the Async Rust experience closer to parity with sync Rust**](./async.md) via:
     * resolving the "send bound problem", thus enabling foundational, generic traits like Tower's [`Service`]() trait;
@@ -117,14 +115,6 @@ Definitions for terms used above:
     * [Lang team experiments](https://lang-team.rust-lang.org/how_to/experiment.html) are used to add nightly features that do not yet have an RFC. They are limited to trusted contributors and are used to resolve design details such that an RFC can be written.
     * Compiler [Major Change Proposal (MCP)](https://forge.rust-lang.org/compiler/mcp.html) is used to propose a 'larger than average' change and get feedback from the compiler team.
     * Library [API Change Proposal (ACP)](https://std-dev-guide.rust-lang.org/development/feature-lifecycle.html) describes a change to the standard library.
-
-
-[RFC #3621]: https://github.com/rust-lang/rfcs/pull/3621
-[#22]: https://github.com/rust-lang/rust-project-goals/issues/22
-[RFC #3614]: https://github.com/rust-lang/rfcs/pull/3614
-[RFC #3501]: https://rust-lang.github.io/rfcs/3501-edition-2024.html
-[RFC #3654]: https://github.com/rust-lang/rfcs/pull/3654
-[RFC #3668]: https://github.com/rust-lang/rfcs/pull/3668
 
 <!-- Goals -->
 
