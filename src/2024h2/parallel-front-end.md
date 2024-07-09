@@ -68,7 +68,6 @@ The parallel front end should be:
 ## Frequently asked questions
 
 
-[Parallel Rustc WG]: https://www.rust-lang.org/governance/teams/compiler#team-wg-parallel-rustc
 [ICE]: https://github.com/rust-lang/rust/issues?q=is%3Aopen+label%3AWG-compiler-parallel+ice
 [deadlock]: https://github.com/rust-lang/rust/issues?q=is%3Aopen+label%3AWG-compiler-parallel+deadlock
 [test]: https://github.com/rust-lang/rust/issues/118698

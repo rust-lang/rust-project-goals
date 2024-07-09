@@ -6,13 +6,14 @@ use anyhow::Context;
 use mdbook::book::{Book, Chapter};
 use mdbook::preprocess::{Preprocessor, PreprocessorContext};
 use mdbook::BookItem;
-use regex::Regex;
+use regex::{Captures, Regex};
 use walkdir::WalkDir;
 
 use crate::goal::{self, format_team_asks, Status};
 use crate::util::GithubUserInfo;
 
 const LINKS: &str = "links";
+const LINKIFIERS: &str = "linkifiers";
 
 pub struct GoalPreprocessor;
 
@@ -35,7 +36,8 @@ pub struct GoalPreprocessorWithContext<'c> {
     goal_list: Regex,
     username: Regex,
     ctx: &'c PreprocessorContext,
-    links: BTreeMap<String, String>,
+    links: Vec<(String, String)>,
+    linkifiers: Vec<(Regex, String)>,
     display_names: BTreeMap<String, Rc<String>>,
 }
 
@@ -43,7 +45,8 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     pub fn new(ctx: &'c PreprocessorContext) -> anyhow::Result<Self> {
         // In testing we want to tell the preprocessor to blow up by setting a
         // particular config value
-        let mut links = Default::default();
+        let mut links: Vec<(String, String)> = Default::default();
+        let mut linkifiers = Default::default();
         if let Some(config) = ctx.config.get_preprocessor(GoalPreprocessor.name()) {
             if let Some(value) = config.get(LINKS) {
                 links = value
@@ -59,6 +62,24 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                     })
                     .collect::<Result<_, _>>()?;
             }
+
+            if let Some(value) = config.get(LINKIFIERS) {
+                linkifiers = value
+                    .as_table()
+                    .with_context(|| format!("`{}` must be a table", LINKIFIERS))?
+                    .iter()
+                    .map(|(k, v)| {
+                        if let Some(v) = v.as_str() {
+                            Ok((Regex::new(&format!(r"\[{}\]", k))?, v.to_string()))
+                        } else {
+                            Err(anyhow::anyhow!(
+                                "linkifier value for `{}` must be a string",
+                                k
+                            ))
+                        }
+                    })
+                    .collect::<Result<_, _>>()?;
+            }
         }
 
         Ok(GoalPreprocessorWithContext {
@@ -67,6 +88,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             goal_list: Regex::new(r"<!-- GOALS `(.*)` -->")?,
             username: Regex::new(r"@([-a-zA-Z0-9])+")?,
             links,
+            linkifiers,
             display_names: Default::default(),
         })
     }
@@ -77,6 +99,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 self.replace_team_asks(chapter)?;
                 self.replace_goal_lists(chapter)?;
                 self.link_users(chapter)?;
+                self.linkify(chapter)?;
                 self.insert_links(chapter)?;
 
                 for sub_item in &mut chapter.sub_items {
@@ -240,5 +263,27 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 display_name
             }
         }
+    }
+
+    fn linkify(&self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        for (regex, string) in &self.linkifiers {
+            chapter.content = regex
+                .replace_all(&chapter.content, |c: &Captures<'_>| -> String {
+                    // we add `[]` around it
+                    assert!(c[0].starts_with("[") && c[0].ends_with("]"));
+
+                    eprintln!("c[0] = {}", &c[0]);
+
+                    let mut href = String::new();
+                    href.push_str(&c[0]);
+                    href.push('(');
+                    c.expand(string, &mut href);
+                    href.push(')');
+                    dbg!(href)
+                })
+                .to_string();
+        }
+
+        Ok(())
     }
 }

@@ -66,9 +66,7 @@ We have also identified two "stretch goals" that we believe could be completed:
 
 #### Resolve the ["send bound"][sb] problem
 
-Although async functions in traits were stabilized, there is currently no way to write a generic function that requires impls where the returned futures are `Send`. This blocks the use of async function in traits in some core ecosystem crates, such as [tower](https://crates.io/crates/tower), which want to work across all kinds of async executors. This problem is called the ["send bound"][sb] problem and there has been extensive discussion of the various ways to solve it. [RFC #3654][] has been opened proposing one solution and describing why that path is preferred. Our goal for the year is to adopt *some* solution on stable.
-
-[RFC #3654]: https://github.com/rust-lang/rfcs/pull/3654
+Although async functions in traits were stabilized, there is currently no way to write a generic function that requires impls where the returned futures are `Send`. This blocks the use of async function in traits in some core ecosystem crates, such as [tower](https://crates.io/crates/tower), which want to work across all kinds of async executors. This problem is called the ["send bound"][sb] problem and there has been extensive discussion of the various ways to solve it. [RFC #3654] has been opened proposing one solution and describing why that path is preferred. Our goal for the year is to adopt *some* solution on stable.
 
 #### Reorganize the Async WG
 
