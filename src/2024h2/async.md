@@ -170,7 +170,7 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | Subgoal                    | Owner(s) or team(s)      | Notes               |
 | -------------------------- | ------------------------ | ------------------- |
 | Overall program management | @tmandry, @nikomatsakis  |                     |
-| ["Send bound"][sb] problem | @nikomatsakis            |                     |
+| "Send bound" problem       | @nikomatsakis            |                     |
 | ↳ ~~Implementation~~       | ~~@compiler-errors~~     | ![Complete][]       |
 | ↳ ~~Author RFC~~           | @nikomatsakis            | ![Complete][]       |
 | ↳ RFC decision             | ![Team][] [Lang]         | ![Complete][]       |
