@@ -81,14 +81,15 @@ We don't have consensus around a full set of "design axioms" for this design, bu
 
 The work here is proposed by @jkelleyrtp on behalf of Dioxus Labs. We have funding for 1-2 engineers depending on the scope of work. Dioxus Labs is willing to take ownership and commit funding to solve these problems.
 
-| Subgoal                    | Owner(s) or team(s)         | Notes       |
-| -------------------------- | --------------------------- | ----------- |
-| Overall program management | @jkelleyrtp                 | ![Funded][] |
-| Author RFC                 | TBD                         | TBD         |
-| Design meeting             | ![Team][] [Lang]            |             |
-| Accept RFC                 | ![Team][] [Lang] [Libs-API] |             |
-| Nightly implementation     | [spastorino]                | ![Funded][] |
-| Blog post on Inside Rust   |                             |             |
+| Subgoal                    | Owner(s) or team(s)         | Notes |
+| -------------------------- | --------------------------- | ----- |
+| Overall program management | @jkelleyrtp                 |       |
+| Author RFC                 | TBD                         |       |
+| Design meeting             | ![Team][] [Lang]            |       |
+| RFC decision               | ![Team][] [Lang] [Libs-API] |       |
+| Nightly implementation     | [spastorino]                |       |
+| Standard reviews           | ![Team]  [Compiler]         |       |
+| Blog post on Inside Rust   |                             |       |
 
 * The ![Funded][] badge indicates that the owner has committed and work will be funded by their employer or other sources.
 * The ![Team][] badge indicates a requirement where Team support is needed.

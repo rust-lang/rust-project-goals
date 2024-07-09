@@ -167,32 +167,32 @@ Our eventual goal is to provide Rust users building on async with
 
 Here is a detailed list of the work to be done and who is expected to do it. This table includes the work to be done by owners and the work to be done by Rust teams (subject to approval by the team in an RFC/FCP). The overall owners of the async effort (and authors of this goal document) are @tmandry and @nikomatsakis. We have identified owners for subitems below; these may change over time.
 
-| Subgoal                    | Owner(s) or team(s)               | Notes               |
-| -------------------------- | --------------------------------- | ------------------- |
-| Overall program management | @tmandry, @nikomatsakis           |                     |
-| ["Send bound"][sb] problem |                                   |                     |
-| ↳ ~~RTN implementation~~   | ~~@compiler-errors~~              | ![Complete][]       |
-| ↳ ~~author RTN RFC~~       | @nikomatsakis                     | ![Complete][]       |
-| ↳ RFC decision             | @compiler-errors                  | ![Complete][]       |
-| ↳ Stabilization            | ![Team][] [Lang]                  |                     |
-| Async WG reorganization    |                                   |                     |
-| ↳ Author proposal          | @tmandry, @nikomatsakis           |                     |
-| ↳ Org decision             | ![Team][] [Libs], [Lang]          |                     |
-| Async closures             |                                   |                     |
-| ↳ ~~implementation~~       | ~~@compiler-errors~~              | ![Complete][]       |
-| ↳ Author RFC               | @nikomatsakis or @compiler-errors |                     |
-| ↳ RFC decision             | ![Team][] [Lang]                  |                     |
-| ↳ Stabilization            | @compiler-errors                  |                     |
-| Trait for async iteration  |                                   |                     |
-| ↳ Author RFC               | @eholk                            |                     |
-| ↳ RFC decision             | ![Team][] [Libs-API]              |                     |
-| ↳ Secondary RFC review     | ![Team][] [Lang]                  |                     |
-| ↳ Implementation           | @eholk                            |                     |
-| Async drop experiments     |                                   |                     |
-| ↳ ~~author MCP~~           | ~~@petrochenkov~~                 | ![Complete][]       |
-| ↳ ~~approve MCP~~          | ~~[Compiler]~~                    | ![Complete][]       |
-| ↳ Implementation work      | @petrochenkov                     | ![Not funded][] (*) |
-| ↳ Standard reviews         | ![Team][] [Compiler]              |                     |
+| Subgoal                    | Owner(s) or team(s)      | Notes               |
+| -------------------------- | ------------------------ | ------------------- |
+| Overall program management | @tmandry, @nikomatsakis  |                     |
+| ["Send bound"][sb] problem | @nikomatsakis            |                     |
+| ↳ ~~Implementation~~       | ~~@compiler-errors~~     | ![Complete][]       |
+| ↳ ~~Author RFC~~           | @nikomatsakis            | ![Complete][]       |
+| ↳ RFC decision             | ![Team][] [Lang]         | ![Complete][]       |
+| ↳ Stabilization            | ![Team][] [Lang]         |                     |
+| Async WG reorganization    | @nikomatsakis            |                     |
+| ↳ Author proposal          |                          |                     |
+| ↳ Org decision             | ![Team][] [Libs], [Lang] |                     |
+| Async closures             | @compiler-errors         |                     |
+| ↳ ~~implementation~~       |                          | ![Complete][]       |
+| ↳ Author RFC               |                          |                     |
+| ↳ RFC decision             | ![Team][] [Lang]         |                     |
+| ↳ Stabilization            |                          |                     |
+| Trait for async iteration  | @eholk                   |                     |
+| ↳ Author RFC               |                          |                     |
+| ↳ RFC decision             | ![Team][] [Libs-API]     |                     |
+| ↳ Secondary RFC review     | ![Team][] [Lang]         |                     |
+| ↳ Implementation           |                          |                     |
+| Async drop experiments     | @petrochenkov            |                     |
+| ↳ ~~author MCP~~           |                          | ![Complete][]       |
+| ↳ ~~MCP decision~~         | ~~[Compiler]~~           | ![Complete][]       |
+| ↳ Implementation work      |                          | ![Not funded][] (*) |
+| ↳ Standard reviews         | ![Team][] [Compiler]     |                     |
 
 (*) Implementation work on async drop experiments is currently unfunded. We are trying to figure out next steps.
 

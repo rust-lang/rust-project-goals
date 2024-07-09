@@ -244,25 +244,30 @@ fn extract_team_asks<'i>(
     expect_headers(table, &["Subgoal", "Owner(s) or team(s)", "Notes"])?;
 
     let mut heading = "";
-    let mut owners: &str = &metadata.owners[..];
+    let mut heading_owners: &str = &metadata.owners[..];
 
     let mut tasks = vec![];
     for row in &table.rows {
         let subgoal;
+        let owners;
         if row[0].starts_with(ARROW) {
             // e.g., "↳ stabilization" is a subtask of the metagoal
-            subgoal = row[0][ARROW.len()..].trim().to_string();
+            subgoal = row[0][ARROW.len()..].trim();
+            owners = heading_owners;
         } else {
             // remember the last heading
             heading = &row[0];
-            subgoal = heading.to_string();
+            heading_owners = if row[1].is_empty() {
+                &metadata.owners[..]
+            } else {
+                &row[1]
+            };
+
+            subgoal = heading;
+            owners = &metadata.owners;
         };
 
         if !row[1].contains("![Team]") {
-            if !row[1].is_empty() {
-                owners = &row[1];
-            }
-
             continue;
         }
 
@@ -275,13 +280,9 @@ fn extract_team_asks<'i>(
             } else {
                 heading.to_string()
             },
-            subgoal,
+            subgoal: subgoal.to_string(),
             teams,
-            owners: if owners == "Owner" {
-                metadata.owners.to_string()
-            } else {
-                owners.to_string()
-            },
+            owners: owners.to_string(),
             notes: row[2].to_string(),
         });
     }

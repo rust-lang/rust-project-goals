@@ -142,33 +142,33 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | Subgoal                            | Owner(s) or team(s)          | Notes                     |
 | ---------------------------------- | ---------------------------- | ------------------------- |
 | Overall program management         | @nikomatsakis, @joshtriplett |                           |
-| Arbitrary self types v2            |                              |                           |
-| ↳ ~~author RFC~~                   | ~~@adetaylor~~               | ![Complete][] [RFC #3519] |
+| Arbitrary self types v2            | @adetaylor                   |                           |
+| ↳ ~~author RFC~~                   |                              | ![Complete][] [RFC #3519] |
 | ↳ ~~RFC decision~~                 | ~~[Lang]~~                   | ![Complete][]             |
-| ↳ Implementation                   | @adetaylor                   |                           |
+| ↳ Implementation                   |                              |                           |
 | ↳ Assigned reviewer                | ![Team] [Compiler]           |                           |
-| ↳ Stabilization                    | @adetaylor                   |                           |
-| Derive smart pointer               |                              |                           |
-| ↳ ~~author RFC~~                   | ~~@Darksonn~~                | [RFC #3621]               |
+| ↳ Stabilization                    |                              |                           |
+| Derive smart pointer               | @Darksonn                    |                           |
+| ↳ ~~author RFC~~                   |                              | [RFC #3621]               |
 | ↳ RFC decision                     | ![Team][] [Lang]             |                           |
 | ↳ Implementation                   | @dingxiangfei2009            |                           |
 | ↳ Stabilization                    | @dingxiangfei2009            |                           |
 | ↳ Stabilization decision           | ![Team][] [Lang]             |                           |
-| `asm_goto`                         |                              |                           |
-| ↳ ~~implementation~~               | -                            | ![Complete][]             |
-| ↳ Real-world usage in Linux kernel | @nbdd0121                    |                           |
-| ↳ Extend to cover full RFC         | @nbdd0121                    |                           |
-| ↳ Author stabilization report      | @nbdd0121                    |                           |
+| `asm_goto`                         | @nbdd0121                    |                           |
+| ↳ ~~implementation~~               |                              | ![Complete][]             |
+| ↳ Real-world usage in Linux kernel |                              |                           |
+| ↳ Extend to cover full RFC         |                              |                           |
+| ↳ Author stabilization report      |                              |                           |
 | ↳ Stabilization decision           | ![Team][] [Lang]             |                           |
-| Extended `offset_of` syntax        |                              |                           |
-| ↳ Stabilization report             | [Xiang][]                    |                           |
+| Extended `offset_of` syntax        | @dingxiangfei2009            |                           |
+| ↳ Stabilization report             |                              |                           |
 | ↳ Stabilization decision           | ![Team][] [Libs-API]         |                           |
-| ~~RFL on Rust CI~~                 |                              |                           |
-| ↳ ~~implementation~~               | ~~@Kobzol~~                  | ![Complete][] [#125209]   |
-| ↳ Policy draft                     | @Kobzol                      |                           |
+| ~~RFL on Rust CI~~                 | @Kobzol                      |                           |
+| ↳ ~~implementation~~               |                              | ![Complete][] [#125209]   |
+| ↳ Policy draft                     |                              |                           |
 | ↳ Policy decision                  | ![Team][] [Compiler]         |                           |
-| Pointers to static in constants    |                              |                           |
-| ↳ Stabilization proposal           | @nikomatsakis                |                           |
+| Pointers to static in constants    | @nikomatsakis                |                           |
+| ↳ Stabilization proposal           |                              |                           |
 | ↳ Stabilization decision           | ![Team][] [Lang]             |                           |
 
 ### Support needed from the project
