@@ -2,7 +2,7 @@
 
 | Metadata |          |
 | -------- | -------- |
-| Owner(s) | @lqd    |
+| Owner(s) | @lqd     |
 | Teams    | [Types]  |
 | Status   | Proposed |
 
@@ -38,19 +38,15 @@ Other support provided by [Amanda Stjerna][amanda] as part of her PhD.
 
 [amanda]: https://github.com/amandasystems
 
-| Subgoal          | Owner(s) or team(s)     | Notes            |
-| ---------------- | ----------------------- | ---------------- |
-| Design review    | @nikomatsakis          |                  |
-| Implementation   | @lqd, [Amanda Stjerna] |                  |
-| Standard reviews | ![Team][] [Types]       | [Matthew Jasper] |
+| Subgoal          | Owner(s) or team(s)  | Notes          |
+| ---------------- | -------------------- | -------------- |
+| Design review    | @nikomatsakis        |                |
+| Implementation   | @lqd, @amandasystems |                |
+| Standard reviews | ![Team][] [Types]    | @matthewjasper |
 
 ### Support needed from the project
 
-We expect most support to be needed from the types team, for design, reviews, interactions with the trait solver, and so on. We expect [Niko Matsakis][niko], leading the polonius working group and design, to provide guidance and design time, and [Michael Goulet][errs] and [Matthew Jasper][matthew] to help with reviews.
-
-[niko]: https://github.com/nikomatsakis
-[errs]: https://github.com/compiler-errors
-[matthew]: https://github.com/matthewjasper
+We expect most support to be needed from the types team, for design, reviews, interactions with the trait solver, and so on. We expect @nikomatsakis, leading the polonius working group and design, to provide guidance and design time, and @compiler-errors and @matthewjasper to help with reviews.
 
 ## Outputs and milestones
 
