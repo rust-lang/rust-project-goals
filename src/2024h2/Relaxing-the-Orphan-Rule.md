@@ -4,7 +4,7 @@
 | -------- | ------------------- |
 | Owner(s) | ![Help wanted][]    |
 | Teams    | [Lang][], [Types][] |
-| Status   | Proposed                 |
+| Status   | Orphaned            |
 
 ## Summary
 
@@ -119,12 +119,12 @@ This section defines the specific work items that are planned and who is expecte
     * List ![Help wanted][] if there is an owner but they need support, for example funding.
     * Other needs (e.g., complete, in FCP, etc) are also fine.
 
-| Subgoal | Owner(s) or team(s) | Notes |
-| --------------------------------- | ------------------------ | ------ |
-| Ownership and implementation      | ![Help wanted][]         |        |
-| RFC authoring                     | ![Help wanted][]         |        |
-| Design consultation/iteration     | Josh Triplett            |        |
-| Up to 1 design meetings as needed | ![Team][] [Lang] [Types] |        |
+| Subgoal                           | Owner(s) or team(s)      | Notes |
+| --------------------------------- | ------------------------ | ----- |
+| Ownership and implementation      | ![Help wanted][]         |       |
+| RFC authoring                     | ![Help wanted][]         |       |
+| Design consultation/iteration     | Josh Triplett            |       |
+| Up to 1 design meetings as needed | ![Team][] [Lang] [Types] |       |
 
 [Help wanted]: https://img.shields.io/badge/Help%20wanted-yellow
 [Complete]: https://img.shields.io/badge/Complete-green

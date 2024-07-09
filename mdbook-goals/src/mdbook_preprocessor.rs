@@ -7,7 +7,7 @@ use mdbook::BookItem;
 use regex::Regex;
 use walkdir::WalkDir;
 
-use crate::goal::{format_team_asks, team_asks_in_input};
+use crate::goal::{self, format_team_asks, Status};
 
 pub struct GoalPreprocessor;
 
@@ -27,6 +27,7 @@ impl Preprocessor for GoalPreprocessor {
 
 pub struct GoalPreprocessorWithContext<'c> {
     team_asks: Regex,
+    goal_list: Regex,
     ctx: &'c PreprocessorContext,
 }
 
@@ -35,6 +36,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         Ok(GoalPreprocessorWithContext {
             ctx,
             team_asks: Regex::new(r"<!-- TEAM ASKS -->")?,
+            goal_list: Regex::new(r"<!-- GOALS `(.*)` -->")?,
         })
     }
 
@@ -42,6 +44,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         match book_item {
             BookItem::Chapter(chapter) => {
                 self.replace_team_asks(chapter)?;
+                self.replace_goal_lists(chapter)?;
 
                 for sub_item in &mut chapter.sub_items {
                     self.process_book_item(sub_item)?;
@@ -56,10 +59,39 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         }
     }
 
+    fn replace_goal_lists(&self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        let Some(m) = self.goal_list.captures(&chapter.content) else {
+            return Ok(());
+        };
+        let range = m.get(0).unwrap().range();
+        let status = Status::try_from(&m[1])?;
+
+        let Some(path) = &chapter.path else {
+            anyhow::bail!("found `<!-- GOALS -->` but chapter has no path")
+        };
+
+        // Extract out the list of goals with the given status.
+        let mut goals = vec![];
+        for (input, link_path) in self.markdown_files(path)? {
+            let opt_metadata = goal::metadata_in_input(&input)
+                .with_context(|| format!("extracting metadata from `{}`", input.display()))?;
+
+            if let Some(metadata) = opt_metadata {
+                if metadata.status == status {
+                    goals.push((metadata, input, link_path));
+                }
+            }
+        }
+
+        //
+        let output = goal::format_goal_table(&goals)?;
+        chapter.content.replace_range(range, &output);
+
+        Ok(())
+    }
+
     /// Look for `<!-- TEAM ASKS -->` in the chapter content and replace it with the team asks.
     fn replace_team_asks(&self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        eprintln!("replace_team_asks(chapter.path={:?})", chapter.path);
-
         let Some(m) = self.team_asks.find(&chapter.content) else {
             return Ok(());
         };
@@ -73,7 +105,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         let markdown_files = self.markdown_files(path)?;
         for (input, link_path) in &markdown_files {
             asks_of_any_team.extend(
-                team_asks_in_input(input, link_path)
+                goal::team_asks_in_input(input, link_path)
                     .with_context(|| format!("extracting asks from `{}`", input.display()))?,
             );
         }

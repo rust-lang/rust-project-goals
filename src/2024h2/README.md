@@ -86,32 +86,13 @@ The flagship goals proposed for this roadmap are as follows:
 
 The slate of additional project goals are as follows. These goals all have identified owners who will drive the work forward as well as a viable work plan. The goals include asks from the listed Rust teams, which are cataloged in the [reference-level explanation](#reference-level-explanation) section below. Some goals are actively looking for volunteers; these goals are tagged with ![Heap wanted][].
 
-| 2024 goal                                                                                | Owner                  | Team                 |
-| ---------------------------------------------------------------------------------------- | ---------------------- | -------------------- |
-| [Assemble goal slate][AGS]                                                               | [nikomatsakis][]       | [LC]                 |
-| [Cargo Script][CS]                                                                       | [epage]                | [Cargo], [Lang]      |
-| [Extend pubgrub to match cargo's dependency resolution][PGC]                             | [Eh2406]               | [Cargo][]            |
-| [Explore sandboxed build scripts][SBS]                                                   | [weihanglo]            | [Cargo][]            |
-| [Administrator-provided reasons for yanked crates][YKR]                                  | [hi-rustin]            | [Cargo][]            |
-| [Clippy performance improvements][OC]                                                    | [blyxyas]              | [Clippy][]           |
-| [Next-generation trait solver][NGS]                                                      | [lcnr]                 | [Types]              |
-| [Testing infra + contributors for a-mir-formality][AMF]                                  | [nikomatsakis]         | [Types]              |
-| [Scalable Polonius support on nightly][NBNLB]                                            | [lqd]                  | [Types]              |
-| [Stabilize Associated type position impl trait][ATPIT]                                   | [oli-obk]              | [Types], [Lang]      |
-| ["Stabilizable" prototype for expanded const generics][MGCA]                             | [BoxyUwU]              | [Types][]            |
-| [Patterns of empty types][PET]                                                           | [Nadrieril]            | [Lang]               |
-| [Ergonomic ref-counting][RC]                                                             | [jkelleyrtp]           | [Lang], [Libs-API][] |
-| [Const traits][CT]                                                                       | [fee1-dead]            | [Lang], [Libs-API][] |
-| [Expose wxperimental LLVM features for automatic differentiation and GPU offloading][SC] | [Manuel S. Drehwald][] | [Compiler][]         |
+<!-- GOAL LIST `Proposed` -->
 
 ### Orphaned goals ![Heap wanted][]
 
 Goals in this section are "pre-approved" by the team but lack an owner. These indicate a place where we are looking for someone to step up and help drive the goal the goal to completion. Every orphaned goal has someone who is willing and able to serve as mentor, but lacks the time or resources to truly *own* the goal. If you are interested in serving as the owner for one of these orphaned goals, reach out to the listed mentor to discuss. Orphaned goals may also be used as the basis of applying for grants from the Rust Foundation or elsewhere.
 
-
-| 2024 goal                        | Owner            | Mentor         | Team              |
-| -------------------------------- | ---------------- | -------------- | ----------------- |
-| [Relaxing the Orphan Rule][RTOR] | ![Help wanted][] | [JoshTriplett] | [Lang], [Types][] |
+<!-- GOALS `Orphaned` -->
 
 # Reference-level explanation
 [reference-level-explanation]: #reference-level-explanation
