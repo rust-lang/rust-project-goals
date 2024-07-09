@@ -42,7 +42,7 @@ The outputs of rustc and cargo are fully using annotate-snippets, with no regres
 
 ## Ownership and other resources
 
-**Owner:** [estebank], [Muscraft]
+**Owner:** @estebank, @Muscraft
 
 *Identify a specific person or small group of people if possible, else the group that will provide the owner*
 
