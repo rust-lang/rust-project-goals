@@ -1,4 +1,4 @@
-# Impl trait everywhere
+# Associated type position impl trait (ATPIT)
 
 | Metadata |                 |
 | -------- | --------------- |
