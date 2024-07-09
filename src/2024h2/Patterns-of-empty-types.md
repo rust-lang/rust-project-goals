@@ -1,10 +1,10 @@
 # Patterns of empty types
 
-| Metadata |                      |
-| -------- | -------------------- |
-| Owner(s) | [Nadrieril]          |
-| Teams    | [Lang]               |
-| Status | Under active consideration |
+| Metadata |             |
+| -------- | ----------- |
+| Owner(s) | [Nadrieril] |
+| Teams    | [Lang]      |
+| Status   | Proposed    |
 
 [Nadrieril]: https://github.com/Nadrieril
 [Compiler]: https://www.rust-lang.org/governance/teams/compiler
@@ -90,32 +90,25 @@ I (Nadrieril) am putting forward my own contribution for driving this forward, b
 implementation sides. I am an experienced compiler contributor and have been driving this forward
 already for several months.
 
-### Support needed from the project
-
 * I expect to be authoring one RFC, on never patterns (unless it gets rejected and we need
   a different approach).
     * The feature may require one design meeting.
 * Implementation work is 80% done, which leaves about 80% more to do. This will require reviews from
   the compiler team, but not more than the ordinary.
 
-## Outputs and milestones
 
-### Outputs
+| Subgoal                     | Owner(s) or team(s)  | Notes |
+| --------------------------- | -------------------- | ----- |
+| Author RFC                  | Goal owner           |       |
+| Implementation              | Goal owner           |       |
+| Standard reviews            | ![Team][] [Compiler] |       |
+| Design meeting              | ![Team][] [Lang]     |       |
+| RFC decision                | ![Team][] [Lang]     |       |
+| Author stabilization report | Goal owner           |       |
+| Stabilization decision      | ![Team][] [Lang]     |       |
 
-- Stabilized language features that make pattern-matching on empty types more convenient;
-- Deprecation of the unstable `exhaustive_patterns` feature.
-
-### Milestones
-
-| Milestone                                  | Expected date |
-| ------------------------------------------ | ------------- |
-| Stabilization of `min_exhaustive_patterns` | TBD           |
-| Publish never patterns RFC                 | TBD           |
-| Stabilization of `never_patterns`          | TBD           |
-| Deprecate `exhaustive_patterns`            | TBD           |
 
 ## Frequently asked questions
-
 
 [`exhaustive_patterns`]: https://github.com/rust-lang/rust/issues/51085
 [`min_exhaustive_patterns`]: https://github.com/rust-lang/rust/issues/119612

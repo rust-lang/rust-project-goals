@@ -4,7 +4,7 @@
 | -------- | -------------------- |
 | Owner(s) | fee1-dead            |
 | Teams    | project-const-traits |
-| Status   | WIP                  |
+| Status   | Proposed                  |
 
 ## Summary
 

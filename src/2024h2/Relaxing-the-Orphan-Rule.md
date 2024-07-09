@@ -4,7 +4,7 @@
 | -------- | ------------------- |
 | Owner(s) | ![Help wanted][]    |
 | Teams    | [Lang][], [Types][] |
-| Status   | WIP                 |
+| Status   | Proposed                 |
 
 ## Summary
 

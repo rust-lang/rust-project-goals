@@ -1,10 +1,10 @@
 # Testing infra + contributors for a-mir-formality
 
-| Metadata | |
-| --- | --- |
+| Metadata |                |
+| -------- | -------------- |
 | Owner(s) | [nikomatsakis] |
-| Teams | [Types] |
-| Status | Under active consideration |
+| Teams    | [Types]        |
+| Status   | Proposed       |
 
 [nikomatsakis]: https://github.com/lqd
 [Types]: https://www.rust-lang.org/governance/teams/compiler#team-types

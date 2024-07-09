@@ -11,25 +11,42 @@ use structopt::StructOpt;
 mod markwaydown;
 
 #[derive(StructOpt, Debug)]
-#[structopt(name = "basic")]
+#[structopt(about = "Project goal preprocessor")]
 struct Opt {
-    #[structopt(long)]
-    status: Option<String>,
-    inputs: Vec<PathBuf>,
+    #[structopt(subcommand)]
+    cmd: Command,
+}
+
+#[derive(StructOpt, Debug)]
+enum Command {
+    CollateTeamAsks {
+        /// The markdown files to process
+        inputs: Vec<PathBuf>,
+
+        /// Only include team asks from goals with this status
+        #[structopt(long)]
+        status: Option<String>,
+    },
 }
 
 fn main() -> anyhow::Result<()> {
     let opt = Opt::from_args();
 
-    let mut all_team_asks = vec![];
-    for input in &opt.inputs {
-        all_team_asks.extend(
-            process_input(input, &opt.status)
-                .with_context(|| format!("parsing `{}` as markdown", input.display()))?,
-        );
+    match &opt.cmd {
+        Command::CollateTeamAsks { inputs, status } => {
+            let mut all_team_asks = vec![];
+            for input in inputs {
+                all_team_asks.extend(
+                    process_input(input, status)
+                        .with_context(|| format!("parsing `{}` as markdown", input.display()))?,
+                );
+            }
+
+            format_team_asks(&all_team_asks)?;
+        }
     }
 
-    format_team_asks(&all_team_asks)
+    Ok(())
 }
 
 fn process_input<'i>(
@@ -38,7 +55,9 @@ fn process_input<'i>(
 ) -> anyhow::Result<Vec<TeamAsk<'i>>> {
     let sections = markwaydown::parse(input)?;
 
-    let metadata = extract_metadata(&sections)?;
+    let Some(metadata) = extract_metadata(&sections)? else {
+        return Ok(vec![]);
+    };
 
     if let Some(s) = status_filter {
         if metadata.status != s {
@@ -93,7 +112,7 @@ struct Metadata<'a> {
     status: &'a str,
 }
 
-fn extract_metadata(sections: &[Section]) -> anyhow::Result<Metadata<'_>> {
+fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata<'_>>> {
     let Some(first_section) = sections.first() else {
         anyhow::bail!("no markdown sections found in input")
     };
@@ -105,7 +124,7 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Metadata<'_>> {
     let title = &first_section.title;
 
     let Some(first_table) = first_section.tables.first() else {
-        anyhow::bail!("no metadata table found in first section")
+        return Ok(None);
     };
 
     if first_table.header.len() < 2 {
@@ -126,7 +145,7 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Metadata<'_>> {
         anyhow::bail!("metadata table has no `Status` row")
     };
 
-    Ok(Metadata {
+    Ok(Some(Metadata {
         title,
         short_title: if let Some(row) = short_title_row {
             &row[1]
@@ -135,7 +154,7 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Metadata<'_>> {
         },
         owners: &owners_row[1],
         status: &status_row[1],
-    })
+    }))
 }
 
 #[derive(Debug)]

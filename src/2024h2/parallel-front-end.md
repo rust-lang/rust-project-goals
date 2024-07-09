@@ -1,10 +1,10 @@
 # Stabilize Parallel Front End
 
-| Metadata |                           |
-| -------- |---------------------------|
-| Owner(s) | [@SparrowLii]             |
+| Metadata |                     |
+| -------- | ------------------- |
+| Owner(s) | [@SparrowLii]       |
 | Teams    | [Parallel Rustc WG] |
-| Status   | Existing problems need to be resolved to stabilize                          |
+| Status   | Proposed            |
 
 ## Summary
 
@@ -53,17 +53,17 @@ The parallel front end should be:
 
 **Owner:** [@SparrowLii] and [Parallel Rustc WG] own this goal
 
-| Subgoal | Owner(s) or team(s) | Notes |
-|--------------------------------------|---------------------| ------ |
-| Fix issues                           |                     |        |
-| Test for parallel front end          |                     |        |
-| ↳ use parallel front end in UI tests |                     |        |
-| ↳ processe diagnostic output         |                     |        |
-| Use parallel rustc in bootstrap      |                     |        |
-| improve performance                  |                     |        |
-| ↳ parallel HIR lowering              |                     |        |
-| ↳ parallel macro expansion           |                     |        |
-| Cargo option                         |                     |        |
+| Subgoal                              | Owner(s) or team(s) | Notes |
+| ------------------------------------ | ------------------- | ----- |
+| Fix issues                           |                     |       |
+| Test for parallel front end          |                     |       |
+| ↳ use parallel front end in UI tests |                     |       |
+| ↳ processe diagnostic output         |                     |       |
+| Use parallel rustc in bootstrap      |                     |       |
+| improve performance                  |                     |       |
+| ↳ parallel HIR lowering              |                     |       |
+| ↳ parallel macro expansion           |                     |       |
+| Cargo option                         |                     |       |
 
 ## Frequently asked questions
 

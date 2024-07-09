@@ -4,7 +4,7 @@
 | -------- | ------- |
 | Owner(s) | [GuillaumeGomez] |
 | Teams    | rustdoc |
-| Status | WIP |
+| Status | Proposed |
 
 [GuillaumeGomez]: https://github.com/GuillaumeGomez
 
