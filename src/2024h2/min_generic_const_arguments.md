@@ -1,10 +1,10 @@
 # "Stabilizable" prototype for expanded const generics
 
-| Metadata |                            |
-| -------- | -------------------------- |
-| Owner(s) | BoxyUwU                    |
-| Teams    | Types                      |
-| Status   | Under active consideration |
+| Metadata |          |
+| -------- | -------- |
+| Owner(s) | BoxyUwU  |
+| Teams    | Types    |
+| Status   | Proposed |
 
 ## Summary
 
@@ -67,12 +67,12 @@ This section defines the specific work items that are planned and who is expecte
     * List ![Help wanted][] if there is an owner but they need support, for example funding.
     * Other needs (e.g., complete, in FCP, etc) are also fine.
 
-| Subgoal | Owner(s) or team(s) | Notes |
-| --------------------------------- | ------------------- | ------ |
-| Implementation and mentoring      | BoxyUwu             |        |
-| Implementation                    | camelid             |        |
-| Reviewer                          | errs                |        |
-| Up to 2 design meetings as needed | ![Team][] [Lang]    |        |
+| Subgoal                           | Owner(s) or team(s) | Notes |
+| --------------------------------- | ------------------- | ----- |
+| Implementation and mentoring      | BoxyUwu             |       |
+| Implementation                    | camelid             |       |
+| Reviewer                          | errs                |       |
+| Up to 2 design meetings as needed | ![Team][] [Lang]    |       |
 
 [Help wanted]: https://img.shields.io/badge/Help%20wanted-yellow
 [Complete]: https://img.shields.io/badge/Complete-green

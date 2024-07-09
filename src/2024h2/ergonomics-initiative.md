@@ -1,10 +1,10 @@
 # Reduce clones and unwraps, support partial borrows
 
-| Metadata | |
-| --- | --- |
+| Metadata |                |
+| -------- | -------------- |
 | Owner(s) | [jkelleyrtp][] |
- Teams    | [Lang] |
-| Status | WIP |
+| Teams    | [Lang]         |
+| Status   | Not accepted   |
 
 [Lang]: https://www.rust-lang.org/governance/teams/lang
 
@@ -193,12 +193,12 @@ Alex heard Rust was difficult to learn, but they're generally happy. Their Rust 
 
 The work here is proposed by Jonathan Kelley on behalf of Dioxus Labs. We have funding for 1-2 engineers depending on the scope of work. Dioxus Labs is willing to take ownership and commit funding to solve these problems.
 
-| Subgoal | Owner(s) or team(s) | Notes |
-| ----------------------------------- | --------------------------------------- | ----------------- |
-| `.clone()` problem                  |  [jkelleyrtp] + tbd                     | ![Funded][]       |
-| partial borrows                     |  [jkelleyrtp] + tbd                     | ![Funded][]       |
-| `.unwrap()` problem                 |  [jkelleyrtp] + tbd                     | ![Funded][]       |
-| Named/Optional arguments            |  [jkelleyrtp] + tbd                     | ![Funded][]       |
+| Subgoal                  | Owner(s) or team(s) | Notes       |
+| ------------------------ | ------------------- | ----------- |
+| `.clone()` problem       | [jkelleyrtp] + tbd  | ![Funded][] |
+| partial borrows          | [jkelleyrtp] + tbd  | ![Funded][] |
+| `.unwrap()` problem      | [jkelleyrtp] + tbd  | ![Funded][] |
+| Named/Optional arguments | [jkelleyrtp] + tbd  | ![Funded][] |
 
 * The ![Funded][] badge indicates that the owner has committed and work will be funded by their employer or other sources.
 * The ![Team][] badge indicates a requirement where Team support is needed.

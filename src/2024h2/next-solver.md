@@ -61,13 +61,13 @@ Add'l implementation work: [compiler-errors][]
 | Stabilize coherence coherence support |                                |       |
 | ↳ Implementation                      | owner and others               |       |
 | ↳ Standard reviews                    | ![Team][] [Types]              |       |
-| ↳ Standard reviews                    | ![Team][] [Rust-Analyzer][r-a] |       |
+| ↳ Standard reviews                    | ![Team][] [Rust-Analyzer][] |       |
 | ↳ Stabilization decision              | ![Team][] [Types][]            |       |
 | Support in rust-analyzer              |                                |       |
 | ↳ Implementation (library side)       | owner and others               |       |
 | ↳ Implementation (rust-analyzer side) | TBD                            |       |
 | ↳ Standard reviews                    | ![Team][] [Types]              |       |
-| ↳ Standard reviews                    | ![Team][] [Rust-Analyzer][r-a] |       |
+| ↳ Standard reviews                    | ![Team][] [Rust-Analyzer][] |       |
 
 ### Support needed from the project
 
@@ -96,4 +96,4 @@ See next few steps :3
 [compiler-errors]: https://github.com/compiler-errors
 [Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
 [unsoundnesses]: https://github.com/orgs/rust-lang/projects/44
-[r-a]: https://github.com/rust-lang/rust-analyzer
+[Rust-Analyzer]: https://github.com/rust-lang/rust-analyzer

@@ -4,7 +4,7 @@
 | -------- | ------- |
 | Owner(s) | [lqd]   |
 | Teams    | [Types] |
-| Status | WIP |
+| Status | Proposed |
 
 [lqd]: https://github.com/lqd
 [Types]: https://www.rust-lang.org/governance/teams/compiler#team-types

@@ -4,7 +4,7 @@
 | -------- | -------------------------- |
 | Owner(s) | [jkelleyrtp][]             |
 | Teams    | [Lang], [Libs-API]         |
-| Status   | Under active consideration |
+| Status   | Proposed |
 
 [Lang]: https://www.rust-lang.org/governance/teams/lang
 [Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api

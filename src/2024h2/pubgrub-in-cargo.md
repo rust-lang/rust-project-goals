@@ -4,7 +4,7 @@
 | -------- | ------ |
 | Owner(s) | eh2406 |
 | Teams    | Cargo  |
-| Status   | WIP    |
+| Status   | Proposed    |
 
 ## Summary
 

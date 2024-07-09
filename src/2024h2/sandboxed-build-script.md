@@ -4,7 +4,7 @@
 | -------- | ----------- |
 | Owner(s) | [weihanglo] |
 | Teams    | [Cargo]     |
-| Status   | WIP         |
+| Status   | Proposed         |
 
 [weihanglo]: https://github.com/weihanglo
 [Cargo]: https://www.rust-lang.org/governance/teams/dev-tools#team-cargo

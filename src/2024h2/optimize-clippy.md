@@ -5,7 +5,7 @@
 | -------- | --------------------- |
 | Owner(s) | [blyxyas][]           |
 | Teams    | [Clippy team][clippy] |
-| Status   | WIP                   |
+| Status   | Proposed              |
 
 ## Summary
 

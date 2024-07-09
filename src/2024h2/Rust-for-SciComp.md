@@ -4,7 +4,7 @@
 | -------- | --------------------------- |
 | Owner(s) | ZuseZ4 / Manuel S. Drehwald |
 | Teams    | t-lang, t-compiler          |
-| Status   | WIP                         |
+| Status   | Proposed                         |
 
 ## Summary
 
