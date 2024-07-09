@@ -1,10 +1,10 @@
 # Stabilize Parallel Front End
 
-| Metadata |                     |
-| -------- | ------------------- |
-| Owner(s) | @SparrowLii         |
-| Teams    | [Parallel Rustc WG] |
-| Status   | Proposed            |
+| Metadata |             |
+| -------- | ----------- |
+| Owner(s) | @SparrowLii |
+| Teams    | [Compiler]  |
+| Status   | Proposed    |
 
 ## Summary
 
@@ -51,11 +51,12 @@ The parallel front end should be:
 
 ## Ownership and team asks
 
-**Owner:** @SparrowLii and [Parallel Rustc WG] own this goal
+**Owner:** @SparrowLii and Parallel Rustc WG own this goal
 
 | Subgoal                              | Owner(s) or team(s) | Notes |
 | ------------------------------------ | ------------------- | ----- |
-| Fix issues                           |                     |       |
+| Fix issues                           | @SparrowLii         |       |
+| Author tests                         | @SparrowLii         |       |
 | Test for parallel front end          |                     |       |
 | ↳ use parallel front end in UI tests |                     |       |
 | ↳ processe diagnostic output         |                     |       |

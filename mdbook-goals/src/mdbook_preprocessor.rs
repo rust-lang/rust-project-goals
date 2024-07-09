@@ -254,10 +254,18 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         match self.display_names.get(username) {
             Some(n) => n.clone(),
             None => {
-                let display_name = Rc::new(match GithubUserInfo::load(username) {
-                    Ok(GithubUserInfo { name: Some(n), .. }) => n,
-                    _ => username.to_string(),
-                });
+                let display_name = Rc::new(
+                    match GithubUserInfo::load(username)
+                        .with_context(|| format!("loading user info for {}", username))
+                    {
+                        Ok(GithubUserInfo { name: Some(n), .. }) => n,
+                        Ok(GithubUserInfo { name: None, .. }) => username.to_string(),
+                        Err(e) => {
+                            eprintln!("{:?}", e);
+                            username.to_string()
+                        }
+                    },
+                );
                 self.display_names
                     .insert(username.to_string(), display_name.clone());
                 display_name
