@@ -1,4 +1,4 @@
-# doc_cfg
+# Stabilize doc_cfg
 
 | Metadata |                 |
 | -------- | --------------- |

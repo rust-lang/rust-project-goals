@@ -1,4 +1,4 @@
-# Stabilize Parallel Front End
+# Stabilize parallel front end
 
 | Metadata |             |
 | -------- | ----------- |

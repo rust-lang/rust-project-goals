@@ -1,4 +1,4 @@
-# merged doctests
+# Implement "merged doctests" to save doctest time
 
 | Metadata |                 |
 | -------- | --------------- |
