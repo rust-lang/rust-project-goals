@@ -13,8 +13,8 @@ Stabilize unstable features required by Rust for Linux project including
 
 * Stable support for RFL's customized ARC type
 * Labeled goto in inline assembler and extended `offset_of!` support
-* RFL on Rust CI ([done now!])
-* Pointers to statics in constants [![Owner Needed][]](#ownership-and-other-resources)
+* RFL on Rust CI
+* Pointers to statics in constants
 
 ## Motivation
 
