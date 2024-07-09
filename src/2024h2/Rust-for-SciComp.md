@@ -4,7 +4,7 @@
 | -------- | --------------------------- |
 | Owner(s) | ZuseZ4 / Manuel S. Drehwald |
 | Teams    | t-lang, t-compiler          |
-| Status   | Proposed                         |
+| Status   | Proposed                    |
 
 ## Summary
 
@@ -68,15 +68,15 @@ Manuel S. Drehwald is working 5 days per week on this, sponsored by LLNL and the
 
 Resources: Domain and CI for the autodiff work is being provided by MIT. This might be moved to the LLVM org later this year. Hardware for benchmarks is being provided by LLNL and UofT. CI for the offloading work will be provided by LLNL or LLVM (see below).
 
-| Subgoal | Owner(s) or team(s) | Notes |
-| ---------------------------------- | ---------------------- | ---------- |
-| Development                        | ZuseZ4                 |            |
-| ↳ Lang-team experiment             | ![Team][] [Lang][]     | (approved) |
-| ↳ "Smoke test" reviews (see below) | ![Team][] [Compiler][] |            |
+Minimal "smoke test" reviews will be needed from the compiler-team. The Rust language changes at this stage are expected to be a minimal wrapper around the underlying LLVM functionality and the compiler team need only vet that the feature will not hinder usability for ordinary Rust users or cause undue burden on the compiler architecture itself. There is no requirement to vet the quality or usability of the design.
+
+| Subgoal              | Owner(s) or team(s)    | Notes      |
+| -------------------- | ---------------------- | ---------- |
+| Development          | ZuseZ4                 |            |
+| Lang-team experiment | ![Team][] [Lang][]     | (approved) |
+| Standard reviews     | ![Team][] [Compiler][] |            |
 
 [Team]: https://img.shields.io/badge/Team%20ask-red
-
-Minimal "smoke test" reviews will be needed from the compiler-team. The Rust language changes at this stage are expected to be a minimal wrapper around the underlying LLVM functionality and the compiler team need only vet that the feature will not hinder usability for ordinary Rust users or cause undue burden on the compiler architecture itself. There is no requirement to vet the quality or usability of the design.
 
 ## Outputs and milestones
 

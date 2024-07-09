@@ -77,22 +77,35 @@ fn format_team_asks(asks_of_any_team: &[TeamAsk]) -> anyhow::Result<()> {
             .filter(|a| a.teams.contains(team))
             .collect();
 
-        println!("\n### {} team\n", team);
+        if team != "LC" {
+            println!("\n### {} team\n", team);
+        } else {
+            println!("\n### Leadership Council\n")
+        }
 
         let subgoals: BTreeSet<&String> = asks_of_this_team.iter().map(|a| &a.subgoal).collect();
 
         let mut table = vec![
-            vec!["Goal".to_string(), "Owner".to_string()],
-            vec!["---".to_string(), "---".to_string()],
+            vec!["Goal".to_string(), "Owner".to_string(), "Notes".to_string()],
+            vec!["---".to_string(), "---".to_string(), "---".to_string()],
         ];
 
         for subgoal in subgoals {
-            table.push(vec![format!("*{}*", subgoal), "".to_string()]);
+            table.push(vec![
+                format!("*{}*", subgoal),
+                "".to_string(),
+                "".to_string(),
+            ]);
 
             for ask in asks_of_this_team.iter().filter(|a| a.subgoal == *subgoal) {
                 table.push(vec![
-                    format!("[{}]({})", ask.heading, ask.input.display()),
+                    format!(
+                        "[{}]({}#ownership-and-team-asks)",
+                        ask.heading,
+                        ask.input.display()
+                    ),
                     ask.owners.to_string(),
+                    ask.notes.to_string(),
                 ]);
             }
         }
@@ -164,6 +177,7 @@ struct TeamAsk<'i> {
     heading: String,
     teams: Vec<String>,
     owners: String,
+    notes: String,
 }
 
 fn extract_team_asks<'i>(
@@ -228,6 +242,7 @@ fn extract_team_asks<'i>(
             } else {
                 owners.to_string()
             },
+            notes: row[2].to_string(),
         });
     }
 
@@ -256,7 +271,7 @@ fn extract_teams(s: &str) -> Vec<String> {
 }
 
 fn extract_identifiers(s: &str) -> Vec<&str> {
-    let regex = Regex::new("[-A-Za-z]+").unwrap();
+    let regex = Regex::new("[-.A-Za-z]+").unwrap();
     regex.find_iter(s).map(|m| m.as_str()).collect()
 }
 

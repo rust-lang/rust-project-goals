@@ -2,7 +2,7 @@
 
 | Metadata |             |
 | -------- | ----------- |
-| Owner(s) | epage       |
+| Owner(s) | [epage]     |
 | Teams    | Cargo, Lang |
 | Status   | Proposed    |
 
@@ -69,11 +69,10 @@ This section defines the specific work items that are planned and who is expecte
     * List ![Help wanted][] if there is an owner but they need support, for example funding.
     * Other needs (e.g., complete, in FCP, etc) are also fine.
 
-| Subgoal | Owner(s) or team(s) | Notes |
-| --------------------------------- | ------------------- | ------ |
-| Implementation                    | Ed Page             |        |
-| Stabilization decision from lang  | ![Team][] [Lang]    |        |
-| Stabilization decision from cargo | ![Team][] [Cargo]   |        |
+| Subgoal                | Owner(s) or team(s)      | Notes |
+| ---------------------- | ------------------------ | ----- |
+| Implementation         | [epage]                  |       |
+| Stabilization decision | ![Team][] [Lang] [Cargo] |       |
 
 [Help wanted]: https://img.shields.io/badge/Help%20wanted-yellow
 [Complete]: https://img.shields.io/badge/Complete-green
@@ -87,3 +86,5 @@ This section defines the specific work items that are planned and who is expecte
 [Infra]: https://www.rust-lang.org/governance/teams/infra
 [Cargo]: https://www.rust-lang.org/governance/teams/dev-tools#team-cargo
 [Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
+
+[epage]: https://github.com/epage
