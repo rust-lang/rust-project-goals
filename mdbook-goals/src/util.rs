@@ -45,15 +45,21 @@ pub fn format_table(rows: &[Vec<String>]) -> String {
     output
 }
 
-#[derive(serde::Deserialize)]
+#[derive(serde::Deserialize, Debug)]
 pub struct GithubUserInfo {
     pub name: Option<String>,
 }
 
 impl GithubUserInfo {
     pub fn load(login: &str) -> Result<Self, reqwest::Error> {
-        let url = format!("https://api.github.com/users/{}", login);
-        let response: GithubUserInfo = reqwest::blocking::get(&url)?.json()?;
+        // FIXME: cache this in the target directory or something
+        use reqwest::header::USER_AGENT;
+        let url = format!("https://api.github.com/users/{}", &login[1..]);
+        let response: GithubUserInfo = reqwest::blocking::Client::new()
+            .get(&url)
+            .header(USER_AGENT, "mdbook-goals/1.0")
+            .send()?
+            .json()?;
         Ok(response)
     }
 }
