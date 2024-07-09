@@ -134,7 +134,6 @@ Looking further afield, possible future work includes more ergonomic versions of
 
 Here is a detailed list of the work to be done and who is expected to do it. This table includes the work to be done by owners and the work to be done by Rust teams (subject to approval by the team in an RFC/FCP).
 
-* The ![Funded][] badge indicates that the owner has committed and work will be funded by their employer or other sources.
 * The ![Team][] badge indicates a requirement where Team support is needed.
 
 | Subgoal                            | Owner(s) or team(s)          | Notes                     |

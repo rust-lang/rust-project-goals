@@ -196,8 +196,6 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 
 (*) Implementation work on async drop experiments is currently unfunded. We are trying to figure out next steps.
 
-[Funded]: https://img.shields.io/badge/Funded-yellow
-
 [Approved]: https://img.shields.io/badge/Approved-green
 [Not approved]: https://img.shields.io/badge/Not%20yet%20approved-red
 [Complete]: https://img.shields.io/badge/Complete-green
