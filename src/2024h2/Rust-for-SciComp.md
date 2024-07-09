@@ -60,7 +60,7 @@ All three proposed features (batching, autodiff, offloading) can be combined and
 
 [da]: ../about/design_axioms.md
 
-## Ownership and other resources
+## Ownership and team asks
 
 **Owner:** ZuseZ4 / Manuel S. Drehwald
 

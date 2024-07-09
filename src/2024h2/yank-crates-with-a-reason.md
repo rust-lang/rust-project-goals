@@ -44,7 +44,7 @@ Additionally, if we can persist this information to the crates.io index, we can 
 
 When considering this feature, we need to balance our desire for a perfect, structured yank message with a usable, easy-to-use yank message. We need to start with this feature and leave room for future extensions, but we shouldn't introduce complexity and support for all requirements from the start.
 
-## Ownership and other resources
+## Ownership and team asks
 
 **Owner:**
 

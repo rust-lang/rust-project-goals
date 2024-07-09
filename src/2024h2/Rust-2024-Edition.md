@@ -48,20 +48,18 @@ The "Edition Axioms" were [laid out in RFC #3085](https://rust-lang.github.io/rf
 * **Rust should feel like “one language”.** We generally prefer uniform behavior across all editions of Rust, so long as it can be achieved without compromising other design goals. 
 * **Editions are meant to be adopted.** We don’t force the edition on our users, but we do feel free to encourage adoption of the edition through other means.
 
-## Ownership and other resources
+## Ownership and team asks
 
 **Owner:** TC
 
-### Support needed from the project
-
-* Lang team:
-    * Prioritization
-* Types team:
-    * Prioritization
-* Leadership council:
-    * Rust blog posts and web resources to publicize progress
+| Subgoal                  | Owner(s) or team(s)      | Notes |
+| ------------------------ | ------------------------ | ----- |
+| Stabilization decision   | ![Team][] [Lang] [Types] |       |
+| Top-level Rust blog post | ![Team][] [LC]           |       |
 
 ## Outputs and milestones
+
+* *Owner:* TC
 
 ### Outputs
 

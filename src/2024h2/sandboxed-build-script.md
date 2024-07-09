@@ -130,7 +130,7 @@ Currently out of scope:
 
 [tier 1]: https://doc.rust-lang.org/rustc/platform-support.html#tier-1-with-host-tools
 
-## Ownership and other resources
+## Ownership and team asks
 
 **Owner:** [weihanglo],
 though I also welcome someone else to take ownership of it.

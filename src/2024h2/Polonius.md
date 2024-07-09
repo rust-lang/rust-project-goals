@@ -1,10 +1,10 @@
 # Scalable Polonius support on nightly
 
-| Metadata |         |
-| -------- | ------- |
-| Owner(s) | [lqd]   |
-| Teams    | [Types] |
-| Status | Proposed |
+| Metadata |          |
+| -------- | -------- |
+| Owner(s) | [lqd]    |
+| Teams    | [Types]  |
+| Status   | Proposed |
 
 [lqd]: https://github.com/lqd
 [Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
@@ -34,13 +34,19 @@ Stable support for Polonius.
 
 N/A
 
-## Ownership and other resources
+## Ownership and team asks
 
 **Owner:** lqd
 
 Other support provided by [Amanda Stjerna][amanda] as part of her PhD.
 
 [amanda]: https://github.com/amandasystems
+
+| Subgoal          | Owner(s) or team(s) | Notes          |
+| ---------------- | ------------------- | -------------- |
+| Implementation   | lqd, Amanda Stjerna |                |
+| Design review    | nikomatsakis        |                |
+| Standard reviews | ![Team][] [Types]   | Matthew Jasper |
 
 ### Support needed from the project
 

@@ -49,7 +49,7 @@ In order of importance, the next-generation trait solver should be:
 
 [da]: ../about/design_axioms.md
 
-## Ownership and other resources
+## Ownership and team asks
 
 **Owner:** [lcnr]
 

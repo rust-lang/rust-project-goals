@@ -82,7 +82,7 @@ The ideal endpoint is that users never have code to handle a pattern of empty ty
 - Impossible cases can be omitted: users shouldn't have to write code for cases that are statically
   impossible.
 
-## Ownership and other resources
+## Ownership and team asks
 
 **Owner:** Nadrieril
 

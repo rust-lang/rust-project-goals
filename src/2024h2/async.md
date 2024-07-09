@@ -165,7 +165,7 @@ Our eventual goal is to provide Rust users building on async with
 * **From embedded to GUI to the cloud.** Async Rust covers a wide variety of use cases and we aim to make designs that can span those differing constraints with ease.
 * **Consistent, incremental progress.** People are building async Rust systems *today* -- we need to ship incremental improvements while also steering towards the overall outcome we want.
 
-## Ownership and other resources
+## Ownership and team asks
 
 Here is a detailed list of the work to be done and who is expected to do it. This table includes the work to be done by owners and the work to be done by Rust teams (subject to approval by the team in an RFC/FCP). The overall owners of the async effort (and authors of this goal document) are [tmandry][] and [nikomatsakis][]. We have identified owners for subitems below; these may change over time.
 

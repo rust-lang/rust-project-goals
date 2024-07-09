@@ -42,7 +42,7 @@ We're working towards enabling developers to do more things in general within a 
 
 None.
 
-## Ownership and other resources
+## Ownership and team asks
 
 **Owner:** @fee1-dead
 

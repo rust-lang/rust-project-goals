@@ -59,7 +59,7 @@ See also: the [explainer](https://rust-lang.github.io/impl-trait-initiative/expl
 
 None.
 
-## Ownership and other resources
+## Ownership and team asks
 
 **Owner:** oli-obk owns this goal.
 

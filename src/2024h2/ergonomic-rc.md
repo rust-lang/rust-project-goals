@@ -80,7 +80,7 @@ We don't have consensus around a full set of "design axioms" for this design, bu
 * Some code will want the ability to precisely track reference count increments.
 * The design should allow user-defined types to "opt-in" to the lightweight cloning behavior.
 
-## Ownership and other resources
+## Ownership and team asks
 
 The work here is proposed by Jonathan Kelley on behalf of Dioxus Labs. We have funding for 1-2 engineers depending on the scope of work. Dioxus Labs is willing to take ownership and commit funding to solve these problems.
 

@@ -111,7 +111,7 @@ compatible to allow using it as `CC` in a C project.
 - **Compiling C code should not require substantially changing the information
   normally passed to a C compiler** (e.g. compiler arguments).
 
-## Ownership and other resources
+## Ownership and team asks
 
 **Owner:** TODO
 
