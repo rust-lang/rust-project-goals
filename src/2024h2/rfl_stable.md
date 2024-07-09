@@ -5,7 +5,7 @@
 | Short title | Rust-for-Linux                     |
 | Owner(s)    | [nikomatsakis][], [joshtriplett][] |
 | Teams       | [Lang], [Libs-API], [Compiler]     |
-| Status      | Proposed                           |
+| Status      | Flagship                           |
 
 ## Summary
 

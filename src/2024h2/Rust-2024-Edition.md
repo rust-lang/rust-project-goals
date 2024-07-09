@@ -4,7 +4,7 @@
 | -------- | ----------- |
 | Owner(s) | TC          |
 | Teams    | lang, types |
-| Status   | Proposed    |
+| Status   | Flagship    |
 
 ## Summary
 

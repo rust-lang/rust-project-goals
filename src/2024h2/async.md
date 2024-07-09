@@ -5,7 +5,7 @@
 | Short title | Async                         |
 | Owner(s)    | [tmandry][], [nikomatsakis][] |
 | Teams       | [Lang], [Libs], [Libs-API]    |
-| Status      | Proposed                      |
+| Status      | Flagship                      |
 
 ## Summary
 
