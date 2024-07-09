@@ -82,11 +82,11 @@ The flagship goals proposed for this roadmap are as follows:
 
 ### Project goals
 
-The slate of additional project goals are as follows. These goals all have identified owners who will drive the work forward as well as a viable work plan. The goals include asks from the listed Rust teams, which are cataloged in the [reference-level explanation](#reference-level-explanation) section below. Some goals are actively looking for volunteers; these goals are tagged with ![Heap wanted][].
+The slate of additional project goals are as follows. These goals all have identified owners who will drive the work forward as well as a viable work plan. The goals include asks from the listed Rust teams, which are cataloged in the [reference-level explanation](#reference-level-explanation) section below. Some goals are actively looking for volunteers; these goals are tagged with ![Help wanted][].
 
-<!-- GOAL LIST `Proposed` -->
+<!-- GOALS `Proposed` -->
 
-### Orphaned goals ![Heap wanted][]
+### Orphaned goals ![Help wanted][]
 
 Goals in this section are "pre-approved" by the team but lack an owner. These indicate a place where we are looking for someone to step up and help drive the goal the goal to completion. Every orphaned goal has someone who is willing and able to serve as mentor, but lacks the time or resources to truly *own* the goal. If you are interested in serving as the owner for one of these orphaned goals, reach out to the listed mentor to discuss. Orphaned goals may also be used as the basis of applying for grants from the Rust Foundation or elsewhere.
 
