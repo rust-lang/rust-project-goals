@@ -141,6 +141,17 @@ I would be happy to support them as a Cargo maintainer.
 | Collaboration with GSoC proc-macro project | ![Team][] [Compiler] |             |
 | Summary of experiments or RFC              | @weihanglo           | (or mentee) |
 
+> For security reviews,
+> I'd like assistance from experts in security domains.
+> Ideally those experts would be from within the community,
+> such as the [Security Response] or [Secure Code] working groups.
+> However,
+> I don't want to pressure that goal since comprehensive security reviews are extremely time-consuming.
+> Outside experts are also welcome.
+
+[Security Response]: https://www.rust-lang.org/governance/wgs/wg-security-response
+[Secure Code]: https://www.rust-lang.org/governance/wgs/wg-secure-code
+
 ## Outputs and milestones
 
 ### Outputs
