@@ -138,7 +138,7 @@ I would be happy to support them as a Cargo maintainer.
 
 ### Support needed from the project
 
-| Subgoal                                        | Owner(s) or team(s)  | Status |
+| Subgoal | Owner(s) or team(s) | Notes |
 | ---------------------------------------------- | -------------------- | ------ |
 | Experiments for sandboxed build script         |                      |        |
 | ↳ Design                                       | owner or mentee      |        |

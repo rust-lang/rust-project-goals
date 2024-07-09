@@ -53,7 +53,7 @@ The parallel front end should be:
 
 **Owner:** [@SparrowLii] and [Parallel Rustc WG] own this goal
 
-| Subgoal                              | Owner(s) or team(s) | Status |
+| Subgoal | Owner(s) or team(s) | Notes |
 |--------------------------------------|---------------------| ------ |
 | Fix issues                           |                     |        |
 | Test for parallel front end          |                     |        |

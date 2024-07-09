@@ -5,7 +5,7 @@
 | Short title | Rust-for-Linux                     |
 | Owner(s)    | [nikomatsakis][], [joshtriplett][] |
 | Teams       | [Lang], [Libs-API], [Compiler]     |
-| Status      | Basically complete                 |
+| Status      | Proposed                           |
 
 ## Summary
 
@@ -141,7 +141,7 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 * The ![Funded][] badge indicates that the owner has committed and work will be funded by their employer or other sources.
 * The ![Team][] badge indicates a requirement where Team support is needed.
 
-| Subgoal                            | Owner(s) or team(s)                | Status        |
+| Subgoal | Owner(s) or team(s) | Notes |
 | ---------------------------------- | ---------------------------------- | ------------- |
 | Overall program management         | [nikomatsakis][], [joshtriplett][] |               |
 | Arbitrary self types v2            |                                    |               |

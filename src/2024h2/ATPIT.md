@@ -1,10 +1,10 @@
 # Impl trait everywhere
 
-| Metadata | |
-| --- | --- |
-| Owner(s) | [oli-obk] |
-| Teams | [Types], [Lang] |
-| Status | Under active consideration |
+| Metadata |                 |
+| -------- | --------------- |
+| Owner(s) | [oli-obk]       |
+| Teams    | [Types], [Lang] |
+| Status   | Proposed        |
 
 [oli-obk]: https://github.com/oli-obk
 
@@ -63,16 +63,11 @@ None.
 
 **Owner:** oli-obk owns this goal.
 
-### Support needed from the project
-
-* Types team:
-    * Respond promptly to relevant FCPs to align next generation trait solver and old solver.
-* Lang team:
-    * Stabilization decision.
-
-## Outputs and milestones
-
-* Stable version of ATPIT
+| Subgoal                | Owner(s) or team(s)      | Notes |
+| ---------------------- | ------------------------ | ----- |
+| Implementation         | Goal owner               |       |
+| FCP decisions          | ![Team][] [Types]        |       |
+| Stabilization decision | ![Team][] [Types] [Lang] |       |
 
 ## Frequently asked questions
 

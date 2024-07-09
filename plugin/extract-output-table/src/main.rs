@@ -40,8 +40,6 @@ fn process_input<'i>(
 
     let metadata = extract_metadata(&sections)?;
 
-    eprintln!("input = {}", input.display());
-
     if let Some(s) = status_filter {
         if metadata.status != s {
             return Ok(vec![]);
@@ -52,8 +50,6 @@ fn process_input<'i>(
 }
 
 fn format_team_asks(asks_of_any_team: &[TeamAsk]) -> anyhow::Result<()> {
-    eprintln!("{asks_of_any_team:?}");
-
     let all_teams: BTreeSet<&String> = asks_of_any_team.iter().flat_map(|a| &a.teams).collect();
 
     for team in all_teams {
@@ -116,11 +112,7 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Metadata<'_>> {
         anyhow::bail!("metadata table has too few columns, expected 2");
     }
 
-    eprintln!("first_table = {:#?}", first_table);
-
-    let Some(short_title_row) = first_table.rows.iter().find(|row| row[0] == "Short title") else {
-        anyhow::bail!("metadata table has no `Short title` row")
-    };
+    let short_title_row = first_table.rows.iter().find(|row| row[0] == "Short title");
 
     let Some(owners_row) = first_table
         .rows
@@ -136,7 +128,11 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Metadata<'_>> {
 
     Ok(Metadata {
         title,
-        short_title: &short_title_row[1],
+        short_title: if let Some(row) = short_title_row {
+            &row[1]
+        } else {
+            title
+        },
         owners: &owners_row[1],
         status: &status_row[1],
     })
@@ -170,7 +166,7 @@ fn extract_team_asks<'i>(
         )
     };
 
-    expect_headers(table, &["Subgoal", "Owner(s) or team(s)", "Status"])?;
+    expect_headers(table, &["Subgoal", "Owner(s) or team(s)", "Notes"])?;
 
     let mut heading = "";
     let mut owners: &str = metadata.owners;
@@ -198,7 +194,6 @@ fn extract_team_asks<'i>(
         }
 
         let teams = extract_teams(&row[1]);
-        eprintln!("extract_teams({:?}) = {:?}", &row[1], teams);
 
         tasks.push(TeamAsk {
             input,

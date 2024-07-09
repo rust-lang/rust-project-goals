@@ -51,7 +51,7 @@ When considering this feature, we need to balance our desire for a perfect, stru
 * [hi-rustin]: wearing my crates.io team member's hat
 * [hi-rustin]: wearing my Cargo regular contributor's hat
 
-| Subgoal                                                     | Owner(s) or team(s)            | Status |
+| Subgoal | Owner(s) or team(s) | Notes |
 | ----------------------------------------------------------- | ------------------------------ | ------ |
 | Yank crates with a reason                                   |                                |        |
 | ↳ Implementation in crates.io side(only for administrators) | [hi-rustin]                    |        |
