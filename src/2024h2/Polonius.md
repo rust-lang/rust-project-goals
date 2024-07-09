@@ -41,7 +41,7 @@ Other support provided by [Amanda Stjerna][amanda] as part of her PhD.
 
 | Subgoal          | Owner(s) or team(s)     | Notes            |
 | ---------------- | ----------------------- | ---------------- |
-| Design review    | [nikomatsakis]          |                  |
+| Design review    | @nikomatsakis          |                  |
 | Implementation   | @lqd, [Amanda Stjerna] |                  |
 | Standard reviews | ![Team][] [Types]       | [Matthew Jasper] |
 
