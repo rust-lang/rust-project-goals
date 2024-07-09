@@ -59,15 +59,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "extract-output-table"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "regex",
- "structopt",
-]
-
-[[package]]
 name = "heck"
 version = "0.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -96,6 +87,15 @@ name = "libc"
 version = "0.2.155"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "97b3888a4aecf77e811145cadf6eef5901f4782c53886191b2f693f24761847c"
+
+[[package]]
+name = "mdbook-goals"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "regex",
+ "structopt",
+]
 
 [[package]]
 name = "memchr"

@@ -1,3 +1,7 @@
 
 [workspace]
-members = ["plugin/*"]
+members = ["mdbook-goals"]
+resolver = "2"
+
+[profile.dev]
+opt-level = 1
