@@ -121,7 +121,7 @@ The RFL project builds the stdlib with a number of configuration options to elim
 
 #### Code-generation features and compiler options
 
-The RFL project requires various code-generation options. Some of these are related to custom features of the kernel, such as [X18 support][#748] but others are codegen options like sanitizers and the like. Some subset of the options listed on [RFL#2][] will need to be stabilized to support being built with all required configurations, but working out the precise set will require more effort.
+The RFL project requires various code-generation options. Some of these are related to custom features of the kernel, such as X18 support ([rust-lang/compiler-team#748]) but others are codegen options like sanitizers and the like. Some subset of the options listed on [RFL#2][] will need to be stabilized to support being built with all required configurations, but working out the precise set will require more effort.
 
 #### Ergonomic improvements
 
@@ -190,8 +190,5 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 
 None yet.
 
-[#748]: https://github.com/rust-lang/compiler-team/issues/748
-[#124655]: https://github.com/rust-lang/rust/pull/124655
-[#125209]: https://github.com/rust-lang/rust/pull/125209
 
 
