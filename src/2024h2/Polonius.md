@@ -2,12 +2,9 @@
 
 | Metadata |          |
 | -------- | -------- |
-| Owner(s) | [lqd]    |
+| Owner(s) | @lqd    |
 | Teams    | [Types]  |
 | Status   | Proposed |
-
-[lqd]: https://github.com/lqd
-[Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
 
 ## Summary
 
@@ -45,7 +42,7 @@ Other support provided by [Amanda Stjerna][amanda] as part of her PhD.
 | Subgoal          | Owner(s) or team(s)     | Notes            |
 | ---------------- | ----------------------- | ---------------- |
 | Design review    | [nikomatsakis]          |                  |
-| Implementation   | [lqd], [Amanda Stjerna] |                  |
+| Implementation   | @lqd, [Amanda Stjerna] |                  |
 | Standard reviews | ![Team][] [Types]       | [Matthew Jasper] |
 
 ### Support needed from the project

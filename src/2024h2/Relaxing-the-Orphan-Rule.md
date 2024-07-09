@@ -126,19 +126,6 @@ This section defines the specific work items that are planned and who is expecte
 | Design consultation/iteration     | Josh Triplett            |       |
 | Up to 1 design meetings as needed | ![Team][] [Lang] [Types] |       |
 
-[Help wanted]: https://img.shields.io/badge/Help%20wanted-yellow
-[Complete]: https://img.shields.io/badge/Complete-green
-[TBD]: https://img.shields.io/badge/TBD-red
-[Team]: https://img.shields.io/badge/Team%20ask-red
-
-[Compiler]: https://www.rust-lang.org/governance/teams/compiler
-[Lang]: https://www.rust-lang.org/governance/teams/lang
-[LC]: https://www.rust-lang.org/governance/teams/leadership-council
-[Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
-[Infra]: https://www.rust-lang.org/governance/teams/infra
-[Cargo]: https://www.rust-lang.org/governance/teams/dev-tools#team-cargo
-[Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
-
 ## Frequently asked questions
 
 ### Won't this create incompatibilities between libraries that implement the same trait for the same type?

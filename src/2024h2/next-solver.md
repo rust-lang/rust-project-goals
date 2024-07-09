@@ -2,7 +2,7 @@
 
 | Metadata |          |
 | -------- | -------- |
-| Owner(s) | [lcnr]   |
+| Owner(s) | @lcnr   |
 | Teams    | [Types]  |
 | Status   | Proposed |
 
@@ -51,15 +51,15 @@ In order of importance, the next-generation trait solver should be:
 
 ## Ownership and team asks
 
-**Owner:** [lcnr]
+**Owner:** @lcnr
 
-Add'l implementation work: [compiler-errors][]
+Add'l implementation work: @compiler-errors
 
 | Subgoal                               | Owner(s) or team(s)         | Notes |
 | ------------------------------------- | --------------------------- | ----- |
 | Discussion and moral support          | ![Team][] [Types]           |       |
 | Stabilize coherence coherence support |                             |       |
-| ↳ Implementation                      | [lcnr], [compiler-errors]   |       |
+| ↳ Implementation                      | @lcnr, @compiler-errors   |       |
 | ↳ Standard reviews                    | ![Team][] [Types]           |       |
 | ↳ Standard reviews                    | ![Team][] [Rust-Analyzer][] |       |
 | ↳ Stabilization decision              | ![Team][] [Types][]         |       |
@@ -92,8 +92,5 @@ See next few steps :3
 
 *This is a good place to elaborate on your reasoning above -- for example, why did you put the design axioms in the order that you did? It's also a good place to put the answers to any questions that come up during discussion. The expectation is that this FAQ section will grow as the goal is discussed and eventually should contain a complete summary of the points raised along the way.*
 
-[lcnr]: https://github.com/lcnr
-[compiler-errors]: https://github.com/compiler-errors
-[Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
 [unsoundnesses]: https://github.com/orgs/rust-lang/projects/44
 [Rust-Analyzer]: https://github.com/rust-lang/rust-analyzer

@@ -3,7 +3,7 @@
 
 | Metadata |                       |
 | -------- | --------------------- |
-| Owner(s) | [blyxyas][]           |
+| Owner(s) | @blyxyas           |
 | Teams    | [Clippy team][clippy] |
 | Status   | Proposed              |
 
@@ -51,7 +51,7 @@ A developer shouldn't have to get a high-end machine to run a compiler swiftly; 
 
 ## Ownership and team asks
 
-**Owner:** Alejandra Gonzalez, a.k.a. [@blyxyas][blyxyas]
+**Owner:** Alejandra Gonzalez, a.k.a. @blyxyas
 
 | Subgoal            | Owner(s) or team(s) | Notes |
 | ------------------ | ------------------- | ----- |
@@ -63,6 +63,5 @@ A developer shouldn't have to get a high-end machine to run a compiler swiftly; 
 
 <!-- #### How will improvements be measured? -->
 
-[blyxyas]: https://github.com/blyxyas
 [clippy]: https://github.com/rust-lang/rust-clippy
 [pr125116]: https://github.com/rust-lang/rust/pull/125116
