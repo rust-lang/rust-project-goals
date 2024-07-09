@@ -4,7 +4,7 @@
 | -------- | --------------------------------------------------------------- |
 | Owner(s) | @estebank, @Muscraft                                         |
 | Teams    | [Compiler]                                                      |
-| Status   | WIP                                                             |
+| Status   | Proposed                                                             |
 
 ## Summary
 
@@ -71,10 +71,11 @@ This section defines the specific work items that are planned and who is expecte
 | ↳ add ui test mode comparing new output        | [Compiler]           |        |
 | ↳ switch default nightly rustc output          | [Compiler]           |        |
 | Production use of annotate-snippets            |                      |        |
-| ↳ switch default rustc output                  | ![Team][] [Compiler] |        |
+| ↳ switch default rustc output                  |  |        |
 | ↳ release notes                                | [Compiler]           |        |
 | ↳ switch ui tests to only check new output     | [Compiler]           |        |
 | ↳ dedicated reviewer                           | [estebank]           |        |
+| Standard reviews | ![Team][] [Compiler] | |
 | Inside Rust blog post announcing change        |                      |        |
 | Top-level Rust blog post inviting feedback     | ![Team][] [LC]       |        |
 
