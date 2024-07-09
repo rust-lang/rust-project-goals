@@ -34,7 +34,7 @@ N/A
 
 **Owner:** lqd
 
-Other support provided by [Amanda Stjerna][amanda] as part of her PhD.
+Other support provided by @amandasystems as part of her PhD.
 
 [amanda]: https://github.com/amandasystems
 
