@@ -87,14 +87,12 @@ The work here is proposed by @jkelleyrtp on behalf of Dioxus Labs. We have fundi
 | Author RFC                 | TBD                         |       |
 | Design meeting             | ![Team][] [Lang]            |       |
 | RFC decision               | ![Team][] [Lang] [Libs-API] |       |
-| Nightly implementation     | [spastorino]                |       |
+| Nightly implementation     | @spastorino                 |       |
 | Standard reviews           | ![Team]  [Compiler]         |       |
 | Blog post on Inside Rust   |                             |       |
 
-* The ![Funded][] badge indicates that the owner has committed and work will be funded by their employer or other sources.
 * The ![Team][] badge indicates a requirement where Team support is needed.
 
-[Funded]: https://img.shields.io/badge/Funded-yellow
 [Not funded]: https://img.shields.io/badge/Not%20yet%20funded-red
 [Approved]: https://img.shields.io/badge/Approved-green
 [Not approved]: https://img.shields.io/badge/Not%20yet%20approved-red

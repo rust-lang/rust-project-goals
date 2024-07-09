@@ -1,10 +1,10 @@
 # Faster build experience
 
-| Metadata | |
-| --- | --- |
-| Owner(s) | @jkelleyrtp |
-| Teams    | [Lang], [Compiler], [Cargo]            |
-| Status | Not accepted |
+| Metadata |                             |
+| -------- | --------------------------- |
+| Owner(s) | @jkelleyrtp                 |
+| Teams    | [Lang], [Compiler], [Cargo] |
+| Status   | Not accepted                |
 
 ## Summary
 
@@ -84,15 +84,13 @@ In our "shiny future," an aspiring genomics researcher would:
 The work here is proposed by Jonathan Kelley on behalf of Dioxus Labs. We have funding for 1-2 engineers depending on the scope of work. Dioxus Labs is willing to take ownership and commit funding to solve these problems.
 
 
-| Subgoal | Owner(s) or team(s) | Notes |
-| ----------------------------------- | --------------------------------------- | ----------------- |
-| proc macro expansion caching        |  [jkelleyrtp] + tbd                     | ![Funded][]       |
-| global dependency cache             |  [jkelleyrtp] + tbd                     | ![Funded][]       |
+| Subgoal                      | Owner(s) or team(s) | Notes |
+| ---------------------------- | ------------------- | ----- |
+| proc macro expansion caching | [jkelleyrtp] + tbd  |       |
+| global dependency cache      | [jkelleyrtp] + tbd  |       |
 
-* The ![Funded][] badge indicates that the owner has committed and work will be funded by their employer or other sources.
 * The ![Team][] badge indicates a requirement where Team support is needed.
 
-[Funded]: https://img.shields.io/badge/Funded-yellow
 [Not funded]: https://img.shields.io/badge/Not%20yet%20funded-red
 [Approved]: https://img.shields.io/badge/Approved-green
 [Not approved]: https://img.shields.io/badge/Not%20yet%20approved-red
