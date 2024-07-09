@@ -1,4 +1,4 @@
-# cargo-script
+# Stabilize cargo-script
 
 | Metadata |                 |
 | -------- | --------------- |

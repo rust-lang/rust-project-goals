@@ -1,4 +1,4 @@
-# Assemble Project Goal slate
+# Assemble project goal slate
 
 | Metadata |               |
 | -------- | ------------- |
