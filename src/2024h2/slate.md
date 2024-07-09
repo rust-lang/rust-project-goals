@@ -119,7 +119,7 @@ Goals in this section are "pre-approved" by the team but lack an owner. These in
 The following table highlights the asks from each affected team.
 The "owner" in the column is the person expecting to do the design/implementation work that the team will be approving.
 
-{{#include ./__proposed__.md}}
+<!-- TEAM ASKS -->
 
 ### Definitions
 
