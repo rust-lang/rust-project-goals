@@ -119,66 +119,7 @@ Goals in this section are "pre-approved" by the team but lack an owner. These in
 The following table highlights the asks from each affected team.
 The "owner" in the column is the person expecting to do the design/implementation work that the team will be approving.
 
-### Cargo team
-
-| Goal                           | Owner       |
-| ------------------------------ | ----------- |
-| *Discussion and moral support* |             |
-| [Pubgrub][PGC]                 | [eh2406]    |
-| [Sandboxed builds][SBS]        | [weihanglo] |
-| *Stabilizations*               |             |
-| [Cargo Script][CS]             | [epage]     |
-| *Standard reviews*             |             |
-| [Sandboxed builds][SBS]        | [weihanglo] |
-| *RFC decisions*                |             |
-| [Yank with reason][YKR]        | [hi-rustin] |
-
-### Crates.io team
-
-| Team         | Goal                           | Owner                     | Details                                                                     |
-| ------------ | ------------------------------ | ------------------------- | --------------------------------------------------------------------------- |
-| ![Crates.io] | *Standard reviews*             |                           |                                                                             |
-|              | [Yank with reason][YKR]        | [hi-rustin]               |                                                                             |
-| ![Crates.io] | *RFC decisions*                |                           |                                                                             |
-|              | [Yank with reason][YKR]        | [hi-rustin]               |                                                                             |
-| ![Compiler]  | *Standard reviews*             |                           |                                                                             |
-|              | [RFL][]                        | [Adrian Taylor]           | Review support and guidance for impl of arbitrary self types v2             |
-| ![Compiler]  | *Org decisions*                |                           |                                                                             |
-|              | [RFL][]                        | [Jakub Beránek]           | Review and approve guidelines for RFL in CI                                 |
-| ![Clippy]    | *Standard reviews*             |                           |                                                                             |
-|              | [Clippy perf improvements][OC] | [blyxyas]                 | Review support and guidance for impl of arbitrary self types v2             |
-| ![Lang]      | *Design meetings*              |                           |                                                                             |
-|              | [Async][]                      | n/a                       | An estimated 4–5 design meetings                                            |
-|              | [Async][]                      | [eholk]                   | Provide feedback on async iteration RFC (stretch goal)                      |
-| ![Lang]      | *RFC decisions*                |                           |                                                                             |
-|              | [Async][]                      | [compiler-errors][]       | Review async closure [RFC #3668]                                            |
-|              | [Ergonomic Ref Counting][ERC]  | [Jonathan Kelley]         | Review future Ergonomic Ref Counting RFC                                    |
-|              | [RFL][]                        | [Alice Ryhl]              | Approve [RFC #3621][]                                                       |
-| ![Lang]      | *Stabilizations*               |                           |                                                                             |
-|              | [Async][]                      | [nikomatsakis]            | Stabilize RTN from [RFC #3654]                                              |
-|              | [Async][]                      | [compiler-errors][]       | Stabilize async closure [RFC #3668]                                         |
-|              | [RFL][]                        | [Alice Ryhl]              | Stabilize implementation of [RFC #3621][]                                   |
-|              | [RFL][]                        | [Adrian Taylor]           | Stabilization decision for arbitrary self types v2                          |
-|              | [RFL][]                        | [Gary Guo]                | Stabilize `asm_goto`                                                        |
-|              | [Cargo Script][CS]             | [epage]                   | Stabilize cargo script backtick syntax                                      |
-|              | [ATPIT][]                      | [oli-obk]                 | Stabilize ATPIT                                                             |
-|              | [Patterns of empty types][PET] | [Nadrieril]               | Review of "never patterns" RFC and stabilization decision                   |
-| ![Lang]      | *Org decisions*                |                           |                                                                             |
-|              | [Async][]                      | [nikomatsakis], [tmandry] | Review new team structure to replace async-wg                               |
-| ![Libs]      | *Org decisions*                |                           |                                                                             |
-|              | [Async][]                      | [nikomatsakis], [tmandry] | Approve new team structure to replace async-wg                              |
-| ![Libs-API]  | *RFC decisions*                |                           |                                                                             |
-|              | [Async][]                      | [compiler-errors][]       | Secondary review of async closure [RFC #3668]                               |
-|              | [Async][]                      | [eholk]                   | Approve async iteration RFC and stabilization (stretch goal)                |
-|              | [Ergonomic Ref Counting][ERC]  | [Jonathan Kelley]         | Secondary review of Ergonomic Ref Counting RFC                              |
-| ![Libs-API]  | *Stabilizations*               |                           |                                                                             |
-|              | [RFL][]                        | [Ding Xiang Fei]          | Stabilize `offset_of!` syntax for struct fields                             |
-|              | [RFL][]                        | [Ding Xiang Fei]          | Stabilize `offset_of!` syntax for struct fields                             |
-| ![Types]     | *Stabilization decisions*      |                           |                                                                             |
-|              | [Next-gen Solver][NGS]         | [lcnr]                    | stabilize the use of the next-generation trait solver in coherence checking |
-|              | [ATPIT][]                      | [oli-obk]                 | Stabilize ATPIT                                                             |
-|              | [AMF][AMF]                     | [nikomatsakis]            | Participaton from 2 types team members in a-mir-formality                   |
-|              | [Polonius][NBNLB]              | [lqd]                     | Review and support                                                          |
+{{#include ./__proposed__.md}}
 
 ### Definitions
 

@@ -99,8 +99,8 @@ already for several months.
 
 | Subgoal                     | Owner(s) or team(s)  | Notes |
 | --------------------------- | -------------------- | ----- |
-| Author RFC                  | Goal owner           |       |
-| Implementation              | Goal owner           |       |
+| Author RFC                  | Nadrieril            |       |
+| Implementation              | Nadrieril            |       |
 | Standard reviews            | ![Team][] [Compiler] |       |
 | Design meeting              | ![Team][] [Lang]     |       |
 | RFC decision                | ![Team][] [Lang]     |       |
