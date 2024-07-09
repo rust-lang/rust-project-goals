@@ -1,11 +1,11 @@
 # Resolving the biggest blockers to Linux building on stable Rust
 
-| Metadata    |                                 |
-| ----------- | ------------------------------- |
-| Short title | Rust-for-Linux                  |
-| Owner(s)    | @nikomatsakis, [joshtriplett][] |
-| Teams       | [Lang], [Libs-API], [Compiler]  |
-| Status      | Flagship                        |
+| Metadata    |                                |
+| ----------- | ------------------------------ |
+| Short title | Rust-for-Linux                 |
+| Owner(s)    | @nikomatsakis, @joshtriplett   |
+| Teams       | [Lang], [Libs-API], [Compiler] |
+| Status      | Flagship                       |
 
 ## Summary
 
@@ -68,16 +68,14 @@ The RFL project needs to integrate with the Kernel's existing reference counting
 To achieve these goals they've created their own variant of [`Arc`][arclk] (hereafter denoted as `rfl::Arc`),
 but this type cannot be used as idiomatically as the `Arc` type found in `libstd` without two features:
 
-* The ability to be used in methods (e.g., `self: rfl::Arc<Self>`), aka "arbitrary self types", specified in [RFC 3519][].
+* The ability to be used in methods (e.g., `self: rfl::Arc<Self>`), aka "arbitrary self types", specified in [RFC #3519].
 * The ability to be coerce to dyn types like `rfl::Arc<dyn Trait>` and then support invoking methods on `Trait` through dynamic dispatch.
     * This requires the use of two unstable traits, `CoerceUnsized` and `DynDispatch`, neither of which are close to stabilization.
-    * However, [RFC 3621][] provides for a "shortcut" -- a stable interface using `derive` that expands to those traits, leaving room to evolve the underlying details.
+    * However, [RFC #3621] provides for a "shortcut" -- a stable interface using `derive` that expands to those traits, leaving room to evolve the underlying details.
 
-Our goal for 2024 is to close those gaps, most likely by implementing and stabilizing [RFC 3519][] and [RFC 3621][].
+Our goal for 2024 is to close those gaps, most likely by implementing and stabilizing [RFC #3519] and [RFC #3621].
 
 [rfl2]: https://github.com/Rust-for-Linux/linux/issues/2
-[RFC 3519]: https://github.com/rust-lang/rfcs/pull/3519
-[RFC 3621]: https://github.com/rust-lang/rfcs/pull/3621
 
 #### Labeled goto in inline assembler and extended `offset_of!` support
 
@@ -141,37 +139,37 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 * The ![Funded][] badge indicates that the owner has committed and work will be funded by their employer or other sources.
 * The ![Team][] badge indicates a requirement where Team support is needed.
 
-| Subgoal                            | Owner(s) or team(s)             | Notes         |
-| ---------------------------------- | ------------------------------- | ------------- |
-| Overall program management         | @nikomatsakis, [joshtriplett][] |               |
-| Arbitrary self types v2            |                                 |               |
-| ↳ ~~author [RFC][RFC 3519]~~       | ~~@adetaylor~~                  | ![Complete][] |
-| ↳ ~~RFC decision~~                 | ~~[Lang]~~                      | ![Complete][] |
-| ↳ Implementation                   | @adetaylor                      |               |
-| ↳ Assigned reviewer                | ![Team] [Compiler]              |               |
-| ↳ Stabilization                    | @adetaylor                      |               |
-| Derive smart pointer               |                                 |               |
-| ↳ ~~author [RFC][RFC 3621]~~       | ~~@Darksonn~~              |               |
-| ↳ RFC decision                     | ![Team][] [Lang]                |               |
-| ↳ Implementation                   | @dingxiangfei2009               |               |
-| ↳ Stabilization                    | @dingxiangfei2009               |               |
-| ↳ Stabilization decision           | ![Team][] [Lang]                |               |
-| `asm_goto`                         |                                 |               |
-| ↳ ~~implementation~~               | -                               | ![Complete][] |
-| ↳ Real-world usage in Linux kernel | @nbdd0121                      |               |
-| ↳ Extend to cover full RFC         | @nbdd0121                      |               |
-| ↳ Author stabilization report      | @nbdd0121                      |               |
-| ↳ Stabilization decision           | ![Team][] [Lang]                |               |
-| Extended `offset_of` syntax        |                                 |               |
-| ↳ Stabilization report             | [Xiang][]                       |               |
-| ↳ Stabilization decision           | ![Team][] [Libs-API]            |               |
-| ~~RFL on Rust CI~~                 |                                 | ![Complete][] |
-| ↳ ~~implementation ([#125209][])~~ | ~~@Kobzol~~                     |               |
-| ↳ Policy draft                     | @Kobzol                         |               |
-| ↳ Policy decision                  | ![Team][] [Compiler]            |               |
-| Pointers to static in constants    |                                 |               |
-| ↳ Stabilization proposal           | @nikomatsakis                   |               |
-| ↳ Stabilization decision           | ![Team][] [Lang]                |               |
+| Subgoal                            | Owner(s) or team(s)          | Notes                     |
+| ---------------------------------- | ---------------------------- | ------------------------- |
+| Overall program management         | @nikomatsakis, @joshtriplett |                           |
+| Arbitrary self types v2            |                              |                           |
+| ↳ ~~author RFC~~                   | ~~@adetaylor~~               | ![Complete][] [RFC #3519] |
+| ↳ ~~RFC decision~~                 | ~~[Lang]~~                   | ![Complete][]             |
+| ↳ Implementation                   | @adetaylor                   |                           |
+| ↳ Assigned reviewer                | ![Team] [Compiler]           |                           |
+| ↳ Stabilization                    | @adetaylor                   |                           |
+| Derive smart pointer               |                              |                           |
+| ↳ ~~author RFC~~                   | ~~@Darksonn~~                | [RFC #3621]               |
+| ↳ RFC decision                     | ![Team][] [Lang]             |                           |
+| ↳ Implementation                   | @dingxiangfei2009            |                           |
+| ↳ Stabilization                    | @dingxiangfei2009            |                           |
+| ↳ Stabilization decision           | ![Team][] [Lang]             |                           |
+| `asm_goto`                         |                              |                           |
+| ↳ ~~implementation~~               | -                            | ![Complete][]             |
+| ↳ Real-world usage in Linux kernel | @nbdd0121                    |                           |
+| ↳ Extend to cover full RFC         | @nbdd0121                    |                           |
+| ↳ Author stabilization report      | @nbdd0121                    |                           |
+| ↳ Stabilization decision           | ![Team][] [Lang]             |                           |
+| Extended `offset_of` syntax        |                              |                           |
+| ↳ Stabilization report             | [Xiang][]                    |                           |
+| ↳ Stabilization decision           | ![Team][] [Libs-API]         |                           |
+| ~~RFL on Rust CI~~                 |                              |                           |
+| ↳ ~~implementation~~               | ~~@Kobzol~~                  | ![Complete][] [#125209]   |
+| ↳ Policy draft                     | @Kobzol                      |                           |
+| ↳ Policy decision                  | ![Team][] [Compiler]         |                           |
+| Pointers to static in constants    |                              |                           |
+| ↳ Stabilization proposal           | @nikomatsakis                |                           |
+| ↳ Stabilization decision           | ![Team][] [Lang]             |                           |
 
 ### Support needed from the project
 

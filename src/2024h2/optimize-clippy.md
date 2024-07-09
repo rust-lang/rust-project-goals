@@ -1,11 +1,11 @@
 # Optimizing Clippy & linting
 (a.k.a The Clippy Performance Project)
 
-| Metadata |                       |
-| -------- | --------------------- |
-| Owner(s) | @blyxyas           |
-| Teams    | [Clippy team][clippy] |
-| Status   | Proposed              |
+| Metadata |          |
+| -------- | -------- |
+| Owner(s) | @blyxyas |
+| Teams    | [Clippy] |
+| Status   | Proposed |
 
 ## Summary
 
@@ -39,13 +39,9 @@ Apart from these 3 clear goals, any open issue, open PR or merged PRs with the l
 
 ### The "shiny future" we are working towards
 
-**!! INITIAL TEXT, TEAM SHOULD REVIEW** 
-
 The possible outcome would be a system that can be run on-save without being a hassle to the developer, and that has the minimum possible overhead over `cargo check` (which, would also be optimized as a side of a lot of a subset of the optimizations).
 
 A developer shouldn't have to get a high-end machine to run a compiler swiftly; and a server should not spend more valuable seconds on linting than strictly necessary.
-
-*This text is NORMATIVE, in the sense that teams should review this and make sure they are aligned. If not, then the shiny future should be moved to frequently asked questions with a title like "what might we do next".*
 
 [da]: ../about/design_axioms.md
 
@@ -56,12 +52,11 @@ A developer shouldn't have to get a high-end machine to run a compiler swiftly; 
 | Subgoal            | Owner(s) or team(s) | Notes |
 | ------------------ | ------------------- | ----- |
 | Optimization work  |                     |       |
-| ↳ Implementation   | Owner               |       |
+| ↳ Implementation   | @blyxyas            |       |
 | ↳ Standard reviews | ![Team][] [Clippy]  |       |
 
 ### Frequently Asked Questions
 
 <!-- #### How will improvements be measured? -->
 
-[clippy]: https://github.com/rust-lang/rust-clippy
 [pr125116]: https://github.com/rust-lang/rust/pull/125116
