@@ -42,11 +42,11 @@ Other support provided by [Amanda Stjerna][amanda] as part of her PhD.
 
 [amanda]: https://github.com/amandasystems
 
-| Subgoal          | Owner(s) or team(s) | Notes          |
-| ---------------- | ------------------- | -------------- |
-| Implementation   | lqd, Amanda Stjerna |                |
-| Design review    | nikomatsakis        |                |
-| Standard reviews | ![Team][] [Types]   | Matthew Jasper |
+| Subgoal          | Owner(s) or team(s)     | Notes            |
+| ---------------- | ----------------------- | ---------------- |
+| Design review    | [nikomatsakis]          |                  |
+| Implementation   | [lqd], [Amanda Stjerna] |                  |
+| Standard reviews | ![Team][] [Types]       | [Matthew Jasper] |
 
 ### Support needed from the project
 

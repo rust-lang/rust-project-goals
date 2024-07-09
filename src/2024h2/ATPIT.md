@@ -65,7 +65,7 @@ None.
 
 | Subgoal                | Owner(s) or team(s)      | Notes |
 | ---------------------- | ------------------------ | ----- |
-| Implementation         | Goal owner               |       |
+| Implementation         | [oli-obk]                |       |
 | FCP decisions          | ![Team][] [Types]        |       |
 | Stabilization decision | ![Team][] [Types] [Lang] |       |
 
