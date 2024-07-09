@@ -2,7 +2,7 @@
 
 | Metadata |                                                                 |
 | -------- | --------------------------------------------------------------- |
-| Owner(s) | [estebank], [Muscraft]                                          |
+| Owner(s) | @estebank, @Muscraft                                         |
 | Teams    | [Compiler]                                                      |
 | Status   | WIP                                                             |
 
