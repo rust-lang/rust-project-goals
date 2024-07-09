@@ -2,9 +2,9 @@
 
 | Metadata |                               |
 | -------- | ----------------------------- |
-| Owner(s) | notriddle                     |
-| Teams    | T-rustdoc, T-rustdoc-frontend |
-| Status   | WIP, partially completed      |
+| Owner(s) | @notriddle                    |
+| Teams    | [Rustdoc], [Rustdoc-Frontend] |
+| Status   | Proposed                      |
 
 ## Summary
 
@@ -67,33 +67,19 @@ The goal is to reach this point *without trying to be a better Google than Googl
 
 *This section defines the specific work items that are planned and who is expected to do them. It should also include what will be needed from Rust teams. The table below shows some common sets of asks and work, but feel free to adjust it as needed. Every row in the table should either correspond to something done by a contributor or something asked of a team. For items done by a contributor, list the contributor, or ![Heap wanted][] if you don't yet know who will do it. For things asked of teams, list ![Team][] and the name of the team. The things typically asked of teams are defined in the [Definitions](#definitions) section below.*
 
-| Subgoal                                        | Owner(s) or team(s)          | Notes |
-| ---------------------------------------------- | ---------------------------- | ----- |
-| Discussion and moral support                   | ![Team][] [Rustdoc]          |       |
-| Improve on any discovered weaknesses           |                              |       |
-| ↳ Implementation: show type signature in SERP  | *notriddle*                  |       |
-| ↳ Implementation: tweak search algo            | *notriddle*                  |       |
-| ↳ Standard reviews                             | ![Team][] [Rustdoc Frontend] |       |
-| ↳ Design meeting                               | ![Team][] [Rustdoc Frontend] |       |
-| ↳ FCP review                                   | ![Team][] [Rustdoc Frontend] |       |
-| Feedback and testing                           |                              |       |
-| ↳ Inside Rust blog post inviting feedback      | ![Team][] (any team)         |       |
-| ↳ Collecting popular queries for review        | ![Team][] [Infra]            |       |
-| Top-level Rust blog post inviting feedback     | ![Team][] [LC]               |       |
-
-[Help wanted]: https://img.shields.io/badge/Help%20wanted-yellow
-[Complete]: https://img.shields.io/badge/Complete-green
-[TBD]: https://img.shields.io/badge/TBD-red
-[Team]: https://img.shields.io/badge/Team%20ask-red
-
-[Compiler]: https://www.rust-lang.org/governance/teams/compiler
-[Lang]: https://www.rust-lang.org/governance/teams/lang
-[LC]: https://www.rust-lang.org/governance/teams/leadership-council
-[Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
-[Infra]: https://www.rust-lang.org/governance/teams/infra
-[Rustdoc]: https://www.rust-lang.org/governance/teams/dev-tools#team-rustdoc
-[Rustdoc Frontend]: https://www.rust-lang.org/governance/teams/dev-tools#team-rustdoc-frontend
-[Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
+| Subgoal                                       | Owner(s) or team(s)          | Notes |
+| --------------------------------------------- | ---------------------------- | ----- |
+| Discussion and moral support                  | ![Team][] [Rustdoc]          |       |
+| Improve on any discovered weaknesses          |                              |       |
+| ↳ Implementation: show type signature in SERP | @notriddle                   |       |
+| ↳ Implementation: tweak search algo           | @notriddle                   |       |
+| ↳ Standard reviews                            | ![Team][] [Rustdoc-Frontend] |       |
+| ↳ Design meeting                              | ![Team][] [Rustdoc-Frontend] |       |
+| ↳ FCP review                                  | ![Team][] [Rustdoc-Frontend] |       |
+| Feedback and testing                          |                              |       |
+| ↳ Inside Rust blog post inviting feedback     | ![Team][] [Infra]            |       |
+| ↳ Collecting popular queries for review       | ![Team][] [Infra]            |       |
+| Top-level Rust blog post inviting feedback    | ![Team][] [LC]               |       |
 
 ### Definitions
 
