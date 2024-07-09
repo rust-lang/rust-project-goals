@@ -104,7 +104,7 @@ matter where they appear in the dependency tree.
 
 [da]: ../about/design_axioms.md
 
-## Ownership and other resources
+## Ownership and team asks
 
 **Owner:** ![Help wanted][]
 

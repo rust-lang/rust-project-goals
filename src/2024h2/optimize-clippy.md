@@ -49,14 +49,14 @@ A developer shouldn't have to get a high-end machine to run a compiler swiftly; 
 
 [da]: ../about/design_axioms.md
 
-## Ownership
+## Ownership and team asks
 
 **Owner:** Alejandra Gonzalez, a.k.a. [@blyxyas][blyxyas]
 
 | Subgoal            | Owner(s) or team(s) | Notes |
 | ------------------ | ------------------- | ----- |
 | Optimization work  |                     |       |
-| ↳ Implementation   | *Goal owner*        |       |
+| ↳ Implementation   | Owner               |       |
 | ↳ Standard reviews | ![Team][] [Clippy]  |       |
 
 ### Frequently Asked Questions

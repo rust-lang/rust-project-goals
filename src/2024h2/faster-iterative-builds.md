@@ -83,7 +83,7 @@ In our "shiny future," an aspiring genomics researcher would:
 
 [da]: ../about/design_axioms.md
 
-## Ownership and other resources
+## Ownership and team asks
 
 The work here is proposed by Jonathan Kelley on behalf of Dioxus Labs. We have funding for 1-2 engineers depending on the scope of work. Dioxus Labs is willing to take ownership and commit funding to solve these problems.
 

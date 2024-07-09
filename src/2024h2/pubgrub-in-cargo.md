@@ -1,10 +1,10 @@
 # Extend pubgrub to match cargo's dependency resolution
 
-| Metadata |        |
-| -------- | ------ |
-| Owner(s) | eh2406 |
-| Teams    | Cargo  |
-| Status   | Proposed    |
+| Metadata |          |
+| -------- | -------- |
+| Owner(s) | eh2406   |
+| Teams    | Cargo    |
+| Status   | Proposed |
 
 ## Summary
 
@@ -35,17 +35,13 @@ Eventually we should replace the existing entangled resolver in cargo with one b
 - **Modular**: There should be a stack of abstractions, each one of which can be understood, tested, and improved on its own without requiring complete knowledge of the entire stack from the smallest implementation details to the largest overall use cases.
 - **Fast**: The resolver can be a slow part of people's workflow. Overall performance must be a high priority and a focus.
 
-## Ownership and other resources
+## Ownership and team asks
 
 **Owner:** eh2406 will own and lead the effort.
 
 I (eh2406) will be working full time on this effort. I am a member of the Cargo Team and a maintainer of pubgrub-rs.
 
-### Support needed from the project
-
 Integrating the new resolver into Cargo and reaching the shiny future will require extensive collaboration and review from the Cargo Team. However, the next milestones involve independent work exhaustively searching for differences in behavior between the new and old resolvers and fixing them. So only occasional consultation-level conversations will be needed during this proposal.
-
-## Outputs and milestones
 
 | Subgoal                                | Owner(s) or team(s) | Notes |
 | -------------------------------------- | ------------------- | ----- |

@@ -1,10 +1,10 @@
 # Assemble Project Goal slate
 
-| Metadata | |
-| --- | --- |
-| Owner(s) | nikomatsakis |
-| Teams | Leadership Council |
-| Status | Proposed |
+| Metadata |                    |
+| -------- | ------------------ |
+| Owner(s) | nikomatsakis       |
+| Teams    | Leadership Council |
+| Status   | Proposed           |
 
 *Extracted from [RFC 3614](https://github.com/rust-lang/rfcs/blob/master/text/3614-project-goals.md)*
 
@@ -65,11 +65,17 @@ More concretely, assuming this goal program is successful, we would like to begi
 * **Nothing good happens without an owner.** Rust endeavors to run an open, participatory process, but ultimately achieving any concrete goal requires someone (or a small set of people) to take ownership of that goal. Owners are entrusted to listen, take broad input, and steer a well-reasoned course in the tradeoffs they make towards implementing the goal. But this power is not unlimited: owners make proposals, but teams are ultimately the ones that decide whether to accept them.
 * **To everything, there is a season.** While there will be room for accepting new goals that come up during the year, we primarily want to pick goals during a fixed time period and use the rest of the year to execute.
 
-## Ownership and other resources
+## Ownership and team asks
 
 **Owner:** nikomatsakis
 
 * nikomatsakis can commit 20% time (avg of 1 days per week) to pursue this task, which he estimates to be sufficient.
+
+| Subgoal                                    | Owner(s) or team(s) | Notes |
+| ------------------------------------------ | ------------------- | ----- |
+| RFC decision                               | ![Team][] [LC]      |       |
+| Inside Rust blog post inviting feedback    | ![Team][] [LC]      |       |
+| Top-level Rust blog post inviting feedback | ![Team][] [LC]      |       |
 
 ### Support needed from the project
 
@@ -113,7 +119,7 @@ Key milestones along the way (with the most impactful highlighted in bold):
 | August       | Publish monthly update on Inside Rust                           |                                                                            |
 | September    | Publish monthly update on Inside Rust                           |                                                                            |
 | **Oct 1**    | **Publish intermediate goal progress update on main Rust blog** | **Begin next round of goal process, expected to cover first half of 2025** |
-| November | Publish monthly update on Inside Rust                           | Nov 15: Approval process for 2025 H1 goal slate begins                             |
+| November     | Publish monthly update on Inside Rust                           | Nov 15: Approval process for 2025 H1 goal slate begins                     |
 | **December** | **Publish retrospective on 2024 H2**                            | **Announce 2025 H1 goal slate**                                            |
 
 ### Process to be followed

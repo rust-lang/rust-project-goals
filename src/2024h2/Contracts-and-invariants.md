@@ -126,7 +126,7 @@ Racket development style: add more contracts to the code when debugging (includi
 A validation mechanism can be bolted-on after the fact.
 
 
-## Ownership and other resources
+## Ownership and team asks
 
 **Owner:** pnkfelix
 

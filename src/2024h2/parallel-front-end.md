@@ -49,7 +49,7 @@ The parallel front end should be:
 
 [da]: ../about/design_axioms.md
 
-## Ownership and other resources
+## Ownership and team asks
 
 **Owner:** [@SparrowLii] and [Parallel Rustc WG] own this goal
 

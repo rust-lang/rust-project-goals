@@ -43,21 +43,16 @@ We also envision it being tested both through fuzzing and by comparing its resul
 * **Clarity over efficiency.** Formality's codebase is only meant to scale up to small programs. Efficiency is distinctly secondary.
 * **The compiler approximates a-mir-formality, a-mir-formality approximates the truth.** Rust's type system is Turing Complete and cannot be fully evaluated. We expect the compiler to have safeguards (for example, overflow detection) that may be more conservative than those imposed by a-mir-formality. In other words, formality may accept some programs the compiler cannot evaluate for practical reasons. Similarly, formality will have to make approximations relative to the "platonic ideal" of what Rust's type system would accept.
 
-## Ownership and other resources
+## Ownership and team asks
 
 **Owner:** nikomatsakis
 
 We will require participation from at least 2 other members of T-types. Current candidates are lcnr + compiler-errors.
 
-## Outputs and milestones
-
-### Outputs
-
-*Final outputs that will be produced*
-
-### Milestones
-
-*Milestones you will reach along the way*
+| Subgoal          | Owner(s) or team(s)            | Notes |
+| ---------------- | ------------------------------ | ----- |
+| Implementation   | nikomatsakis, lcnr, and others |       |
+| Standard reviews | ![Team][] [Types]              |       |
 
 ## Frequently asked questions
 

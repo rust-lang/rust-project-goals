@@ -1,10 +1,10 @@
 # merged doctests
 
-| Metadata |         |
-| -------- | ------- |
+| Metadata |                  |
+| -------- | ---------------- |
 | Owner(s) | [GuillaumeGomez] |
-| Teams    | rustdoc |
-| Status | Proposed |
+| Teams    | rustdoc          |
+| Status   | Proposed         |
 
 [GuillaumeGomez]: https://github.com/GuillaumeGomez
 
@@ -28,27 +28,14 @@ Merged doctests.
 
 N/A
 
-## Ownership and other resources
+## Ownership and team asks
 
 **Owner:** [GuillaumeGomez]
 
-Other support provided by the rustdoc team.
-
-### Support needed from the project
-
-None.
-
-## Outputs and milestones
-
-### Outputs
-
-### Milestones
-
-| Milestone                                                              | Expected date |
-| ---------------------------------------------------------------------- | ------------- |
-| Finish reviewing the pull request                                      | TBD           |
-| Run crater                                                             | TBD           |
-| Merge the pull request                                                 | TBD           |
+| Subgoal          | Owner(s) or team(s) | Notes |
+| ---------------- | ------------------- | ----- |
+| Implementation   | [GuillaumeGomez]    |       |
+| Standard reviews | ![Team][] [Rustdoc] |       |
 
 ## Frequently asked questions
 

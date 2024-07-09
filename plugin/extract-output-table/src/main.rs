@@ -173,14 +173,14 @@ fn extract_team_asks<'i>(
 ) -> anyhow::Result<Vec<TeamAsk<'i>>> {
     let Some(ownership_section) = sections
         .iter()
-        .find(|section| section.title == "Ownership and other resources")
+        .find(|section| section.title == "Ownership and team asks")
     else {
-        anyhow::bail!("no `Ownership and other resources` section found")
+        anyhow::bail!("no `Ownership and team asks` section found")
     };
 
     let Some(table) = ownership_section.tables.first() else {
         anyhow::bail!(
-            "on line {}, no table found in `Ownership and other resources` section",
+            "on line {}, no table found in `Ownership and team asks` section",
             ownership_section.line_num
         )
     };
@@ -223,7 +223,11 @@ fn extract_team_asks<'i>(
             },
             subgoal,
             teams,
-            owners: owners.to_string(),
+            owners: if owners == "Owner" {
+                metadata.owners.to_string()
+            } else {
+                owners.to_string()
+            },
         });
     }
 

@@ -1,10 +1,10 @@
 # doc_cfg
 
-| Metadata |         |
-| -------- | ------- |
+| Metadata |                  |
+| -------- | ---------------- |
 | Owner(s) | [GuillaumeGomez] |
-| Teams    | rustdoc |
-| Status | Proposed |
+| Teams    | rustdoc          |
+| Status   | Proposed         |
 
 [GuillaumeGomez]: https://github.com/GuillaumeGomez
 
@@ -28,15 +28,16 @@ Stable support for `doc_cfg` features.
 
 N/A
 
-## Ownership and other resources
+## Ownership and team asks
 
 **Owner:** [GuillaumeGomez]
 
-Other support provided by the rustdoc team.
 
-### Support needed from the project
-
-None except feedback on the RFC.
+| Subgoal          | Owner(s) or team(s) | Notes |
+| ---------------- | ------------------- | ----- |
+| Implementation   | [GuillaumeGomez]    |       |
+| RFC decision     | ![Team][] [Rustdoc] |       |
+| Standard reviews | ![Team][] [Rustdoc] |       |
 
 ## Outputs and milestones
 
@@ -44,11 +45,11 @@ None except feedback on the RFC.
 
 ### Milestones
 
-| Milestone                                                              | Expected date |
-| ---------------------------------------------------------------------- | ------------- |
-| Merge RFC                                                              | TBD           |
-| Implement RFC                                                          | TBD           |
-| Stabilize the features                                                 | TBD           |
+| Milestone              | Expected date |
+| ---------------------- | ------------- |
+| Merge RFC              | TBD           |
+| Implement RFC          | TBD           |
+| Stabilize the features | TBD           |
 
 ## Frequently asked questions
 

@@ -52,7 +52,7 @@ Allowing generic parameters to be used in const generic arguments is the only pa
 - Avoid post-monomorphization errors
 - The "minimal" subset should not feel arbitrary
 
-## Ownership and other resources
+## Ownership and team asks
 
 **Owner:** @BoxyUwU, project-const-generics lead, T-types member
 

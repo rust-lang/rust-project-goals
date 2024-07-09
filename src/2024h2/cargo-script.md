@@ -54,7 +54,7 @@ At a high-level, this is
 
 [da]: ../about/design_axioms.md
 
-## Ownership and other resources
+## Ownership and team asks
 
 **Owner:** epage
 
