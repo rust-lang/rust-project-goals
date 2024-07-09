@@ -40,7 +40,7 @@ The outputs of rustc and cargo are fully using annotate-snippets, with no regres
 
 [da]: https://rust-lang.github.io/rust-project-goals/about/design_axioms.html
 
-## Ownership and other resources
+## Ownership and team asks
 
 **Owner:** @estebank, @Muscraft
 
@@ -59,7 +59,7 @@ This section defines the specific work items that are planned and who is expecte
 
 *Adjust the table below; some common examples are shown below.*
 
-| Subgoal                                         | Owner(s) or team(s)  | Status    |
+| Subgoal                                         | Owner(s) or team(s)  | Notes     |
 | ----------------------------------------------- | -------------------- | --------- |
 | Reach output parity of rustc/annotate-snippets  |                      |           |
 | ↳ Port a subset of rustc's UI tests             | @Muscraft            |           |
