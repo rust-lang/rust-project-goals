@@ -1,6 +1,6 @@
-use std::collections::BTreeSet;
 use std::fmt::Write;
 use std::path::Path;
+use std::{collections::BTreeSet, path::PathBuf};
 
 use regex::Regex;
 
@@ -27,9 +27,22 @@ pub fn team_asks_in_input<'i>(
     };
 
     match metadata.status {
-        Status::Flagship | Status::Proposed => extract_team_asks(link_path, &metadata, &sections),
+        Status::Flagship | Status::Proposed | Status::Orphaned => {
+            extract_team_asks(link_path, &metadata, &sections)
+        }
         Status::NotAccepted => Ok(vec![]),
     }
+}
+
+/// Process the input file `input` and return its metadata (if any).
+///
+/// # Parameters
+///
+/// * `input`, path on disk
+pub fn metadata_in_input(input: &Path) -> anyhow::Result<Option<Metadata>> {
+    let sections = markwaydown::parse(input)?;
+
+    extract_metadata(&sections)
 }
 
 pub fn format_team_asks(asks_of_any_team: &[TeamAsk]) -> anyhow::Result<String> {
@@ -84,23 +97,72 @@ pub fn format_team_asks(asks_of_any_team: &[TeamAsk]) -> anyhow::Result<String> 
     Ok(output)
 }
 
+pub fn format_goal_table(goals: &[(Metadata, PathBuf, PathBuf)]) -> anyhow::Result<String> {
+    let mut table = vec![vec![
+        "Goal".to_string(),
+        "Owner".to_string(),
+        "Team".to_string(),
+    ]];
+
+    for (metadata, _input, link_path) in goals {
+        table.push(vec![
+            format!("[{}]({})", metadata.title, link_path.display()),
+            metadata.owners.clone(),
+            metadata.teams.clone(),
+        ]);
+    }
+
+    Ok(util::format_table(&table))
+}
+
 #[derive(Debug)]
-struct Metadata<'a> {
+pub struct Metadata {
     #[allow(unused)]
-    title: &'a str,
-    short_title: &'a str,
-    owners: &'a str,
-    status: Status,
+    pub title: String,
+    pub short_title: String,
+    pub owners: String,
+    pub status: Status,
+    pub teams: String,
 }
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 pub enum Status {
     Flagship,
     Proposed,
+    Orphaned,
     NotAccepted,
 }
 
-fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata<'_>>> {
+impl TryFrom<&str> for Status {
+    type Error = anyhow::Error;
+
+    fn try_from(value: &str) -> anyhow::Result<Self> {
+        let status_values = &[
+            ("Flagship", Status::Flagship),
+            ("Proposed", Status::Proposed),
+            ("Orphaned", Status::Orphaned),
+            ("Not accepted", Status::NotAccepted),
+        ];
+
+        status_values
+            .iter()
+            .find(|pair| value == pair.0)
+            .map(|pair| pair.1)
+            .ok_or_else(|| {
+                anyhow::anyhow!(
+                    "unrecognized status `{}`, expected one of: {}",
+                    value,
+                    status_values
+                        .iter()
+                        .map(|pair| pair.0)
+                        .collect::<Vec<_>>()
+                        .join(", ")
+                )
+            })
+    }
+}
+
+fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata>> {
     let Some(first_section) = sections.first() else {
         anyhow::bail!("no markdown sections found in input")
     };
@@ -131,37 +193,22 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata<'_>>
         anyhow::bail!("metadata table has no `Status` row")
     };
 
-    let status_values = &[
-        ("Flagship", Status::Flagship),
-        ("Proposed", Status::Proposed),
-        ("Not accepted", Status::NotAccepted),
-    ];
-
-    let Some(status) = status_values
-        .iter()
-        .find(|(s, _)| status_row[1] == *s)
-        .map(|s| s.1)
-    else {
-        anyhow::bail!(
-            "unrecognized status `{}`, expected one of: {}",
-            status_row[1],
-            status_values
-                .iter()
-                .map(|s| s.0)
-                .collect::<Vec<_>>()
-                .join(", ")
-        )
+    let Some(teams_row) = first_table.rows.iter().find(|row| row[0] == "Teams") else {
+        anyhow::bail!("metadata table has no `Teams` row")
     };
 
+    let status = Status::try_from(status_row[1].as_str())?;
+
     Ok(Some(Metadata {
-        title,
+        title: title.to_string(),
         short_title: if let Some(row) = short_title_row {
-            &row[1]
+            row[1].to_string()
         } else {
-            title
+            title.to_string()
         },
-        owners: &owners_row[1],
+        owners: owners_row[1].to_string(),
         status,
+        teams: teams_row[1].to_string(),
     }))
 }
 
@@ -177,7 +224,7 @@ pub struct TeamAsk<'i> {
 
 fn extract_team_asks<'i>(
     link_path: &'i Path,
-    metadata: &Metadata<'_>,
+    metadata: &Metadata,
     sections: &[Section],
 ) -> anyhow::Result<Vec<TeamAsk<'i>>> {
     let Some(ownership_section) = sections
@@ -197,7 +244,7 @@ fn extract_team_asks<'i>(
     expect_headers(table, &["Subgoal", "Owner(s) or team(s)", "Notes"])?;
 
     let mut heading = "";
-    let mut owners: &str = metadata.owners;
+    let mut owners: &str = &metadata.owners[..];
 
     let mut tasks = vec![];
     for row in &table.rows {
