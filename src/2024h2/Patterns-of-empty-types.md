@@ -2,13 +2,9 @@
 
 | Metadata |             |
 | -------- | ----------- |
-| Owner(s) | [Nadrieril] |
+| Owner(s) | @Nadrieril |
 | Teams    | [Lang]      |
 | Status   | Proposed    |
-
-[Nadrieril]: https://github.com/Nadrieril
-[Compiler]: https://www.rust-lang.org/governance/teams/compiler
-[Lang]: https://www.rust-lang.org/governance/teams/lang
 
 ## Summary
 
@@ -84,9 +80,9 @@ The ideal endpoint is that users never have code to handle a pattern of empty ty
 
 ## Ownership and team asks
 
-**Owner:** Nadrieril
+**Owner:** @Nadrieril
 
-I (Nadrieril) am putting forward my own contribution for driving this forward, both on the RFC and
+I (@Nadrieril) am putting forward my own contribution for driving this forward, both on the RFC and
 implementation sides. I am an experienced compiler contributor and have been driving this forward
 already for several months.
 
@@ -99,8 +95,8 @@ already for several months.
 
 | Subgoal                     | Owner(s) or team(s)  | Notes |
 | --------------------------- | -------------------- | ----- |
-| Author RFC                  | Nadrieril            |       |
-| Implementation              | Nadrieril            |       |
+| Author RFC                  | @Nadrieril            |       |
+| Implementation              | @Nadrieril            |       |
 | Standard reviews            | ![Team][] [Compiler] |       |
 | Design meeting              | ![Team][] [Lang]     |       |
 | RFC decision                | ![Team][] [Lang]     |       |

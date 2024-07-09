@@ -2,13 +2,9 @@
 
 | Metadata | |
 | --- | --- |
-| Owner(s) | [jkelleyrtp][] |
+| Owner(s) | @jkelleyrtp |
 | Teams    | [Lang], [Compiler], [Cargo]            |
 | Status | Not accepted |
-
-[Lang]: https://www.rust-lang.org/governance/teams/lang
-[Compiler]: https://www.rust-lang.org/governance/teams/compiler
-[Cargo]: https://www.rust-lang.org/governance/teams/dev-tools#team-cargo
 
 ## Summary
 

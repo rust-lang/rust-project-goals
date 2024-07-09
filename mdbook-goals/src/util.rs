@@ -44,3 +44,16 @@ pub fn format_table(rows: &[Vec<String>]) -> String {
 
     output
 }
+
+#[derive(serde::Deserialize)]
+pub struct GithubUserInfo {
+    pub name: Option<String>,
+}
+
+impl GithubUserInfo {
+    pub fn load(login: &str) -> Result<Self, reqwest::Error> {
+        let url = format!("https://api.github.com/users/{}", login);
+        let response: GithubUserInfo = reqwest::blocking::get(&url)?.json()?;
+        Ok(response)
+    }
+}

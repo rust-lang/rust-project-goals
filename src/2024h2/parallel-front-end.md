@@ -2,7 +2,7 @@
 
 | Metadata |                     |
 | -------- | ------------------- |
-| Owner(s) | [@SparrowLii]       |
+| Owner(s) | @SparrowLii         |
 | Teams    | [Parallel Rustc WG] |
 | Status   | Proposed            |
 
@@ -51,7 +51,7 @@ The parallel front end should be:
 
 ## Ownership and team asks
 
-**Owner:** [@SparrowLii] and [Parallel Rustc WG] own this goal
+**Owner:** @SparrowLii and [Parallel Rustc WG] own this goal
 
 | Subgoal                              | Owner(s) or team(s) | Notes |
 | ------------------------------------ | ------------------- | ----- |
@@ -68,7 +68,6 @@ The parallel front end should be:
 ## Frequently asked questions
 
 
-[@SparrowLii]: https://github.com/SparrowLii
 [Parallel Rustc WG]: https://www.rust-lang.org/governance/teams/compiler#team-wg-parallel-rustc
 [ICE]: https://github.com/rust-lang/rust/issues?q=is%3Aopen+label%3AWG-compiler-parallel+ice
 [deadlock]: https://github.com/rust-lang/rust/issues?q=is%3Aopen+label%3AWG-compiler-parallel+deadlock

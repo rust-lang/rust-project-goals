@@ -126,15 +126,6 @@ Definitions for terms used above:
 [RFC #3654]: https://github.com/rust-lang/rfcs/pull/3654
 [RFC #3668]: https://github.com/rust-lang/rfcs/pull/3668
 
-<!-- Teams -->
-
-[Lang]: https://img.shields.io/badge/Lang-red
-[Libs]: https://img.shields.io/badge/Libs-red
-[Libs-API]: https://img.shields.io/badge/Libs--api-red
-[Compiler]: https://img.shields.io/badge/Compiler-red
-[Types]: https://img.shields.io/badge/Types-red
-[clippy]: https://github.com/rust-lang/rust-clippy
-
 <!-- Goals -->
 
 [AGS]: ./Project-goal-slate.md
@@ -156,26 +147,3 @@ Definitions for terms used above:
 [OC]: ./optimize-clippy.md
 
 <!-- Github usernames -->
-
-[Adrian Taylor]: https://github.com/adetaylor
-[Alice Ryhl]: https://github.com/Darksonn/
-[blyxyas]: https://github.com/blyxyas
-[BoxyUwU]: https://github.com/BoxyUwU
-[compiler-errors]: https://github.com/compiler-errors
-[Eh2406]: https://github.com/Eh2406
-[eholk]: https://github.com/eholk
-[Ding Xiang Fei]: https://github.com/dingxiangfei2009
-[Jakub Beránek]: https://github.com/Kobzol
-[epage]: https://github.com/epage
-[epage]: https://github.com/eholk
-[fee1-dead]: https://github.com/fee1-dead
-[hi-rustin]: https://github.com/hi-rustin
-[lcnr]: https://github.com/lcnr
-[lqd]: https://github.com/lqd
-[Nadrieril]: https://github.com/Nadrieril
-[Manuel S. Drehwald]: https://github.com/ZuseZ4
-[Gary Guo]: https://github.com/nbdd0121
-[nikomatsakis]: https://github.com/nikomatsakis
-[oli-obk]: https://github.com/oli-obk
-[tmandry]: https://github.com/tmandry
-[weihanglo]: https://github.com/weihanglo

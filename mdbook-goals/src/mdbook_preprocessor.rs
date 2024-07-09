@@ -1,4 +1,6 @@
+use std::collections::{BTreeMap, BTreeSet};
 use std::path::{Path, PathBuf};
+use std::rc::Rc;
 
 use anyhow::Context;
 use mdbook::book::{Book, Chapter};
@@ -8,16 +10,19 @@ use regex::Regex;
 use walkdir::WalkDir;
 
 use crate::goal::{self, format_team_asks, Status};
+use crate::util::GithubUserInfo;
+
+const LINKS: &str = "links";
 
 pub struct GoalPreprocessor;
 
 impl Preprocessor for GoalPreprocessor {
     fn name(&self) -> &str {
-        "mdbook-goals"
+        "goals"
     }
 
     fn run(&self, ctx: &PreprocessorContext, mut book: Book) -> anyhow::Result<Book> {
-        let this = GoalPreprocessorWithContext::new(ctx)?;
+        let mut this = GoalPreprocessorWithContext::new(ctx)?;
         for section in &mut book.sections {
             this.process_book_item(section)?;
         }
@@ -28,23 +33,51 @@ impl Preprocessor for GoalPreprocessor {
 pub struct GoalPreprocessorWithContext<'c> {
     team_asks: Regex,
     goal_list: Regex,
+    username: Regex,
     ctx: &'c PreprocessorContext,
+    links: BTreeMap<String, String>,
+    display_names: BTreeMap<String, Rc<String>>,
 }
 
 impl<'c> GoalPreprocessorWithContext<'c> {
     pub fn new(ctx: &'c PreprocessorContext) -> anyhow::Result<Self> {
+        // In testing we want to tell the preprocessor to blow up by setting a
+        // particular config value
+        let mut links = Default::default();
+        if let Some(config) = ctx.config.get_preprocessor(GoalPreprocessor.name()) {
+            if let Some(value) = config.get(LINKS) {
+                links = value
+                    .as_table()
+                    .with_context(|| format!("`{}` must be a table", LINKS))?
+                    .iter()
+                    .map(|(k, v)| {
+                        if let Some(v) = v.as_str() {
+                            Ok((k.to_string(), v.to_string()))
+                        } else {
+                            Err(anyhow::anyhow!("link value `{}` must be a string", k))
+                        }
+                    })
+                    .collect::<Result<_, _>>()?;
+            }
+        }
+
         Ok(GoalPreprocessorWithContext {
             ctx,
             team_asks: Regex::new(r"<!-- TEAM ASKS -->")?,
             goal_list: Regex::new(r"<!-- GOALS `(.*)` -->")?,
+            username: Regex::new(r"@([-a-zA-Z0-9])+")?,
+            links,
+            display_names: Default::default(),
         })
     }
 
-    fn process_book_item(&self, book_item: &mut BookItem) -> anyhow::Result<()> {
+    fn process_book_item(&mut self, book_item: &mut BookItem) -> anyhow::Result<()> {
         match book_item {
             BookItem::Chapter(chapter) => {
                 self.replace_team_asks(chapter)?;
                 self.replace_goal_lists(chapter)?;
+                self.link_users(chapter)?;
+                self.insert_links(chapter)?;
 
                 for sub_item in &mut chapter.sub_items {
                     self.process_book_item(sub_item)?;
@@ -59,7 +92,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         }
     }
 
-    fn replace_goal_lists(&self, chapter: &mut Chapter) -> anyhow::Result<()> {
+    fn replace_goal_lists(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
         let Some(m) = self.goal_list.captures(&chapter.content) else {
             return Ok(());
         };
@@ -111,7 +144,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     }
 
     /// Look for `<!-- TEAM ASKS -->` in the chapter content and replace it with the team asks.
-    fn replace_team_asks(&self, chapter: &mut Chapter) -> anyhow::Result<()> {
+    fn replace_team_asks(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
         let Some(m) = self.team_asks.find(&chapter.content) else {
             return Ok(());
         };
@@ -137,7 +170,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         Ok(())
     }
 
-    fn markdown_files(&self, chapter_path: &Path) -> anyhow::Result<Vec<(PathBuf, PathBuf)>> {
+    fn markdown_files(&mut self, chapter_path: &Path) -> anyhow::Result<Vec<(PathBuf, PathBuf)>> {
         let chapter_path = self.ctx.config.book.src.join(chapter_path);
         let parent_path = chapter_path.parent().unwrap();
 
@@ -157,5 +190,55 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             }
         }
         Ok(files)
+    }
+
+    fn link_users(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        let usernames: BTreeSet<String> = self
+            .username
+            .find_iter(&chapter.content)
+            .map(|m| m.as_str().to_string())
+            .collect();
+
+        for username in &usernames {
+            chapter.content = chapter
+                .content
+                .replace(username, &format!("[{}][]", self.display_name(username)));
+        }
+
+        chapter.content.push_str("\n");
+        for username in &usernames {
+            chapter.content.push_str(&format!(
+                "[{}]: https://github.com/{}\n",
+                self.display_name(username),
+                &username[1..]
+            ));
+        }
+
+        Ok(())
+    }
+
+    fn insert_links(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        chapter.content.push_str("\n");
+
+        for (name, url) in &self.links {
+            chapter.content.push_str(&format!("[{}]: {}\n", name, url));
+        }
+
+        Ok(())
+    }
+
+    fn display_name<'a>(&mut self, username: &str) -> Rc<String> {
+        match self.display_names.get(username) {
+            Some(n) => n.clone(),
+            None => {
+                let display_name = Rc::new(match GithubUserInfo::load(username) {
+                    Ok(GithubUserInfo { name: Some(n), .. }) => n,
+                    _ => username.to_string(),
+                });
+                self.display_names
+                    .insert(username.to_string(), display_name.clone());
+                display_name
+            }
+        }
     }
 }

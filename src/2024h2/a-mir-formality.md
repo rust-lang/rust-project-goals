@@ -6,9 +6,6 @@
 | Teams    | [Types]        |
 | Status   | Proposed       |
 
-[nikomatsakis]: https://github.com/lqd
-[Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
-
 ## Summary
 
 The goal for a-mir-formality this year is to bootstrap it as a live, maintained project:

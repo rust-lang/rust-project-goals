@@ -2,13 +2,9 @@
 
 | Metadata |                      |
 | -------- | -------------------- |
-| Owner(s) | [hi-rustin]          |
+| Owner(s) | @hi-rustin          |
 | Teams    | [crates.io], [Cargo] |
 | Status   | Proposed             |
-
-[hi-rustin]: https://github.com/hi-rustin
-[Cargo]: https://www.rust-lang.org/governance/teams/dev-tools#team-cargo
-[crates.io]: https://www.rust-lang.org/governance/teams/dev-tools#team-crates-io
 
 ## Summary
 
@@ -48,19 +44,19 @@ When considering this feature, we need to balance our desire for a perfect, stru
 
 **Owner:**
 
-* [hi-rustin]: wearing my crates.io team member's hat
-* [hi-rustin]: wearing my Cargo regular contributor's hat
+* @hi-rustin: wearing my crates.io team member's hat
+* @hi-rustin: wearing my Cargo regular contributor's hat
 
 | Subgoal                                                     | Owner(s) or team(s)            | Notes |
 | ----------------------------------------------------------- | ------------------------------ | ----- |
 | Yank crates with a reason                                   |                                |       |
-| ↳ Implementation in crates.io side(only for administrators) | [hi-rustin]                    |       |
+| ↳ Implementation in crates.io side(only for administrators) | @hi-rustin                    |       |
 | ↳ Standard reviews                                          | ![Team][] [crates.io]          |       |
 | ↳ Try it out in crates.io                                   | ![Team][] [crates.io]          |       |
-| ↳ Author RFC                                                | [hi-rustin]                    |       |
+| ↳ Author RFC                                                | @hi-rustin                    |       |
 | ↳ Approve RFC                                               | ![Team][] [Cargo], [crates.io] |       |
-| ↳ Implementation in Cargo side                              | [hi-rustin]                    |       |
-| ↳ Inside Rust blog post inviting feedback                   | [hi-rustin]                    |       |
+| ↳ Implementation in Cargo side                              | @hi-rustin                    |       |
+| ↳ Inside Rust blog post inviting feedback                   | @hi-rustin                    |       |
 | ↳ Stabilization decision                                    | ![Team][] [Cargo]              |       |
 
 [TBD]: https://img.shields.io/badge/TBD-red

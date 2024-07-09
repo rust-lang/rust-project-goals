@@ -1,13 +1,10 @@
 # Ergonomic ref-counting
 
-| Metadata |                            |
-| -------- | -------------------------- |
-| Owner(s) | [jkelleyrtp][]             |
-| Teams    | [Lang], [Libs-API]         |
-| Status   | Proposed |
-
-[Lang]: https://www.rust-lang.org/governance/teams/lang
-[Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
+| Metadata |                    |
+| -------- | ------------------ |
+| Owner(s) | @jkelleyrtp        |
+| Teams    | [Lang], [Libs-API] |
+| Status   | Proposed           |
 
 ## Summary
 
@@ -82,11 +79,11 @@ We don't have consensus around a full set of "design axioms" for this design, bu
 
 ## Ownership and team asks
 
-The work here is proposed by Jonathan Kelley on behalf of Dioxus Labs. We have funding for 1-2 engineers depending on the scope of work. Dioxus Labs is willing to take ownership and commit funding to solve these problems.
+The work here is proposed by @jkelleyrtp on behalf of Dioxus Labs. We have funding for 1-2 engineers depending on the scope of work. Dioxus Labs is willing to take ownership and commit funding to solve these problems.
 
-| Subgoal | Owner(s) or team(s) | Notes |
+| Subgoal                    | Owner(s) or team(s)         | Notes       |
 | -------------------------- | --------------------------- | ----------- |
-| Overall program management | [jkelleyrtp]                | ![Funded][] |
+| Overall program management | @jkelleyrtp                 | ![Funded][] |
 | Author RFC                 | TBD                         | TBD         |
 | Design meeting             | ![Team][] [Lang]            |             |
 | Accept RFC                 | ![Team][] [Lang] [Libs-API] |             |

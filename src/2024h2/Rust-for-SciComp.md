@@ -1,10 +1,10 @@
 # Expose experimental LLVM features for automatic differentiation and GPU offloading
 
-| Metadata |                             |
-| -------- | --------------------------- |
-| Owner(s) | ZuseZ4 / Manuel S. Drehwald |
-| Teams    | t-lang, t-compiler          |
-| Status   | Proposed                    |
+| Metadata |                    |
+| -------- | ------------------ |
+| Owner(s) | @ZuseZ4            |
+| Teams    | t-lang, t-compiler |
+| Status   | Proposed           |
 
 ## Summary
 

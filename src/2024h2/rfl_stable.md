@@ -1,11 +1,11 @@
 # Resolving the biggest blockers to Linux building on stable Rust
 
-| Metadata    |                                    |
-| ----------- | ---------------------------------- |
-| Short title | Rust-for-Linux                     |
-| Owner(s)    | [nikomatsakis][], [joshtriplett][] |
-| Teams       | [Lang], [Libs-API], [Compiler]     |
-| Status      | Flagship                           |
+| Metadata    |                                 |
+| ----------- | ------------------------------- |
+| Short title | Rust-for-Linux                  |
+| Owner(s)    | @nikomatsakis, [joshtriplett][] |
+| Teams       | [Lang], [Libs-API], [Compiler]  |
+| Status      | Flagship                        |
 
 ## Summary
 
@@ -141,40 +141,37 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 * The ![Funded][] badge indicates that the owner has committed and work will be funded by their employer or other sources.
 * The ![Team][] badge indicates a requirement where Team support is needed.
 
-| Subgoal | Owner(s) or team(s) | Notes |
-| ---------------------------------- | ---------------------------------- | ------------- |
-| Overall program management         | [nikomatsakis][], [joshtriplett][] |               |
-| Arbitrary self types v2            |                                    |               |
-| ↳ ~~author [RFC][RFC 3519]~~       | ~~[Adrian Taylor][]~~              | ![Complete][] |
-| ↳ ~~RFC decision~~                 | ~~[Lang]~~                         | ![Complete][] |
-| ↳ Implementation                   | [Adrian Taylor][]                  |               |
-| ↳ Assigned reviewer                | ![Team] [Compiler]                 |               |
-| ↳ Stabilization                    | [Adrian Taylor][]                  |               |
-| Derive smart pointer               |                                    |               |
-| ↳ ~~author [RFC][RFC 3621]~~       | ~~[Alice Ryhl][]~~                 |               |
-| ↳ RFC decision                     | ![Team][] [Lang]                   |               |
-| ↳ Implementation                   | [Xiang][]                          |               |
-| ↳ Stabilization                    | [Xiang][]                          |               |
-| ↳ Stabilization decision           | ![Team][] [Lang]                   |               |
-| `asm_goto`                         |                                    |               |
-| ↳ ~~implementation~~               | -                                  | ![Complete][] |
-| ↳ Real-world usage in Linux kernel | [Gary Guo]                         |               |
-| ↳ Extend to cover full RFC         | [Gary Guo]                         |               |
-| ↳ Author stabilization report      | [Gary Guo]                         |               |
-| ↳ Stabilization decision           | ![Team][] [Lang]                   |               |
-| Extended `offset_of` syntax        |                                    |               |
-| ↳ Stabilization report             | [Xiang][]                          |               |
-| ↳ Stabilization decision           | ![Team][] [Libs-API]               |               |
-| ~~RFL on Rust CI~~                 |                                    | ![Complete][] |
-| ↳ ~~implementation ([#125209][])~~ | ~~[Jakub Beránek][]~~              |               |
-| ↳ Policy draft                     | [Jakub Beránek][]                  |               |
-| ↳ Policy decision                  | ![Team][] [Compiler]               |               |
-| Pointers to static in constants    |                                    |               |
-| ↳ Stabilization proposal           | [nikomatsakis][]                   |               |
-| ↳ Stabilization decision           | ![Team][] [Lang]                   |               |
-
-[oli-obk]: https://github.com/oli-obk/
-[wesleywiser]: https://github.com/wesleywiser
+| Subgoal                            | Owner(s) or team(s)             | Notes         |
+| ---------------------------------- | ------------------------------- | ------------- |
+| Overall program management         | @nikomatsakis, [joshtriplett][] |               |
+| Arbitrary self types v2            |                                 |               |
+| ↳ ~~author [RFC][RFC 3519]~~       | ~~@adetaylor~~                  | ![Complete][] |
+| ↳ ~~RFC decision~~                 | ~~[Lang]~~                      | ![Complete][] |
+| ↳ Implementation                   | @adetaylor                      |               |
+| ↳ Assigned reviewer                | ![Team] [Compiler]              |               |
+| ↳ Stabilization                    | @adetaylor                      |               |
+| Derive smart pointer               |                                 |               |
+| ↳ ~~author [RFC][RFC 3621]~~       | ~~@Darksonn~~              |               |
+| ↳ RFC decision                     | ![Team][] [Lang]                |               |
+| ↳ Implementation                   | @dingxiangfei2009               |               |
+| ↳ Stabilization                    | @dingxiangfei2009               |               |
+| ↳ Stabilization decision           | ![Team][] [Lang]                |               |
+| `asm_goto`                         |                                 |               |
+| ↳ ~~implementation~~               | -                               | ![Complete][] |
+| ↳ Real-world usage in Linux kernel | @nbdd0121                      |               |
+| ↳ Extend to cover full RFC         | @nbdd0121                      |               |
+| ↳ Author stabilization report      | @nbdd0121                      |               |
+| ↳ Stabilization decision           | ![Team][] [Lang]                |               |
+| Extended `offset_of` syntax        |                                 |               |
+| ↳ Stabilization report             | [Xiang][]                       |               |
+| ↳ Stabilization decision           | ![Team][] [Libs-API]            |               |
+| ~~RFL on Rust CI~~                 |                                 | ![Complete][] |
+| ↳ ~~implementation ([#125209][])~~ | ~~@Kobzol~~                     |               |
+| ↳ Policy draft                     | @Kobzol                         |               |
+| ↳ Policy decision                  | ![Team][] [Compiler]            |               |
+| Pointers to static in constants    |                                 |               |
+| ↳ Stabilization proposal           | @nikomatsakis                   |               |
+| ↳ Stabilization decision           | ![Team][] [Lang]                |               |
 
 ### Support needed from the project
 
@@ -195,30 +192,8 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 
 None yet.
 
-[Funded]: https://img.shields.io/badge/Funded-yellow
-[Volunteer]: https://img.shields.io/badge/Volunteer-yellow
-[Not funded]: https://img.shields.io/badge/Not%20yet%20funded-red
-[Approved]: https://img.shields.io/badge/Approved-green
-[Not approved]: https://img.shields.io/badge/Not%20yet%20approved-red
-[Complete]: https://img.shields.io/badge/Complete-green
-[TBD]: https://img.shields.io/badge/TBD-red
-[Gary Guo]: https://github.com/nbdd0121
-[Owner Needed]: https://img.shields.io/badge/Owner%20Needed-blue
-[Help wanted]: https://img.shields.io/badge/Help%20wanted-blue
 [#748]: https://github.com/rust-lang/compiler-team/issues/748
 [#124655]: https://github.com/rust-lang/rust/pull/124655
 [#125209]: https://github.com/rust-lang/rust/pull/125209
-[Infra]: https://www.rust-lang.org/governance/teams/infra
-[Lang]: https://www.rust-lang.org/governance/teams/lang
-[Compiler]: https://www.rust-lang.org/governance/teams/infra
-[Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
-[Cargo]: https://www.rust-lang.org/governance/teams/cargo
-[LangInfra]: https://www.rust-lang.org/governance/teams/infra
-[Alice Ryhl]: https://github.com/Darksonn/
-[Adrian Taylor]: https://github.com/adetaylor
-[Xiang]: https://github.com/dingxiangfei2009
-[Jakub Beránek]: https://github.com/Kobzol
-[nikomatsakis]: https://github.com/nikomatsakis/
-[joshtriplett]: https://github.com/joshtriplett/
 
 
