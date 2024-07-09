@@ -87,6 +87,26 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         let output = goal::format_goal_table(&goals)?;
         chapter.content.replace_range(range, &output);
 
+        // Populate with children if this is not README
+        if path.file_stem() != Some("README".as_ref()) {
+            let mut parent_names = chapter.parent_names.clone();
+            parent_names.push(chapter.name.clone());
+            for ((metadata, input, _link_path), index) in goals.iter().zip(0..) {
+                let path = input.strip_prefix(&self.ctx.config.book.src).unwrap();
+                let content = std::fs::read_to_string(input)
+                    .with_context(|| format!("reading `{}`", input.display()))?;
+                let mut new_chapter =
+                    Chapter::new(&metadata.title, content, path, parent_names.clone());
+
+                if let Some(mut number) = chapter.number.clone() {
+                    number.0.push(index + 1);
+                    new_chapter.number = Some(number);
+                }
+
+                chapter.sub_items.push(BookItem::Chapter(new_chapter));
+            }
+        }
+
         Ok(())
     }
 
