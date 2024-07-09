@@ -34,8 +34,9 @@ In order to achieve a better performance we want to:
 - Keep working on, and eventually merge [rust#125116][pr125116]
 - Improve of checking on proc-macros & expansions, maybe by precomputing expanded spans or memoizing the checking functions.
 - Optimize checking for MSRVs and `#[clippy::msrv]` attributes. (Probably using static values, precomputing MSRV spans?)
+- Migrate applicable lints to use incremental compilation
 
-Apart from these 3 clear goals, any open issue, open PR or merged PRs with the label [`performance-project`](https://github.com/rust-lang/rust-clippy/issues?q=sort%3Aupdated-desc+is%3Aopen+label%3Aperformance-project) are a great benefit.
+Apart from these 4 clear goals, any open issue, open PR or merged PRs with the label [`performance-project`](https://github.com/rust-lang/rust-clippy/issues?q=sort%3Aupdated-desc+is%3Aopen+label%3Aperformance-project) are a great benefit.
 
 ### The "shiny future" we are working towards
 
@@ -49,11 +50,11 @@ A developer shouldn't have to get a high-end machine to run a compiler swiftly; 
 
 **Owner:** Alejandra Gonzalez, a.k.a. @blyxyas
 
-| Subgoal            | Owner(s) or team(s) | Notes |
-| ------------------ | ------------------- | ----- |
-| Optimization work  |                     |       |
-| ↳ Implementation   | @blyxyas            |       |
-| ↳ Standard reviews | ![Team][] [clippy]  |       |
+| Subgoal            | Owner(s) or team(s)  | Notes |
+| ------------------ | -------------------- | ----- |
+| Optimization work  |                      |       |
+| ↳ Implementation   | @blyxyas, @Alexendoo |       |
+| ↳ Standard reviews | ![Team][] [clippy]   |       |
 
 ### Frequently Asked Questions
 
