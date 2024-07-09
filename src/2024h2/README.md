@@ -2,15 +2,15 @@
 
 This document explains the 2024H2 goal slate and how it was chosen. If you just want to see a table of goals, see the [all candidates](./candidates.md) page.
 
-> *![Status: Experimental](https://img.shields.io/badge/Status-Experimental-yellow) This document is a draft. The reasoning and [goal slate](./slate.md) are still evolving. If you have thoughts or suggestions, please reach out to nikomatsakis on the [#project-goals-2024h2](https://rust-lang.zulipchat.com/#narrow/stream/435869-project-goals-2024h2) Zulip stream.*
+> *![Status: Experimental](https://img.shields.io/badge/Status-Experimental-yellow) This document is a draft. The reasoning and [goal slate](./slate.md) are still evolving. If you have thoughts or suggestions, please reach out to @nikomatsakis on the [#project-goals-2024h2](https://rust-lang.zulipchat.com/#narrow/stream/435869-project-goals-2024h2) Zulip stream.*
 
 ## Summary
 
 This RFC presents the Rust project goal slate for 2024H2. The slate consists of NN total project goals of which we have selected three as our "flagship goals":
 
 * Release the Rust 2024 edition (owner: @traviscross)
-* Bringing the Async Rust experience closer to parity with sync Rust (owners: tmandry, nikomatsakis)
-* Resolving the biggest blockers to Linux building on stable Rust (owners: joshtriplett, nikomatsakis)
+* Bringing the Async Rust experience closer to parity with sync Rust (owners: tmandry, @nikomatsakis)
+* Resolving the biggest blockers to Linux building on stable Rust (owners: joshtriplett, @nikomatsakis)
 
 Flagship goals represent the goals expected to have the broadest overall impact. 
 
