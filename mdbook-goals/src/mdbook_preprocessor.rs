@@ -14,6 +14,7 @@ use crate::util::GithubUserInfo;
 
 const LINKS: &str = "links";
 const LINKIFIERS: &str = "linkifiers";
+const USERS: &str = "users";
 
 pub struct GoalPreprocessor;
 
@@ -47,6 +48,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         // particular config value
         let mut links: Vec<(String, String)> = Default::default();
         let mut linkifiers = Default::default();
+        let mut display_names = Default::default();
         if let Some(config) = ctx.config.get_preprocessor(GoalPreprocessor.name()) {
             if let Some(value) = config.get(LINKS) {
                 links = value
@@ -80,6 +82,30 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                     })
                     .collect::<Result<_, _>>()?;
             }
+
+            if let Some(value) = config.get(USERS) {
+                let users = value
+                    .as_table()
+                    .with_context(|| format!("`{}` must be a table", USERS))?
+                    .iter()
+                    .map(|(k, v)| {
+                        if !k.starts_with("@") {
+                            Err(anyhow::anyhow!("user name `{k}` does not start with `@`"))
+                        } else if let Some(v) = v.as_str() {
+                            Ok((k.to_string(), v.to_string()))
+                        } else {
+                            Err(anyhow::anyhow!(
+                                "display name for user `{k}` must be a string",
+                            ))
+                        }
+                    });
+
+                for user in users {
+                    let (user, display_name) = user?;
+
+                    display_names.insert(user, Rc::new(display_name));
+                }
+            }
         }
 
         Ok(GoalPreprocessorWithContext {
@@ -89,7 +115,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             username: Regex::new(r"@([-a-zA-Z0-9])+")?,
             links,
             linkifiers,
-            display_names: Default::default(),
+            display_names,
         })
     }
 
