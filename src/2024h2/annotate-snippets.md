@@ -1,10 +1,10 @@
 # Use annotate-snippets for rustc diagnostic output
 
-| Metadata |                                                                 |
-| -------- | --------------------------------------------------------------- |
-| Owner(s) | @estebank, @Muscraft                                         |
-| Teams    | [Compiler]                                                      |
-| Status   | Proposed                                                             |
+| Metadata |                      |
+| -------- | -------------------- |
+| Owner(s) | @estebank, @Muscraft |
+| Teams    | [Compiler]           |
+| Status   | Proposed             |
 
 ## Summary
 
@@ -59,38 +59,24 @@ This section defines the specific work items that are planned and who is expecte
 
 *Adjust the table below; some common examples are shown below.*
 
-| Subgoal                                        | Owner(s) or team(s)  | Status |
-| ---------------------------------------------- | -------------------- | ------ |
-| Reach output parity of rustc/annotate-snippets |                      |        |
-| ↳ Port a subset of rustc's UI tests            | @Muscraft          |        |
-| ↳ Make list of current unnaddressed divergences| [Muscraft]           |        |
-| ↳ address divergences                          | [Muscraft]           |        |
-| Initial use of annotate-snippets               |                      |        |
-| ↳ update annotate-snippets to latest version   | [Compiler]           |        |
-| ↳ teach cargo to pass annotate-snippets flag   | [Cargo] [estebank]   |        |
-| ↳ add ui test mode comparing new output        | [Compiler]           |        |
-| ↳ switch default nightly rustc output          | [Compiler]           |        |
-| Production use of annotate-snippets            |                      |        |
-| ↳ switch default rustc output                  |  |        |
-| ↳ release notes                                | [Compiler]           |        |
-| ↳ switch ui tests to only check new output     | [Compiler]           |        |
-| ↳ dedicated reviewer                           | [estebank]           |        |
-| Standard reviews | ![Team][] [Compiler] | |
-| Inside Rust blog post announcing change        |                      |        |
-| Top-level Rust blog post inviting feedback     | ![Team][] [LC]       |        |
-
-[Help wanted]: https://img.shields.io/badge/Help%20wanted-yellow
-[Complete]: https://img.shields.io/badge/Complete-green
-[TBD]: https://img.shields.io/badge/TBD-red
-[Team]: https://img.shields.io/badge/Team%20ask-red
-
-[Compiler]: https://www.rust-lang.org/governance/teams/compiler
-[Lang]: https://www.rust-lang.org/governance/teams/lang
-[LC]: https://www.rust-lang.org/governance/teams/leadership-council
-[Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
-[Infra]: https://www.rust-lang.org/governance/teams/infra
-[Cargo]: https://www.rust-lang.org/governance/teams/dev-tools#team-cargo
-[Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
+| Subgoal                                         | Owner(s) or team(s)  | Status    |
+| ----------------------------------------------- | -------------------- | --------- |
+| Reach output parity of rustc/annotate-snippets  |                      |           |
+| ↳ Port a subset of rustc's UI tests             | @Muscraft            |           |
+| ↳ Make list of current unnaddressed divergences | @Muscraft            |           |
+| ↳ address divergences                           | @Muscraft            |           |
+| Initial use of annotate-snippets                |                      |           |
+| ↳ update annotate-snippets to latest version    |                      |           |
+| ↳ teach cargo to pass annotate-snippets flag    | @estebank            |           |
+| ↳ add ui test mode comparing new output         |                      |           |
+| ↳ switch default nightly rustc output           |                      |           |
+| Production use of annotate-snippets             |                      |           |
+| ↳ switch default rustc output                   |                      |           |
+| ↳ release notes                                 |                      |           |
+| ↳ switch ui tests to only check new output      |                      |           |
+| ↳ dedicated reviewer                            | ![Team][] [Compiler] | @estebank |
+| Standard reviews                                | ![Team][] [Compiler] |           |
+| Top-level Rust blog post inviting feedback      | ![Team][] [LC]       |           |
 
 ## Frequently asked questions
 
@@ -99,6 +85,3 @@ This section defines the specific work items that are planned and who is expecte
 *This is a good place to elaborate on your reasoning above -- for example, why did you put the design axioms in the order that you did? It's also a good place to put the answers to any questions that come up during discussion. The expectation is that this FAQ section will grow as the goal is discussed and eventually should contain a complete summary of the points raised along the way.*
 
 [cargo-lints]: https://github.com/rust-lang/cargo/issues/12235
-[estebank]: https://github.com/estebank
-[Muscraft]: https://github.com/Muscraft
-
