@@ -10,6 +10,8 @@ use structopt::StructOpt;
 
 mod markwaydown;
 
+const ARROW: &str = "↳";
+
 #[derive(StructOpt, Debug)]
 #[structopt(about = "Project goal preprocessor")]
 struct Opt {
@@ -100,7 +102,8 @@ fn format_team_asks(asks_of_any_team: &[TeamAsk]) -> anyhow::Result<()> {
             for ask in asks_of_this_team.iter().filter(|a| a.subgoal == *subgoal) {
                 table.push(vec![
                     format!(
-                        "[{}]({}#ownership-and-team-asks)",
+                        "{} [{}]({}#ownership-and-team-asks)",
+                        ARROW,
                         ask.heading,
                         ask.input.display()
                     ),
@@ -206,8 +209,6 @@ fn extract_team_asks<'i>(
 
     let mut tasks = vec![];
     for row in &table.rows {
-        const ARROW: &str = "↳";
-
         let subgoal;
         if row[0].starts_with(ARROW) {
             // e.g., "↳ stabilization" is a subtask of the metagoal
