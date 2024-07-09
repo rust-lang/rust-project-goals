@@ -143,7 +143,7 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | ↳ ~~author RFC~~                   |                              | ![Complete][] [RFC #3519] |
 | ↳ ~~RFC decision~~                 | ~~[Lang]~~                   | ![Complete][]             |
 | ↳ Implementation                   |                              |                           |
-| ↳ Assigned reviewer                | ![Team] [Compiler]           |                           |
+| ↳ Standard reviews                 | ![Team] [Compiler]           |                           |
 | ↳ Stabilization decision           | ![Team] [Lang]               |                           |
 | Derive smart pointer               | @Darksonn                    |                           |
 | ↳ ~~author RFC~~                   |                              | [RFC #3621]               |
