@@ -132,14 +132,14 @@ Currently out of scope:
 **Owner:** @weihanglo, though I also welcome someone else to take ownership of it.
 I would be happy to support them as a Cargo maintainer.
 
-| Subgoal                                            | Owner(s) or team(s)  | Notes       |
-| -------------------------------------------------- | -------------------- | ----------- |
-| Design                                             | @weihanglo           | (or mentee) |
-| Discussion and moral support                       | ![Team][] [Cargo]    |             |
-| Security reviews                                   | ![Help wanted][]     |             |
-| Standard reviews                                   | ![Team][] [Cargo]    |             |
-| Collaboration with [GSoC proc-macro project][GSoC] | ![Team][] [Compiler] |             |
-| Summary of experiments or RFC                      | @weihanglo           | (or mentee) |
+| Subgoal                                    | Owner(s) or team(s)  | Notes       |
+| ------------------------------------------ | -------------------- | ----------- |
+| Design                                     | @weihanglo           | (or mentee) |
+| Discussion and moral support               | ![Team][] [Cargo]    |             |
+| Security reviews                           | ![Help wanted][]     |             |
+| Standard reviews                           | ![Team][] [Cargo]    |             |
+| Collaboration with GSoC proc-macro project | ![Team][] [Compiler] |             |
+| Summary of experiments or RFC              | @weihanglo           | (or mentee) |
 
 ## Outputs and milestones
 

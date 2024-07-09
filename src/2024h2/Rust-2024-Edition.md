@@ -2,7 +2,7 @@
 
 | Metadata |             |
 | -------- | ----------- |
-| Owner(s) | TC          |
+| Owner(s) | @traviscross          |
 | Teams    | lang, types |
 | Status   | Flagship    |
 
@@ -50,7 +50,7 @@ The "Edition Axioms" were [laid out in RFC #3085](https://rust-lang.github.io/rf
 
 ## Ownership and team asks
 
-**Owner:** TC
+**Owner:** @traviscross
 
 | Subgoal                  | Owner(s) or team(s)      | Notes |
 | ------------------------ | ------------------------ | ----- |
@@ -59,7 +59,7 @@ The "Edition Axioms" were [laid out in RFC #3085](https://rust-lang.github.io/rf
 
 ## Outputs and milestones
 
-* *Owner:* TC
+* *Owner:* @traviscross
 
 ### Outputs
 
