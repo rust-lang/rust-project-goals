@@ -1,10 +1,10 @@
 # Const traits
 
-| Metadata |                      |
-| -------- | -------------------- |
-| Owner(s) | @fee1-dead            |
-| Teams    | project-const-traits |
-| Status   | Proposed                  |
+| Metadata |                 |
+| -------- | --------------- |
+| Owner(s) | @fee1-dead      |
+| Teams    | [Types], [Lang] |
+| Status   | Proposed        |
 
 ## Summary
 
@@ -57,10 +57,10 @@ This section defines the specific work items that are planned and who is expecte
     * List ![Help wanted][] if there is an owner but they need support, for example funding.
     * Other needs (e.g., complete, in FCP, etc) are also fine.
 
-| Subgoal | Owner(s) or team(s) | Notes |
-| --------------------------------- | -------------------- | ------ |
-| Implementation                    | @fee1-dead            |        |
-| Reviewer                          | project-const-traits |        |
+| Subgoal                      | Owner(s) or team(s)                 | Notes |
+| ---------------------------- | ----------------------------------- | ----- |
+| Implementation               | @fee1-dead and project-const-traits |       |
+| Discussion and moral support | ![Team][] [Types] [Lang]            |       |
 
 ## Frequently asked questions
 

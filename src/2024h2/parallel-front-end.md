@@ -53,18 +53,11 @@ The parallel front end should be:
 
 **Owner:** @SparrowLii and Parallel Rustc WG own this goal
 
-| Subgoal                              | Owner(s) or team(s) | Notes |
-| ------------------------------------ | ------------------- | ----- |
-| Fix issues                           | @SparrowLii         |       |
-| Author tests                         | @SparrowLii         |       |
-| Test for parallel front end          |                     |       |
-| ↳ use parallel front end in UI tests |                     |       |
-| ↳ processe diagnostic output         |                     |       |
-| Use parallel rustc in bootstrap      |                     |       |
-| improve performance                  |                     |       |
-| ↳ parallel HIR lowering              |                     |       |
-| ↳ parallel macro expansion           |                     |       |
-| Cargo option                         |                     |       |
+| Subgoal                      | Owner(s) or team(s)  | Notes |
+| ---------------------------- | -------------------- | ----- |
+| Implementation               | @SparrowLii          |       |
+| Author tests                 | @SparrowLii          |       |
+| Discussion and moral support | ![Team][] [Compiler] |       |
 
 ## Frequently asked questions
 

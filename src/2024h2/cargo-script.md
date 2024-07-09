@@ -34,10 +34,7 @@ script in the path that calls `cargo run --manifest-path ...`).
 
 The support is already implemented on nightly.
 The goal is to stabilize support.
-With [RFC 3502][] and [RFC 3503][] approved, the next steps are being tracked in [#12207](https://github.com/rust-lang/cargo/issues/12207).
-
-[RFC 3502]: https://github.com/rust-lang/rfcs/pull/3502
-[RFC 3503]: https://github.com/rust-lang/rfcs/pull/3503
+With [RFC #3502] and [RFC #3503] approved, the next steps are being tracked in [#12207](https://github.com/rust-lang/cargo/issues/12207).
 
 At a high-level, this is
 - Add support to the compiler for the frontmatter syntax
