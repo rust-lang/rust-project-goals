@@ -62,7 +62,7 @@ This section defines the specific work items that are planned and who is expecte
 | Subgoal                                        | Owner(s) or team(s)  | Status |
 | ---------------------------------------------- | -------------------- | ------ |
 | Reach output parity of rustc/annotate-snippets |                      |        |
-| ↳ Port a subset of rustc's UI tests            | [Muscraft]           |        |
+| ↳ Port a subset of rustc's UI tests            | @Muscraft          |        |
 | ↳ Make list of current unnaddressed divergences| [Muscraft]           |        |
 | ↳ address divergences                          | [Muscraft]           |        |
 | Initial use of annotate-snippets               |                      |        |
