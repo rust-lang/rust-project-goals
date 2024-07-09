@@ -228,7 +228,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 .replace(username, &format!("[{}][]", self.display_name(username)));
         }
 
-        chapter.content.push_str("\n");
+        chapter.content.push_str("\n\n");
         for username in &usernames {
             chapter.content.push_str(&format!(
                 "[{}]: https://github.com/{}\n",
@@ -241,7 +241,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     }
 
     fn insert_links(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        chapter.content.push_str("\n");
+        chapter.content.push_str("\n\n");
 
         for (name, url) in &self.links {
             chapter.content.push_str(&format!("[{}]: {}\n", name, url));
