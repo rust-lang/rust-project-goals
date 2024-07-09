@@ -1,10 +1,10 @@
 # Expose experimental LLVM features for automatic differentiation and GPU offloading
 
-| Metadata |                             |
-| -------- | --------------------------- |
-| Owner(s) | ZuseZ4 / Manuel S. Drehwald |
-| Teams    | t-lang, t-compiler          |
-| Status   | Proposed                    |
+| Metadata |                    |
+| -------- | ------------------ |
+| Owner(s) | @ZuseZ4            |
+| Teams    | [Lang], [Compiler] |
+| Status   | Proposed           |
 
 ## Summary
 
@@ -62,7 +62,7 @@ All three proposed features (batching, autodiff, offloading) can be combined and
 
 ## Ownership and team asks
 
-**Owner:** ZuseZ4 / Manuel S. Drehwald
+**Owner:** @ZuseZ4
 
 Manuel S. Drehwald is working 5 days per week on this, sponsored by LLNL and the University of Toronto (UofT). He has a background in HPC and worked on a Rust compiler fork, as well as an LLVM-based autodiff tool for the last 3 years during his undergrad. He is now in a research-based master's degree program. Supervision and discussion on the LLVM side will happen with Johannes Doerfert and Tom Scogland.
 
@@ -72,7 +72,7 @@ Minimal "smoke test" reviews will be needed from the compiler-team. The Rust lan
 
 | Subgoal              | Owner(s) or team(s)    | Notes      |
 | -------------------- | ---------------------- | ---------- |
-| Development          | ZuseZ4                 |            |
+| Development          | @ZuseZ4                |            |
 | Lang-team experiment | ![Team][] [Lang][]     | (approved) |
 | Standard reviews     | ![Team][] [Compiler][] |            |
 

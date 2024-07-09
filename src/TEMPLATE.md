@@ -48,7 +48,7 @@
 
 | Subgoal                                        | Owner(s) or team(s)     | Notes |
 | ---------------------------------------------- | ----------------------- | ----- |
-| Discussion and moral support                   | ![Team][] Cargo         |       |
+| Discussion and moral support                   | ![Team][] [Cargo]       |       |
 | Stabilize Feature X (typical language feature) |                         |       |
 | ↳ Author RFC                                   | *Goal owner, typically* |       |
 | ↳ Implementation                               | *Goal owner, typically* |       |
@@ -65,19 +65,6 @@
 | ↳ Standard reviews                             | ![Team][] [Compiler]    |       |
 | Inside Rust blog post inviting feedback        | ![Team][] (any team)    |       |
 | Top-level Rust blog post inviting feedback     | ![Team][] [LC]          |       |
-
-[Help wanted]: https://img.shields.io/badge/Help%20wanted-yellow
-[Complete]: https://img.shields.io/badge/Complete-green
-[TBD]: https://img.shields.io/badge/TBD-red
-[Team]: https://img.shields.io/badge/Team%20ask-red
-
-[Compiler]: https://www.rust-lang.org/governance/teams/compiler
-[Lang]: https://www.rust-lang.org/governance/teams/lang
-[LC]: https://www.rust-lang.org/governance/teams/leadership-council
-[Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
-[Infra]: https://www.rust-lang.org/governance/teams/infra
-[Cargo]: https://www.rust-lang.org/governance/teams/dev-tools#team-cargo
-[Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
 
 ### Definitions
 

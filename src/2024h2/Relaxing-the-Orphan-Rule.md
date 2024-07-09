@@ -4,7 +4,7 @@
 | -------- | ------------------- |
 | Owner(s) | ![Help wanted][]    |
 | Teams    | [Lang][], [Types][] |
-| Status   | Proposed                 |
+| Status   | Orphaned            |
 
 ## Summary
 
@@ -119,25 +119,12 @@ This section defines the specific work items that are planned and who is expecte
     * List ![Help wanted][] if there is an owner but they need support, for example funding.
     * Other needs (e.g., complete, in FCP, etc) are also fine.
 
-| Subgoal | Owner(s) or team(s) | Notes |
-| --------------------------------- | ------------------------ | ------ |
-| Ownership and implementation      | ![Help wanted][]         |        |
-| RFC authoring                     | ![Help wanted][]         |        |
-| Design consultation/iteration     | Josh Triplett            |        |
-| Up to 1 design meetings as needed | ![Team][] [Lang] [Types] |        |
-
-[Help wanted]: https://img.shields.io/badge/Help%20wanted-yellow
-[Complete]: https://img.shields.io/badge/Complete-green
-[TBD]: https://img.shields.io/badge/TBD-red
-[Team]: https://img.shields.io/badge/Team%20ask-red
-
-[Compiler]: https://www.rust-lang.org/governance/teams/compiler
-[Lang]: https://www.rust-lang.org/governance/teams/lang
-[LC]: https://www.rust-lang.org/governance/teams/leadership-council
-[Libs-API]: https://www.rust-lang.org/governance/teams/library#team-libs-api
-[Infra]: https://www.rust-lang.org/governance/teams/infra
-[Cargo]: https://www.rust-lang.org/governance/teams/dev-tools#team-cargo
-[Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
+| Subgoal                       | Owner(s) or team(s)      | Notes              |
+| ----------------------------- | ------------------------ | ------------------ |
+| Ownership and implementation  | ![Help wanted][]         |                    |
+| RFC authoring                 | ![Help wanted][]         |                    |
+| Design consultation/iteration | Josh Triplett            |                    |
+| Design meeting                | ![Team][] [Lang] [Types] | Up to 1, if needed |
 
 ## Frequently asked questions
 

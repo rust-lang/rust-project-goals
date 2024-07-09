@@ -1,12 +1,10 @@
 # Reduce clones and unwraps, support partial borrows
 
-| Metadata |                |
-| -------- | -------------- |
-| Owner(s) | [jkelleyrtp][] |
-| Teams    | [Lang]         |
-| Status   | Not accepted   |
-
-[Lang]: https://www.rust-lang.org/governance/teams/lang
+| Metadata |              |
+| -------- | ------------ |
+| Owner(s) | @jkelleyrtp  |
+| Teams    | [Lang]       |
+| Status   | Not accepted |
 
 ## Motivation
 
@@ -191,19 +189,17 @@ Alex heard Rust was difficult to learn, but they're generally happy. Their Rust 
 
 ## Ownership and team asks
 
-The work here is proposed by Jonathan Kelley on behalf of Dioxus Labs. We have funding for 1-2 engineers depending on the scope of work. Dioxus Labs is willing to take ownership and commit funding to solve these problems.
+The work here is proposed by @jkelleyrtp on behalf of Dioxus Labs. We have funding for 1-2 engineers depending on the scope of work. Dioxus Labs is willing to take ownership and commit funding to solve these problems.
 
-| Subgoal                  | Owner(s) or team(s) | Notes       |
-| ------------------------ | ------------------- | ----------- |
-| `.clone()` problem       | [jkelleyrtp] + tbd  | ![Funded][] |
-| partial borrows          | [jkelleyrtp] + tbd  | ![Funded][] |
-| `.unwrap()` problem      | [jkelleyrtp] + tbd  | ![Funded][] |
-| Named/Optional arguments | [jkelleyrtp] + tbd  | ![Funded][] |
+| Subgoal                  | Owner(s) or team(s) | Notes |
+| ------------------------ | ------------------- | ----- |
+| `.clone()` problem       | @jkelleyrtp + tbd   |       |
+| partial borrows          | @jkelleyrtp + tbd   |       |
+| `.unwrap()` problem      | @jkelleyrtp + tbd   |       |
+| Named/Optional arguments | @jkelleyrtp + tbd   |       |
 
-* The ![Funded][] badge indicates that the owner has committed and work will be funded by their employer or other sources.
 * The ![Team][] badge indicates a requirement where Team support is needed.
 
-[Funded]: https://img.shields.io/badge/Funded-yellow
 [Not funded]: https://img.shields.io/badge/Not%20yet%20funded-red
 [Approved]: https://img.shields.io/badge/Approved-green
 [Not approved]: https://img.shields.io/badge/Not%20yet%20approved-red

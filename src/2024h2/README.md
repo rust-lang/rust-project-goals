@@ -2,23 +2,21 @@
 
 This document explains the 2024H2 goal slate and how it was chosen. If you just want to see a table of goals, see the [all candidates](./candidates.md) page.
 
-> *![Status: Experimental](https://img.shields.io/badge/Status-Experimental-yellow) This document is a draft. The reasoning and [goal slate](./slate.md) are still evolving. If you have thoughts or suggestions, please reach out to nikomatsakis on the [#project-goals-2024h2](https://rust-lang.zulipchat.com/#narrow/stream/435869-project-goals-2024h2) Zulip stream.*
+> *![Status: Experimental](https://img.shields.io/badge/Status-Experimental-yellow) This document is a draft. The reasoning and [goal slate](./slate.md) are still evolving. If you have thoughts or suggestions, please reach out to @nikomatsakis on the [#project-goals-2024h2](https://rust-lang.zulipchat.com/#narrow/stream/435869-project-goals-2024h2) Zulip stream.*
 
 ## Summary
 
 This RFC presents the Rust project goal slate for 2024H2. The slate consists of NN total project goals of which we have selected three as our "flagship goals":
 
-* Release the Rust 2024 edition (owner: TC)
-* Bringing the Async Rust experience closer to parity with sync Rust (owners: tmandry, nikomatsakis)
-* Resolving the biggest blockers to Linux building on stable Rust (owners: joshtriplett, nikomatsakis)
+* Release the Rust 2024 edition (owner: @traviscross)
+* Bringing the Async Rust experience closer to parity with sync Rust (owners: @tmandry, @nikomatsakis)
+* Resolving the biggest blockers to Linux building on stable Rust (owners: @joshtriplett, @nikomatsakis)
 
 Flagship goals represent the goals expected to have the broadest overall impact. 
 
 ## Motivation
 
-This RFC marks the first goal slate proposed under the experimental new roadmap process described in [RFC #3614][]. It consists of NN project goals, of which we have selected three as **flagship goals**. Flagship goals represent the goals expected to have the broadest overall impact. 
-
-[RFC #3614]: https://github.com/rust-lang/rfcs/pull/3614
+This RFC marks the first goal slate proposed under the experimental new roadmap process described in [RFC #3614]. It consists of NN project goals, of which we have selected three as **flagship goals**. Flagship goals represent the goals expected to have the broadest overall impact. 
 
 ### How the goal process works
 
@@ -54,9 +52,9 @@ We believe that...
 The flagship goals proposed for this roadmap are as follows:
 
 * [**Release the Rust 2024 edition**](./Rust-2024-Edition.md), which will contain
-    * a change in how `impl Trait` capture bounds work ([RFC #3498](https://github.com/rust-lang/rfcs/pull/3498) and [RFC #3617](https://github.com/rust-lang/rfcs/pull/3617))
-    * reserving the `gen` keyword to allow for generators ([RFC #3513](https://github.com/rust-lang/rfcs/pull/3513))
-    * never type fallback ([#123748](https://github.com/rust-lang/rust/issues/123748))
+    * a change in how `impl Trait` capture bounds work ([RFC #3498] and [RFC #3617])
+    * reserving the `gen` keyword to allow for generators ([RFC #3513])
+    * never type fallback ([#123748])
     * and a [number of other potential changes](https://github.com/rust-lang/rust/issues?q=label%3AC-tracking-issue+label%3AA-edition-2024+label%3AS-tracking-ready-to-stabilize%2CS-tracking-needs-documentation+-label%3AS-tracking-impl-incomplete%2CS-tracking-design-concerns) that may be included if they make enough progress
 * [**Bringing the Async Rust experience closer to parity with sync Rust**](./async.md) via:
     * resolving the "send bound problem", thus enabling foundational, generic traits like Tower's [`Service`]() trait;
@@ -84,34 +82,15 @@ The flagship goals proposed for this roadmap are as follows:
 
 ### Project goals
 
-The slate of additional project goals are as follows. These goals all have identified owners who will drive the work forward as well as a viable work plan. The goals include asks from the listed Rust teams, which are cataloged in the [reference-level explanation](#reference-level-explanation) section below. Some goals are actively looking for volunteers; these goals are tagged with ![Heap wanted][].
+The slate of additional project goals are as follows. These goals all have identified owners who will drive the work forward as well as a viable work plan. The goals include asks from the listed Rust teams, which are cataloged in the [reference-level explanation](#reference-level-explanation) section below. Some goals are actively looking for volunteers; these goals are tagged with ![Help wanted][].
 
-| 2024 goal                                                                                | Owner                  | Team                 |
-| ---------------------------------------------------------------------------------------- | ---------------------- | -------------------- |
-| [Assemble goal slate][AGS]                                                               | [nikomatsakis][]       | [LC]                 |
-| [Cargo Script][CS]                                                                       | [epage]                | [Cargo], [Lang]      |
-| [Extend pubgrub to match cargo's dependency resolution][PGC]                             | [Eh2406]               | [Cargo][]            |
-| [Explore sandboxed build scripts][SBS]                                                   | [weihanglo]            | [Cargo][]            |
-| [Administrator-provided reasons for yanked crates][YKR]                                  | [hi-rustin]            | [Cargo][]            |
-| [Clippy performance improvements][OC]                                                    | [blyxyas]              | [Clippy][]           |
-| [Next-generation trait solver][NGS]                                                      | [lcnr]                 | [Types]              |
-| [Testing infra + contributors for a-mir-formality][AMF]                                  | [nikomatsakis]         | [Types]              |
-| [Scalable Polonius support on nightly][NBNLB]                                            | [lqd]                  | [Types]              |
-| [Stabilize Associated type position impl trait][ATPIT]                                   | [oli-obk]              | [Types], [Lang]      |
-| ["Stabilizable" prototype for expanded const generics][MGCA]                             | [BoxyUwU]              | [Types][]            |
-| [Patterns of empty types][PET]                                                           | [Nadrieril]            | [Lang]               |
-| [Ergonomic ref-counting][RC]                                                             | [jkelleyrtp]           | [Lang], [Libs-API][] |
-| [Const traits][CT]                                                                       | [fee1-dead]            | [Lang], [Libs-API][] |
-| [Expose wxperimental LLVM features for automatic differentiation and GPU offloading][SC] | [Manuel S. Drehwald][] | [Compiler][]         |
+<!-- GOALS `Proposed` -->
 
-### Orphaned goals ![Heap wanted][]
+### Orphaned goals ![Help wanted][]
 
 Goals in this section are "pre-approved" by the team but lack an owner. These indicate a place where we are looking for someone to step up and help drive the goal the goal to completion. Every orphaned goal has someone who is willing and able to serve as mentor, but lacks the time or resources to truly *own* the goal. If you are interested in serving as the owner for one of these orphaned goals, reach out to the listed mentor to discuss. Orphaned goals may also be used as the basis of applying for grants from the Rust Foundation or elsewhere.
 
-
-| 2024 goal                        | Owner            | Mentor         | Team              |
-| -------------------------------- | ---------------- | -------------- | ----------------- |
-| [Relaxing the Orphan Rule][RTOR] | ![Help wanted][] | [JoshTriplett] | [Lang], [Types][] |
+<!-- GOALS `Orphaned` -->
 
 # Reference-level explanation
 [reference-level-explanation]: #reference-level-explanation
@@ -119,7 +98,7 @@ Goals in this section are "pre-approved" by the team but lack an owner. These in
 The following table highlights the asks from each affected team.
 The "owner" in the column is the person expecting to do the design/implementation work that the team will be approving.
 
-{{#include ./__proposed__.md}}
+<!-- TEAM ASKS -->
 
 ### Definitions
 
@@ -136,23 +115,6 @@ Definitions for terms used above:
     * [Lang team experiments](https://lang-team.rust-lang.org/how_to/experiment.html) are used to add nightly features that do not yet have an RFC. They are limited to trusted contributors and are used to resolve design details such that an RFC can be written.
     * Compiler [Major Change Proposal (MCP)](https://forge.rust-lang.org/compiler/mcp.html) is used to propose a 'larger than average' change and get feedback from the compiler team.
     * Library [API Change Proposal (ACP)](https://std-dev-guide.rust-lang.org/development/feature-lifecycle.html) describes a change to the standard library.
-
-
-[RFC #3621]: https://github.com/rust-lang/rfcs/pull/3621
-[#22]: https://github.com/rust-lang/rust-project-goals/issues/22
-[RFC #3614]: https://github.com/rust-lang/rfcs/pull/3614
-[RFC #3501]: https://rust-lang.github.io/rfcs/3501-edition-2024.html
-[RFC #3654]: https://github.com/rust-lang/rfcs/pull/3654
-[RFC #3668]: https://github.com/rust-lang/rfcs/pull/3668
-
-<!-- Teams -->
-
-[Lang]: https://img.shields.io/badge/Lang-red
-[Libs]: https://img.shields.io/badge/Libs-red
-[Libs-API]: https://img.shields.io/badge/Libs--api-red
-[Compiler]: https://img.shields.io/badge/Compiler-red
-[Types]: https://img.shields.io/badge/Types-red
-[clippy]: https://github.com/rust-lang/rust-clippy
 
 <!-- Goals -->
 
@@ -175,26 +137,3 @@ Definitions for terms used above:
 [OC]: ./optimize-clippy.md
 
 <!-- Github usernames -->
-
-[Adrian Taylor]: https://github.com/adetaylor
-[Alice Ryhl]: https://github.com/Darksonn/
-[blyxyas]: https://github.com/blyxyas
-[BoxyUwU]: https://github.com/BoxyUwU
-[compiler-errors]: https://github.com/compiler-errors
-[Eh2406]: https://github.com/Eh2406
-[eholk]: https://github.com/eholk
-[Ding Xiang Fei]: https://github.com/dingxiangfei2009
-[Jakub Beránek]: https://github.com/Kobzol
-[epage]: https://github.com/epage
-[epage]: https://github.com/eholk
-[fee1-dead]: https://github.com/fee1-dead
-[hi-rustin]: https://github.com/hi-rustin
-[lcnr]: https://github.com/lcnr
-[lqd]: https://github.com/lqd
-[Nadrieril]: https://github.com/Nadrieril
-[Manuel S. Drehwald]: https://github.com/ZuseZ4
-[Gary Guo]: https://github.com/nbdd0121
-[nikomatsakis]: https://github.com/nikomatsakis
-[oli-obk]: https://github.com/oli-obk
-[tmandry]: https://github.com/tmandry
-[weihanglo]: https://github.com/weihanglo

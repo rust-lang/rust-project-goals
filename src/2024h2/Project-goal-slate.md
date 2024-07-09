@@ -1,16 +1,16 @@
-# Assemble Project Goal slate
+# Assemble project goal slate
 
-| Metadata |                    |
-| -------- | ------------------ |
-| Owner(s) | nikomatsakis       |
-| Teams    | Leadership Council |
-| Status   | Proposed           |
+| Metadata |               |
+| -------- | ------------- |
+| Owner(s) | @nikomatsakis |
+| Teams    | [LC]          |
+| Status   | Proposed      |
 
 *Extracted from [RFC 3614](https://github.com/rust-lang/rfcs/blob/master/text/3614-project-goals.md)*
 
 ## Motivation
 
-This RFC proposes to run an experimental goal program during the second half of 2024 with nikomatsakis as owner/organizer. This program is a first step towards an ongoing Rust roadmap. The proposed outcomes for 2024 are (1) select an initial slate of goals using an experimental process; (2) track progress over the year; (3) drawing on the lessons from that, prepare a second slate of goals for 2025 H1. This second slate is expected to include a goal for authoring an RFC proposing a permanent process.
+This RFC proposes to run an experimental goal program during the second half of 2024 with @nikomatsakis as owner/organizer. This program is a first step towards an ongoing Rust roadmap. The proposed outcomes for 2024 are (1) select an initial slate of goals using an experimental process; (2) track progress over the year; (3) drawing on the lessons from that, prepare a second slate of goals for 2025 H1. This second slate is expected to include a goal for authoring an RFC proposing a permanent process.
 
 ### The status quo
 
@@ -31,14 +31,14 @@ The Rust project last published an annual roadmap in 2021. Even before that, mai
 
 For more details, see
 
-* [Blog post on nikomatsakis's blog about project goals](https://smallcultfollowing.com/babysteps/blog/2023/11/28/project-goals/)
-* [Blog post on nikomatsakis's blog about goal ownership](https://smallcultfollowing.com/babysteps/blog/2024/04/05/ownership-in-rust/)
+* [Blog post on @nikomatsakis's blog about project goals](https://smallcultfollowing.com/babysteps/blog/2023/11/28/project-goals/)
+* [Blog post on @nikomatsakis's blog about goal ownership](https://smallcultfollowing.com/babysteps/blog/2024/04/05/ownership-in-rust/)
 * [nikomatsakis's slides from the Rust leadership summit](https://github.com/nikomatsakis/team-goals-2024)
 * [Zulip topic in #council stream](https://rust-lang.zulipchat.com/#narrow/stream/392734-council/topic/Project.2Fteam.20goals). This proposal was also discussed at the leadership council meeting on 2024-04-12, during which meeting the council recommended opening an RFC.
 
 ### The plan for 2024
 
-The plan is to do a "dry run" of the process in the remainder of 2024. The 2024 process will be driven by nikomatsakis; one of the outputs will be an RFC that proposes a more permanent process for use going forward. The short version of the plan is that we will
+The plan is to do a "dry run" of the process in the remainder of 2024. The 2024 process will be driven by @nikomatsakis; one of the outputs will be an RFC that proposes a more permanent process for use going forward. The short version of the plan is that we will
 
 * **ASAP (April):** Have a ~2 month period for selecting the initial slate of goals. Goals will be sourced from Rust teams and the broader community. They will cover the highest priority work to be completed in the second half of 2024.
 * **June:** Teams will approve the final slate of goals, making them 'official'.
@@ -67,9 +67,9 @@ More concretely, assuming this goal program is successful, we would like to begi
 
 ## Ownership and team asks
 
-**Owner:** nikomatsakis
+**Owner:** @nikomatsakis
 
-* nikomatsakis can commit 20% time (avg of 1 days per week) to pursue this task, which he estimates to be sufficient.
+* @nikomatsakis can commit 20% time (avg of 1 days per week) to pursue this task, which he estimates to be sufficient.
 
 | Subgoal                                    | Owner(s) or team(s) | Notes |
 | ------------------------------------------ | ------------------- | ----- |

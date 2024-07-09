@@ -4,7 +4,7 @@
 			"path": "."
 		},
 		{
-			"path": "plugin/extract-output-table"
+			"path": "mdbook-goals"
 		}
 	],
 	"settings": {}

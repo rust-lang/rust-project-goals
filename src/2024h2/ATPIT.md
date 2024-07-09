@@ -1,15 +1,10 @@
-# Impl trait everywhere
+# Associated type position impl trait (ATPIT)
 
 | Metadata |                 |
 | -------- | --------------- |
-| Owner(s) | [oli-obk]       |
+| Owner(s) | @oli-obk       |
 | Teams    | [Types], [Lang] |
 | Status   | Proposed        |
-
-[oli-obk]: https://github.com/oli-obk
-
-[Types]: https://www.rust-lang.org/governance/teams/compiler#team-types
-[Lang]: https://www.rust-lang.org/governance/teams/lang
 
 ## Summary
 
@@ -65,7 +60,7 @@ None.
 
 | Subgoal                | Owner(s) or team(s)      | Notes |
 | ---------------------- | ------------------------ | ----- |
-| Implementation         | [oli-obk]                |       |
+| Implementation         | @oli-obk                |       |
 | FCP decisions          | ![Team][] [Types]        |       |
 | Stabilization decision | ![Team][] [Types] [Lang] |       |
 
