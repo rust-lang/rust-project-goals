@@ -55,18 +55,18 @@ In order of importance, the next-generation trait solver should be:
 
 Add'l implementation work: [compiler-errors][]
 
-| Subgoal                               | Owner(s) or team(s)            | Notes |
-| ------------------------------------- | ------------------------------ | ----- |
-| Discussion and moral support          | ![Team][] [Types]              |       |
-| Stabilize coherence coherence support |                                |       |
-| ↳ Implementation                      | owner and others               |       |
-| ↳ Standard reviews                    | ![Team][] [Types]              |       |
+| Subgoal                               | Owner(s) or team(s)         | Notes |
+| ------------------------------------- | --------------------------- | ----- |
+| Discussion and moral support          | ![Team][] [Types]           |       |
+| Stabilize coherence coherence support |                             |       |
+| ↳ Implementation                      | [lcnr], [compiler-errors]   |       |
+| ↳ Standard reviews                    | ![Team][] [Types]           |       |
 | ↳ Standard reviews                    | ![Team][] [Rust-Analyzer][] |       |
-| ↳ Stabilization decision              | ![Team][] [Types][]            |       |
-| Support in rust-analyzer              |                                |       |
-| ↳ Implementation (library side)       | owner and others               |       |
-| ↳ Implementation (rust-analyzer side) | TBD                            |       |
-| ↳ Standard reviews                    | ![Team][] [Types]              |       |
+| ↳ Stabilization decision              | ![Team][] [Types][]         |       |
+| Support in rust-analyzer              |                             |       |
+| ↳ Implementation (library side)       | owner and others            |       |
+| ↳ Implementation (rust-analyzer side) | TBD                         |       |
+| ↳ Standard reviews                    | ![Team][] [Types]           |       |
 | ↳ Standard reviews                    | ![Team][] [Rust-Analyzer][] |       |
 
 ### Support needed from the project

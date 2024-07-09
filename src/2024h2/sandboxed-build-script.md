@@ -4,7 +4,7 @@
 | -------- | ----------- |
 | Owner(s) | [weihanglo] |
 | Teams    | [Cargo]     |
-| Status   | Proposed         |
+| Status   | Proposed    |
 
 [weihanglo]: https://github.com/weihanglo
 [Cargo]: https://www.rust-lang.org/governance/teams/dev-tools#team-cargo
@@ -132,22 +132,17 @@ Currently out of scope:
 
 ## Ownership and team asks
 
-**Owner:** [weihanglo],
-though I also welcome someone else to take ownership of it.
+**Owner:** [weihanglo], though I also welcome someone else to take ownership of it.
 I would be happy to support them as a Cargo maintainer.
 
-### Support needed from the project
-
-| Subgoal | Owner(s) or team(s) | Notes |
-| ---------------------------------------------- | -------------------- | ------ |
-| Experiments for sandboxed build script         |                      |        |
-| ↳ Design                                       | owner or mentee      |        |
-| ↳ Discussion and moral support                 | ![Team][] [Cargo]    |        |
-| ↳ Security reviews                             | ![Help wanted][]     |        |
-| ↳ WASI runtime design review (if chosen)       | ![Help wanted][]     |        |
-| ↳ Standard reviews                             | ![Team][] [Cargo]    |        |
-| ↳ Collaboration with [GSoC] proc-macro project | ![Team][] [Compiler] |        |
-| ↳ Summary of experiments or RFC                | owner or mentee      |        |
+| Subgoal                                            | Owner(s) or team(s)  | Notes       |
+| -------------------------------------------------- | -------------------- | ----------- |
+| Design                                             | [weihanglo][]        | (or mentee) |
+| Discussion and moral support                       | ![Team][] [Cargo]    |             |
+| Security reviews                                   | ![Help wanted][]     |             |
+| Standard reviews                                   | ![Team][] [Cargo]    |             |
+| Collaboration with [GSoC proc-macro project][GSoC] | ![Team][] [Compiler] |             |
+| Summary of experiments or RFC                      | [weihanglo][]        | (or mentee) |
   
 [Help wanted]: https://img.shields.io/badge/Help%20wanted-yellow
 [Complete]: https://img.shields.io/badge/Complete-green
