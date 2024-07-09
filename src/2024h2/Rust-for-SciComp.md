@@ -68,7 +68,7 @@ Manuel S. Drehwald is working 5 days per week on this, sponsored by LLNL and the
 
 Resources: Domain and CI for the autodiff work is being provided by MIT. This might be moved to the LLVM org later this year. Hardware for benchmarks is being provided by LLNL and UofT. CI for the offloading work will be provided by LLNL or LLVM (see below).
 
-| Subgoal                            | Owner(s) or team(s)    | Status     |
+| Subgoal | Owner(s) or team(s) | Notes |
 | ---------------------------------- | ---------------------- | ---------- |
 | Development                        | ZuseZ4                 |            |
 | ↳ Lang-team experiment             | ![Team][] [Lang][]     | (approved) |

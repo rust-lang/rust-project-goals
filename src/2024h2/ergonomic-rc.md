@@ -84,7 +84,7 @@ We don't have consensus around a full set of "design axioms" for this design, bu
 
 The work here is proposed by Jonathan Kelley on behalf of Dioxus Labs. We have funding for 1-2 engineers depending on the scope of work. Dioxus Labs is willing to take ownership and commit funding to solve these problems.
 
-| Subgoal                    | Owner(s) or team(s)         | Status      |
+| Subgoal | Owner(s) or team(s) | Notes |
 | -------------------------- | --------------------------- | ----------- |
 | Overall program management | [jkelleyrtp]                | ![Funded][] |
 | Author RFC                 | TBD                         | TBD         |

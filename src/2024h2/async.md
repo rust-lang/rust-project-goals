@@ -169,7 +169,7 @@ Our eventual goal is to provide Rust users building on async with
 
 Here is a detailed list of the work to be done and who is expected to do it. This table includes the work to be done by owners and the work to be done by Rust teams (subject to approval by the team in an RFC/FCP). The overall owners of the async effort (and authors of this goal document) are [tmandry][] and [nikomatsakis][]. We have identified owners for subitems below; these may change over time.
 
-| Subgoal                    | Owner(s) or team(s)                     | Status              |
+| Subgoal                    | Owner(s) or team(s)                     | Notes               |
 | -------------------------- | --------------------------------------- | ------------------- |
 | Overall program management | [tmandry][], [nikomatsakis][]           |                     |
 | ["Send bound"][sb] problem |                                         |                     |
