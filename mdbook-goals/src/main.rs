@@ -1,9 +1,10 @@
 use mdbook::preprocess::{CmdPreprocessor, Preprocessor};
 use mdbook_preprocessor::GoalPreprocessor;
 use semver::{Version, VersionReq};
-use std::io;
+use std::{io, path::PathBuf};
 use structopt::StructOpt;
 
+mod fcp;
 mod goal;
 mod markwaydown;
 mod mdbook_preprocessor;
@@ -21,6 +22,8 @@ struct Opt {
 #[allow(dead_code)]
 enum Command {
     Supports { renderer: String },
+
+    FCP { path: PathBuf },
 }
 
 fn main() -> anyhow::Result<()> {
@@ -29,6 +32,10 @@ fn main() -> anyhow::Result<()> {
     match &opt.cmd {
         Some(Command::Supports { renderer }) => {
             handle_supports(&GoalPreprocessor, renderer)?;
+        }
+
+        Some(Command::FCP { path }) => {
+            fcp::generate_comment(&path)?;
         }
 
         None => {

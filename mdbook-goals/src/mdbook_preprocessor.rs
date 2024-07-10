@@ -8,7 +8,6 @@ use mdbook::book::{Book, Chapter};
 use mdbook::preprocess::{Preprocessor, PreprocessorContext};
 use mdbook::BookItem;
 use regex::{Captures, Regex};
-use walkdir::WalkDir;
 
 use crate::goal::{self, format_team_asks, GoalDocument, Status, TeamAsk};
 use crate::team;
@@ -247,38 +246,20 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         if let Some(goals) = self.goal_document_map.get(chapter_path) {
             return Ok(goals.clone());
         }
-        let mut goal_documents = vec![];
-        for (path, link_path) in self.markdown_files(&chapter_path)? {
-            if let Some(goal_document) = GoalDocument::load(&path, &link_path)? {
-                goal_documents.push(goal_document);
-            }
-        }
+
+        let goal_documents = goal::goals_in_dir(
+            self.ctx
+                .config
+                .book
+                .src
+                .join(chapter_path)
+                .parent()
+                .unwrap(),
+        )?;
         let goals = Arc::new(goal_documents);
         self.goal_document_map
             .insert(chapter_path.to_path_buf(), goals.clone());
         Ok(goals)
-    }
-
-    fn markdown_files(&mut self, chapter_path: &Path) -> anyhow::Result<Vec<(PathBuf, PathBuf)>> {
-        let chapter_path = self.ctx.config.book.src.join(chapter_path);
-        let parent_path = chapter_path.parent().unwrap();
-
-        let mut files = vec![];
-        for entry in WalkDir::new(parent_path) {
-            let entry = entry?;
-
-            if entry.file_type().is_file() && entry.path().extension() == Some("md".as_ref()) {
-                files.push((
-                    entry.path().to_path_buf(),
-                    entry
-                        .path()
-                        .strip_prefix(parent_path)
-                        .unwrap()
-                        .to_path_buf(),
-                ));
-            }
-        }
-        Ok(files)
     }
 
     fn link_users(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
@@ -372,7 +353,9 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     fn link_teams(&self, chapter: &mut Chapter) -> anyhow::Result<()> {
         chapter.content.push_str("\n\n");
         for team in team::get_team_names()? {
-            chapter.content.push_str(&format!("{team}: {}\n", team.url()));
+            chapter
+                .content
+                .push_str(&format!("{team}: {}\n", team.url()));
         }
         Ok(())
     }
