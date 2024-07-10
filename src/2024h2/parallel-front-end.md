@@ -3,7 +3,7 @@
 | Metadata |             |
 | -------- | ----------- |
 | Owner(s) | @SparrowLii |
-| Teams    | [Compiler]  |
+| Teams    | [compiler]  |
 | Status   | Proposed    |
 
 ## Summary
@@ -57,7 +57,7 @@ The parallel front end should be:
 | ---------------------------- | -------------------- | ----- |
 | Implementation               | @SparrowLii          |       |
 | Author tests                 | @SparrowLii          |       |
-| Discussion and moral support | ![Team][] [Compiler] |       |
+| Discussion and moral support | ![Team][] [compiler] |       |
 
 ## Frequently asked questions
 

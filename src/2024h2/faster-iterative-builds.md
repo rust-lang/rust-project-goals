@@ -3,7 +3,7 @@
 | Metadata |                             |
 | -------- | --------------------------- |
 | Owner(s) | @jkelleyrtp                 |
-| Teams    | [lang], [Compiler], [Cargo] |
+| Teams    | [lang], [compiler], [cargo] |
 | Status   | Not accepted                |
 
 ## Summary

@@ -48,11 +48,11 @@
 
 | Subgoal                                        | Owner(s) or team(s)     | Notes |
 | ---------------------------------------------- | ----------------------- | ----- |
-| Discussion and moral support                   | ![Team][] [Cargo]       |       |
+| Discussion and moral support                   | ![Team][] [cargo]       |       |
 | Stabilize Feature X (typical language feature) |                         |       |
 | ↳ Author RFC                                   | *Goal owner, typically* |       |
 | ↳ Implementation                               | *Goal owner, typically* |       |
-| ↳ Standard reviews                             | ![Team][] [Compiler]    |       |
+| ↳ Standard reviews                             | ![Team][] [compiler]    |       |
 | ↳ Design meeting                               | ![Team][] [lang]        |       |
 | ↳ RFC decision                                 | ![Team][] [lang]        |       |
 | ↳ Secondary RFC review                         | ![Team][] [lang]        |       |
@@ -62,9 +62,9 @@
 | ↳ Lang-team experiment                         | ![Team][] [lang]        |       |
 | ↳ Author RFC                                   | *Goal owner, typically* |       |
 | ↳ Implementation                               | *Goal owner, typically* |       |
-| ↳ Standard reviews                             | ![Team][] [Compiler]    |       |
+| ↳ Standard reviews                             | ![Team][] [compiler]    |       |
 | Inside Rust blog post inviting feedback        | ![Team][] (any team)    |       |
-| Top-level Rust blog post inviting feedback     | ![Team][] [Leadership-Council]          |       |
+| Top-level Rust blog post inviting feedback     | ![Team][] [leadership-council]          |       |
 
 ### Definitions
 

@@ -3,7 +3,7 @@
 | Metadata |          |
 | -------- | -------- |
 | Owner(s) | @eh2406   |
-| Teams    | [Cargo]    |
+| Teams    | [cargo]    |
 | Status   | Proposed |
 
 ## Summary

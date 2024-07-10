@@ -3,7 +3,7 @@
 | Metadata |                      |
 | -------- | -------------------- |
 | Owner(s) | @estebank, @Muscraft |
-| Teams    | [Compiler]           |
+| Teams    | [compiler]           |
 | Status   | Proposed             |
 
 ## Summary
@@ -74,9 +74,9 @@ This section defines the specific work items that are planned and who is expecte
 | ↳ switch default rustc output                   |                      |           |
 | ↳ release notes                                 |                      |           |
 | ↳ switch ui tests to only check new output      |                      |           |
-| ↳ dedicated reviewer                            | ![Team][] [Compiler] | @estebank |
-| Standard reviews                                | ![Team][] [Compiler] |           |
-| Top-level Rust blog post inviting feedback      | ![Team][] [Leadership-Council]       |           |
+| ↳ dedicated reviewer                            | ![Team][] [compiler] | @estebank |
+| Standard reviews                                | ![Team][] [compiler] |           |
+| Top-level Rust blog post inviting feedback      | ![Team][] [leadership-council]       |           |
 
 ## Frequently asked questions
 

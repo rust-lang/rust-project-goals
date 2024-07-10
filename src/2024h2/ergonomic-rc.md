@@ -3,7 +3,7 @@
 | Metadata |                    |
 | -------- | ------------------ |
 | Owner(s) | @jkelleyrtp        |
-| Teams    | [lang], [Libs-API] |
+| Teams    | [lang], [libs-api] |
 | Status   | Proposed           |
 
 ## Summary
@@ -86,9 +86,9 @@ The work here is proposed by @jkelleyrtp on behalf of Dioxus Labs. We have fundi
 | Overall program management | @jkelleyrtp                 |       |
 | Author RFC                 | TBD                         |       |
 | Design meeting             | ![Team][] [lang]            |       |
-| RFC decision               | ![Team][] [lang] [Libs-API] |       |
+| RFC decision               | ![Team][] [lang] [libs-api] |       |
 | Nightly implementation     | @spastorino                 |       |
-| Standard reviews           | ![Team]  [Compiler]         |       |
+| Standard reviews           | ![Team]  [compiler]         |       |
 | Blog post on Inside Rust   |                             |       |
 
 * The ![Team][] badge indicates a requirement where Team support is needed.

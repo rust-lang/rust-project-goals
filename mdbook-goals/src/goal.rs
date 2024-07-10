@@ -301,7 +301,7 @@ fn extract_team_asks<'i>(
                 anyhow::bail!(
                     "no Rust team named `{}` found (valid names are {})",
                     team_name,
-                    commas(team::get_teams()?.keys()),
+                    commas(team::get_team_names()?),
                 );
             };
 

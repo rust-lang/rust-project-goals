@@ -3,7 +3,7 @@
 | Metadata |                               |
 | -------- | ----------------------------- |
 | Owner(s) | @notriddle                    |
-| Teams    | [Rustdoc], [Rustdoc-Frontend] |
+| Teams    | [rustdoc], [rustdoc-frontend] |
 | Status   | Proposed                      |
 
 ## Summary
@@ -69,17 +69,17 @@ The goal is to reach this point *without trying to be a better Google than Googl
 
 | Subgoal                                       | Owner(s) or team(s)          | Notes |
 | --------------------------------------------- | ---------------------------- | ----- |
-| Discussion and moral support                  | ![Team][] [Rustdoc]          |       |
+| Discussion and moral support                  | ![Team][] [rustdoc]          |       |
 | Improve on any discovered weaknesses          |                              |       |
 | ↳ Implementation: show type signature in SERP | @notriddle                   |       |
 | ↳ Implementation: tweak search algo           | @notriddle                   |       |
-| ↳ Standard reviews                            | ![Team][] [Rustdoc-Frontend] |       |
-| ↳ Design meeting                              | ![Team][] [Rustdoc-Frontend] |       |
-| ↳ FCP review                                  | ![Team][] [Rustdoc-Frontend] |       |
+| ↳ Standard reviews                            | ![Team][] [rustdoc-frontend] |       |
+| ↳ Design meeting                              | ![Team][] [rustdoc-frontend] |       |
+| ↳ FCP review                                  | ![Team][] [rustdoc-frontend] |       |
 | Feedback and testing                          |                              |       |
-| ↳ Inside Rust blog post inviting feedback     | ![Team][] [Infra]            |       |
-| ↳ Collecting popular queries for review       | ![Team][] [Infra]            |       |
-| Top-level Rust blog post inviting feedback    | ![Team][] [Leadership-Council]               |       |
+| ↳ Inside Rust blog post inviting feedback     | ![Team][] [infra]            |       |
+| ↳ Collecting popular queries for review       | ![Team][] [infra]            |       |
+| Top-level Rust blog post inviting feedback    | ![Team][] [leadership-council]               |       |
 
 ### Definitions
 

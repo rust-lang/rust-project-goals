@@ -36,11 +36,15 @@ pub struct TeamName(String);
 
 impl std::fmt::Display for TeamName {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        f.write_str(&self.0)
+        write!(f, "[{}]", self.0)
     }
 }
 
-pub fn get_teams() -> anyhow::Result<&'static BTreeMap<TeamName, v1::Team>> {
+pub fn get_team_names() -> anyhow::Result<impl Iterator<Item = &'static TeamName>> {
+    Ok(get_teams()?.keys())
+}
+
+fn get_teams() -> anyhow::Result<&'static BTreeMap<TeamName, v1::Team>> {
     static DATA: OnceLock<anyhow::Result<BTreeMap<TeamName, v1::Team>>> = OnceLock::new();
     DATA.load(|| {
         let teams: v1::Teams = fetch("teams.json")?;
@@ -53,14 +57,25 @@ pub fn get_teams() -> anyhow::Result<&'static BTreeMap<TeamName, v1::Team>> {
 }
 
 pub fn get_team_name(team_name: &str) -> anyhow::Result<Option<&'static TeamName>> {
-    let team_name = TeamName(team_name.to_lowercase());
+    let team_name = TeamName(team_name.to_string());
     Ok(get_teams()?.get_key_value(&team_name).map(|(key, _)| key))
 }
 
 impl TeamName {
     /// Get the data for this team.
-    pub fn data(&'static self) -> &'static v1::Team {
+    pub fn data(&self) -> &'static v1::Team {
         get_teams().unwrap().get(self).unwrap()
+    }
+
+    pub fn url(&self) -> String {
+        if let Some(website) = &self.data().website_data {
+            if let Some(url) = &website.repo {
+                return url.to_string();
+            }
+        }
+
+        // FIXME: do better :)
+        format!("https://www.rust-lang.org/governance/teams")
     }
 }
 

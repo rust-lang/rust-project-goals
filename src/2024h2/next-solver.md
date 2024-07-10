@@ -61,20 +61,20 @@ Add'l implementation work: @compiler-errors
 | Stabilize coherence coherence support |                             |       |
 | ↳ Implementation                      | @lcnr, @compiler-errors   |       |
 | ↳ Standard reviews                    | ![Team][] [types]           |       |
-| ↳ Standard reviews                    | ![Team][] [Rust-Analyzer][] |       |
+| ↳ Standard reviews                    | ![Team][] [[rust-analyzer]][] |       |
 | ↳ Stabilization decision              | ![Team][] [types][]         |       |
-| Support in rust-analyzer              |                             |       |
+| Support in [rust-analyzer]              |                             |       |
 | ↳ Implementation (library side)       | owner and others            |       |
-| ↳ Implementation (rust-analyzer side) | TBD                         |       |
+| ↳ Implementation ([rust-analyzer] side) | TBD                         |       |
 | ↳ Standard reviews                    | ![Team][] [types]           |       |
-| ↳ Standard reviews                    | ![Team][] [Rust-Analyzer][] |       |
+| ↳ Standard reviews                    | ![Team][] [[rust-analyzer]][] |       |
 
 ### Support needed from the project
 
 * [Types Team][types]
     * review design decisions
     * provide technical feedback and suggestion
-* [rust-analyzer team][r-a]
+* [[rust-analyzer] team][r-a]
     * contribute to integration in Rust Analyzer
     * provide technical feedback to the design of the API
 
@@ -93,4 +93,4 @@ See next few steps :3
 *This is a good place to elaborate on your reasoning above -- for example, why did you put the design axioms in the order that you did? It's also a good place to put the answers to any questions that come up during discussion. The expectation is that this FAQ section will grow as the goal is discussed and eventually should contain a complete summary of the points raised along the way.*
 
 [unsoundnesses]: https://github.com/orgs/rust-lang/projects/44
-[Rust-Analyzer]: https://github.com/rust-lang/rust-analyzer
+[[rust-analyzer]]: https://github.com/rust-lang/[rust-analyzer]

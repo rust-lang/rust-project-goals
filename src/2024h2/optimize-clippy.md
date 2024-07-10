@@ -4,7 +4,7 @@
 | Metadata |          |
 | -------- | -------- |
 | Owner(s) | @blyxyas |
-| Teams    | [Clippy] |
+| Teams    | [clippy] |
 | Status   | Proposed |
 
 ## Summary
@@ -53,7 +53,7 @@ A developer shouldn't have to get a high-end machine to run a compiler swiftly; 
 | ------------------ | ------------------- | ----- |
 | Optimization work  |                     |       |
 | ↳ Implementation   | @blyxyas            |       |
-| ↳ Standard reviews | ![Team][] [Clippy]  |       |
+| ↳ Standard reviews | ![Team][] [clippy]  |       |
 
 ### Frequently Asked Questions
 
