@@ -11,7 +11,7 @@ use regex::{Captures, Regex};
 use walkdir::WalkDir;
 
 use crate::goal::{self, format_team_asks, GoalDocument, Status, TeamAsk};
-use crate::team::{self, RustTeamData};
+use crate::team;
 use crate::util::GithubUserInfo;
 
 const LINKS: &str = "links";
@@ -324,28 +324,28 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         // 3. The name from the GitHub API (if available)
         //
         // ...and fallback to just `@foo`.
-        match self.display_names.get(username) {
-            Some(n) => Ok(n.clone()),
-            None => {
-                let display_name = match team::People::get()?.people.get(&username[1..]) {
-                    Some(person) => person.name.clone(),
-                    None => match GithubUserInfo::load(username)
-                        .with_context(|| format!("loading user info for {}", username))
-                    {
-                        Ok(GithubUserInfo { name: Some(n), .. }) => n,
-                        Ok(GithubUserInfo { name: None, .. }) => username.to_string(),
-                        Err(e) => {
-                            eprintln!("{:?}", e);
-                            username.to_string()
-                        }
-                    },
-                };
-                let display_name = Rc::new(display_name);
-                self.display_names
-                    .insert(username.to_string(), display_name.clone());
-                Ok(display_name)
-            }
+
+        if let Some(n) = self.display_names.get(username) {
+            return Ok(n.clone());
         }
+
+        let display_name = match team::get_person_data(username)? {
+            Some(person) => person.name.clone(),
+            None => match GithubUserInfo::load(username)
+                .with_context(|| format!("loading user info for {}", username))
+            {
+                Ok(GithubUserInfo { name: Some(n), .. }) => n,
+                Ok(GithubUserInfo { name: None, .. }) => username.to_string(),
+                Err(e) => {
+                    eprintln!("{:?}", e);
+                    username.to_string()
+                }
+            },
+        };
+        let display_name = Rc::new(display_name);
+        self.display_names
+            .insert(username.to_string(), display_name.clone());
+        Ok(display_name)
     }
 
     fn linkify(&self, chapter: &mut Chapter) -> anyhow::Result<()> {
