@@ -4,7 +4,7 @@
 
 ## Summary
 
-This RFC presents the Rust project goal slate for 2024H2. The slate consists of NN total project goals of which we have selected three as our "flagship goals":
+This RFC presents the Rust project goal slate for 2024H2. The slate consists of <!-- #GOALS --> total project goals of which we have selected three as our "flagship goals":
 
 * Release the Rust 2024 edition (owner: @traviscross)
 * Bringing the Async Rust experience closer to parity with sync Rust (owners: @tmandry, @nikomatsakis)

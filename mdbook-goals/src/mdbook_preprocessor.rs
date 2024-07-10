@@ -37,6 +37,7 @@ impl Preprocessor for GoalPreprocessor {
 pub struct GoalPreprocessorWithContext<'c> {
     team_asks: Regex,
     goal_list: Regex,
+    goal_count: Regex,
     username: Regex,
     ctx: &'c PreprocessorContext,
     links: Vec<(String, String)>,
@@ -115,6 +116,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             ctx,
             team_asks: Regex::new(r"<!-- TEAM ASKS -->")?,
             goal_list: Regex::new(r"<!-- GOALS `(.*)` -->")?,
+            goal_count: Regex::new(r"<!-- #GOALS -->")?,
             username: Regex::new(r"@([-a-zA-Z0-9])+")?,
             links,
             linkifiers,
@@ -128,6 +130,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             BookItem::Chapter(chapter) => {
                 self.replace_team_asks(chapter)?;
                 self.replace_goal_lists(chapter)?;
+                self.replace_goal_count(chapter)?;
                 self.link_users(chapter)?;
                 self.linkify(chapter)?;
                 self.insert_links(chapter)?;
@@ -143,6 +146,30 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
             BookItem::PartTitle(_) => Ok(()),
         }
+    }
+
+    fn replace_goal_count(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        if !self.goal_count.is_match(&chapter.content) {
+            return Ok(());
+        }
+
+        let Some(chapter_path) = &chapter.path else {
+            anyhow::bail!("found `<!-- #GOALS -->` but chapter has no path")
+        };
+
+        let goals = self.goal_documents(chapter_path)?;
+
+        let count = goals
+            .iter()
+            .filter(|g| g.metadata.status != Status::NotAccepted)
+            .count();
+
+        chapter.content = self
+            .goal_count
+            .replace_all(&chapter.content, &count.to_string())
+            .to_string();
+
+        Ok(())
     }
 
     fn replace_goal_lists(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
