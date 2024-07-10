@@ -10,6 +10,7 @@ use regex::{Captures, Regex};
 use walkdir::WalkDir;
 
 use crate::goal::{self, format_team_asks, Status};
+use crate::team::{self, RustTeamData};
 use crate::util::GithubUserInfo;
 
 const LINKS: &str = "links";
@@ -251,14 +252,14 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         for username in &usernames {
             chapter.content = chapter
                 .content
-                .replace(username, &format!("[{}][]", self.display_name(username)));
+                .replace(username, &format!("[{}][]", self.display_name(username)?));
         }
 
         chapter.content.push_str("\n\n");
         for username in &usernames {
             chapter.content.push_str(&format!(
                 "[{}]: https://github.com/{}\n",
-                self.display_name(username),
+                self.display_name(username)?,
                 &username[1..]
             ));
         }
@@ -276,12 +277,21 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         Ok(())
     }
 
-    fn display_name<'a>(&mut self, username: &str) -> Rc<String> {
+    /// Given a username like `@foo`, determine the "display name" we should use.
+    fn display_name<'a>(&mut self, username: &str) -> anyhow::Result<Rc<String>> {
+        // Check (in order of priority)...
+        //
+        // 1. Our cache (pre-populated from the book.toml file)
+        // 2. The name from the Rust teams repo
+        // 3. The name from the GitHub API (if available)
+        //
+        // ...and fallback to just `@foo`.
         match self.display_names.get(username) {
-            Some(n) => n.clone(),
+            Some(n) => Ok(n.clone()),
             None => {
-                let display_name = Rc::new(
-                    match GithubUserInfo::load(username)
+                let display_name = match team::People::get()?.people.get(&username[1..]) {
+                    Some(person) => person.name.clone(),
+                    None => match GithubUserInfo::load(username)
                         .with_context(|| format!("loading user info for {}", username))
                     {
                         Ok(GithubUserInfo { name: Some(n), .. }) => n,
@@ -291,10 +301,11 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                             username.to_string()
                         }
                     },
-                );
+                };
+                let display_name = Rc::new(display_name);
                 self.display_names
                     .insert(username.to_string(), display_name.clone());
-                display_name
+                Ok(display_name)
             }
         }
     }
@@ -311,7 +322,8 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                     href.push('(');
                     c.expand(string, &mut href);
                     href.push(')');
-                    href                })
+                    href
+                })
                 .to_string();
         }
 
