@@ -1,9 +1,10 @@
 use std::{
     fmt::{Display, Write},
-    path::PathBuf,
+    path::{Path, PathBuf},
 };
 
 use disk_persist::DiskPersist;
+use walkdir::WalkDir;
 
 pub const ARROW: &str = "↳";
 
@@ -95,4 +96,29 @@ pub fn commas(iter: impl IntoIterator<Item: Display>) -> String {
         write!(output, "{}", elem).unwrap();
     }
     output
+}
+
+/// Returns all markdown files in `directory_path` as `(absolute, relative)` pairs,
+/// where `relative` is relative to `directory_path`.
+pub fn markdown_files(directory_path: &Path) -> anyhow::Result<Vec<(PathBuf, PathBuf)>> {
+    if !directory_path.is_dir() {
+        anyhow::bail!("`{}` is not a directory", directory_path.display());
+    }
+
+    let mut files = vec![];
+    for entry in WalkDir::new(directory_path) {
+        let entry = entry?;
+
+        if entry.file_type().is_file() && entry.path().extension() == Some("md".as_ref()) {
+            files.push((
+                entry.path().to_path_buf(),
+                entry
+                    .path()
+                    .strip_prefix(directory_path)
+                    .unwrap()
+                    .to_path_buf(),
+            ));
+        }
+    }
+    Ok(files)
 }

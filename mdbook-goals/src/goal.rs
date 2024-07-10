@@ -6,7 +6,7 @@ use std::{collections::BTreeSet, path::PathBuf};
 use regex::Regex;
 
 use crate::team::{self, TeamName};
-use crate::util::commas;
+use crate::util::{commas, markdown_files};
 use crate::{
     markwaydown::{self, Section, Table},
     util::{self, ARROW},
@@ -42,22 +42,33 @@ pub struct Metadata {
 #[derive(Debug)]
 pub struct TeamAsk {
     /// Path to the markdown file containing this ask (appropriate for a link)
-    link_path: Arc<PathBuf>,
+    pub link_path: Arc<PathBuf>,
 
     /// Title of the subgoal (or goal, if there are no subgoals)
-    subgoal: String,
+    pub subgoal: String,
 
     /// What the team is being asked for (e.g., RFC decision)
-    heading: String,
+    pub heading: String,
 
     /// Name(s) of the teams being asked to do the thing
-    teams: Vec<&'static TeamName>,
+    pub teams: Vec<&'static TeamName>,
 
     /// Owners of the subgoal or goal
-    owners: String,
+    pub owners: String,
 
     /// Any notes
-    notes: String,
+    pub notes: String,
+}
+
+/// Load all the goals from a given directory
+pub fn goals_in_dir(directory_path: &Path) -> anyhow::Result<Vec<GoalDocument>> {
+    let mut goal_documents = vec![];
+    for (path, link_path) in markdown_files(&directory_path)? {
+        if let Some(goal_document) = GoalDocument::load(&path, &link_path)? {
+            goal_documents.push(goal_document);
+        }
+    }
+    Ok(goal_documents)
 }
 
 impl GoalDocument {
