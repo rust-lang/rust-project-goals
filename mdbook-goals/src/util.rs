@@ -1,4 +1,7 @@
-use std::{fmt::Write, path::PathBuf};
+use std::{
+    fmt::{Display, Write},
+    path::PathBuf,
+};
 
 use disk_persist::DiskPersist;
 
@@ -81,4 +84,15 @@ impl GithubUserInfo {
             .json()?;
         Ok(response)
     }
+}
+
+pub fn commas(iter: impl IntoIterator<Item: Display>) -> String {
+    let mut output = String::new();
+    for (elem, i) in iter.into_iter().zip(0..) {
+        if i > 0 {
+            write!(output, ", ").unwrap();
+        }
+        write!(output, "{}", elem).unwrap();
+    }
+    output
 }

@@ -3,7 +3,7 @@
 | Metadata |                 |
 | -------- | --------------- |
 | Owner(s) | @oli-obk       |
-| Teams    | [Types], [Lang] |
+| Teams    | [types], [lang] |
 | Status   | Proposed        |
 
 ## Summary
@@ -61,8 +61,8 @@ None.
 | Subgoal                | Owner(s) or team(s)      | Notes |
 | ---------------------- | ------------------------ | ----- |
 | Implementation         | @oli-obk                |       |
-| FCP decisions          | ![Team][] [Types]        |       |
-| Stabilization decision | ![Team][] [Types] [Lang] |       |
+| FCP decisions          | ![Team][] [types]        |       |
+| Stabilization decision | ![Team][] [types] [lang] |       |
 
 ## Frequently asked questions
 

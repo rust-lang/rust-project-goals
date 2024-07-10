@@ -3,7 +3,7 @@
 | Metadata |                 |
 | -------- | --------------- |
 | Owner(s) | @fee1-dead      |
-| Teams    | [Types], [Lang] |
+| Teams    | [types], [lang] |
 | Status   | Proposed        |
 
 ## Summary
@@ -60,7 +60,7 @@ This section defines the specific work items that are planned and who is expecte
 | Subgoal                      | Owner(s) or team(s)                 | Notes |
 | ---------------------------- | ----------------------------------- | ----- |
 | Implementation               | @fee1-dead and project-const-traits |       |
-| Discussion and moral support | ![Team][] [Types] [Lang]            |       |
+| Discussion and moral support | ![Team][] [types] [lang]            |       |
 
 ## Frequently asked questions
 

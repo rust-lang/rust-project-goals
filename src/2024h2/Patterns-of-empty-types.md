@@ -3,7 +3,7 @@
 | Metadata |             |
 | -------- | ----------- |
 | Owner(s) | @Nadrieril |
-| Teams    | [Lang]      |
+| Teams    | [lang]      |
 | Status   | Proposed    |
 
 ## Summary
@@ -98,10 +98,10 @@ already for several months.
 | Author RFC                  | @Nadrieril            |       |
 | Implementation              | @Nadrieril            |       |
 | Standard reviews            | ![Team][] [Compiler] |       |
-| Design meeting              | ![Team][] [Lang]     |       |
-| RFC decision                | ![Team][] [Lang]     |       |
+| Design meeting              | ![Team][] [lang]     |       |
+| RFC decision                | ![Team][] [lang]     |       |
 | Author stabilization report | Goal owner           |       |
-| Stabilization decision      | ![Team][] [Lang]     |       |
+| Stabilization decision      | ![Team][] [lang]     |       |
 
 
 ## Frequently asked questions

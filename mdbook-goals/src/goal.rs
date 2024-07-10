@@ -5,6 +5,8 @@ use std::{collections::BTreeSet, path::PathBuf};
 
 use regex::Regex;
 
+use crate::team::{self, TeamName};
+use crate::util::commas;
 use crate::{
     markwaydown::{self, Section, Table},
     util::{self, ARROW},
@@ -49,7 +51,7 @@ pub struct TeamAsk {
     heading: String,
 
     /// Name(s) of the teams being asked to do the thing
-    teams: Vec<String>,
+    teams: Vec<&'static TeamName>,
 
     /// Owners of the subgoal or goal
     owners: String,
@@ -91,19 +93,20 @@ impl GoalDocument {
 pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> anyhow::Result<String> {
     let mut output = String::new();
 
-    let all_teams: BTreeSet<&String> = asks_of_any_team.iter().flat_map(|a| &a.teams).collect();
+    let all_teams: BTreeSet<&TeamName> = asks_of_any_team
+        .iter()
+        .flat_map(|a| &a.teams)
+        .copied()
+        .collect();
 
-    for team in all_teams {
+    for team_name in all_teams {
         let asks_of_this_team: Vec<_> = asks_of_any_team
             .iter()
-            .filter(|a| a.teams.contains(team))
+            .filter(|a| a.teams.contains(&team_name))
             .collect();
 
-        if team != "LC" {
-            write!(output, "\n### {} team\n", team)?;
-        } else {
-            write!(output, "\n### Leadership Council\n")?;
-        }
+        let team_data = team_name.data();
+        write!(output, "\n### {} team\n", team_data.name)?;
 
         let subgoals: BTreeSet<&String> = asks_of_this_team.iter().map(|a| &a.subgoal).collect();
 
@@ -148,12 +151,17 @@ pub fn format_goal_table(goals: &[&GoalDocument]) -> anyhow::Result<String> {
     ]];
 
     for goal in goals {
-        let teams: BTreeSet<&String> = goal.team_asks.iter().flat_map(|ask| &ask.teams).collect();
-        let teams: Vec<String> = teams.into_iter().cloned().collect();
+        let teams: BTreeSet<&TeamName> = goal
+            .team_asks
+            .iter()
+            .flat_map(|ask| &ask.teams)
+            .copied()
+            .collect();
+        let teams: Vec<&TeamName> = teams.into_iter().collect();
         table.push(vec![
             format!("[{}]({})", goal.metadata.title, goal.link_path.display()),
             goal.metadata.owners.clone(),
-            teams.join(", "),
+            commas(&teams),
         ]);
     }
 
@@ -187,11 +195,7 @@ impl TryFrom<&str> for Status {
                 anyhow::anyhow!(
                     "unrecognized status `{}`, expected one of: {}",
                     value,
-                    status_values
-                        .iter()
-                        .map(|pair| pair.0)
-                        .collect::<Vec<_>>()
-                        .join(", ")
+                    commas(status_values.iter().map(|pair| pair.0))
                 )
             })
     }
@@ -291,7 +295,18 @@ fn extract_team_asks<'i>(
             continue;
         }
 
-        let teams = extract_teams(&row[1]);
+        let mut teams = vec![];
+        for team_name in extract_team_names(&row[1]) {
+            let Some(team) = team::get_team_name(&team_name)? else {
+                anyhow::bail!(
+                    "no Rust team named `{}` found (valid names are {})",
+                    team_name,
+                    commas(team::get_teams()?.keys()),
+                );
+            };
+
+            teams.push(team);
+        }
 
         tasks.push(TeamAsk {
             link_path: link_path.clone(),
@@ -323,7 +338,7 @@ fn expect_headers(table: &Table, expected: &[&str]) -> anyhow::Result<()> {
     Ok(())
 }
 
-fn extract_teams(s: &str) -> Vec<String> {
+fn extract_team_names(s: &str) -> Vec<String> {
     extract_identifiers(s)
         .into_iter()
         .filter(|&s| s != "Team")

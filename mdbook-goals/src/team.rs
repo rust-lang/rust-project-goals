@@ -31,10 +31,38 @@ pub fn get_person_data(username: &str) -> anyhow::Result<Option<&'static v1::Per
     Ok(people.get(&username[1..].to_lowercase()))
 }
 
-// pub fn get_teams() -> anyhow::Result<&'static v1::Teams> {
-//     static DATA: OnceLock<anyhow::Result<v1::Teams>> = OnceLock::new();
-//     DATA.load(|| fetch("teams.json"))
-// }
+#[derive(Debug, PartialOrd, Ord, PartialEq, Eq)]
+pub struct TeamName(String);
+
+impl std::fmt::Display for TeamName {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(&self.0)
+    }
+}
+
+pub fn get_teams() -> anyhow::Result<&'static BTreeMap<TeamName, v1::Team>> {
+    static DATA: OnceLock<anyhow::Result<BTreeMap<TeamName, v1::Team>>> = OnceLock::new();
+    DATA.load(|| {
+        let teams: v1::Teams = fetch("teams.json")?;
+        Ok(teams
+            .teams
+            .into_iter()
+            .map(|(team_name, value)| (TeamName(team_name.to_lowercase()), value))
+            .collect())
+    })
+}
+
+pub fn get_team_name(team_name: &str) -> anyhow::Result<Option<&'static TeamName>> {
+    let team_name = TeamName(team_name.to_lowercase());
+    Ok(get_teams()?.get_key_value(&team_name).map(|(key, _)| key))
+}
+
+impl TeamName {
+    /// Get the data for this team.
+    pub fn data(&'static self) -> &'static v1::Team {
+        get_teams().unwrap().get(self).unwrap()
+    }
+}
 
 fn fetch<T>(path: &str) -> anyhow::Result<T>
 where

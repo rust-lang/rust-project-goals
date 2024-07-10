@@ -3,7 +3,7 @@
 | Metadata |                            |
 | -------- | -------------------------- |
 | Owner(s) | @pnkfelix                  |
-| Teams    | [Lang], [Libs], [Compiler] |
+| Teams    | [lang], [Libs], [Compiler] |
 | Status   | Not accepted               |
 
 ## Motivation

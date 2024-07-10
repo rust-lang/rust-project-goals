@@ -3,7 +3,7 @@
 | Metadata |          |
 | -------- | -------- |
 | Owner(s) | @lqd     |
-| Teams    | [Types]  |
+| Teams    | [types]  |
 | Status   | Proposed |
 
 ## Summary
@@ -42,7 +42,7 @@ Other support provided by @amandasystems as part of her PhD.
 | ---------------- | -------------------- | -------------- |
 | Design review    | @nikomatsakis        |                |
 | Implementation   | @lqd, @amandasystems |                |
-| Standard reviews | ![Team][] [Types]    | @matthewjasper |
+| Standard reviews | ![Team][] [types]    | @matthewjasper |
 
 ### Support needed from the project
 

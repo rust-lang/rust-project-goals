@@ -3,7 +3,7 @@
 | Metadata |              |
 | -------- | ------------ |
 | Owner(s) | @jkelleyrtp  |
-| Teams    | [Lang]       |
+| Teams    | [lang]       |
 | Status   | Not accepted |
 
 ## Motivation
