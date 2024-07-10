@@ -1014,6 +1014,7 @@ checksum = "168fb715dda47215e360912c096649d23d58bf392ac62f73919e831745e40f26"
 dependencies = [
  "equivalent",
  "hashbrown",
+ "serde",
 ]
 
 [[package]]
@@ -1208,6 +1209,7 @@ dependencies = [
  "mdbook",
  "regex",
  "reqwest",
+ "rust_team_data",
  "semver",
  "serde",
  "serde_json",
@@ -1802,6 +1804,15 @@ dependencies = [
  "spin",
  "untrusted",
  "windows-sys 0.52.0",
+]
+
+[[package]]
+name = "rust_team_data"
+version = "1.0.0"
+source = "git+https://github.com/rust-lang/team#47ecb267958eb24e53458f3b5793627cb045260f"
+dependencies = [
+ "indexmap",
+ "serde",
 ]
 
 [[package]]

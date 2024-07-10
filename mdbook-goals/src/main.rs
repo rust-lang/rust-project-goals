@@ -8,6 +8,7 @@ use structopt::StructOpt;
 mod goal;
 mod markwaydown;
 mod mdbook_preprocessor;
+mod team;
 mod util;
 
 #[derive(StructOpt, Debug)]
