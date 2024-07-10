@@ -3,6 +3,7 @@ use std::path::Path;
 use std::sync::Arc;
 use std::{collections::BTreeSet, path::PathBuf};
 
+use anyhow::Context;
 use regex::Regex;
 
 use crate::team::{self, TeamName};
@@ -64,7 +65,9 @@ pub struct TeamAsk {
 pub fn goals_in_dir(directory_path: &Path) -> anyhow::Result<Vec<GoalDocument>> {
     let mut goal_documents = vec![];
     for (path, link_path) in markdown_files(&directory_path)? {
-        if let Some(goal_document) = GoalDocument::load(&path, &link_path)? {
+        if let Some(goal_document) = GoalDocument::load(&path, &link_path)
+            .with_context(|| format!("loading goal from `{}`", path.display()))?
+        {
             goal_documents.push(goal_document);
         }
     }
@@ -72,7 +75,7 @@ pub fn goals_in_dir(directory_path: &Path) -> anyhow::Result<Vec<GoalDocument>> 
 }
 
 impl GoalDocument {
-    pub fn load(path: &Path, link_path: &Path) -> anyhow::Result<Option<Self>> {
+    fn load(path: &Path, link_path: &Path) -> anyhow::Result<Option<Self>> {
         let sections = markwaydown::parse(path)?;
 
         let Some(metadata) = extract_metadata(&sections)? else {
@@ -317,6 +320,10 @@ fn extract_team_asks<'i>(
             };
 
             teams.push(team);
+        }
+
+        if teams.is_empty() {
+            anyhow::bail!("team ask for \"{subgoal}\" does not list any teams");
         }
 
         tasks.push(TeamAsk {

@@ -2,8 +2,8 @@
 
 | Metadata |          |
 | -------- | -------- |
-| Owner(s) | @eh2406   |
-| Teams    | [cargo]    |
+| Owner(s) | @eh2406  |
+| Teams    | [cargo]  |
 | Status   | Proposed |
 
 ## Summary
@@ -46,7 +46,7 @@ Integrating the new resolver into Cargo and reaching the shiny future will requi
 | Subgoal                                | Owner(s) or team(s) | Notes |
 | -------------------------------------- | ------------------- | ----- |
 | Implementation work on pubgrub library | eh2046              |       |
-| Discussion and moral support           | ![Team]             |       |
+| Discussion and moral support           | ![Team] [cargo]     |       |
 
 ### Outputs
 
