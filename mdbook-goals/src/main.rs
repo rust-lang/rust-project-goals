@@ -1,8 +1,10 @@
 use mdbook::preprocess::{CmdPreprocessor, Preprocessor};
 use mdbook_preprocessor::GoalPreprocessor;
+use regex::Regex;
 use semver::{Version, VersionReq};
 use std::{io, path::PathBuf};
 use structopt::StructOpt;
+use walkdir::WalkDir;
 
 mod fcp;
 mod goal;
@@ -24,6 +26,8 @@ enum Command {
     Supports { renderer: String },
 
     FCP { path: PathBuf },
+
+    Check {},
 }
 
 fn main() -> anyhow::Result<()> {
@@ -36,6 +40,10 @@ fn main() -> anyhow::Result<()> {
 
         Some(Command::FCP { path }) => {
             fcp::generate_comment(&path)?;
+        }
+
+        Some(Command::Check {}) => {
+            check()?;
         }
 
         None => {
@@ -77,6 +85,31 @@ fn handle_preprocessing(pre: &dyn Preprocessor) -> anyhow::Result<()> {
 
     let processed_book = pre.run(&ctx, book)?;
     serde_json::to_writer(io::stdout(), &processed_book)?;
+
+    Ok(())
+}
+
+fn check() -> anyhow::Result<()> {
+    // Look for all directories like `2024h2` or `2025h1` and load goals from those directories.
+    let regex = Regex::new(r"\d\d\d\dh[12]")?;
+
+    for entry in WalkDir::new("src") {
+        let entry = entry?;
+
+        if !entry.file_type().is_dir() {
+            continue;
+        }
+
+        let Some(name) = entry.file_name().to_str() else {
+            continue;
+        };
+
+        if !regex.is_match(name) {
+            continue;
+        }
+
+        let _goals = goal::goals_in_dir(entry.path())?;
+    }
 
     Ok(())
 }
