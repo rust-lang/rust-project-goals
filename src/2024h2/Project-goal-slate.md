@@ -3,7 +3,7 @@
 | Metadata |               |
 | -------- | ------------- |
 | Owner(s) | @nikomatsakis |
-| Teams    | [Leadership-Council]          |
+| Teams    | [leadership-council]          |
 | Status   | Proposed      |
 
 *Extracted from [RFC 3614](https://github.com/rust-lang/rfcs/blob/master/text/3614-project-goals.md)*
@@ -73,9 +73,9 @@ More concretely, assuming this goal program is successful, we would like to begi
 
 | Subgoal                                    | Owner(s) or team(s) | Notes                                                                                     |
 | ------------------------------------------ | ------------------- | ----------------------------------------------------------------------------------------- |
-| RFC decision                               | ![Team][] [Leadership-Council]      | ![Complete][]                                                                             |
-| Inside Rust blog post inviting feedback    | ![Team][] [Leadership-Council]      | [Posted](https://blog.rust-lang.org/inside-rust/2024/05/07/announcing-project-goals.html) |
-| Top-level Rust blog post announcing result | ![Team][] [Leadership-Council]      |                                                                                           |
+| RFC decision                               | ![Team][] [leadership-council]      | ![Complete][]                                                                             |
+| Inside Rust blog post inviting feedback    | ![Team][] [leadership-council]      | [Posted](https://blog.rust-lang.org/inside-rust/2024/05/07/announcing-project-goals.html) |
+| Top-level Rust blog post announcing result | ![Team][] [leadership-council]      |                                                                                           |
 
 ### Support needed from the project
 

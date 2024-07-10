@@ -3,7 +3,7 @@
 | Metadata |                      |
 | -------- | -------------------- |
 | Owner(s) | @hi-rustin          |
-| Teams    | [crates-io], [Cargo] |
+| Teams    | [crates-io], [cargo] |
 | Status   | Proposed             |
 
 ## Summary
@@ -54,10 +54,10 @@ When considering this feature, we need to balance our desire for a perfect, stru
 | ↳ Standard reviews                                          | ![Team][] [crates-io]          |       |
 | ↳ Try it out in crates.io                                   | ![Team][] [crates-io]          |       |
 | ↳ Author RFC                                                | @hi-rustin                    |       |
-| ↳ Approve RFC                                               | ![Team][] [Cargo], [crates-io] |       |
+| ↳ Approve RFC                                               | ![Team][] [cargo], [crates-io] |       |
 | ↳ Implementation in Cargo side                              | @hi-rustin                    |       |
 | ↳ Inside Rust blog post inviting feedback                   | @hi-rustin                    |       |
-| ↳ Stabilization decision                                    | ![Team][] [Cargo]              |       |
+| ↳ Stabilization decision                                    | ![Team][] [cargo]              |       |
 
 [TBD]: https://img.shields.io/badge/TBD-red
 [Team]: https://img.shields.io/badge/Team%20ask-red

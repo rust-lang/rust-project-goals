@@ -3,7 +3,7 @@
 | Metadata |                    |
 | -------- | ------------------ |
 | Owner(s) | @ZuseZ4            |
-| Teams    | [lang], [Compiler] |
+| Teams    | [lang], [compiler] |
 | Status   | Proposed           |
 
 ## Summary
@@ -74,7 +74,7 @@ Minimal "smoke test" reviews will be needed from the compiler-team. The Rust lan
 | -------------------- | ---------------------- | ---------- |
 | Development          | @ZuseZ4                |            |
 | Lang-team experiment | ![Team][] [lang][]     | (approved) |
-| Standard reviews     | ![Team][] [Compiler][] |            |
+| Standard reviews     | ![Team][] [compiler][] |            |
 
 [Team]: https://img.shields.io/badge/Team%20ask-red
 

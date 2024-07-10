@@ -52,7 +52,7 @@ The "Edition Axioms" were [laid out in RFC #3085](https://rust-lang.github.io/rf
 | Subgoal                  | Owner(s) or team(s)      | Notes |
 | ------------------------ | ------------------------ | ----- |
 | Stabilization decision   | ![Team][] [lang] [types] |       |
-| Top-level Rust blog post | ![Team][] [Leadership-Council]           |       |
+| Top-level Rust blog post | ![Team][] [leadership-council]           |       |
 
 ## Outputs and milestones
 

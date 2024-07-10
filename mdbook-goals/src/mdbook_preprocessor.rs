@@ -131,6 +131,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 self.replace_team_asks(chapter)?;
                 self.replace_goal_lists(chapter)?;
                 self.replace_goal_count(chapter)?;
+                self.link_teams(chapter)?;
                 self.link_users(chapter)?;
                 self.linkify(chapter)?;
                 self.insert_links(chapter)?;
@@ -365,6 +366,14 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 .to_string();
         }
 
+        Ok(())
+    }
+
+    fn link_teams(&self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        chapter.content.push_str("\n\n");
+        for team in team::get_team_names()? {
+            chapter.content.push_str(&format!("{team}: {}\n", team.url()));
+        }
         Ok(())
     }
 }

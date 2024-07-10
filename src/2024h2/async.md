@@ -4,7 +4,7 @@
 | ----------- | -------------------------- |
 | Short title | Async                      |
 | Owner(s)    | @tmandry, @nikomatsakis    |
-| Teams       | [lang], [Libs], [Libs-API] |
+| Teams       | [lang], [libs], [libs-api] |
 | Status      | Flagship                   |
 
 ## Summary
@@ -49,7 +49,7 @@ Based on the above analysis, the Rust org has been focused on driving async/sync
 
 #### The need for an aligned, high judgment group of async experts
 
-Progress on async-related issues within the Rust org has been slowed due to lack of coherence around a vision and clear steps. General purpose teams such as [lang][] and [Libs-API][] have a hard time determining how to respond to, e.g., particular async stabilization requests, as they lack a means to judge whether any given decision is really the right step forward. Theoretically, the async working group could play this role, but it has not really been structured with this purpose in mind. For example, the [criteria for membership](https://rust-lang.github.io/wg-async/CHARTER.html#membership-requirements) is loose and the group would benefit from more representation from async ecosystem projects. This is an example of a larger piece of Rust "organizational debt", where the term "working group" has been used for many different purposes over the years.
+Progress on async-related issues within the Rust org has been slowed due to lack of coherence around a vision and clear steps. General purpose teams such as [lang][] and [libs-api][] have a hard time determining how to respond to, e.g., particular async stabilization requests, as they lack a means to judge whether any given decision is really the right step forward. Theoretically, the async working group could play this role, but it has not really been structured with this purpose in mind. For example, the [criteria for membership](https://rust-lang.github.io/wg-async/CHARTER.html#membership-requirements) is loose and the group would benefit from more representation from async ecosystem projects. This is an example of a larger piece of Rust "organizational debt", where the term "working group" has been used for many different purposes over the years.
 
 ### The next six months
 
@@ -76,9 +76,9 @@ Despite its limitations, the async working group serves several important functi
 
 * It provides a forum for discussion around async-related topics, including the `#async-wg` zulip stream as well as regular sync meetings. These forums don't necessarily get participation by the full set of voices that we would like, however.
 * It owns async-related repositories, such as the sources for the [async Rust book](https://rust-lang.github.io/async-book/) (in dire need of improvement), [arewewebyet](https://www.arewewebyet.org/), and the [futures-rs](https://rust-lang.github.io/futures-rs/) crate. Maintenance of these sites has varied though and often been done by a few individuals acting largely independently.
-* It advises the more general teams (typically [lang][] and [Libs-API][]) on async-related matters. The authoring of the (mildly dated) [async vision doc](https://rust-lang.github.io/wg-async/vision/) took place under the auspices of the working group, for example. However, the group lacks decision making power and doesn't have a strong incentive to coallesce behind a shared vision, so it remains more a "set of individual voices" that does not provide the general purpose teams with clear guidance.
+* It advises the more general teams (typically [lang][] and [libs-api][]) on async-related matters. The authoring of the (mildly dated) [async vision doc](https://rust-lang.github.io/wg-async/vision/) took place under the auspices of the working group, for example. However, the group lacks decision making power and doesn't have a strong incentive to coallesce behind a shared vision, so it remains more a "set of individual voices" that does not provide the general purpose teams with clear guidance.
 
-We plan to propose one or more permanent teams to meet these same set of needs. The expectation is that these will be subteams under the [lang] and [Libs] top-level teams.
+We plan to propose one or more permanent teams to meet these same set of needs. The expectation is that these will be subteams under the [lang] and [libs] top-level teams.
 
 #### Stabilize async closures
 
@@ -177,7 +177,7 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | ↳ Stabilization            | ![Team][] [lang]         |                     |
 | Async WG reorganization    | @nikomatsakis            |                     |
 | ↳ Author proposal          |                          |                     |
-| ↳ Org decision             | ![Team][] [Libs], [lang] |                     |
+| ↳ Org decision             | ![Team][] [libs], [lang] |                     |
 | Async closures             | @compiler-errors         |                     |
 | ↳ ~~implementation~~       |                          | ![Complete][]       |
 | ↳ Author RFC               |                          |                     |
@@ -185,14 +185,14 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | ↳ Stabilization            |                          |                     |
 | Trait for async iteration  | @eholk                   |                     |
 | ↳ Author RFC               |                          |                     |
-| ↳ RFC decision             | ![Team][] [Libs-API]     |                     |
+| ↳ RFC decision             | ![Team][] [libs-api]     |                     |
 | ↳ Secondary RFC review     | ![Team][] [lang]         |                     |
 | ↳ Implementation           |                          |                     |
 | Async drop experiments     | @petrochenkov            |                     |
 | ↳ ~~author MCP~~           |                          | ![Complete][]       |
-| ↳ ~~MCP decision~~         | ~~[Compiler]~~           | ![Complete][]       |
+| ↳ ~~MCP decision~~         | ~~[compiler]~~           | ![Complete][]       |
 | ↳ Implementation work      |                          | ![Not funded][] (*) |
-| ↳ Standard reviews         | ![Team][] [Compiler]     |                     |
+| ↳ Standard reviews         | ![Team][] [compiler]     |                     |
 
 (*) Implementation work on async drop experiments is currently unfunded. We are trying to figure out next steps.
 
@@ -203,7 +203,7 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 
 ### Support needed from the project
 
-Agreement from [lang][], [Libs][] [Libs-API][] to prioritize the items marked ![Team][] in the table above.
+Agreement from [lang][], [libs][] [libs-api][] to prioritize the items marked ![Team][] in the table above.
 
 The expectation is that
 

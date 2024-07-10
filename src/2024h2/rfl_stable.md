@@ -4,7 +4,7 @@
 | ----------- | ------------------------------ |
 | Short title | Rust-for-Linux                 |
 | Owner(s)    | @nikomatsakis, @joshtriplett   |
-| Teams       | [lang], [Libs-API], [Compiler] |
+| Teams       | [lang], [libs-api], [compiler] |
 | Status      | Flagship                       |
 
 ## Summary
@@ -143,7 +143,7 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | ↳ ~~author RFC~~                   |                              | ![Complete][] [RFC #3519] |
 | ↳ ~~RFC decision~~                 | ~~[lang]~~                   | ![Complete][]             |
 | ↳ Implementation                   |                              |                           |
-| ↳ Standard reviews                 | ![Team] [Compiler]           |                           |
+| ↳ Standard reviews                 | ![Team] [compiler]           |                           |
 | ↳ Stabilization decision           | ![Team] [lang]               |                           |
 | Derive smart pointer               | @Darksonn                    |                           |
 | ↳ ~~author RFC~~                   |                              | [RFC #3621]               |
@@ -159,11 +159,11 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | ↳ Stabilization decision           | ![Team][] [lang]             |                           |
 | Extended `offset_of` syntax        | @dingxiangfei2009            |                           |
 | ↳ Stabilization report             |                              |                           |
-| ↳ Stabilization decision           | ![Team][] [Libs-API]         |                           |
+| ↳ Stabilization decision           | ![Team][] [libs-api]         |                           |
 | ~~RFL on Rust CI~~                 | @Kobzol                      |                           |
 | ↳ ~~implementation~~               |                              | ![Complete][] [#125209]   |
 | ↳ Policy draft                     |                              |                           |
-| ↳ Policy decision                  | ![Team][] [Compiler]         |                           |
+| ↳ Policy decision                  | ![Team][] [compiler]         |                           |
 | Pointers to static in constants    | @nikomatsakis                |                           |
 | ↳ Stabilization report             |                              |                           |
 | ↳ Stabilization decision           | ![Team][] [lang]             |                           |

@@ -97,7 +97,7 @@ already for several months.
 | --------------------------- | -------------------- | ----- |
 | Author RFC                  | @Nadrieril            |       |
 | Implementation              | @Nadrieril            |       |
-| Standard reviews            | ![Team][] [Compiler] |       |
+| Standard reviews            | ![Team][] [compiler] |       |
 | Design meeting              | ![Team][] [lang]     |       |
 | RFC decision                | ![Team][] [lang]     |       |
 | Author stabilization report | Goal owner           |       |

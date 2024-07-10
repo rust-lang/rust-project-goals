@@ -3,7 +3,7 @@
 | Metadata |                 |
 | -------- | --------------- |
 | Owner(s) | @GuillaumeGomez |
-| Teams    | [Rustdoc]       |
+| Teams    | [rustdoc]       |
 | Status   | Proposed        |
 
 @GuillaumeGomez: https://github.com/GuillaumeGomez
@@ -36,8 +36,8 @@ N/A
 | Subgoal          | Owner(s) or team(s) | Notes |
 | ---------------- | ------------------- | ----- |
 | Implementation   | @GuillaumeGomez     |       |
-| RFC decision     | ![Team][] [Rustdoc] |       |
-| Standard reviews | ![Team][] [Rustdoc] |       |
+| RFC decision     | ![Team][] [rustdoc] |       |
+| Standard reviews | ![Team][] [rustdoc] |       |
 
 ## Outputs and milestones
 

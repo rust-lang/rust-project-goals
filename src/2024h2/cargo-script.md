@@ -3,7 +3,7 @@
 | Metadata |                 |
 | -------- | --------------- |
 | Owner(s) | @epage          |
-| Teams    | [Cargo], [lang] |
+| Teams    | [cargo], [lang] |
 | Status   | Proposed        |
 
 ## Summary
@@ -69,4 +69,4 @@ This section defines the specific work items that are planned and who is expecte
 | Subgoal                | Owner(s) or team(s)      | Notes |
 | ---------------------- | ------------------------ | ----- |
 | Implementation         | @epage                   |       |
-| Stabilization decision | ![Team][] [lang] [Cargo] |       |
+| Stabilization decision | ![Team][] [lang] [cargo] |       |
