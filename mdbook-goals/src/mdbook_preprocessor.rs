@@ -1,6 +1,7 @@
 use std::collections::{BTreeMap, BTreeSet};
 use std::path::{Path, PathBuf};
 use std::rc::Rc;
+use std::sync::Arc;
 
 use anyhow::Context;
 use mdbook::book::{Book, Chapter};
@@ -9,7 +10,7 @@ use mdbook::BookItem;
 use regex::{Captures, Regex};
 use walkdir::WalkDir;
 
-use crate::goal::{self, format_team_asks, Status};
+use crate::goal::{self, format_team_asks, GoalDocument, Status, TeamAsk};
 use crate::team::{self, RustTeamData};
 use crate::util::GithubUserInfo;
 
@@ -41,6 +42,7 @@ pub struct GoalPreprocessorWithContext<'c> {
     links: Vec<(String, String)>,
     linkifiers: Vec<(Regex, String)>,
     display_names: BTreeMap<String, Rc<String>>,
+    goal_document_map: BTreeMap<PathBuf, Arc<Vec<GoalDocument>>>,
 }
 
 impl<'c> GoalPreprocessorWithContext<'c> {
@@ -117,6 +119,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             links,
             linkifiers,
             display_names,
+            goal_document_map: Default::default(),
         })
     }
 
@@ -149,37 +152,31 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         let range = m.get(0).unwrap().range();
         let status = Status::try_from(&m[1])?;
 
-        let Some(path) = &chapter.path else {
+        let Some(chapter_path) = &chapter.path else {
             anyhow::bail!("found `<!-- GOALS -->` but chapter has no path")
         };
 
         // Extract out the list of goals with the given status.
-        let mut goals = vec![];
-        for (input, link_path) in self.markdown_files(path)? {
-            let opt_metadata = goal::metadata_in_input(&input)
-                .with_context(|| format!("extracting metadata from `{}`", input.display()))?;
+        let goals = self.goal_documents(chapter_path)?;
+        let goals_with_status: Vec<&GoalDocument> = goals
+            .iter()
+            .filter(|g| g.metadata.status == status)
+            .collect();
 
-            if let Some(metadata) = opt_metadata {
-                if metadata.status == status {
-                    goals.push((metadata, input, link_path));
-                }
-            }
-        }
-
-        //
-        let output = goal::format_goal_table(&goals)?;
+        // Format the list of goals and replace the `<!-- -->` comment with that.
+        let output = goal::format_goal_table(&goals_with_status)?;
         chapter.content.replace_range(range, &output);
 
         // Populate with children if this is not README
-        if path.file_stem() != Some("README".as_ref()) {
+        if chapter_path.file_stem() != Some("README".as_ref()) {
             let mut parent_names = chapter.parent_names.clone();
             parent_names.push(chapter.name.clone());
-            for ((metadata, input, _link_path), index) in goals.iter().zip(0..) {
-                let path = input.strip_prefix(&self.ctx.config.book.src).unwrap();
-                let content = std::fs::read_to_string(input)
-                    .with_context(|| format!("reading `{}`", input.display()))?;
+            for (goal, index) in goals.iter().zip(0..) {
+                let content = std::fs::read_to_string(&goal.path)
+                    .with_context(|| format!("reading `{}`", goal.path.display()))?;
+                let path = goal.path.strip_prefix(&self.ctx.config.book.src).unwrap();
                 let mut new_chapter =
-                    Chapter::new(&metadata.title, content, path, parent_names.clone());
+                    Chapter::new(&goal.metadata.title, content, path, parent_names.clone());
 
                 if let Some(mut number) = chapter.number.clone() {
                     number.0.push(index + 1);
@@ -204,20 +201,34 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             anyhow::bail!("found `<!-- TEAM ASKS -->` but chapter has no path")
         };
 
-        let mut asks_of_any_team = vec![];
-        let markdown_files = self.markdown_files(path)?;
-        for (input, link_path) in &markdown_files {
-            asks_of_any_team.extend(
-                goal::team_asks_in_input(input, link_path)
-                    .with_context(|| format!("extracting asks from `{}`", input.display()))?,
-            );
-        }
-
+        let goals = self.goal_documents(path)?;
+        let asks_of_any_team: Vec<&TeamAsk> = goals
+            .iter()
+            .filter(|g| g.metadata.status != Status::NotAccepted)
+            .flat_map(|g| &g.team_asks)
+            .collect();
         let format_team_asks = format_team_asks(&asks_of_any_team)?;
-
         chapter.content.replace_range(range, &format_team_asks);
 
         Ok(())
+    }
+
+    fn goal_documents(&mut self, chapter_path: &Path) -> anyhow::Result<Arc<Vec<GoalDocument>>> {
+        // let chapter_path = self.ctx.config.book.src.join(chapter_path);
+
+        if let Some(goals) = self.goal_document_map.get(chapter_path) {
+            return Ok(goals.clone());
+        }
+        let mut goal_documents = vec![];
+        for (path, link_path) in self.markdown_files(&chapter_path)? {
+            if let Some(goal_document) = GoalDocument::load(&path, &link_path)? {
+                goal_documents.push(goal_document);
+            }
+        }
+        let goals = Arc::new(goal_documents);
+        self.goal_document_map
+            .insert(chapter_path.to_path_buf(), goals.clone());
+        Ok(goals)
     }
 
     fn markdown_files(&mut self, chapter_path: &Path) -> anyhow::Result<Vec<(PathBuf, PathBuf)>> {

@@ -1,8 +1,7 @@
-use anyhow::Context as _;
 use mdbook::preprocess::{CmdPreprocessor, Preprocessor};
 use mdbook_preprocessor::GoalPreprocessor;
 use semver::{Version, VersionReq};
-use std::{io, path::PathBuf};
+use std::io;
 use structopt::StructOpt;
 
 mod goal;
@@ -21,32 +20,13 @@ struct Opt {
 #[derive(StructOpt, Debug)]
 #[allow(dead_code)]
 enum Command {
-    CollateTeamAsks {
-        /// The markdown files to process
-        inputs: Vec<PathBuf>,
-    },
-
-    Supports {
-        renderer: String,
-    },
+    Supports { renderer: String },
 }
 
 fn main() -> anyhow::Result<()> {
     let opt = Opt::from_args();
 
     match &opt.cmd {
-        Some(Command::CollateTeamAsks { inputs }) => {
-            let mut all_team_asks = vec![];
-            for input in inputs {
-                all_team_asks.extend(
-                    goal::team_asks_in_input(input, input)
-                        .with_context(|| format!("parsing `{}` as markdown", input.display()))?,
-                );
-            }
-
-            println!("{}", goal::format_team_asks(&all_team_asks)?);
-        }
-
         Some(Command::Supports { renderer }) => {
             handle_supports(&GoalPreprocessor, renderer)?;
         }
