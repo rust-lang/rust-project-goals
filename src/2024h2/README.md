@@ -1,16 +1,21 @@
-# The 2024H2 goal slate
+> *![Status: Under consideration](https://img.shields.io/badge/Status-Under%20consideration-yellow) This RFC has been opened on the RFC repo as [RFC #3672].*
 
-> *![Status: Experimental](https://img.shields.io/badge/Status-Experimental-yellow) This document is a draft. The reasoning and [goal slate](./slate.md) are still evolving. If you have thoughts or suggestions, please reach out to @nikomatsakis on the [#project-goals-2024h2](https://rust-lang.zulipchat.com/#narrow/stream/435869-project-goals-2024h2) Zulip stream.*
+- Feature Name: N/A
+- Start Date: 2024-07-09
+- RFC PR: [rust-lang/rfcs#0000](https://github.com/rust-lang/rfcs/pull/0000)
+- Rust Issue: N/A
 
 ## Summary
 
-This RFC presents the Rust project goal slate for 2024H2. The slate consists of <!-- #GOALS --> total project goals of which we have selected three as our "flagship goals":
+This RFC presents the Rust project goal slate for 2024H2. The slate consists of 24 total project goals of which we have selected 3 as our "flagship goals":
 
 * Release the Rust 2024 edition (owner: @traviscross)
 * Bringing the Async Rust experience closer to parity with sync Rust (owners: @tmandry, @nikomatsakis)
 * Resolving the biggest blockers to Linux building on stable Rust (owners: @joshtriplett, @nikomatsakis)
 
-Flagship goals represent the goals expected to have the broadest overall impact. 
+Flagship goals represent the goals expected to have the broadest overall impact.
+
+**This RFC follows an [unusual ratification procedure](https://rust-lang.zulipchat.com/#narrow/stream/435869-project-goals-2024h2/topic/Procedural.20next.20steps.20and.20timeline). Team leads are asked to review the [list of asks for their team](#reference-level-explanation) and confirm that their team is aligned. Leads should feel free to consult with team members and to raise concerns on their behalf. Once all team leads have signed off, the RFC will enter FCP.**
 
 ## Motivation
 
