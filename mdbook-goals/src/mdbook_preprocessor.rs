@@ -48,7 +48,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         // particular config value
         let mut links: Vec<(String, String)> = Default::default();
         let mut linkifiers = Default::default();
-        let mut display_names = Default::default();
+        let mut display_names: BTreeMap<String, Rc<String>> = Default::default();
         if let Some(config) = ctx.config.get_preprocessor(GoalPreprocessor.name()) {
             if let Some(value) = config.get(LINKS) {
                 links = value
@@ -306,15 +306,12 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                     // we add `[]` around it
                     assert!(c[0].starts_with("[") && c[0].ends_with("]"));
 
-                    eprintln!("c[0] = {}", &c[0]);
-
                     let mut href = String::new();
                     href.push_str(&c[0]);
                     href.push('(');
                     c.expand(string, &mut href);
                     href.push(')');
-                    dbg!(href)
-                })
+                    href                })
                 .to_string();
         }
 
