@@ -1,4 +1,6 @@
-use std::fmt::Write;
+use std::{fmt::Write, path::PathBuf};
+
+use disk_persist::DiskPersist;
 
 pub const ARROW: &str = "↳";
 
@@ -45,13 +47,30 @@ pub fn format_table(rows: &[Vec<String>]) -> String {
     output
 }
 
-#[derive(serde::Deserialize, Debug)]
+#[derive(serde::Serialize, serde::Deserialize, Debug)]
 pub struct GithubUserInfo {
     pub name: Option<String>,
 }
 
 impl GithubUserInfo {
-    pub fn load(login: &str) -> Result<Self, reqwest::Error> {
+    pub fn load(login: &str) -> anyhow::Result<Self> {
+        let path = PathBuf::from("gh-cache").join(format!("{}.bincode", login));
+        let persist = DiskPersist::init_with_path(&path)?;
+        if let Some(info) = persist.read()? {
+            Ok(info)
+        } else {
+            let info = Self::github_request(login)?;
+            persist.write(&info)?;
+            eprintln!(
+                "cached info for `{}` from github in `{}`",
+                login,
+                path.display()
+            );
+            Ok(info)
+        }
+    }
+
+    fn github_request(login: &str) -> anyhow::Result<Self> {
         // FIXME: cache this in the target directory or something
         use reqwest::header::USER_AGENT;
         let url = format!("https://api.github.com/users/{}", &login[1..]);
