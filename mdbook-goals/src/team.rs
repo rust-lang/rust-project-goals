@@ -1,40 +1,40 @@
-use std::sync::OnceLock;
+use std::{collections::BTreeMap, sync::OnceLock};
 
 use rust_team_data::v1;
 use serde::de::DeserializeOwned;
 
-pub trait RustTeamData {
-    type Data: DeserializeOwned;
-    const PATH: &'static str;
-    fn data() -> &'static OnceLock<anyhow::Result<Self::Data>>;
+trait Load<T> {
+    fn load(&self, op: impl FnOnce() -> anyhow::Result<T>) -> anyhow::Result<&T>;
+}
 
-    fn get() -> anyhow::Result<&'static Self::Data> {
-        match Self::data().get_or_init(|| fetch(Self::PATH)) {
+impl<T> Load<T> for OnceLock<anyhow::Result<T>> {
+    fn load(&self, op: impl FnOnce() -> anyhow::Result<T>) -> anyhow::Result<&T> {
+        match self.get_or_init(op) {
             Ok(data) => Ok(data),
             Err(e) => Err(anyhow::anyhow!("failed to fetch: {e:?}")),
         }
     }
 }
 
-pub struct People;
-impl RustTeamData for People {
-    type Data = v1::People;
-    const PATH: &'static str = "people.json";
-    fn data() -> &'static OnceLock<anyhow::Result<Self::Data>> {
-        static S: OnceLock<anyhow::Result<v1::People>> = OnceLock::new();
-        &S
-    }
+/// Given a username like `@foo` finds the corresponding person data (if any).
+pub fn get_person_data(username: &str) -> anyhow::Result<Option<&'static v1::Person>> {
+    static DATA: OnceLock<anyhow::Result<BTreeMap<String, v1::Person>>> = OnceLock::new();
+    let people = DATA.load(|| {
+        let data: v1::People = fetch("people.json")?;
+        Ok(data
+            .people
+            .into_iter()
+            .map(|(username, value)| (username.to_lowercase(), value))
+            .collect())
+    })?;
+
+    Ok(people.get(&username[1..].to_lowercase()))
 }
 
-pub struct Teams;
-impl RustTeamData for Teams {
-    type Data = v1::Teams;
-    const PATH: &'static str = "teams.json";
-    fn data() -> &'static OnceLock<anyhow::Result<Self::Data>> {
-        static S: OnceLock<anyhow::Result<v1::Teams>> = OnceLock::new();
-        &S
-    }
-}
+// pub fn get_teams() -> anyhow::Result<&'static v1::Teams> {
+//     static DATA: OnceLock<anyhow::Result<v1::Teams>> = OnceLock::new();
+//     DATA.load(|| fetch("teams.json"))
+// }
 
 fn fetch<T>(path: &str) -> anyhow::Result<T>
 where
