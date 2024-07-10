@@ -1,5 +1,6 @@
 use std::fmt::Write;
 use std::path::Path;
+use std::sync::Arc;
 use std::{collections::BTreeSet, path::PathBuf};
 
 use regex::Regex;
@@ -9,49 +10,91 @@ use crate::{
     util::{self, ARROW},
 };
 
-/// Process the input file `input` and return a list of team asks.
-/// Ignores goals that are marked as "not accepted".
-///
-/// # Parameters
-///
-/// * `input`, path on disk
-/// * `link_path`, path to insert into any links in the output
-pub fn team_asks_in_input<'i>(
-    input: &'i Path,
-    link_path: &'i Path,
-) -> anyhow::Result<Vec<TeamAsk<'i>>> {
-    let sections = markwaydown::parse(input)?;
+/// Data parsed from a goal file in the expected format
+pub struct GoalDocument {
+    /// Path relative to the current directory (`book.toml`)
+    pub path: PathBuf,
 
-    let Some(metadata) = extract_metadata(&sections)? else {
-        return Ok(vec![]);
-    };
+    /// Path relative to the directory of goals this goal is a part of,
+    /// and hence suitable for links in other markdown files.
+    pub link_path: Arc<PathBuf>,
 
-    match metadata.status {
-        Status::Flagship | Status::Proposed | Status::Orphaned => {
-            extract_team_asks(link_path, &metadata, &sections)
+    /// Metadata loaded from the header in the goal
+    pub metadata: Metadata,
+
+    /// List of team asks extracted from the goal
+    pub team_asks: Vec<TeamAsk>,
+}
+
+/// Metadata loaded from the goal header
+#[derive(Debug)]
+pub struct Metadata {
+    #[allow(unused)]
+    pub title: String,
+    pub short_title: String,
+    pub owners: String,
+    pub status: Status,
+}
+
+/// Identifies a particular ask for a set of Rust teams
+#[derive(Debug)]
+pub struct TeamAsk {
+    /// Path to the markdown file containing this ask (appropriate for a link)
+    link_path: Arc<PathBuf>,
+
+    /// Title of the subgoal (or goal, if there are no subgoals)
+    subgoal: String,
+
+    /// What the team is being asked for (e.g., RFC decision)
+    heading: String,
+
+    /// Name(s) of the teams being asked to do the thing
+    teams: Vec<String>,
+
+    /// Owners of the subgoal or goal
+    owners: String,
+
+    /// Any notes
+    notes: String,
+}
+
+impl GoalDocument {
+    pub fn load(path: &Path, link_path: &Path) -> anyhow::Result<Option<Self>> {
+        let sections = markwaydown::parse(path)?;
+
+        let Some(metadata) = extract_metadata(&sections)? else {
+            return Ok(None);
+        };
+
+        let link_path = Arc::new(link_path.to_path_buf());
+        let team_asks = match metadata.status {
+            Status::Flagship | Status::Proposed | Status::Orphaned => {
+                extract_team_asks(&link_path, &metadata, &sections)?
+            }
+            Status::NotAccepted => vec![],
+        };
+
+        if metadata.status != Status::NotAccepted && team_asks.is_empty() {
+            anyhow::bail!("no team asks found in goal file `{}`", path.display());
         }
-        Status::NotAccepted => Ok(vec![]),
+
+        Ok(Some(GoalDocument {
+            path: path.to_path_buf(),
+            link_path,
+            metadata,
+            team_asks,
+        }))
     }
 }
 
-/// Process the input file `input` and return its metadata (if any).
-///
-/// # Parameters
-///
-/// * `input`, path on disk
-pub fn metadata_in_input(input: &Path) -> anyhow::Result<Option<Metadata>> {
-    let sections = markwaydown::parse(input)?;
-
-    extract_metadata(&sections)
-}
-
-pub fn format_team_asks(asks_of_any_team: &[TeamAsk]) -> anyhow::Result<String> {
+/// Format a set of team asks into a table, with asks separated by team and grouped by kind.
+pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> anyhow::Result<String> {
     let mut output = String::new();
 
     let all_teams: BTreeSet<&String> = asks_of_any_team.iter().flat_map(|a| &a.teams).collect();
 
     for team in all_teams {
-        let asks_of_this_team: Vec<&TeamAsk> = asks_of_any_team
+        let asks_of_this_team: Vec<_> = asks_of_any_team
             .iter()
             .filter(|a| a.teams.contains(team))
             .collect();
@@ -97,32 +140,24 @@ pub fn format_team_asks(asks_of_any_team: &[TeamAsk]) -> anyhow::Result<String> 
     Ok(output)
 }
 
-pub fn format_goal_table(goals: &[(Metadata, PathBuf, PathBuf)]) -> anyhow::Result<String> {
+pub fn format_goal_table(goals: &[&GoalDocument]) -> anyhow::Result<String> {
     let mut table = vec![vec![
         "Goal".to_string(),
         "Owner".to_string(),
         "Team".to_string(),
     ]];
 
-    for (metadata, _input, link_path) in goals {
+    for goal in goals {
+        let teams: BTreeSet<&String> = goal.team_asks.iter().flat_map(|ask| &ask.teams).collect();
+        let teams: Vec<String> = teams.into_iter().cloned().collect();
         table.push(vec![
-            format!("[{}]({})", metadata.title, link_path.display()),
-            metadata.owners.clone(),
-            metadata.teams.clone(),
+            format!("[{}]({})", goal.metadata.title, goal.link_path.display()),
+            goal.metadata.owners.clone(),
+            teams.join(", "),
         ]);
     }
 
     Ok(util::format_table(&table))
-}
-
-#[derive(Debug)]
-pub struct Metadata {
-    #[allow(unused)]
-    pub title: String,
-    pub short_title: String,
-    pub owners: String,
-    pub status: Status,
-    pub teams: String,
 }
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
@@ -193,10 +228,6 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata>> {
         anyhow::bail!("metadata table has no `Status` row")
     };
 
-    let Some(teams_row) = first_table.rows.iter().find(|row| row[0] == "Teams") else {
-        anyhow::bail!("metadata table has no `Teams` row")
-    };
-
     let status = Status::try_from(status_row[1].as_str())?;
 
     Ok(Some(Metadata {
@@ -208,25 +239,14 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata>> {
         },
         owners: owners_row[1].to_string(),
         status,
-        teams: teams_row[1].to_string(),
     }))
 }
 
-#[derive(Debug)]
-pub struct TeamAsk<'i> {
-    link_path: &'i Path,
-    subgoal: String,
-    heading: String,
-    teams: Vec<String>,
-    owners: String,
-    notes: String,
-}
-
 fn extract_team_asks<'i>(
-    link_path: &'i Path,
+    link_path: &Arc<PathBuf>,
     metadata: &Metadata,
     sections: &[Section],
-) -> anyhow::Result<Vec<TeamAsk<'i>>> {
+) -> anyhow::Result<Vec<TeamAsk>> {
     let Some(ownership_section) = sections
         .iter()
         .find(|section| section.title == "Ownership and team asks")
@@ -274,7 +294,7 @@ fn extract_team_asks<'i>(
         let teams = extract_teams(&row[1]);
 
         tasks.push(TeamAsk {
-            link_path,
+            link_path: link_path.clone(),
             heading: if subgoal == heading {
                 metadata.short_title.to_string()
             } else {
