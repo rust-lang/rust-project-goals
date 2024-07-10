@@ -76,7 +76,7 @@ This section defines the specific work items that are planned and who is expecte
 | ↳ switch ui tests to only check new output      |                      |           |
 | ↳ dedicated reviewer                            | ![Team][] [Compiler] | @estebank |
 | Standard reviews                                | ![Team][] [Compiler] |           |
-| Top-level Rust blog post inviting feedback      | ![Team][] [LC]       |           |
+| Top-level Rust blog post inviting feedback      | ![Team][] [Leadership-Council]       |           |
 
 ## Frequently asked questions
 

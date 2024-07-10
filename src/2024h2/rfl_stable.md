@@ -4,7 +4,7 @@
 | ----------- | ------------------------------ |
 | Short title | Rust-for-Linux                 |
 | Owner(s)    | @nikomatsakis, @joshtriplett   |
-| Teams       | [Lang], [Libs-API], [Compiler] |
+| Teams       | [lang], [Libs-API], [Compiler] |
 | Status      | Flagship                       |
 
 ## Summary
@@ -141,22 +141,22 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | Overall program management         | @nikomatsakis, @joshtriplett |                           |
 | Arbitrary self types v2            | @adetaylor                   |                           |
 | ↳ ~~author RFC~~                   |                              | ![Complete][] [RFC #3519] |
-| ↳ ~~RFC decision~~                 | ~~[Lang]~~                   | ![Complete][]             |
+| ↳ ~~RFC decision~~                 | ~~[lang]~~                   | ![Complete][]             |
 | ↳ Implementation                   |                              |                           |
 | ↳ Standard reviews                 | ![Team] [Compiler]           |                           |
-| ↳ Stabilization decision           | ![Team] [Lang]               |                           |
+| ↳ Stabilization decision           | ![Team] [lang]               |                           |
 | Derive smart pointer               | @Darksonn                    |                           |
 | ↳ ~~author RFC~~                   |                              | [RFC #3621]               |
-| ↳ RFC decision                     | ![Team][] [Lang]             |                           |
+| ↳ RFC decision                     | ![Team][] [lang]             |                           |
 | ↳ Implementation                   | @dingxiangfei2009            |                           |
 | ↳ Author stabilization report      | @dingxiangfei2009            |                           |
-| ↳ Stabilization decision           | ![Team][] [Lang]             |                           |
+| ↳ Stabilization decision           | ![Team][] [lang]             |                           |
 | `asm_goto`                         | @nbdd0121                    |                           |
 | ↳ ~~implementation~~               |                              | ![Complete][]             |
 | ↳ Real-world usage in Linux kernel |                              |                           |
 | ↳ Extend to cover full RFC         |                              |                           |
 | ↳ Author stabilization report      |                              |                           |
-| ↳ Stabilization decision           | ![Team][] [Lang]             |                           |
+| ↳ Stabilization decision           | ![Team][] [lang]             |                           |
 | Extended `offset_of` syntax        | @dingxiangfei2009            |                           |
 | ↳ Stabilization report             |                              |                           |
 | ↳ Stabilization decision           | ![Team][] [Libs-API]         |                           |
@@ -166,7 +166,7 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | ↳ Policy decision                  | ![Team][] [Compiler]         |                           |
 | Pointers to static in constants    | @nikomatsakis                |                           |
 | ↳ Stabilization report             |                              |                           |
-| ↳ Stabilization decision           | ![Team][] [Lang]             |                           |
+| ↳ Stabilization decision           | ![Team][] [lang]             |                           |
 
 ### Support needed from the project
 

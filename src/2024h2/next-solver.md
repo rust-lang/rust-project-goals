@@ -3,7 +3,7 @@
 | Metadata |          |
 | -------- | -------- |
 | Owner(s) | @lcnr   |
-| Teams    | [Types]  |
+| Teams    | [types]  |
 | Status   | Proposed |
 
 ## Summary
@@ -57,21 +57,21 @@ Add'l implementation work: @compiler-errors
 
 | Subgoal                               | Owner(s) or team(s)         | Notes |
 | ------------------------------------- | --------------------------- | ----- |
-| Discussion and moral support          | ![Team][] [Types]           |       |
+| Discussion and moral support          | ![Team][] [types]           |       |
 | Stabilize coherence coherence support |                             |       |
 | ↳ Implementation                      | @lcnr, @compiler-errors   |       |
-| ↳ Standard reviews                    | ![Team][] [Types]           |       |
+| ↳ Standard reviews                    | ![Team][] [types]           |       |
 | ↳ Standard reviews                    | ![Team][] [Rust-Analyzer][] |       |
-| ↳ Stabilization decision              | ![Team][] [Types][]         |       |
+| ↳ Stabilization decision              | ![Team][] [types][]         |       |
 | Support in rust-analyzer              |                             |       |
 | ↳ Implementation (library side)       | owner and others            |       |
 | ↳ Implementation (rust-analyzer side) | TBD                         |       |
-| ↳ Standard reviews                    | ![Team][] [Types]           |       |
+| ↳ Standard reviews                    | ![Team][] [types]           |       |
 | ↳ Standard reviews                    | ![Team][] [Rust-Analyzer][] |       |
 
 ### Support needed from the project
 
-* [Types Team][Types]
+* [Types Team][types]
     * review design decisions
     * provide technical feedback and suggestion
 * [rust-analyzer team][r-a]

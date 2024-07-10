@@ -53,18 +53,18 @@
 | ↳ Author RFC                                   | *Goal owner, typically* |       |
 | ↳ Implementation                               | *Goal owner, typically* |       |
 | ↳ Standard reviews                             | ![Team][] [Compiler]    |       |
-| ↳ Design meeting                               | ![Team][] [Lang]        |       |
-| ↳ RFC decision                                 | ![Team][] [Lang]        |       |
-| ↳ Secondary RFC review                         | ![Team][] [Lang]        |       |
+| ↳ Design meeting                               | ![Team][] [lang]        |       |
+| ↳ RFC decision                                 | ![Team][] [lang]        |       |
+| ↳ Secondary RFC review                         | ![Team][] [lang]        |       |
 | ↳ Author stabilization report                  | *Goal owner, typically* |       |
-| ↳ Stabilization decision                       | ![Team][] [Lang]        |       |
+| ↳ Stabilization decision                       | ![Team][] [lang]        |       |
 | Nightly experiment for X                       |                         | pla   |
-| ↳ Lang-team experiment                         | ![Team][] [Lang]        |       |
+| ↳ Lang-team experiment                         | ![Team][] [lang]        |       |
 | ↳ Author RFC                                   | *Goal owner, typically* |       |
 | ↳ Implementation                               | *Goal owner, typically* |       |
 | ↳ Standard reviews                             | ![Team][] [Compiler]    |       |
 | Inside Rust blog post inviting feedback        | ![Team][] (any team)    |       |
-| Top-level Rust blog post inviting feedback     | ![Team][] [LC]          |       |
+| Top-level Rust blog post inviting feedback     | ![Team][] [Leadership-Council]          |       |
 
 ### Definitions
 

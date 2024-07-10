@@ -79,7 +79,7 @@ The goal is to reach this point *without trying to be a better Google than Googl
 | Feedback and testing                          |                              |       |
 | ↳ Inside Rust blog post inviting feedback     | ![Team][] [Infra]            |       |
 | ↳ Collecting popular queries for review       | ![Team][] [Infra]            |       |
-| Top-level Rust blog post inviting feedback    | ![Team][] [LC]               |       |
+| Top-level Rust blog post inviting feedback    | ![Team][] [Leadership-Council]               |       |
 
 ### Definitions
 

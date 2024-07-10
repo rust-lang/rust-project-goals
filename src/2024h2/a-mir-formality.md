@@ -3,7 +3,7 @@
 | Metadata |                |
 | -------- | -------------- |
 | Owner(s) | @nikomatsakis |
-| Teams    | [Types]        |
+| Teams    | [types]        |
 | Status   | Proposed       |
 
 ## Summary
@@ -49,7 +49,7 @@ We will require participation from at least 2 other members of T-types. Current 
 | Subgoal          | Owner(s) or team(s)            | Notes |
 | ---------------- | ------------------------------ | ----- |
 | Implementation   | @nikomatsakis, lcnr, and others |       |
-| Standard reviews | ![Team][] [Types]              |       |
+| Standard reviews | ![Team][] [types]              |       |
 
 ## Frequently asked questions
 

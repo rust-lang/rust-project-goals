@@ -3,7 +3,7 @@
 | Metadata |                     |
 | -------- | ------------------- |
 | Owner(s) | ![Help wanted][]    |
-| Teams    | [Lang][], [Types][] |
+| Teams    | [lang][], [types][] |
 | Status   | Orphaned            |
 
 ## Summary
@@ -124,7 +124,7 @@ This section defines the specific work items that are planned and who is expecte
 | Ownership and implementation  | ![Help wanted][]         |                    |
 | RFC authoring                 | ![Help wanted][]         |                    |
 | Design consultation/iteration | Josh Triplett            |                    |
-| Design meeting                | ![Team][] [Lang] [Types] | Up to 1, if needed |
+| Design meeting                | ![Team][] [lang] [types] | Up to 1, if needed |
 
 ## Frequently asked questions
 

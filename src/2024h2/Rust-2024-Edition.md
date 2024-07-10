@@ -3,7 +3,7 @@
 | Metadata |                 |
 | -------- | --------------- |
 | Owner(s) | @traviscross    |
-| Teams    | [Lang], [Types] |
+| Teams    | [lang], [types] |
 | Status   | Flagship        |
 
 ## Summary
@@ -51,8 +51,8 @@ The "Edition Axioms" were [laid out in RFC #3085](https://rust-lang.github.io/rf
 
 | Subgoal                  | Owner(s) or team(s)      | Notes |
 | ------------------------ | ------------------------ | ----- |
-| Stabilization decision   | ![Team][] [Lang] [Types] |       |
-| Top-level Rust blog post | ![Team][] [LC]           |       |
+| Stabilization decision   | ![Team][] [lang] [types] |       |
+| Top-level Rust blog post | ![Team][] [Leadership-Council]           |       |
 
 ## Outputs and milestones
 
