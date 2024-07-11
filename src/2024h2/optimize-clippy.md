@@ -17,13 +17,16 @@ In short, this is an effort to optimize Clippy, and Rust's linting infrastructur
 
 Clippy can take up to 2.5 times the time that a normal `cargo check` takes, and it doesn't need to be! Taking so long is expensive both in development time, and in real money.
 
-On GitHub Actions, this excessive time can equal the cost of running `cargo check` on a Linux x64 32-cores machine, on a Linux x64 2-cores machine. (A 3.3-times increase).
-
 ### The status quo
 
-The current status quo is that Clippy it's mostly a pre-commit / pre-merge tool. It isn't feasible to run it on-save or in the midst of working on a feature because it greatly stops the developer workflow, distracting the developer with a mindless waste of time, instead of working on the actual feature.
+Based on some [informal][poll-urlo] [feedback][poll-reddit] [polls][poll-mastodon], it's clear that Clippy is used in lots of different contexts. Both in developer's IDEs and outside them.
 
-The other big use of Clippy is in CI, but the great slowness of the linting process often is a deterrent for using it as a workflow.
+The usage for IDEs is not as smooth as one may desire or expect when comparing to prior art like [Prettier][prettier], [Ruff][ruff], or other tools in the Rust ecosystem `rustfmt` and Rust-analyzer.
+
+The other big use-case is as a test before committing or on CI. Optimizing Clippy for performance would fold the cost of these tests.
+
+On GitHub Actions, this excessive time can equal the cost of running `cargo check` on a Linux x64 32-cores machine, instead of a Linux x64 2-cores machine. A 3.3x cost increase.
+
 
 <!-- *Elaborate in more detail about the problem you are trying to solve. This section is making the case for why this particular problem is worth prioritizing with project bandwidth. A strong status quo section will (a) identify the target audience and (b) give specifics about the problems they are facing today. Sometimes it may be useful to start sketching out how you think those problems will be addressed by your change, as well, though it's not necessary.* -->
 
@@ -61,3 +64,8 @@ A developer shouldn't have to get a high-end machine to run a compiler swiftly; 
 <!-- #### How will improvements be measured? -->
 
 [pr125116]: https://github.com/rust-lang/rust/pull/125116
+[poll-urlo]: https://users.rust-lang.org/t/feedback-poll-where-and-how-do-you-use-clippy/114047?u=blyxyas
+[poll-reddit]: https://www.reddit.com/r/rust/comments/1dxu43p/feedback_poll_where_how_do_you_use_clippy/
+[poll-mastodon]: https://tech.lgbt/@blyxyas/112747808297589676
+[prettier]: https://github.com/prettier/prettier
+[ruff]: https://github.com/astral-sh/ruff
