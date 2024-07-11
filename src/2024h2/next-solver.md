@@ -63,18 +63,18 @@ Add'l implementation work: @compiler-errors
 | ↳ Standard reviews                    | ![Team][] [types]           |       |
 | ↳ Standard reviews                    | ![Team][] [[rust-analyzer]][] |       |
 | ↳ Stabilization decision              | ![Team][] [types][]         |       |
-| Support in [rust-analyzer]              |                             |       |
+| Support in rust-analyzer              |                             |       |
 | ↳ Implementation (library side)       | owner and others            |       |
-| ↳ Implementation ([rust-analyzer] side) | TBD                         |       |
+| ↳ Implementation (rust-analyzer side) | TBD                         |       |
 | ↳ Standard reviews                    | ![Team][] [types]           |       |
 | ↳ Standard reviews                    | ![Team][] [[rust-analyzer]][] |       |
 
 ### Support needed from the project
 
-* [Types Team][types]
+* [Types] team
     * review design decisions
     * provide technical feedback and suggestion
-* [[rust-analyzer] team][r-a]
+* [rust-analyzer] team
     * contribute to integration in Rust Analyzer
     * provide technical feedback to the design of the API
 
@@ -93,4 +93,3 @@ See next few steps :3
 *This is a good place to elaborate on your reasoning above -- for example, why did you put the design axioms in the order that you did? It's also a good place to put the answers to any questions that come up during discussion. The expectation is that this FAQ section will grow as the goal is discussed and eventually should contain a complete summary of the points raised along the way.*
 
 [unsoundnesses]: https://github.com/orgs/rust-lang/projects/44
-[[rust-analyzer]]: https://github.com/rust-lang/[rust-analyzer]

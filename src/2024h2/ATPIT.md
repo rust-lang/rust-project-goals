@@ -1,8 +1,8 @@
-# Associated type position impl trait (ATPIT)
+# Associated type position impl trait
 
 | Metadata |                 |
 | -------- | --------------- |
-| Owner(s) | @oli-obk       |
+| Owner(s) | @oli-obk        |
 | Teams    | [types], [lang] |
 | Status   | Proposed        |
 
@@ -60,7 +60,7 @@ None.
 
 | Subgoal                | Owner(s) or team(s)      | Notes |
 | ---------------------- | ------------------------ | ----- |
-| Implementation         | @oli-obk                |       |
+| Implementation         | @oli-obk                 |       |
 | FCP decisions          | ![Team][] [types]        |       |
 | Stabilization decision | ![Team][] [types] [lang] |       |
 
