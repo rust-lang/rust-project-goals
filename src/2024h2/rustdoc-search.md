@@ -30,9 +30,9 @@ Unfortunately, while most people know it exists, they don't know about most of w
 
 Part of the problem is that they just [never try](https://discord.com/channels/442252698964721669/448238009733742612/943568438033543268).
 
-> *@Deleted User:* I'd never used the search bar inside the docs before\
-> *@Deleted User:* It's because usually the searches inside all of the sites are pretty broken & useless\
-> *@Deleted User:* but this site is cool. docs are very well written and search is fast, concise...
+> `@Deleted User:` I'd never used the search bar inside the docs before\
+> `@Deleted User:` It's because usually the searches inside all of the sites are pretty broken & useless\
+> `@Deleted User:` but this site is cool. docs are very well written and search is fast, concise...
 
 Mostly, we've got a discoverability problem.
 
