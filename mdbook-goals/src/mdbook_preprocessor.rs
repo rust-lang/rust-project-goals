@@ -185,10 +185,12 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
         // Extract out the list of goals with the given status.
         let goals = self.goal_documents(chapter_path)?;
-        let goals_with_status: Vec<&GoalDocument> = goals
+        let mut goals_with_status: Vec<&GoalDocument> = goals
             .iter()
             .filter(|g| g.metadata.status == status)
             .collect();
+
+        goals_with_status.sort_by_key(|g| &g.metadata.title);
 
         // Format the list of goals and replace the `<!-- -->` comment with that.
         let output = goal::format_goal_table(&goals_with_status)?;
