@@ -60,7 +60,7 @@ The flagship goals proposed for this roadmap are as follows:
     * never type fallback ([#123748])
     * and a [number of other potential changes](https://github.com/rust-lang/rust/issues?q=label%3AC-tracking-issue+label%3AA-edition-2024+label%3AS-tracking-ready-to-stabilize%2CS-tracking-needs-documentation+-label%3AS-tracking-impl-incomplete%2CS-tracking-design-concerns) that may be included if they make enough progress
 * [**Bringing the Async Rust experience closer to parity with sync Rust**](./async.md) via:
-    * resolving the "send bound problem", thus enabling foundational, generic traits like Tower's [`Service`]() trait;
+    * resolving the "send bound problem", thus enabling foundational, generic traits like Tower's [`Service`](https://docs.rs/tower-service/latest/tower_service/trait.Service.html) trait;
     * stabilizing async closures, thus enabling richer, combinator APIs like sync Rust's [`Iterator`](https://doc.rust-lang.org/std/iter/trait.Iterator.html);
     * reorganizing the async WG, so the project can benefit from a group of async rust experts with deep knowledge of the space that can align around a shared vision.
 * [**Resolving the biggest blockers to Linux building on stable Rust**](./rfl_stable.md) via:
