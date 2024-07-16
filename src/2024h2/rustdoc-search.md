@@ -41,8 +41,6 @@ Mostly, we've got a discoverability problem.
 * Implement a feature to show type signatures in type-driven search results, so it's easier to figure out *why* a result came up <https://github.com/rust-lang/rust/pull/124544>.
   * When unintuitive results come up, respond by either changing the algorithm or changing the way it's presented to help it make sense.
   * Do we need to do something to make levenshtein matches more obvious?
-* Work out how to get information on common search queries. The `?search=` param is sometimes sent to the server. Do we expect this to be a representative sample of all the queries? Can we get it from docs.rs, or elsewhere? What are people usually typing in?
-  * Try to find low-hanging fruit. Are people searching for `new vec`? Make space-separated paths order agnostic. People searching for `option -> iterator`? Make type search sensitive to notable traits.
 * Seek out user feedback on Internals.
 
 Popular stuff should just be made to work, and what's already there can be made more obvious with education and good UI design.
@@ -78,8 +76,6 @@ The goal is to reach this point *without trying to be a better Google than Googl
 | ↳ FCP review                                  | ![Team][] [rustdoc-frontend]   |       |
 | Feedback and testing                          |                                |       |
 | ↳ Inside Rust blog post inviting feedback     |                                |       |
-| ↳ Collecting popular queries for review       | ![Team][] [docs-rs]            |       |
-| Top-level Rust blog post inviting feedback    | ![Team][] [leadership-council] |       |
 
 ### Definitions
 
