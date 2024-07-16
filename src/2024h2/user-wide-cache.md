@@ -95,6 +95,10 @@ and the compute time from copying, decompressing, and compressing the cache.
 Users would have faster CI time and save money on their CI service, minus any
 induced demand that faster builds creates.
 
+On a different note, as sandboxing efforts improve, we'll have precise details
+on the inputs for `build.rs` and proc-macros and can gauge when there is
+idempotence (and verify the opt-in mentioned earlier).
+
 ## Design axioms
 
 *This section is optional, but including [design axioms][da] can help you signal how you intend to balance constraints and tradeoffs (e.g., "prefer ease of use over performance" or vice versa). Teams should review the axioms and make sure they agree. [Read more about design axioms][da].*
