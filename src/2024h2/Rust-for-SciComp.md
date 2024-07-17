@@ -26,13 +26,24 @@ Almost every language has some way of calling hand-written CUDA/ROCm/Sycl kernel
 
 ### The next six months
 
+We are requesting support from the Rust project for continued experimentation:
+
 1) Merge the `#[autodiff]` fork.
 2) Expose the experimental batching feature of Enzyme, preferably by a new contributor.
 3) Merge an MVP `#[offloading]` fork which is able to run simple functions using rayon parallelism on a GPU or TPU, showing a speed-up.
 
 ### The "shiny future" we are working towards
 
-All three proposed features (batching, autodiff, offloading) can be combined and work nicely together. We have state-of-the-art libraries like faer to cover linear algebra, and we've started to see more and more libraries in other languages use Rust with these features as their backend. Cases which don't require interactive exploration will also become more popular in pure Rust.
+The purpose of this goal is to enable continued experimentation with the underlying LLVM functionality.
+The eventual goal of this experimentation is that all three proposed features (batching, autodiff, offloading) can be combined and work nicely together. The hope is that we will have state-of-the-art libraries like faer to cover linear algebra, and that we will start to see more and more libraries in other languages using Rust with these features as their backend. Cases which don't require interactive exploration will also become more popular in pure Rust.
+
+#### Caveats to this future
+
+There is not yet consensus amongst the relevant Rust teams as to how and/or whether this functionality should be exposed on stable.
+Some concerns that will continued experimentation will hopefully help to resolve:
+
+* How effective and general purpose is this functionality?
+* Can this functionality be supported on other backends beyond LLVM? If not, how should we manage the backend-specific nature of it?
 
 ## Design axioms
 
