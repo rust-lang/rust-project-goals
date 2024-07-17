@@ -35,7 +35,7 @@ We also envision it being tested both through fuzzing and by comparing its resul
 
 ## Design axioms
 
-* **Designed for exploration and extension by ordinary Rust developers.** Editing and maintaing formality should not require a PhD. We prefer lightweight formal methods over strong static proof.
+* **Designed for exploration and extension by ordinary Rust developers.** Editing and maintaining formality should not require a PhD. We prefer lightweight formal methods over strong static proof.
 * **Focused on the Rust's static checking.** There are many things that a-mir-formality could model. We are focused on those things that we need to evaluate Rust's static checks. This includes the type system and trait system.
 * **Clarity over efficiency.** Formality's codebase is only meant to scale up to small programs. Efficiency is distinctly secondary.
 * **The compiler approximates a-mir-formality, a-mir-formality approximates the truth.** Rust's type system is Turing Complete and cannot be fully evaluated. We expect the compiler to have safeguards (for example, overflow detection) that may be more conservative than those imposed by a-mir-formality. In other words, formality may accept some programs the compiler cannot evaluate for practical reasons. Similarly, formality will have to make approximations relative to the "platonic ideal" of what Rust's type system would accept.
