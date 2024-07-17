@@ -10,8 +10,8 @@
 This RFC presents the Rust project goal slate for 2024H2. The slate consists of 24 total project goals of which we have selected 3 as our "flagship goals":
 
 * Release the Rust 2024 edition (owner: @traviscross)
-* Bringing the Async Rust experience closer to parity with sync Rust (owners: @tmandry, @nikomatsakis)
-* Resolving the biggest blockers to Linux building on stable Rust (owners: @joshtriplett, @nikomatsakis)
+* Bring the Async Rust experience closer to parity with sync Rust (owners: @tmandry, @nikomatsakis)
+* Resolve the biggest blockers to Linux building on stable Rust (owners: @joshtriplett, @nikomatsakis)
 
 Flagship goals represent the goals expected to have the broadest overall impact.
 
@@ -37,7 +37,7 @@ Our goals are selected to further Rust's mission of **empowering everyone to bui
 * performance, memory usage, and resource consumption; and
 * long-term maintenance and extensibility.
 
-We consider "any two out of the three" to the right heuristic for projects where Rust is a strong contender or possibly the best option.
+We consider "any two out of the three" as the right heuristic for projects where Rust is a strong contender or possibly the best option.
 
 ### Axioms for selecting goals
 
@@ -59,11 +59,11 @@ The flagship goals proposed for this roadmap are as follows:
     * reserving the `gen` keyword to allow for generators ([RFC #3513])
     * never type fallback ([#123748])
     * and a [number of other potential changes](https://github.com/rust-lang/rust/issues?q=label%3AC-tracking-issue+label%3AA-edition-2024+label%3AS-tracking-ready-to-stabilize%2CS-tracking-needs-documentation+-label%3AS-tracking-impl-incomplete%2CS-tracking-design-concerns) that may be included if they make enough progress
-* [**Bringing the Async Rust experience closer to parity with sync Rust**](./async.md) via:
+* [**Bring the Async Rust experience closer to parity with sync Rust**](./async.md) via:
     * resolving the "send bound problem", thus enabling foundational, generic traits like Tower's [`Service`](https://docs.rs/tower-service/latest/tower_service/trait.Service.html) trait;
     * stabilizing async closures, thus enabling richer, combinator APIs like sync Rust's [`Iterator`](https://doc.rust-lang.org/std/iter/trait.Iterator.html);
     * reorganizing the async WG, so the project can benefit from a group of async rust experts with deep knowledge of the space that can align around a shared vision.
-* [**Resolving the biggest blockers to Linux building on stable Rust**](./rfl_stable.md) via:
+* [**Resolve the biggest blockers to Linux building on stable Rust**](./rfl_stable.md) via:
     * stabilizing support for arbitrary `self` types and unsizeable smart pointers, thus permitting ergonomic support for [in-place linked lists](https://rust-for-linux.com/arc-in-the-linux-kernel) on stable;
     * stabilizing features for labeled goto in inline assembler and extended `offset_of!` support, needed for various bts of low-level coding;
     * adding Rust For Linux project on Rust CI, thus ensuring we don't accidentally cause regressions for this highly visible project (done!);

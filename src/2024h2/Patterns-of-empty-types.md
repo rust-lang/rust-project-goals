@@ -1,10 +1,10 @@
 # Patterns of empty types
 
-| Metadata |             |
-| -------- | ----------- |
+| Metadata |            |
+| -------- | ---------- |
 | Owner(s) | @Nadrieril |
-| Teams    | [lang]      |
-| Status   | Proposed    |
+| Teams    | [lang]     |
+| Status   | Proposed   |
 
 ## Summary
 
@@ -93,16 +93,17 @@ already for several months.
   the compiler team, but not more than the ordinary.
 
 
-| Subgoal                     | Owner(s) or team(s)  | Notes |
-| --------------------------- | -------------------- | ----- |
-| Author RFC                  | @Nadrieril            |       |
-| Implementation              | @Nadrieril            |       |
-| Standard reviews            | ![Team][] [compiler] |       |
-| Design meeting              | ![Team][] [lang]     |       |
-| RFC decision                | ![Team][] [lang]     |       |
-| Author stabilization report | Goal owner           |       |
-| Stabilization decision      | ![Team][] [lang]     |       |
+| Subgoal                      | Owner(s) or team(s)  | Notes |
+| ---------------------------- | -------------------- | ----- |
+| Author RFC                   | @Nadrieril           |       |
+| Implementation               | @Nadrieril           |       |
+| Standard reviews             | ![Team][] [compiler] |       |
+| Discussion and moral support | ![Team][] [lang]     |       |
+| Author stabilization report  | Goal owner           |       |
 
+Note:
+
+* RFC decisions, Design Meetings, and Stabilizaton decisions were intentionally not included in the above list of asks. The [lang] team is not sure it can commit to completing those reviews on a reasonable timeline.
 
 ## Frequently asked questions
 

@@ -4,7 +4,7 @@
 | -------- | ------------------- |
 | Owner(s) | ![Help wanted][]    |
 | Teams    | [lang][], [types][] |
-| Status   | Orphaned            |
+| Status   | Not accepted        |
 
 ## Summary
 
@@ -119,12 +119,12 @@ This section defines the specific work items that are planned and who is expecte
     * List ![Help wanted][] if there is an owner but they need support, for example funding.
     * Other needs (e.g., complete, in FCP, etc) are also fine.
 
-| Subgoal                       | Owner(s) or team(s)      | Notes              |
-| ----------------------------- | ------------------------ | ------------------ |
-| Ownership and implementation  | ![Help wanted][]         |                    |
-| RFC authoring                 | ![Help wanted][]         |                    |
-| Design consultation/iteration | Josh Triplett            |                    |
-| Design meeting                | ![Team][] [lang] [types] | Up to 1, if needed |
+| Subgoal                       | Owner(s) or team(s)      | Notes                      |
+| ----------------------------- | ------------------------ | -------------------------- |
+| Ownership and implementation  | ![Help wanted][]         |                            |
+| RFC authoring                 | ![Help wanted][]         |                            |
+| Design consultation/iteration | Josh Triplett            |                            |
+| Design meeting                | ![Team][] [lang] [types] | Up to 1 meeting, if needed |
 
 ## Frequently asked questions
 
@@ -136,3 +136,22 @@ ecosystem grow, scale, and avoid conflicts. However, the presence of the orphan
 rule creates a different set of scaling issues and conflicts. This project goal
 proposes to adjust the balance, attempting to achieve some of the benefits of
 both.
+
+### Why was this goal not approved for 2024H2?
+
+Primarily for capacity reasons:
+
+* lcnr [commented](https://github.com/rust-lang/rfcs/pull/3672/files/c73149a285c46d3f2d29a0226df6226bd8f3754f#r1679323797) that 
+  there was no capacity on the types team for reviewing.
+* tmandry [commented](https://github.com/rust-lang/rfcs/pull/3672/files/c73149a285c46d3f2d29a0226df6226bd8f3754f#r1679799818) that the
+  goal as written was not necessarily focused on the right constraints (text quoted below).
+
+> It strikes me as quite open ended and not obviously focused on the right constraints. (cc @joshtriplett as mentor)
+>
+> For example, we could choose to relax the orphan rule only within a restricted set of co-versioned crates that we treat as "one big crate" for coherence purposes. This would not meet the axioms listed in the goal, but I believe it would still improve things for a significant set of users.
+>
+> If we instead go with visibility restrictions on impls, that might work and solve a larger subset, but I think the design will have to be guided by someone close to the implementation to be viable.
+>
+> I would love to have a design meeting if a viable looking design emerges, but I want to make sure this feedback is taken into account before someone spends a lot of time on it.
+
+These points can be considered and addressed at a later time.

@@ -1,10 +1,10 @@
 # User-wide build cache
 
-| Metadata |                                                              |
-| -------- | ------------------------------------------------------------ |
-| Owner(s) | ![Help wanted][]    |
-| Teams    | [cargo]           |
-| Status   | Orphaned            |
+| Metadata |                  |
+| -------- | ---------------- |
+| Owner(s) | ![Help wanted][] |
+| Teams    | [cargo]          |
+| Status   | Orphaned         |
 
 ## Summary
 
@@ -112,15 +112,13 @@ idempotence (and verify the opt-in mentioned earlier).
 
 *This section defines the specific work items that are planned and who is expected to do them. It should also include what will be needed from Rust teams. The table below shows some common sets of asks and work, but feel free to adjust it as needed. Every row in the table should either correspond to something done by a contributor or something asked of a team. For items done by a contributor, list the contributor, or ![Heap wanted][] if you don't yet know who will do it. For things asked of teams, list ![Team][] and the name of the team. The things typically asked of teams are defined in the [Definitions](#definitions) section below.*
 
-| Subgoal                                        | Owner(s) or team(s)     | Notes |
-| ---------------------------------------------- | ----------------------- | ----- |
-| User-wide caching                              |                         |       |
-| ↳ Implementation                               | Goal owner |       |
-| ↳ Standard reviews                             | ![Team][] [cargo]    |       |
-| ↳ Mentoring and guidance                               | @epage         |       |
-| ↳ Design meeting                               | ![Team][] [cargo]        |       |
-| Inside Rust blog post inviting feedback        | ![Team][] [cargo]    |       |
-| Top-level Rust blog post inviting feedback     | ![Team][] [cargo]          |       |
+| Subgoal                  | Owner(s) or team(s) | Notes |
+| ------------------------ | ------------------- | ----- |
+| User-wide caching        |                     |       |
+| ↳ Implementation         | Goal owner          |       |
+| ↳ Standard reviews       | ![Team][] [cargo]   |       |
+| ↳ Mentoring and guidance | @epage              |       |
+| ↳ Design meeting         | ![Team][] [cargo]   |       |
 
 ## Frequently asked questions
 
