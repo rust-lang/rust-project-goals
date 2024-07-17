@@ -1,4 +1,4 @@
-## Bringing the Async Rust experience closer to parity with sync Rust
+## Bring the Async Rust experience closer to parity with sync Rust
 
 | Metadata    |                            |
 | ----------- | -------------------------- |
