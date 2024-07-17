@@ -114,10 +114,11 @@ idempotence (and verify the opt-in mentioned earlier).
 | Subgoal                                        | Owner(s) or team(s)     | Notes |
 | ---------------------------------------------- | ----------------------- | ----- |
 | User-wide caching                              |                         |       |
-| ↳ Implementation                               | *Goal owner, typically* |       |
+| ↳ Implementation                               | Goal owner |       |
 | ↳ Standard reviews                             | ![Team][] [cargo]    |       |
+| ↳ Mentoring and guidance                               | @epage         |       |
 | ↳ Design meeting                               | ![Team][] [cargo]        |       |
-| ↳ Author stabilization report                  | *Goal owner, typically* |       |
+| ↳ Author stabilization report                  | Goal owner |       |
 | ↳ Stabilization decision                       | ![Team][] [cargo]        |       |
 | Inside Rust blog post inviting feedback        | ![Team][] [cargo]    |       |
 | Top-level Rust blog post inviting feedback     | ![Team][] [cargo]          |       |
