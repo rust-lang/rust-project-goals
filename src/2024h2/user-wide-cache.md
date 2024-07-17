@@ -123,3 +123,30 @@ idempotence (and verify the opt-in mentioned earlier).
 | Top-level Rust blog post inviting feedback     | ![Team][] [cargo]          |       |
 
 ## Frequently asked questions
+
+### Why not pre-built packages?
+
+Pre-built packages requires guessing
+- CPU Architecture
+- Feature flags
+- RUSTFLAGS
+- Dependency versions
+
+If there are any mismatches there, then the pre-built package can't be used.
+
+A build cache can be populated with pre-built packages and react to the unique circumstances of the user.
+
+### If this is limited to immutable, idempotent packages, is this worth it?
+
+In short, yes.
+
+First, this includes an effort to allow packages to declare themselves as idempotent.
+Longer term, we'll have sandboxing to help infer / verify idempotence.
+
+### If subtle dependency changes prevent reuse across projects, is this worth it?
+
+In short, yes.
+
+This is a milestone on the way to remote caches.
+Remote caches allows access to CI build caches for the same project you are developing on,
+allowing full reuse at the cost of network access.
