@@ -37,7 +37,7 @@ Our goals are selected to further Rust's mission of **empowering everyone to bui
 * performance, memory usage, and resource consumption; and
 * long-term maintenance and extensibility.
 
-We consider "any two out of the three" to the right heuristic for projects where Rust is a strong contender or possibly the best option.
+We consider "any two out of the three" as the right heuristic for projects where Rust is a strong contender or possibly the best option.
 
 ### Axioms for selecting goals
 
