@@ -1,4 +1,4 @@
-# Resolving the biggest blockers to Linux building on stable Rust
+# Resolve the biggest blockers to Linux building on stable Rust
 
 | Metadata    |                                |
 | ----------- | ------------------------------ |
