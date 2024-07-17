@@ -40,7 +40,7 @@ The eventual goal of this experimentation is that all three proposed features (b
 #### Caveats to this future
 
 There is not yet consensus amongst the relevant Rust teams as to how and/or whether this functionality should be exposed on stable.
-Some concerns that will continued experimentation will hopefully help to resolve:
+Some concerns that continued experimentation will hopefully help to resolve:
 
 * How effective and general purpose is this functionality?
 * Can this functionality be supported on other backends beyond LLVM? If not, how should we manage the backend-specific nature of it?
