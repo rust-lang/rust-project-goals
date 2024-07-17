@@ -2,7 +2,7 @@
 
 | Metadata |          |
 | -------- | -------- |
-| Owner(s) | @lcnr   |
+| Owner(s) | @lcnr    |
 | Teams    | [types]  |
 | Status   | Proposed |
 
@@ -55,19 +55,19 @@ In order of importance, the next-generation trait solver should be:
 
 Add'l implementation work: @compiler-errors
 
-| Subgoal                               | Owner(s) or team(s)         | Notes |
-| ------------------------------------- | --------------------------- | ----- |
-| Discussion and moral support          | ![Team][] [types]           |       |
-| Stabilize coherence coherence support |                             |       |
-| ↳ Implementation                      | @lcnr, @compiler-errors   |       |
-| ↳ Standard reviews                    | ![Team][] [types]           |       |
-| ↳ Standard reviews                    | ![Team][] [[rust-analyzer]][] |       |
-| ↳ Stabilization decision              | ![Team][] [types][]         |       |
-| Support in rust-analyzer              |                             |       |
-| ↳ Implementation (library side)       | owner and others            |       |
-| ↳ Implementation (rust-analyzer side) | TBD                         |       |
-| ↳ Standard reviews                    | ![Team][] [types]           |       |
-| ↳ Standard reviews                    | ![Team][] [[rust-analyzer]][] |       |
+| Subgoal                                         | Owner(s) or team(s)           | Notes |
+| ----------------------------------------------- | ----------------------------- | ----- |
+| Discussion and moral support                    | ![Team][] [types]             |       |
+| Stabilize next-generation solver in coherence   |                               |       |
+| ↳ Implementation                                | @lcnr, @compiler-errors       |       |
+| ↳ Standard reviews                              | ![Team][] [types]             |       |
+| ↳ Standard reviews                              | ![Team][] [rust-analyzer] |       |
+| ↳ Stabilization decision                        | ![Team][] [types][]           |       |
+| Support next-generation solver in rust-analyzer |                               |       |
+| ↳ Implementation (library side)                 | owner and others              |       |
+| ↳ Implementation (rust-analyzer side)           | TBD                           |       |
+| ↳ Standard reviews                              | ![Team][] [types]             |       |
+| ↳ Standard reviews                              | ![Team][] [rust-analyzer] |       |
 
 ### Support needed from the project
 
