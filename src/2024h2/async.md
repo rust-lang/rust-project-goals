@@ -182,15 +182,19 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | ↳ ~~implementation~~       |                             | ![Complete][]       |
 | ↳ Author RFC               |                             |                     |
 | ↳ RFC decision             | ![Team][] [lang]            |                     |
+| ↳ Design meeting           | ![Team][] [lang]            | 2 meetings expected |
+| ↳ Author call for usage    | @compiler-errors            |                     |
 | ↳ Stabilization decision   | ![Team][] [lang]            |                     |
 | Trait for async iteration  | @eholk                      |                     |
 | ↳ Author RFC               |                             |                     |
 | ↳ RFC decision             | ![Team][] [libs-api] [lang] |                     |
+| ↳ Design meeting           | ![Team][] [lang]            | 2 meetings expected |
 | ↳ Implementation           |                             |                     |
 | Async drop experiments     | @petrochenkov               |                     |
 | ↳ ~~author MCP~~           |                             | ![Complete][]       |
 | ↳ ~~MCP decision~~         | ~~[compiler]~~              | ![Complete][]       |
 | ↳ Implementation work      |                             | ![Not funded][] (*) |
+| ↳ Design meeting           | ![Team][] [lang]            | 2 meetings expected |
 | ↳ Standard reviews         | ![Team][] [compiler]        |                     |
 
 (*) Implementation work on async drop experiments is currently unfunded. We are trying to figure out next steps.
