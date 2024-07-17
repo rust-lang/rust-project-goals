@@ -119,12 +119,12 @@ This section defines the specific work items that are planned and who is expecte
     * List ![Help wanted][] if there is an owner but they need support, for example funding.
     * Other needs (e.g., complete, in FCP, etc) are also fine.
 
-| Subgoal                       | Owner(s) or team(s)      | Notes              |
-| ----------------------------- | ------------------------ | ------------------ |
-| Ownership and implementation  | ![Help wanted][]         |                    |
-| RFC authoring                 | ![Help wanted][]         |                    |
-| Design consultation/iteration | Josh Triplett            |                    |
-| Design meeting                | ![Team][] [lang] [types] | Up to 1, if needed |
+| Subgoal                       | Owner(s) or team(s)      | Notes                      |
+| ----------------------------- | ------------------------ | -------------------------- |
+| Ownership and implementation  | ![Help wanted][]         |                            |
+| RFC authoring                 | ![Help wanted][]         |                            |
+| Design consultation/iteration | Josh Triplett            |                            |
+| Design meeting                | ![Team][] [lang] [types] | Up to 1 meeting, if needed |
 
 ## Frequently asked questions
 
