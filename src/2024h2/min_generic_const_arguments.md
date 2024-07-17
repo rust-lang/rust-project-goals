@@ -67,12 +67,12 @@ This section defines the specific work items that are planned and who is expecte
     * List ![Help wanted][] if there is an owner but they need support, for example funding.
     * Other needs (e.g., complete, in FCP, etc) are also fine.
 
-| Subgoal                      | Owner(s) or team(s) | Notes                      |
-| ---------------------------- | ------------------- | -------------------------- |
-| Implementation and mentoring | @BoxyUwu            |                            |
-| Implementation               | @camelid            |                            |
-| Reviewer                     | @compiler-errors    |                            |
-| Design meeting               | ![Team][] [lang]    | Up to 1 meeting, if needed |
+| Subgoal                      | Owner(s) or team(s)      | Notes |
+| ---------------------------- | ------------------------ | ----- |
+| Discussion and moral support | ![Team][] [lang] [types] |       |
+| Implementation and mentoring | @BoxyUwu                 |       |
+| Implementation               | @camelid                 |       |
+| Reviewer                     | @compiler-errors         |       |
 
 ## Outputs and milestones
 
