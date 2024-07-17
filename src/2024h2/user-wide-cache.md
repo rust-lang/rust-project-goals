@@ -136,6 +136,11 @@ If there are any mismatches there, then the pre-built package can't be used.
 
 A build cache can be populated with pre-built packages and react to the unique circumstances of the user.
 
+### Why not sccache?
+
+Tools like sccache try to infer inputs for hashing a cache key from command-line arguments.
+This has us reusing the extra knowledge Cargo has to get more accurate cache key generation.
+
 ### If this is limited to immutable, idempotent packages, is this worth it?
 
 In short, yes.
