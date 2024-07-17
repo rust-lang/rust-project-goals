@@ -59,24 +59,24 @@ This section defines the specific work items that are planned and who is expecte
 
 *Adjust the table below; some common examples are shown below.*
 
-| Subgoal                                         | Owner(s) or team(s)  | Notes     |
-| ----------------------------------------------- | -------------------- | --------- |
-| Reach output parity of rustc/annotate-snippets  |                      |           |
-| ↳ Port a subset of rustc's UI tests             | @Muscraft            |           |
-| ↳ Make list of current unnaddressed divergences | @Muscraft            |           |
-| ↳ address divergences                           | @Muscraft            |           |
-| Initial use of annotate-snippets                |                      |           |
-| ↳ update annotate-snippets to latest version    |                      |           |
-| ↳ teach cargo to pass annotate-snippets flag    | @estebank            |           |
-| ↳ add ui test mode comparing new output         |                      |           |
-| ↳ switch default nightly rustc output           |                      |           |
-| Production use of annotate-snippets             |                      |           |
-| ↳ switch default rustc output                   |                      |           |
-| ↳ release notes                                 |                      |           |
-| ↳ switch ui tests to only check new output      |                      |           |
-| ↳ dedicated reviewer                            | ![Team][] [compiler] | @estebank |
-| Standard reviews                                | ![Team][] [compiler] |           |
-| Top-level Rust blog post inviting feedback      | ![Team][] [leadership-council]       |           |
+| Subgoal                                         | Owner(s) or team(s)            | Notes                          |
+| ----------------------------------------------- | ------------------------------ | ------------------------------ |
+| Reach output parity of rustc/annotate-snippets  |                                |                                |
+| ↳ Port a subset of rustc's UI tests             | @Muscraft                      |                                |
+| ↳ Make list of current unnaddressed divergences | @Muscraft                      |                                |
+| ↳ address divergences                           | @Muscraft                      |                                |
+| Initial use of annotate-snippets                |                                |                                |
+| ↳ update annotate-snippets to latest version    |                                |                                |
+| ↳ teach cargo to pass annotate-snippets flag    | @estebank                      |                                |
+| ↳ add ui test mode comparing new output         |                                |                                |
+| ↳ switch default nightly rustc output           |                                |                                |
+| Production use of annotate-snippets             |                                |                                |
+| ↳ switch default rustc output                   |                                |                                |
+| ↳ release notes                                 |                                |                                |
+| ↳ switch ui tests to only check new output      |                                |                                |
+| ↳ dedicated reviewer                            | ![Team][] [compiler]           | @estebank will be the reviewer |
+| Standard reviews                                | ![Team][] [compiler]           |                                |
+| Top-level Rust blog post inviting feedback      | ![Team][] [leadership-council] |                                |
 
 ## Frequently asked questions
 
