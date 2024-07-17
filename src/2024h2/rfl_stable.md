@@ -1,4 +1,4 @@
-# Resolving the biggest blockers to Linux building on stable Rust
+# Resolve the biggest blockers to Linux building on stable Rust
 
 | Metadata    |                                |
 | ----------- | ------------------------------ |
@@ -147,7 +147,7 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | ↳ Stabilization decision           | ![Team] [lang]               |                           |
 | Derive smart pointer               | @Darksonn                    |                           |
 | ↳ ~~author RFC~~                   |                              | [RFC #3621]               |
-| ↳ RFC decision                     | ![Team][] [lang]             |                           |
+| ↳ RFC decision                     | ![Team][] [lang]             | ![Complete][]             |
 | ↳ Implementation                   | @dingxiangfei2009            |                           |
 | ↳ Author stabilization report      | @dingxiangfei2009            |                           |
 | ↳ Stabilization decision           | ![Team][] [lang]             |                           |

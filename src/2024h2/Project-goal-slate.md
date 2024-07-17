@@ -1,10 +1,10 @@
 # Assemble project goal slate
 
-| Metadata |               |
-| -------- | ------------- |
-| Owner(s) | @nikomatsakis |
-| Teams    | [leadership-council]          |
-| Status   | Proposed      |
+| Metadata |                      |
+| -------- | -------------------- |
+| Owner(s) | @nikomatsakis        |
+| Teams    | [leadership-council] |
+| Status   | Proposed             |
 
 *Extracted from [RFC 3614](https://github.com/rust-lang/rfcs/blob/master/text/3614-project-goals.md)*
 
@@ -71,11 +71,11 @@ More concretely, assuming this goal program is successful, we would like to begi
 
 * @nikomatsakis can commit 20% time (avg of 1 days per week) to pursue this task, which he estimates to be sufficient.
 
-| Subgoal                                    | Owner(s) or team(s) | Notes                                                                                     |
-| ------------------------------------------ | ------------------- | ----------------------------------------------------------------------------------------- |
-| RFC decision                               | ![Team][] [leadership-council]      | ![Complete][]                                                                             |
-| Inside Rust blog post inviting feedback    | ![Team][] [leadership-council]      | [Posted](https://blog.rust-lang.org/inside-rust/2024/05/07/announcing-project-goals.html) |
-| Top-level Rust blog post announcing result | ![Team][] [leadership-council]      |                                                                                           |
+| Subgoal                                    | Owner(s) or team(s)            | Notes                                                                                     |
+| ------------------------------------------ | ------------------------------ | ----------------------------------------------------------------------------------------- |
+| RFC decision                               | ![Team][] [leadership-council] | ![Complete][]                                                                             |
+| Inside Rust blog post inviting feedback    |                                | [Posted](https://blog.rust-lang.org/inside-rust/2024/05/07/announcing-project-goals.html) |
+| Top-level Rust blog post announcing result |                                |                                                                                           |
 
 ### Support needed from the project
 
