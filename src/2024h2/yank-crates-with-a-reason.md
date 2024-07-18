@@ -29,7 +29,7 @@ Additionally, if we can persist this information to the crates.io index, we can 
 
 ### The next 6 months
 
-The primary goal for the next 6 months is to add support to the registry's [yank API][].
+The primary goal for the next 6 months is to add support to the registry's [yank API].
 
 After that, next steps include (these can be done in many different orders):
 
