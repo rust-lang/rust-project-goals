@@ -59,14 +59,17 @@ In the second half of 2024 we are planning on the following work items. The foll
 * [reorganize the async WG](#reorganize-the-async-wg), so that we can be better aligned and move more swiftly from here out;
 * [stabilize async closures](#stabilize-async-closures), allowing for a much wider variety of async related APIs (async closures are implemented on nightly).
 
-We have also identified two "stretch goals" that we believe could be completed:
+We have also identified three "stretch goals" that we believe could be completed:
 
 * [stabilize trait for async iteration](#stabilize-trait-for-async-iteration)
+* [support dyn for async traits via a proc macro]
 * [complete async drop experiments](#complete-async-drop-experiments) (currently unfunded)
 
 #### Resolve the ["send bound"][sb] problem
 
 Although async functions in traits were stabilized, there is currently no way to write a generic function that requires impls where the returned futures are `Send`. This blocks the use of async function in traits in some core ecosystem crates, such as [tower](https://crates.io/crates/tower), which want to work across all kinds of async executors. This problem is called the ["send bound"][sb] problem and there has been extensive discussion of the various ways to solve it. [RFC #3654] has been opened proposing one solution and describing why that path is preferred. Our goal for the year is to adopt *some* solution on stable.
+
+A solution to the send bound problem should include a migration path for users of the `trait_variant` crate, if possible. For [RFC #3654] (RTN), this would require implementable trait aliases (see [RFC #3437]).
 
 #### Reorganize the Async WG
 
@@ -139,6 +142,12 @@ The details (syntax, precise semantics) will be determined via experimentation a
 
 There has been extensive discussion about the best form of the trait for async iteration (sometimes called `Stream`, sometimes `AsyncIter`, and now being called `AsyncGen`). We believe the design space has been sufficiently explored that it should be possible to author an RFC laying out the options and proposing a specific plan.
 
+#### Release a proc macro for dyn dispatch with `async fn` in traits
+
+![Stretch Goal](https://img.shields.io/badge/Stretch%20Goal-red)
+
+Currently we do not support using `dyn` with traits that use `async fn` or `-> impl Trait`. This can be solved [without language extensions](https://github.com/rust-lang/impl-trait-utils/issues/34) through the use of a proc macro. This should remove the need for the use of the `async_trait` proc macro in new enough compilers, giving all users the performance benefits of static dispatch without giving up the flexibility of dynamic dispatch.
+
 #### Complete async drop experiments
 
 ![Not funded][]
@@ -190,6 +199,9 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | ↳ RFC decision             | ![Team][] [libs-api] [lang] |                     |
 | ↳ Design meeting           | ![Team][] [lang]            | 2 meetings expected |
 | ↳ Implementation           |                             |                     |
+| Dyn dispatch for AFIT      | @spastorino                 |                     |
+| ↳ Implementation           | @spastorino                 |                     |
+| ↳ Standard reviews         | @tmandry                    |                     |
 | Async drop experiments     | @petrochenkov               |                     |
 | ↳ ~~author MCP~~           |                             | ![Complete][]       |
 | ↳ ~~MCP decision~~         | ~~[compiler]~~              | ![Complete][]       |
@@ -226,9 +238,9 @@ This is an ambitious agenda, no doubt. We believe it is possible if the teams ar
 
 These are the two features that together block the authoring of traits for a number of common interop purposes. Send bounds are needed for generic traits like the `Service` trait. Async closures are needed for rich combinator APIs like iterators.
 
-### Why not work on dyn dispatch for async fn in traits?
+### Why not build in dyn dispatch for async fn in traits?
 
-Async fn in traits do not currently support native dynamic dispatch. We have explored a [number of designs for making it work](https://smallcultfollowing.com/babysteps/blog/2021/09/30/dyn-async-traits-part-1/) but are not currently prioritizing that effort. It was determined that this idea is lower priority because it is possible to [workaround](https://smallcultfollowing.com/babysteps/blog/2021/10/15/dyn-async-traits-part-6/) the gap by having the  `#[trait_variant]` crate produce a dynamic dispatch wrapper type (e.g., `#[trait_variant(dyn = DynWidget)] trait Widget` would create a type `DynWidget<'_>` that acts like a `Box<dyn Widget>`). We do expect to support dyn async trait, hopefully in 2025.
+Async fn in traits do not currently support native dynamic dispatch. We have explored a [number of designs for making it work](https://smallcultfollowing.com/babysteps/blog/2021/09/30/dyn-async-traits-part-1/) but have not completed all of the language design work needed, and are not currently prioritizing that effort. We do hope to support it via a proc macro this year and extend to full language support later, hopefully in 2025.
 
 ### Why are we moving forward on a trait for async iteration?
 
