@@ -6,10 +6,10 @@ use std::{io, path::PathBuf};
 use structopt::StructOpt;
 use walkdir::WalkDir;
 
-mod fcp;
 mod goal;
 mod markwaydown;
 mod mdbook_preprocessor;
+mod rfc;
 mod team;
 mod util;
 
@@ -27,6 +27,8 @@ enum Command {
 
     FCP { path: PathBuf },
 
+    RFC { path: PathBuf },
+
     Check {},
 }
 
@@ -39,11 +41,15 @@ fn main() -> anyhow::Result<()> {
         }
 
         Some(Command::FCP { path }) => {
-            fcp::generate_comment(&path)?;
+            rfc::generate_comment(&path)?;
         }
 
         Some(Command::Check {}) => {
             check()?;
+        }
+
+        Some(Command::RFC { path }) => {
+            rfc::generate_rfc(&path)?;
         }
 
         None => {
