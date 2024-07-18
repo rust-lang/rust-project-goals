@@ -2,13 +2,13 @@
 
 | Metadata |                      |
 | -------- | -------------------- |
-| Owner(s) | @hi-rustin          |
+| Owner(s) | @hi-rustin           |
 | Teams    | [crates-io], [cargo] |
 | Status   | Proposed             |
 
 ## Summary
 
-Over the next 6 months, we will first implement a feature in crates.io that asks for a reason when an administrator yanks a crate. After this feature has been up and running for a while, we'll open it up to Cargo to support filling in the reason for yanking, making it an optional parameter of the registry yank API.
+Over the next 6 months, we will add support to the registry yank API for providing a reason when a crate is yanked. This reason can then be displayed to users. After this feature has been up and running for a while, we'll open it up to Cargo to support filling in the reason for yanking.
 
 ## Motivation
 
@@ -29,10 +29,14 @@ Additionally, if we can persist this information to the crates.io index, we can 
 
 ### The next 6 months
 
-* Implementing basic prototypes in crates.io
-* Trial run at crates.io for a while
-* Support for yank messages on the Cargo command line(unstable)
-* Stabilize this parameter and use it as a standard parameter for the registry [yank API]
+The primary goal for the next 6 months is to add support to the registry's [yank API].
+
+After that, next steps include (these can be done in many different orders):
+
+* add support on the browser frontend for giving a reason
+* add support on the cargo CLI for giving a reason
+* add reason to the index
+* add support on the cargo CLI for showing the reason
 
 [yank API]: https://doc.rust-lang.org/cargo/reference/registry-web-api.html#yank
 
@@ -47,17 +51,17 @@ When considering this feature, we need to balance our desire for a perfect, stru
 * @hi-rustin: wearing my crates.io team member's hat
 * @hi-rustin: wearing my Cargo regular contributor's hat
 
-| Subgoal                                                     | Owner(s) or team(s)            | Notes |
-| ----------------------------------------------------------- | ------------------------------ | ----- |
-| Yank crates with a reason                                   |                                |       |
-| ↳ Implementation in crates.io side(only for administrators) | @hi-rustin                    |       |
-| ↳ Standard reviews                                          | ![Team][] [crates-io]          |       |
-| ↳ Try it out in crates.io                                   | ![Team][] [crates-io]          |       |
-| ↳ Author RFC                                                | @hi-rustin                    |       |
-| ↳ Approve RFC                                               | ![Team][] [cargo], [crates-io] |       |
-| ↳ Implementation in Cargo side                              | @hi-rustin                    |       |
-| ↳ Inside Rust blog post inviting feedback                   | @hi-rustin                    |       |
-| ↳ Stabilization decision                                    | ![Team][] [cargo]              |       |
+| Subgoal                                   | Owner(s) or team(s)            | Notes |
+| ----------------------------------------- | ------------------------------ | ----- |
+| Yank crates with a reason                 |                                |       |
+| ↳ Implementation                          | @hi-rustin                     |       |
+| ↳ Standard reviews                        | ![Team][] [crates-io]          |       |
+| ↳ Try it out in crates.io                 | ![Team][] [crates-io]          |       |
+| ↳ Author RFC                              | @hi-rustin                     |       |
+| ↳ Approve RFC                             | ![Team][] [cargo], [crates-io] |       |
+| ↳ Implementation in Cargo side            | @hi-rustin                     |       |
+| ↳ Inside Rust blog post inviting feedback | @hi-rustin                     |       |
+| ↳ Stabilization decision                  | ![Team][] [cargo]              |       |
 
 [TBD]: https://img.shields.io/badge/TBD-red
 [Team]: https://img.shields.io/badge/Team%20ask-red
