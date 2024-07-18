@@ -43,7 +43,10 @@ There is not yet consensus amongst the relevant Rust teams as to how and/or whet
 Some concerns that continued experimentation will hopefully help to resolve:
 
 * How effective and general purpose is this functionality?
-* Can this functionality be supported on other backends beyond LLVM? If not, how should we manage the backend-specific nature of it?
+* How complex is this functionality to support, and how does that trade off with the value it provides? What is the right point on the spectrum of tradeoffs?
+* Can code using these Rust features still compile and run on backends other than LLVM, and on all supported targets? If not, how should we manage the backend-specific nature of it?
+* Can we avoid tying Rust features too closely to the specific properties of any backend or target, such that we're confident these features can remain stable over decades of future landscape changes?
+* Can we fully implement every feature of the provided functionality (as more than a no-op) on fully open systems, despite the heavily proprietary nature of parts of the GPU and accelerator landscape?
 
 ## Design axioms
 
@@ -61,7 +64,7 @@ Some concerns that continued experimentation will hopefully help to resolve:
 
 - We try to provide a fast autodiff interface which supports most autodiff features relevant for scientific computing.
 - The "unit" of autodiff is a function.
-- We acknowledge our responability since user-implemented autodiff without compiler knowledge might struggle to cover gaps in our features.
+- We acknowledge our responsibility since user-implemented autodiff without compiler knowledge might struggle to cover gaps in our features.
 - We have a fast, low level, solution with further optimization opportunities, but need to improve safety and usability (i.e. provide better high level interfaces).
 - We need to teach users more about autodiff "pitfalls" and provide guides on how to handle them. See, e.g. <https://arxiv.org/abs/2305.07546>.
 - We do not support differentiating inline assembly. Users are expected to write custom derivatives in such cases.
