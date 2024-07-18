@@ -61,7 +61,7 @@ Some concerns that continued experimentation will hopefully help to resolve:
 
 - We try to provide a fast autodiff interface which supports most autodiff features relevant for scientific computing.
 - The "unit" of autodiff is a function.
-- We acknowledge our responability since user-implemented autodiff without compiler knowledge might struggle to cover gaps in our features.
+- We acknowledge our responsibility since user-implemented autodiff without compiler knowledge might struggle to cover gaps in our features.
 - We have a fast, low level, solution with further optimization opportunities, but need to improve safety and usability (i.e. provide better high level interfaces).
 - We need to teach users more about autodiff "pitfalls" and provide guides on how to handle them. See, e.g. <https://arxiv.org/abs/2305.07546>.
 - We do not support differentiating inline assembly. Users are expected to write custom derivatives in such cases.
