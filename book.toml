@@ -33,7 +33,7 @@ enable = true
 level = 0
 
 [output.html.redirect]
-"/2024h2/async_fn_everywhere.html" = "rust-project-goals/2024h2/async.html"
-"/2024h2/slate.html" = "rust-project-goals/2024h2/index.html"
+"/2024h2/async_fn_everywhere.html" = "async.html"
+"/2024h2/slate.html" = "index.html"
 
 [output.markdown]
