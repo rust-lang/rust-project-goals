@@ -200,7 +200,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         if chapter_path.file_stem() != Some("README".as_ref()) {
             let mut parent_names = chapter.parent_names.clone();
             parent_names.push(chapter.name.clone());
-            for (goal, index) in goals.iter().zip(0..) {
+            for (goal, index) in goals_with_status.iter().zip(0..) {
                 let content = std::fs::read_to_string(&goal.path)
                     .with_context(|| format!("reading `{}`", goal.path.display()))?;
                 let path = goal.path.strip_prefix(&self.ctx.config.book.src).unwrap();
