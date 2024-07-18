@@ -2,7 +2,7 @@
 
 This repo tracks the effort to set and track goals for the Rust project.
 
-We are currently working on assembling a [slate of goals for 2024H2 -- the second half of 2024](./2024h2/slate.md).
+We are currently working on assembling a [slate of goals for 2024H2 -- the second half of 2024](./2024h2/index.md).
 
 Want to learn more? Check out some of the following:
 
