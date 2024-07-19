@@ -24,12 +24,16 @@ struct Opt {
 #[derive(StructOpt, Debug)]
 #[allow(dead_code)]
 enum Command {
+    /// Command used by mdbook to check if the preprocessor supports a renderer
     Supports { renderer: String },
 
+    /// Print the comment required to initiate FCP
     FCP { path: PathBuf },
 
+    /// Print the RFC text to stdout
     RFC { path: PathBuf },
 
+    /// Checks that the goal documents are well-formed, intended for use within CI
     Check {},
 }
 
