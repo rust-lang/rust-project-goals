@@ -107,9 +107,6 @@ Similar challenges exist with lifetimes, variance, trait solving, `async fn` ver
 
 While there are some promising preliminary ideas for resolving this challenge, more in-depth design work is necessary to determine the best path forward.
 
-
-*Elaborate in more detail about the problem you are trying to solve. This section is making the case for why this particular problem is worth prioritizing with project bandwidth. A strong status quo section will (a) identify the target audience and (b) give specifics about the problems they are facing today. Sometimes it may be useful to start sketching out how you think those problems will be addressed by your change, as well, though it's not necessary.*
-
 ### The next 6 months
 
 Three things:
