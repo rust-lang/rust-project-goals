@@ -77,6 +77,11 @@ impl TeamName {
         // FIXME: do better :)
         format!("https://www.rust-lang.org/governance/teams")
     }
+
+    /// Label to use on github
+    pub fn gh_label(&self) -> String {
+        format!("T-{}", self.0)
+    }
 }
 
 fn fetch<T>(path: &str) -> anyhow::Result<T>

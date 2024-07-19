@@ -19,6 +19,10 @@ mod util;
 struct Opt {
     #[structopt(subcommand)]
     cmd: Option<Command>,
+
+    /// Repository to use if applicable
+    #[structopt(long, default_value = "rust-lang/rust-project-goals")]
+    repository: String,
 }
 
 #[derive(StructOpt, Debug)]
@@ -32,6 +36,14 @@ enum Command {
 
     /// Print the RFC text to stdout
     RFC { path: PathBuf },
+
+    /// Use `gh` CLI tool to create issues on the rust-lang/rust-project-goals repository
+    Issues {
+        path: PathBuf,
+
+        #[structopt(short = "-n", long)]
+        dry_run: bool,
+    },
 
     /// Checks that the goal documents are well-formed, intended for use within CI
     Check {},
@@ -55,6 +67,10 @@ fn main() -> anyhow::Result<()> {
 
         Some(Command::RFC { path }) => {
             rfc::generate_rfc(&path)?;
+        }
+
+        Some(Command::Issues { path, dry_run }) => {
+            rfc::generate_issues(&opt.repository, path, *dry_run)?;
         }
 
         None => {

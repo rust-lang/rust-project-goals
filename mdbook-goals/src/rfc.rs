@@ -1,22 +1,45 @@
 use std::{
     collections::BTreeSet,
+    fmt::Display,
     path::{Path, PathBuf},
     process::Command,
 };
 
 use anyhow::Context;
 use regex::Regex;
+use serde::{Deserialize, Serialize};
 
-use crate::{goal, team::TeamName};
+use crate::{
+    goal::{self, GoalDocument},
+    team::TeamName,
+};
+
+fn validate_path(path: &Path) -> anyhow::Result<String> {
+    if !path.is_dir() {
+        return Err(anyhow::anyhow!(
+            "RFC path should be a directory like src/2024h2"
+        ));
+    };
+
+    if path.is_absolute() {
+        return Err(anyhow::anyhow!("RFC path should be relative"));
+    }
+
+    let timeframe = path
+        .components()
+        .last()
+        .unwrap()
+        .as_os_str()
+        .to_str()
+        .ok_or_else(|| anyhow::anyhow!("invalid path `{}`", path.display()))?;
+
+    Ok(timeframe.to_string())
+}
 
 pub fn generate_comment(path: &Path) -> anyhow::Result<()> {
+    let _ = validate_path(path)?;
     let goal_documents = goal::goals_in_dir(path)?;
-    let teams_with_asks: BTreeSet<&TeamName> = goal_documents
-        .iter()
-        .flat_map(|g| &g.team_asks)
-        .flat_map(|ask| &ask.teams)
-        .copied()
-        .collect();
+    let teams_with_asks = teams_with_asks(&goal_documents);
 
     for team_name in teams_with_asks {
         let team_data = team_name.data();
@@ -38,23 +61,7 @@ pub fn generate_comment(path: &Path) -> anyhow::Result<()> {
 }
 
 pub fn generate_rfc(path: &Path) -> anyhow::Result<()> {
-    if !path.is_dir() {
-        return Err(anyhow::anyhow!(
-            "RFC path should be a directory like src/2024h2"
-        ));
-    };
-
-    if path.is_absolute() {
-        return Err(anyhow::anyhow!("RFC path should be relative"));
-    }
-
-    let timeframe = path
-        .components()
-        .last()
-        .unwrap()
-        .as_os_str()
-        .to_str()
-        .ok_or_else(|| anyhow::anyhow!("invalid path `{}`", path.display()))?;
+    let timeframe = &validate_path(path)?;
 
     // run mdbook build
     Command::new("mdbook").arg("build").status()?;
@@ -87,4 +94,167 @@ pub fn generate_rfc(path: &Path) -> anyhow::Result<()> {
     println!("{result}");
 
     Ok(())
+}
+
+pub fn generate_issues(repository: &str, path: &Path, dry_run: bool) -> anyhow::Result<()> {
+    let _ = validate_path(path)?;
+
+    let goal_documents = goal::goals_in_dir(path)?;
+    let teams_with_asks = teams_with_asks(&goal_documents);
+    // let issues: Vec<_> = goal_documents
+    //     .iter()
+    //     .map(|goal_document| {
+    //         let title = format!("Goal: {}", goal_document.title);
+    //         let owners = goal_document.metadata.owner_usernames();
+    //         let body = goal_document.description.clone();
+    //         let teams = goal_document
+    //             .team_asks
+    //             .iter()
+    //             .flat_map(|ask| &ask.teams)
+    //             .copied()
+    //             .collect::<BTreeSet<&TeamName>>();
+
+    //         GithubIssue {
+    //             title,
+    //             owners,
+    //             body,
+    //             teams,
+    //         }
+    //     })
+    //     .collect();
+
+    let mut actions = initialize_labels(repository, &teams_with_asks)?;
+
+    eprintln!("Actions to be executed:");
+    for action in &actions {
+        eprintln!("* {action}");
+    }
+
+    if !dry_run {
+        for action in actions {
+            action.execute(repository)?;
+        }
+    }
+
+    Ok(())
+}
+
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
+pub struct GithubIssue {
+    pub title: String,
+    pub owners: Vec<String>,
+    pub body: String,
+    pub teams: BTreeSet<&'static TeamName>,
+}
+
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
+enum GithubAction {
+    CreateLabel { name: String, color: String },
+    CreateIssue { issue: GithubIssue },
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+struct GhLabel {
+    name: String,
+    color: String,
+}
+
+fn list_labels(repository: &str) -> anyhow::Result<Vec<GhLabel>> {
+    let output = Command::new("gh")
+        .arg("-R")
+        .arg(repository)
+        .arg("label")
+        .arg("list")
+        .arg("--json")
+        .arg("name,color")
+        .output()?;
+
+    let labels: Vec<GhLabel> = serde_json::from_slice(&output.stdout)?;
+
+    Ok(labels)
+}
+
+/// Initializes the required `T-<team>` labels on the repository.
+/// Warns if the labels are found with wrong color.
+pub fn initialize_labels(
+    repository: &str,
+    teams_with_asks: &BTreeSet<&TeamName>,
+) -> anyhow::Result<BTreeSet<GithubAction>> {
+    const TEAM_LABEL_COLOR: &str = "bfd4f2";
+
+    let existing_labels = list_labels(repository)?;
+
+    Ok(teams_with_asks
+        .iter()
+        .flat_map(|team| {
+            let label_name = team.gh_label();
+
+            if let Some(existing_label) = existing_labels
+                .iter()
+                .find(|label| label.name == label_name)
+            {
+                if existing_label.color == TEAM_LABEL_COLOR {
+                    return None;
+                }
+            }
+
+            Some(GithubAction::CreateLabel {
+                name: label_name,
+                color: TEAM_LABEL_COLOR.to_string(),
+            })
+        })
+        .collect())
+}
+
+fn teams_with_asks(goal_documents: &[GoalDocument]) -> BTreeSet<&'static TeamName> {
+    goal_documents
+        .iter()
+        .flat_map(|g| &g.team_asks)
+        .flat_map(|ask| &ask.teams)
+        .copied()
+        .collect()
+}
+
+impl Display for GithubAction {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            GithubAction::CreateLabel { name, color } => {
+                write!(f, "create label `{}` with color `{}`", name, color)
+            }
+            GithubAction::CreateIssue { issue } => {
+                write!(f, "create issue `{}`", issue.title)
+            }
+        }
+    }
+}
+
+impl GithubAction {
+    pub fn execute(self, repository: &str) -> anyhow::Result<()> {
+        match self {
+            GithubAction::CreateLabel { name, color } => {
+                let output = Command::new("gh")
+                    .arg("-R")
+                    .arg(repository)
+                    .arg("label")
+                    .arg("create")
+                    .arg(&name)
+                    .arg("--color")
+                    .arg(&color)
+                    .arg("--force")
+                    .output()?;
+
+                if !output.status.success() {
+                    Err(anyhow::anyhow!(
+                        "failed to create label `{}`: {}",
+                        name,
+                        String::from_utf8_lossy(&output.stderr)
+                    ))
+                } else {
+                    Ok(())
+                }
+            }
+
+            GithubAction::CreateIssue { issue } => todo!(),
+        }
+    }
 }

@@ -369,3 +369,14 @@ fn extract_identifiers(s: &str) -> Vec<&str> {
     let regex = Regex::new("[-.A-Za-z]+").unwrap();
     regex.find_iter(s).map(|m| m.as_str()).collect()
 }
+
+impl Metadata {
+    /// Extracts the `@abc` usernames found in the owner listing.
+    pub fn owner_usernames(&self) -> Vec<&str> {
+        self.owners
+            .split(char::is_whitespace)
+            .filter_map(|owner| USERNAME.captures(owner))
+            .map(|captures| captures.get(0).unwrap().as_str())
+            .collect()
+    }
+}
