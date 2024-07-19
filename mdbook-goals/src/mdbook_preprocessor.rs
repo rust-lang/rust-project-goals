@@ -34,10 +34,10 @@ impl Preprocessor for GoalPreprocessor {
 }
 
 pub struct GoalPreprocessorWithContext<'c> {
-    team_asks: Regex,
-    goal_list: Regex,
-    goal_count: Regex,
-    username: Regex,
+    team_asks: &'static Regex,
+    goal_list: &'static Regex,
+    goal_count: &'static Regex,
+    username: &'static Regex,
     ctx: &'c PreprocessorContext,
     links: Vec<(String, String)>,
     linkifiers: Vec<(Regex, String)>,
@@ -113,10 +113,10 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
         Ok(GoalPreprocessorWithContext {
             ctx,
-            team_asks: Regex::new(r"<!-- TEAM ASKS -->")?,
-            goal_list: Regex::new(r"<!-- GOALS `(.*)` -->")?,
-            goal_count: Regex::new(r"<!-- #GOALS -->")?,
-            username: Regex::new(r"@([-a-zA-Z0-9])+")?,
+            team_asks: &re::TEAM_ASKS,
+            goal_list: &re::GOAL_LIST,
+            goal_count: &re::GOAL_COUNT,
+            username: &re::USERNAME,
             links,
             linkifiers,
             display_names,

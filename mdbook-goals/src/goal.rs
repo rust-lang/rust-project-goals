@@ -6,6 +6,7 @@ use std::{collections::BTreeSet, path::PathBuf};
 use anyhow::Context;
 use regex::Regex;
 
+use crate::re::USERNAME;
 use crate::team::{self, TeamName};
 use crate::util::{commas, markdown_files};
 use crate::{
