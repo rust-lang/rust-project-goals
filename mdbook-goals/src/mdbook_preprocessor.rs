@@ -10,8 +10,8 @@ use mdbook::BookItem;
 use regex::{Captures, Regex};
 
 use crate::goal::{self, format_team_asks, GoalDocument, Status, TeamAsk};
-use crate::team;
 use crate::util::GithubUserInfo;
+use crate::{re, team};
 
 const LINKS: &str = "links";
 const LINKIFIERS: &str = "linkifiers";
