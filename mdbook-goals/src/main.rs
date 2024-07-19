@@ -9,6 +9,7 @@ use walkdir::WalkDir;
 mod goal;
 mod markwaydown;
 mod mdbook_preprocessor;
+mod re;
 mod rfc;
 mod team;
 mod util;
