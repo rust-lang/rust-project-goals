@@ -8,7 +8,7 @@
 
 ## Summary
 
-Instrument a [fork of the standard library](https://github.com/model-checking/verify-rust-std) with safety contracts,
+Instrument a fork of the standard library (the [verify-rust-std] repository) with safety contracts,
 and employ existing verification tools to verify the standard library.
 
 ## Motivation
@@ -23,14 +23,59 @@ the first step to enhance the safety guarantees of the Standard Library, hence, 
 
 ### The status quo
 
-Rust has a very active and diverse formal methods community that has been developing modular and mostly automated
-verification tools.
+Rust has a very active and diverse formal methods community that has been developing automated or semi-automated
+verification tools that can further validate Rust code beyond the guarantees provided by the compiler.
+These tools can complement Rust's safety guarantees, and allow developers to eliminate bugs and formally prove the
+correctness of their Rust code.
 
-TODO: Finish this
+There are multiple verification techniques, and each have their own strength and limitations.
+Some tools like [Creusot] and [Prusti] can prove correctness of Rust, including generic code,
+but they cannot reason about unsafe Rust, and they are not fully automated.
+
+On the other hand, tools like [Kani] and [Verus] are able to verify unsafe Rust, but they have
+their own limitations, for example, [Kani] verification is currently bounded in the presence of loops, and it can
+only verify monomorphic code, while [Verus] requires an extended version of the Rust language which is accomplished via macros.
+
+Formal verification tools such as [Creusot], [Kani], and [Verus] have demonstrated that it is possible to write verify
+Rust code that is amenable to automated or semi-automated verification.
+For example, Kani has been successfully applied to different Rust projects, such as:
+[Firecracker microVM], [s2n-quic], and [Hifitime].
+
+Applying those techniques to the Standard library will allow us to assess these different verification techniques,
+identify where all these tools come short, and help us guide research required to address those gaps.
+
+[this MCP]: https://github.com/rust-lang/compiler-team/issues/759
+[Creusot]: https://github.com/creusot-rs/creusot
+[Prusti]: https://viperproject.github.io/prusti-dev/
+[Kani]: https://model-checking.github.io/kani/
+[Verus]: https://verus-lang.github.io/verus/guide/
+[Firecracker microVM]: https://github.com/firecracker-microvm/firecracker
+[s2n-quic]: https://github.com/aws/s2n-quic
+[Hifitime]: https://github.com/nyx-space/hifitime
+
+#### Contract language
+
+Virtually every verification tool has its own contract specification language,
+which makes it hard to combine tools to verify the same system.
+Specifying a contract language is outside the scope of this project.
+However, we plan to adopt the syntax that proposed in [this MCP], and keep our fork synchronized
+with progress made to the compiler contract language, and help assess its suitability for verification.
+
+This will also allow us to contribute back the contracts added to the fork.
 
 #### Repository Configuration
 
-#### Verification Target
+Most of the work for this project will be developed on the top of the [verify-rust-std].
+This repository has a subtree of the Rust library folder, which is the verification target.
+We have already integrated [Kani] in CI, and we are in the process of integrating more tools.
+
+This repository also includes "Challenges", which are verification problems that we believe are representative of
+different verification targets in the Standard library.
+We hope that these challenges will help contributors to narrow down which parts of the standard library they can
+verify next.
+New challenges can also be proposed by any contributor.
+
+[verify-rust-std]: https://github.com/model-checking/verify-rust-std
 
 ### The next 6 months
 
@@ -40,10 +85,10 @@ and safe abstractions with safety type invariants.
 Then we will employ existing verification tools to verify that the annotated unsafe functions are in-fact safe as long
 as its contract pre-conditions are preserved. And we will also check that any post condition is respected.
 With that, we will work on proving that safe abstractions do not violate any safety contract, and that it does not
-leak any unsafe value through its interface.
+leak any unsafe value through its public interface.
 
 Type invariants will be employed to verify that unsafe value encapsulation is strong enough to guarantee the safety
-of the type interface. Any safe method should be able to assume the type invariant, and it should also preserve the type
+of the type interface. Any method should be able to assume the type invariant, and it should also preserve the type
 invariant. Unsafe methods contract must be enough to guarantee that the type invariant is also preserved at the end
 of the call.
 
