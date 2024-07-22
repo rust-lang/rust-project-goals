@@ -101,29 +101,13 @@ pub fn generate_issues(repository: &str, path: &Path, dry_run: bool) -> anyhow::
 
     let goal_documents = goal::goals_in_dir(path)?;
     let teams_with_asks = teams_with_asks(&goal_documents);
-    // let issues: Vec<_> = goal_documents
-    //     .iter()
-    //     .map(|goal_document| {
-    //         let title = format!("Goal: {}", goal_document.title);
-    //         let owners = goal_document.metadata.owner_usernames();
-    //         let body = goal_document.description.clone();
-    //         let teams = goal_document
-    //             .team_asks
-    //             .iter()
-    //             .flat_map(|ask| &ask.teams)
-    //             .copied()
-    //             .collect::<BTreeSet<&TeamName>>();
-
-    //         GithubIssue {
-    //             title,
-    //             owners,
-    //             body,
-    //             teams,
-    //         }
-    //     })
-    //     .collect();
-
     let mut actions = initialize_labels(repository, &teams_with_asks)?;
+    actions.extend(initialize_issues(repository, &goal_documents)?);
+
+    if actions.is_empty() {
+        eprintln!("No actions to be executed.");
+        return Ok(());
+    }
 
     eprintln!("Actions to be executed:");
     for action in &actions {
@@ -149,11 +133,11 @@ pub struct GithubIssue {
 
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
 enum GithubAction {
-    CreateLabel { name: String, color: String },
+    CreateLabel { label: GhLabel },
     CreateIssue { issue: GithubIssue },
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 struct GhLabel {
     name: String,
     color: String,
@@ -176,34 +160,63 @@ fn list_labels(repository: &str) -> anyhow::Result<Vec<GhLabel>> {
 
 /// Initializes the required `T-<team>` labels on the repository.
 /// Warns if the labels are found with wrong color.
-pub fn initialize_labels(
+fn initialize_labels(
     repository: &str,
     teams_with_asks: &BTreeSet<&TeamName>,
 ) -> anyhow::Result<BTreeSet<GithubAction>> {
     const TEAM_LABEL_COLOR: &str = "bfd4f2";
 
-    let existing_labels = list_labels(repository)?;
-
-    Ok(teams_with_asks
+    let mut desired_labels: BTreeSet<_> = teams_with_asks
         .iter()
-        .flat_map(|team| {
+        .map(|team| {
             let label_name = team.gh_label();
 
-            if let Some(existing_label) = existing_labels
-                .iter()
-                .find(|label| label.name == label_name)
-            {
-                if existing_label.color == TEAM_LABEL_COLOR {
-                    return None;
-                }
-            }
-
-            Some(GithubAction::CreateLabel {
+            GhLabel {
                 name: label_name,
                 color: TEAM_LABEL_COLOR.to_string(),
-            })
+            }
         })
+        .collect();
+
+    for existing_label in list_labels(repository)? {
+        desired_labels.remove(&existing_label);
+    }
+
+    Ok(desired_labels
+        .into_iter()
+        .map(|label| GithubAction::CreateLabel { label })
         .collect())
+}
+
+/// Initializes the required `T-<team>` labels on the repository.
+/// Warns if the labels are found with wrong color.
+fn initialize_issues(
+    repository: &str,
+    document: &[GoalDocument],
+) -> anyhow::Result<BTreeSet<GithubAction>> {
+    // let issues: Vec<_> = goal_documents
+    //     .iter()
+    //     .map(|goal_document| {
+    //         let title = format!("Goal: {}", goal_document.title);
+    //         let owners = goal_document.metadata.owner_usernames();
+    //         let body = goal_document.description.clone();
+    //         let teams = goal_document
+    //             .team_asks
+    //             .iter()
+    //             .flat_map(|ask| &ask.teams)
+    //             .copied()
+    //             .collect::<BTreeSet<&TeamName>>();
+
+    //         GithubIssue {
+    //             title,
+    //             owners,
+    //             body,
+    //             teams,
+    //         }
+    //     })
+    //     .collect();
+
+    Ok(None.into_iter().collect())
 }
 
 fn teams_with_asks(goal_documents: &[GoalDocument]) -> BTreeSet<&'static TeamName> {
@@ -218,7 +231,9 @@ fn teams_with_asks(goal_documents: &[GoalDocument]) -> BTreeSet<&'static TeamNam
 impl Display for GithubAction {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            GithubAction::CreateLabel { name, color } => {
+            GithubAction::CreateLabel {
+                label: GhLabel { name, color },
+            } => {
                 write!(f, "create label `{}` with color `{}`", name, color)
             }
             GithubAction::CreateIssue { issue } => {
@@ -231,7 +246,9 @@ impl Display for GithubAction {
 impl GithubAction {
     pub fn execute(self, repository: &str) -> anyhow::Result<()> {
         match self {
-            GithubAction::CreateLabel { name, color } => {
+            GithubAction::CreateLabel {
+                label: GhLabel { name, color },
+            } => {
                 let output = Command::new("gh")
                     .arg("-R")
                     .arg(repository)
