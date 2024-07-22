@@ -26,6 +26,9 @@ pub struct GoalDocument {
     /// Metadata loaded from the header in the goal
     pub metadata: Metadata,
 
+    /// The "plan" for completing the goal (includes things owners will do as well as team asks)
+    pub plan_items: Vec<PlanItem>,
+
     /// List of team asks extracted from the goal
     pub team_asks: Vec<TeamAsk>,
 }
@@ -42,14 +45,23 @@ pub struct Metadata {
 
 /// Identifies a particular ask for a set of Rust teams
 #[derive(Debug)]
+pub struct PlanItem {
+    pub text: String,
+    pub owners: String,
+    pub notes: String,
+    pub children: Vec<PlanItem>,
+}
+
+/// Identifies a particular ask for a set of Rust teams
+#[derive(Debug)]
 pub struct TeamAsk {
     /// Path to the markdown file containing this ask (appropriate for a link)
     pub link_path: Arc<PathBuf>,
 
-    /// Title of the subgoal (or goal, if there are no subgoals)
+    /// What the team is being asked for (e.g., RFC decision)
     pub subgoal: String,
 
-    /// What the team is being asked for (e.g., RFC decision)
+    /// Title of the subgoal (or goal, if there are no subgoals)
     pub heading: String,
 
     /// Name(s) of the teams being asked to do the thing
@@ -84,15 +96,21 @@ impl GoalDocument {
         };
 
         let link_path = Arc::new(link_path.to_path_buf());
-        let team_asks = match metadata.status {
+
+        let plan_items = match metadata.status {
             Status::Flagship | Status::Proposed | Status::Orphaned => {
-                extract_team_asks(&link_path, &metadata, &sections)?
+                extract_plan_items(&sections)?
             }
             Status::NotAccepted => vec![],
         };
 
-        if metadata.status != Status::NotAccepted && team_asks.is_empty() {
-            anyhow::bail!("no team asks found in goal file `{}`", path.display());
+        let mut team_asks = vec![];
+        for plan_item in &plan_items {
+            team_asks.extend(plan_item.team_asks(
+                &link_path,
+                &metadata.short_title,
+                &metadata.owners,
+            )?);
         }
 
         Ok(Some(GoalDocument {
@@ -100,6 +118,7 @@ impl GoalDocument {
             link_path,
             metadata,
             team_asks,
+            plan_items,
         }))
     }
 }
@@ -259,6 +278,134 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata>> {
         owners: owners_row[1].to_string(),
         status,
     }))
+}
+
+fn extract_plan_items<'i>(sections: &[Section]) -> anyhow::Result<Vec<PlanItem>> {
+    let Some(ownership_section) = sections
+        .iter()
+        .find(|section| section.title == "Ownership and team asks")
+    else {
+        anyhow::bail!("no `Ownership and team asks` section found")
+    };
+
+    let Some(table) = ownership_section.tables.first() else {
+        anyhow::bail!(
+            "on line {}, no table found in `Ownership and team asks` section",
+            ownership_section.line_num
+        )
+    };
+
+    expect_headers(table, &["Subgoal", "Owner(s) or team(s)", "Notes"])?;
+
+    let mut rows = table.rows.iter().peekable();
+    let mut plan_items = vec![];
+    while rows.peek().is_some() {
+        plan_items.push(extract_plan_item(&mut rows)?);
+    }
+    Ok(plan_items)
+}
+
+fn extract_plan_item(
+    rows: &mut std::iter::Peekable<std::slice::Iter<Vec<String>>>,
+) -> anyhow::Result<PlanItem> {
+    let Some(row) = rows.next() else {
+        anyhow::bail!("unexpected end of table");
+    };
+
+    let mut subgoal = row[0].trim();
+    let mut is_child = false;
+
+    if subgoal.starts_with(ARROW) {
+        // e.g., "↳ stabilization" is a subtask of the metagoal
+        subgoal = row[0][ARROW.len()..].trim();
+        is_child = true;
+    }
+
+    let mut item = PlanItem {
+        text: subgoal.to_string(),
+        owners: row[1].to_string(),
+        notes: row[2].to_string(),
+        children: vec![],
+    };
+
+    if !is_child {
+        while let Some(row) = rows.peek() {
+            if !row[0].starts_with(ARROW) {
+                break;
+            }
+
+            item.children.push(extract_plan_item(rows)?);
+        }
+    }
+
+    Ok(item)
+}
+
+impl PlanItem {
+    fn teams(&self) -> anyhow::Result<Vec<&'static TeamName>> {
+        if !self.owners.contains("![Team]") {
+            return Ok(vec![]);
+        }
+
+        let mut teams = vec![];
+        for team_name in extract_team_names(&self.owners) {
+            let Some(team) = team::get_team_name(&team_name)? else {
+                anyhow::bail!(
+                    "no Rust team named `{}` found (valid names are {})",
+                    team_name,
+                    commas(team::get_team_names()?),
+                );
+            };
+
+            teams.push(team);
+        }
+
+        if teams.is_empty() {
+            anyhow::bail!("team ask for \"{}\" does not list any teams", self.text);
+        }
+
+        Ok(teams)
+    }
+
+    /// Return a vector of all the team-asks from this item and its children
+    ///
+    /// # Parameters
+    ///
+    /// * `link_path`, the path to the document this plan item is found within
+    /// * `goal_title`, the title of the goal (or subgoal) this plan item is a part of
+    /// * `goal_owners`, the owners of the goal (or subgoal) this plan item is a part of
+    fn team_asks(
+        &self,
+        link_path: &Arc<PathBuf>,
+        goal_title: &str,
+        goal_owners: &str,
+    ) -> anyhow::Result<Vec<TeamAsk>> {
+        let mut asks = vec![];
+
+        let teams = self.teams()?;
+        if !teams.is_empty() {
+            asks.push(TeamAsk {
+                link_path: link_path.clone(),
+                subgoal: self.text.clone(),
+                heading: goal_title.to_string(),
+                teams,
+                owners: goal_owners.to_string(),
+                notes: self.notes.clone(),
+            });
+        }
+
+        for child in &self.children {
+            // If this item has owners listed, they take precedence, otherwise use the owners in scope.
+            let owners = if self.owners.is_empty() {
+                goal_owners
+            } else {
+                &self.owners
+            };
+            asks.extend(child.team_asks(link_path, &self.text, owners)?);
+        }
+
+        Ok(asks)
+    }
 }
 
 fn extract_team_asks<'i>(
