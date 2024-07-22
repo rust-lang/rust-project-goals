@@ -6,6 +6,7 @@ use std::path::Path;
 pub struct Section {
     pub line_num: usize,
     pub title: String,
+    pub text: String,
     pub tables: Vec<Table>,
 }
 
@@ -32,16 +33,17 @@ pub fn parse(path: &Path) -> anyhow::Result<Vec<Section>> {
                 open_section = Some(Section {
                     line_num,
                     title,
+                    text: String::new(),
                     tables: vec![],
                 });
             }
             CategorizeLine::TableRow(mut row) => {
                 if open_section.is_none() {
-                    open_section = Some(Section {
-                        line_num,
-                        title: "".to_string(),
-                        tables: vec![],
-                    });
+                    anyhow::bail!(
+                        "{}:{}: markdowwn table outside of any section",
+                        path.display(),
+                        line_num
+                    );
                 }
 
                 if let Some(table) = &mut open_table {
@@ -95,6 +97,10 @@ pub fn parse(path: &Path) -> anyhow::Result<Vec<Section>> {
             }
             CategorizeLine::Other => {
                 close_table(&mut open_section, &mut open_table);
+                if let Some(section) = open_section.as_mut() {
+                    section.text.push_str(line);
+                    section.text.push('\n');
+                }
             }
         }
     }
