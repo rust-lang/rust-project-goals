@@ -59,10 +59,10 @@ pub struct TeamAsk {
     pub link_path: Arc<PathBuf>,
 
     /// What the team is being asked for (e.g., RFC decision)
-    pub subgoal: String,
+    pub ask_description: String,
 
     /// Title of the subgoal (or goal, if there are no subgoals)
-    pub heading: String,
+    pub subgoal_title: String,
 
     /// Name(s) of the teams being asked to do the thing
     pub teams: Vec<&'static TeamName>,
@@ -142,7 +142,10 @@ pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> anyhow::Result<String>
         let team_data = team_name.data();
         write!(output, "\n### {} team\n", team_data.name)?;
 
-        let subgoals: BTreeSet<&String> = asks_of_this_team.iter().map(|a| &a.subgoal).collect();
+        let subgoals: BTreeSet<&String> = asks_of_this_team
+            .iter()
+            .map(|a| &a.ask_description)
+            .collect();
 
         let mut table = vec![vec![
             "Goal".to_string(),
@@ -157,12 +160,15 @@ pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> anyhow::Result<String>
                 "".to_string(),
             ]);
 
-            for ask in asks_of_this_team.iter().filter(|a| a.subgoal == *subgoal) {
+            for ask in asks_of_this_team
+                .iter()
+                .filter(|a| a.ask_description == *subgoal)
+            {
                 table.push(vec![
                     format!(
                         "{} [{}]({}#ownership-and-team-asks)",
                         ARROW,
-                        ask.heading,
+                        ask.subgoal_title,
                         ask.link_path.display()
                     ),
                     ask.owners.to_string(),
@@ -386,8 +392,8 @@ impl PlanItem {
         if !teams.is_empty() {
             asks.push(TeamAsk {
                 link_path: link_path.clone(),
-                subgoal: self.text.clone(),
-                heading: goal_title.to_string(),
+                ask_description: self.text.clone(),
+                subgoal_title: goal_title.to_string(),
                 teams,
                 owners: goal_owners.to_string(),
                 notes: self.notes.clone(),
@@ -476,12 +482,12 @@ fn extract_team_asks<'i>(
 
         tasks.push(TeamAsk {
             link_path: link_path.clone(),
-            heading: if subgoal == heading {
+            subgoal_title: if subgoal == heading {
                 metadata.short_title.to_string()
             } else {
                 heading.to_string()
             },
-            subgoal: subgoal.to_string(),
+            ask_description: subgoal.to_string(),
             teams,
             owners: owners.to_string(),
             notes: row[2].to_string(),
