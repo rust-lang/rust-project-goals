@@ -348,8 +348,15 @@ fn extract_plan_item(
 }
 
 impl PlanItem {
-    fn teams(&self) -> anyhow::Result<Vec<&'static TeamName>> {
-        if !self.owners.contains("![Team]") {
+    /// If true, this item is something being asked of a team.
+    /// If false, it's something the goal owner(s) are proposing to do.
+    fn is_team_ask(&self) -> bool {
+        self.owners.contains("![Team]")
+    }
+
+    /// Return the set of teams being asked to do things by this item, or empty vector if this is not a team ask.
+    fn teams_being_asked(&self) -> anyhow::Result<Vec<&'static TeamName>> {
+        if !self.is_team_ask() {
             return Ok(vec![]);
         }
 
@@ -373,7 +380,8 @@ impl PlanItem {
         Ok(teams)
     }
 
-    /// Return a vector of all the team-asks from this item and its children
+    /// Return a vector of all the team-asks from this item and its children.
+    /// Invoked during `GoalDocument`.
     ///
     /// # Parameters
     ///
@@ -388,7 +396,7 @@ impl PlanItem {
     ) -> anyhow::Result<Vec<TeamAsk>> {
         let mut asks = vec![];
 
-        let teams = self.teams()?;
+        let teams = self.teams_being_asked()?;
         if !teams.is_empty() {
             asks.push(TeamAsk {
                 link_path: link_path.clone(),
