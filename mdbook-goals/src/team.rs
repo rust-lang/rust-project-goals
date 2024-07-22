@@ -67,6 +67,11 @@ impl TeamName {
         get_teams().unwrap().get(self).unwrap()
     }
 
+    /// Name and link
+    pub fn name_and_link(&self) -> String {
+        format!("[{}]({})", self.0, self.url())
+    }
+
     pub fn url(&self) -> String {
         if let Some(website) = &self.data().website_data {
             if let Some(url) = &website.repo {

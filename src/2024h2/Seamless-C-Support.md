@@ -6,6 +6,10 @@
 | Teams | *Names of teams being asked to commit to the goal* |
 | Status | Not accepted |
 
+## Summary
+
+Using C from Rust should be as easy as using C from C++
+
 ## Motivation
 
 Using C from Rust should be as easy as using C from C++: completely seamless,

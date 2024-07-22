@@ -41,8 +41,9 @@ enum Command {
     Issues {
         path: PathBuf,
 
-        #[structopt(short = "-n", long)]
-        dry_run: bool,
+        /// Without this option, no action is taken.
+        #[structopt(long)]
+        commit: bool,
     },
 
     /// Checks that the goal documents are well-formed, intended for use within CI
@@ -69,8 +70,8 @@ fn main() -> anyhow::Result<()> {
             rfc::generate_rfc(&path)?;
         }
 
-        Some(Command::Issues { path, dry_run }) => {
-            rfc::generate_issues(&opt.repository, path, *dry_run)?;
+        Some(Command::Issues { path, commit }) => {
+            rfc::generate_issues(&opt.repository, path, *commit)?;
         }
 
         None => {

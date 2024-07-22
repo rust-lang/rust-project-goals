@@ -8,6 +8,10 @@
 
 *Extracted from [RFC 3614](https://github.com/rust-lang/rfcs/blob/master/text/3614-project-goals.md)*
 
+## Summary
+
+Run an experimental goal program during the second half of 2024
+
 ## Motivation
 
 This RFC proposes to run an experimental goal program during the second half of 2024 with @nikomatsakis as owner/organizer. This program is a first step towards an ongoing Rust roadmap. The proposed outcomes for 2024 are (1) select an initial slate of goals using an experimental process; (2) track progress over the year; (3) drawing on the lessons from that, prepare a second slate of goals for 2025 H1. This second slate is expected to include a goal for authoring an RFC proposing a permanent process.

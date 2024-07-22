@@ -1,3 +1,4 @@
+use core::time;
 use std::{
     collections::BTreeSet,
     fmt::Display,
@@ -10,8 +11,8 @@ use regex::Regex;
 use serde::{Deserialize, Serialize};
 
 use crate::{
-    goal::{self, GoalDocument},
-    team::TeamName,
+    goal::{self, GoalDocument, ParsedOwners, PlanItem},
+    team::{get_person_data, TeamName},
 };
 
 fn validate_path(path: &Path) -> anyhow::Result<String> {
@@ -96,13 +97,13 @@ pub fn generate_rfc(path: &Path) -> anyhow::Result<()> {
     Ok(())
 }
 
-pub fn generate_issues(repository: &str, path: &Path, dry_run: bool) -> anyhow::Result<()> {
-    let _ = validate_path(path)?;
+pub fn generate_issues(repository: &str, path: &Path, commit: bool) -> anyhow::Result<()> {
+    let timeframe = validate_path(path)?;
 
     let goal_documents = goal::goals_in_dir(path)?;
     let teams_with_asks = teams_with_asks(&goal_documents);
     let mut actions = initialize_labels(repository, &teams_with_asks)?;
-    actions.extend(initialize_issues(repository, &goal_documents)?);
+    actions.extend(initialize_issues(repository, &timeframe, &goal_documents)?);
 
     if actions.is_empty() {
         eprintln!("No actions to be executed.");
@@ -114,10 +115,13 @@ pub fn generate_issues(repository: &str, path: &Path, dry_run: bool) -> anyhow::
         eprintln!("* {action}");
     }
 
-    if !dry_run {
-        for action in actions {
-            action.execute(repository)?;
+    if commit {
+        for action in actions.into_iter() {
+            action.execute(repository, &timeframe)?;
         }
+    } else {
+        eprintln!("");
+        eprintln!("Use `--commit` to execute the actions.");
     }
 
     Ok(())
@@ -126,7 +130,7 @@ pub fn generate_issues(repository: &str, path: &Path, dry_run: bool) -> anyhow::
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub struct GithubIssue {
     pub title: String,
-    pub owners: Vec<String>,
+    pub assignees: Vec<String>,
     pub body: String,
     pub teams: BTreeSet<&'static TeamName>,
 }
@@ -178,6 +182,11 @@ fn initialize_labels(
         })
         .collect();
 
+    desired_labels.insert(GhLabel {
+        name: "C-tracking-issue".to_string(),
+        color: "f5f1fd".to_string(),
+    });
+
     for existing_label in list_labels(repository)? {
         desired_labels.remove(&existing_label);
     }
@@ -191,32 +200,107 @@ fn initialize_labels(
 /// Initializes the required `T-<team>` labels on the repository.
 /// Warns if the labels are found with wrong color.
 fn initialize_issues(
-    repository: &str,
-    document: &[GoalDocument],
+    _repository: &str,
+    timeframe: &str,
+    goal_documents: &[GoalDocument],
 ) -> anyhow::Result<BTreeSet<GithubAction>> {
-    // let issues: Vec<_> = goal_documents
-    //     .iter()
-    //     .map(|goal_document| {
-    //         let title = format!("Goal: {}", goal_document.title);
-    //         let owners = goal_document.metadata.owner_usernames();
-    //         let body = goal_document.description.clone();
-    //         let teams = goal_document
-    //             .team_asks
-    //             .iter()
-    //             .flat_map(|ask| &ask.teams)
-    //             .copied()
-    //             .collect::<BTreeSet<&TeamName>>();
+    goal_documents
+        .iter()
+        .map(|goal_document| {
+            Ok(GithubAction::CreateIssue {
+                issue: issue(timeframe, goal_document)?,
+            })
+        })
+        .collect()
+}
 
-    //         GithubIssue {
-    //             title,
-    //             owners,
-    //             body,
-    //             teams,
-    //         }
-    //     })
-    //     .collect();
+fn issue(timeframe: &str, document: &GoalDocument) -> anyhow::Result<GithubIssue> {
+    let mut assignees = vec![];
+    for username in document.metadata.owner_usernames() {
+        if get_person_data(username)?.is_some() {
+            assignees.push(username[1..].to_string());
+        }
+    }
 
-    Ok(None.into_iter().collect())
+    Ok(GithubIssue {
+        title: document.metadata.title.clone(),
+        assignees,
+        body: issue_text(timeframe, document)?.replace("@", "%"), // HACK to avoid pings
+        teams: document.teams_with_asks(),
+    })
+}
+
+fn issue_text(timeframe: &str, document: &GoalDocument) -> anyhow::Result<String> {
+    let mut tasks = vec![];
+    for plan_item in &document.plan_items {
+        tasks.extend(task_items(plan_item)?);
+    }
+
+    let teams = document
+        .teams_with_asks()
+        .iter()
+        .map(|team| team.name_and_link())
+        .collect::<Vec<_>>();
+
+    let goal_file = document.link_path.file_stem().unwrap().to_str().unwrap();
+
+    Ok(format!(
+        r##"
+| Metadata      | |
+| --------      | --- |
+| Owner(s)      | {owners} |
+| Team(s)       | {teams} |
+| Goal document | [{timeframe}/{goal_file}](https://rust-lang.github.io/rust-project-goals/{timeframe}/{goal_file}.html) |
+
+## Summary
+
+{summary}
+
+## Tasks and status
+
+{tasks}
+
+[Team]: https://img.shields.io/badge/Team%20ask-red
+"##,
+        owners = &document.metadata.owner_usernames().join(", "),
+        teams = teams.join(", "),
+        summary = document.summary,
+        tasks = tasks.join("\n"),
+    ))
+}
+
+fn task_items(plan_item: &PlanItem) -> anyhow::Result<Vec<String>> {
+    use std::fmt::Write;
+
+    let mut tasks = vec![];
+
+    let mut description = format!(
+        "* {box} {text}",
+        box = if plan_item.is_complete() { "[x]" } else { "[ ]" },
+        text = plan_item.text
+    );
+
+    if let Some(parsed_owners) = plan_item.parse_owners()? {
+        match parsed_owners {
+            ParsedOwners::TeamAsks(asks) => {
+                let teams: Vec<String> = asks.iter().map(|ask| ask.name_and_link()).collect();
+
+                write!(description, " ({} ![Team][])", teams.join(", "))?;
+            }
+
+            ParsedOwners::Usernames(usernames) => {
+                write!(description, " ({})", usernames.join(", "))?;
+            }
+        }
+    }
+
+    tasks.push(description);
+
+    for task in &plan_item.children {
+        tasks.extend(task_items(task)?.into_iter().map(|t| format!("  {}", &t)));
+    }
+
+    Ok(tasks)
 }
 
 fn teams_with_asks(goal_documents: &[GoalDocument]) -> BTreeSet<&'static TeamName> {
@@ -244,7 +328,7 @@ impl Display for GithubAction {
 }
 
 impl GithubAction {
-    pub fn execute(self, repository: &str) -> anyhow::Result<()> {
+    pub fn execute(self, repository: &str, timeframe: &str) -> anyhow::Result<()> {
         match self {
             GithubAction::CreateLabel {
                 label: GhLabel { name, color },
@@ -271,7 +355,49 @@ impl GithubAction {
                 }
             }
 
-            GithubAction::CreateIssue { issue } => todo!(),
+            GithubAction::CreateIssue {
+                issue:
+                    GithubIssue {
+                        title,
+                        assignees,
+                        body,
+                        teams,
+                    },
+            } => {
+                let output = Command::new("gh")
+                    .arg("-R")
+                    .arg(&repository)
+                    .arg("issue")
+                    .arg("create")
+                    .arg("-b")
+                    .arg(&body)
+                    .arg("-t")
+                    .arg(&title)
+                    .arg("-l")
+                    .arg(format!(
+                        "C-tracking-issue,{}",
+                        teams
+                            .iter()
+                            .map(|t| t.gh_label())
+                            .collect::<Vec<_>>()
+                            .join(",")
+                    ))
+                    // .arg("-a")
+                    // .arg(assignees.join(","))
+                    .arg("-m")
+                    .arg(&timeframe)
+                    .output()?;
+
+                if !output.status.success() {
+                    Err(anyhow::anyhow!(
+                        "failed to create issue `{}`: {}",
+                        title,
+                        String::from_utf8_lossy(&output.stderr)
+                    ))
+                } else {
+                    Ok(())
+                }
+            }
         }
     }
 }

@@ -26,6 +26,9 @@ pub struct GoalDocument {
     /// Metadata loaded from the header in the goal
     pub metadata: Metadata,
 
+    /// Text from the summary section
+    pub summary: String,
+
     /// The "plan" for completing the goal (includes things owners will do as well as team asks)
     pub plan_items: Vec<PlanItem>,
 
@@ -50,6 +53,16 @@ pub struct PlanItem {
     pub owners: String,
     pub notes: String,
     pub children: Vec<PlanItem>,
+}
+
+/// Returns the "owner(s)" of a plan-item, which can be
+///
+/// * users, if this is something that users have to do
+/// * teams, if this is a team ask
+#[derive(Debug)]
+pub enum ParsedOwners {
+    TeamAsks(Vec<&'static TeamName>),
+    Usernames(Vec<String>),
 }
 
 /// Identifies a particular ask for a set of Rust teams
@@ -95,6 +108,8 @@ impl GoalDocument {
             return Ok(None);
         };
 
+        let summary = extract_summary(&sections)?;
+
         let link_path = Arc::new(link_path.to_path_buf());
 
         let plan_items = match metadata.status {
@@ -116,10 +131,19 @@ impl GoalDocument {
         Ok(Some(GoalDocument {
             path: path.to_path_buf(),
             link_path,
+            summary: summary.unwrap_or_else(|| metadata.title.clone()),
             metadata,
             team_asks,
             plan_items,
         }))
+    }
+
+    pub fn teams_with_asks(&self) -> BTreeSet<&'static TeamName> {
+        self.team_asks
+            .iter()
+            .flat_map(|ask| &ask.teams)
+            .copied()
+            .collect()
     }
 }
 
@@ -286,6 +310,14 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata>> {
     }))
 }
 
+fn extract_summary(sections: &[Section]) -> anyhow::Result<Option<String>> {
+    let Some(ownership_section) = sections.iter().find(|section| section.title == "Summary") else {
+        return Ok(None);
+    };
+
+    Ok(Some(ownership_section.text.trim().to_string()))
+}
+
 fn extract_plan_items<'i>(sections: &[Section]) -> anyhow::Result<Vec<PlanItem>> {
     let Some(ownership_section) = sections
         .iter()
@@ -348,14 +380,35 @@ fn extract_plan_item(
 }
 
 impl PlanItem {
+    /// Parses the owners of this plan item.
+    pub fn parse_owners(&self) -> anyhow::Result<Option<ParsedOwners>> {
+        if self.owners.is_empty() {
+            Ok(None)
+        } else if self.is_team_ask() {
+            Ok(Some(ParsedOwners::TeamAsks(self.teams_being_asked()?)))
+        } else {
+            Ok(Some(ParsedOwners::Usernames(
+                owner_usernames(&self.owners)
+                    .iter()
+                    .map(|s| s.to_string())
+                    .collect(),
+            )))
+        }
+    }
+
+    /// True if the plan item is noted as being completed
+    pub fn is_complete(&self) -> bool {
+        self.notes.contains("![Complete]")
+    }
+
     /// If true, this item is something being asked of a team.
     /// If false, it's something the goal owner(s) are proposing to do.
-    fn is_team_ask(&self) -> bool {
+    pub fn is_team_ask(&self) -> bool {
         self.owners.contains("![Team]")
     }
 
     /// Return the set of teams being asked to do things by this item, or empty vector if this is not a team ask.
-    fn teams_being_asked(&self) -> anyhow::Result<Vec<&'static TeamName>> {
+    pub fn teams_being_asked(&self) -> anyhow::Result<Vec<&'static TeamName>> {
         if !self.is_team_ask() {
             return Ok(vec![]);
         }
@@ -422,89 +475,6 @@ impl PlanItem {
     }
 }
 
-fn extract_team_asks<'i>(
-    link_path: &Arc<PathBuf>,
-    metadata: &Metadata,
-    sections: &[Section],
-) -> anyhow::Result<Vec<TeamAsk>> {
-    let Some(ownership_section) = sections
-        .iter()
-        .find(|section| section.title == "Ownership and team asks")
-    else {
-        anyhow::bail!("no `Ownership and team asks` section found")
-    };
-
-    let Some(table) = ownership_section.tables.first() else {
-        anyhow::bail!(
-            "on line {}, no table found in `Ownership and team asks` section",
-            ownership_section.line_num
-        )
-    };
-
-    expect_headers(table, &["Subgoal", "Owner(s) or team(s)", "Notes"])?;
-
-    let mut heading = "";
-    let mut heading_owners: &str = &metadata.owners[..];
-
-    let mut tasks = vec![];
-    for row in &table.rows {
-        let subgoal;
-        let owners;
-        if row[0].starts_with(ARROW) {
-            // e.g., "↳ stabilization" is a subtask of the metagoal
-            subgoal = row[0][ARROW.len()..].trim();
-            owners = heading_owners;
-        } else {
-            // remember the last heading
-            heading = &row[0];
-            heading_owners = if row[1].is_empty() {
-                &metadata.owners[..]
-            } else {
-                &row[1]
-            };
-
-            subgoal = heading;
-            owners = &metadata.owners;
-        };
-
-        if !row[1].contains("![Team]") {
-            continue;
-        }
-
-        let mut teams = vec![];
-        for team_name in extract_team_names(&row[1]) {
-            let Some(team) = team::get_team_name(&team_name)? else {
-                anyhow::bail!(
-                    "no Rust team named `{}` found (valid names are {})",
-                    team_name,
-                    commas(team::get_team_names()?),
-                );
-            };
-
-            teams.push(team);
-        }
-
-        if teams.is_empty() {
-            anyhow::bail!("team ask for \"{subgoal}\" does not list any teams");
-        }
-
-        tasks.push(TeamAsk {
-            link_path: link_path.clone(),
-            subgoal_title: if subgoal == heading {
-                metadata.short_title.to_string()
-            } else {
-                heading.to_string()
-            },
-            ask_description: subgoal.to_string(),
-            teams,
-            owners: owners.to_string(),
-            notes: row[2].to_string(),
-        });
-    }
-
-    Ok(tasks)
-}
-
 fn expect_headers(table: &Table, expected: &[&str]) -> anyhow::Result<()> {
     if table.header != expected {
         anyhow::bail!(
@@ -534,10 +504,13 @@ fn extract_identifiers(s: &str) -> Vec<&str> {
 impl Metadata {
     /// Extracts the `@abc` usernames found in the owner listing.
     pub fn owner_usernames(&self) -> Vec<&str> {
-        self.owners
-            .split(char::is_whitespace)
-            .filter_map(|owner| USERNAME.captures(owner))
-            .map(|captures| captures.get(0).unwrap().as_str())
-            .collect()
+        owner_usernames(&self.owners)
     }
+}
+
+fn owner_usernames(text: &str) -> Vec<&str> {
+    text.split(char::is_whitespace)
+        .filter_map(|owner| USERNAME.captures(owner))
+        .map(|captures| captures.get(0).unwrap().as_str())
+        .collect()
 }
