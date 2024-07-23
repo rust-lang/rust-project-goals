@@ -24,7 +24,7 @@ It is possible to use generic parameters with const generics by using `feature(g
 
 ### The next six months
 
-We have a design for `min_generic_const_args` approach in mind but we want to validate it through implementation as const generics has a history of unforseen issues showing up during implementation. Therefore we will pursue a prototype implementation in 2024.
+We have a design for `min_generic_const_args` approach in mind but we want to validate it through implementation as const generics has a history of unforeseen issues showing up during implementation. Therefore we will pursue a prototype implementation in 2024.
 
 As a stretch goal, we will attempt to review the design with the lang team in the form of a design meeting or RFC. Doing so will likely also involve authoring a design retrospective for `generic_const_exprs` in order to communicate why that design did not work out and why the constraints imposed by `min_generic_const_args` makes sense.
 

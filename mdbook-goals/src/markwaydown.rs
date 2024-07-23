@@ -47,7 +47,7 @@ pub fn parse(path: &Path) -> anyhow::Result<Vec<Section>> {
                 if let Some(table) = &mut open_table {
                     if row.len() > table.header.len() {
                         return Err(anyhow::anyhow!(
-                            "{}:{}: too many columns in table, expeceted no more than {}",
+                            "{}:{}: too many columns in table, expected no more than {}",
                             path.display(),
                             line_num,
                             table.header.len()
@@ -71,7 +71,7 @@ pub fn parse(path: &Path) -> anyhow::Result<Vec<Section>> {
                 if let Some(table) = &open_table {
                     if table.header.len() != len {
                         return Err(anyhow::anyhow!(
-                            "{}:{}: too many columns in table, expeceted no more than {}",
+                            "{}:{}: too many columns in table, expected no more than {}",
                             path.display(),
                             line_num,
                             table.header.len()

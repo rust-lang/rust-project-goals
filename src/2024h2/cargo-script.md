@@ -8,7 +8,7 @@
 
 ## Summary
 
-Stablize support for "cargo script", the ability to have a single file that contains both Rust code and a `Cargo.toml`.
+Stabilize support for "cargo script", the ability to have a single file that contains both Rust code and a `Cargo.toml`.
 
 ## Motivation
 
