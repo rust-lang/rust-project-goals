@@ -107,5 +107,8 @@ fn team_file(owners: &BTreeSet<&str>) -> anyhow::Result<String> {
     }
     writeln!(out, "]")?;
     writeln!(out, "included-teams = []")?;
+    writeln!(out, "")?;
+    writeln!(out, "[[github]]")?;
+    writeln!(out, "orgs = [\"rust-lang\"]")?;
     Ok(out)
 }
