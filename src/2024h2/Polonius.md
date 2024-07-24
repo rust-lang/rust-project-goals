@@ -8,11 +8,15 @@
 
 ## Summary
 
-Improve the Nightly support for [Polonius][pc3], next generation borrow checking, so that it can scale
+Implement a native rustc version of the [Polonius][pc3] next generation borrow checking algorithm, that would scale better than the previous [datalog] implementation.
+
+[datalog]: https://github.com/rust-lang/polonius
 
 ## Motivation
 
 Polonius is an improved version of the borrow checker that [resolves common limitations of the borrow checker][pc3] and which is needed to support future patterns such as "lending iterators" (see [#92985]). Its model also prepares us for further improvements in the future.
+
+Some support exists on nightly, but this [older prototype][datalog] has no path to stabilization due to scalability issues. We need an improved architecture and implementation to fix these issues.
 
 [pc3]: https://blog.rust-lang.org/inside-rust/2023/10/06/polonius-update.html#background-on-polonius
 
