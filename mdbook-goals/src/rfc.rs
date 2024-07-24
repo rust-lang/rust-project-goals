@@ -1,5 +1,5 @@
 use std::{
-    collections::BTreeSet,
+    collections::{BTreeMap, BTreeSet},
     fmt::Display,
     path::{Path, PathBuf},
     process::Command,
@@ -152,15 +152,26 @@ pub fn generate_issues(
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub struct GithubIssue {
     pub title: String,
-    pub assignees: Vec<String>,
+    pub assignees: BTreeSet<String>,
     pub body: String,
     pub labels: Vec<String>,
 }
 
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
 enum GithubAction {
-    CreateLabel { label: GhLabel },
-    CreateIssue { issue: GithubIssue },
+    CreateLabel {
+        label: GhLabel,
+    },
+    CreateIssue {
+        issue: GithubIssue,
+    },
+
+    // We intentionally do not sync the issue *text*, because it may have been edited.
+    SyncIssue {
+        number: u64,
+        remove_owners: BTreeSet<String>,
+        add_owners: BTreeSet<String>,
+    },
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
@@ -171,7 +182,21 @@ struct GhLabel {
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 struct ExistingGithubIssue {
+    number: u64,
+    assignees: BTreeSet<String>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
+struct ExistingGithubIssueJson {
     title: String,
+    number: u64,
+    assignees: Vec<ExistingGithubAssigneeJson>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
+struct ExistingGithubAssigneeJson {
+    login: String,
+    name: String,
 }
 
 fn list_labels(repository: &str) -> anyhow::Result<Vec<GhLabel>> {
@@ -192,7 +217,7 @@ fn list_labels(repository: &str) -> anyhow::Result<Vec<GhLabel>> {
 fn list_issue_titles_in_milestone(
     repository: &str,
     timeframe: &str,
-) -> anyhow::Result<BTreeSet<String>> {
+) -> anyhow::Result<BTreeMap<String, ExistingGithubIssue>> {
     let output = Command::new("gh")
         .arg("-R")
         .arg(repository)
@@ -201,12 +226,27 @@ fn list_issue_titles_in_milestone(
         .arg("-m")
         .arg(timeframe)
         .arg("--json")
-        .arg("title")
+        .arg("title,assignees,number")
         .output()?;
 
-    let existing_issues: Vec<ExistingGithubIssue> = serde_json::from_slice(&output.stdout)?;
+    let existing_issues: Vec<ExistingGithubIssueJson> = serde_json::from_slice(&output.stdout)?;
 
-    Ok(existing_issues.into_iter().map(|e_i| e_i.title).collect())
+    Ok(existing_issues
+        .into_iter()
+        .map(|e_i| {
+            (
+                e_i.title,
+                ExistingGithubIssue {
+                    number: e_i.number,
+                    assignees: e_i
+                        .assignees
+                        .iter()
+                        .map(|a| format!("@{}", a.login))
+                        .collect(),
+                },
+            )
+        })
+        .collect())
 }
 /// Initializes the required `T-<team>` labels on the repository.
 /// Warns if the labels are found with wrong color.
@@ -256,26 +296,50 @@ fn initialize_issues(
     goal_documents: &[GoalDocument],
 ) -> anyhow::Result<BTreeSet<GithubAction>> {
     // the set of issues we want to exist
-    let mut desired_issues: BTreeSet<GithubIssue> = goal_documents
+    let desired_issues: BTreeSet<GithubIssue> = goal_documents
         .iter()
         .map(|goal_document| issue(timeframe, goal_document))
         .collect::<anyhow::Result<_>>()?;
 
-    // remove any existings that already exist
+    // Compare desired issues against existing issues
     let existing_issues = list_issue_titles_in_milestone(repository, timeframe)?;
-    desired_issues.retain(|i| !existing_issues.contains(&i.title));
+    let mut actions = BTreeSet::new();
+    for desired_issue in desired_issues {
+        match existing_issues.get(&desired_issue.title) {
+            Some(existing_issue) => {
+                if existing_issue.assignees != desired_issue.assignees {
+                    actions.insert(GithubAction::SyncIssue {
+                        number: existing_issue.number,
+                        remove_owners: existing_issue
+                            .assignees
+                            .difference(&desired_issue.assignees)
+                            .cloned()
+                            .collect(),
+                        add_owners: desired_issue
+                            .assignees
+                            .difference(&existing_issue.assignees)
+                            .cloned()
+                            .collect(),
+                    });
+                }
+            }
 
-    Ok(desired_issues
-        .into_iter()
-        .map(|issue| GithubAction::CreateIssue { issue })
-        .collect())
+            None => {
+                actions.insert(GithubAction::CreateIssue {
+                    issue: desired_issue,
+                });
+            }
+        }
+    }
+
+    Ok(actions)
 }
 
 fn issue(timeframe: &str, document: &GoalDocument) -> anyhow::Result<GithubIssue> {
-    let mut assignees = vec![];
+    let mut assignees = BTreeSet::default();
     for username in document.metadata.owner_usernames() {
         if get_person_data(username)?.is_some() {
-            assignees.push(username[1..].to_string());
+            assignees.insert(username[1..].to_string());
         }
     }
 
@@ -388,6 +452,9 @@ impl Display for GithubAction {
             GithubAction::CreateIssue { issue } => {
                 write!(f, "create issue \"{}\"", issue.title)
             }
+            GithubAction::SyncIssue { number, .. } => {
+                write!(f, "sync issue #{}", number)
+            }
         }
     }
 }
@@ -441,7 +508,7 @@ impl GithubAction {
                     .arg("-l")
                     .arg(labels.join(","))
                     .arg("-a")
-                    .arg(assignees.join(","))
+                    .arg(comma(&assignees))
                     .arg("-m")
                     .arg(&timeframe)
                     .output()?;
@@ -456,6 +523,43 @@ impl GithubAction {
                     Ok(())
                 }
             }
+            GithubAction::SyncIssue {
+                number,
+                remove_owners,
+                add_owners,
+            } => {
+                let mut command = Command::new("gh");
+                command
+                    .arg("-R")
+                    .arg(&repository)
+                    .arg("issue")
+                    .arg("edit")
+                    .arg(number.to_string());
+
+                if !remove_owners.is_empty() {
+                    command.arg("--remove-assignee").arg(comma(&remove_owners));
+                }
+
+                if !add_owners.is_empty() {
+                    command.arg("--add-assignee").arg(comma(&add_owners));
+                }
+
+                let output = command.output()?;
+                if !output.status.success() {
+                    Err(anyhow::anyhow!(
+                        "failed to sync issue `{}`: {}",
+                        number,
+                        String::from_utf8_lossy(&output.stderr)
+                    ))
+                } else {
+                    Ok(())
+                }
+            }
         }
     }
+}
+
+/// Returns a comma-separated list of the strings in `s` (no spaces).
+fn comma(s: &BTreeSet<String>) -> String {
+    s.iter().map(|s| &s[..]).collect::<Vec<_>>().join(",")
 }
