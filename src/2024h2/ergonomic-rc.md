@@ -25,7 +25,7 @@ let state = Arc::new(some_state);
 tokio::spawn(async move { /* code using `state` */ });
 ```
 
-This scenario can be quite confusing for new users (see e.g. this [2014 talk at StrangeLoop](https://youtu.be/U3upi-y2pCk?si=kFEhRB_O_wdMKysC&t=807) where an experiened developer describes how confusing they found this to be). Many users settle on a workaround where they first clone the variable into a fresh local with a new name, such as:
+This scenario can be quite confusing for new users (see e.g. this [2014 talk at StrangeLoop](https://youtu.be/U3upi-y2pCk?si=kFEhRB_O_wdMKysC&t=807) where an experienced developer describes how confusing they found this to be). Many users settle on a workaround where they first clone the variable into a fresh local with a new name, such as:
 
 ```rust
 let state = Arc::new(some_state);
@@ -53,7 +53,7 @@ Whichever pattern users adopt, explicit clones of reference counted values leads
 
 #### Impact on new users and high-level domains
 
-The impact of this kind of friction can be severe. While experinced users have learned the workaround and consider this to be a papercut, new users can find this kind of change bewildering and a total blocker. The impact is also particularly severe on projects attempting to use Rust in domains traditionally considered "high-level" (e.g., app/game/web development, data science, scientific computing). Rust's strengths have made it a popular choice for building underlying frameworks and libraries that perform reliably and with high performance. However, thanks in large part to these kind of smaller, papercut issues, it is not a great choice for **consumption** of these libraries
+The impact of this kind of friction can be severe. While experienced users have learned the workaround and consider this to be a papercut, new users can find this kind of change bewildering and a total blocker. The impact is also particularly severe on projects attempting to use Rust in domains traditionally considered "high-level" (e.g., app/game/web development, data science, scientific computing). Rust's strengths have made it a popular choice for building underlying frameworks and libraries that perform reliably and with high performance. However, thanks in large part to these kind of smaller, papercut issues, it is not a great choice for **consumption** of these libraries
 
 Users in higher-level domains are accustomed to the ergonomics of Python or TypeScript, and hence ergonomic friction can make Rust a non-starter. Those users that stick with Rust long enough to learn the workarounds, however, often find significant value in its emphasis on reliability and long-term maintenance (not to mention performance). Small changes like avoiding explicit clones for reference-counted data can both help to make Rust more appealing in these domains **and** help Rust in other domains where it is already widespead. 
 

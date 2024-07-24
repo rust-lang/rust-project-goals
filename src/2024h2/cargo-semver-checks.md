@@ -92,7 +92,7 @@ pub fn example(value: i64) {}
 ```
 Analogous breaking changes to function return values, struct fields, and associated types would also be missed by `cargo-semver-checks` today.
 
-The main difficulty here lies with the expressiveness of the Rust type system. For example, none of the follwing changes are breaking:
+The main difficulty here lies with the expressiveness of the Rust type system. For example, none of the following changes are breaking:
 ```rust
 // previous release:
 pub fn example(value: String) {}
@@ -128,7 +128,7 @@ To accomplish this, `cargo-semver-checks` needs the ability to express more kind
 
 **Owner:** @obi1kenobi, as maintainer of `cargo-semver-checks`
 
-I (@obi1kenobi) will be working on this effort. The only other resource request would be occassional discussions and moral support from the [cargo] team, of which I already have the privilege as maintainer of a popular cargo plugin.
+I (@obi1kenobi) will be working on this effort. The only other resource request would be occasional discussions and moral support from the [cargo] team, of which I already have the privilege as maintainer of a popular cargo plugin.
 
 | Subgoal                                          | Owner(s) or team(s)     | Notes |
 | ------------------------------------------------ | ----------------------- | ----- |

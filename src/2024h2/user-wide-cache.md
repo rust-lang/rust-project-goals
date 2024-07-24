@@ -55,7 +55,7 @@ Add support for user-wide intermediate artifact caching
   - If hash key is present, use the artifacts straight from the cache, otherwise build it and put it in the cache
   - Limit this immutable packages ("non-local" in cargo terms, like Registry, git dependencies)
   - Limit this to idempotent packages (can't depend on proc-macro, can't have a `build.rs`)
-  - Evaluate risks and deterine how we will stabilize this (e.g. unstable to stable, opt-in to opt-out to only on)
+  - Evaluate risks and determine how we will stabilize this (e.g. unstable to stable, opt-in to opt-out to only on)
 - Track intermediate build artifacts for garbage collection
 - Explore
   - Idempotence opt-ins for `build.rs` or proc-macros until sandboxing solutions can determine the level of idempotence.
