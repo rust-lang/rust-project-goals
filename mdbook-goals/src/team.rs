@@ -16,15 +16,31 @@ impl<T> Load<T> for OnceLock<anyhow::Result<T>> {
     }
 }
 
+pub struct PersonData {
+    /// NB: May be capitalized differently than what we get as input
+    pub github_username: String,
+
+    /// Data from the Rust team repo
+    pub data: v1::Person,
+}
+
 /// Given a username like `@foo` finds the corresponding person data (if any).
-pub fn get_person_data(username: &str) -> anyhow::Result<Option<&'static v1::Person>> {
-    static DATA: OnceLock<anyhow::Result<BTreeMap<String, v1::Person>>> = OnceLock::new();
+pub fn get_person_data(username: &str) -> anyhow::Result<Option<&'static PersonData>> {
+    static DATA: OnceLock<anyhow::Result<BTreeMap<String, PersonData>>> = OnceLock::new();
     let people = DATA.load(|| {
         let data: v1::People = fetch("people.json")?;
         Ok(data
             .people
             .into_iter()
-            .map(|(username, value)| (username.to_lowercase(), value))
+            .map(|(username, value)| {
+                (
+                    username.to_lowercase(),
+                    PersonData {
+                        github_username: username,
+                        data: value,
+                    },
+                )
+            })
             .collect())
     })?;
 

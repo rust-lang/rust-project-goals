@@ -314,7 +314,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         }
 
         let display_name = match team::get_person_data(username)? {
-            Some(person) => person.name.clone(),
+            Some(person) => person.data.name.clone(),
             None => match GithubUserInfo::load(username)
                 .with_context(|| format!("loading user info for {}", username))
             {
