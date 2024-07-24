@@ -1208,6 +1208,7 @@ dependencies = [
  "disk-persist",
  "lazy_static",
  "mdbook",
+ "progress_bar",
  "regex",
  "reqwest",
  "rust_team_data",
@@ -1631,6 +1632,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5e719e8df665df0d1c8fbfd238015744736151d4445ec0836b8e628aae103b77"
 dependencies = [
  "unicode-ident",
+]
+
+[[package]]
+name = "progress_bar"
+version = "1.0.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "94320ad982441d1294a56ba407d963c09fad89c70def47288603350b88cd6b94"
+dependencies = [
+ "lazy_static",
 ]
 
 [[package]]

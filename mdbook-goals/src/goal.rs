@@ -145,6 +145,14 @@ impl GoalDocument {
             .copied()
             .collect()
     }
+
+    /// True if this goal is a candidate (may yet be accepted)
+    pub(crate) fn is_not_not_accepted(&self) -> bool {
+        match self.metadata.status {
+            Status::Flagship | Status::Proposed | Status::Orphaned => true,
+            Status::NotAccepted => false,
+        }
+    }
 }
 
 /// Format a set of team asks into a table, with asks separated by team and grouped by kind.
