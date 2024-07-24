@@ -12,6 +12,7 @@ mod mdbook_preprocessor;
 mod re;
 mod rfc;
 mod team;
+mod team_repo;
 mod util;
 
 #[derive(StructOpt, Debug)]
@@ -51,6 +52,17 @@ enum Command {
         commit: bool,
     },
 
+    /// Generate the project-goal-owners team based on the owners found in `paths`.
+    TeamRepo {
+        /// Paths to the directories containing the goals (e.g., `src/2024h2`)
+        #[structopt(required = true, min_values = 1)]
+        path: Vec<PathBuf>,
+
+        /// Paths to the teams repository checkout
+        #[structopt(required = true, long = "team-repo")]
+        team_repo_path: PathBuf,
+    },
+
     /// Checks that the goal documents are well-formed, intended for use within CI
     Check {},
 }
@@ -81,6 +93,13 @@ fn main() -> anyhow::Result<()> {
             sleep,
         }) => {
             rfc::generate_issues(&opt.repository, path, *commit, *sleep)?;
+        }
+
+        Some(Command::TeamRepo {
+            path,
+            team_repo_path,
+        }) => {
+            team_repo::generate_team_repo(&path, team_repo_path)?;
         }
 
         None => {
