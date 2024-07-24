@@ -41,6 +41,11 @@ enum Command {
     Issues {
         path: PathBuf,
 
+        /// Number of milliseconds to pause between github commands
+        /// to avoid rate limiting
+        #[structopt(long, default_value = "500")]
+        sleep: u64,
+
         /// Without this option, no action is taken.
         #[structopt(long)]
         commit: bool,
@@ -70,8 +75,12 @@ fn main() -> anyhow::Result<()> {
             rfc::generate_rfc(&path)?;
         }
 
-        Some(Command::Issues { path, commit }) => {
-            rfc::generate_issues(&opt.repository, path, *commit)?;
+        Some(Command::Issues {
+            path,
+            commit,
+            sleep,
+        }) => {
+            rfc::generate_issues(&opt.repository, path, *commit, *sleep)?;
         }
 
         None => {

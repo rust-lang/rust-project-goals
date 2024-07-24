@@ -4,6 +4,7 @@ use std::{
     fmt::Display,
     path::{Path, PathBuf},
     process::Command,
+    time::Duration,
 };
 
 use anyhow::Context;
@@ -11,7 +12,7 @@ use regex::Regex;
 use serde::{Deserialize, Serialize};
 
 use crate::{
-    goal::{self, GoalDocument, ParsedOwners, PlanItem},
+    goal::{self, GoalDocument, ParsedOwners, PlanItem, Status},
     team::{get_person_data, TeamName},
 };
 
@@ -97,10 +98,17 @@ pub fn generate_rfc(path: &Path) -> anyhow::Result<()> {
     Ok(())
 }
 
-pub fn generate_issues(repository: &str, path: &Path, commit: bool) -> anyhow::Result<()> {
+pub fn generate_issues(
+    repository: &str,
+    path: &Path,
+    commit: bool,
+    sleep: u64,
+) -> anyhow::Result<()> {
     let timeframe = validate_path(path)?;
 
-    let goal_documents = goal::goals_in_dir(path)?;
+    let mut goal_documents = goal::goals_in_dir(path)?;
+    goal_documents.retain(|gd| gd.is_not_not_accepted());
+
     let teams_with_asks = teams_with_asks(&goal_documents);
     let mut actions = initialize_labels(repository, &teams_with_asks)?;
     actions.extend(initialize_issues(repository, &timeframe, &goal_documents)?);
@@ -110,16 +118,31 @@ pub fn generate_issues(repository: &str, path: &Path, commit: bool) -> anyhow::R
         return Ok(());
     }
 
-    eprintln!("Actions to be executed:");
-    for action in &actions {
-        eprintln!("* {action}");
-    }
-
     if commit {
+        progress_bar::init_progress_bar(actions.len());
+        progress_bar::set_progress_bar_action(
+            "Executing",
+            progress_bar::Color::Blue,
+            progress_bar::Style::Bold,
+        );
         for action in actions.into_iter() {
+            progress_bar::print_progress_bar_info(
+                "Action",
+                &format!("{}", action),
+                progress_bar::Color::Green,
+                progress_bar::Style::Bold,
+            );
             action.execute(repository, &timeframe)?;
+            progress_bar::inc_progress_bar();
+
+            std::thread::sleep(Duration::from_millis(sleep));
         }
+        progress_bar::finalize_progress_bar();
     } else {
+        eprintln!("Actions to be executed:");
+        for action in &actions {
+            eprintln!("* {action}");
+        }
         eprintln!("");
         eprintln!("Use `--commit` to execute the actions.");
     }
@@ -132,7 +155,7 @@ pub struct GithubIssue {
     pub title: String,
     pub assignees: Vec<String>,
     pub body: String,
-    pub teams: BTreeSet<&'static TeamName>,
+    pub labels: Vec<String>,
 }
 
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
@@ -145,6 +168,11 @@ enum GithubAction {
 struct GhLabel {
     name: String,
     color: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
+struct ExistingGithubIssue {
+    title: String,
 }
 
 fn list_labels(repository: &str) -> anyhow::Result<Vec<GhLabel>> {
@@ -162,6 +190,25 @@ fn list_labels(repository: &str) -> anyhow::Result<Vec<GhLabel>> {
     Ok(labels)
 }
 
+fn list_issue_titles_in_milestone(
+    repository: &str,
+    timeframe: &str,
+) -> anyhow::Result<BTreeSet<String>> {
+    let output = Command::new("gh")
+        .arg("-R")
+        .arg(repository)
+        .arg("issue")
+        .arg("list")
+        .arg("-m")
+        .arg(timeframe)
+        .arg("--json")
+        .arg("title")
+        .output()?;
+
+    let existing_issues: Vec<ExistingGithubIssue> = serde_json::from_slice(&output.stdout)?;
+
+    Ok(existing_issues.into_iter().map(|e_i| e_i.title).collect())
+}
 /// Initializes the required `T-<team>` labels on the repository.
 /// Warns if the labels are found with wrong color.
 fn initialize_labels(
@@ -187,6 +234,11 @@ fn initialize_labels(
         color: "f5f1fd".to_string(),
     });
 
+    desired_labels.insert(GhLabel {
+        name: "Flagship Goal".to_string(),
+        color: "5319E7".to_string(),
+    });
+
     for existing_label in list_labels(repository)? {
         desired_labels.remove(&existing_label);
     }
@@ -200,18 +252,24 @@ fn initialize_labels(
 /// Initializes the required `T-<team>` labels on the repository.
 /// Warns if the labels are found with wrong color.
 fn initialize_issues(
-    _repository: &str,
+    repository: &str,
     timeframe: &str,
     goal_documents: &[GoalDocument],
 ) -> anyhow::Result<BTreeSet<GithubAction>> {
-    goal_documents
+    // the set of issues we want to exist
+    let mut desired_issues: BTreeSet<GithubIssue> = goal_documents
         .iter()
-        .map(|goal_document| {
-            Ok(GithubAction::CreateIssue {
-                issue: issue(timeframe, goal_document)?,
-            })
-        })
-        .collect()
+        .map(|goal_document| issue(timeframe, goal_document))
+        .collect::<anyhow::Result<_>>()?;
+
+    // remove any existings that already exist
+    let existing_issues = list_issue_titles_in_milestone(repository, timeframe)?;
+    desired_issues.retain(|i| !existing_issues.contains(&i.title));
+
+    Ok(desired_issues
+        .into_iter()
+        .map(|issue| GithubAction::CreateIssue { issue })
+        .collect())
 }
 
 fn issue(timeframe: &str, document: &GoalDocument) -> anyhow::Result<GithubIssue> {
@@ -222,11 +280,19 @@ fn issue(timeframe: &str, document: &GoalDocument) -> anyhow::Result<GithubIssue
         }
     }
 
+    let mut labels = vec!["C-tracking-issue".to_string()];
+    if let Status::Flagship = document.metadata.status {
+        labels.push("Flagship Goal".to_string());
+    }
+    for team in document.teams_with_asks() {
+        labels.push(team.gh_label());
+    }
+
     Ok(GithubIssue {
         title: document.metadata.title.clone(),
         assignees,
-        body: issue_text(timeframe, document)?.replace("@", "%"), // HACK to avoid pings
-        teams: document.teams_with_asks(),
+        body: issue_text(timeframe, document)?,
+        labels,
     })
 }
 
@@ -321,7 +387,7 @@ impl Display for GithubAction {
                 write!(f, "create label `{}` with color `{}`", name, color)
             }
             GithubAction::CreateIssue { issue } => {
-                write!(f, "create issue `{}`", issue.title)
+                write!(f, "create issue \"{}\"", issue.title)
             }
         }
     }
@@ -361,7 +427,7 @@ impl GithubAction {
                         title,
                         assignees,
                         body,
-                        teams,
+                        labels,
                     },
             } => {
                 let output = Command::new("gh")
@@ -374,16 +440,9 @@ impl GithubAction {
                     .arg("-t")
                     .arg(&title)
                     .arg("-l")
-                    .arg(format!(
-                        "C-tracking-issue,{}",
-                        teams
-                            .iter()
-                            .map(|t| t.gh_label())
-                            .collect::<Vec<_>>()
-                            .join(",")
-                    ))
-                    // .arg("-a")
-                    // .arg(assignees.join(","))
+                    .arg(labels.join(","))
+                    .arg("-a")
+                    .arg(assignees.join(","))
                     .arg("-m")
                     .arg(&timeframe)
                     .output()?;
