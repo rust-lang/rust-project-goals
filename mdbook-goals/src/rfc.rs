@@ -15,6 +15,8 @@ use crate::{
     team::{get_person_data, TeamName},
 };
 
+const LOCK_TEXT: &str = "This issue is intended for status updates only.\n\nFor general questions or comments, please contact the owner(s) directly.";
+
 fn validate_path(path: &Path) -> anyhow::Result<String> {
     if !path.is_dir() {
         return Err(anyhow::anyhow!(
@@ -103,50 +105,52 @@ pub fn generate_issues(
     commit: bool,
     sleep: u64,
 ) -> anyhow::Result<()> {
-    let timeframe = validate_path(path)?;
+    // Hacky but works: we loop because after creating the issue, we sometimes have additional sync to do,
+    // and it's easier this way.
+    loop {
+        let timeframe = validate_path(path)?;
 
-    let mut goal_documents = goal::goals_in_dir(path)?;
-    goal_documents.retain(|gd| gd.is_not_not_accepted());
+        let mut goal_documents = goal::goals_in_dir(path)?;
+        goal_documents.retain(|gd| gd.is_not_not_accepted());
 
-    let teams_with_asks = teams_with_asks(&goal_documents);
-    let mut actions = initialize_labels(repository, &teams_with_asks)?;
-    actions.extend(initialize_issues(repository, &timeframe, &goal_documents)?);
+        let teams_with_asks = teams_with_asks(&goal_documents);
+        let mut actions = initialize_labels(repository, &teams_with_asks)?;
+        actions.extend(initialize_issues(repository, &timeframe, &goal_documents)?);
 
-    if actions.is_empty() {
-        eprintln!("No actions to be executed.");
-        return Ok(());
-    }
+        if actions.is_empty() {
+            return Ok(());
+        }
 
-    if commit {
-        progress_bar::init_progress_bar(actions.len());
-        progress_bar::set_progress_bar_action(
-            "Executing",
-            progress_bar::Color::Blue,
-            progress_bar::Style::Bold,
-        );
-        for action in actions.into_iter() {
-            progress_bar::print_progress_bar_info(
-                "Action",
-                &format!("{}", action),
-                progress_bar::Color::Green,
+        if commit {
+            progress_bar::init_progress_bar(actions.len());
+            progress_bar::set_progress_bar_action(
+                "Executing",
+                progress_bar::Color::Blue,
                 progress_bar::Style::Bold,
             );
-            action.execute(repository, &timeframe)?;
-            progress_bar::inc_progress_bar();
+            for action in actions.into_iter() {
+                progress_bar::print_progress_bar_info(
+                    "Action",
+                    &format!("{}", action),
+                    progress_bar::Color::Green,
+                    progress_bar::Style::Bold,
+                );
+                action.execute(repository, &timeframe)?;
+                progress_bar::inc_progress_bar();
 
-            std::thread::sleep(Duration::from_millis(sleep));
+                std::thread::sleep(Duration::from_millis(sleep));
+            }
+            progress_bar::finalize_progress_bar();
+        } else {
+            eprintln!("Actions to be executed:");
+            for action in &actions {
+                eprintln!("* {action}");
+            }
+            eprintln!("");
+            eprintln!("Use `--commit` to execute the actions.");
+            return Ok(());
         }
-        progress_bar::finalize_progress_bar();
-    } else {
-        eprintln!("Actions to be executed:");
-        for action in &actions {
-            eprintln!("* {action}");
-        }
-        eprintln!("");
-        eprintln!("Use `--commit` to execute the actions.");
     }
-
-    Ok(())
 }
 
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
@@ -167,10 +171,14 @@ enum GithubAction {
     },
 
     // We intentionally do not sync the issue *text*, because it may have been edited.
-    SyncIssue {
+    SyncAssignees {
         number: u64,
         remove_owners: BTreeSet<String>,
         add_owners: BTreeSet<String>,
+    },
+
+    LockIssue {
+        number: u64,
     },
 }
 
@@ -183,7 +191,16 @@ struct GhLabel {
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 struct ExistingGithubIssue {
     number: u64,
+    /// Just github username, no `@`
     assignees: BTreeSet<String>,
+    comments: Vec<ExistingGithubComment>,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
+struct ExistingGithubComment {
+    /// Just github username, no `@`
+    author: String,
+    body: String,
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
@@ -191,12 +208,24 @@ struct ExistingGithubIssueJson {
     title: String,
     number: u64,
     assignees: Vec<ExistingGithubAssigneeJson>,
+    comments: Vec<ExistingGithubCommentJson>,
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 struct ExistingGithubAssigneeJson {
     login: String,
     name: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
+struct ExistingGithubCommentJson {
+    body: String,
+    author: ExistingGithubAuthorJson,
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
+struct ExistingGithubAuthorJson {
+    login: String,
 }
 
 fn list_labels(repository: &str) -> anyhow::Result<Vec<GhLabel>> {
@@ -226,7 +255,7 @@ fn list_issue_titles_in_milestone(
         .arg("-m")
         .arg(timeframe)
         .arg("--json")
-        .arg("title,assignees,number")
+        .arg("title,assignees,number,comments")
         .output()?;
 
     let existing_issues: Vec<ExistingGithubIssueJson> = serde_json::from_slice(&output.stdout)?;
@@ -238,10 +267,14 @@ fn list_issue_titles_in_milestone(
                 e_i.title,
                 ExistingGithubIssue {
                     number: e_i.number,
-                    assignees: e_i
-                        .assignees
-                        .iter()
-                        .map(|a| format!("@{}", a.login))
+                    assignees: e_i.assignees.into_iter().map(|a| a.login).collect(),
+                    comments: e_i
+                        .comments
+                        .into_iter()
+                        .map(|c| ExistingGithubComment {
+                            author: format!("@{}", c.author.login),
+                            body: c.body,
+                        })
                         .collect(),
                 },
             )
@@ -308,7 +341,7 @@ fn initialize_issues(
         match existing_issues.get(&desired_issue.title) {
             Some(existing_issue) => {
                 if existing_issue.assignees != desired_issue.assignees {
-                    actions.insert(GithubAction::SyncIssue {
+                    actions.insert(GithubAction::SyncAssignees {
                         number: existing_issue.number,
                         remove_owners: existing_issue
                             .assignees
@@ -320,6 +353,12 @@ fn initialize_issues(
                             .difference(&existing_issue.assignees)
                             .cloned()
                             .collect(),
+                    });
+                }
+
+                if !existing_issue.was_locked() {
+                    actions.insert(GithubAction::LockIssue {
+                        number: existing_issue.number,
                     });
                 }
             }
@@ -335,11 +374,19 @@ fn initialize_issues(
     Ok(actions)
 }
 
+impl ExistingGithubIssue {
+    /// We use the presence of a "lock comment" as a signal that we successfully locked the issue.
+    /// The github CLI doesn't let you query that directly.
+    fn was_locked(&self) -> bool {
+        self.comments.iter().any(|c| c.body.trim() == LOCK_TEXT)
+    }
+}
+
 fn issue(timeframe: &str, document: &GoalDocument) -> anyhow::Result<GithubIssue> {
     let mut assignees = BTreeSet::default();
     for username in document.metadata.owner_usernames() {
-        if get_person_data(username)?.is_some() {
-            assignees.insert(username[1..].to_string());
+        if let Some(data) = get_person_data(username)? {
+            assignees.insert(data.github_username.clone());
         }
     }
 
@@ -452,8 +499,25 @@ impl Display for GithubAction {
             GithubAction::CreateIssue { issue } => {
                 write!(f, "create issue \"{}\"", issue.title)
             }
-            GithubAction::SyncIssue { number, .. } => {
-                write!(f, "sync issue #{}", number)
+            GithubAction::SyncAssignees {
+                number,
+                remove_owners,
+                add_owners,
+            } => {
+                write!(
+                    f,
+                    "sync issue #{} ({})",
+                    number,
+                    remove_owners
+                        .iter()
+                        .map(|s| format!("-{}", s))
+                        .chain(add_owners.iter().map(|s| format!("+{}", s)))
+                        .collect::<Vec<_>>()
+                        .join(", ")
+                )
+            }
+            GithubAction::LockIssue { number } => {
+                write!(f, "lock issue #{}", number)
             }
         }
     }
@@ -522,8 +586,10 @@ impl GithubAction {
                 } else {
                     Ok(())
                 }
+
+                // Note: the issue is not locked, but we will reloop around later.
             }
-            GithubAction::SyncIssue {
+            GithubAction::SyncAssignees {
                 number,
                 remove_owners,
                 add_owners,
@@ -555,8 +621,50 @@ impl GithubAction {
                     Ok(())
                 }
             }
+            GithubAction::LockIssue { number } => lock_issue(repository, number),
         }
     }
+}
+
+fn lock_issue(repository: &str, number: u64) -> anyhow::Result<()> {
+    let output = Command::new("gh")
+        .arg("-R")
+        .arg(repository)
+        .arg("issue")
+        .arg("lock")
+        .arg(number.to_string())
+        .output()?;
+
+    if !output.status.success() {
+        if !output.stderr.starts_with(b"already locked") {
+            return Err(anyhow::anyhow!(
+                "failed to lock issue `{}`: {}",
+                number,
+                String::from_utf8_lossy(&output.stderr)
+            ));
+        }
+    }
+
+    // Leave a comment explaining what is going on.
+    let output = Command::new("gh")
+        .arg("-R")
+        .arg(repository)
+        .arg("issue")
+        .arg("comment")
+        .arg(number.to_string())
+        .arg("-b")
+        .arg(LOCK_TEXT)
+        .output()?;
+
+    if !output.status.success() {
+        return Err(anyhow::anyhow!(
+            "failed to leave lock comment `{}`: {}",
+            number,
+            String::from_utf8_lossy(&output.stderr)
+        ));
+    }
+
+    Ok(())
 }
 
 /// Returns a comma-separated list of the strings in `s` (no spaces).

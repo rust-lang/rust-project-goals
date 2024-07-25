@@ -1,3 +1,4 @@
+use anyhow::Context;
 use mdbook::preprocess::{CmdPreprocessor, Preprocessor};
 use mdbook_preprocessor::GoalPreprocessor;
 use regex::Regex;
@@ -92,7 +93,8 @@ fn main() -> anyhow::Result<()> {
             commit,
             sleep,
         }) => {
-            rfc::generate_issues(&opt.repository, path, *commit, *sleep)?;
+            rfc::generate_issues(&opt.repository, path, *commit, *sleep)
+                .with_context(|| format!("failed to adjust issues; rerun command to resume"))?;
         }
 
         Some(Command::TeamRepo {
