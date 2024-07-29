@@ -6,7 +6,7 @@ lazy_static! {
 }
 
 lazy_static! {
-    pub static ref GOAL_LIST: Regex = Regex::new(r"<!-- GOALS `(.*)` -->").unwrap();
+    pub static ref GOAL_LIST: Regex = Regex::new(r"<!-- GOALS '(.*)' -->").unwrap();
 }
 
 lazy_static! {
