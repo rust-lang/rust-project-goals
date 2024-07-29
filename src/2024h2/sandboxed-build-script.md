@@ -4,7 +4,7 @@
 | -------- | ---------- |
 | Owner(s) | @weihanglo |
 | Teams    | [cargo]    |
-| Status   | Proposed   |
+| Status   | Accepted   |
 
 ## Summary
 

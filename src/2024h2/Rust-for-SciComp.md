@@ -4,7 +4,7 @@
 | -------- | ------------------ |
 | Owner(s) | @ZuseZ4            |
 | Teams    | [lang], [compiler] |
-| Status   | Proposed           |
+| Status   | Accepted           |
 
 ## Summary
 

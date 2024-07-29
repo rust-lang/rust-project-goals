@@ -4,7 +4,7 @@
 | -------- | ----------------------------- |
 | Owner(s) | @notriddle                    |
 | Teams    | [rustdoc], [rustdoc-frontend] |
-| Status   | Proposed                      |
+| Status   | Accepted                      |
 
 ## Summary
 

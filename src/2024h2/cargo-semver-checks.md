@@ -4,7 +4,7 @@
 | -------- | ------------------------------------------------------------ |
 | Owner(s) | @obi1kenobi                                                  |
 | Teams    | [cargo]                                                      |
-| Status   | Proposed                                                     |
+| Status   | Accepted                                                     |
 
 ## Summary
 

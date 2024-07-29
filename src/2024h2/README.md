@@ -1,21 +1,14 @@
-> *![Status: Under consideration](https://img.shields.io/badge/Status-Under%20consideration-yellow) This RFC has been opened on the RFC repo as [RFC #3672].*
-
-- Feature Name: N/A
-- Start Date: 2024-07-09
-- RFC PR: [rust-lang/rfcs#3672](https://github.com/rust-lang/rfcs/pull/3672)
-- Rust Issue: N/A
+> *![Status: Accepted](https://img.shields.io/badge/Status-Accepted-green) This goal slate has been accepted as [RFC #3672].*
 
 ## Summary
 
-This RFC presents the Rust project goal slate for 2024H2. The slate consists of <!-- #GOALS --> total project goals of which we have selected 3 as our "flagship goals":
+The Rust project has accepted <!-- #GOALS --> total project goals for 2024H2, with 3 designated as flagship goals:
 
-* Release the Rust 2024 edition (owner: @traviscross)
-* Bring the Async Rust experience closer to parity with sync Rust (owners: @tmandry, @nikomatsakis)
-* Resolve the biggest blockers to Linux building on stable Rust (owners: @joshtriplett, @nikomatsakis)
+* [Release the Rust 2024 edition](./Rust-2024-Edition.md) (owner: @traviscross)
+* [Bring the Async Rust experience closer to parity with sync Rust](./async.md) (owners: @tmandry, @nikomatsakis)
+* [Resolve the biggest blockers to Linux building on stable Rust](./rfl_stable.md) (owners: @joshtriplett, @nikomatsakis)
 
-Flagship goals represent the goals expected to have the broadest overall impact.
-
-**This RFC follows an [unusual ratification procedure](https://rust-lang.zulipchat.com/#narrow/stream/435869-project-goals-2024h2/topic/Procedural.20next.20steps.20and.20timeline). Team leads are asked to review the [list of asks for their team](#reference-level-explanation) and confirm that their team is aligned. Leads should feel free to consult with team members and to raise concerns on their behalf. Once all team leads have signed off, the RFC will enter FCP.**
+Read on to learn more about our goal program!
 
 ## Motivation
 
@@ -82,18 +75,13 @@ The flagship goals proposed for this roadmap are as follows:
 [RFL.com]: https://rust-for-linux.com/
 [RFL#2]: https://github.com/Rust-for-Linux/linux/issues/2
 
-
 ### Project goals
 
-The slate of additional project goals are as follows. These goals all have identified owners who will drive the work forward as well as a viable work plan. The goals include asks from the listed Rust teams, which are cataloged in the [reference-level explanation](#reference-level-explanation) section below. Some goals are actively looking for volunteers; these goals are tagged with ![Help wanted][].
+The slate of additional project goals are as follows. These goals all have identified owners who will drive the work forward as well as a viable work plan. The goals include asks from the listed Rust teams, which are cataloged in the [reference-level explanation](#reference-level-explanation) section below.
 
-<!-- GOALS 'Proposed' -->
+Some goals here do not yet have an owner (look for the ![Help wanted][] badge). Teams have reserved some capacity to pursue these goals but until an appropriate owner is found they are only considered provisionally accepted. If you are interested in serving as the owner for one of these orphaned goals, reach out to the mentor listed in the goal to discuss.
 
-### Orphaned goals ![Help wanted][]
-
-Goals in this section are "pre-approved" by the team but lack an owner. These indicate a place where we are looking for someone to step up and help drive the goal the goal to completion. Every orphaned goal has someone who is willing and able to serve as mentor, but lacks the time or resources to truly *own* the goal. If you are interested in serving as the owner for one of these orphaned goals, reach out to the listed mentor to discuss. Orphaned goals may also be used as the basis of applying for grants from the Rust Foundation or elsewhere.
-
-<!-- GOALS 'Orphaned' -->
+<!-- GOALS 'Accepted,Orphaned' -->
 
 # Reference-level explanation
 [reference-level-explanation]: #reference-level-explanation
@@ -118,8 +106,6 @@ Definitions for terms used above:
     * [Lang team experiments](https://lang-team.rust-lang.org/how_to/experiment.html) are used to add nightly features that do not yet have an RFC. They are limited to trusted contributors and are used to resolve design details such that an RFC can be written.
     * Compiler [Major Change Proposal (MCP)](https://forge.rust-lang.org/compiler/mcp.html) is used to propose a 'larger than average' change and get feedback from the compiler team.
     * Library [API Change Proposal (ACP)](https://std-dev-guide.rust-lang.org/development/feature-lifecycle.html) describes a change to the standard library.
-
-<!-- Goals -->
 
 [AGS]: ./Project-goal-slate.md
 [AMF]: ./a-mir-formality.md

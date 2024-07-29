@@ -4,7 +4,7 @@
 | -------- | ------------------ |
 | Owner(s) | @jkelleyrtp        |
 | Teams    | [lang], [libs-api] |
-| Status   | Proposed           |
+| Status   | Accepted           |
 
 ## Summary
 

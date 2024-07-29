@@ -113,7 +113,7 @@ impl GoalDocument {
         let link_path = Arc::new(link_path.to_path_buf());
 
         let plan_items = match metadata.status {
-            Status::Flagship | Status::Proposed | Status::Orphaned => {
+            Status::Flagship | Status::Accepted | Status::Proposed | Status::Orphaned => {
                 extract_plan_items(&sections)?
             }
             Status::NotAccepted => vec![],
@@ -149,7 +149,7 @@ impl GoalDocument {
     /// True if this goal is a candidate (may yet be accepted)
     pub(crate) fn is_not_not_accepted(&self) -> bool {
         match self.metadata.status {
-            Status::Flagship | Status::Proposed | Status::Orphaned => true,
+            Status::Flagship | Status::Accepted | Status::Proposed | Status::Orphaned => true,
             Status::NotAccepted => false,
         }
     }
@@ -243,6 +243,7 @@ pub fn format_goal_table(goals: &[&GoalDocument]) -> anyhow::Result<String> {
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 pub enum Status {
     Flagship,
+    Accepted,
     Proposed,
     Orphaned,
     NotAccepted,
@@ -254,6 +255,7 @@ impl TryFrom<&str> for Status {
     fn try_from(value: &str) -> anyhow::Result<Self> {
         let status_values = &[
             ("Flagship", Status::Flagship),
+            ("Accepted", Status::Accepted),
             ("Proposed", Status::Proposed),
             ("Orphaned", Status::Orphaned),
             ("Not accepted", Status::NotAccepted),

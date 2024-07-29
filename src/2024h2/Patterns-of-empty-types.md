@@ -4,7 +4,7 @@
 | -------- | ---------- |
 | Owner(s) | @Nadrieril |
 | Teams    | [lang]     |
-| Status   | Proposed   |
+| Status   | Accepted   |
 
 ## Summary
 

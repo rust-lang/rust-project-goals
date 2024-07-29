@@ -4,7 +4,7 @@
 | -------- | -------- |
 | Owner(s) | @lqd     |
 | Teams    | [types]  |
-| Status   | Proposed |
+| Status   | Accepted |
 
 ## Summary
 

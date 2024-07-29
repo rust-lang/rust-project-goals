@@ -4,7 +4,7 @@
 | -------- | -------- |
 | Owner(s) | @eh2406  |
 | Teams    | [cargo]  |
-| Status   | Proposed |
+| Status   | Accepted |
 
 ## Summary
 
