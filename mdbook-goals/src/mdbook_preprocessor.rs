@@ -177,7 +177,11 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             return Ok(());
         };
         let range = m.get(0).unwrap().range();
-        let status = Status::try_from(&m[1])?;
+        let statuses = m[1]
+            .split(',')
+            .map(|s| s.trim())
+            .map(Status::try_from)
+            .collect::<anyhow::Result<Vec<Status>>>()?;
 
         let Some(chapter_path) = &chapter.path else {
             anyhow::bail!("found `<!-- GOALS -->` but chapter has no path")
@@ -185,9 +189,9 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
         // Extract out the list of goals with the given status.
         let goals = self.goal_documents(chapter_path)?;
-        let mut goals_with_status: Vec<&GoalDocument> = goals
+        let mut goals_with_status: Vec<&GoalDocument> = statuses
             .iter()
-            .filter(|g| g.metadata.status == status)
+            .flat_map(|&status| goals.iter().filter(move |g| g.metadata.status == status))
             .collect();
 
         goals_with_status.sort_by_key(|g| &g.metadata.title);

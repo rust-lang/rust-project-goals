@@ -1,3 +1,3 @@
 # Flagship goals
 
-<!-- GOALS `Flagship` -->
+<!-- GOALS 'Flagship' -->

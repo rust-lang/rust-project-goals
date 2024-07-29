@@ -7,7 +7,6 @@
 - [RFC draft](./2024h2/README.md)
 - [Flagship goals](./2024h2/flagship.md)
 - [Proposed goals](./2024h2/proposed.md)
-- [Orphaned goals](./2024h2/orphaned.md)
 - [Goals not accepted](./2024h2/not_accepted.md)
 - [General notes](./2024h2/notes.md)
 
