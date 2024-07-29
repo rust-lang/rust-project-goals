@@ -4,7 +4,7 @@
 | -------- | -------- |
 | Owner(s) | @lcnr    |
 | Teams    | [types]  |
-| Status   | Proposed |
+| Status   | Accepted |
 
 ## Summary
 

@@ -5,7 +5,7 @@
 | -------- | -------- |
 | Owner(s) | @blyxyas |
 | Teams    | [clippy] |
-| Status   | Proposed |
+| Status   | Accepted |
 
 ## Summary
 

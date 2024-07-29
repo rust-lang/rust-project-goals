@@ -4,7 +4,7 @@
 | -------- | -------------------- |
 | Owner(s) | @hi-rustin           |
 | Teams    | [crates-io], [cargo] |
-| Status   | Proposed             |
+| Status   | Accepted             |
 
 ## Summary
 

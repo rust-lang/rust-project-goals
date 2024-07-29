@@ -4,7 +4,7 @@
 | -------- | -------------------- |
 | Owner(s) | @nikomatsakis        |
 | Teams    | [leadership-council] |
-| Status   | Proposed             |
+| Status   | Accepted             |
 
 *Extracted from [RFC 3614](https://github.com/rust-lang/rfcs/blob/master/text/3614-project-goals.md)*
 

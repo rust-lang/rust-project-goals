@@ -4,7 +4,7 @@
 | -------- | -------- |
 | Owner(s) | @BoxyUwU |
 | Teams    | [types]  |
-| Status   | Proposed |
+| Status   | Accepted |
 
 ## Summary
 

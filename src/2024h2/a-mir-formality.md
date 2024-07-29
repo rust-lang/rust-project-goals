@@ -4,7 +4,7 @@
 | -------- | -------------- |
 | Owner(s) | @nikomatsakis |
 | Teams    | [types]        |
-| Status   | Proposed       |
+| Status   | Accepted       |
 
 ## Summary
 

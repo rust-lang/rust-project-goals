@@ -4,7 +4,7 @@
 | -------- | --------------- |
 | Owner(s) | @GuillaumeGomez |
 | Teams    | [rustdoc]       |
-| Status   | Proposed        |
+| Status   | Accepted        |
 
 @GuillaumeGomez: https://github.com/GuillaumeGomez
 

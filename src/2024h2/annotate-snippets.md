@@ -4,7 +4,7 @@
 | -------- | -------------------- |
 | Owner(s) | @estebank, @Muscraft |
 | Teams    | [compiler]           |
-| Status   | Proposed             |
+| Status   | Accepted             |
 
 ## Summary
 

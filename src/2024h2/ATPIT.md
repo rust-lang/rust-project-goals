@@ -4,7 +4,7 @@
 | -------- | --------------- |
 | Owner(s) | @oli-obk        |
 | Teams    | [types], [lang] |
-| Status   | Proposed        |
+| Status   | Accepted        |
 
 ## Summary
 

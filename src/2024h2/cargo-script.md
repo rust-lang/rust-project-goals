@@ -4,7 +4,7 @@
 | -------- | --------------- |
 | Owner(s) | @epage          |
 | Teams    | [cargo], [lang] |
-| Status   | Proposed        |
+| Status   | Accepted        |
 
 ## Summary
 

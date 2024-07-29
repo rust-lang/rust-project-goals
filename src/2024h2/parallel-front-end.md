@@ -4,7 +4,7 @@
 | -------- | ----------- |
 | Owner(s) | @SparrowLii |
 | Teams    | [compiler]  |
-| Status   | Proposed    |
+| Status   | Accepted    |
 
 ## Summary
 

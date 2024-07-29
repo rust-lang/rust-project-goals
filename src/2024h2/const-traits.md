@@ -4,7 +4,7 @@
 | -------- | --------------- |
 | Owner(s) | @fee1-dead      |
 | Teams    | [types], [lang] |
-| Status   | Proposed        |
+| Status   | Accepted        |
 
 ## Summary
 

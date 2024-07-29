@@ -4,7 +4,7 @@
 | -------- |-----------|
 | Owner(s) | @celinval |
 | Teams    | [Libs]    |
-| Status   | Proposed  |
+| Status   | Accepted  |
 
 ## Summary
 
