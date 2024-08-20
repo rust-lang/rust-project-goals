@@ -25,11 +25,12 @@ The [experimental support for Rust development in the Linux kernel][RFL.com] is 
 
 ### The status quo
 
-The [Rust For Linux (RFL)][RFL] project has been accepted into the Linux kernel in experimental status. The project's goal, as described in the [Kernel RFC introducing it](https://lore.kernel.org/lkml/20210414184604.23473-1-ojeda@kernel.org/), is to to add support for authoring kernel components (modules, subsystems) using Rust. Rust would join C as the only two languages permitted in the linux kernel. This is a very exciting milestone for Rust, but it's also a big challenge.
+The [Rust For Linux (RFL)][RFL] project has been accepted into the Linux kernel in experimental status. The project's goal, as described in the [Kernel RFC introducing it](https://lore.kernel.org/lkml/20210414184604.23473-1-ojeda@kernel.org/), is to add support for authoring kernel components (modules, subsystems) using Rust. Rust would join C as the only two languages permitted in the linux kernel. This is a very exciting milestone for Rust, but it's also a big challenge.
 
 Integrating Rust into the Linux kernel means that Rust must be able to interoperate with the kernel's low-level C primitives for things like locking, linked lists, allocation, and so forth.
 This interop requires Rust to expose low-level capabilities that don't currently have stable interfaces.
 
+[RFL]: https://rust-for-linux.com/
 [pinned-init]: https://rust-for-linux.com/pinned-init
 [arclk]: https://rust-for-linux.com/arc-in-the-linux-kernel
 
