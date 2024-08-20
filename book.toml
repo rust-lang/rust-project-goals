@@ -17,8 +17,8 @@ command = "cargo run -p mdbook-goals --"
 
 [preprocessor.goals.linkifiers]
 "RFC #([0-9]+)" = "https://github.com/rust-lang/rfcs/pull/$1"
-"([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)#([0-9]+)" = "https://github.com/$1/$2/issue/$3"
-"#([0-9]+)" = "https://github.com/rust-lang/rust/issue/$1"
+"([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)#([0-9]+)" = "https://github.com/$1/$2/issues/$3"
+"#([0-9]+)" = "https://github.com/rust-lang/rust/issues/$1"
 
 [preprocessor.goals.users]
 "@Nadrieril" = "@Nadrieril"
