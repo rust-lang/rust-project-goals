@@ -42,11 +42,10 @@ Others adopt a slightly different pattern leveraging local variable shadowing:
 ```rust
 let state = Arc::new(some_state);
 
-let _state = state.clone();
 tokio::spawn({
     let state = state.clone();
     async move { /*code using `state`*/ }
-);
+});
 ```
 
 Whichever pattern users adopt, explicit clones of reference counted values leads to significant accidental complexity for many applications. As noted, cloning these values is both cheap at runtime and has zero semantic importance, since each clone is as good as the other. 
