@@ -154,7 +154,7 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | ↳ Stabilization decision           | ![Team][] [lang]             |                           |
 | `asm_goto`                         | @nbdd0121                    |                           |
 | ↳ ~~implementation~~               |                              | ![Complete][]             |
-| ↳ Real-world usage in Linux kernel |                              |                           |
+| ↳ Real-world usage in Linux kernel | @Darksonn                    |                           |
 | ↳ Extend to cover full RFC         |                              |                           |
 | ↳ Author stabilization report      |                              |                           |
 | ↳ Stabilization decision           | ![Team][] [lang]             |                           |
