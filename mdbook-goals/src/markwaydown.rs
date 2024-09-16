@@ -1,6 +1,8 @@
 //! Arguably the worst markdown parser ever. Extracts exactly the things we care about.
 
-use std::path::Path;
+use std::{fmt::Display, path::Path};
+
+use crate::util;
 
 #[derive(Debug)]
 pub struct Section {
@@ -10,7 +12,7 @@ pub struct Section {
     pub tables: Vec<Table>,
 }
 
-#[derive(Debug)]
+#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Table {
     pub line_num: usize,
     pub header: Vec<String>,
@@ -148,5 +150,58 @@ fn categorize_line(line: &str) -> CategorizeLine {
         }
     } else {
         CategorizeLine::Other
+    }
+}
+
+impl Table {
+    /// For a "key-value" table (like metadata), find an existing row
+    /// where the first column (the "key") is `row_key` and modify its second column (the "value")
+    /// to be `row_value`. If no row exists with key `row_key`, then add a new row.
+    pub fn add_key_value_row(&mut self, row_key: &str, row_value: &impl Display) {
+        assert_eq!(self.header.len(), 2);
+
+        match self.rows.iter_mut().find(|row| row[0] == row_key) {
+            Some(row) => {
+                row[1] = row_value.to_string();
+            }
+
+            None => {
+                self.rows
+                    .push(vec![row_key.to_string(), row_value.to_string()]);
+            }
+        }
+    }
+
+    /// Modify `path` to replace the lines containing this table with `new_table`.
+    pub fn overwrite_in_path(&self, path: &Path, new_table: &Table) -> anyhow::Result<()> {
+        let full_text = std::fs::read_to_string(path)?;
+
+        let mut new_lines = vec![];
+        new_lines.extend(
+            full_text
+                .lines()
+                .take(self.line_num - 1)
+                .map(|s| s.to_string()),
+        );
+
+        let table_text = {
+            let mut new_rows = vec![new_table.header.clone()];
+            new_rows.extend(new_table.rows.iter().cloned());
+            util::format_table(&new_rows)
+        };
+        new_lines.push(table_text);
+
+        new_lines.extend(
+            full_text
+                .lines()
+                .skip(self.line_num - 1)
+                .skip(2 + self.rows.len())
+                .map(|s| s.to_string()),
+        );
+
+        let new_text = new_lines.join("\n");
+        std::fs::write(path, new_text)?;
+
+        Ok(())
     }
 }
