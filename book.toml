@@ -37,5 +37,8 @@ level = 0
 "/2024h2/slate.html" = "index.html"
 "/2024h2/orphaned.html" = "accepted.html"
 "/2024h2/proposed.html" = "accepted.html"
+"/2024h2/accepted.html" = "goals.html"
+"/2024h2/flagship.html" = "goals.html"
+"/introduction.html" = "index.html"
 
 [output.markdown]
