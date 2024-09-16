@@ -1,14 +1,17 @@
 # Summary
 
-[👋 Introduction](./introduction.md)
+[👋 Introduction](./README.md)
 
-# 👉 2024H2 goal process
+# ⚙️ 2024H2 goal process 
 
-- [RFC](./2024h2/README.md)
-- [Flagship goals](./2024h2/flagship.md)
-- [Project goals](./2024h2/accepted.md)
+- [Overview](./2024h2/README.md)
+- [Goals](./2024h2/goals.md)
 - [Goals not accepted](./2024h2/not_accepted.md)
 - [General notes](./2024h2/notes.md)
+
+# ⏳ 2025H1 goal process
+
+- [Starting in October]()
 
 # 📖 Learn about
 
