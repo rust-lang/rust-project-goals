@@ -11,7 +11,7 @@ use regex::Regex;
 use serde::{Deserialize, Serialize};
 
 use crate::{
-    gh::IssueId,
+    gh::issue_id::IssueId,
     goal::{self, GoalDocument, ParsedOwners, PlanItem, Status},
     team::{get_person_data, TeamName},
 };
