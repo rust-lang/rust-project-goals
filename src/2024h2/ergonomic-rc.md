@@ -1,10 +1,12 @@
 # Ergonomic ref-counting
 
-| Metadata |                    |
-| -------- | ------------------ |
-| Owner(s) | @jkelleyrtp        |
-| Teams    | [lang], [libs-api] |
-| Status   | Accepted           |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Owner(s)       | @jkelleyrtp                        |
+| Teams          | [lang], [libs-api]                 |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#107] |
+
 
 ## Summary
 

@@ -1,10 +1,12 @@
 # Scalable Polonius support on nightly
 
-| Metadata |          |
-| -------- | -------- |
-| Owner(s) | @lqd     |
-| Teams    | [types]  |
-| Status   | Accepted |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Owner(s)       | @lqd                               |
+| Teams          | [types]                            |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#118] |
+
 
 ## Summary
 

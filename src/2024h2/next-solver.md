@@ -1,10 +1,12 @@
 # Next-generation trait solver
 
-| Metadata |          |
-| -------- | -------- |
-| Owner(s) | @lcnr    |
-| Teams    | [types]  |
-| Status   | Accepted |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Owner(s)       | @lcnr                              |
+| Teams          | [types]                            |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#113] |
+
 
 ## Summary
 

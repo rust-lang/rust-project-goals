@@ -1,10 +1,12 @@
 # Provided reasons for yanked crates
 
-| Metadata       |                                                                                                |
-| ---            | ---                                                                                            |
-| Owner(s)       | @Rustin170506                                                                                  |
-| Teams          | [crates-io], [cargo]                                                                           |
-| Status         | Accepted                                                                                       |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Owner(s)       | @Rustin170506                      |
+| Teams          | [crates-io], [cargo]               |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#101] |
+
 
 
 ## Summary

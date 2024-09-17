@@ -1,10 +1,12 @@
 # Extend pubgrub to match cargo's dependency resolution
 
-| Metadata |          |
-| -------- | -------- |
-| Owner(s) | @eh2406  |
-| Teams    | [cargo]  |
-| Status   | Accepted |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Owner(s)       | @eh2406                            |
+| Teams          | [cargo]                            |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#110] |
+
 
 ## Summary
 
