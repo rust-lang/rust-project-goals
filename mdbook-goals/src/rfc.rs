@@ -11,7 +11,10 @@ use regex::Regex;
 use serde::{Deserialize, Serialize};
 
 use crate::{
-    gh::issue_id::IssueId,
+    gh::{
+        issue_id::IssueId,
+        labels::{list_labels, GhLabel},
+    },
     goal::{self, GoalDocument, ParsedOwners, PlanItem, Status},
     team::{get_person_data, TeamName},
 };
@@ -192,12 +195,6 @@ enum GithubAction<'doc> {
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
-struct GhLabel {
-    name: String,
-    color: String,
-}
-
-#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 struct ExistingGithubIssue {
     number: u64,
     /// Just github username, no `@`
@@ -235,21 +232,6 @@ struct ExistingGithubCommentJson {
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 struct ExistingGithubAuthorJson {
     login: String,
-}
-
-fn list_labels(repository: &str) -> anyhow::Result<Vec<GhLabel>> {
-    let output = Command::new("gh")
-        .arg("-R")
-        .arg(repository)
-        .arg("label")
-        .arg("list")
-        .arg("--json")
-        .arg("name,color")
-        .output()?;
-
-    let labels: Vec<GhLabel> = serde_json::from_slice(&output.stdout)?;
-
-    Ok(labels)
 }
 
 fn list_issue_titles_in_milestone(
