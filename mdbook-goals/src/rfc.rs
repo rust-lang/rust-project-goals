@@ -13,7 +13,7 @@ use crate::{
     gh::{
         issue_id::IssueId,
         issues::{list_issue_titles_in_milestone, lock_issue},
-        labels::{list_labels, GhLabel},
+        labels::GhLabel,
     },
     goal::{self, GoalDocument, ParsedOwners, PlanItem, Status},
     team::{get_person_data, TeamName},
@@ -222,7 +222,7 @@ fn initialize_labels(
         color: "5319E7".to_string(),
     });
 
-    for existing_label in list_labels(repository)? {
+    for existing_label in GhLabel::list(repository)? {
         desired_labels.remove(&existing_label);
     }
 

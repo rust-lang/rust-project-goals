@@ -8,17 +8,19 @@ pub struct GhLabel {
     pub color: String,
 }
 
-pub fn list_labels(repository: &str) -> anyhow::Result<Vec<GhLabel>> {
-    let output = Command::new("gh")
-        .arg("-R")
-        .arg(repository)
-        .arg("label")
-        .arg("list")
-        .arg("--json")
-        .arg("name,color")
-        .output()?;
+impl GhLabel {
+    pub fn list(repository: &str) -> anyhow::Result<Vec<GhLabel>> {
+        let output = Command::new("gh")
+            .arg("-R")
+            .arg(repository)
+            .arg("label")
+            .arg("list")
+            .arg("--json")
+            .arg("name,color")
+            .output()?;
 
-    let labels: Vec<GhLabel> = serde_json::from_slice(&output.stdout)?;
+        let labels: Vec<GhLabel> = serde_json::from_slice(&output.stdout)?;
 
-    Ok(labels)
+        Ok(labels)
+    }
 }
