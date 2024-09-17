@@ -69,9 +69,14 @@ enum Command {
     /// Checks that the goal documents are well-formed, intended for use within CI
     Check {},
 
+    /// Generate json file with status from tracking issues.
+    /// This is intended for storing alongside the book for consumption by external tools.
     Json {
+        /// Milestone for which we generate tracking issue data (e.g., `2024h2`).
         milestone: String,
 
+        /// Path to write the json (e.g., `book/html/api/milestone.json`).
+        /// If not provided, writes to stdout.
         #[structopt(long)]
         json_path: Option<PathBuf>,
     },
