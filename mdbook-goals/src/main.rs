@@ -16,6 +16,7 @@ mod re;
 mod rfc;
 mod team;
 mod team_repo;
+mod updates;
 mod util;
 
 #[derive(StructOpt, Debug)]
@@ -80,6 +81,21 @@ enum Command {
         #[structopt(long)]
         json_path: Option<PathBuf>,
     },
+
+    /// Generate markdown with the list of updates for each tracking issue.
+    /// Collects updates
+    Updates {
+        /// Milestone for which we generate tracking issue data (e.g., `2024h2`).
+        milestone: String,
+
+        /// Start date for comments.
+        /// If not given, defaults to 1 week before the start of this month.
+        start_date: Option<chrono::NaiveDate>,
+
+        /// End date for comments.
+        /// If not given, no end date.
+        end_date: Option<chrono::NaiveDate>,
+    },
 }
 
 fn main() -> anyhow::Result<()> {
@@ -127,6 +143,13 @@ fn main() -> anyhow::Result<()> {
             json_path,
         } => {
             json::generate_json(&opt.repository, &milestone, json_path)?;
+        }
+        Command::Updates {
+            milestone,
+            start_date,
+            end_date,
+        } => {
+            updates::updates(&opt.repository, milestone, start_date, end_date)?;
         }
     }
 
