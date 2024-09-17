@@ -7,6 +7,8 @@ use serde::{Deserialize, Serialize};
 
 use crate::util::comma;
 
+use super::labels::GhLabel;
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 pub struct ExistingGithubIssue {
     pub number: u64,
@@ -15,6 +17,7 @@ pub struct ExistingGithubIssue {
     pub comments: Vec<ExistingGithubComment>,
     pub body: String,
     pub state: ExistingIssueState,
+    pub labels: Vec<GhLabel>,
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
@@ -22,6 +25,8 @@ pub struct ExistingGithubComment {
     /// Just github username, no `@`
     pub author: String,
     pub body: String,
+    pub created_at: String,
+    pub url: String,
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
@@ -32,6 +37,7 @@ struct ExistingGithubIssueJson {
     comments: Vec<ExistingGithubCommentJson>,
     body: String,
     state: ExistingIssueState,
+    labels: Vec<GhLabel>,
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
@@ -44,6 +50,9 @@ struct ExistingGithubAssigneeJson {
 struct ExistingGithubCommentJson {
     body: String,
     author: ExistingGithubAuthorJson,
+    #[serde(rename = "createdAt")]
+    created_at: String,
+    url: String,
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
@@ -72,7 +81,7 @@ pub fn list_issue_titles_in_milestone(
         .arg("-s")
         .arg("all")
         .arg("--json")
-        .arg("title,assignees,number,comments,body,state")
+        .arg("title,assignees,number,comments,body,state,labels")
         .output()?;
 
     let existing_issues: Vec<ExistingGithubIssueJson> = serde_json::from_slice(&output.stdout)?;
@@ -91,10 +100,13 @@ pub fn list_issue_titles_in_milestone(
                         .map(|c| ExistingGithubComment {
                             author: format!("@{}", c.author.login),
                             body: c.body,
+                            url: c.url,
+                            created_at: c.created_at,
                         })
                         .collect(),
                     body: e_i.body,
                     state: e_i.state,
+                    labels: e_i.labels,
                 },
             )
         })
@@ -220,4 +232,11 @@ pub fn lock_issue(repository: &str, number: u64) -> anyhow::Result<()> {
     }
 
     Ok(())
+}
+
+impl ExistingGithubComment {
+    /// True if this is one of the special comments that we put on issues.
+    pub fn is_automated_comment(&self) -> bool {
+        self.body.trim() == LOCK_TEXT
+    }
 }

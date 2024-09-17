@@ -9,6 +9,7 @@ use walkdir::WalkDir;
 
 mod gh;
 mod goal;
+mod json;
 mod markwaydown;
 mod mdbook_preprocessor;
 mod re;
@@ -67,6 +68,13 @@ enum Command {
 
     /// Checks that the goal documents are well-formed, intended for use within CI
     Check {},
+
+    Json {
+        milestone: String,
+
+        #[structopt(long)]
+        json_path: Option<PathBuf>,
+    },
 }
 
 fn main() -> anyhow::Result<()> {
@@ -107,6 +115,13 @@ fn main() -> anyhow::Result<()> {
             team_repo_path,
         } => {
             team_repo::generate_team_repo(&path, team_repo_path)?;
+        }
+
+        Command::Json {
+            milestone,
+            json_path,
+        } => {
+            json::generate_json(&opt.repository, &milestone, json_path)?;
         }
     }
 
