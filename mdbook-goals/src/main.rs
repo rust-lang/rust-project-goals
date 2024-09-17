@@ -9,6 +9,7 @@ use walkdir::WalkDir;
 
 mod gh;
 mod goal;
+mod json;
 mod markwaydown;
 mod mdbook_preprocessor;
 mod re;
@@ -67,46 +68,65 @@ enum Command {
 
     /// Checks that the goal documents are well-formed, intended for use within CI
     Check {},
+
+    /// Generate json file with status from tracking issues.
+    /// This is intended for storing alongside the book for consumption by external tools.
+    Json {
+        /// Milestone for which we generate tracking issue data (e.g., `2024h2`).
+        milestone: String,
+
+        /// Path to write the json (e.g., `book/html/api/milestone.json`).
+        /// If not provided, writes to stdout.
+        #[structopt(long)]
+        json_path: Option<PathBuf>,
+    },
 }
 
 fn main() -> anyhow::Result<()> {
     let opt = Opt::from_args();
 
-    match &opt.cmd {
-        Some(Command::Supports { renderer }) => {
+    let Some(cmd) = &opt.cmd else {
+        return handle_preprocessing(&GoalPreprocessor);
+    };
+
+    match cmd {
+        Command::Supports { renderer } => {
             handle_supports(&GoalPreprocessor, renderer)?;
         }
 
-        Some(Command::FCP { path }) => {
+        Command::FCP { path } => {
             rfc::generate_comment(&path)?;
         }
 
-        Some(Command::Check {}) => {
+        Command::Check {} => {
             check()?;
         }
 
-        Some(Command::RFC { path }) => {
+        Command::RFC { path } => {
             rfc::generate_rfc(&path)?;
         }
 
-        Some(Command::Issues {
+        Command::Issues {
             path,
             commit,
             sleep,
-        }) => {
+        } => {
             rfc::generate_issues(&opt.repository, path, *commit, *sleep)
                 .with_context(|| format!("failed to adjust issues; rerun command to resume"))?;
         }
 
-        Some(Command::TeamRepo {
+        Command::TeamRepo {
             path,
             team_repo_path,
-        }) => {
+        } => {
             team_repo::generate_team_repo(&path, team_repo_path)?;
         }
 
-        None => {
-            handle_preprocessing(&GoalPreprocessor)?;
+        Command::Json {
+            milestone,
+            json_path,
+        } => {
+            json::generate_json(&opt.repository, &milestone, json_path)?;
         }
     }
 

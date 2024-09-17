@@ -42,6 +42,8 @@ jobs:
         uses: actions/configure-pages@v5
       - name: Build with mdBook
         run: mdbook build
+      - name: Generate JSON data
+        run: cargo run -- json 2024h2 --json-path book/html/api/2024h2.json
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
