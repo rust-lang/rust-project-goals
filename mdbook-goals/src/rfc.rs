@@ -1,5 +1,5 @@
 use std::{
-    collections::{BTreeMap, BTreeSet},
+    collections::BTreeSet,
     fmt::Display,
     path::{Path, PathBuf},
     process::Command,
@@ -8,15 +8,16 @@ use std::{
 
 use anyhow::Context;
 use regex::Regex;
-use serde::{Deserialize, Serialize};
 
 use crate::{
-    gh::IssueId,
+    gh::{
+        issue_id::IssueId,
+        issues::{create_issue, list_issue_titles_in_milestone, lock_issue, sync_assignees},
+        labels::GhLabel,
+    },
     goal::{self, GoalDocument, ParsedOwners, PlanItem, Status},
     team::{get_person_data, TeamName},
 };
-
-const LOCK_TEXT: &str = "This issue is intended for status updates only.\n\nFor general questions or comments, please contact the owner(s) directly.";
 
 fn validate_path(path: &Path) -> anyhow::Result<String> {
     if !path.is_dir() {
@@ -191,107 +192,6 @@ enum GithubAction<'doc> {
     },
 }
 
-#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
-struct GhLabel {
-    name: String,
-    color: String,
-}
-
-#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
-struct ExistingGithubIssue {
-    number: u64,
-    /// Just github username, no `@`
-    assignees: BTreeSet<String>,
-    comments: Vec<ExistingGithubComment>,
-}
-
-#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
-struct ExistingGithubComment {
-    /// Just github username, no `@`
-    author: String,
-    body: String,
-}
-
-#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
-struct ExistingGithubIssueJson {
-    title: String,
-    number: u64,
-    assignees: Vec<ExistingGithubAssigneeJson>,
-    comments: Vec<ExistingGithubCommentJson>,
-}
-
-#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
-struct ExistingGithubAssigneeJson {
-    login: String,
-    name: String,
-}
-
-#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
-struct ExistingGithubCommentJson {
-    body: String,
-    author: ExistingGithubAuthorJson,
-}
-
-#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
-struct ExistingGithubAuthorJson {
-    login: String,
-}
-
-fn list_labels(repository: &str) -> anyhow::Result<Vec<GhLabel>> {
-    let output = Command::new("gh")
-        .arg("-R")
-        .arg(repository)
-        .arg("label")
-        .arg("list")
-        .arg("--json")
-        .arg("name,color")
-        .output()?;
-
-    let labels: Vec<GhLabel> = serde_json::from_slice(&output.stdout)?;
-
-    Ok(labels)
-}
-
-fn list_issue_titles_in_milestone(
-    repository: &str,
-    timeframe: &str,
-) -> anyhow::Result<BTreeMap<String, ExistingGithubIssue>> {
-    let output = Command::new("gh")
-        .arg("-R")
-        .arg(repository)
-        .arg("issue")
-        .arg("list")
-        .arg("-m")
-        .arg(timeframe)
-        .arg("-s")
-        .arg("all")
-        .arg("--json")
-        .arg("title,assignees,number,comments")
-        .output()?;
-
-    let existing_issues: Vec<ExistingGithubIssueJson> = serde_json::from_slice(&output.stdout)?;
-
-    Ok(existing_issues
-        .into_iter()
-        .map(|e_i| {
-            (
-                e_i.title,
-                ExistingGithubIssue {
-                    number: e_i.number,
-                    assignees: e_i.assignees.into_iter().map(|a| a.login).collect(),
-                    comments: e_i
-                        .comments
-                        .into_iter()
-                        .map(|c| ExistingGithubComment {
-                            author: format!("@{}", c.author.login),
-                            body: c.body,
-                        })
-                        .collect(),
-                },
-            )
-        })
-        .collect())
-}
 /// Initializes the required `T-<team>` labels on the repository.
 /// Warns if the labels are found with wrong color.
 fn initialize_labels(
@@ -322,7 +222,7 @@ fn initialize_labels(
         color: "5319E7".to_string(),
     });
 
-    for existing_label in list_labels(repository)? {
+    for existing_label in GhLabel::list(repository)? {
         desired_labels.remove(&existing_label);
     }
 
@@ -391,14 +291,6 @@ fn initialize_issues<'doc>(
     }
 
     Ok(actions)
-}
-
-impl ExistingGithubIssue {
-    /// We use the presence of a "lock comment" as a signal that we successfully locked the issue.
-    /// The github CLI doesn't let you query that directly.
-    fn was_locked(&self) -> bool {
-        self.comments.iter().any(|c| c.body.trim() == LOCK_TEXT)
-    }
 }
 
 fn issue<'doc>(timeframe: &str, document: &'doc GoalDocument) -> anyhow::Result<GithubIssue<'doc>> {
@@ -557,29 +449,9 @@ impl Display for GithubAction<'_> {
 impl GithubAction<'_> {
     pub fn execute(self, repository: &str, timeframe: &str) -> anyhow::Result<()> {
         match self {
-            GithubAction::CreateLabel {
-                label: GhLabel { name, color },
-            } => {
-                let output = Command::new("gh")
-                    .arg("-R")
-                    .arg(repository)
-                    .arg("label")
-                    .arg("create")
-                    .arg(&name)
-                    .arg("--color")
-                    .arg(&color)
-                    .arg("--force")
-                    .output()?;
-
-                if !output.status.success() {
-                    Err(anyhow::anyhow!(
-                        "failed to create label `{}`: {}",
-                        name,
-                        String::from_utf8_lossy(&output.stderr)
-                    ))
-                } else {
-                    Ok(())
-                }
+            GithubAction::CreateLabel { label } => {
+                label.create(repository)?;
+                Ok(())
             }
 
             GithubAction::CreateIssue {
@@ -593,66 +465,19 @@ impl GithubAction<'_> {
                         goal_document: _,
                     },
             } => {
-                let output = Command::new("gh")
-                    .arg("-R")
-                    .arg(&repository)
-                    .arg("issue")
-                    .arg("create")
-                    .arg("-b")
-                    .arg(&body)
-                    .arg("-t")
-                    .arg(&title)
-                    .arg("-l")
-                    .arg(labels.join(","))
-                    .arg("-a")
-                    .arg(comma(&assignees))
-                    .arg("-m")
-                    .arg(&timeframe)
-                    .output()?;
-
-                if !output.status.success() {
-                    Err(anyhow::anyhow!(
-                        "failed to create issue `{}`: {}",
-                        title,
-                        String::from_utf8_lossy(&output.stderr)
-                    ))
-                } else {
-                    Ok(())
-                }
+                create_issue(repository, &body, &title, &labels, &assignees, timeframe)?;
 
                 // Note: the issue is not locked, but we will reloop around later.
+
+                Ok(())
             }
             GithubAction::SyncAssignees {
                 number,
                 remove_owners,
                 add_owners,
             } => {
-                let mut command = Command::new("gh");
-                command
-                    .arg("-R")
-                    .arg(&repository)
-                    .arg("issue")
-                    .arg("edit")
-                    .arg(number.to_string());
-
-                if !remove_owners.is_empty() {
-                    command.arg("--remove-assignee").arg(comma(&remove_owners));
-                }
-
-                if !add_owners.is_empty() {
-                    command.arg("--add-assignee").arg(comma(&add_owners));
-                }
-
-                let output = command.output()?;
-                if !output.status.success() {
-                    Err(anyhow::anyhow!(
-                        "failed to sync issue `{}`: {}",
-                        number,
-                        String::from_utf8_lossy(&output.stderr)
-                    ))
-                } else {
-                    Ok(())
-                }
+                sync_assignees(repository, number, &remove_owners, &add_owners)?;
+                Ok(())
             }
 
             GithubAction::LockIssue { number } => lock_issue(repository, number),
@@ -663,50 +488,4 @@ impl GithubAction<'_> {
             } => goal_document.link_issue(number),
         }
     }
-}
-
-fn lock_issue(repository: &str, number: u64) -> anyhow::Result<()> {
-    let output = Command::new("gh")
-        .arg("-R")
-        .arg(repository)
-        .arg("issue")
-        .arg("lock")
-        .arg(number.to_string())
-        .output()?;
-
-    if !output.status.success() {
-        if !output.stderr.starts_with(b"already locked") {
-            return Err(anyhow::anyhow!(
-                "failed to lock issue `{}`: {}",
-                number,
-                String::from_utf8_lossy(&output.stderr)
-            ));
-        }
-    }
-
-    // Leave a comment explaining what is going on.
-    let output = Command::new("gh")
-        .arg("-R")
-        .arg(repository)
-        .arg("issue")
-        .arg("comment")
-        .arg(number.to_string())
-        .arg("-b")
-        .arg(LOCK_TEXT)
-        .output()?;
-
-    if !output.status.success() {
-        return Err(anyhow::anyhow!(
-            "failed to leave lock comment `{}`: {}",
-            number,
-            String::from_utf8_lossy(&output.stderr)
-        ));
-    }
-
-    Ok(())
-}
-
-/// Returns a comma-separated list of the strings in `s` (no spaces).
-fn comma(s: &BTreeSet<String>) -> String {
-    s.iter().map(|s| &s[..]).collect::<Vec<_>>().join(",")
 }

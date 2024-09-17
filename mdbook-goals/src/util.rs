@@ -1,4 +1,5 @@
 use std::{
+    collections::BTreeSet,
     fmt::{Display, Write},
     path::{Path, PathBuf},
 };
@@ -121,4 +122,9 @@ pub fn markdown_files(directory_path: &Path) -> anyhow::Result<Vec<(PathBuf, Pat
         }
     }
     Ok(files)
+}
+
+/// Returns a comma-separated list of the strings in `s` (no spaces).
+pub fn comma(s: &BTreeSet<String>) -> String {
+    s.iter().map(|s| &s[..]).collect::<Vec<_>>().join(",")
 }
