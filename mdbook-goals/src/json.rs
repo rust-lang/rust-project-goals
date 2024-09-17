@@ -38,6 +38,9 @@ pub(super) fn generate_json(
 
     if let Some(json_path) = json_path {
         let json = serde_json::to_string(&issues)?;
+        if let Some(parent) = json_path.parent() {
+            std::fs::create_dir_all(parent)?;
+        }
         std::fs::write(json_path, json)?;
     } else {
         println!("{}", serde_json::to_string_pretty(&issues)?);
