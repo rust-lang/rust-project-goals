@@ -1,10 +1,12 @@
 # Stabilize parallel front end
 
-| Metadata |             |
-| -------- | ----------- |
-| Owner(s) | @SparrowLii |
-| Teams    | [compiler]  |
-| Status   | Accepted    |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Owner(s)       | @SparrowLii                        |
+| Teams          | [compiler]                         |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#121] |
+
 
 ## Summary
 

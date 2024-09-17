@@ -1,10 +1,12 @@
 # Rust 2024 Edition
 
-| Metadata |                 |
-| -------- | --------------- |
-| Owner(s) | @traviscross    |
-| Teams    | [lang], [types] |
-| Status   | Flagship        |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Owner(s)       | @traviscross                       |
+| Teams          | [lang], [types]                    |
+| Status         | Flagship                           |
+| Tracking issue | [rust-lang/rust-project-goals#117] |
+
 
 ## Summary
 

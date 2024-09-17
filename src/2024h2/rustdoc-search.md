@@ -1,10 +1,12 @@
 # Make Rustdoc Search easier to learn
 
-| Metadata |                               |
-| -------- | ----------------------------- |
-| Owner(s) | @notriddle                    |
-| Teams    | [rustdoc], [rustdoc-frontend] |
-| Status   | Accepted                      |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Owner(s)       | @notriddle                         |
+| Teams          | [rustdoc], [rustdoc-frontend]      |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#112] |
+
 
 ## Summary
 

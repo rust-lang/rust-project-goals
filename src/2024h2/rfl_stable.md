@@ -1,11 +1,13 @@
 # Resolve the biggest blockers to Linux building on stable Rust
 
-| Metadata    |                                |
-| ----------- | ------------------------------ |
-| Short title | Rust-for-Linux                 |
-| Owner(s)    | @nikomatsakis, @joshtriplett   |
-| Teams       | [lang], [libs-api], [compiler] |
-| Status      | Flagship                       |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Short title    | Rust-for-Linux                     |
+| Owner(s)       | @nikomatsakis, @joshtriplett       |
+| Teams          | [lang], [libs-api], [compiler]     |
+| Status         | Flagship                           |
+| Tracking issue | [rust-lang/rust-project-goals#116] |
+
 
 ## Summary
 
@@ -187,6 +189,5 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 ## Frequently asked questions
 
 None yet.
-
 
 

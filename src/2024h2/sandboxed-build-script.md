@@ -1,10 +1,12 @@
 # Explore sandboxed build scripts
 
-| Metadata |            |
-| -------- | ---------- |
-| Owner(s) | @weihanglo |
-| Teams    | [cargo]    |
-| Status   | Accepted   |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Owner(s)       | @weihanglo                         |
+| Teams          | [cargo]                            |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#108] |
+
 
 ## Summary
 

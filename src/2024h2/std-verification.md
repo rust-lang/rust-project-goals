@@ -1,10 +1,12 @@
 # Survey tools suitability for Std safety verification
 
-| Metadata |           |
-| -------- |-----------|
-| Owner(s) | @celinval |
-| Teams    | [Libs]    |
-| Status   | Accepted  |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Owner(s)       | @celinval                          |
+| Teams          | [Libs]                             |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#126] |
+
 
 ## Summary
 
@@ -144,4 +146,3 @@ Besides contracts, these changes may include extra harnesses, lemmas, ghost-code
 the standard library.
 
 ## Frequently asked questions
-

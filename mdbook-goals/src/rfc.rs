@@ -11,6 +11,7 @@ use regex::Regex;
 use serde::{Deserialize, Serialize};
 
 use crate::{
+    gh::IssueId,
     goal::{self, GoalDocument, ParsedOwners, PlanItem, Status},
     team::{get_person_data, TeamName},
 };
@@ -154,20 +155,23 @@ pub fn generate_issues(
 }
 
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
-pub struct GithubIssue {
+pub struct GithubIssue<'doc> {
     pub title: String,
     pub assignees: BTreeSet<String>,
     pub body: String,
     pub labels: Vec<String>,
+    pub tracking_issue: Option<&'doc IssueId>,
+    pub goal_document: &'doc GoalDocument,
 }
 
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
-enum GithubAction {
+enum GithubAction<'doc> {
     CreateLabel {
         label: GhLabel,
     },
+
     CreateIssue {
-        issue: GithubIssue,
+        issue: GithubIssue<'doc>,
     },
 
     // We intentionally do not sync the issue *text*, because it may have been edited.
@@ -179,6 +183,11 @@ enum GithubAction {
 
     LockIssue {
         number: u64,
+    },
+
+    LinkToTrackingIssue {
+        goal_document: &'doc GoalDocument,
+        issue_id: IssueId,
     },
 }
 
@@ -254,6 +263,8 @@ fn list_issue_titles_in_milestone(
         .arg("list")
         .arg("-m")
         .arg(timeframe)
+        .arg("-s")
+        .arg("all")
         .arg("--json")
         .arg("title,assignees,number,comments")
         .output()?;
@@ -286,7 +297,7 @@ fn list_issue_titles_in_milestone(
 fn initialize_labels(
     repository: &str,
     teams_with_asks: &BTreeSet<&TeamName>,
-) -> anyhow::Result<BTreeSet<GithubAction>> {
+) -> anyhow::Result<BTreeSet<GithubAction<'static>>> {
     const TEAM_LABEL_COLOR: &str = "bfd4f2";
 
     let mut desired_labels: BTreeSet<_> = teams_with_asks
@@ -323,11 +334,11 @@ fn initialize_labels(
 
 /// Initializes the required `T-<team>` labels on the repository.
 /// Warns if the labels are found with wrong color.
-fn initialize_issues(
+fn initialize_issues<'doc>(
     repository: &str,
     timeframe: &str,
-    goal_documents: &[GoalDocument],
-) -> anyhow::Result<BTreeSet<GithubAction>> {
+    goal_documents: &'doc [GoalDocument],
+) -> anyhow::Result<BTreeSet<GithubAction<'doc>>> {
     // the set of issues we want to exist
     let desired_issues: BTreeSet<GithubIssue> = goal_documents
         .iter()
@@ -361,6 +372,14 @@ fn initialize_issues(
                         number: existing_issue.number,
                     });
                 }
+
+                let issue_id = IssueId::new(repository, existing_issue.number);
+                if desired_issue.tracking_issue != Some(&issue_id) {
+                    actions.insert(GithubAction::LinkToTrackingIssue {
+                        goal_document: desired_issue.goal_document,
+                        issue_id,
+                    });
+                }
             }
 
             None => {
@@ -382,7 +401,7 @@ impl ExistingGithubIssue {
     }
 }
 
-fn issue(timeframe: &str, document: &GoalDocument) -> anyhow::Result<GithubIssue> {
+fn issue<'doc>(timeframe: &str, document: &'doc GoalDocument) -> anyhow::Result<GithubIssue<'doc>> {
     let mut assignees = BTreeSet::default();
     for username in document.metadata.owner_usernames() {
         if let Some(data) = get_person_data(username)? {
@@ -403,6 +422,8 @@ fn issue(timeframe: &str, document: &GoalDocument) -> anyhow::Result<GithubIssue
         assignees,
         body: issue_text(timeframe, document)?,
         labels,
+        tracking_issue: document.metadata.tracking_issue.as_ref(),
+        goal_document: document,
     })
 }
 
@@ -488,7 +509,7 @@ fn teams_with_asks(goal_documents: &[GoalDocument]) -> BTreeSet<&'static TeamNam
         .collect()
 }
 
-impl Display for GithubAction {
+impl Display for GithubAction<'_> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             GithubAction::CreateLabel {
@@ -519,11 +540,21 @@ impl Display for GithubAction {
             GithubAction::LockIssue { number } => {
                 write!(f, "lock issue #{}", number)
             }
+            GithubAction::LinkToTrackingIssue {
+                goal_document,
+                issue_id,
+            } => {
+                write!(
+                    f,
+                    "link issue {issue_id:?} to the markdown document at {}",
+                    goal_document.path.display()
+                )
+            }
         }
     }
 }
 
-impl GithubAction {
+impl GithubAction<'_> {
     pub fn execute(self, repository: &str, timeframe: &str) -> anyhow::Result<()> {
         match self {
             GithubAction::CreateLabel {
@@ -558,6 +589,8 @@ impl GithubAction {
                         assignees,
                         body,
                         labels,
+                        tracking_issue: _,
+                        goal_document: _,
                     },
             } => {
                 let output = Command::new("gh")
@@ -621,7 +654,13 @@ impl GithubAction {
                     Ok(())
                 }
             }
+
             GithubAction::LockIssue { number } => lock_issue(repository, number),
+
+            GithubAction::LinkToTrackingIssue {
+                goal_document,
+                issue_id: number,
+            } => goal_document.link_issue(number),
         }
     }
 }

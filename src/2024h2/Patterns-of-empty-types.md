@@ -1,10 +1,12 @@
 # Patterns of empty types
 
-| Metadata |            |
-| -------- | ---------- |
-| Owner(s) | @Nadrieril |
-| Teams    | [lang]     |
-| Status   | Accepted   |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Owner(s)       | @Nadrieril                         |
+| Teams          | [lang]                             |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#115] |
+
 
 ## Summary
 

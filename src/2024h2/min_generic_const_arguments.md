@@ -1,10 +1,12 @@
 # "Stabilizable" prototype for expanded const generics
 
-| Metadata |          |
-| -------- | -------- |
-| Owner(s) | @BoxyUwU |
-| Teams    | [types]  |
-| Status   | Accepted |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Owner(s)       | @BoxyUwU                           |
+| Teams          | [types]                            |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#100] |
+
 
 ## Summary
 
