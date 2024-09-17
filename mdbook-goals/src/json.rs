@@ -1,11 +1,20 @@
 //! Generate JSON summarizing the tracking issues.
+//!
+//! This module contains types (e.g., [`TrackingIssues`]) that represent the
+//! external API that is used by the website
+//! and other tools to consume the tracking issue data. They are very similar
+//! to the types in `gh` and so forth but because they represent
+//! a versioned API, we copy them over here to insulate them from incidental changes.
 
 use std::path::PathBuf;
 
 use serde::Serialize;
 
 use crate::{
-    gh::issues::{list_issue_titles_in_milestone, ExistingGithubComment, ExistingGithubIssue},
+    gh::issues::{
+        list_issue_titles_in_milestone, ExistingGithubComment, ExistingGithubIssue,
+        ExistingIssueState,
+    },
     re,
 };
 
@@ -29,6 +38,7 @@ pub(super) fn generate_json(
                     checked_checkboxes,
                     assignees: issue.assignees.into_iter().collect(),
                     updates: updates(issue.comments),
+                    state: issue.state,
                 }
             })
             .collect(),
@@ -78,6 +88,9 @@ struct TrackingIssue {
 
     /// Posts that we consider to be status updates, in chronological order
     updates: Vec<TrackingIssueUpdate>,
+
+    /// Issue state
+    state: ExistingIssueState,
 }
 
 #[derive(Serialize)]
