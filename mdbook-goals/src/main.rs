@@ -72,41 +72,41 @@ enum Command {
 fn main() -> anyhow::Result<()> {
     let opt = Opt::from_args();
 
-    match &opt.cmd {
-        Some(Command::Supports { renderer }) => {
+    let Some(cmd) = &opt.cmd else {
+        return handle_preprocessing(&GoalPreprocessor);
+    };
+
+    match cmd {
+        Command::Supports { renderer } => {
             handle_supports(&GoalPreprocessor, renderer)?;
         }
 
-        Some(Command::FCP { path }) => {
+        Command::FCP { path } => {
             rfc::generate_comment(&path)?;
         }
 
-        Some(Command::Check {}) => {
+        Command::Check {} => {
             check()?;
         }
 
-        Some(Command::RFC { path }) => {
+        Command::RFC { path } => {
             rfc::generate_rfc(&path)?;
         }
 
-        Some(Command::Issues {
+        Command::Issues {
             path,
             commit,
             sleep,
-        }) => {
+        } => {
             rfc::generate_issues(&opt.repository, path, *commit, *sleep)
                 .with_context(|| format!("failed to adjust issues; rerun command to resume"))?;
         }
 
-        Some(Command::TeamRepo {
+        Command::TeamRepo {
             path,
             team_repo_path,
-        }) => {
+        } => {
             team_repo::generate_team_repo(&path, team_repo_path)?;
-        }
-
-        None => {
-            handle_preprocessing(&GoalPreprocessor)?;
         }
     }
 
