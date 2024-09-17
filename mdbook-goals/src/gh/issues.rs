@@ -3,6 +3,7 @@ use std::{
     process::Command,
 };
 
+use chrono::NaiveDate;
 use serde::{Deserialize, Serialize};
 
 use crate::util::comma;
@@ -65,6 +66,15 @@ struct ExistingGithubAuthorJson {
 pub enum ExistingIssueState {
     Open,
     Closed,
+}
+
+impl std::fmt::Display for ExistingIssueState {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            ExistingIssueState::Open => write!(f, "open"),
+            ExistingIssueState::Closed => write!(f, "closed"),
+        }
+    }
 }
 
 pub fn list_issue_titles_in_milestone(
@@ -238,5 +248,10 @@ impl ExistingGithubComment {
     /// True if this is one of the special comments that we put on issues.
     pub fn is_automated_comment(&self) -> bool {
         self.body.trim() == LOCK_TEXT
+    }
+
+    pub fn created_at_date(&self) -> NaiveDate {
+        NaiveDate::parse_from_str(&self.created_at, "%Y-%m-%dT%H:%M:%SZ")
+            .expect("failed to parse date")
     }
 }
