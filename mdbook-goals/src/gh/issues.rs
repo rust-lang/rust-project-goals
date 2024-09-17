@@ -5,6 +5,8 @@ use std::{
 
 use serde::{Deserialize, Serialize};
 
+use crate::util::comma;
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 pub struct ExistingGithubIssue {
     pub number: u64,
@@ -84,6 +86,42 @@ pub fn list_issue_titles_in_milestone(
             )
         })
         .collect())
+}
+
+pub fn create_issue(
+    repository: &str,
+    body: &str,
+    title: &str,
+    labels: &[String],
+    assignees: &BTreeSet<String>,
+    milestone: &str,
+) -> anyhow::Result<()> {
+    let output = Command::new("gh")
+        .arg("-R")
+        .arg(&repository)
+        .arg("issue")
+        .arg("create")
+        .arg("-b")
+        .arg(&body)
+        .arg("-t")
+        .arg(&title)
+        .arg("-l")
+        .arg(labels.join(","))
+        .arg("-a")
+        .arg(comma(&assignees))
+        .arg("-m")
+        .arg(&milestone)
+        .output()?;
+
+    if !output.status.success() {
+        Err(anyhow::anyhow!(
+            "failed to create issue `{}`: {}",
+            title,
+            String::from_utf8_lossy(&output.stderr)
+        ))
+    } else {
+        Ok(())
+    }
 }
 
 const LOCK_TEXT: &str = "This issue is intended for status updates only.\n\nFor general questions or comments, please contact the owner(s) directly.";
