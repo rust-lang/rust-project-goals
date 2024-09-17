@@ -1,10 +1,12 @@
 # Expose experimental LLVM features for automatic differentiation and GPU offloading
 
-| Metadata |                    |
-| -------- | ------------------ |
-| Owner(s) | @ZuseZ4            |
-| Teams    | [lang], [compiler] |
-| Status   | Accepted           |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Owner(s)       | @ZuseZ4                            |
+| Teams          | [lang], [compiler]                 |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#109] |
+
 
 ## Summary
 

@@ -1,10 +1,12 @@
 # Use annotate-snippets for rustc diagnostic output
 
-| Metadata |                      |
-| -------- | -------------------- |
-| Owner(s) | @estebank, @Muscraft |
-| Teams    | [compiler]           |
-| Status   | Accepted             |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Owner(s)       | @estebank, @Muscraft               |
+| Teams          | [compiler]                         |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#123] |
+
 
 ## Summary
 

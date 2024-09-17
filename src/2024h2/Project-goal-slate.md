@@ -1,10 +1,12 @@
 # Assemble project goal slate
 
-| Metadata |                      |
-| -------- | -------------------- |
-| Owner(s) | @nikomatsakis        |
-| Teams    | [leadership-council] |
-| Status   | Accepted             |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Owner(s)       | @nikomatsakis                      |
+| Teams          | [leadership-council]               |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#102] |
+
 
 *Extracted from [RFC 3614](https://github.com/rust-lang/rfcs/blob/master/text/3614-project-goals.md)*
 

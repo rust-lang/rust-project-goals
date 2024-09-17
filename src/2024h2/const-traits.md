@@ -1,10 +1,12 @@
 # Const traits
 
-| Metadata |                 |
-| -------- | --------------- |
-| Owner(s) | @fee1-dead      |
-| Teams    | [types], [lang] |
-| Status   | Accepted        |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Owner(s)       | @fee1-dead                         |
+| Teams          | [types], [lang]                    |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#106] |
+
 
 ## Summary
 

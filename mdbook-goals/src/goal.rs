@@ -6,6 +6,7 @@ use std::{collections::BTreeSet, path::PathBuf};
 use anyhow::Context;
 use regex::Regex;
 
+use crate::gh::IssueId;
 use crate::re::USERNAME;
 use crate::team::{self, TeamName};
 use crate::util::{commas, markdown_files};
@@ -15,6 +16,7 @@ use crate::{
 };
 
 /// Data parsed from a goal file in the expected format
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub struct GoalDocument {
     /// Path relative to the current directory (`book.toml`)
     pub path: PathBuf,
@@ -37,17 +39,21 @@ pub struct GoalDocument {
 }
 
 /// Metadata loaded from the goal header
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Metadata {
     #[allow(unused)]
     pub title: String,
     pub short_title: String,
     pub owners: String,
     pub status: Status,
+    pub tracking_issue: Option<IssueId>,
+    pub table: Table,
 }
 
+pub const TRACKING_ISSUE_ROW: &str = "Tracking issue";
+
 /// Identifies a particular ask for a set of Rust teams
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub struct PlanItem {
     pub text: String,
     pub owners: String,
@@ -66,7 +72,7 @@ pub enum ParsedOwners {
 }
 
 /// Identifies a particular ask for a set of Rust teams
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub struct TeamAsk {
     /// Path to the markdown file containing this ask (appropriate for a link)
     pub link_path: Arc<PathBuf>,
@@ -152,6 +158,16 @@ impl GoalDocument {
             Status::Flagship | Status::Accepted | Status::Proposed | Status::Orphaned => true,
             Status::NotAccepted => false,
         }
+    }
+
+    /// Modify the goal document on disk to link to the given issue number in the metadata.
+    pub(crate) fn link_issue(&self, number: IssueId) -> anyhow::Result<()> {
+        let mut metadata_table = self.metadata.table.clone();
+        metadata_table.add_key_value_row(TRACKING_ISSUE_ROW, &number);
+        self.metadata
+            .table
+            .overwrite_in_path(&self.path, &metadata_table)?;
+        Ok(())
     }
 }
 
@@ -240,7 +256,7 @@ pub fn format_goal_table(goals: &[&GoalDocument]) -> anyhow::Result<String> {
     Ok(util::format_table(&table))
 }
 
-#[derive(Copy, Clone, Debug, PartialEq, Eq)]
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Copy, Clone)]
 pub enum Status {
     Flagship,
     Accepted,
@@ -308,6 +324,15 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata>> {
 
     let status = Status::try_from(status_row[1].as_str())?;
 
+    let issue = match first_table
+        .rows
+        .iter()
+        .find(|row| row[0] == TRACKING_ISSUE_ROW)
+    {
+        Some(r) => Some(r[1].parse()?),
+        None => None,
+    };
+
     Ok(Some(Metadata {
         title: title.to_string(),
         short_title: if let Some(row) = short_title_row {
@@ -317,6 +342,8 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata>> {
         },
         owners: owners_row[1].to_string(),
         status,
+        tracking_issue: issue,
+        table: first_table.clone(),
     }))
 }
 

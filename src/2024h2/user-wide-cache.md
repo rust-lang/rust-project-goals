@@ -1,10 +1,12 @@
 # User-wide build cache
 
-| Metadata |                  |
-| -------- | ---------------- |
-| Owner(s) | ![Help wanted][] |
-| Teams    | [cargo]          |
-| Status   | Orphaned         |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Owner(s)       | ![Help wanted][]                   |
+| Teams          | [cargo]                            |
+| Status         | Orphaned                           |
+| Tracking issue | [rust-lang/rust-project-goals#124] |
+
 
 ## Summary
 

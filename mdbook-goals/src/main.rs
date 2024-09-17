@@ -7,6 +7,7 @@ use std::{io, path::PathBuf};
 use structopt::StructOpt;
 use walkdir::WalkDir;
 
+mod gh;
 mod goal;
 mod markwaydown;
 mod mdbook_preprocessor;
