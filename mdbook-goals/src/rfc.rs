@@ -449,29 +449,9 @@ impl Display for GithubAction<'_> {
 impl GithubAction<'_> {
     pub fn execute(self, repository: &str, timeframe: &str) -> anyhow::Result<()> {
         match self {
-            GithubAction::CreateLabel {
-                label: GhLabel { name, color },
-            } => {
-                let output = Command::new("gh")
-                    .arg("-R")
-                    .arg(repository)
-                    .arg("label")
-                    .arg("create")
-                    .arg(&name)
-                    .arg("--color")
-                    .arg(&color)
-                    .arg("--force")
-                    .output()?;
-
-                if !output.status.success() {
-                    Err(anyhow::anyhow!(
-                        "failed to create label `{}`: {}",
-                        name,
-                        String::from_utf8_lossy(&output.stderr)
-                    ))
-                } else {
-                    Ok(())
-                }
+            GithubAction::CreateLabel { label } => {
+                label.create(repository)?;
+                Ok(())
             }
 
             GithubAction::CreateIssue {
