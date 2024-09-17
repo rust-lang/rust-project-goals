@@ -85,3 +85,54 @@ pub fn list_issue_titles_in_milestone(
         })
         .collect())
 }
+
+const LOCK_TEXT: &str = "This issue is intended for status updates only.\n\nFor general questions or comments, please contact the owner(s) directly.";
+
+impl ExistingGithubIssue {
+    /// We use the presence of a "lock comment" as a signal that we successfully locked the issue.
+    /// The github CLI doesn't let you query that directly.
+    pub fn was_locked(&self) -> bool {
+        self.comments.iter().any(|c| c.body.trim() == LOCK_TEXT)
+    }
+}
+
+pub fn lock_issue(repository: &str, number: u64) -> anyhow::Result<()> {
+    let output = Command::new("gh")
+        .arg("-R")
+        .arg(repository)
+        .arg("issue")
+        .arg("lock")
+        .arg(number.to_string())
+        .output()?;
+
+    if !output.status.success() {
+        if !output.stderr.starts_with(b"already locked") {
+            return Err(anyhow::anyhow!(
+                "failed to lock issue `{}`: {}",
+                number,
+                String::from_utf8_lossy(&output.stderr)
+            ));
+        }
+    }
+
+    // Leave a comment explaining what is going on.
+    let output = Command::new("gh")
+        .arg("-R")
+        .arg(repository)
+        .arg("issue")
+        .arg("comment")
+        .arg(number.to_string())
+        .arg("-b")
+        .arg(LOCK_TEXT)
+        .output()?;
+
+    if !output.status.success() {
+        return Err(anyhow::anyhow!(
+            "failed to leave lock comment `{}`: {}",
+            number,
+            String::from_utf8_lossy(&output.stderr)
+        ));
+    }
+
+    Ok(())
+}

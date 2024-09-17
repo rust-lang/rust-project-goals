@@ -12,14 +12,12 @@ use regex::Regex;
 use crate::{
     gh::{
         issue_id::IssueId,
-        issues::{list_issue_titles_in_milestone, ExistingGithubIssue},
+        issues::{list_issue_titles_in_milestone, lock_issue},
         labels::{list_labels, GhLabel},
     },
     goal::{self, GoalDocument, ParsedOwners, PlanItem, Status},
     team::{get_person_data, TeamName},
 };
-
-const LOCK_TEXT: &str = "This issue is intended for status updates only.\n\nFor general questions or comments, please contact the owner(s) directly.";
 
 fn validate_path(path: &Path) -> anyhow::Result<String> {
     if !path.is_dir() {
@@ -559,56 +557,7 @@ impl GithubAction<'_> {
     }
 }
 
-fn lock_issue(repository: &str, number: u64) -> anyhow::Result<()> {
-    let output = Command::new("gh")
-        .arg("-R")
-        .arg(repository)
-        .arg("issue")
-        .arg("lock")
-        .arg(number.to_string())
-        .output()?;
-
-    if !output.status.success() {
-        if !output.stderr.starts_with(b"already locked") {
-            return Err(anyhow::anyhow!(
-                "failed to lock issue `{}`: {}",
-                number,
-                String::from_utf8_lossy(&output.stderr)
-            ));
-        }
-    }
-
-    // Leave a comment explaining what is going on.
-    let output = Command::new("gh")
-        .arg("-R")
-        .arg(repository)
-        .arg("issue")
-        .arg("comment")
-        .arg(number.to_string())
-        .arg("-b")
-        .arg(LOCK_TEXT)
-        .output()?;
-
-    if !output.status.success() {
-        return Err(anyhow::anyhow!(
-            "failed to leave lock comment `{}`: {}",
-            number,
-            String::from_utf8_lossy(&output.stderr)
-        ));
-    }
-
-    Ok(())
-}
-
 /// Returns a comma-separated list of the strings in `s` (no spaces).
 fn comma(s: &BTreeSet<String>) -> String {
     s.iter().map(|s| &s[..]).collect::<Vec<_>>().join(",")
-}
-
-impl ExistingGithubIssue {
-    /// We use the presence of a "lock comment" as a signal that we successfully locked the issue.
-    /// The github CLI doesn't let you query that directly.
-    fn was_locked(&self) -> bool {
-        self.comments.iter().any(|c| c.body.trim() == LOCK_TEXT)
-    }
 }
