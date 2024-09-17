@@ -12,12 +12,11 @@ use regex::Regex;
 use crate::{
     gh::{
         issue_id::IssueId,
-        issues::{create_issue, list_issue_titles_in_milestone, lock_issue},
+        issues::{create_issue, list_issue_titles_in_milestone, lock_issue, sync_assignees},
         labels::GhLabel,
     },
     goal::{self, GoalDocument, ParsedOwners, PlanItem, Status},
     team::{get_person_data, TeamName},
-    util::comma,
 };
 
 fn validate_path(path: &Path) -> anyhow::Result<String> {
@@ -477,32 +476,8 @@ impl GithubAction<'_> {
                 remove_owners,
                 add_owners,
             } => {
-                let mut command = Command::new("gh");
-                command
-                    .arg("-R")
-                    .arg(&repository)
-                    .arg("issue")
-                    .arg("edit")
-                    .arg(number.to_string());
-
-                if !remove_owners.is_empty() {
-                    command.arg("--remove-assignee").arg(comma(&remove_owners));
-                }
-
-                if !add_owners.is_empty() {
-                    command.arg("--add-assignee").arg(comma(&add_owners));
-                }
-
-                let output = command.output()?;
-                if !output.status.success() {
-                    Err(anyhow::anyhow!(
-                        "failed to sync issue `{}`: {}",
-                        number,
-                        String::from_utf8_lossy(&output.stderr)
-                    ))
-                } else {
-                    Ok(())
-                }
+                sync_assignees(repository, number, &remove_owners, &add_owners)?;
+                Ok(())
             }
 
             GithubAction::LockIssue { number } => lock_issue(repository, number),
