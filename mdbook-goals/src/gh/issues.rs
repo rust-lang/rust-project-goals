@@ -124,6 +124,40 @@ pub fn create_issue(
     }
 }
 
+pub fn sync_assignees(
+    repository: &str,
+    number: u64,
+    remove_owners: &BTreeSet<String>,
+    add_owners: &BTreeSet<String>,
+) -> anyhow::Result<()> {
+    let mut command = Command::new("gh");
+    command
+        .arg("-R")
+        .arg(&repository)
+        .arg("issue")
+        .arg("edit")
+        .arg(number.to_string());
+
+    if !remove_owners.is_empty() {
+        command.arg("--remove-assignee").arg(comma(&remove_owners));
+    }
+
+    if !add_owners.is_empty() {
+        command.arg("--add-assignee").arg(comma(&add_owners));
+    }
+
+    let output = command.output()?;
+    if !output.status.success() {
+        Err(anyhow::anyhow!(
+            "failed to sync issue `{}`: {}",
+            number,
+            String::from_utf8_lossy(&output.stderr)
+        ))
+    } else {
+        Ok(())
+    }
+}
+
 const LOCK_TEXT: &str = "This issue is intended for status updates only.\n\nFor general questions or comments, please contact the owner(s) directly.";
 
 impl ExistingGithubIssue {
