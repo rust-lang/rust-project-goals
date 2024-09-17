@@ -1,10 +1,12 @@
 # Testing infra + contributors for a-mir-formality
 
-| Metadata |                |
-| -------- | -------------- |
-| Owner(s) | @nikomatsakis |
-| Teams    | [types]        |
-| Status   | Accepted       |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Owner(s)       | @nikomatsakis                      |
+| Teams          | [types]                            |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#122] |
+
 
 ## Summary
 

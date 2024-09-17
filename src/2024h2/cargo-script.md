@@ -1,10 +1,12 @@
 # Stabilize cargo-script
 
-| Metadata |                 |
-| -------- | --------------- |
-| Owner(s) | @epage          |
-| Teams    | [cargo], [lang] |
-| Status   | Accepted        |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Owner(s)       | @epage                             |
+| Teams          | [cargo], [lang]                    |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#119] |
+
 
 ## Summary
 

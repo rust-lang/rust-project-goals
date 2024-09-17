@@ -1,11 +1,13 @@
 ## Bring the Async Rust experience closer to parity with sync Rust
 
-| Metadata    |                            |
-| ----------- | -------------------------- |
-| Short title | Async                      |
-| Owner(s)    | @tmandry, @nikomatsakis    |
-| Teams       | [lang], [libs], [libs-api] |
-| Status      | Flagship                   |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Short title    | Async                              |
+| Owner(s)       | @tmandry, @nikomatsakis            |
+| Teams          | [lang], [libs], [libs-api]         |
+| Status         | Flagship                           |
+| Tracking issue | [rust-lang/rust-project-goals#105] |
+
 
 ## Summary
 

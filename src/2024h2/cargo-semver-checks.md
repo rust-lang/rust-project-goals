@@ -1,10 +1,12 @@
 # Begin resolving `cargo-semver-checks` blockers for merging into cargo
 
-| Metadata |                                                              |
-| -------- | ------------------------------------------------------------ |
-| Owner(s) | @obi1kenobi                                                  |
-| Teams    | [cargo]                                                      |
-| Status   | Accepted                                                     |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Owner(s)       | @obi1kenobi                        |
+| Teams          | [cargo]                            |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#104] |
+
 
 ## Summary
 

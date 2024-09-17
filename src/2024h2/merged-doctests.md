@@ -1,10 +1,12 @@
 # Implement "merged doctests" to save doctest time
 
-| Metadata |                 |
-| -------- | --------------- |
-| Owner(s) | @GuillaumeGomez |
-| Teams    | [rustdoc]       |
-| Status   | Accepted        |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Owner(s)       | @GuillaumeGomez                    |
+| Teams          | [rustdoc]                          |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#111] |
+
 
 @GuillaumeGomez: https://github.com/GuillaumeGomez
 

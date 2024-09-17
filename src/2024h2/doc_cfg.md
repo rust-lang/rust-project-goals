@@ -1,10 +1,12 @@
 # Stabilize doc_cfg
 
-| Metadata |                 |
-| -------- | --------------- |
-| Owner(s) | @GuillaumeGomez |
-| Teams    | [rustdoc]       |
-| Status   | Accepted        |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Owner(s)       | @GuillaumeGomez                    |
+| Teams          | [rustdoc]                          |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#120] |
+
 
 @GuillaumeGomez: https://github.com/GuillaumeGomez
 

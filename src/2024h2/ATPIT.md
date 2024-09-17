@@ -1,10 +1,12 @@
 # Associated type position impl trait
 
-| Metadata |                 |
-| -------- | --------------- |
-| Owner(s) | @oli-obk        |
-| Teams    | [types], [lang] |
-| Status   | Accepted        |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Owner(s)       | @oli-obk                           |
+| Teams          | [types], [lang]                    |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#103] |
+
 
 ## Summary
 
