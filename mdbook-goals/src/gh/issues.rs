@@ -13,6 +13,8 @@ pub struct ExistingGithubIssue {
     /// Just github username, no `@`
     pub assignees: BTreeSet<String>,
     pub comments: Vec<ExistingGithubComment>,
+    pub body: String,
+    pub state: ExistingIssueState,
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
@@ -28,6 +30,8 @@ struct ExistingGithubIssueJson {
     number: u64,
     assignees: Vec<ExistingGithubAssigneeJson>,
     comments: Vec<ExistingGithubCommentJson>,
+    body: String,
+    state: ExistingIssueState,
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
@@ -47,6 +51,13 @@ struct ExistingGithubAuthorJson {
     login: String,
 }
 
+#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
+#[serde(rename_all = "UPPERCASE")]
+pub enum ExistingIssueState {
+    Open,
+    Closed,
+}
+
 pub fn list_issue_titles_in_milestone(
     repository: &str,
     timeframe: &str,
@@ -61,7 +72,7 @@ pub fn list_issue_titles_in_milestone(
         .arg("-s")
         .arg("all")
         .arg("--json")
-        .arg("title,assignees,number,comments")
+        .arg("title,assignees,number,comments,body,state")
         .output()?;
 
     let existing_issues: Vec<ExistingGithubIssueJson> = serde_json::from_slice(&output.stdout)?;
@@ -82,6 +93,8 @@ pub fn list_issue_titles_in_milestone(
                             body: c.body,
                         })
                         .collect(),
+                    body: e_i.body,
+                    state: e_i.state,
                 },
             )
         })
