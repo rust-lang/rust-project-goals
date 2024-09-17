@@ -23,4 +23,27 @@ impl GhLabel {
 
         Ok(labels)
     }
+
+    pub fn create(&self, repository: &str) -> anyhow::Result<()> {
+        let output = Command::new("gh")
+            .arg("-R")
+            .arg(repository)
+            .arg("label")
+            .arg("create")
+            .arg(&self.name)
+            .arg("--color")
+            .arg(&self.color)
+            .arg("--force")
+            .output()?;
+
+        if !output.status.success() {
+            Err(anyhow::anyhow!(
+                "failed to create label `{}`: {}",
+                self.name,
+                String::from_utf8_lossy(&output.stderr)
+            ))
+        } else {
+            Ok(())
+        }
+    }
 }
