@@ -12,11 +12,12 @@ use regex::Regex;
 use crate::{
     gh::{
         issue_id::IssueId,
-        issues::{list_issue_titles_in_milestone, lock_issue},
+        issues::{create_issue, list_issue_titles_in_milestone, lock_issue},
         labels::GhLabel,
     },
     goal::{self, GoalDocument, ParsedOwners, PlanItem, Status},
     team::{get_person_data, TeamName},
+    util::comma,
 };
 
 fn validate_path(path: &Path) -> anyhow::Result<String> {
@@ -465,34 +466,11 @@ impl GithubAction<'_> {
                         goal_document: _,
                     },
             } => {
-                let output = Command::new("gh")
-                    .arg("-R")
-                    .arg(&repository)
-                    .arg("issue")
-                    .arg("create")
-                    .arg("-b")
-                    .arg(&body)
-                    .arg("-t")
-                    .arg(&title)
-                    .arg("-l")
-                    .arg(labels.join(","))
-                    .arg("-a")
-                    .arg(comma(&assignees))
-                    .arg("-m")
-                    .arg(&timeframe)
-                    .output()?;
-
-                if !output.status.success() {
-                    Err(anyhow::anyhow!(
-                        "failed to create issue `{}`: {}",
-                        title,
-                        String::from_utf8_lossy(&output.stderr)
-                    ))
-                } else {
-                    Ok(())
-                }
+                create_issue(repository, &body, &title, &labels, &assignees, timeframe)?;
 
                 // Note: the issue is not locked, but we will reloop around later.
+
+                Ok(())
             }
             GithubAction::SyncAssignees {
                 number,
@@ -535,9 +513,4 @@ impl GithubAction<'_> {
             } => goal_document.link_issue(number),
         }
     }
-}
-
-/// Returns a comma-separated list of the strings in `s` (no spaces).
-fn comma(s: &BTreeSet<String>) -> String {
-    s.iter().map(|s| &s[..]).collect::<Vec<_>>().join(",")
 }
