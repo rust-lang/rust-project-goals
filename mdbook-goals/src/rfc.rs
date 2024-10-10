@@ -11,7 +11,7 @@ use regex::Regex;
 
 use crate::{
     gh::{
-        issue_id::IssueId,
+        issue_id::{IssueId, Repository},
         issues::{create_issue, list_issue_titles_in_milestone, lock_issue, sync_assignees},
         labels::GhLabel,
     },
@@ -102,7 +102,7 @@ pub fn generate_rfc(path: &Path) -> anyhow::Result<()> {
 }
 
 pub fn generate_issues(
-    repository: &str,
+    repository: &Repository,
     path: &Path,
     commit: bool,
     sleep: u64,
@@ -195,7 +195,7 @@ enum GithubAction<'doc> {
 /// Initializes the required `T-<team>` labels on the repository.
 /// Warns if the labels are found with wrong color.
 fn initialize_labels(
-    repository: &str,
+    repository: &Repository,
     teams_with_asks: &BTreeSet<&TeamName>,
 ) -> anyhow::Result<BTreeSet<GithubAction<'static>>> {
     const TEAM_LABEL_COLOR: &str = "bfd4f2";
@@ -235,7 +235,7 @@ fn initialize_labels(
 /// Initializes the required `T-<team>` labels on the repository.
 /// Warns if the labels are found with wrong color.
 fn initialize_issues<'doc>(
-    repository: &str,
+    repository: &Repository,
     timeframe: &str,
     goal_documents: &'doc [GoalDocument],
 ) -> anyhow::Result<BTreeSet<GithubAction<'doc>>> {
@@ -273,7 +273,7 @@ fn initialize_issues<'doc>(
                     });
                 }
 
-                let issue_id = IssueId::new(repository, existing_issue.number);
+                let issue_id = IssueId::new(repository.clone(), existing_issue.number);
                 if desired_issue.tracking_issue != Some(&issue_id) {
                     actions.insert(GithubAction::LinkToTrackingIssue {
                         goal_document: desired_issue.goal_document,
@@ -447,7 +447,7 @@ impl Display for GithubAction<'_> {
 }
 
 impl GithubAction<'_> {
-    pub fn execute(self, repository: &str, timeframe: &str) -> anyhow::Result<()> {
+    pub fn execute(self, repository: &Repository, timeframe: &str) -> anyhow::Result<()> {
         match self {
             GithubAction::CreateLabel { label } => {
                 label.create(repository)?;

@@ -1,17 +1,20 @@
 use chrono::{Datelike, NaiveDate};
 
 use crate::{
-    gh::issues::{list_issue_titles_in_milestone, ExistingGithubComment},
+    gh::{
+        issue_id::Repository,
+        issues::{list_issue_titles_in_milestone, ExistingGithubComment},
+    },
     util::comma,
 };
 
 pub fn updates(
-    repo: &str,
+    repository: &Repository,
     milestone: &str,
     start_date: &Option<NaiveDate>,
     end_date: &Option<NaiveDate>,
 ) -> anyhow::Result<()> {
-    let issues = list_issue_titles_in_milestone(repo, milestone)?;
+    let issues = list_issue_titles_in_milestone(repository, milestone)?;
 
     let filter = Filter {
         start_date: match start_date {
