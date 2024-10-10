@@ -41,11 +41,8 @@
             }
 
             if (!(milestone in this.#dataMap)) {
-                // Construct the URL using the dirName
-                const url = `/api/${milestone}.json`;
-
                 try {
-                    const response = await fetch(url);
+                    const response = await fetch(getApiUrl(milestone));
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
@@ -143,5 +140,16 @@
             }
         }
         return element;
+    }
+
+    function getApiUrl(milestone) {
+        // When you are doing mdbook serve, you don't want /rust-project/goals.
+        // But on github pages, you do.
+        // There is probably a more elegant way to do this.
+        const currentPath = document.location.pathname;
+        const basePath = currentPath.startsWith('/rust-project-goals/')
+            ? '/rust-project-goals/'
+            : '/';
+        return `${basePath}api/${milestone}.json`;
     }
 })();
