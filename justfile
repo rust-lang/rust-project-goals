@@ -6,3 +6,8 @@ serve: api
 
 build: api
     mdbook build
+
+check:
+    cargo build
+    cargo run -- check
+    
