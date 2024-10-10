@@ -157,8 +157,6 @@ fn checkboxes(issue: &ExistingGithubIssue) -> anyhow::Result<Progress> {
         }
     }
 
-    eprintln!("#{}: {checkboxes:?}, {issues:?}", issue.number);
-
     match (checkboxes, issues) {
         (Some((completed, total)), None) | (None, Some((completed, total))) => {
             Ok(Progress::Tracked { completed, total })
