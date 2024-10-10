@@ -32,3 +32,8 @@ lazy_static! {
 lazy_static! {
     pub static ref CHECKED_CHECKBOX: Regex = Regex::new(r"\s*[-*] \[x\] ").unwrap();
 }
+
+lazy_static! {
+    pub static ref TRACKED_ISSUES_QUERY: Regex =
+        Regex::new(r"^\| *Tracked +issues *\| *\[([^ ]*) ([^]]*)\]\(.*\) *\| *$").unwrap();
+}

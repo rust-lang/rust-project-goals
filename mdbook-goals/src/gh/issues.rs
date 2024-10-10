@@ -77,6 +77,47 @@ impl std::fmt::Display for ExistingIssueState {
     }
 }
 
+pub struct CountIssues {
+    pub open: u32,
+    pub closed: u32,
+}
+
+pub fn count_issues_matching_search(
+    repository: &Repository,
+    search: &str,
+) -> anyhow::Result<CountIssues> {
+    #[derive(Deserialize)]
+    struct JustState {
+        state: ExistingIssueState,
+    }
+
+    let output = Command::new("gh")
+        .arg("-R")
+        .arg(&repository.to_string())
+        .arg("issue")
+        .arg("list")
+        .arg("-S")
+        .arg(search)
+        .arg("-s")
+        .arg("all")
+        .arg("--json")
+        .arg("state")
+        .output()?;
+
+    let existing_issues: Vec<JustState> = serde_json::from_slice(&output.stdout)?;
+
+    let mut count_issues = CountIssues { open: 0, closed: 0 };
+
+    for issue in &existing_issues {
+        match issue.state {
+            ExistingIssueState::Open => count_issues.open += 1,
+            ExistingIssueState::Closed => count_issues.closed += 1,
+        }
+    }
+
+    Ok(count_issues)
+}
+
 pub fn list_issue_titles_in_milestone(
     repository: &Repository,
     timeframe: &str,

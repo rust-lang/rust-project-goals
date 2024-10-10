@@ -258,7 +258,7 @@ pub fn format_goal_table(goals: &[&GoalDocument]) -> anyhow::Result<String> {
 
             let progress_bar = match &goal.metadata.tracking_issue {
                 Some(issue_id @ IssueId { repository: Repository { org, repo }, number }) => format!(
-                    "<a href='{url}' alt='Tracking issue'><progress id='{milestone}:{org}:{repo}:{number}' value='0' max='100'></progress></a>",
+                    "<a href='{url}' alt='Tracking issue'><div class='tracking-issue-progress' id='{milestone}:{org}:{repo}:{number}'></div></a>",
                     url = issue_id.url(),
                 ),
                 None => format!("(no tracking issue)"),

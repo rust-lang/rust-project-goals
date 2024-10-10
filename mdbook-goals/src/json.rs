@@ -6,7 +6,7 @@
 //! to the types in `gh` and so forth but because they represent
 //! a versioned API, we copy them over here to insulate them from incidental changes.
 
-use std::path::PathBuf;
+use std::{path::PathBuf, str::FromStr};
 
 use serde::Serialize;
 
@@ -14,8 +14,8 @@ use crate::{
     gh::{
         issue_id::Repository,
         issues::{
-            list_issue_titles_in_milestone, ExistingGithubComment, ExistingGithubIssue,
-            ExistingIssueState,
+            count_issues_matching_search, list_issue_titles_in_milestone, CountIssues,
+            ExistingGithubComment, ExistingGithubIssue, ExistingIssueState,
         },
     },
     re,
@@ -32,13 +32,17 @@ pub(super) fn generate_json(
         issues: issues
             .into_iter()
             .map(|(title, issue)| {
-                let (total_checkboxes, checked_checkboxes) = checkboxes(&issue);
+                let progress = match checkboxes(&issue) {
+                    Ok(pair) => pair,
+                    Err(e) => Progress::Error {
+                        message: e.to_string(),
+                    },
+                };
                 TrackingIssue {
                     number: issue.number,
                     title,
                     flagship: is_flagship(&issue),
-                    total_checkboxes,
-                    checked_checkboxes,
+                    progress,
                     assignees: issue.assignees.into_iter().collect(),
                     updates: updates(issue.comments),
                     state: issue.state,
@@ -80,11 +84,8 @@ struct TrackingIssue {
     /// True if this is a flagship goal
     flagship: bool,
 
-    /// Total checkboxes appearing in the body (i.e., `* [ ]` or `* [x]`)
-    total_checkboxes: u32,
-
-    /// Checked checkboxes appearing in the body (i.e., `* [x]`)
-    checked_checkboxes: u32,
+    /// State of progress
+    progress: Progress,
 
     /// Set of assigned people
     assignees: Vec<String>,
@@ -97,6 +98,23 @@ struct TrackingIssue {
 }
 
 #[derive(Serialize)]
+enum Progress {
+    /// We could not find any checkboxes or other deatils on the tracking issue.
+    /// So all we have is "open" or "closed".
+    Binary,
+
+    /// We found checkboxes or  issue listing.
+    Tracked {
+        completed: u32,
+        total: u32,
+    },
+
+    Error {
+        message: String,
+    },
+}
+
+#[derive(Serialize)]
 struct TrackingIssueUpdate {
     pub author: String,
     pub body: String,
@@ -105,21 +123,49 @@ struct TrackingIssueUpdate {
     pub url: String,
 }
 
-fn checkboxes(issue: &ExistingGithubIssue) -> (u32, u32) {
-    let mut total = 0;
-    let mut checked = 0;
+/// Identify how many sub-items have been completed.
+/// These can be encoded in two different ways:
+///
+/// * Option A, the most common, is to have checkboxes in the issue. We just count the number that are checked.
+/// * Option B is to include a metadata line called "Tracked issues" that lists a search query. We count the number of open vs closed issues in that query.
+///
+/// Returns a tuple (completed, total) with the number of completed items and the total number of items.
+fn checkboxes(issue: &ExistingGithubIssue) -> anyhow::Result<Progress> {
+    let mut checkboxes = None;
+    let mut issues = None;
 
     for line in issue.body.lines() {
-        if re::CHECKBOX.is_match(line) {
-            total += 1;
+        // Does this match TRACKED_ISSUES?
+        if let Some(c) = re::TRACKED_ISSUES_QUERY.captures(line) {
+            let repo = Repository::from_str(&c[1])?;
+            let query = &c[2];
+
+            if issues.is_some() {
+                anyhow::bail!("found multiple search queries for Tracked Issues");
+            }
+
+            let CountIssues { open, closed } = count_issues_matching_search(&repo, query)?;
+            issues = Some((closed, open + closed));
         }
 
+        let (checked, total) = checkboxes.unwrap_or((0, 0));
+
         if re::CHECKED_CHECKBOX.is_match(line) {
-            checked += 1;
+            checkboxes = Some((checked + 1, total + 1));
+        } else if re::CHECKBOX.is_match(line) {
+            checkboxes = Some((checked, total + 1));
         }
     }
 
-    (total, checked)
+    eprintln!("#{}: {checkboxes:?}, {issues:?}", issue.number);
+
+    match (checkboxes, issues) {
+        (Some((completed, total)), None) | (None, Some((completed, total))) => {
+            Ok(Progress::Tracked { completed, total })
+        }
+        (None, None) => Ok(Progress::Binary),
+        (Some(_), Some(_)) => anyhow::bail!("found both Tracked Issues and checkboxes"),
+    }
 }
 
 fn is_flagship(issue: &ExistingGithubIssue) -> bool {
