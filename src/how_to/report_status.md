@@ -4,6 +4,16 @@ Every accepted project goal has an associated tracking issue.
 
 Owners are expected to provide regular status updates in the form of a comment indicating how things are going.
 
+## Documenting your plan and your progress
+
+To help users
+
+### Checkboxes
+
+The deafult
+
+### Search queries
+
 ## Status updates are reported out
 
 The status updates from the tracking issues are used to author a blog post for Inside Rust on a monthly basis.

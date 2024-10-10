@@ -8,7 +8,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::util::comma;
 
-use super::labels::GhLabel;
+use super::{issue_id::Repository, labels::GhLabel};
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 pub struct ExistingGithubIssue {
@@ -77,13 +77,54 @@ impl std::fmt::Display for ExistingIssueState {
     }
 }
 
+pub struct CountIssues {
+    pub open: u32,
+    pub closed: u32,
+}
+
+pub fn count_issues_matching_search(
+    repository: &Repository,
+    search: &str,
+) -> anyhow::Result<CountIssues> {
+    #[derive(Deserialize)]
+    struct JustState {
+        state: ExistingIssueState,
+    }
+
+    let output = Command::new("gh")
+        .arg("-R")
+        .arg(&repository.to_string())
+        .arg("issue")
+        .arg("list")
+        .arg("-S")
+        .arg(search)
+        .arg("-s")
+        .arg("all")
+        .arg("--json")
+        .arg("state")
+        .output()?;
+
+    let existing_issues: Vec<JustState> = serde_json::from_slice(&output.stdout)?;
+
+    let mut count_issues = CountIssues { open: 0, closed: 0 };
+
+    for issue in &existing_issues {
+        match issue.state {
+            ExistingIssueState::Open => count_issues.open += 1,
+            ExistingIssueState::Closed => count_issues.closed += 1,
+        }
+    }
+
+    Ok(count_issues)
+}
+
 pub fn list_issue_titles_in_milestone(
-    repository: &str,
+    repository: &Repository,
     timeframe: &str,
 ) -> anyhow::Result<BTreeMap<String, ExistingGithubIssue>> {
     let output = Command::new("gh")
         .arg("-R")
-        .arg(repository)
+        .arg(&repository.to_string())
         .arg("issue")
         .arg("list")
         .arg("-m")
@@ -124,7 +165,7 @@ pub fn list_issue_titles_in_milestone(
 }
 
 pub fn create_issue(
-    repository: &str,
+    repository: &Repository,
     body: &str,
     title: &str,
     labels: &[String],
@@ -133,7 +174,7 @@ pub fn create_issue(
 ) -> anyhow::Result<()> {
     let output = Command::new("gh")
         .arg("-R")
-        .arg(&repository)
+        .arg(&repository.to_string())
         .arg("issue")
         .arg("create")
         .arg("-b")
@@ -160,7 +201,7 @@ pub fn create_issue(
 }
 
 pub fn sync_assignees(
-    repository: &str,
+    repository: &Repository,
     number: u64,
     remove_owners: &BTreeSet<String>,
     add_owners: &BTreeSet<String>,
@@ -168,7 +209,7 @@ pub fn sync_assignees(
     let mut command = Command::new("gh");
     command
         .arg("-R")
-        .arg(&repository)
+        .arg(&repository.to_string())
         .arg("issue")
         .arg("edit")
         .arg(number.to_string());
@@ -203,10 +244,10 @@ impl ExistingGithubIssue {
     }
 }
 
-pub fn lock_issue(repository: &str, number: u64) -> anyhow::Result<()> {
+pub fn lock_issue(repository: &Repository, number: u64) -> anyhow::Result<()> {
     let output = Command::new("gh")
         .arg("-R")
-        .arg(repository)
+        .arg(&repository.to_string())
         .arg("issue")
         .arg("lock")
         .arg(number.to_string())
@@ -225,7 +266,7 @@ pub fn lock_issue(repository: &str, number: u64) -> anyhow::Result<()> {
     // Leave a comment explaining what is going on.
     let output = Command::new("gh")
         .arg("-R")
-        .arg(repository)
+        .arg(&repository.to_string())
         .arg("issue")
         .arg("comment")
         .arg(number.to_string())

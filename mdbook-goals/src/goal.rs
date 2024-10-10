@@ -6,7 +6,7 @@ use std::{collections::BTreeSet, path::PathBuf};
 use anyhow::Context;
 use regex::Regex;
 
-use crate::gh::issue_id::IssueId;
+use crate::gh::issue_id::{IssueId, Repository};
 use crate::re::USERNAME;
 use crate::team::{self, TeamName};
 use crate::util::{commas, markdown_files};
@@ -232,27 +232,66 @@ pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> anyhow::Result<String>
 }
 
 pub fn format_goal_table(goals: &[&GoalDocument]) -> anyhow::Result<String> {
-    let mut table = vec![vec![
-        "Goal".to_string(),
-        "Owner".to_string(),
-        "Team".to_string(),
-    ]];
+    // If any of the goals have tracking issues, include those in the table.
+    let goal_has_tracking_issue = goals.iter().any(|g| g.metadata.tracking_issue.is_some());
 
-    for goal in goals {
-        let teams: BTreeSet<&TeamName> = goal
-            .team_asks
-            .iter()
-            .flat_map(|ask| &ask.teams)
-            .copied()
-            .collect();
-        let teams: Vec<&TeamName> = teams.into_iter().collect();
-        table.push(vec![
-            format!("[{}]({})", goal.metadata.title, goal.link_path.display()),
-            goal.metadata.owners.clone(),
-            commas(&teams),
-        ]);
+    let mut table;
+
+    if goal_has_tracking_issue {
+        table = vec![vec![
+            "Goal".to_string(),
+            "Owner".to_string(),
+            "Progress".to_string(),
+        ]];
+
+        for goal in goals {
+            // Find the directory in which the goal document is located.
+            // That is our "milestone" directory (e.g., 2024h2).
+            let milestone: &str = goal
+                .path
+                .parent()
+                .unwrap()
+                .file_stem()
+                .unwrap()
+                .to_str()
+                .unwrap();
+
+            let progress_bar = match &goal.metadata.tracking_issue {
+                Some(issue_id @ IssueId { repository: Repository { org, repo }, number }) => format!(
+                    "<a href='{url}' alt='Tracking issue'><div class='tracking-issue-progress' id='{milestone}:{org}:{repo}:{number}'></div></a>",
+                    url = issue_id.url(),
+                ),
+                None => format!("(no tracking issue)"),
+            };
+
+            table.push(vec![
+                format!("[{}]({})", goal.metadata.title, goal.link_path.display()),
+                goal.metadata.owners.clone(),
+                progress_bar,
+            ]);
+        }
+    } else {
+        table = vec![vec![
+            "Goal".to_string(),
+            "Owner".to_string(),
+            "Team".to_string(),
+        ]];
+
+        for goal in goals {
+            let teams: BTreeSet<&TeamName> = goal
+                .team_asks
+                .iter()
+                .flat_map(|ask| &ask.teams)
+                .copied()
+                .collect();
+            let teams: Vec<&TeamName> = teams.into_iter().collect();
+            table.push(vec![
+                format!("[{}]({})", goal.metadata.title, goal.link_path.display()),
+                goal.metadata.owners.clone(),
+                commas(&teams),
+            ]);
+        }
     }
-
     Ok(util::format_table(&table))
 }
 
