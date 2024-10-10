@@ -11,15 +11,18 @@ use std::path::PathBuf;
 use serde::Serialize;
 
 use crate::{
-    gh::issues::{
-        list_issue_titles_in_milestone, ExistingGithubComment, ExistingGithubIssue,
-        ExistingIssueState,
+    gh::{
+        issue_id::Repository,
+        issues::{
+            list_issue_titles_in_milestone, ExistingGithubComment, ExistingGithubIssue,
+            ExistingIssueState,
+        },
     },
     re,
 };
 
 pub(super) fn generate_json(
-    repository: &str,
+    repository: &Repository,
     milestone: &str,
     json_path: &Option<PathBuf>,
 ) -> anyhow::Result<()> {
