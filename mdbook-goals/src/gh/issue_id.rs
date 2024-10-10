@@ -1,21 +1,62 @@
-use crate::re::TRACKING_ISSUE;
+use crate::re::{REPOSITORY, TRACKING_ISSUE};
 use std::fmt::Display;
+
+#[derive(PartialEq, Eq, PartialOrd, Ord, Clone, Debug)]
+pub struct Repository {
+    /// Something like `rust-lang`
+    pub org: String,
+
+    /// Something like `rust-project-goals`
+    pub repo: String,
+}
+
+impl Repository {
+    pub fn new(org: &(impl Display + ?Sized), repo: &(impl Display + ?Sized)) -> Self {
+        Self {
+            org: org.to_string(),
+            repo: repo.to_string(),
+        }
+    }
+}
+
+impl std::fmt::Display for Repository {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let Repository { org, repo } = self;
+        write!(f, "{org}/{repo}")
+    }
+}
+
+impl std::str::FromStr for Repository {
+    type Err = anyhow::Error;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        let Some(c) = REPOSITORY.captures(s) else {
+            anyhow::bail!("invalid repository `{s}`")
+        };
+
+        Ok(Repository::new(&c[1], &c[2]))
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Clone)]
 pub struct IssueId {
-    /// Something like `rust-lang/rust-project-goals`
-    pub repository: String,
+    pub repository: Repository,
 
     /// Something like `22`
     pub number: u64,
 }
 
 impl IssueId {
-    pub fn new(repository: &(impl Display + ?Sized), number: u64) -> Self {
-        Self {
-            repository: repository.to_string(),
+    pub fn new(repository: Repository, number: u64) -> Self {
+        Self { repository, number }
+    }
+
+    pub fn url(&self) -> String {
+        let IssueId {
+            repository: Repository { org, repo },
             number,
-        }
+        } = self;
+        format!("https://github.com/{org}/{repo}/issues/{number}")
     }
 }
 
@@ -27,12 +68,11 @@ impl std::fmt::Debug for IssueId {
 
 impl std::fmt::Display for IssueId {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(
-            f,
-            "[{repository}#{number}]",
-            repository = self.repository,
-            number = self.number,
-        )
+        let IssueId {
+            repository: Repository { org, repo },
+            number,
+        } = self;
+        write!(f, "[{org}/{repo}#{number}]")
     }
 }
 
@@ -44,6 +84,6 @@ impl std::str::FromStr for IssueId {
             anyhow::bail!("invalid issue-id")
         };
 
-        Ok(IssueId::new(&c[1], c[2].parse()?))
+        Ok(IssueId::new(Repository::new(&c[1], &c[2]), c[3].parse()?))
     }
 }

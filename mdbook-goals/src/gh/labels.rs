@@ -2,6 +2,8 @@ use std::process::Command;
 
 use serde::{Deserialize, Serialize};
 
+use super::issue_id::Repository;
+
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 pub struct GhLabel {
     pub name: String,
@@ -9,10 +11,10 @@ pub struct GhLabel {
 }
 
 impl GhLabel {
-    pub fn list(repository: &str) -> anyhow::Result<Vec<GhLabel>> {
+    pub fn list(repository: &Repository) -> anyhow::Result<Vec<GhLabel>> {
         let output = Command::new("gh")
             .arg("-R")
-            .arg(repository)
+            .arg(&repository.to_string())
             .arg("label")
             .arg("list")
             .arg("--json")
@@ -24,10 +26,10 @@ impl GhLabel {
         Ok(labels)
     }
 
-    pub fn create(&self, repository: &str) -> anyhow::Result<()> {
+    pub fn create(&self, repository: &Repository) -> anyhow::Result<()> {
         let output = Command::new("gh")
             .arg("-R")
-            .arg(repository)
+            .arg(&repository.to_string())
             .arg("label")
             .arg("create")
             .arg(&self.name)

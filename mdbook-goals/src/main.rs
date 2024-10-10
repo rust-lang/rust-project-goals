@@ -1,4 +1,5 @@
 use anyhow::Context;
+use gh::issue_id::Repository;
 use mdbook::preprocess::{CmdPreprocessor, Preprocessor};
 use mdbook_preprocessor::GoalPreprocessor;
 use regex::Regex;
@@ -27,7 +28,7 @@ struct Opt {
 
     /// Repository to use if applicable
     #[structopt(long, default_value = "rust-lang/rust-project-goals")]
-    repository: String,
+    repository: Repository,
 }
 
 #[derive(StructOpt, Debug)]

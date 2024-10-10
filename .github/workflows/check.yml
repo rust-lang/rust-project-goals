@@ -16,7 +16,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build
-      run: cargo build --verbose
-    - name: Check for consistency
-      run: cargo run -- check
+    - uses: extractions/setup-just@v2
+    - name: Build and check
+      run: just check
