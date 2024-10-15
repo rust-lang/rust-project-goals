@@ -122,6 +122,7 @@ pub fn fetch_issue(repository: &Repository, issue: u64) -> anyhow::Result<Existi
     let output = Command::new("gh")
         .arg("-R")
         .arg(&repository.to_string())
+        .arg("issue")
         .arg("view")
         .arg(&format!("{issue}"))
         .arg("--json")
