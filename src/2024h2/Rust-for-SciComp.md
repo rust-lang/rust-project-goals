@@ -5,7 +5,7 @@
 | Owner(s)       | @ZuseZ4                            |
 | Teams          | [lang], [compiler]                 |
 | Status         | Accepted                           |
-| Tracking issue | [rust-lang/rust-project-goals#109] |
+| Tracking issue | [rust-lang/rust-project-goals#109, rust-lang/rust/issues/124509, rust-lang/rust/issues/124509] |
 
 
 ## Summary
@@ -99,10 +99,16 @@ Minimal "smoke test" reviews will be needed from the compiler-team. The Rust lan
 ### Outputs
 
 - An `#[offload]` rustc-builtin-macro which makes a function definition known to the LLVM offloading backend.
+  - [x] Made a PR to enable LLVM's offloading runtime backend.
+  - [ ] Merge the offload macro frontend
+  - [ ] Merge the offload Middle-end
 
 - An `offload!([GPU1, GPU2, TPU1], foo(x, y,z));` macro (placeholder name) which will execute function `foo` on the specified devices.
 
 - An `#[autodiff]` rustc-builtin-macro which differentiates a given function.
+  - [x] Merge the Autodiff macro frontend
+  - [x] Merge the Autodiff Enzyme backend
+  - [ ] Merge the Autodiff Middle-end
 
 - A `#[batching]` rustc-builtin-macro which fuses N function calls into one call, enabling better vectorization.
 
