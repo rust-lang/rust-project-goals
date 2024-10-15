@@ -35,10 +35,15 @@ lazy_static! {
 
 lazy_static! {
     pub static ref TRACKED_ISSUES_QUERY: Regex =
-        Regex::new(r"^\| *Tracked +issues *\| *\[([^ ]*) ([^]]*)\]\(.*\) *\| *$").unwrap();
+        Regex::new(r"^\| *Tracked +issues *\| *\[(?P<repo>[^ ]*) (?P<query>[^]]*)\]\(.*\) *\| *$")
+            .unwrap();
 }
 
 lazy_static! {
     pub static ref SEE_ALSO_QUERY: Regex =
-        Regex::new(r"^\| *See also *\| ([^, ]+,|[^, ] )+ *\| *$").unwrap();
+        Regex::new(r"^\| *See also *\| (?P<issues>[^, ]+,|[^, ] )+ *\| *$").unwrap();
+}
+
+lazy_static! {
+    pub static ref SEE_ALSO_ISSUE: Regex = Regex::new(r"(?P<org>[^#/]*)/(?P<repo>[^#/]*)#(?P<issue>[0-9]+)|https://github.com/(?P<org>[^#/]*)/(?P<repo>[^#/]*)/issues/(?P<issue>[0-9]+)").unwrap();
 }
