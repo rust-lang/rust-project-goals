@@ -37,3 +37,8 @@ lazy_static! {
     pub static ref TRACKED_ISSUES_QUERY: Regex =
         Regex::new(r"^\| *Tracked +issues *\| *\[([^ ]*) ([^]]*)\]\(.*\) *\| *$").unwrap();
 }
+
+lazy_static! {
+    pub static ref SEE_ALSO_QUERY: Regex =
+        Regex::new(r"^\| *See also *\| ([^, ]+,|[^, ] )+ *\| *$").unwrap();
+}
