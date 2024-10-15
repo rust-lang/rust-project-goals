@@ -5,7 +5,8 @@
 | Owner(s)       | @ZuseZ4                            |
 | Teams          | [lang], [compiler]                 |
 | Status         | Accepted                           |
-| Tracking issue | [rust-lang/rust-project-goals#109, rust-lang/rust/issues/124509, rust-lang/rust/issues/124509] |
+| Tracking issue | [rust-lang/rust-project-goals#109] |
+| Other tracking issues | [rust-lang/rust#124509], [rust-lang/rust#124509] |
 
 
 ## Summary
