@@ -32,3 +32,4 @@
 * [Overall setup](./admin/setup.md)
 * [Mdbook plugin details](./admin/mdbook_plugin.md)
 * [Commands you can run](./admin/commands.md)
+    * [Creating tracking issues](./admin/issues.md)

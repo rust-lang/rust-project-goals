@@ -41,9 +41,16 @@ lazy_static! {
 
 lazy_static! {
     pub static ref SEE_ALSO_QUERY: Regex =
-        Regex::new(r"^\| *See also *\| (?P<issues>[^, ]+,|[^, ] )+ *\| *$").unwrap();
+        Regex::new(r"^\| *See also *\|(?P<issues>[^|]+)\| *$").unwrap();
 }
 
 lazy_static! {
-    pub static ref SEE_ALSO_ISSUE: Regex = Regex::new(r"(?P<org>[^#/]*)/(?P<repo>[^#/]*)#(?P<issue>[0-9]+)|https://github.com/(?P<org>[^#/]*)/(?P<repo>[^#/]*)/issues/(?P<issue>[0-9]+)").unwrap();
+    pub static ref SEE_ALSO_ISSUE1: Regex =
+        Regex::new(r"(?P<org>[^#/]*)/(?P<repo>[^#/]*)#(?P<issue>[0-9]+)").unwrap();
+}
+
+lazy_static! {
+    pub static ref SEE_ALSO_ISSUE2: Regex =
+        Regex::new(r"https://github.com/(?P<org>[^#/]*)/(?P<repo>[^#/]*)/issues/(?P<issue>[0-9]+)")
+            .unwrap();
 }

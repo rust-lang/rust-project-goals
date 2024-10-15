@@ -150,8 +150,13 @@ fn checkboxes(issue: &ExistingGithubIssue) -> anyhow::Result<Progress> {
             let issue_urls = c["issues"].split(&[',', ' ']).filter(|s| !s.is_empty());
 
             for issue_url in issue_urls {
-                let Some(c) = re::SEE_ALSO_ISSUE.captures(issue_url) else {
-                    anyhow::bail!("invalid issue URL `{issue_url}`")
+                let c = match (
+                    re::SEE_ALSO_ISSUE1.captures(issue_url),
+                    re::SEE_ALSO_ISSUE2.captures(issue_url),
+                ) {
+                    (Some(c), _) => c,
+                    (None, Some(c)) => c,
+                    (None, None) => anyhow::bail!("invalid issue URL `{issue_url}`"),
                 };
                 let repository = Repository::new(&c["org"], &c["repo"]);
                 let issue_number = c["issue"].parse::<u64>()?;
