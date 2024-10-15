@@ -118,6 +118,21 @@ pub fn count_issues_matching_search(
     Ok(count_issues)
 }
 
+pub fn fetch_issue(repository: &Repository, issue: u64) -> anyhow::Result<ExistingGithubIssue> {
+    let output = Command::new("gh")
+        .arg("-R")
+        .arg(&repository.to_string())
+        .arg("view")
+        .arg(&format!("{issue}"))
+        .arg("--json")
+        .arg("title,assignees,number,comments,body,state,labels")
+        .output()?;
+
+    let e_i: ExistingGithubIssueJson = serde_json::from_slice(&output.stdout)?;
+
+    Ok(ExistingGithubIssue::from(e_i))
+}
+
 pub fn list_issue_titles_in_milestone(
     repository: &Repository,
     timeframe: &str,
@@ -139,28 +154,7 @@ pub fn list_issue_titles_in_milestone(
 
     Ok(existing_issues
         .into_iter()
-        .map(|e_i| {
-            (
-                e_i.title,
-                ExistingGithubIssue {
-                    number: e_i.number,
-                    assignees: e_i.assignees.into_iter().map(|a| a.login).collect(),
-                    comments: e_i
-                        .comments
-                        .into_iter()
-                        .map(|c| ExistingGithubComment {
-                            author: format!("@{}", c.author.login),
-                            body: c.body,
-                            url: c.url,
-                            created_at: c.created_at,
-                        })
-                        .collect(),
-                    body: e_i.body,
-                    state: e_i.state,
-                    labels: e_i.labels,
-                },
-            )
-        })
+        .map(|e_i| (e_i.title.clone(), ExistingGithubIssue::from(e_i)))
         .collect())
 }
 
@@ -294,5 +288,27 @@ impl ExistingGithubComment {
     pub fn created_at_date(&self) -> NaiveDate {
         NaiveDate::parse_from_str(&self.created_at, "%Y-%m-%dT%H:%M:%SZ")
             .expect("failed to parse date")
+    }
+}
+
+impl From<ExistingGithubIssueJson> for ExistingGithubIssue {
+    fn from(e_i: ExistingGithubIssueJson) -> Self {
+        ExistingGithubIssue {
+            number: e_i.number,
+            assignees: e_i.assignees.into_iter().map(|a| a.login).collect(),
+            comments: e_i
+                .comments
+                .into_iter()
+                .map(|c| ExistingGithubComment {
+                    author: format!("@{}", c.author.login),
+                    body: c.body,
+                    url: c.url,
+                    created_at: c.created_at,
+                })
+                .collect(),
+            body: e_i.body,
+            state: e_i.state,
+            labels: e_i.labels,
+        }
     }
 }

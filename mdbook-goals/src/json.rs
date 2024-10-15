@@ -14,7 +14,7 @@ use crate::{
     gh::{
         issue_id::Repository,
         issues::{
-            count_issues_matching_search, list_issue_titles_in_milestone, CountIssues,
+            count_issues_matching_search, fetch_issue, list_issue_titles_in_milestone, CountIssues,
             ExistingGithubComment, ExistingGithubIssue, ExistingIssueState,
         },
     },
@@ -131,38 +131,66 @@ struct TrackingIssueUpdate {
 ///
 /// Returns a tuple (completed, total) with the number of completed items and the total number of items.
 fn checkboxes(issue: &ExistingGithubIssue) -> anyhow::Result<Progress> {
-    let mut checkboxes = None;
-    let mut issues = None;
+    let mut completed = 0;
+    let mut total = 0;
 
     for line in issue.body.lines() {
         // Does this match TRACKED_ISSUES?
         if let Some(c) = re::TRACKED_ISSUES_QUERY.captures(line) {
-            let repo = Repository::from_str(&c[1])?;
-            let query = &c[2];
-
-            if issues.is_some() {
-                anyhow::bail!("found multiple search queries for Tracked Issues");
-            }
+            let repo = Repository::from_str(&c["repo"])?;
+            let query = &c["query"];
 
             let CountIssues { open, closed } = count_issues_matching_search(&repo, query)?;
-            issues = Some((closed, open + closed));
+            completed += closed;
+            total += open + closed;
+            continue;
         }
 
-        let (checked, total) = checkboxes.unwrap_or((0, 0));
+        if let Some(c) = re::SEE_ALSO_QUERY.captures(line) {
+            let issue_urls = c["issues"].split(&[',', ' ']).filter(|s| !s.is_empty());
+
+            for issue_url in issue_urls {
+                let Some(c) = re::SEE_ALSO_ISSUE.captures(issue_url) else {
+                    anyhow::bail!("invalid issue URL `{issue_url}`")
+                };
+                let repository = Repository::new(&c["org"], &c["repo"]);
+                let issue_number = c["issue"].parse::<u64>()?;
+                let issue = fetch_issue(&repository, issue_number)?;
+                match checkboxes(&issue)? {
+                    Progress::Binary => {
+                        if issue.state == ExistingIssueState::Closed {
+                            completed += 1;
+                        }
+                        total += 1;
+                    }
+
+                    Progress::Tracked {
+                        completed: c,
+                        total: t,
+                    } => {
+                        completed += c;
+                        total += t;
+                    }
+
+                    Progress::Error { message } => {
+                        anyhow::bail!("error parsing {repository}#{issue_number}: {message}")
+                    }
+                }
+            }
+        }
 
         if re::CHECKED_CHECKBOX.is_match(line) {
-            checkboxes = Some((checked + 1, total + 1));
+            total += 1;
+            completed += 1;
         } else if re::CHECKBOX.is_match(line) {
-            checkboxes = Some((checked, total + 1));
+            total += 1;
         }
     }
 
-    match (checkboxes, issues) {
-        (Some((completed, total)), None) | (None, Some((completed, total))) => {
-            Ok(Progress::Tracked { completed, total })
-        }
-        (None, None) => Ok(Progress::Binary),
-        (Some(_), Some(_)) => anyhow::bail!("found both Tracked Issues and checkboxes"),
+    if total == 0 && completed == 0 {
+        Ok(Progress::Binary)
+    } else {
+        Ok(Progress::Tracked { completed, total })
     }
 }
 
