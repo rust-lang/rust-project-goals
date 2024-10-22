@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 
 use super::issue_id::Repository;
 
-#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 pub struct GhLabel {
     pub name: String,
     pub color: String,

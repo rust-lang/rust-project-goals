@@ -32,12 +32,7 @@ pub(super) fn generate_json(
         issues: issues
             .into_iter()
             .map(|(title, issue)| {
-                let progress = match checkboxes(&issue) {
-                    Ok(pair) => pair,
-                    Err(e) => Progress::Error {
-                        message: e.to_string(),
-                    },
-                };
+                let progress = checkboxes(&issue);
                 TrackingIssue {
                     number: issue.number,
                     title,
@@ -98,10 +93,12 @@ struct TrackingIssue {
 }
 
 #[derive(Serialize)]
-enum Progress {
+pub enum Progress {
     /// We could not find any checkboxes or other deatils on the tracking issue.
     /// So all we have is "open" or "closed".
-    Binary,
+    Binary {
+        is_closed: bool,
+    },
 
     /// We found checkboxes or  issue listing.
     Tracked {
@@ -123,6 +120,23 @@ struct TrackingIssueUpdate {
     pub url: String,
 }
 
+impl Progress {
+    /// Returns the number of completed and total items. Returns (0, 0) in the case of an error.
+    pub fn completed_total(&self) -> (u32, u32) {
+        match *self {
+            Progress::Binary { is_closed } => {
+                if is_closed {
+                    (1, 1)
+                } else {
+                    (0, 1)
+                }
+            }
+            Progress::Tracked { completed, total } => (completed, total),
+            Progress::Error { .. } => (0, 0),
+        }
+    }
+}
+
 /// Identify how many sub-items have been completed.
 /// These can be encoded in two different ways:
 ///
@@ -130,7 +144,16 @@ struct TrackingIssueUpdate {
 /// * Option B is to include a metadata line called "Tracked issues" that lists a search query. We count the number of open vs closed issues in that query.
 ///
 /// Returns a tuple (completed, total) with the number of completed items and the total number of items.
-fn checkboxes(issue: &ExistingGithubIssue) -> anyhow::Result<Progress> {
+pub fn checkboxes(issue: &ExistingGithubIssue) -> Progress {
+    match try_checkboxes(&issue) {
+        Ok(pair) => pair,
+        Err(e) => Progress::Error {
+            message: e.to_string(),
+        },
+    }
+}
+
+fn try_checkboxes(issue: &ExistingGithubIssue) -> anyhow::Result<Progress> {
     let mut completed = 0;
     let mut total = 0;
 
@@ -161,9 +184,9 @@ fn checkboxes(issue: &ExistingGithubIssue) -> anyhow::Result<Progress> {
                 let repository = Repository::new(&c["org"], &c["repo"]);
                 let issue_number = c["issue"].parse::<u64>()?;
                 let issue = fetch_issue(&repository, issue_number)?;
-                match checkboxes(&issue)? {
-                    Progress::Binary => {
-                        if issue.state == ExistingIssueState::Closed {
+                match try_checkboxes(&issue)? {
+                    Progress::Binary { is_closed } => {
+                        if is_closed {
                             completed += 1;
                         }
                         total += 1;
@@ -193,7 +216,9 @@ fn checkboxes(issue: &ExistingGithubIssue) -> anyhow::Result<Progress> {
     }
 
     if total == 0 && completed == 0 {
-        Ok(Progress::Binary)
+        Ok(Progress::Binary {
+            is_closed: issue.state == ExistingIssueState::Closed,
+        })
     } else {
         Ok(Progress::Tracked { completed, total })
     }
