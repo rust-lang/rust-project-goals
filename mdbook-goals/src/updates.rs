@@ -5,20 +5,29 @@ use chrono::{Datelike, NaiveDate};
 
 use crate::{
     gh::{
-        issue_id::Repository,
-        issues::{list_issue_titles_in_milestone, ExistingGithubComment},
+        issue_id::{IssueId, Repository},
+        issues::{list_issue_titles_in_milestone, ExistingGithubComment, ExistingIssueState},
     },
+    json::checkboxes,
+    llm::LargeLanguageModel,
     util::comma,
 };
 
-pub fn updates(
+pub async fn updates(
     repository: &Repository,
     milestone: &str,
-    output_directory: &Path,
+    output_file: Option<&Path>,
     start_date: &Option<NaiveDate>,
     end_date: &Option<NaiveDate>,
 ) -> anyhow::Result<()> {
     use std::fmt::Write;
+
+    let output_file = match output_file {
+        Some(p) => p.to_path_buf(),
+        None => Path::new(milestone).with_extension("md"),
+    };
+
+    let llm = LargeLanguageModel::new().await;
 
     let issues = list_issue_titles_in_milestone(repository, milestone)?;
 
@@ -30,44 +39,96 @@ pub fn updates(
         end_date,
     };
 
-    std::fs::create_dir_all(output_directory)
-        .with_context(|| format!("creating directory `{}`", output_directory.display()))?;
+    progress_bar::init_progress_bar(issues.len());
+    progress_bar::set_progress_bar_action(
+        "Executing",
+        progress_bar::Color::Blue,
+        progress_bar::Style::Bold,
+    );
+
+    let mut output = String::new();
 
     for (title, issue) in issues {
-        let mut output_text = String::new();
-        writeln!(
-            output_text,
-            "What follows is a series of updates related to a project goal entitled {title}. \
-            The goal is assigned to {people} ({assignees}). \
-            Please create a short 1-2 paragraph summary of these updates suitable for inclusion in a blog post.
-            Write the update in the third person. \
-            UPDATES START HERE:",
-            people = if issue.assignees.len() == 1 { "1 person".to_string() } else { format!("{} people", issue.assignees.len()) },
-            assignees = comma(&issue.assignees),
-        )?;
+        progress_bar::print_progress_bar_info(
+            &format!("Issue #{number}", number = issue.number),
+            &title,
+            progress_bar::Color::Green,
+            progress_bar::Style::Bold,
+        );
 
-        let mut comments = issue.comments;
+        let prompt = format!(
+            "The following comments are updates to a project goal entitled '{title}'. \
+            The goal is assigned to {people} ({assignees}). \
+            Please create a 1 paragraph summary of these updates. \
+            Do not restate the goal title or give a generic introduction. \
+            Write the update in the third person. \
+            ",
+            people = if issue.assignees.len() == 1 {
+                "1 person".to_string()
+            } else {
+                format!("{} people", issue.assignees.len())
+            },
+            assignees = comma(&issue.assignees),
+        );
+
+        let mut comments = issue.comments.clone();
         comments.sort_by_key(|c| c.created_at.clone());
         comments.retain(|c| filter.matches(c));
 
-        writeln!(output_text)?;
-        if comments.len() == 0 {
-            writeln!(
-                output_text,
-                "No updates since {date}.",
-                date = filter.start_date
-            )?;
-        } else {
-            for comment in comments {
-                writeln!(output_text, "\n{body}\n", body = comment.body)?;
+        let progress = checkboxes(&issue);
+        let (completed, total) = progress.completed_total();
+        let status_badge = match issue.state {
+            ExistingIssueState::Open => {
+                format!(
+                    "![Status: Complete](https://img.shields.io/badge/Status-{}%25-yellow)",
+                    completed * 100 / total
+                )
             }
+            ExistingIssueState::Closed if completed == total => {
+                format!("![Status: Complete](https://img.shields.io/badge/Status-Completed-green)")
+            }
+            ExistingIssueState::Closed => {
+                format!("![Status: Incomplete](https://img.shields.io/badge/Status-Incomplete%20-yellow)")
+            }
+        };
+
+        let issue_id = IssueId {
+            repository: repository.clone(),
+            number: issue.number,
+        };
+
+        writeln!(output)?;
+        writeln!(output)?;
+        writeln!(output)?;
+        writeln!(
+            output,
+            "# [Issue #{number}]({url}): {title} {status_badge}",
+            number = issue.number,
+            url = issue_id.url(),
+        )?;
+        writeln!(output)?;
+        writeln!(
+            output,
+            "* Assigned to: {assignees}",
+            assignees = comma(&issue.assignees)
+        )?;
+        writeln!(output)?;
+
+        if comments.len() > 0 {
+            let updates: String = comments.iter().map(|c| format!("\n{}\n", c.body)).collect();
+            let summary = llm.query(&prompt, &updates).await?;
+            writeln!(output)?;
+            writeln!(output, "UPDATE: {}", summary)?;
+        } else {
+            writeln!(output)?;
+            writeln!(output, "No updates in this period.")?;
         }
-        let output_file = output_directory
-            .join(issue.number.to_string())
-            .with_extension("md");
-        std::fs::write(&output_file, output_text)
-            .with_context(|| format!("writing to `{}`", output_file.display()))?;
+
+        progress_bar::inc_progress_bar();
     }
+
+    std::fs::write(&output_file, output)
+        .with_context(|| format!("failed to write to `{}`", output_file.display()))?;
 
     Ok(())
 }

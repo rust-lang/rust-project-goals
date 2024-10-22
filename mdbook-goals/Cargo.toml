@@ -18,3 +18,7 @@ rust_team_data = { git = "https://github.com/rust-lang/team" }
 lazy_static = "1.5.0"
 progress_bar = "1.0.5"
 chrono = "0.4.38"
+aws-config = "1.5.8"
+aws-sdk-bedrock = "1.57.0"
+aws-sdk-bedrockruntime = "1.55.0"
+tokio = { version = "1.41.0", features = ["full"] }
