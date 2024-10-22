@@ -23,7 +23,7 @@
 
 # ❓ How to
 
-- [Proposal a new goal](./how_to/propose_a_goal.md)
+- [Propose a new goal](./how_to/propose_a_goal.md)
     - [Template for new goals](./TEMPLATE.md)
 - [Report status on active goal](./how_to/report_status.md)
 
