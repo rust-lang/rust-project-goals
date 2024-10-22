@@ -10,7 +10,7 @@ use crate::util::comma;
 
 use super::{issue_id::Repository, labels::GhLabel};
 
-#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 pub struct ExistingGithubIssue {
     pub number: u64,
     /// Just github username, no `@`
@@ -21,7 +21,7 @@ pub struct ExistingGithubIssue {
     pub labels: Vec<GhLabel>,
 }
 
-#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 pub struct ExistingGithubComment {
     /// Just github username, no `@`
     pub author: String,
@@ -61,7 +61,7 @@ struct ExistingGithubAuthorJson {
     login: String,
 }
 
-#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 #[serde(rename_all = "UPPERCASE")]
 pub enum ExistingIssueState {
     Open,
