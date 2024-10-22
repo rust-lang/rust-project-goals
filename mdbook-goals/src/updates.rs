@@ -80,8 +80,8 @@ pub async fn updates(
         let status_badge = match issue.state {
             ExistingIssueState::Open => {
                 format!(
-                    "![Status: Complete](https://img.shields.io/badge/Status-{}%25-yellow)",
-                    completed * 100 / total
+                    "![Status: {percent}%](https://img.shields.io/badge/Status-{percent}%25-green)",
+                    percent = completed * 100 / total
                 )
             }
             ExistingIssueState::Closed if completed == total => {
@@ -118,7 +118,7 @@ pub async fn updates(
             let updates: String = comments.iter().map(|c| format!("\n{}\n", c.body)).collect();
             let summary = llm.query(&prompt, &updates).await?;
             writeln!(output)?;
-            writeln!(output, "UPDATE: {}", summary)?;
+            writeln!(output, "{}", summary)?;
         } else {
             writeln!(output)?;
             writeln!(output, "No updates in this period.")?;
