@@ -89,6 +89,9 @@ enum Command {
         /// Milestone for which we generate tracking issue data (e.g., `2024h2`).
         milestone: String,
 
+        /// Directory where we will write the output markdown files.
+        output_directory: PathBuf,
+
         /// Start date for comments.
         /// If not given, defaults to 1 week before the start of this month.
         start_date: Option<chrono::NaiveDate>,
@@ -147,10 +150,17 @@ fn main() -> anyhow::Result<()> {
         }
         Command::Updates {
             milestone,
+            output_directory,
             start_date,
             end_date,
         } => {
-            updates::updates(&opt.repository, milestone, start_date, end_date)?;
+            updates::updates(
+                &opt.repository,
+                milestone,
+                output_directory,
+                start_date,
+                end_date,
+            )?;
         }
     }
 

@@ -1,3 +1,6 @@
+use std::path::Path;
+
+use anyhow::Context;
 use chrono::{Datelike, NaiveDate};
 
 use crate::{
@@ -11,9 +14,12 @@ use crate::{
 pub fn updates(
     repository: &Repository,
     milestone: &str,
+    output_directory: &Path,
     start_date: &Option<NaiveDate>,
     end_date: &Option<NaiveDate>,
 ) -> anyhow::Result<()> {
+    use std::fmt::Write;
+
     let issues = list_issue_titles_in_milestone(repository, milestone)?;
 
     let filter = Filter {
@@ -24,54 +30,43 @@ pub fn updates(
         end_date,
     };
 
-    for (title, issue) in issues {
-        let total_updates = issue
-            .comments
-            .iter()
-            .filter(|c| !c.is_automated_comment())
-            .count();
+    std::fs::create_dir_all(output_directory)
+        .with_context(|| format!("creating directory `{}`", output_directory.display()))?;
 
-        println!(
-            "# {title} (#{number})",
-            title = title,
-            number = issue.number
-        );
-        println!("");
-        println!("| Metadata | |");
-        println!("| --- | --- |");
-        println!(
-            "| Assigned to | {assignees} |",
+    for (title, issue) in issues {
+        let mut output_text = String::new();
+        writeln!(
+            output_text,
+            "What follows is a series of updates related to a project goal entitled {title}. \
+            The goal is assigned to {people} ({assignees}). \
+            Please create a short 1-2 paragraph summary of these updates suitable for inclusion in a blog post.
+            Write the update in the third person. \
+            UPDATES START HERE:",
+            people = if issue.assignees.len() == 1 { "1 person".to_string() } else { format!("{} people", issue.assignees.len()) },
             assignees = comma(&issue.assignees),
-        );
-        println!("| State | {state} |", state = issue.state);
-        println!("| Total updates | {total_updates} |");
-        println!(
-            "| Date of most recent update | {date} |",
-            date = issue
-                .comments
-                .last()
-                .map(|c| c.created_at_date().to_string())
-                .unwrap_or("none".to_string())
-        );
+        )?;
 
         let mut comments = issue.comments;
         comments.sort_by_key(|c| c.created_at.clone());
         comments.retain(|c| filter.matches(c));
 
-        println!();
+        writeln!(output_text)?;
         if comments.len() == 0 {
-            println!("No updates since {date}.", date = filter.start_date);
+            writeln!(
+                output_text,
+                "No updates since {date}.",
+                date = filter.start_date
+            )?;
         } else {
             for comment in comments {
-                println!(
-                    "## Update by {author} from {created} ([link]({url}))",
-                    author = comment.author,
-                    created = comment.created_at_date(),
-                    url = comment.url,
-                );
-                println!("\n{body}\n", body = comment.body);
+                writeln!(output_text, "\n{body}\n", body = comment.body)?;
             }
         }
+        let output_file = output_directory
+            .join(issue.number.to_string())
+            .with_extension("md");
+        std::fs::write(&output_file, output_text)
+            .with_context(|| format!("writing to `{}`", output_file.display()))?;
     }
 
     Ok(())
