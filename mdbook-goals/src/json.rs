@@ -8,7 +8,7 @@
 
 use std::{path::PathBuf, str::FromStr};
 
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 use crate::{
     gh::{
@@ -92,15 +92,15 @@ struct TrackingIssue {
     state: ExistingIssueState,
 }
 
-#[derive(Serialize, Debug)]
+#[derive(Serialize, Deserialize, Debug)]
 pub enum Progress {
-    /// We could not find any checkboxes or other deatils on the tracking issue.
+    /// We could not find any checkboxes or other details on the tracking issue.
     /// So all we have is "open" or "closed".
     Binary {
         is_closed: bool,
     },
 
-    /// We found checkboxes or  issue listing.
+    /// We found checkboxes or issue listing.
     Tracked {
         completed: u32,
         total: u32,

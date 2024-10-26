@@ -7,25 +7,31 @@ repository](https://github.com/rust-lang/rust-project-goals/milestone/2).
 
 ## Flagship goals
 
-hi
+{{#each flagship_goals}}
+{{>introduce_goal}}
 
-## Other goals
+{{!-- some spacing is required to ensure that markdown is recognized as markdown and not html --}}
 
-<table>
-    <tr>
-        <th colspan="3">"Stabilizable" prototype for expanded const generics</th>
-    </tr>
-    <tr>
-        <td>[#100](https://github.com/rust-lang/rust-project-goals/issues/100)</td>
-        <td>BoxyUwU</td>
-        <td><progress value='0' max='4'></progress></td>
-    </tr>
-    <td>
-    <td>
-        * BoxyUwU has started working on using the new lowering schema for more than just const parameters, which once
-        done will allow the introduction of a `min_generic_const_args` feature gate.
-        * compiler-errors has been working on removing the `eval_x` methods on `Const` that do not perform proper
-        normalization and are incompatible with this feature.
-    </td>
-    </tr>
-</table>
+{{#each updates}}
+{{{update}}}
+{{/each}}
+{{/each}}
+
+## Goals with updates
+
+{{#each other_goals_with_updates}}
+{{>introduce_goal}}
+
+{{!-- some spacing is required to ensure that markdown is recognized as markdown and not html --}}
+
+{{{updates_markdown}}}
+
+{{/each}}
+
+## Goals without updates
+
+The following goals have not received updates in the last month:
+
+{{#each other_goals_without_updates}}
+{{>introduce_goal}}
+{{/each}}

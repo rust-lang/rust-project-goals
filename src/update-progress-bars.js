@@ -92,9 +92,9 @@
                 // or will never complete.
                 if (state === "CLOSED") {
                     if (completed === total) {
-                        return element("center", element("img", { src: "https://img.shields.io/badge/Completed!%20%3A%29-green", alt: "Completed" }));
+                        return element("center", element("img", { src: "https://img.shields.io/badge/Completed!%20%3D%29-green", alt: "Completed" }));
                     } else {
-                        return element("center", element("img", { src: "https://img.shields.io/badge/Incomplete%20%3A%28-yellow", alt: "Incomplete" }));
+                        return element("center", element("img", { src: "https://img.shields.io/badge/Will%20not%20complete%20%3A%28-yellow", alt: "Incomplete" }));
                     }
                 } else {
                     return element("progress", { value: completed, max: total });

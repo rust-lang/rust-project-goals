@@ -231,6 +231,8 @@ pub fn sync_assignees(
     }
 }
 
+pub const FLAGSHIP_LABEL: &str = "Flagship Goal";
+
 const LOCK_TEXT: &str = "This issue is intended for status updates only.\n\nFor general questions or comments, please contact the owner(s) directly.";
 
 impl ExistingGithubIssue {
@@ -247,7 +249,7 @@ impl ExistingGithubIssue {
 
     /// True if the issue has the label for a flagship goal.
     pub fn has_flagship_label(&self) -> bool {
-        self.has_label("flagship")
+        self.has_label(FLAGSHIP_LABEL)
     }
 }
 
