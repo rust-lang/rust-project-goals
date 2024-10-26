@@ -3,6 +3,7 @@ use std::{
     process::Command,
 };
 
+use anyhow::Context;
 use chrono::NaiveDate;
 use serde::{Deserialize, Serialize};
 
@@ -149,7 +150,8 @@ pub fn list_issue_titles_in_milestone(
         .arg("all")
         .arg("--json")
         .arg("title,assignees,number,comments,body,state,labels")
-        .output()?;
+        .output()
+        .with_context(|| format!("running github cli tool `gh`"))?;
 
     let existing_issues: Vec<ExistingGithubIssueJson> = serde_json::from_slice(&output.stdout)?;
 
