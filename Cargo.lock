@@ -1124,6 +1124,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "handlebars"
+version = "6.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ce25b617d1375ef96eeb920ae717e3da34a02fc979fe632c75128350f9e1f74a"
+dependencies = [
+ "log",
+ "pest",
+ "pest_derive",
+ "serde",
+ "serde_json",
+ "thiserror",
+]
+
+[[package]]
 name = "hashbrown"
 version = "0.14.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1614,7 +1628,7 @@ dependencies = [
  "elasticlunr-rs",
  "env_logger",
  "futures-util",
- "handlebars",
+ "handlebars 5.1.2",
  "ignore",
  "log",
  "memchr",
@@ -1646,6 +1660,7 @@ dependencies = [
  "aws-sdk-bedrockruntime",
  "chrono",
  "disk-persist",
+ "handlebars 6.1.0",
  "lazy_static",
  "mdbook",
  "progress_bar",
