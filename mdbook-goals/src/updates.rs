@@ -133,7 +133,7 @@ pub async fn updates(
         let (completed, total) = progress.completed_total();
         let status_badge = match issue.state {
             ExistingIssueState::Open => {
-                format!("<progress value="{completed}" max="{total}")
+                format!("<progress value='{completed}' max='{total}'></progress>",)
             }
             ExistingIssueState::Closed if completed == total => {
                 format!("![Status: Complete](https://img.shields.io/badge/Status-Completed-green)")
@@ -150,13 +150,18 @@ pub async fn updates(
 
         writeln!(output, "<tr>")?;
         writeln!(output, "<th>")?;
-        writeln!(output, "[#{number}]({url}", number = issue.number, url = issue_id.url())?;
+        writeln!(
+            output,
+            "[#{number}]({url}",
+            number = issue.number,
+            url = issue_id.url()
+        )?;
         writeln!(output, "</th>")?;
         writeln!(output, "<th>")?;
-        writeln!(output, "{title}");
+        writeln!(output, "{title}")?;
         writeln!(output, "</th>")?;
         writeln!(output, "<th>")?;
-        writeln!(output, "{status_badge}");
+        writeln!(output, "{status_badge}")?;
         writeln!(output, "</th>")?;
         writeln!(output, "</tr>")?;
         writeln!(output, "<tr>")?;
