@@ -1,15 +1,15 @@
-use std::path::Path;
-
 use anyhow::Context;
 use chrono::{Datelike, NaiveDate};
+use std::path::Path;
 
 use crate::{
     gh::{
         issue_id::{IssueId, Repository},
-        issues::{list_issue_titles_in_milestone, ExistingGithubComment, ExistingIssueState},
+        issues::{list_issue_titles_in_milestone, ExistingGithubComment},
     },
     json::checkboxes,
     llm::LargeLanguageModel,
+    templates::{self, UpdatesFlagshipGoal, UpdatesFlagshipGoalUpdate, UpdatesOtherGoal},
     util::comma,
 };
 
@@ -20,7 +20,7 @@ pub async fn updates(
     start_date: &Option<NaiveDate>,
     end_date: &Option<NaiveDate>,
 ) -> anyhow::Result<()> {
-    use std::fmt::Write;
+    let _templates = templates::Templates::new()?;
 
     let output_file = match output_file {
         Some(p) => p.to_path_buf(),
@@ -29,7 +29,8 @@ pub async fn updates(
 
     let llm = LargeLanguageModel::new().await;
 
-    let issues = list_issue_titles_in_milestone(repository, milestone)?;
+    let mut issues = list_issue_titles_in_milestone(repository, milestone)?;
+    issues.clear();
 
     let filter = Filter {
         start_date: match start_date {
@@ -46,12 +47,13 @@ pub async fn updates(
         progress_bar::Style::Bold,
     );
 
-    let mut output = String::new();
+    let mut updates = templates::Updates {
+        milestone: milestone.to_string(),
+        flagship_goals: vec![],
+        other_goals: vec![],
+    };
 
-    writeln!(output, "INTRO")?;
-
-    // First process the flagship goals. These are handled differently.
-    writeln!(output, "## Flagship goals")?;
+    // First process the flagship goals, for which we capture the full text of comments.
     for (title, issue) in &issues {
         if !issue.has_flagship_label() {
             continue;
@@ -64,39 +66,35 @@ pub async fn updates(
             progress_bar::Style::Bold,
         );
 
-        let issue_id = IssueId {
-            repository: repository.clone(),
-            number: issue.number,
-        };
+        let progress = checkboxes(&issue);
 
-        writeln!(output, "### {title}")?;
-        writeln!(
-            output,
-            "**Tracked in [#{number}]({url}); assigned to {assignees}",
-            number = issue.number,
-            url = issue_id.url(),
-            assignees = comma(&issue.assignees),
-        )?;
+        updates.flagship_goals.push(UpdatesFlagshipGoal {
+            title: title.clone(),
+            issue_number: issue.number,
+            issue_assignees: comma(&issue.assignees),
+            issue_url: IssueId {
+                repository: repository.clone(),
+                number: issue.number,
+            }
+            .url(),
+            progress,
+            updates: issue
+                .comments
+                .iter()
+                .filter(|c| filter.matches(c))
+                .map(|c| UpdatesFlagshipGoalUpdate {
+                    author: c.author.clone(),
+                    date: c.created_at_date().format("%m %d").to_string(),
+                    update: c.body.clone(),
+                    url: c.url.clone(),
+                })
+                .collect(),
+        });
 
-        let mut comments = issue.comments.clone();
-        comments.sort_by_key(|c| c.created_at.clone());
-        comments.retain(|c| filter.matches(c));
-
-        for comment in comments {
-            writeln!(
-                output,
-                "Update by {author} on [{date}]({url}):\n\n{body}",
-                author = comment.author,
-                date = comment.created_at_date().format("%m %d"),
-                body = comment.body,
-                url = comment.url,
-            )?;
-        }
+        progress_bar::inc_progress_bar();
     }
 
-    // Next process the remaining goals, for which we generate a table.
-    writeln!(output, "## Other goals")?;
-    writeln!(output, "<table>")?;
+    // Next process the remaining goals, for which we generate a summary using an LLVM.
     for (title, issue) in &issues {
         if issue.has_flagship_label() {
             continue;
@@ -109,85 +107,54 @@ pub async fn updates(
             progress_bar::Style::Bold,
         );
 
-        let prompt = format!(
-            "The following comments are updates to a project goal entitled '{title}'. \
-            The goal is assigned to {people} ({assignees}). \
-            Summarize the updates with a list of one or two bullet points, each one sentence. \
-            Write the update in the third person. \
-            Format the bullet points as markdown with each bullet point beginning with `* `. \
-            Do not respond with anything but the bullet points. \
-            ",
-            people = if issue.assignees.len() == 1 {
-                "1 person".to_string()
+        // Use an LLM to summarize the updates.
+        let summary = {
+            let prompt = format!(
+                "The following comments are updates to a project goal entitled '{title}'. \
+                The goal is assigned to {people} ({assignees}). \
+                Summarize the updates with a list of one or two bullet points, each one sentence. \
+                Write the update in the third person and do not use pronouns when referring to people. \
+                Format the bullet points as markdown with each bullet point beginning with `* `. \
+                Do not respond with anything but the bullet points. \
+                ",
+                people = if issue.assignees.len() == 1 {
+                    "1 person".to_string()
+                } else {
+                    format!("{} people", issue.assignees.len())
+                },
+                assignees = comma(&issue.assignees),
+            );
+            let mut comments = issue.comments.clone();
+            comments.sort_by_key(|c| c.created_at.clone());
+            comments.retain(|c| filter.matches(c));
+            if comments.len() > 0 {
+                let updates: String = comments.iter().map(|c| format!("\n{}\n", c.body)).collect();
+                llm.query(&prompt, &updates).await?
             } else {
-                format!("{} people", issue.assignees.len())
-            },
-            assignees = comma(&issue.assignees),
-        );
-
-        let mut comments = issue.comments.clone();
-        comments.sort_by_key(|c| c.created_at.clone());
-        comments.retain(|c| filter.matches(c));
-
-        let progress = checkboxes(&issue);
-        let (completed, total) = progress.completed_total();
-        let status_badge = match issue.state {
-            ExistingIssueState::Open => {
-                format!("<progress value='{completed}' max='{total}'></progress>",)
-            }
-            ExistingIssueState::Closed if completed == total => {
-                format!("![Status: Complete](https://img.shields.io/badge/Status-Completed-green)")
-            }
-            ExistingIssueState::Closed => {
-                format!("![Status: Incomplete](https://img.shields.io/badge/Status-Incomplete%20-yellow)")
+                format!("* No updates in this period.")
             }
         };
 
-        let issue_id = IssueId {
-            repository: repository.clone(),
-            number: issue.number,
-        };
-
-        writeln!(output, "<tr>")?;
-        writeln!(output, "<th>")?;
-        writeln!(
-            output,
-            "[#{number}]({url}",
-            number = issue.number,
-            url = issue_id.url()
-        )?;
-        writeln!(output, "</th>")?;
-        writeln!(output, "<th>")?;
-        writeln!(output, "{title}")?;
-        writeln!(output, "</th>")?;
-        writeln!(output, "<th>")?;
-        writeln!(output, "{status_badge}")?;
-        writeln!(output, "</th>")?;
-        writeln!(output, "</tr>")?;
-        writeln!(output, "<tr>")?;
-        writeln!(output, "<td colspan='3'>")?;
-        writeln!(
-            output,
-            "Assigned to: {assignees}",
-            assignees = comma(&issue.assignees)
-        )?;
-        writeln!(output, "</td>")?;
-        writeln!(output, "</tr>")?;
-        writeln!(output, "<tr>")?;
-        if comments.len() > 0 {
-            let updates: String = comments.iter().map(|c| format!("\n{}\n", c.body)).collect();
-            let summary = llm.query(&prompt, &updates).await?;
-            writeln!(output, "{}", summary)?;
-        } else {
-            writeln!(output)?;
-            writeln!(output, "* No updates in this period.")?;
-        }
-        writeln!(output, "</tr>")?;
+        updates.other_goals.push(UpdatesOtherGoal {
+            title: title.clone(),
+            issue_number: issue.number,
+            issue_assignees: comma(&issue.assignees),
+            issue_url: IssueId {
+                repository: repository.clone(),
+                number: issue.number,
+            }
+            .url(),
+            updates_markdown: summary,
+            progress: checkboxes(&issue),
+        });
 
         progress_bar::inc_progress_bar();
     }
-    writeln!(output, "</table>")?;
 
+    progress_bar::finalize_progress_bar();
+
+    // Render the output using handlebars and write it to the file.
+    let output = updates.render()?;
     std::fs::write(&output_file, output)
         .with_context(|| format!("failed to write to `{}`", output_file.display()))?;
 

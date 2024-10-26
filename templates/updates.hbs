@@ -1,0 +1,31 @@
+The Rust project is currently working towards a [slate of 26 project
+goals](https://rust-lang.github.io/rust-project-goals/2024h2/goals.html), with 3 of them designed as [Flagship
+Goals](https://rust-lang.github.io/rust-project-goals/2024h2/goals.html#flagship-goals). This post provides selected
+updates on our progress towards these goals (or, in some cases, lack thereof). The full details for any particular goal
+are available in its associated [tracking issue on the rust-project-goals
+repository](https://github.com/rust-lang/rust-project-goals/milestone/2).
+
+## Flagship goals
+
+hi
+
+## Other goals
+
+<table>
+    <tr>
+        <th colspan="3">"Stabilizable" prototype for expanded const generics</th>
+    </tr>
+    <tr>
+        <td>[#100](https://github.com/rust-lang/rust-project-goals/issues/100)</td>
+        <td>BoxyUwU</td>
+        <td><progress value='0' max='4'></progress></td>
+    </tr>
+    <td>
+    <td>
+        * BoxyUwU has started working on using the new lowering schema for more than just const parameters, which once
+        done will allow the introduction of a `min_generic_const_args` feature gate.
+        * compiler-errors has been working on removing the `eval_x` methods on `Const` that do not perform proper
+        normalization and are incompatible with this feature.
+    </td>
+    </tr>
+</table>

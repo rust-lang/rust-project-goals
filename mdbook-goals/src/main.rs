@@ -18,6 +18,7 @@ mod re;
 mod rfc;
 mod team;
 mod team_repo;
+mod templates;
 mod updates;
 mod util;
 

@@ -92,7 +92,7 @@ struct TrackingIssue {
     state: ExistingIssueState,
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, Debug)]
 pub enum Progress {
     /// We could not find any checkboxes or other deatils on the tracking issue.
     /// So all we have is "open" or "closed".
@@ -118,23 +118,6 @@ struct TrackingIssueUpdate {
     #[serde(rename = "createdAt")]
     pub created_at: String,
     pub url: String,
-}
-
-impl Progress {
-    /// Returns the number of completed and total items. Returns (0, 0) in the case of an error.
-    pub fn completed_total(&self) -> (u32, u32) {
-        match *self {
-            Progress::Binary { is_closed } => {
-                if is_closed {
-                    (1, 1)
-                } else {
-                    (0, 1)
-                }
-            }
-            Progress::Tracked { completed, total } => (completed, total),
-            Progress::Error { .. } => (0, 0),
-        }
-    }
 }
 
 /// Identify how many sub-items have been completed.
