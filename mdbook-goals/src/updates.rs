@@ -48,7 +48,60 @@ pub async fn updates(
 
     let mut output = String::new();
 
-    for (title, issue) in issues {
+    writeln!(output, "INTRO")?;
+
+    // First process the flagship goals. These are handled differently.
+    writeln!(output, "## Flagship goals")?;
+    for (title, issue) in &issues {
+        if !issue.has_flagship_label() {
+            continue;
+        }
+
+        progress_bar::print_progress_bar_info(
+            &format!("Issue #{number}", number = issue.number),
+            &title,
+            progress_bar::Color::Green,
+            progress_bar::Style::Bold,
+        );
+
+        let issue_id = IssueId {
+            repository: repository.clone(),
+            number: issue.number,
+        };
+
+        writeln!(output, "### {title}")?;
+        writeln!(
+            output,
+            "**Tracked in [#{number}]({url}); assigned to {assignees}",
+            number = issue.number,
+            url = issue_id.url(),
+            assignees = comma(&issue.assignees),
+        )?;
+
+        let mut comments = issue.comments.clone();
+        comments.sort_by_key(|c| c.created_at.clone());
+        comments.retain(|c| filter.matches(c));
+
+        for comment in comments {
+            writeln!(
+                output,
+                "Update by {author} on [{date}]({url}):\n\n{body}",
+                author = comment.author,
+                date = comment.created_at_date().format("%m %d"),
+                body = comment.body,
+                url = comment.url,
+            )?;
+        }
+    }
+
+    // Next process the remaining goals, for which we generate a table.
+    writeln!(output, "## Other goals")?;
+    writeln!(output, "<table>")?;
+    for (title, issue) in &issues {
+        if issue.has_flagship_label() {
+            continue;
+        }
+
         progress_bar::print_progress_bar_info(
             &format!("Issue #{number}", number = issue.number),
             &title,
@@ -59,9 +112,10 @@ pub async fn updates(
         let prompt = format!(
             "The following comments are updates to a project goal entitled '{title}'. \
             The goal is assigned to {people} ({assignees}). \
-            Please create a 1 paragraph summary of these updates. \
-            Do not restate the goal title or give a generic introduction. \
+            Summarize the updates with a list of one or two bullet points, each one sentence. \
             Write the update in the third person. \
+            Format the bullet points as markdown with each bullet point beginning with `* `. \
+            Do not respond with anything but the bullet points. \
             ",
             people = if issue.assignees.len() == 1 {
                 "1 person".to_string()
@@ -79,10 +133,7 @@ pub async fn updates(
         let (completed, total) = progress.completed_total();
         let status_badge = match issue.state {
             ExistingIssueState::Open => {
-                format!(
-                    "![Status: {percent}%](https://img.shields.io/badge/Status-{percent}%25-green)",
-                    percent = completed * 100 / total
-                )
+                format!("<progress value="{completed}" max="{total}")
             }
             ExistingIssueState::Closed if completed == total => {
                 format!("![Status: Complete](https://img.shields.io/badge/Status-Completed-green)")
@@ -97,35 +148,40 @@ pub async fn updates(
             number: issue.number,
         };
 
-        writeln!(output)?;
-        writeln!(output)?;
-        writeln!(output)?;
+        writeln!(output, "<tr>")?;
+        writeln!(output, "<th>")?;
+        writeln!(output, "[#{number}]({url}", number = issue.number, url = issue_id.url())?;
+        writeln!(output, "</th>")?;
+        writeln!(output, "<th>")?;
+        writeln!(output, "{title}");
+        writeln!(output, "</th>")?;
+        writeln!(output, "<th>")?;
+        writeln!(output, "{status_badge}");
+        writeln!(output, "</th>")?;
+        writeln!(output, "</tr>")?;
+        writeln!(output, "<tr>")?;
+        writeln!(output, "<td colspan='3'>")?;
         writeln!(
             output,
-            "# [Issue #{number}]({url}): {title} {status_badge}",
-            number = issue.number,
-            url = issue_id.url(),
-        )?;
-        writeln!(output)?;
-        writeln!(
-            output,
-            "* Assigned to: {assignees}",
+            "Assigned to: {assignees}",
             assignees = comma(&issue.assignees)
         )?;
-        writeln!(output)?;
-
+        writeln!(output, "</td>")?;
+        writeln!(output, "</tr>")?;
+        writeln!(output, "<tr>")?;
         if comments.len() > 0 {
             let updates: String = comments.iter().map(|c| format!("\n{}\n", c.body)).collect();
             let summary = llm.query(&prompt, &updates).await?;
-            writeln!(output)?;
             writeln!(output, "{}", summary)?;
         } else {
             writeln!(output)?;
-            writeln!(output, "No updates in this period.")?;
+            writeln!(output, "* No updates in this period.")?;
         }
+        writeln!(output, "</tr>")?;
 
         progress_bar::inc_progress_bar();
     }
+    writeln!(output, "</table>")?;
 
     std::fs::write(&output_file, output)
         .with_context(|| format!("failed to write to `{}`", output_file.display()))?;
