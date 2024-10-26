@@ -36,7 +36,7 @@ pub(super) fn generate_json(
                 TrackingIssue {
                     number: issue.number,
                     title,
-                    flagship: is_flagship(&issue),
+                    flagship: issue.has_flagship_label(),
                     progress,
                     assignees: issue.assignees.into_iter().collect(),
                     updates: updates(issue.comments),
@@ -222,10 +222,6 @@ fn try_checkboxes(issue: &ExistingGithubIssue) -> anyhow::Result<Progress> {
     } else {
         Ok(Progress::Tracked { completed, total })
     }
-}
-
-fn is_flagship(issue: &ExistingGithubIssue) -> bool {
-    issue.has_label("flagship")
 }
 
 fn updates(comments: Vec<ExistingGithubComment>) -> Vec<TrackingIssueUpdate> {
