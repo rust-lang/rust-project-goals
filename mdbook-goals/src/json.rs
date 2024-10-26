@@ -225,7 +225,7 @@ fn try_checkboxes(issue: &ExistingGithubIssue) -> anyhow::Result<Progress> {
 }
 
 fn is_flagship(issue: &ExistingGithubIssue) -> bool {
-    issue.labels.iter().any(|label| label.name == "flagship")
+    issue.has_label("flagship")
 }
 
 fn updates(comments: Vec<ExistingGithubComment>) -> Vec<TrackingIssueUpdate> {
