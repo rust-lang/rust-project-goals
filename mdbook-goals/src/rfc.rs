@@ -12,7 +12,7 @@ use regex::Regex;
 use crate::{
     gh::{
         issue_id::{IssueId, Repository},
-        issues::{create_issue, list_issue_titles_in_milestone, lock_issue, sync_assignees},
+        issues::{create_issue, list_issue_titles_in_milestone, lock_issue, sync_assignees, FLAGSHIP_LABEL},
         labels::GhLabel,
     },
     goal::{self, GoalDocument, ParsedOwners, PlanItem, Status},
@@ -218,7 +218,7 @@ fn initialize_labels(
     });
 
     desired_labels.insert(GhLabel {
-        name: "Flagship Goal".to_string(),
+        name: FLAGSHIP_LABEL.to_string(),
         color: "5319E7".to_string(),
     });
 

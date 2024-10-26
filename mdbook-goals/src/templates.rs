@@ -25,6 +25,7 @@ impl<'h> Templates<'h> {
         assert!(reg.get_template("updates").is_some());
 
         reg.register_helper("markdown_to_html", Box::new(markdown_to_html));
+        reg.register_helper("is_complete", Box::new(is_complete));
 
         Ok(Templates { reg })
     }
@@ -32,12 +33,19 @@ impl<'h> Templates<'h> {
 
 handlebars::handlebars_helper!(markdown_to_html: |md: String| comrak::markdown_to_html(&md, &Default::default()));
 
+handlebars::handlebars_helper!(is_complete: |p: Progress| match p {
+    Progress::Binary { is_closed } => is_closed,
+    Progress::Tracked { completed, total } => completed == total,
+    Progress::Error { .. } => false,
+});
+
 /// The parameters expected by the `updates.md` template.
 #[derive(Serialize, Debug)]
 pub struct Updates {
     pub milestone: String,
     pub flagship_goals: Vec<UpdatesFlagshipGoal>,
-    pub other_goals: Vec<UpdatesOtherGoal>,
+    pub other_goals_with_updates: Vec<UpdatesOtherGoal>,
+    pub other_goals_without_updates: Vec<UpdatesOtherGoal>,
 }
 
 impl Updates {
@@ -47,6 +55,7 @@ impl Updates {
     }
 }
 
+/// Part of the parameters expected by the `updates.md` template.
 #[derive(Serialize, Debug)]
 pub struct UpdatesFlagshipGoal {
     /// Title of the tracking issue
@@ -61,6 +70,9 @@ pub struct UpdatesFlagshipGoal {
     /// URL of the tracking issue
     pub issue_url: String,
 
+    /// True if the issue is closed.
+    pub is_closed: bool,
+
     /// Progress towards the goal
     pub progress: Progress,
 
@@ -68,6 +80,7 @@ pub struct UpdatesFlagshipGoal {
     pub updates: Vec<UpdatesFlagshipGoalUpdate>,
 }
 
+/// Part of the parameters expected by the `updates.md` template.
 #[derive(Serialize, Debug)]
 pub struct UpdatesFlagshipGoalUpdate {
     /// Username of the person who wrote the update
@@ -83,6 +96,7 @@ pub struct UpdatesFlagshipGoalUpdate {
     pub url: String,
 }
 
+/// Part of the parameters expected by the `updates.md` template.
 #[derive(Serialize, Debug)]
 pub struct UpdatesOtherGoal {
     /// Title of the tracking issue
@@ -96,6 +110,9 @@ pub struct UpdatesOtherGoal {
 
     /// URL of the tracking issue
     pub issue_url: String,
+
+    /// True if the issue is closed.
+    pub is_closed: bool,
 
     /// Markdown with update text (bullet list)
     pub updates_markdown: String,

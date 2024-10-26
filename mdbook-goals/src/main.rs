@@ -91,9 +91,15 @@ enum Command {
         /// Milestone for which we generate tracking issue data (e.g., `2024h2`).
         milestone: String,
 
-        /// File in which to generate the update summary.
-        /// The default is to generate a file named after the
-        /// milestone, e.g., `2024h2.md`).
+        /// Quick mode does not use an LLM to generate a summary.
+        #[structopt(long)]
+        quick: bool,
+
+        /// Quick mode does not use an LLM to generate a summary.
+        #[structopt(long)]
+        vscode: bool,
+
+        /// If specified, write the output into the given file.
         #[structopt(long)]
         output_file: Option<PathBuf>,
 
@@ -159,6 +165,8 @@ async fn main() -> anyhow::Result<()> {
             output_file,
             start_date,
             end_date,
+            quick,
+            vscode,
         } => {
             updates::updates(
                 &opt.repository,
@@ -166,6 +174,8 @@ async fn main() -> anyhow::Result<()> {
                 output_file.as_deref(),
                 start_date,
                 end_date,
+                *quick,
+                *vscode,
             )
             .await?;
         }
