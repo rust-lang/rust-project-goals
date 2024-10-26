@@ -237,6 +237,11 @@ impl ExistingGithubIssue {
     pub fn was_locked(&self) -> bool {
         self.comments.iter().any(|c| c.body.trim() == LOCK_TEXT)
     }
+
+    /// True if we have a label with the given name.
+    pub fn has_label(&self, name: &str) -> bool {
+        self.labels.iter().any(|label| label.name == name)
+    }
 }
 
 pub fn lock_issue(repository: &Repository, number: u64) -> anyhow::Result<()> {
