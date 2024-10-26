@@ -242,6 +242,11 @@ impl ExistingGithubIssue {
     pub fn has_label(&self, name: &str) -> bool {
         self.labels.iter().any(|label| label.name == name)
     }
+
+    /// True if the issue has the label for a flagship goal.
+    pub fn has_flagship_label(&self) -> bool {
+        self.has_label("flagship")
+    }
 }
 
 pub fn lock_issue(repository: &Repository, number: u64) -> anyhow::Result<()> {
