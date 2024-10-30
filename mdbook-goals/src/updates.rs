@@ -6,7 +6,7 @@ use std::path::Path;
 use std::process::{Command, Stdio};
 
 use crate::gh::issues::ExistingGithubIssue;
-use crate::templates::Updates;
+use crate::templates::{Updates, UpdatesGoal};
 use crate::{
     gh::{
         issue_id::{IssueId, Repository},
@@ -14,7 +14,7 @@ use crate::{
     },
     json::checkboxes,
     llm::LargeLanguageModel,
-    templates::{self, UpdatesFlagshipGoal, UpdatesFlagshipGoalUpdate, UpdatesOtherGoal},
+    templates,
     util::comma,
 };
 
@@ -114,8 +114,8 @@ async fn prepare_flagship_goals(
     repository: &Repository,
     issues: &BTreeMap<String, ExistingGithubIssue>,
     filter: &Filter<'_>,
-    _llm: &LargeLanguageModel,
-    _quick: bool,
+    llm: &LargeLanguageModel,
+    quick: bool,
     updates: &mut Updates,
 ) -> anyhow::Result<()> {
     // First process the flagship goals, for which we capture the full text of comments.
@@ -133,7 +133,36 @@ async fn prepare_flagship_goals(
 
         let progress = checkboxes(&issue);
 
-        updates.flagship_goals.push(UpdatesFlagshipGoal {
+        let mut comments = issue.comments.clone();
+        comments.sort_by_key(|c| c.created_at.clone());
+        comments.retain(|c| filter.matches(c));
+
+        let summary: String = if comments.len() == 0 {
+            format!("No updates in this period.")
+        } else if quick {
+            QUICK_UPDATES.iter().copied().collect()
+        } else {
+            let prompt = format!(
+                "The following comments are updates to a project goal entitled '{title}'. \
+                The goal is assigned to {people} ({assignees}). \
+                Summarize the major developments, writing for general Rust users. \
+                Write the update in the third person and do not use pronouns when referring to people. \
+                Do not respond with anything but the summary paragraphs. \
+                ",
+                people = if issue.assignees.len() == 1 {
+                    "1 person".to_string()
+                } else {
+                    format!("{} people", issue.assignees.len())
+                },
+                assignees = comma(&issue.assignees),
+            );
+            let updates: String = comments.iter().map(|c| format!("\n{}\n", c.body)).collect();
+            llm.query(&prompt, &updates)
+                .await
+                .with_context(|| format!("making request to LLM failed"))?
+        };
+
+        updates.flagship_goals.push(UpdatesGoal {
             title: title.clone(),
             issue_number: issue.number,
             issue_assignees: comma(&issue.assignees),
@@ -144,17 +173,7 @@ async fn prepare_flagship_goals(
             .url(),
             progress,
             is_closed: issue.state == ExistingIssueState::Closed,
-            updates: issue
-                .comments
-                .iter()
-                .filter(|c| filter.matches(c))
-                .map(|c| UpdatesFlagshipGoalUpdate {
-                    author: c.author.clone(),
-                    date: c.created_at_date().format("%m %d").to_string(),
-                    update: c.body.clone(),
-                    url: c.url.clone(),
-                })
-                .collect(),
+            updates_markdown: summary,
         });
 
         progress_bar::inc_progress_bar();
@@ -219,7 +238,7 @@ async fn prepare_other_goals(
             llm.query(&prompt, &updates).await?
         };
 
-        let goal = UpdatesOtherGoal {
+        let goal = UpdatesGoal {
             title: title.clone(),
             issue_number: issue.number,
             issue_assignees: comma(&issue.assignees),
