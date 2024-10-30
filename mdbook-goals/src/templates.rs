@@ -43,9 +43,9 @@ handlebars::handlebars_helper!(is_complete: |p: Progress| match p {
 #[derive(Serialize, Debug)]
 pub struct Updates {
     pub milestone: String,
-    pub flagship_goals: Vec<UpdatesFlagshipGoal>,
-    pub other_goals_with_updates: Vec<UpdatesOtherGoal>,
-    pub other_goals_without_updates: Vec<UpdatesOtherGoal>,
+    pub flagship_goals: Vec<UpdatesGoal>,
+    pub other_goals_with_updates: Vec<UpdatesGoal>,
+    pub other_goals_without_updates: Vec<UpdatesGoal>,
 }
 
 impl Updates {
@@ -57,48 +57,7 @@ impl Updates {
 
 /// Part of the parameters expected by the `updates.md` template.
 #[derive(Serialize, Debug)]
-pub struct UpdatesFlagshipGoal {
-    /// Title of the tracking issue
-    pub title: String,
-
-    /// Tracking issue number on the project goals repository
-    pub issue_number: u64,
-
-    /// Comma-separated list of assignees
-    pub issue_assignees: String,
-
-    /// URL of the tracking issue
-    pub issue_url: String,
-
-    /// True if the issue is closed.
-    pub is_closed: bool,
-
-    /// Progress towards the goal
-    pub progress: Progress,
-
-    /// Updates provided towards the goal
-    pub updates: Vec<UpdatesFlagshipGoalUpdate>,
-}
-
-/// Part of the parameters expected by the `updates.md` template.
-#[derive(Serialize, Debug)]
-pub struct UpdatesFlagshipGoalUpdate {
-    /// Username of the person who wrote the update
-    pub author: String,
-
-    /// Formatted like "Oct 26"
-    pub date: String,
-
-    /// Text of the update
-    pub update: String,
-
-    /// URL of the comment
-    pub url: String,
-}
-
-/// Part of the parameters expected by the `updates.md` template.
-#[derive(Serialize, Debug)]
-pub struct UpdatesOtherGoal {
+pub struct UpdatesGoal {
     /// Title of the tracking issue
     pub title: String,
 
