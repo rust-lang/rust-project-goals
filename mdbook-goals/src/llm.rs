@@ -41,6 +41,7 @@ const MODELS: &[(&str, &str)] = &[
     ("Mistral7bInstruct", "mistral.mistral-7b-instruct-v0:2"),
     ("MistralLarge", "mistral.mistral-large-2402-v1:0"),
     ("MistralLarge2", "mistral.mistral-large-2407-v1:0"),
+    ("JambdaV15Large", "ai21.jamba-1-5-large-v1:0"),
 ];
 
 impl LargeLanguageModel {
@@ -63,7 +64,7 @@ impl LargeLanguageModel {
 
     fn lookup_model_id(model_id: Option<&str>) -> anyhow::Result<String> {
         let Some(s) = model_id else {
-            return Self::lookup_model_id(Some("ClaudeV3Sonnet"));
+            return Self::lookup_model_id(Some("JambdaV15Large"));
         };
 
         if s.contains(".") {
