@@ -110,6 +110,14 @@ enum Command {
         /// End date for comments.
         /// If not given, no end date.
         end_date: Option<chrono::NaiveDate>,
+
+        /// Set a custom model id for the LLM.
+        #[structopt(long)]
+        model_id: Option<String>,
+
+        /// Set a custom region.
+        #[structopt(long)]
+        region: Option<String>,
     },
 }
 
@@ -167,6 +175,8 @@ async fn main() -> anyhow::Result<()> {
             end_date,
             quick,
             vscode,
+            model_id,
+            region,
         } => {
             updates::updates(
                 &opt.repository,
@@ -176,6 +186,8 @@ async fn main() -> anyhow::Result<()> {
                 end_date,
                 *quick,
                 *vscode,
+                model_id.as_deref(),
+                region.as_deref(),
             )
             .await?;
         }
