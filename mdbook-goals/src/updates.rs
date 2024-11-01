@@ -45,12 +45,14 @@ pub async fn updates(
     end_date: &Option<NaiveDate>,
     quick: bool,
     vscode: bool,
+    model_id: Option<&str>,
+    region: Option<&str>,
 ) -> anyhow::Result<()> {
     if output_file.is_none() && !vscode {
         anyhow::bail!("either `--output-file` or `--vscode` must be specified");
     }
 
-    let llm = LargeLanguageModel::new().await;
+    let llm = LargeLanguageModel::new(model_id, region).await?;
 
     let issues = list_issue_titles_in_milestone(repository, milestone)?;
 

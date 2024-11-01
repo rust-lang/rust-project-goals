@@ -13,7 +13,6 @@ use aws_sdk_bedrockruntime::types::{
     ContentBlock, ContentBlockDelta, ConversationRole, ConverseStreamOutput,
     InferenceConfiguration, Message,
 };
-use serde::{Deserialize, Serialize};
 
 pub struct LargeLanguageModel {
     #[expect(dead_code)]
@@ -22,65 +21,69 @@ pub struct LargeLanguageModel {
     #[expect(dead_code)]
     bedrock_client: aws_sdk_bedrock::Client,
     inference_parameters: InferenceConfiguration,
-    model_id: ArgModel,
+    model_id: String,
 }
 
-#[derive(Clone, Serialize, Deserialize, Debug, Copy)]
-pub enum ArgModel {
-    Llama270b,
-    CohereCommand,
-    ClaudeV2,
-    ClaudeV21,
-    ClaudeV3Sonnet,
-    ClaudeV3Haiku,
-    ClaudeV35Sonnet,
-    Jurrasic2Ultra,
-    TitanTextExpressV1,
-    Mixtral8x7bInstruct,
-    Mistral7bInstruct,
-    MistralLarge,
-    MistralLarge2,
-}
-
-impl std::fmt::Display for ArgModel {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self.model_id_str())
-    }
-}
-
-impl ArgModel {
-    pub fn model_id_str(&self) -> &'static str {
-        match self {
-            ArgModel::ClaudeV2 => "anthropic.claude-v2",
-            ArgModel::ClaudeV21 => "anthropic.claude-v2:1",
-            ArgModel::ClaudeV3Haiku => "anthropic.claude-3-haiku-20240307-v1:0",
-            ArgModel::ClaudeV3Sonnet => "anthropic.claude-3-sonnet-20240229-v1:0",
-            ArgModel::ClaudeV35Sonnet => "anthropic.claude-3-5-sonnet-20240620-v1:0",
-            ArgModel::Llama270b => "meta.llama2-70b-chat-v1",
-            ArgModel::CohereCommand => "cohere.command-text-v14",
-            ArgModel::Jurrasic2Ultra => "ai21.j2-ultra-v1",
-            ArgModel::TitanTextExpressV1 => "amazon.titan-text-express-v1",
-            ArgModel::Mixtral8x7bInstruct => "mistral.mixtral-8x7b-instruct-v0:1",
-            ArgModel::Mistral7bInstruct => "mistral.mistral-7b-instruct-v0:2",
-            ArgModel::MistralLarge => "mistral.mistral-large-2402-v1:0",
-            ArgModel::MistralLarge2 => "mistral.mistral-large-2407-v1:0",
-        }
-    }
-}
+const MODELS: &[(&str, &str)] = &[
+    ("ClaudeV2", "anthropic.claude-v2"),
+    ("ClaudeV21", "anthropic.claude-v2:1"),
+    ("ClaudeV3Haiku", "anthropic.claude-3-haiku-20240307-v1:0"),
+    ("ClaudeV3Sonnet", "anthropic.claude-3-sonnet-20240229-v1:0"),
+    (
+        "ClaudeV35Sonnet",
+        "anthropic.claude-3-5-sonnet-20240620-v1:0",
+    ),
+    ("Llama270b", "meta.llama2-70b-chat-v1"),
+    ("CohereCommand", "cohere.command-text-v14"),
+    ("Jurrasic2Ultra", "ai21.j2-ultra-v1"),
+    ("TitanTextExpressV1", "amazon.titan-text-express-v1"),
+    ("Mixtral8x7bInstruct", "mistral.mixtral-8x7b-instruct-v0:1"),
+    ("Mistral7bInstruct", "mistral.mistral-7b-instruct-v0:2"),
+    ("MistralLarge", "mistral.mistral-large-2402-v1:0"),
+    ("MistralLarge2", "mistral.mistral-large-2407-v1:0"),
+];
 
 impl LargeLanguageModel {
-    pub async fn new() -> Self {
-        let aws_config = Self::aws_config("us-east-1", "default").await;
+    pub async fn new(model_id: Option<&str>, region: Option<&str>) -> anyhow::Result<Self> {
+        let model_id = Self::lookup_model_id(model_id)?;
+        let region = region.unwrap_or("us-east-1");
+
+        let aws_config = Self::aws_config(region, "default").await;
         let bedrock_runtime_client = aws_sdk_bedrockruntime::Client::new(&aws_config);
         let bedrock_client = aws_sdk_bedrock::Client::new(&aws_config);
         let inference_parameters = InferenceConfiguration::builder().build();
-        Self {
+        Ok(Self {
             aws_config,
             bedrock_runtime_client,
             bedrock_client,
             inference_parameters,
-            model_id: ArgModel::ClaudeV3Sonnet,
+            model_id,
+        })
+    }
+
+    fn lookup_model_id(model_id: Option<&str>) -> anyhow::Result<String> {
+        let Some(s) = model_id else {
+            return Self::lookup_model_id(Some("ClaudeV3Sonnet"));
+        };
+
+        if s.contains(".") {
+            return Ok(s.to_string());
         }
+
+        for &(key, value) in MODELS {
+            if key == s {
+                return Ok(value.to_string());
+            }
+        }
+
+        anyhow::bail!(
+            "unknown model-id; try one of the following: [{}]",
+            MODELS
+                .iter()
+                .map(|&(k, _)| k)
+                .collect::<Vec<_>>()
+                .join(", ")
+        );
     }
 
     pub async fn query(&self, prompt: &str, query: &str) -> anyhow::Result<String> {
@@ -89,7 +92,7 @@ impl LargeLanguageModel {
         let mut output = self
             .bedrock_runtime_client
             .converse_stream()
-            .model_id(self.model_id.model_id_str())
+            .model_id(&self.model_id)
             .messages(
                 Message::builder()
                     .role(ConversationRole::Assistant)
