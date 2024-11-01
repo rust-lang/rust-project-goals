@@ -11,12 +11,14 @@ use walkdir::WalkDir;
 mod gh;
 mod goal;
 mod json;
+mod llm;
 mod markwaydown;
 mod mdbook_preprocessor;
 mod re;
 mod rfc;
 mod team;
 mod team_repo;
+mod templates;
 mod updates;
 mod util;
 
@@ -89,6 +91,18 @@ enum Command {
         /// Milestone for which we generate tracking issue data (e.g., `2024h2`).
         milestone: String,
 
+        /// Quick mode does not use an LLM to generate a summary.
+        #[structopt(long)]
+        quick: bool,
+
+        /// Quick mode does not use an LLM to generate a summary.
+        #[structopt(long)]
+        vscode: bool,
+
+        /// If specified, write the output into the given file.
+        #[structopt(long)]
+        output_file: Option<PathBuf>,
+
         /// Start date for comments.
         /// If not given, defaults to 1 week before the start of this month.
         start_date: Option<chrono::NaiveDate>,
@@ -96,10 +110,19 @@ enum Command {
         /// End date for comments.
         /// If not given, no end date.
         end_date: Option<chrono::NaiveDate>,
+
+        /// Set a custom model id for the LLM.
+        #[structopt(long)]
+        model_id: Option<String>,
+
+        /// Set a custom region.
+        #[structopt(long)]
+        region: Option<String>,
     },
 }
 
-fn main() -> anyhow::Result<()> {
+#[tokio::main]
+async fn main() -> anyhow::Result<()> {
     let opt = Opt::from_args();
 
     let Some(cmd) = &opt.cmd else {
@@ -147,10 +170,26 @@ fn main() -> anyhow::Result<()> {
         }
         Command::Updates {
             milestone,
+            output_file,
             start_date,
             end_date,
+            quick,
+            vscode,
+            model_id,
+            region,
         } => {
-            updates::updates(&opt.repository, milestone, start_date, end_date)?;
+            updates::updates(
+                &opt.repository,
+                milestone,
+                output_file.as_deref(),
+                start_date,
+                end_date,
+                *quick,
+                *vscode,
+                model_id.as_deref(),
+                region.as_deref(),
+            )
+            .await?;
         }
     }
 

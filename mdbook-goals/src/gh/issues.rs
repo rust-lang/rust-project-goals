@@ -3,6 +3,7 @@ use std::{
     process::Command,
 };
 
+use anyhow::Context;
 use chrono::NaiveDate;
 use serde::{Deserialize, Serialize};
 
@@ -10,7 +11,7 @@ use crate::util::comma;
 
 use super::{issue_id::Repository, labels::GhLabel};
 
-#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 pub struct ExistingGithubIssue {
     pub number: u64,
     /// Just github username, no `@`
@@ -21,7 +22,7 @@ pub struct ExistingGithubIssue {
     pub labels: Vec<GhLabel>,
 }
 
-#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 pub struct ExistingGithubComment {
     /// Just github username, no `@`
     pub author: String,
@@ -61,7 +62,7 @@ struct ExistingGithubAuthorJson {
     login: String,
 }
 
-#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 #[serde(rename_all = "UPPERCASE")]
 pub enum ExistingIssueState {
     Open,
@@ -149,7 +150,8 @@ pub fn list_issue_titles_in_milestone(
         .arg("all")
         .arg("--json")
         .arg("title,assignees,number,comments,body,state,labels")
-        .output()?;
+        .output()
+        .with_context(|| format!("running github cli tool `gh`"))?;
 
     let existing_issues: Vec<ExistingGithubIssueJson> = serde_json::from_slice(&output.stdout)?;
 
@@ -229,6 +231,8 @@ pub fn sync_assignees(
     }
 }
 
+pub const FLAGSHIP_LABEL: &str = "Flagship Goal";
+
 const LOCK_TEXT: &str = "This issue is intended for status updates only.\n\nFor general questions or comments, please contact the owner(s) directly.";
 
 impl ExistingGithubIssue {
@@ -236,6 +240,16 @@ impl ExistingGithubIssue {
     /// The github CLI doesn't let you query that directly.
     pub fn was_locked(&self) -> bool {
         self.comments.iter().any(|c| c.body.trim() == LOCK_TEXT)
+    }
+
+    /// True if we have a label with the given name.
+    pub fn has_label(&self, name: &str) -> bool {
+        self.labels.iter().any(|label| label.name == name)
+    }
+
+    /// True if the issue has the label for a flagship goal.
+    pub fn has_flagship_label(&self) -> bool {
+        self.has_label(FLAGSHIP_LABEL)
     }
 }
 
