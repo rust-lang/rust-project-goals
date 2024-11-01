@@ -1,0 +1,40 @@
+The Rust project is currently working towards a [slate of 26 project
+goals](https://rust-lang.github.io/rust-project-goals/2024h2/goals.html), with 3 of them designed as [Flagship
+Goals](https://rust-lang.github.io/rust-project-goals/2024h2/goals.html#flagship-goals). This post provides selected
+updates on our progress towards these goals (or, in some cases, lack thereof). The full details for any particular goal
+are available in its associated [tracking issue on the rust-project-goals
+repository](https://github.com/rust-lang/rust-project-goals/milestone/2).
+
+## Flagship goals
+
+{{#each flagship_goals}}
+{{>introduce_goal}}
+
+{{!-- some spacing is required to ensure that markdown is recognized as markdown and not html --}}
+
+{{{updates_markdown}}}
+
+{{!-- some spacing is required to ensure that markdown is recognized as markdown and not html --}}
+
+{{/each}}
+
+## Goals with updates
+
+{{#each other_goals_with_updates}}
+{{>introduce_goal}}
+
+{{!-- some spacing is required to ensure that markdown is recognized as markdown and not html --}}
+
+{{{updates_markdown}}}
+
+{{!-- some spacing is required to ensure that markdown is recognized as markdown and not html --}}
+
+{{/each}}
+
+## Goals without updates
+
+The following goals have not received updates in the last month:
+
+{{#each other_goals_without_updates}}
+{{>introduce_goal}}
+{{/each}}

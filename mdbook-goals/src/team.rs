@@ -107,8 +107,18 @@ impl TeamName {
 
 fn fetch<T>(path: &str) -> anyhow::Result<T>
 where
-    T: DeserializeOwned,
+    T: DeserializeOwned + Send,
 {
-    let url = format!("{}/{}", v1::BASE_URL, path);
-    Ok(reqwest::blocking::get(&url)?.json()?)
+    // Run this on another thread because it can create a tokio runtime
+    // for the block reqwest API which makes tokio grouchy when that runtime is
+    // dropped.
+    std::thread::scope(|scope| {
+        scope
+            .spawn(|| {
+                let url = format!("{}/{}", v1::BASE_URL, path);
+                Ok(reqwest::blocking::get(&url)?.json()?)
+            })
+            .join()
+            .unwrap()
+    })
 }
