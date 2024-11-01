@@ -11,7 +11,9 @@
 
 # ⏳ 2025H1 goal process
 
-- [Starting in October]()
+- [Overview](./2025h1/README.md)
+- [Proposed goals](./2025h1/goals.md)
+- [Goals not accepted](./2025h1/not_accepted.md)
 
 # 📖 Learn about
 
@@ -29,7 +31,13 @@
 
 # 🔧 Running the goals program
 
+* [Running the program](./admin/running-the-program.md)
+    * [Sample: Call for Proposal blog post](./admin/samples/cfp.md)
+    * [Sample: Text for the main README](./admin/samples/main-readme.md)
+    * [Sample: Starting RFC text](./admin/samples/rfc.md)    
+    * [Sample: Goals page](./admin/samples/goals.md)    
 * [Overall setup](./admin/setup.md)
 * [Mdbook plugin details](./admin/mdbook_plugin.md)
 * [Commands you can run](./admin/commands.md)
-    * [Creating tracking issues](./admin/issues.md)
+    * [`issues`, creating tracking issues](./admin/issues.md)
+    * [`updates`, create monthly blog post summary](./admin/updates.md) 
