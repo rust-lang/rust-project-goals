@@ -12,7 +12,7 @@ There are [26 total goals](./2024h2/goals.md) established for the current goal p
 
 ## Next goal period (2025h1)
 
-The next goal period will be 2025h1, which runs from Jan 1 to Jun 30. We have not formally begun assembling goals but you are still welcome to [open a PR proposing a goal](./how_to/propose_a_goal.md) at any time.
+The next goal period will be 2025h1 runs from Jan 1 to Jun 30. We are currently in the process of assembling goals. [Click here](./2025h1/goals.md) to see the current list. If you'd like to propose a goal, [instructions can be found here](./how_to/propose_a_goal.md).
 
 ## About the process
 
