@@ -76,15 +76,17 @@ impl GithubUserInfo {
     }
 
     fn github_request(login: &str) -> anyhow::Result<Self> {
-        // FIXME: cache this in the target directory or something
-        use reqwest::header::USER_AGENT;
-        let url = format!("https://api.github.com/users/{}", &login[1..]);
-        let response: GithubUserInfo = reqwest::blocking::Client::new()
-            .get(&url)
-            .header(USER_AGENT, "mdbook-goals/1.0")
-            .send()?
-            .json()?;
-        Ok(response)
+        in_thread(|| {
+            // FIXME: cache this in the target directory or something
+            use reqwest::header::USER_AGENT;
+            let url = format!("https://api.github.com/users/{}", &login[1..]);
+            let response: GithubUserInfo = reqwest::blocking::Client::new()
+                .get(&url)
+                .header(USER_AGENT, "mdbook-goals/1.0")
+                .send()?
+                .json()?;
+            Ok(response)
+        })
     }
 }
 
@@ -127,4 +129,13 @@ pub fn markdown_files(directory_path: &Path) -> anyhow::Result<Vec<(PathBuf, Pat
 /// Returns a comma-separated list of the strings in `s` (no spaces).
 pub fn comma(s: &BTreeSet<String>) -> String {
     s.iter().map(|s| &s[..]).collect::<Vec<_>>().join(",")
+}
+
+/// Runs `op` in another thread. Useful for making blocking calls to `request`
+/// without making tokio upset.
+pub fn in_thread<R>(op: impl FnOnce() -> R + Send) -> R
+where
+    R: Send,
+{
+    std::thread::scope(|scope| scope.spawn(|| op()).join().unwrap())
 }
