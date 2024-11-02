@@ -3,6 +3,8 @@ use std::{collections::BTreeMap, sync::OnceLock};
 use rust_team_data::v1;
 use serde::de::DeserializeOwned;
 
+use crate::util::in_thread;
+
 trait Load<T> {
     fn load(&self, op: impl FnOnce() -> anyhow::Result<T>) -> anyhow::Result<&T>;
 }
@@ -112,13 +114,8 @@ where
     // Run this on another thread because it can create a tokio runtime
     // for the block reqwest API which makes tokio grouchy when that runtime is
     // dropped.
-    std::thread::scope(|scope| {
-        scope
-            .spawn(|| {
-                let url = format!("{}/{}", v1::BASE_URL, path);
-                Ok(reqwest::blocking::get(&url)?.json()?)
-            })
-            .join()
-            .unwrap()
+    in_thread(|| {
+        let url = format!("{}/{}", v1::BASE_URL, path);
+        Ok(reqwest::blocking::get(&url)?.json()?)
     })
 }
