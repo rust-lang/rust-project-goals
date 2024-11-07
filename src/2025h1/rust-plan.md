@@ -1,70 +1,115 @@
-# TEMPLATE (replace with title of your goal)
+# Approved RFC for a Rust vision doc
 
-> **Instructions:** Copy this template to a fresh file with a name based on your plan.
-> Give it a title that describes what you plan to get done in the next 6 months
-> (e.g., "stabilize X" or "nightly support for X" or "gather data about X").
-> Feel free to replace any text with anything, but there are placeholders
-> designed to help you get started. 
-
-| Metadata |                                                              |
-| -------- | ------------------------------------------------------------ |
-| Owner(s) | *Github usernames or other identifying info for goal owners* |
-| Teams    | *Names of teams being asked to commit to the goal*           |
-| Status   | Proposed                                                     |
+| Metadata |                      |
+| -------- | -------------------- |
+| Owner(s) | @nikomatsakis        |
+| Teams    | [Leadership Council] |
+| Status   | Proposed             |
 
 ## Summary
 
-*Short description of what you will do over the next 6 months.*
+Author a Rust "vision Doc" following a similar process/format to the async vision doc.
+The final document will combine
+
+* goals/mission of Rust;
+* status quo stories documenting the kinds of projects people build in Rust and the experiences they have when doing so;
+* recommendations for major problems to attack and key constraints of the domain;
+* and appendices with raw data, statistics, etc.
+
+Unlike the async vision doc, this document will not include a specific "shiny future" narrative.
+Instead, it will focus on (a) building a shared understanding of where/how Rust is being used today
+and (b) identifying upcoming trends and opportunities that Rust should address over the next 3-5 years.
 
 ## Motivation
 
-*Begin with a few sentences summarizing the problem you are attacking and why it is important.*
+The goal is to author a "Rust Vision Doc" that identifies the key opportunities for Rust to improve the state of software development over the next 3-5 years.
+The document will be focused primarily on documenting the status quo and identifying opportunities where Rust can do better.
 
-### The status quo
+### Rust's planning processes have a 6 month time window
 
-*Elaborate in more detail about the problem you are trying to solve. This section is making the case for why this particular problem is worth prioritizing with project bandwidth. A strong status quo section will (a) identify the target audience and (b) give specifics about the problems they are facing today. Sometimes it may be useful to start sketching out how you think those problems will be addressed by your change, as well, though it's not necessary.*
+Rust's official planning processes are currently scoped at the 6 month horizon (project goals). Of course a number of longer term initiatives are in play, some quite long indeed, such as the long drive towards a better async experience or towards parallel compilation. This planning primarily lives in the heads of the maintainers doing the work. There is no coordinated effort to collect the experiences of Rust users in a larger way.
+
+#### It's time for us to think beyond "adoption"
+
+Rust's goal since the beginning has been to *empower everyone to build reliable and efficient software*. We wanted Rust to be a language that would enable more people to build more things more quickly than was possible before. And not just any things, but things that worked well, saved resources, and lasted a long time. This is why Rust prizes performance, reliability, productivity, and long-term maintenance.
+
+Once the basic design of Rust had come into focus, it was clear that our primary goal was focusing on adoption. But now that Rust has established a foothold in the industry, adoption on its own is not clearly the right goal for us. Rust, like most any general purpose language, can be used for all kinds of things. What are the kinds of applications where Rust is already a *great fit*, and how could it get even better? And what are the kinds of applications where Rust *could be* a great fit, if we overcame some obstacles?
+
+#### To know where to go, you have to know where you are
+
+The biggest effort towards central planning was the authoring of the [Async Vision Doc], which took place in 2021.  The Async Vision Doc effort began by collecting [status quo][] stories described the experiences of using async in a number of scenarios based on a [cast of four characters][][^coincidence]: Alan, Grace, Niklaus, and Barbara. These stories were "crowd sourced" over several months, during which time we held video chats and interviews.
+
+Writing the "status quo" stories helped us to compensate for the [curse of knowledge][CoK]: the folks working on Async Rust tended to be experts in Async Rust, familiar with the the little tips and tricks that can get you out of a jam. The stories helped us to see the impact from [little](https://rust-lang.github.io/wg-async/vision/submitted_stories/status_quo/alan_started_trusting_the_rust_compiler_but_then_async.html) [paper](https://rust-lang.github.io/wg-async/vision/submitted_stories/status_quo/alan_needs_async_in_traits.html) [cuts](https://rust-lang.github.io/wg-async/vision/submitted_stories/status_quo/alan_thinks_he_needs_async_locks.html) that we had long since overlooked, while also identifying [deeper challenges](https://rust-lang.github.io/wg-async/vision/submitted_stories/status_quo/barbara_battles_buffered_streams.html) and [blockers](https://rust-lang.github.io/wg-async/vision/submitted_stories/status_quo/alan_finds_database_drops_hard.html).
+
+[^coincidence]: Any resemblance between these names and famous programming language pioneers is purely coincidental.
+
+[CoK]: https://en.wikipedia.org/wiki/Curse_of_knowledge
+[Async Vision Doc]: https://rust-lang.github.io/wg-async/vision.html
+[status quo]: https://rust-lang.github.io/wg-async/vision/submitted_stories.html
+[shiny future]: https://rust-lang.github.io/wg-async/vision/shiny_future/users_manual.html
+[cast of four characteres]: https://rust-lang.github.io/wg-async/vision/characters.html
+
+#### Gathering stories from both individuals and groups
+
+Gathering stories from individuals can be done with the same techniques we used with the Async Vision Doc, like online meetings and soliciting PRs. We may also be able to coordinate with Rust conferences.
+
+For the broader Rust vision doc, we would also like to proactively seek input from groups that we think would have useful context:
+
+* Rust trainers and consultants;
+* groups driving adoption at companies;
+* groups like the Rust Foundation.
+
+#### Focus on *opportunities* and *requirements* instead of a specific "shiny future"
+
+After the Status Quo story gathering, the Async Vision Doc attempted to author a [shiny future]. The intent was to align the community around a single vision but (in the opinion of the author, myself) it was not especially successful. There are several reasons for this. For one, the document was never RFC'd, which meant it did not truly represent a consensus. Second, it attempted to paint a more precise picture than was truly possible. The design of new features in complex domains like async is subject to a "fog of war effect"[^tmandry]: the immediate next steps can be relatively clear, and perhaps the end point is even somewhat understood, but the path between will have to figured out as you go. Trying to author a shiny future is inherently challenging.
+
+[^tmandry]: Hat tip to @tmandry for this name.
+
+For the Rust Vision Doc, we plan to take a different approach. Rather than authoring a shiny future, we will identify specific *opportunities*-- places where we believe Rust could have a huge impact on the state of software development. For each of those, we'll make recommendations about the kinds of problems that need to be solve for Rust to be truly successful in those domains. We will back up those recommendations with references to status quo stories and other data.
 
 ### The next 6 months
 
-*Sketch out the specific things you are trying to achieve in this goal period. This should be short and high-level -- we don't want to see the design!*
+Here is the overall plan for 2025h1:
+
+| Task                              | Nov | Dec | Jan | Feb | Mar | Apr | May | Jun |
+| --------------------------------- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Form a team                       | ███ | ███ |     |     |     |     |     |     |
+| Gather status quo stories         |     |     | ███ | ███ | ░░░ |     |     |     |
+| Coallesce stores and personae     |     |     | ░░░ | ███ | ███ |     |     |     |
+| Develop recommendations and goals |     |     |     | ░░░ | ███ |     |     |     |
+| Review RFC Draft 1 with teams     |     |     |     |     |     | ███ | ███ |     |
+| Final decision on RFC             |     |     |     |     |     |     |     | ███ |
+
+The plan actually begins *now*, in the goal construction phase. One of the tasks to be done is building up a **small support team** of researchers who will help with doing the interviews and authoring status quo stories and other parts of the document. As goal owner, nikomatsakis will select initial members. With the Async Vision Doc, our experience was that most Rust users are eager to share their experiences, but that authoring and upleveling that into a status quo story is challenging. It's better to centralize that authorship into a small group of motivated people.
+
+The plan to finalize the document is as follows:
+
+* We will be gathering and summarizing data for the first 3 months.
+* In early April we will publish the first RFC draft on the RFC repository. We will also schedule several reading sessions to gather feedback from Rust maintainers.
+* We will summarize the feedback we got and publish a second revision on the RFC repository. If necessary, we can repeat the iterations.
+* The final approval of the RFC will be done by the Leadership Council, as the only group empowered to speak for all Rust teams.
+
+Approval of the RFC indicates general alignment with the framing and prioritizes it describes. It will not commit any Rust team to any particular action.
 
 ### The "shiny future" we are working towards
 
-*If this goal is part of a larger plan that will extend beyond this goal period, sketch out the goal you are working towards. It may be worth adding some text about why these particular goals were chosen as the next logical step to focus on.*
-
-*This text is NORMATIVE, in the sense that teams should review this and make sure they are aligned. If not, then the shiny future should be moved to frequently asked questions with a title like "what might we do next".*
+Assuming this vision doc is succesful, we believe it should be refreshed on a regular basis. This would be a good completement to the Rust Project Goal system. Projet Goals describe the next few steps. The Vision Doc helps to outline the destination.
 
 ## Design axioms
 
-*This section is optional, but including [design axioms][da] can help you signal how you intend to balance constraints and tradeoffs (e.g., "prefer ease of use over performance" or vice versa). Teams should review the axioms and make sure they agree. [Read more about design axioms][da].*
-
-[da]: ../about/design_axioms.md
+* **Shared understanding of the status quo is key.** The experience of the async vision doc was that documenting the status quo had huge value. 
+* **Describe the problem and requirements, not the solution.** Attempting to design 3-5 years of features in 6 months is clearly impossible. We will focus on identifying areas where Rust can have a big impact and describing the kinds of things that are holding it back.
 
 ## Ownership and team asks
 
-**Owner:** *Identify a specific person or small group of people if possible, else the group that will provide the owner. Github user names are commonly used to remove ambiguity.*
-
-*This section defines the specific work items that are planned and who is expected to do them. It should also include what will be needed from Rust teams. The table below shows some common sets of asks and work, but feel free to adjust it as needed. Every row in the table should either correspond to something done by a contributor or something asked of a team. For items done by a contributor, list the contributor, or ![Heap wanted][] if you don't yet know who will do it. For things asked of teams, list ![Team][] and the name of the team. The things typically asked of teams are defined in the [Definitions](#definitions) section below.*
-
-| Subgoal                                        | Owner(s) or team(s)     | Notes |
-| ---------------------------------------------- | ----------------------- | ----- |
-| Discussion and moral support                   | ![Team][] [cargo]       |       |
-| Stabilize Feature X (typical language feature) |                         |       |
-| ↳ Author RFC                                   | *Goal owner, typically* |       |
-| ↳ Implementation                               | *Goal owner, typically* |       |
-| ↳ Standard reviews                             | ![Team][] [compiler]    |       |
-| ↳ Design meeting                               | ![Team][] [lang]        |       |
-| ↳ RFC decision                                 | ![Team][] [lang]        |       |
-| ↳ Secondary RFC review                         | ![Team][] [lang]        |       |
-| ↳ Author stabilization report                  | *Goal owner, typically* |       |
-| ↳ Stabilization decision                       | ![Team][] [lang]        |       |
-| Nightly experiment for X                       |                         | pla   |
-| ↳ Lang-team experiment                         | ![Team][] [lang]        |       |
-| ↳ Author RFC                                   | *Goal owner, typically* |       |
-| ↳ Implementation                               | *Goal owner, typically* |       |
-| ↳ Standard reviews                             | ![Team][] [compiler]    |       |
-| Inside Rust blog post inviting feedback        | ![Team][] (any team)    |       |
-| Top-level Rust blog post inviting feedback     | ![Team][] [leadership-council]          |       |
+| Subgoal                                  | Owner(s) or team(s)            | Notes                                                                                |
+| ---------------------------------------- | ------------------------------ | ------------------------------------------------------------------------------------ |
+| Select support team members              | @nikomatsakis                  |                                                                                      |
+| Create supporting subteam + Zulip stream | ![Team][] [leadership-council] |                                                                                      |
+| Gathering of status quo stories          | @nikomatsakis                  |                                                                                      |
+| Author RFC                               | @nikomatsakis                  |                                                                                      |
+| RFC decision                             | ![Team][] [leadership-council] |                                                                                      |
+| Top-level Rust blog posts                | ![Team][] [leadership-council] | This means that the LC agrees this is an appropriate use of the top-level Rust blog. |
 
 ### Definitions
 
@@ -87,6 +132,8 @@ Definitions for terms used above:
 
 ## Frequently asked questions
 
-### What do I do with this space?
+### Why are you creating a support *team*? Should it be a working group?
 
-*This is a good place to elaborate on your reasoning above -- for example, why did you put the design axioms in the order that you did? It's also a good place to put the answers to any questions that come up during discussion. The expectation is that this FAQ section will grow as the goal is discussed and eventually should contain a complete summary of the points raised along the way.*
+Oh geez I don't know what to call anything anymore. I think this is a time-limited team created for the purpose of authoring this RFC and then disbanded. We can call that a working group, project group, whatever.
+
+I do think that if this doc is successful there might be a role for a longer-term maintenance team, perhaps one that also helps to run the project goals effort. That's a topic for another day.
