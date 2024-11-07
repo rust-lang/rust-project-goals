@@ -10,7 +10,7 @@
 
 ## Summary
 
-We will move rustc's support for parallel front end closer to stability by resolving [ICE] and [deadlock] issues, completing the [test] suit for multithreaded scenario and integrating parallel front end into bootstrap. This fits into our larger goal of improving rustc build times by 20% by leveraging multiple cores and enhance its robustness.
+We will move rustc's support for parallel front end closer to stability by resolving [ICE] and [deadlock] issues, completing the [test] suite for multithreaded scenario and integrating parallel front end into bootstrap. This fits into our larger goal of improving rustc build times by 20% by leveraging multiple cores and enhance its robustness.
 
 ## Motivation
 
