@@ -84,11 +84,7 @@ The design of `unsafe` fields is guided by three axioms:
 | ↳ Standard reviews                             | ![Team][] [compiler] |                                |
 | ↳ Design meeting                               | ![Team][] [lang]     |                                |
 | ↳ RFC decision                                 | ![Team][] [lang]     |                                |
-| ↳ Secondary RFC review                         | ![Team][] [lang]     |                                |
 | ↳ Author stabilization report                  | @jswrenn             |                                |
-| ↳ Stabilization decision                       | ![Team][] [lang]     |                                |
-| Inside Rust blog post inviting feedback        | ![Team][] [lang]     |                                |
-| Top-level Rust blog post inviting feedback     | ![Team][] [leadership-council] |                      |
 
 [Zulip]: https://rust-lang.zulipchat.com/#narrow/channel/213817-t-lang/topic/unsafe.20fields.20RFC
 [RFC3458]: https://github.com/rust-lang/rfcs/pull/3458
