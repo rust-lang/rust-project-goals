@@ -19,7 +19,8 @@ It's been too long since we've had a Rust All-Hands. Time to bring it back!
 Previous Rust All-Hands events were very useful and succesful, but after the changes at Mozilla, we haven't had a Rust All-Hands in six years.
 Meanwhile, the project has grown a lot, making it much harder and expensive to organise a new Rust All-Hands.
 
-A few months ago, Mara proposed having a new Rust All-Hands around the 10th birthday of Rust 1.0, at [RustWeek 2025](https://rustweek.org) by [RustNL](https://rustnl.org) in the Netherlands.
+A few months ago, when Jack brought up having a new Rust All-Hands in the Leadership Council meeting,
+Mara proposed having the new Rust All-Hands at [RustWeek 2025](https://2025.rustweek.org) by [RustNL](https://2025.rustweek.org/about/), which will take place in the Netherlands around the 10th birthday of Rust 1.0.
 Both RustNL and the Rust Leadership Council agreed.
 
 See https://blog.rust-lang.org/inside-rust/2024/09/02/all-hands.html
