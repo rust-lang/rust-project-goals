@@ -53,22 +53,22 @@ Repeating an event tends to be much easier than organising one from scratch.
 | Subgoal                                        | Owner(s) or team(s)            | Notes |
 | ---------------------------------------------- | ------------------------------ | ----- |
 | Decide to have another Rust All-Hands!         | ![Team][] [leadership-council] | Done! |
-| Pick the dates                                 | RustNL, leadership-council     | Done! |
+| Pick the dates                                 | [RustNL], leadership-council   | Done! |
 | Allocate funds for event                       | ![Team][] [leadership-council] | Done! |
 | Allocate funds for travel                      | Rust Foundation                | Done! |
-| Book the venue                                 | RustNL                         | Done! |
-| Catering / snacks / food / drinks              | RustNL                         | Done! |
+| Book the venue                                 | [RustNL]                       | Done! |
+| Catering / snacks / food / drinks              | [RustNL]                       | Done! |
 | [Register] for the Rust All-Hands 2025         | *every project member*         | Majority already signed up! |
 | Send out conformations/tickets                 | Mara                           |       |
 | Send out detailed information                  | Mara                           |       |
 | Answer logistical questions                    | Mara                           |       |
-| Interface between project and RustNL           | Mara                           | (Mara is part of both Rust and RustNL.) |
-| Make hotel reservations                        | RustNL                         | In progress |
+| Interface between project and RustNL           | Mara                           |       |
+| Make hotel reservations                        | [RustNL]                       | In progress |
 | Book hotel                                     | *all participants*             | RustNL will provide suggestions |
 | Book travel                                    | *all participants*             |       |
 | Team swag                                      |                                |       |
 | ↳ Decide on what to get (stickers? shirts?)    | ![Team][] [leadership-council] | Suggestions very welcome! |
-| ↳ Acquire it                                   | RustNL                         |       |
+| ↳ Acquire it                                   | [RustNL]                       |       |
 | Make plans for what to do at the all-hands     | *every team*                   |       |
 | ↳ Gather input from your teams                 | *team leads* (or delegate)     |       |
 | ↳ Provide input for planning team              | *team leads* (or delegate)     |       |
@@ -77,13 +77,14 @@ Repeating an event tends to be much easier than organising one from scratch.
 | ↳ Make a room plan (after gathering input)     | Planning team                  |       |
 | Prepare one or two plenary sessions            | ![Team][] [leadership-council] |       |
 | Submit talks for the "Rust Project Track"      | *project members*              | Possibility to give talks at the conference before the all-hands. |
-| Organise an optional "pre all-hands day"       | Mara, RustNL                   | An optional day without an agenda, with space for social activities |
+| Organise an optional "pre all-hands day"       | Mara, [RustNL]                 | An optional day without an agenda, with space for social activities |
 | ↳ Acquire gifts (secret!)                      | Mara                           | Done! |
-| Moderation / safety                            | RustNL and moderator team      |       |
-| Accessibility and covid safety                 | RustNL                         |       |
+| Moderation / safety                            | [RustNL] and moderator team    |       |
+| Accessibility and covid safety                 | [RustNL]                       |       |
 | Come to the Rust All-Hands 2025                | *all participants*             |       |
 | Reimburse travel costs                         | Rust Foundation                |       |
 
+[RustNL]: https://rustweek.org/about/
 [Register]: https://docs.google.com/forms/d/e/1FAIpQLSeeoEsZGLGokSK0Gn8GVRHhM23KgbwKsp67oxi79KfdsbipkQ/viewform
 
 ## Frequently asked questions
