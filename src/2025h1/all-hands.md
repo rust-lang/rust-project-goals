@@ -34,9 +34,10 @@ See https://blog.rust-lang.org/inside-rust/2024/09/02/all-hands.html
 ### The "shiny future" we are working towards
 
 The immediate goal is a very succesful and productive Rust All-Hands 2025.
-Hopefully, this will be the first step twoards the larger goal of having regular Rust All-Hands again.
+Hopefully, this will be the first step towards the larger goal of having regular Rust All-Hands again.
 
-We should be able to use the feedback and lessons learned from this event for the next ones.
+We should be able to use the feedback and lessons learned from this event for the next ones,
+and to figure out what the right frequency would be (yearly or less often).
 Repeating an event tends to be much easier than organising one from scratch.
 
 ## Design axioms
