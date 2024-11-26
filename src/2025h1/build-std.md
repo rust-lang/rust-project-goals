@@ -27,7 +27,8 @@ library, this is useful for a variety of reasons:
 - Re-building the standard library with different configuration options (e.g. changing the
   optimisation level, using flags which change the ABI, or which add additional exploit
   mitigations).
-- Re-building the standard library with different `cfg`s (e.g. disabling `backtrace` in std).
+- Re-building the standard library with different `cfg`s (e.g. disabling `backtrace` in std), to
+  the extent that such configurations are supported by the standard library.
 - Stabilisation of various compiler flags which change the ABI, add additional exploit
   mitigations (such as `-Zsanitizers=cfi` or `-Zbranch-protection`), or which otherwise only make
   sense to use when the entire program is compiled with the flag (including std) is blocked on
@@ -36,6 +37,20 @@ library, this is useful for a variety of reasons:
 These features are more useful for some subsets of the Rust community, such as embedded developers
 where optimising for size can be more important and where the targets often don't ship with a
 pre-compiled std.
+
+The fifty-thousand foot view of the work involved in this feature is:
+
+- Having the standard library sources readily available that match the compiler.
+- Being able to build those sources without using a nightly toolchain, which has many
+  possible solutions.
+- Having a blessed way to build at least `core` without Cargo, which some users like
+  Rust for Linux would like.
+  - This would be optional but may be a side-effect of whatever mechanism for build-std
+    the MVP RFC eventually proposes.
+- Being able to tell the compiler to use the resulting prebuilt standard library sources
+  instead of the built-in standard library, in a standard way.
+- Integrating all of the above into Cargo.
+- Making sure all of this works for targets that don't have a pre-built std.
 
 Rust for Linux and some other projects have a requirement to build core themselves without Cargo
 (ideally using the same stable compiler they use for the rest of their project), which is a shared
@@ -49,6 +64,14 @@ since its initial development in 2019/2020. There are a variety of issues in the
 [wg-cargo-std-aware][wg-cargo-std-aware] repository which vary from concrete bugs in the current
 experimental implementation to vague "investigate and think about this" issues, which make the
 feature difficult to make progress on. 
+
+Some of the work required for this exists in the current perma-unstable `-Zbuild-std`
+implementation, which may be re-used if appropriate.
+
+Prior to the submission of this goal, this goal has been discussed with the cargo team and
+leads of the compiler and library teams, ensuring that this goal's owners have liaisons from
+stakeholder teams and the support of the primary teams involved in the design and
+implementation.
 
 [wg-cargo-std-aware]: https://github.com/rust-lang/wg-cargo-std-aware
 
@@ -99,9 +122,6 @@ which can be designed and implemented to complete the build-std feature.
 | ↳ Author RFC                                   | @adamgemmell         |       |
 | ↳ Implementation                               | @adamgemmell         |       |
 | ↳ Standard reviews                             | ![Team][] [cargo]    |       |
-| ↳ RFC decision                                 | ![Team][] [cargo]    |       |
-| ↳ Author stabilization report                  | @adamgemmell         |       |
-| ↳ Stabilization decision                       | ![Team][] [cargo]    |       |
 
 ### Definitions
 
