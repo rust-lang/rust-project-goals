@@ -93,3 +93,25 @@ Repeating an event tends to be much easier than organising one from scratch.
 ### I'm so excited about the all hands!
 
 Me too!
+
+### How will we schedule meetings?
+
+@jackh726 asked:
+
+>  The key challenge here is going to be scheduling meetings for teams with overlapping membership. Likely it'll probably make sense to stagger team meetings such that there are blocks of time with very few overlaps of "official" meetings (with the acknowledgement that maybe that means during those times the parallelism goes down).
+
+@m-ou-se answered:
+
+> Yeah that's part of the reason for a "Planning team" to "Coordinate the overall process". Hopefully we can make the draft agendas public early so teams can work together directly to align their plans a bit. It's going to be a fun puzzle though. ^^
+
+### Who can attend?
+
+@jackh726 asked:
+
+> One thing I haven't seen listed is who other than the Project is/may attend? From what I remember, there is a separate space available - it would be really good to have an actual list for that, which is available to Project members, since people may be interested in chatting/coordinating.
+
+@m-ou-se answered:
+
+> There will be an unconference at the same venue that will host groups like the embedded working group, Rust for Linux, Bevy maintainers, UI/App developers, and a few other groups. That part is handled by RustNL as a mostly separate event, that just happens to take place in the same location.
+>
+> RustNL will of course share which groups that will be once they confirm, so we can coordinate potential collaboration with these groups. But from a organisation (and funding) perspective, we treat the all-hands and the unconference as mostly separate events, which is why I didn't include it in the project goal.
