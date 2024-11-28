@@ -3,7 +3,7 @@
 | Metadata |                                                              |
 | -------- | ------------------------------------------------------------ |
 | Owner(s) | @tmandry     |
-| Teams    | [lang], [libs], [libs-api] |
+| Teams    | [lang], [libs], [libs-api], [types] |
 | Status   | Proposed |
 
 ## Summary
