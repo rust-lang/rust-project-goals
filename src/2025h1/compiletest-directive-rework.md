@@ -96,7 +96,7 @@ and [bootstrap] for implementation review.
 
 | Subgoal                                              | Owner(s) or team(s)                         | Notes                                                                                          |
 |------------------------------------------------------|---------------------------------------------|------------------------------------------------------------------------------------------------|
-| General discussion and moral support                 | ![Team][] [bootstrap], [compiler] |                                                                                                |
+| General discussion and moral support                 | ![Team][] [bootstrap], ![Team][] [compiler] |                                                                                                |
 | Consultations for desired test behaviors             | ![Team][] [compiler], ![Team][] [rustdoc]   | Test infra consumers                                                                           |
 | Experimental prototype[^1]                           |                                             | To see how approaches look like and gain experience/feedback                                   |
 | ↳ Discussion and moral support                       | ![Team][] [bootstrap], ![Team][] [compiler] |                                                                                                |
