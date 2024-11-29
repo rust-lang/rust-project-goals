@@ -5,7 +5,7 @@
 | ---            | ---                                |
 | Owner(s)       | @blyxyas                           |
 | Teams          | [clippy]                           |
-| Status         | TBD, Extension                     |
+| Status         | Proposed                     |
 | Tracking issue | [rust-lang/rust-project-goals#114] |
 
 ## Summary
