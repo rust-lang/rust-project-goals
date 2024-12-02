@@ -142,7 +142,7 @@ I (@obi1kenobi) will be working on this effort. The only other resource request 
 | Allow linting generic types, lifetimes, bounds     | @obi1kenobi             |       |
 | Handle "special cases" like `'static` and `?Sized` | @obi1kenobi             |       |
 | Handle `#[doc(hidden)]` in sealed trait analysis   | @obi1kenobi             |       |
-| Discussion and moral support                       | ![Team][] [cargo]       |       |
+| Discussion and moral support                       | ![Team][] [cargo] [rustdoc] |       |
 
 ## Frequently asked questions
 
