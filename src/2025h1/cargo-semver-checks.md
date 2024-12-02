@@ -134,14 +134,14 @@ To accomplish this, `cargo-semver-checks` needs the ability to express more kind
 
 **Owner:** @obi1kenobi, as maintainer of `cargo-semver-checks`
 
-I (@obi1kenobi) will be working on this effort. The only other resource request would be occasional discussions and moral support from the [cargo] team, of which I already have the privilege as maintainer of a popular cargo plugin.
+I (@obi1kenobi) will be working on this effort. The only other resource request would be occasional discussions and moral support from the [cargo] and [rustdoc] teams, of which I already have the privilege as maintainer of a popular cargo plugin that makes extensive use of rustdoc JSON.
 
-| Subgoal                                            | Owner(s) or team(s)     | Notes |
-| -------------------------------------------------- | ----------------------- | ----- |
-| Prototype cross-crate linting using workarounds    | @obi1kenobi             |       |
-| Allow linting generic types, lifetimes, bounds     | @obi1kenobi             |       |
-| Handle "special cases" like `'static` and `?Sized` | @obi1kenobi             |       |
-| Handle `#[doc(hidden)]` in sealed trait analysis   | @obi1kenobi             |       |
+| Subgoal                                            | Owner(s) or team(s)         | Notes |
+| -------------------------------------------------- | --------------------------- | ----- |
+| Prototype cross-crate linting using workarounds    | @obi1kenobi                 |       |
+| Allow linting generic types, lifetimes, bounds     | @obi1kenobi                 |       |
+| Handle "special cases" like `'static` and `?Sized` | @obi1kenobi                 |       |
+| Handle `#[doc(hidden)]` in sealed trait analysis   | @obi1kenobi                 |       |
 | Discussion and moral support                       | ![Team][] [cargo] [rustdoc] |       |
 
 ## Frequently asked questions
