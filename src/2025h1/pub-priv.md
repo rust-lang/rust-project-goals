@@ -44,9 +44,10 @@ Work with [compiler] to identify a minimal subset of functionality for what the 
 | Subgoal                                        | Owner(s) or team(s)     | Notes |
 | ---------------------------------------------- | ----------------------- | ----- |
 | Discussion and moral support                   | ![Team][] [cargo], [compiler]       |       |
-| Work through #3516, #119428                    | Goal owner                        |       |
-| Finish any remaining tasks                     | Goal owner, @epage |       |
-| Stabilization report                               | Goal owner |       |
+| Work through #3516, #119428                    | ![Help wanted][]                        |       |
+| Finish any remaining tasks                     | ![Help wanted][]  |       |
+| Mentoring                     | @epage |       |
+| Stabilization report                               | ![Help wanted][]  |       |
 
 ### Definitions
 
