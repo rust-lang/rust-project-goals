@@ -76,7 +76,7 @@ Furthermore, the limitations of current interop tools are not simply a matter of
 
 ### The next 6 months
 
-We do not propose any specific deliverables over the next six months. We only propose a discussion with the language team that takes a serious look at the problem space and what it would take to solve it. This discussion should incorporate lessons from existing projects and lay the foundation for future explorations and engagements.
+We do not propose any specific deliverables over the next six months. We only propose a discussion with the language and compiler teams that takes a serious look at the problem space and what it would take to solve it. This discussion should incorporate lessons from existing projects and lay the foundation for future explorations and engagements.
 
 ### The "shiny future" we are working towards
 
