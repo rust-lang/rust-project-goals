@@ -1,29 +1,21 @@
-# Approved RFC for a Rust vision doc
+# Rust Vision Document
 
-| Metadata |                      |
-| -------- | -------------------- |
-| Owner(s) | @nikomatsakis        |
-| Teams    | [Leadership Council] |
-| Status   | Proposed             |
+| Metadata |                                  |
+|----------|----------------------------------|
+| Owner(s) | vision team led by @nikomatsakis |
+| Teams    | [Leadership Council]             |
+| Status   | Proposed                         |
 
 ## Summary
 
-Author a Rust "vision Doc" following a similar process/format to the async vision doc.
-The final document will combine
+Present a first draft of a "Rust Vision Doc" at the Rust All Hands in May.
 
-* goals/mission of Rust;
-* status quo stories documenting the kinds of projects people build in Rust and the experiences they have when doing so;
-* recommendations for major problems to attack and key constraints of the domain;
-* and appendices with raw data, statistics, etc.
-
-Unlike the async vision doc, this document will not include a specific "shiny future" narrative.
-Instead, it will focus on (a) building a shared understanding of where/how Rust is being used today
-and (b) identifying upcoming trends and opportunities that Rust should address over the next 3-5 years.
+The Rust Vision Doc will summarize the state of Rust adoption -- where is Rust adding value? what works well? what doesn't? -- based on conversations with individual Rust users from different communities, major Rust projects, and companies large and small that are adopting Rust. It will use that raw data to make recommendations on what problems Rust should be attacking and what constraints we should be trying to meet. The document will not include specific features or recommendations, which ought to be legislated through RFCs.
 
 ## Motivation
 
-The goal is to author a "Rust Vision Doc" that identifies the key opportunities for Rust to improve the state of software development over the next 3-5 years.
-The document will be focused primarily on documenting the status quo and identifying opportunities where Rust can do better.
+The goal is to author a longer term "vision doc" that identifies key opportunities for Rust over the next 3-5 years.
+The document will help us focus our energies and attack problems that move the needle for Rust.
 
 ### Rust's planning processes have a 6 month time window
 
@@ -69,31 +61,37 @@ For the Rust Vision Doc, we plan to take a different approach. Rather than autho
 
 ### The next 6 months
 
-Here is the overall plan for 2025h1:
+Our goal for the next 6 months is to present a first draft of the vision doc at the Rust All Hands, planned for May 2025.
+We will use this opportunity to get feedback on the doc structure and recommendations and to begin work on the actual RFC,
+excepted to be accepted in 2025H2.
 
-| Task                              | Nov | Dec | Jan | Feb | Mar | Apr | May | Jun |
-| --------------------------------- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Form a team                       | ███ | ███ |     |     |     |     |     |     |
-| Gather status quo stories         |     |     | ███ | ███ | ░░░ |     |     |     |
-| Coallesce stores and personae     |     |     | ░░░ | ███ | ███ |     |     |     |
-| Develop recommendations and goals |     |     |     | ░░░ | ███ |     |     |     |
-| Review RFC Draft 1 with teams     |     |     |     |     |     | ███ | ███ |     |
-| Final decision on RFC             |     |     |     |     |     |     |     | ███ |
+Here is the overall plan for 2025H1:
+
+| Task                                         | Nov | Dec | Jan | Feb | Mar | Apr | May | Jun |
+|----------------------------------------------|-----|-----|-----|-----|-----|-----|-----|-----|
+| Form a team                                  | ███ | ███ |     |     |     |     |     |     |
+| Gather status quo stories                    |     |     | ███ | ███ | ░░░ |     |     |     |
+| Coallesce stores and personae                |     |     | ░░░ | ███ | ███ |     |     |     |
+| Develop recommendations and goals            |     |     |     | ░░░ | ███ |     |     |     |
+| Review RFC Draft 1 at Rust All Hands         |     |     |     |     |     | ███ | ███ |     |
+| Publish a blog post with summarized feedback |     |     |     |     |     |     |     | ███ |
 
 The plan actually begins *now*, in the goal construction phase. One of the tasks to be done is building up a **small support team** of researchers who will help with doing the interviews and authoring status quo stories and other parts of the document. As goal owner, nikomatsakis will select initial members. With the Async Vision Doc, our experience was that most Rust users are eager to share their experiences, but that authoring and upleveling that into a status quo story is challenging. It's better to centralize that authorship into a small group of motivated people.
 
 The plan to finalize the document is as follows:
 
 * We will be gathering and summarizing data for the first 3 months.
-* In early April we will publish the first RFC draft on the RFC repository. We will also schedule several reading sessions to gather feedback from Rust maintainers.
-* We will summarize the feedback we got and publish a second revision on the RFC repository. If necessary, we can repeat the iterations.
-* The final approval of the RFC will be done by the Leadership Council, as the only group empowered to speak for all Rust teams.
+* In early April we will begin authoring the first draft.
+* We will present the first draft for review at the Rust All hands and associated Rust Week conference.
+* We will publish a blog post with collected feedback.
 
 Approval of the RFC indicates general alignment with the framing and prioritizes it describes. It will not commit any Rust team to any particular action.
 
 ### The "shiny future" we are working towards
 
-Assuming this vision doc is succesful, we believe it should be refreshed on a regular basis. This would be a good completement to the Rust Project Goal system. Projet Goals describe the next few steps. The Vision Doc helps to outline the destination.
+Assuming this vision doc is succesful, we believe it should be refreshed on a regular basis. This would be a good completement to the Rust Project Goal system. Project Goals describe the next few steps. The Vision Doc helps to outline the destination.
+
+We also expect that the Vision Doc template may be useful in other more narrow contexts, such as a revised version of the Async Vision Doc,a vision doc for Rust in UI, machine learning, etc.
 
 ## Design axioms
 
@@ -102,14 +100,12 @@ Assuming this vision doc is succesful, we believe it should be refreshed on a re
 
 ## Ownership and team asks
 
-| Subgoal                                  | Owner(s) or team(s)            | Notes                                                                                |
-| ---------------------------------------- | ------------------------------ | ------------------------------------------------------------------------------------ |
-| Select support team members              | @nikomatsakis                  |                                                                                      |
-| Create supporting subteam + Zulip stream | ![Team][] [leadership-council] |                                                                                      |
-| Gathering of status quo stories          | @nikomatsakis                  |                                                                                      |
-| Author RFC                               | @nikomatsakis                  |                                                                                      |
-| RFC decision                             | ![Team][] [leadership-council] |                                                                                      |
-| Top-level Rust blog posts                | ![Team][] [leadership-council] | This means that the LC agrees this is an appropriate use of the top-level Rust blog. |
+| Subgoal                                                | Owner(s) or team(s)            | Notes |
+|--------------------------------------------------------|--------------------------------|-------|
+| Select support team members                            | @nikomatsakis                  |       |
+| Create supporting subteam + Zulip stream               | ![Team][] [leadership-council] |       |
+| Gathering of status quo stories                        | vision team                    |       |
+| Prepare draft of RFC to be presented at Rust all hands | vision team                    |       |
 
 ### Definitions
 
