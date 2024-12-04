@@ -2,7 +2,7 @@
 
 | Metadata |                                                              |
 | -------- | ------------------------------------------------------------ |
-| Owner(s) | @tmandry and @baumanj                                        |
+| Owner(s) | @baumanj and @tmandry                                        |
 | Teams    | [lang] [compiler]                                            |
 | Status   | Proposed                                                     |
 
@@ -105,7 +105,7 @@ In addition, it proposes the following axioms:
 
 ## Ownership and team asks
 
-**Owner:** @tmandry and @baumanj
+**Owner:** @baumanj and @tmandry
 
 | Subgoal                                        | Owner(s) or team(s)     | Notes |
 | ---------------------------------------------- | ----------------------- | ----- |
