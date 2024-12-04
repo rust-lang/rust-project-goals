@@ -3,7 +3,7 @@
 | Metadata |                                                              |
 | -------- | ------------------------------------------------------------ |
 | Owner(s) | @tmandry and @baumanj                                        |
-| Teams    | [lang]                                                       |
+| Teams    | [lang] [compiler]                                            |
 | Status   | Proposed                                                     |
 
 ## Summary
