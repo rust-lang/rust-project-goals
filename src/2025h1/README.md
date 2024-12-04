@@ -53,7 +53,7 @@ The slate of additional project goals are as follows. These goals all have ident
 
 Some goals here do not yet have an owner (look for the ![Help wanted][] badge). Teams have reserved some capacity to pursue these goals but until an appropriate owner is found they are only considered provisionally accepted. If you are interested in serving as the owner for one of these orphaned goals, reach out to the mentor listed in the goal to discuss.
 
-<!-- GOALS 'Accepted,Orphaned' -->
+<!-- GOALS 'Proposed' -->
 
 # Reference-level explanation
 [reference-level-explanation]: #reference-level-explanation

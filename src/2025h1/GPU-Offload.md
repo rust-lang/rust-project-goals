@@ -1,11 +1,11 @@
 # Expose experimental LLVM features for GPU offloading
 
-| Metadata       |                                    |
-| ---            | ---                                |
-| Owner(s)       | @ZuseZ4                            |
-| Teams          | [lang], [compiler]                 |
-| Status         | Accepted                           |
-| Tracking issue | [rust-lang/rust-project-goals#109] |
+| Metadata              |                                                  |
+|-----------------------|--------------------------------------------------|
+| Owner(s)              | @ZuseZ4                                          |
+| Teams                 | [lang], [compiler]                               |
+| Status                | Proposed                                         |
+| Tracking issue        | [rust-lang/rust-project-goals#109]               |
 | Other tracking issues | [rust-lang/rust#124509], [rust-lang/rust#124509] |
 
 
@@ -81,7 +81,7 @@ Manuel S. Drehwald is working 5 days per week on this, sponsored by LLNL and the
 Minimal "smoke test" reviews will be needed from the compiler-team. The Rust language changes at this stage are expected to be a minimal wrapper around the underlying LLVM functionality and the compiler team need only vet that the feature will not hinder usability for ordinary Rust users or cause undue burden on the compiler architecture itself. There is no requirement to vet the quality or usability of the design.
 
 | Subgoal              | Owner(s) or team(s)    | Notes      |
-| -------------------- | ---------------------- | ---------- |
+|----------------------|------------------------|------------|
 | Development          | @ZuseZ4                |            |
 | Lang-team experiment | ![Team][] [lang][]     | (approved) |
 | Standard reviews     | ![Team][] [compiler][] |            |

@@ -233,11 +233,11 @@ pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> anyhow::Result<String>
 
 pub fn format_goal_table(goals: &[&GoalDocument]) -> anyhow::Result<String> {
     // If any of the goals have tracking issues, include those in the table.
-    let goal_has_tracking_issue = goals.iter().any(|g| g.metadata.tracking_issue.is_some());
-
+    let goals_are_proposed = goals.iter().any(|g| g.metadata.status == Status::Proposed);
+    
     let mut table;
 
-    if goal_has_tracking_issue {
+    if !goals_are_proposed {
         table = vec![vec![
             "Goal".to_string(),
             "Owner".to_string(),
