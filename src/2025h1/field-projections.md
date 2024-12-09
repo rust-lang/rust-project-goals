@@ -14,9 +14,9 @@ Finalize the [Field Projections RFC] and implement it for use in nightly.
 
 ## Motivation
 
-Rust programs often makes use of custom pointer/reference types (for example `Arc<T>`) instead of
+Rust programs often make use of custom pointer/reference types (for example `Arc<T>`) instead of
 using plain references. In addition, container types are used to add or remove invariants on objects
-(for example `MaybeUninit<T>`). These types have significantly less ergonomics when trying to
+(for example `MaybeUninit<T>`). These types have significantly worse ergonomics when trying to
 operate on fields of the contained types compared to references.
 
 ### The status quo
@@ -33,14 +33,14 @@ ergonomic use of `NonNull<T>` over `*mut T` for accessing fields.
 
 In the following sections, we will cover the basic usage first. And then we will go over the most
 complex version that is required for [pin projections] as well as allowing custom projections such
-as the abstraction for RCU from the Rust for Linux project (also given below).
+as the abstraction for RCU from the Rust for Linux project.
 
 [pin projections]: https://doc.rust-lang.org/std/pin/index.html#projections-and-structural-pinning
 [Pin projections]: https://doc.rust-lang.org/std/pin/index.html#projections-and-structural-pinning
 
 #### Ergonomic Pointer-to-Field Operations
 
-We will use the struct from the summary as a simple example:
+We will use the struct from the RFC's summary as a simple example:
 
 ```rust
 struct Foo {
@@ -68,7 +68,7 @@ can thus not be written using a single generic function. For this reason, many p
 pointers even though `NonNull<T>` would be more fitting. The same can be said about `&mut
 MaybeUninit<T>`.
 
-Field projection is adding a new operator that allows types to provide operations generic over the
+Field projection adds a new operator that allows types to provide operations generic over the
 fields of structs. For example, one can use the field projections on `MaybeUninit<T>` to safely
 initialize `Foo`:
 
