@@ -4,8 +4,7 @@
 | ---            | ---                                |
 | Owner(s)       | @estebank, @Muscraft               |
 | Teams          | [compiler]                         |
-| Status         | Accepted                           |
-| Tracking issue | [rust-lang/rust-project-goals#123] |
+| Status         | Proposed                           |
 
 
 ## Summary
@@ -25,7 +24,7 @@ annotate-snippets is already part of the rustc codebase, but it is disabled by d
 ### The next 6 months
 
 - annotate-snippets rendered output reaches full parity (modulo reasonable non-significant divergences) with rustc's output
-- rustc is fully using annotate-snippets for their output.
+- A call for testing is made to the community to gather feedback on annotate-snippets
 
 ### The "shiny future" we are working towards
 
@@ -46,8 +45,8 @@ The outputs of rustc and cargo are fully using annotate-snippets, with no regres
 | Subgoal                                         | Owner(s) or team(s)            | Notes                          |
 | ----------------------------------------------- | ------------------------------ | ------------------------------ |
 | Reach output parity of rustc/annotate-snippets  |                                |                                |
+| ↳ add suggestions                               | @Muscraft                      |                                |
 | ↳ Port a subset of rustc's UI tests             | @Muscraft                      |                                |
-| ↳ Make list of current unnaddressed divergences | @Muscraft                      |                                |
 | ↳ address divergences                           | @Muscraft                      |                                |
 | Initial use of annotate-snippets                |                                |                                |
 | ↳ update annotate-snippets to latest version    |                                |                                |
