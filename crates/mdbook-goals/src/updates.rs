@@ -6,17 +6,15 @@ use std::path::Path;
 use std::process::{Command, Stdio};
 use rust_project_goals::util::comma;
 
-use crate::gh::issues::ExistingGithubIssue;
-use crate::templates::{Updates, UpdatesGoal};
-use crate::{
-    gh::{
-        issue_id::{IssueId, Repository},
-        issues::{list_issue_titles_in_milestone, ExistingGithubComment, ExistingIssueState},
-    },
-    json::checkboxes,
-    llm::LargeLanguageModel,
-    templates,
+use rust_project_goals::gh::{
+    issue_id::{IssueId, Repository},
+    issues::{list_issue_titles_in_milestone, ExistingGithubComment, ExistingIssueState},
 };
+use rust_project_goals::json::checkboxes;
+use rust_project_goals_llm::LargeLanguageModel;
+
+use rust_project_goals::gh::issues::ExistingGithubIssue;
+use crate::templates::{self, Updates, UpdatesGoal};
 
 const QUICK_UPDATES: &[&str] = &[
     "Jack and Jill went up the hill",

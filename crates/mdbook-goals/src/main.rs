@@ -1,5 +1,4 @@
 use anyhow::Context;
-use gh::issue_id::Repository;
 use mdbook::preprocess::{CmdPreprocessor, Preprocessor};
 use mdbook_preprocessor::GoalPreprocessor;
 use regex::Regex;
@@ -7,15 +6,11 @@ use semver::{Version, VersionReq};
 use std::{io, path::PathBuf};
 use structopt::StructOpt;
 use walkdir::WalkDir;
+use rust_project_goals::gh::issue_id::Repository;
 
-mod gh;
-mod goal;
-mod json;
-mod llm;
 mod mdbook_preprocessor;
-mod re;
 mod rfc;
-mod team;
+mod generate_json;
 mod team_repo;
 mod templates;
 mod updates;
@@ -164,7 +159,7 @@ async fn main() -> anyhow::Result<()> {
             milestone,
             json_path,
         } => {
-            json::generate_json(&opt.repository, &milestone, json_path)?;
+            generate_json::generate_json(&opt.repository, &milestone, json_path)?;
         }
         Command::Updates {
             milestone,
@@ -248,7 +243,7 @@ fn check() -> anyhow::Result<()> {
             continue;
         }
 
-        let _goals = goal::goals_in_dir(entry.path())?;
+        let _goals = rust_project_goals::goal::goals_in_dir(entry.path())?;
     }
 
     Ok(())

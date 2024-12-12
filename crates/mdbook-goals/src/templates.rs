@@ -3,7 +3,7 @@ use std::path::{Path, PathBuf};
 use handlebars::{DirectorySourceOptions, Handlebars};
 use serde::Serialize;
 
-use crate::json::Progress;
+use rust_project_goals::json::Progress;
 
 pub struct Templates<'h> {
     reg: Handlebars<'h>,
