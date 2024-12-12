@@ -9,8 +9,8 @@ use regex::Regex;
 use crate::gh::issue_id::{IssueId, Repository};
 use crate::re::USERNAME;
 use crate::team::{self, TeamName};
-use rust_project_goals::util::{self, commas, markdown_files, ARROW};
-use rust_project_goals::markwaydown::{self, Section, Table};
+use crate::util::{self, commas, markdown_files, ARROW};
+use crate::markwaydown::{self, Section, Table};
 
 /// Data parsed from a goal file in the expected format
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
@@ -150,7 +150,7 @@ impl GoalDocument {
     }
 
     /// True if this goal is a candidate (may yet be accepted)
-    pub(crate) fn is_not_not_accepted(&self) -> bool {
+    pub fn is_not_not_accepted(&self) -> bool {
         match self.metadata.status {
             Status::Flagship | Status::Accepted | Status::Proposed | Status::Orphaned => true,
             Status::NotAccepted => false,
@@ -158,7 +158,7 @@ impl GoalDocument {
     }
 
     /// Modify the goal document on disk to link to the given issue number in the metadata.
-    pub(crate) fn link_issue(&self, number: IssueId) -> anyhow::Result<()> {
+    pub fn link_issue(&self, number: IssueId) -> anyhow::Result<()> {
         let mut metadata_table = self.metadata.table.clone();
         metadata_table.add_key_value_row(TRACKING_ISSUE_ROW, &number);
         self.metadata

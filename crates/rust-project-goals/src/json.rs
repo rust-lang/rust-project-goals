@@ -6,7 +6,7 @@
 //! to the types in `gh` and so forth but because they represent
 //! a versioned API, we copy them over here to insulate them from incidental changes.
 
-use std::{path::PathBuf, str::FromStr};
+use std::str::FromStr;
 
 use serde::{Deserialize, Serialize};
 
@@ -14,82 +14,41 @@ use crate::{
     gh::{
         issue_id::Repository,
         issues::{
-            count_issues_matching_search, fetch_issue, list_issue_titles_in_milestone, CountIssues,
-            ExistingGithubComment, ExistingGithubIssue, ExistingIssueState,
+            count_issues_matching_search, fetch_issue, CountIssues, ExistingGithubIssue, ExistingIssueState,
         },
     },
     re,
 };
 
-pub(super) fn generate_json(
-    repository: &Repository,
-    milestone: &str,
-    json_path: &Option<PathBuf>,
-) -> anyhow::Result<()> {
-    let issues = list_issue_titles_in_milestone(repository, milestone)?;
-
-    let issues = TrackingIssues {
-        issues: issues
-            .into_iter()
-            .map(|(title, issue)| {
-                let progress = checkboxes(&issue);
-                TrackingIssue {
-                    number: issue.number,
-                    title,
-                    flagship: issue.has_flagship_label(),
-                    progress,
-                    assignees: issue.assignees.into_iter().collect(),
-                    updates: updates(issue.comments),
-                    state: issue.state,
-                }
-            })
-            .collect(),
-        repository: repository.to_string(),
-        milestone: milestone.to_string(),
-    };
-
-    if let Some(json_path) = json_path {
-        let json = serde_json::to_string(&issues)?;
-        if let Some(parent) = json_path.parent() {
-            std::fs::create_dir_all(parent)?;
-        }
-        std::fs::write(json_path, json)?;
-    } else {
-        println!("{}", serde_json::to_string_pretty(&issues)?);
-    }
-
-    Ok(())
+#[derive(Serialize, Deserialize)]
+pub struct TrackingIssues {
+    pub repository: String,
+    pub milestone: String,
+    pub issues: Vec<TrackingIssue>,
 }
 
-#[derive(Serialize)]
-struct TrackingIssues {
-    repository: String,
-    milestone: String,
-    issues: Vec<TrackingIssue>,
-}
-
-#[derive(Serialize)]
-struct TrackingIssue {
+#[derive(Serialize, Deserialize)]
+pub struct TrackingIssue {
     /// Issue number on the repository
-    number: u64,
+    pub number: u64,
 
     /// Title of the tracking issue
-    title: String,
+    pub title: String,
 
     /// True if this is a flagship goal
-    flagship: bool,
+    pub flagship: bool,
 
     /// State of progress
-    progress: Progress,
+    pub progress: Progress,
 
     /// Set of assigned people
-    assignees: Vec<String>,
+    pub assignees: Vec<String>,
 
     /// Posts that we consider to be status updates, in chronological order
-    updates: Vec<TrackingIssueUpdate>,
+    pub updates: Vec<TrackingIssueUpdate>,
 
     /// Issue state
-    state: ExistingIssueState,
+    pub state: ExistingIssueState,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -111,8 +70,8 @@ pub enum Progress {
     },
 }
 
-#[derive(Serialize)]
-struct TrackingIssueUpdate {
+#[derive(Serialize, Deserialize)]
+pub struct TrackingIssueUpdate {
     pub author: String,
     pub body: String,
     #[serde(rename = "createdAt")]
@@ -205,17 +164,4 @@ fn try_checkboxes(issue: &ExistingGithubIssue) -> anyhow::Result<Progress> {
     } else {
         Ok(Progress::Tracked { completed, total })
     }
-}
-
-fn updates(comments: Vec<ExistingGithubComment>) -> Vec<TrackingIssueUpdate> {
-    comments
-        .into_iter()
-        .filter(|comment| !comment.is_automated_comment())
-        .map(|comment| TrackingIssueUpdate {
-            author: comment.author,
-            body: comment.body,
-            created_at: comment.created_at,
-            url: comment.url,
-        })
-        .collect()
 }

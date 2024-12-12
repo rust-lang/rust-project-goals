@@ -1,0 +1,11 @@
+[package]
+name = "rust-project-goals-llm"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.94"
+aws-config = "1.5.8"
+aws-sdk-bedrock = "1.57.0"
+aws-sdk-bedrockruntime = "1.55.0"
+rust-project-goals = { version = "0.1.0", path = "../rust-project-goals" }

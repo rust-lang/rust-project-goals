@@ -9,7 +9,7 @@ use std::{
 use anyhow::Context;
 use regex::Regex;
 
-use crate::{
+use rust_project_goals::{
     gh::{
         issue_id::{IssueId, Repository},
         issues::{create_issue, list_issue_titles_in_milestone, lock_issue, sync_assignees, FLAGSHIP_LABEL},

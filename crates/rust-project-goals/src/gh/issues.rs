@@ -7,7 +7,7 @@ use anyhow::Context;
 use chrono::NaiveDate;
 use serde::{Deserialize, Serialize};
 
-use rust_project_goals::util::comma;
+use crate::util::comma;
 
 use super::{issue_id::Repository, labels::GhLabel};
 
