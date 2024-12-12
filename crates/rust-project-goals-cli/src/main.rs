@@ -1,8 +1,6 @@
 use anyhow::Context;
-use mdbook::preprocess::{CmdPreprocessor, Preprocessor};
 use regex::Regex;
-use semver::{Version, VersionReq};
-use std::{io, path::PathBuf};
+use std::path::PathBuf;
 use structopt::StructOpt;
 use walkdir::WalkDir;
 use rust_project_goals::gh::issue_id::Repository;
@@ -172,41 +170,6 @@ async fn main() -> anyhow::Result<()> {
             .await?;
         }
     }
-
-    Ok(())
-}
-
-// from https://github.com/rust-lang/mdBook/blob/master/examples/nop-preprocessor.rs
-fn handle_supports(pre: &dyn Preprocessor, renderer: &str) -> anyhow::Result<()> {
-    let supported = pre.supports_renderer(renderer);
-
-    // Signal whether the renderer is supported by exiting with 1 or 0.
-    if supported {
-        Ok(())
-    } else {
-        anyhow::bail!("renderer `{}` unsupported", renderer)
-    }
-}
-
-// from https://github.com/rust-lang/mdBook/blob/master/examples/nop-preprocessor.rs
-fn handle_preprocessing(pre: &dyn Preprocessor) -> anyhow::Result<()> {
-    let (ctx, book) = CmdPreprocessor::parse_input(io::stdin())?;
-
-    let book_version = Version::parse(&ctx.mdbook_version)?;
-    let version_req = VersionReq::parse(mdbook::MDBOOK_VERSION)?;
-
-    if !version_req.matches(&book_version) {
-        eprintln!(
-            "Warning: The {} plugin was built against version {} of mdbook, \
-             but we're being called from version {}",
-            pre.name(),
-            mdbook::MDBOOK_VERSION,
-            ctx.mdbook_version
-        );
-    }
-
-    let processed_book = pre.run(&ctx, book)?;
-    serde_json::to_writer(io::stdout(), &processed_book)?;
 
     Ok(())
 }

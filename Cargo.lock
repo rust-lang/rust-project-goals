@@ -2572,7 +2572,6 @@ dependencies = [
  "chrono",
  "comrak",
  "handlebars",
- "mdbook",
  "progress_bar",
  "regex",
  "rust-project-goals",

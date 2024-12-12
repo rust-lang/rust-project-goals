@@ -3,13 +3,13 @@
 Usage:
 
 ```
-> cargo run -- updates --help
+> cargo rpg updates --help
 ```
 
 The `updates` command generates the starting point for a monthly blog post. The output is based on the handlebars templates found in the `templates` directory. The command you probably want most often is something like this
 
 ```
-> cargo run -- updates YYYYhN --vscode
+> cargo rpg updates YYYYhN --vscode
 ```
 
 which will open the blogpost in a tab in VSCode. This makes it easy to copy-and-paste over to the main Rust blog.

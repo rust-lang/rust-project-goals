@@ -5,7 +5,6 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1.0.94"
-mdbook = "0.4.43"
 regex = "1.11.1"
 rust-project-goals = { version = "0.1.0", path = "../rust-project-goals" }
 rust-project-goals-llm = { version = "0.1.0", path = "../rust-project-goals-llm" }
