@@ -15,13 +15,13 @@ Team members perform some subset of the following roles:
 * When preparing a new goal slate:
     * Advertising the goal program to teams and soliciting participation
     * Reviewing incoming goal proposals for quality and accuracy
-    * Seeking feedback on behalf of oursiders' goals
-    * Authoring the RFC and hounding team leads to check their boxers
-    * Deciding which goals to propose as flaghship goals.
+    * Seeking feedback on behalf of outsiders' goals
+    * Authoring the RFC and hounding team leads to check their boxes
+    * Deciding which goals to propose as flagship goals.
 * During the year:
     * Authoring round-up blog posts highlighting progress
     * Updating and maintaining the web-site
-    * Checking in with the maintainers of goals that are not reporting progress to see if they need help
+    * Checking in with the owners of goals that are not reporting progress to see if they need help
 
 ## Role of the lead
 
