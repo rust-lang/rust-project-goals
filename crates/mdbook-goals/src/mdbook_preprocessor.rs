@@ -8,9 +8,9 @@ use mdbook::book::{Book, Chapter};
 use mdbook::preprocess::{Preprocessor, PreprocessorContext};
 use mdbook::BookItem;
 use regex::{Captures, Regex};
+use rust_project_goals::util::GithubUserInfo;
 
 use crate::goal::{self, format_team_asks, GoalDocument, Status, TeamAsk};
-use crate::util::GithubUserInfo;
 use crate::{re, team};
 
 const LINKS: &str = "links";
