@@ -31,6 +31,7 @@
 
 # 🔧 Running the goals program
 
+* [The goals team](./admin/team.md)
 * [Running the program](./admin/running-the-program.md)
     * [Sample: Call for Proposal blog post](./admin/samples/cfp.md)
     * [Sample: Text for the main README](./admin/samples/main-readme.md)
