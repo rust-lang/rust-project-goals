@@ -1,2 +1,2 @@
 [alias]
-rpg = "run -q --bin rust-project-goals-cli"
+rpg = "run -q --bin rust-project-goals-cli --"
