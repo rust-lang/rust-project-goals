@@ -1,6 +1,6 @@
 
 [workspace]
-members = ["mdbook-goals"]
+members = ["crates/mdbook-goals"]
 resolver = "2"
 
 [profile.dev]
