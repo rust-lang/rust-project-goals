@@ -1,6 +1,6 @@
 
 [workspace]
-members = ["crates/mdbook-goals"]
+members = ["crates/mdbook-goals", "crates/rust-project-goals"]
 resolver = "2"
 
 [profile.dev]

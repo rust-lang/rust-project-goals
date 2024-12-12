@@ -3,7 +3,7 @@ use std::{collections::BTreeMap, sync::OnceLock};
 use rust_team_data::v1;
 use serde::de::DeserializeOwned;
 
-use crate::util::in_thread;
+use rust_project_goals::util::in_thread;
 
 trait Load<T> {
     fn load(&self, op: impl FnOnce() -> anyhow::Result<T>) -> anyhow::Result<&T>;

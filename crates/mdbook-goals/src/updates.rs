@@ -4,6 +4,7 @@ use std::collections::BTreeMap;
 use std::io::Write;
 use std::path::Path;
 use std::process::{Command, Stdio};
+use rust_project_goals::util::comma;
 
 use crate::gh::issues::ExistingGithubIssue;
 use crate::templates::{Updates, UpdatesGoal};
@@ -15,7 +16,6 @@ use crate::{
     json::checkboxes,
     llm::LargeLanguageModel,
     templates,
-    util::comma,
 };
 
 const QUICK_UPDATES: &[&str] = &[

@@ -12,7 +12,6 @@ mod gh;
 mod goal;
 mod json;
 mod llm;
-mod markwaydown;
 mod mdbook_preprocessor;
 mod re;
 mod rfc;
@@ -20,7 +19,6 @@ mod team;
 mod team_repo;
 mod templates;
 mod updates;
-mod util;
 
 #[derive(StructOpt, Debug)]
 #[structopt(about = "Project goal preprocessor")]

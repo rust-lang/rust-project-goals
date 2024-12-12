@@ -9,11 +9,8 @@ use regex::Regex;
 use crate::gh::issue_id::{IssueId, Repository};
 use crate::re::USERNAME;
 use crate::team::{self, TeamName};
-use crate::util::{commas, markdown_files};
-use crate::{
-    markwaydown::{self, Section, Table},
-    util::{self, ARROW},
-};
+use rust_project_goals::util::{self, commas, markdown_files, ARROW};
+use rust_project_goals::markwaydown::{self, Section, Table};
 
 /// Data parsed from a goal file in the expected format
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]

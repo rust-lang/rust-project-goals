@@ -1,0 +1,11 @@
+[package]
+name = "rust-project-goals"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.94"
+disk-persist = "0.1.0"
+reqwest = "0.12.9"
+serde = "1.0.216"
+walkdir = "2.5.0"
