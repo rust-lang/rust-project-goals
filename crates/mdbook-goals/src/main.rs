@@ -1,19 +1,19 @@
+use clap::Parser;
 use mdbook::preprocess::{CmdPreprocessor, Preprocessor};
 use mdbook_preprocessor::GoalPreprocessor;
 use semver::{Version, VersionReq};
 use std::io;
-use structopt::StructOpt;
 
 mod mdbook_preprocessor;
 
-#[derive(StructOpt, Debug)]
+#[derive(clap::Parser, Debug)]
 #[structopt(about = "Project goal preprocessor")]
 struct Opt {
-    #[structopt(subcommand)]
+    #[command(subcommand)]
     cmd: Option<Command>,
 }
 
-#[derive(StructOpt, Debug)]
+#[derive(clap::Subcommand, Debug)]
 #[allow(dead_code)]
 enum Command {
     /// Command used by mdbook to check if the preprocessor supports a renderer
@@ -22,7 +22,7 @@ enum Command {
 }
 
 fn main() -> anyhow::Result<()> {
-    let opt = Opt::from_args();
+    let opt = Opt::parse();
 
     let Some(cmd) = &opt.cmd else {
         return handle_preprocessing(&GoalPreprocessor);

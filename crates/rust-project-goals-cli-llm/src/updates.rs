@@ -11,9 +11,8 @@ use rust_project_goals::gh::{
     issues::{list_issue_titles_in_milestone, ExistingGithubComment, ExistingIssueState},
 };
 use rust_project_goals::json::checkboxes;
-use rust_project_goals_llm::LargeLanguageModel;
-
 use rust_project_goals::gh::issues::ExistingGithubIssue;
+use crate::llm::LargeLanguageModel;
 use crate::templates::{self, Updates, UpdatesGoal};
 
 const QUICK_UPDATES: &[&str] = &[
