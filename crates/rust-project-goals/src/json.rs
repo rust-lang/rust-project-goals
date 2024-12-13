@@ -6,19 +6,7 @@
 //! to the types in `gh` and so forth but because they represent
 //! a versioned API, we copy them over here to insulate them from incidental changes.
 
-use std::str::FromStr;
-
 use serde::{Deserialize, Serialize};
-
-use crate::{
-    gh::{
-        issue_id::Repository,
-        issues::{
-            count_issues_matching_search, fetch_issue, CountIssues, ExistingGithubIssue, ExistingIssueState,
-        },
-    },
-    re,
-};
 
 #[derive(Serialize, Deserialize)]
 pub struct TrackingIssues {
@@ -48,7 +36,23 @@ pub struct TrackingIssue {
     pub updates: Vec<TrackingIssueUpdate>,
 
     /// Issue state
-    pub state: ExistingIssueState,
+    pub state: GithubIssueState,
+}
+
+#[derive(Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
+#[serde(rename_all = "UPPERCASE")]
+pub enum GithubIssueState {
+    Open,
+    Closed,
+}
+
+impl std::fmt::Display for GithubIssueState {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            GithubIssueState::Open => write!(f, "open"),
+            GithubIssueState::Closed => write!(f, "closed"),
+        }
+    }
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -77,91 +81,4 @@ pub struct TrackingIssueUpdate {
     #[serde(rename = "createdAt")]
     pub created_at: String,
     pub url: String,
-}
-
-/// Identify how many sub-items have been completed.
-/// These can be encoded in two different ways:
-///
-/// * Option A, the most common, is to have checkboxes in the issue. We just count the number that are checked.
-/// * Option B is to include a metadata line called "Tracked issues" that lists a search query. We count the number of open vs closed issues in that query.
-///
-/// Returns a tuple (completed, total) with the number of completed items and the total number of items.
-pub fn checkboxes(issue: &ExistingGithubIssue) -> Progress {
-    match try_checkboxes(&issue) {
-        Ok(pair) => pair,
-        Err(e) => Progress::Error {
-            message: e.to_string(),
-        },
-    }
-}
-
-fn try_checkboxes(issue: &ExistingGithubIssue) -> anyhow::Result<Progress> {
-    let mut completed = 0;
-    let mut total = 0;
-
-    for line in issue.body.lines() {
-        // Does this match TRACKED_ISSUES?
-        if let Some(c) = re::TRACKED_ISSUES_QUERY.captures(line) {
-            let repo = Repository::from_str(&c["repo"])?;
-            let query = &c["query"];
-
-            let CountIssues { open, closed } = count_issues_matching_search(&repo, query)?;
-            completed += closed;
-            total += open + closed;
-            continue;
-        }
-
-        if let Some(c) = re::SEE_ALSO_QUERY.captures(line) {
-            let issue_urls = c["issues"].split(&[',', ' ']).filter(|s| !s.is_empty());
-
-            for issue_url in issue_urls {
-                let c = match (
-                    re::SEE_ALSO_ISSUE1.captures(issue_url),
-                    re::SEE_ALSO_ISSUE2.captures(issue_url),
-                ) {
-                    (Some(c), _) => c,
-                    (None, Some(c)) => c,
-                    (None, None) => anyhow::bail!("invalid issue URL `{issue_url}`"),
-                };
-                let repository = Repository::new(&c["org"], &c["repo"]);
-                let issue_number = c["issue"].parse::<u64>()?;
-                let issue = fetch_issue(&repository, issue_number)?;
-                match try_checkboxes(&issue)? {
-                    Progress::Binary { is_closed } => {
-                        if is_closed {
-                            completed += 1;
-                        }
-                        total += 1;
-                    }
-
-                    Progress::Tracked {
-                        completed: c,
-                        total: t,
-                    } => {
-                        completed += c;
-                        total += t;
-                    }
-
-                    Progress::Error { message } => {
-                        anyhow::bail!("error parsing {repository}#{issue_number}: {message}")
-                    }
-                }
-            }
-        }
-
-        if re::CHECKED_CHECKBOX.is_match(line) {
-            total += 1;
-            completed += 1;
-        } else if re::CHECKBOX.is_match(line) {
-            total += 1;
-        }
-    }
-
-    if total == 0 && completed == 0 {
-        Ok(Progress::Binary {
-            is_closed: issue.state == ExistingIssueState::Closed,
-        })
-    } else {
-        Ok(Progress::Tracked { completed, total })
-    }
 }
