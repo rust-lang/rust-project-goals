@@ -1,21 +1,18 @@
 use anyhow::Context;
 use chrono::{Datelike, NaiveDate};
+use rust_project_goals::util::comma;
+use rust_project_goals_json::GithubIssueState;
 use std::collections::BTreeMap;
 use std::io::Write;
 use std::path::Path;
 use std::process::{Command, Stdio};
 
-use crate::gh::issues::ExistingGithubIssue;
-use crate::templates::{Updates, UpdatesGoal};
-use crate::{
-    gh::{
-        issue_id::{IssueId, Repository},
-        issues::{list_issue_titles_in_milestone, ExistingGithubComment, ExistingIssueState},
-    },
-    json::checkboxes,
-    llm::LargeLanguageModel,
-    templates,
-    util::comma,
+use crate::llm::LargeLanguageModel;
+use crate::templates::{self, Updates, UpdatesGoal};
+use rust_project_goals::gh::issues::ExistingGithubIssue;
+use rust_project_goals::gh::{
+    issue_id::{IssueId, Repository},
+    issues::{checkboxes, list_issue_titles_in_milestone, ExistingGithubComment},
 };
 
 const QUICK_UPDATES: &[&str] = &[
@@ -174,7 +171,7 @@ async fn prepare_flagship_goals(
             }
             .url(),
             progress,
-            is_closed: issue.state == ExistingIssueState::Closed,
+            is_closed: issue.state == GithubIssueState::Closed,
             updates_markdown: summary,
         });
 
@@ -249,7 +246,7 @@ async fn prepare_other_goals(
                 number: issue.number,
             }
             .url(),
-            is_closed: issue.state == ExistingIssueState::Closed,
+            is_closed: issue.state == GithubIssueState::Closed,
             updates_markdown: summary,
             progress: checkboxes(&issue),
         };

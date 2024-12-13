@@ -1,13 +1,15 @@
 use std::{
     collections::{BTreeMap, BTreeSet},
     process::Command,
+    str::FromStr,
 };
 
 use anyhow::Context;
 use chrono::NaiveDate;
+use rust_project_goals_json::{GithubIssueState, Progress};
 use serde::{Deserialize, Serialize};
 
-use crate::util::comma;
+use crate::{re, util::comma};
 
 use super::{issue_id::Repository, labels::GhLabel};
 
@@ -18,7 +20,7 @@ pub struct ExistingGithubIssue {
     pub assignees: BTreeSet<String>,
     pub comments: Vec<ExistingGithubComment>,
     pub body: String,
-    pub state: ExistingIssueState,
+    pub state: GithubIssueState,
     pub labels: Vec<GhLabel>,
 }
 
@@ -38,7 +40,7 @@ struct ExistingGithubIssueJson {
     assignees: Vec<ExistingGithubAssigneeJson>,
     comments: Vec<ExistingGithubCommentJson>,
     body: String,
-    state: ExistingIssueState,
+    state: GithubIssueState,
     labels: Vec<GhLabel>,
 }
 
@@ -62,22 +64,6 @@ struct ExistingGithubAuthorJson {
     login: String,
 }
 
-#[derive(Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
-#[serde(rename_all = "UPPERCASE")]
-pub enum ExistingIssueState {
-    Open,
-    Closed,
-}
-
-impl std::fmt::Display for ExistingIssueState {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        match self {
-            ExistingIssueState::Open => write!(f, "open"),
-            ExistingIssueState::Closed => write!(f, "closed"),
-        }
-    }
-}
-
 pub struct CountIssues {
     pub open: u32,
     pub closed: u32,
@@ -89,7 +75,7 @@ pub fn count_issues_matching_search(
 ) -> anyhow::Result<CountIssues> {
     #[derive(Deserialize)]
     struct JustState {
-        state: ExistingIssueState,
+        state: GithubIssueState,
     }
 
     let output = Command::new("gh")
@@ -111,8 +97,8 @@ pub fn count_issues_matching_search(
 
     for issue in &existing_issues {
         match issue.state {
-            ExistingIssueState::Open => count_issues.open += 1,
-            ExistingIssueState::Closed => count_issues.closed += 1,
+            GithubIssueState::Open => count_issues.open += 1,
+            GithubIssueState::Closed => count_issues.closed += 1,
         }
     }
 
@@ -325,5 +311,92 @@ impl From<ExistingGithubIssueJson> for ExistingGithubIssue {
             state: e_i.state,
             labels: e_i.labels,
         }
+    }
+}
+
+/// Identify how many sub-items have been completed.
+/// These can be encoded in two different ways:
+///
+/// * Option A, the most common, is to have checkboxes in the issue. We just count the number that are checked.
+/// * Option B is to include a metadata line called "Tracked issues" that lists a search query. We count the number of open vs closed issues in that query.
+///
+/// Returns a tuple (completed, total) with the number of completed items and the total number of items.
+pub fn checkboxes(issue: &ExistingGithubIssue) -> Progress {
+    match try_checkboxes(&issue) {
+        Ok(pair) => pair,
+        Err(e) => Progress::Error {
+            message: e.to_string(),
+        },
+    }
+}
+
+fn try_checkboxes(issue: &ExistingGithubIssue) -> anyhow::Result<Progress> {
+    let mut completed = 0;
+    let mut total = 0;
+
+    for line in issue.body.lines() {
+        // Does this match TRACKED_ISSUES?
+        if let Some(c) = re::TRACKED_ISSUES_QUERY.captures(line) {
+            let repo = Repository::from_str(&c["repo"])?;
+            let query = &c["query"];
+
+            let CountIssues { open, closed } = count_issues_matching_search(&repo, query)?;
+            completed += closed;
+            total += open + closed;
+            continue;
+        }
+
+        if let Some(c) = re::SEE_ALSO_QUERY.captures(line) {
+            let issue_urls = c["issues"].split(&[',', ' ']).filter(|s| !s.is_empty());
+
+            for issue_url in issue_urls {
+                let c = match (
+                    re::SEE_ALSO_ISSUE1.captures(issue_url),
+                    re::SEE_ALSO_ISSUE2.captures(issue_url),
+                ) {
+                    (Some(c), _) => c,
+                    (None, Some(c)) => c,
+                    (None, None) => anyhow::bail!("invalid issue URL `{issue_url}`"),
+                };
+                let repository = Repository::new(&c["org"], &c["repo"]);
+                let issue_number = c["issue"].parse::<u64>()?;
+                let issue = fetch_issue(&repository, issue_number)?;
+                match try_checkboxes(&issue)? {
+                    Progress::Binary { is_closed } => {
+                        if is_closed {
+                            completed += 1;
+                        }
+                        total += 1;
+                    }
+
+                    Progress::Tracked {
+                        completed: c,
+                        total: t,
+                    } => {
+                        completed += c;
+                        total += t;
+                    }
+
+                    Progress::Error { message } => {
+                        anyhow::bail!("error parsing {repository}#{issue_number}: {message}")
+                    }
+                }
+            }
+        }
+
+        if re::CHECKED_CHECKBOX.is_match(line) {
+            total += 1;
+            completed += 1;
+        } else if re::CHECKBOX.is_match(line) {
+            total += 1;
+        }
+    }
+
+    if total == 0 && completed == 0 {
+        Ok(Progress::Binary {
+            is_closed: issue.state == GithubIssueState::Closed,
+        })
+    } else {
+        Ok(Progress::Tracked { completed, total })
     }
 }

@@ -7,13 +7,10 @@ use anyhow::Context;
 use regex::Regex;
 
 use crate::gh::issue_id::{IssueId, Repository};
+use crate::markwaydown::{self, Section, Table};
 use crate::re::USERNAME;
 use crate::team::{self, TeamName};
-use crate::util::{commas, markdown_files};
-use crate::{
-    markwaydown::{self, Section, Table},
-    util::{self, ARROW},
-};
+use crate::util::{self, commas, markdown_files, ARROW};
 
 /// Data parsed from a goal file in the expected format
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
@@ -153,7 +150,7 @@ impl GoalDocument {
     }
 
     /// True if this goal is a candidate (may yet be accepted)
-    pub(crate) fn is_not_not_accepted(&self) -> bool {
+    pub fn is_not_not_accepted(&self) -> bool {
         match self.metadata.status {
             Status::Flagship | Status::Accepted | Status::Proposed | Status::Orphaned => true,
             Status::NotAccepted => false,
@@ -161,7 +158,7 @@ impl GoalDocument {
     }
 
     /// Modify the goal document on disk to link to the given issue number in the metadata.
-    pub(crate) fn link_issue(&self, number: IssueId) -> anyhow::Result<()> {
+    pub fn link_issue(&self, number: IssueId) -> anyhow::Result<()> {
         let mut metadata_table = self.metadata.table.clone();
         metadata_table.add_key_value_row(TRACKING_ISSUE_ROW, &number);
         self.metadata
@@ -234,7 +231,7 @@ pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> anyhow::Result<String>
 pub fn format_goal_table(goals: &[&GoalDocument]) -> anyhow::Result<String> {
     // If any of the goals have tracking issues, include those in the table.
     let goals_are_proposed = goals.iter().any(|g| g.metadata.status == Status::Proposed);
-    
+
     let mut table;
 
     if !goals_are_proposed {

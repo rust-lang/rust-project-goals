@@ -3,7 +3,7 @@ use std::path::{Path, PathBuf};
 use handlebars::{DirectorySourceOptions, Handlebars};
 use serde::Serialize;
 
-use crate::json::Progress;
+use rust_project_goals_json::Progress;
 
 pub struct Templates<'h> {
     reg: Handlebars<'h>,
@@ -11,7 +11,7 @@ pub struct Templates<'h> {
 
 impl<'h> Templates<'h> {
     pub fn new() -> anyhow::Result<Self> {
-        let templates = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../templates");
+        let templates = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../templates");
         Self::from_templates_dir(&templates)
     }
 
