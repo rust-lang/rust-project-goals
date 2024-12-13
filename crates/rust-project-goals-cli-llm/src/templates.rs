@@ -11,7 +11,7 @@ pub struct Templates<'h> {
 
 impl<'h> Templates<'h> {
     pub fn new() -> anyhow::Result<Self> {
-        let templates = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../templates");
+        let templates = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../templates");
         Self::from_templates_dir(&templates)
     }
 
