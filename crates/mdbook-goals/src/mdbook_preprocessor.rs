@@ -10,7 +10,10 @@ use mdbook::BookItem;
 use regex::{Captures, Regex};
 use rust_project_goals::util::GithubUserInfo;
 
-use rust_project_goals::{re, team, goal::{self, format_team_asks, GoalDocument, Status, TeamAsk}};
+use rust_project_goals::{
+    goal::{self, format_team_asks, GoalDocument, Status, TeamAsk},
+    re, team,
+};
 
 const LINKS: &str = "links";
 const LINKIFIERS: &str = "linkifiers";

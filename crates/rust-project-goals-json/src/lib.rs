@@ -1,5 +1,3 @@
-//! Generate JSON summarizing the tracking issues.
-//!
 //! This module contains types (e.g., [`TrackingIssues`]) that represent the
 //! external API that is used by the website
 //! and other tools to consume the tracking issue data. They are very similar

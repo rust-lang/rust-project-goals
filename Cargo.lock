@@ -2560,6 +2560,7 @@ dependencies = [
  "lazy_static",
  "regex",
  "reqwest",
+ "rust-project-goals-json",
  "rust_team_data",
  "serde",
  "serde_json",
@@ -2576,6 +2577,7 @@ dependencies = [
  "progress_bar",
  "regex",
  "rust-project-goals",
+ "rust-project-goals-json",
  "rust-project-goals-llm",
  "semver",
  "serde",
@@ -2597,10 +2599,18 @@ dependencies = [
  "handlebars",
  "progress_bar",
  "rust-project-goals",
+ "rust-project-goals-json",
  "rust-project-goals-llm",
  "serde",
  "serde_json",
  "tokio",
+]
+
+[[package]]
+name = "rust-project-goals-json"
+version = "0.1.0"
+dependencies = [
+ "serde",
 ]
 
 [[package]]

@@ -18,3 +18,4 @@ serde_json = "1.0.133"
 comrak = "0.31.0"
 progress_bar = "1.0.6"
 tokio = { version = "1.42.0", features = ["full"] }
+rust-project-goals-json = { version = "0.1.0", path = "../rust-project-goals-json" }

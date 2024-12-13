@@ -18,7 +18,6 @@ struct Opt {
 enum Command {
     /// Command used by mdbook to check if the preprocessor supports a renderer
     Supports { renderer: String },
-
 }
 
 fn main() -> anyhow::Result<()> {
