@@ -1,13 +1,15 @@
 use std::{
     collections::{BTreeMap, BTreeSet},
-    process::Command, str::FromStr,
+    process::Command,
+    str::FromStr,
 };
 
 use anyhow::Context;
 use chrono::NaiveDate;
+use rust_project_goals_json::{GithubIssueState, Progress};
 use serde::{Deserialize, Serialize};
 
-use crate::{json::{GithubIssueState, Progress}, re, util::comma};
+use crate::{re, util::comma};
 
 use super::{issue_id::Repository, labels::GhLabel};
 

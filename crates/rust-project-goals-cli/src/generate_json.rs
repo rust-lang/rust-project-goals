@@ -1,6 +1,10 @@
 use std::path::PathBuf;
 
-use rust_project_goals::{gh::{issue_id::Repository, issues::{checkboxes, list_issue_titles_in_milestone, ExistingGithubComment}}, json::{ TrackingIssue, TrackingIssueUpdate, TrackingIssues}};
+use rust_project_goals::gh::{
+    issue_id::Repository,
+    issues::{checkboxes, list_issue_titles_in_milestone, ExistingGithubComment},
+};
+use rust_project_goals_json::{TrackingIssue, TrackingIssueUpdate, TrackingIssues};
 
 pub(super) fn generate_json(
     repository: &Repository,

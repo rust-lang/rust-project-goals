@@ -7,10 +7,10 @@ use anyhow::Context;
 use regex::Regex;
 
 use crate::gh::issue_id::{IssueId, Repository};
+use crate::markwaydown::{self, Section, Table};
 use crate::re::USERNAME;
 use crate::team::{self, TeamName};
 use crate::util::{self, commas, markdown_files, ARROW};
-use crate::markwaydown::{self, Section, Table};
 
 /// Data parsed from a goal file in the expected format
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
@@ -231,7 +231,7 @@ pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> anyhow::Result<String>
 pub fn format_goal_table(goals: &[&GoalDocument]) -> anyhow::Result<String> {
     // If any of the goals have tracking issues, include those in the table.
     let goals_are_proposed = goals.iter().any(|g| g.metadata.status == Status::Proposed);
-    
+
     let mut table;
 
     if !goals_are_proposed {

@@ -1,19 +1,19 @@
 use anyhow::Context;
 use chrono::{Datelike, NaiveDate};
-use rust_project_goals::json::GithubIssueState;
+use rust_project_goals::util::comma;
+use rust_project_goals_json::GithubIssueState;
 use std::collections::BTreeMap;
 use std::io::Write;
 use std::path::Path;
 use std::process::{Command, Stdio};
-use rust_project_goals::util::comma;
 
-use rust_project_goals::gh::{
-    issue_id::{IssueId, Repository},
-    issues::{list_issue_titles_in_milestone, ExistingGithubComment, checkboxes},
-};
-use rust_project_goals::gh::issues::ExistingGithubIssue;
 use crate::llm::LargeLanguageModel;
 use crate::templates::{self, Updates, UpdatesGoal};
+use rust_project_goals::gh::issues::ExistingGithubIssue;
+use rust_project_goals::gh::{
+    issue_id::{IssueId, Repository},
+    issues::{checkboxes, list_issue_titles_in_milestone, ExistingGithubComment},
+};
 
 const QUICK_UPDATES: &[&str] = &[
     "Jack and Jill went up the hill",

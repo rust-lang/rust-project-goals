@@ -1,13 +1,13 @@
 use anyhow::{bail, Context};
 use clap::Parser;
 use regex::Regex;
+use rust_project_goals::gh::issue_id::Repository;
 use rust_project_goals_llm::UpdateArgs;
 use std::path::PathBuf;
 use walkdir::WalkDir;
-use rust_project_goals::gh::issue_id::Repository;
 
-mod rfc;
 mod generate_json;
+mod rfc;
 mod team_repo;
 
 #[derive(clap::Parser, Debug)]
@@ -74,7 +74,7 @@ enum Command {
     /// Collects updates
     Updates {
         #[command(flatten)]
-        updates: UpdateArgs
+        updates: UpdateArgs,
     },
 }
 
@@ -116,18 +116,18 @@ fn main() -> anyhow::Result<()> {
         } => {
             generate_json::generate_json(&opt.repository, &milestone, json_path)?;
         }
-        Command::Updates {updates } => {
+        Command::Updates { updates } => {
             // The updates command is compiled separately so that we don't have to
             // build all the LLM stuff if we are not using it.
             let status = std::process::Command::new("cargo")
-            .arg("run")
-            .arg("-p")
-            .arg("rust-project-goals-cli-llm")
-            .arg("-q")
-            .arg("--")
-            .arg(&opt.repository.to_string())
-            .arg(&serde_json::to_string(updates).unwrap())
-            .status()?;
+                .arg("run")
+                .arg("-p")
+                .arg("rust-project-goals-cli-llm")
+                .arg("-q")
+                .arg("--")
+                .arg(&opt.repository.to_string())
+                .arg(&serde_json::to_string(updates).unwrap())
+                .status()?;
             if !status.success() {
                 bail!("subcommand failed");
             }

@@ -1,4 +1,3 @@
-
 use anyhow::Context;
 use aws_config::{
     environment::EnvironmentVariableCredentialsProvider,
