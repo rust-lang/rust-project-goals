@@ -1,4 +1,4 @@
-name: Rust
+name: Validate markdown
 
 on:
   push:
