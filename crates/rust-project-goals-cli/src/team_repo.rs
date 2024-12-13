@@ -4,7 +4,7 @@ use std::process::Command;
 
 use anyhow::Context;
 
-use crate::{goal, team};
+use rust_project_goals::{goal, team};
 
 pub(crate) fn generate_team_repo(
     paths: &[std::path::PathBuf],

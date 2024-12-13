@@ -1,4 +1,4 @@
-name: Validate markdown
+name: Compile Rust code
 
 on:
   push:
@@ -16,6 +16,5 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - uses: extractions/setup-just@v2
     - name: Build and check
-      run: just check
+      run: cargo check --workspace

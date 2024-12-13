@@ -1,6 +1,3 @@
-//! Code to invoke a LLM to summarize content and generate blog posts.
-//! Currently based on AWS bedrock.
-
 use anyhow::Context;
 use aws_config::{
     environment::EnvironmentVariableCredentialsProvider,
