@@ -1,7 +1,7 @@
 use anyhow::{bail, Context};
 use clap::Parser;
 use regex::Regex;
-use rust_project_goals_llm::Updates;
+use rust_project_goals_llm::UpdateArgs;
 use std::path::PathBuf;
 use walkdir::WalkDir;
 use rust_project_goals::gh::issue_id::Repository;
@@ -74,7 +74,7 @@ enum Command {
     /// Collects updates
     Updates {
         #[command(flatten)]
-        updates: Updates
+        updates: UpdateArgs
     },
 }
 

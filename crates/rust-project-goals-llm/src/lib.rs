@@ -7,7 +7,7 @@ use serde::{Serialize, Deserialize};
 
 /// Updates struct
 #[derive(clap::Args, Debug, Serialize, Deserialize)]
-pub struct Updates {
+pub struct UpdateArgs {
       /// Milestone for which we generate tracking issue data (e.g., `2024h2`).
       pub milestone: String,
 
