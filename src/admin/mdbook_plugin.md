@@ -33,4 +33,4 @@ The placeholder <code>&lt;-- #GOALS --&gt;</code> will be replaced with the tota
 
 ### Goal listing
 
-The placeholder <code>&lt;-- GOALS '$Status' --&gt;</code> will insert a goal table listing goals of the given status `$Status`, e.g., <code>&lt;-- GOALS 'Flagship' --&gt;</code>. You can also list multiple status items, e.g., <code>&lt;-- GOALS 'Accepted,Orphaned' --&gt;</code>
+The placeholder <code>&lt;-- GOALS '$Status' --&gt;</code> will insert a goal table listing goals of the given status `$Status`, e.g., <code>&lt;-- GOALS 'Flagship' --&gt;</code>. You can also list multiple status items, e.g., <code>&lt;-- GOALS 'Accepted,Proposed' --&gt;</code>
