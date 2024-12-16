@@ -4,11 +4,23 @@ use std::{fmt::Display, path::Path};
 
 use crate::util;
 
+/// A "section" is a piece of markdown that begins with `##` and which extends until the next section.
+/// Note that we don't track the hierarchical structure of sections in particular.
 #[derive(Debug)]
 pub struct Section {
+    /// Line numberin the document
     pub line_num: usize,
+
+    /// Number of hashes
+    pub level: usize,
+
+    /// Title of the section -- what came after the `#` in the markdown.
     pub title: String,
+
+    /// Markdown text until start of next section, excluding tables
     pub text: String,
+
+    /// Tables are parsed and stored here
     pub tables: Vec<Table>,
 }
 
@@ -30,10 +42,11 @@ pub fn parse(path: &Path) -> anyhow::Result<Vec<Section>> {
         // eprintln!("line = {:?}", line);
         // eprintln!("categorized = {:?}", categorized);
         match categorized {
-            CategorizeLine::Title(title) => {
+            CategorizeLine::Title(level, title) => {
                 close_section(&mut result, &mut open_section, &mut open_table);
                 open_section = Some(Section {
                     line_num,
+                    level,
                     title,
                     text: String::new(),
                     tables: vec![],
@@ -131,7 +144,7 @@ fn close_section(
 
 #[derive(Debug)]
 enum CategorizeLine {
-    Title(String),
+    Title(usize, String),
     TableRow(Vec<String>),
     TableDashRow(usize),
     Other,
@@ -139,7 +152,8 @@ enum CategorizeLine {
 
 fn categorize_line(line: &str) -> CategorizeLine {
     if line.starts_with('#') {
-        CategorizeLine::Title(line.trim_start_matches('#').trim().to_string())
+        let level = line.chars().take_while(|&ch| ch == '#').count();
+        CategorizeLine::Title(level, line.trim_start_matches('#').trim().to_string())
     } else if line.starts_with('|') && line.ends_with('|') {
         let line = &line[1..line.len() - 1];
         let columns = line.split('|').map(|s| s.trim());
