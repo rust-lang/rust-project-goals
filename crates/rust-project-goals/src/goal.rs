@@ -117,7 +117,7 @@ impl GoalDocument {
         let link_path = Arc::new(link_path.to_path_buf());
 
         let plan_items = match metadata.status {
-            Status::Flagship | Status::Accepted | Status::Proposed | Status::Orphaned => {
+            Status::Flagship | Status::Accepted | Status::Proposed => {
                 extract_plan_items(&sections)?
             }
             Status::NotAccepted => vec![],
@@ -153,7 +153,7 @@ impl GoalDocument {
     /// True if this goal is a candidate (may yet be accepted)
     pub fn is_not_not_accepted(&self) -> bool {
         match self.metadata.status {
-            Status::Flagship | Status::Accepted | Status::Proposed | Status::Orphaned => true,
+            Status::Flagship | Status::Accepted | Status::Proposed => true,
             Status::NotAccepted => false,
         }
     }
@@ -298,7 +298,6 @@ pub enum Status {
     Flagship,
     Accepted,
     Proposed,
-    Orphaned,
     NotAccepted,
 }
 
@@ -310,7 +309,6 @@ impl TryFrom<&str> for Status {
             ("Flagship", Status::Flagship),
             ("Accepted", Status::Accepted),
             ("Proposed", Status::Proposed),
-            ("Orphaned", Status::Orphaned),
             ("Not accepted", Status::NotAccepted),
         ];
 
