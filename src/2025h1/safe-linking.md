@@ -110,9 +110,8 @@ safe cross-language linking.
 | Mentoring and interfacing with Rust project | Mara, Jonathan                               |                                |
 | Blog post (author, review)                  | MSc student, Jonathan, Mara                  |                                |
 | Experimental implementation                 | Msc student                                  |                                |
-| ↳ Mentoring                                 | Jonathan, Mara                               |                                |
-| ↳ Lang-team experiment                      | ![Team][] [lang]                             | @nikomatsakis as liaison       |
-| ↳ Standard reviews                          | ![Team][] [compiler]                         |                                |
+| Lang-team experiment                        | ![Team][] [lang]                             | @nikomatsakis as liaison       |
+| Standard reviews                            | ![Team][] [compiler]                         |                                |
 | Thesis / Paper                              | Research team (MSc student, professor, etc.) |                                |
 
 ## Frequently asked questions

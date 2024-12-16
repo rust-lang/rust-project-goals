@@ -1,7 +1,7 @@
 # build-std
 
 | Metadata |                  |
-| -------- | ---------------- |
+|----------|------------------|
 | Owner(s) | Rust team at Arm |
 | Teams    | [cargo]          |
 | Status   | Proposed         |
@@ -115,13 +115,12 @@ which can be designed and implemented to complete the build-std feature.
 
 ## Ownership and team asks
 
-| Subgoal                                        | Owner(s) or team(s)  | Notes |
-| ---------------------------------------------- | -------------------- | ----- |
-| Discussion and moral support                   | ![Team][] [cargo]    |       |
-| Stabilise MVP of build-std                     | @adamgemmell         |       |
-| ↳ Author RFC                                   | @adamgemmell         |       |
-| ↳ Implementation                               | @adamgemmell         |       |
-| ↳ Standard reviews                             | ![Team][] [cargo]    |       |
+| Subgoal                      | Owner(s) or team(s) | Notes |
+|------------------------------|---------------------|-------|
+| Discussion and moral support | ![Team][] [cargo]   |       |
+| Author RFC                   | @adamgemmell        |       |
+| Implementation               | @adamgemmell        |       |
+| Standard reviews             | ![Team][] [cargo]   |       |
 
 ### Definitions
 
