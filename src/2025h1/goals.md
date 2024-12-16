@@ -16,6 +16,6 @@ Flagship goals represent the goals expected to have the broadest overall impact.
 
 These are the other proposed goals. 
 
-**Orphaned goals.** Some goals here are marked with the ![Help wanted][] badge for their owner. These goals are called "orphaned goals". Teams have reserved some capacity to pursue these goals but until an appropriate owner is found they are only considered provisionally accepted. If you are interested in serving as the owner for one of these orphaned goals, reach out to the mentor listed in the goal to discuss.
+**Invited goals.** Some goals of the goals below are "invited goals", meaning that for that goal to happen we need someone to step up and serve as an owner. To find the invited goals, look for the ![Help wanted][] badge in the table below. Invited goals have reserved capacity for teams and a mentor, so if you are someone looking to help Rust progress, they are a great way to get involved.
 
-<!-- GOALS 'Accepted,Proposed,Orphaned' -->
+<!-- GOALS 'Accepted,Proposed' -->
