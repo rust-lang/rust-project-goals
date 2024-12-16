@@ -58,7 +58,7 @@ Some subgoals list an expected due/completion date. If one is omitted, compeleti
 | ↳Author Proposal for specifics of FLS integration     | Connor Horman       | Mid-Late Februrary 2025                 |
 | ↳Review, iterate, and accept Integration Proposal     | ![Team][] [spec]    | End of March 2025                       |
 | ↳Adjust Tooling, as needed                            | Connor Horman       | April 2025                              |
-| ↳Merge one Chapter from the Reference                 | Connor Horman       |                                         |
+| ↳Begin implementing the integration Proposal          | Connor Horman       |                                         |
 | Integrate FLS into release process                    | ![Team][] [release]|                                         |
 | ↳Discuss requirements with T-release                  |                     | Februrary 2025                          |
 | ↳Link tooling used with FLS to the release process    |                     | April 2025                              |
