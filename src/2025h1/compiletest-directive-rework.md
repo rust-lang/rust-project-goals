@@ -94,19 +94,16 @@ but AFAIK is (in practice) currently not really actively maintained by anyone el
 team asks are probably mostly [compiler] for feedback on their use cases (as a test infra consumer)
 and [bootstrap] for implementation review.
 
-| Subgoal                                              | Owner(s) or team(s)                         | Notes                                                                                          |
-|------------------------------------------------------|---------------------------------------------|------------------------------------------------------------------------------------------------|
-| General discussion and moral support                 | ![Team][] [bootstrap], ![Team][] [compiler] |                                                                                                |
-| Consultations for desired test behaviors             | ![Team][] [compiler], ![Team][] [rustdoc]   | Test infra consumers                                                                           |
-| Experimental prototype[^1]                           |                                             | To see how approaches look like and gain experience/feedback                                   |
-| ↳ Discussion and moral support                       | ![Team][] [bootstrap], ![Team][] [compiler] |                                                                                                |
-| ↳ Implementation                                     | [@jieyouxu]                                 |                                                                                                |
-| ↳ Standard reviews                                   | ![Team][] [bootstrap], ![Team][] [compiler] | Probably mostly [bootstrap] or whoever is more interested in reviewing [`compiletest`] changes |
-| [`compiletest`] changes w/ experience from prototype |                                             |                                                                                                |
-| ↳ Discussion and moral support                       | ![Team][] [bootstrap], ![Team][] [compiler] |                                                                                                |
-| ↳ Implementation                                     | [@jieyouxu]                                 |                                                                                                |
-| ↳ Standard reviews                                   | ![Team][] [bootstrap], ![Team][] [compiler] | Probably mostly [bootstrap] or whoever is more interested in reviewing [`compiletest`] changes |
-| Inside Rust blog post for project outcome            | ![Team][] [bootstrap], ![Team][] [compiler] |                                                                                                |
+| Subgoal                                              | Owner(s) or team(s)                          | Notes                                                                                          |
+|------------------------------------------------------|----------------------------------------------|------------------------------------------------------------------------------------------------|
+| Discussion and moral support                         | ![Team][] [bootstrap], [compiler], [rustdoc] | including consultations for desired test behaviors and testing infra consumers                 |
+| Experimental prototype[^1]                           |                                              | to see how approaches look like and gain experience/feedback                                   |
+| ↳ Implementation                                     | @jieyouxu                                    |                                                                                                |
+| ↳ Standard reviews                                   | ![Team][] [bootstrap], ![Team][] [compiler]  | Probably mostly [bootstrap] or whoever is more interested in reviewing [`compiletest`] changes |
+| [`compiletest`] changes w/ experience from prototype |                                              |                                                                                                |
+| ↳ Implementation                                     | @jieyouxu                                    |                                                                                                |
+| ↳ Standard reviews                                   | ![Team][] [bootstrap], ![Team][] [compiler]  | Probably mostly [bootstrap] or whoever is more interested in reviewing [`compiletest`] changes |
+| Inside Rust blog post for project outcome            | @jieyouxu                                    |                                                                                                |
 
 [^1]: I want to start with an out-of-tree experimental prototype to see how the pieces are fit
     together to make it easier to rapidly iterate and receive feedback without having to mess with

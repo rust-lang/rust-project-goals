@@ -1,10 +1,10 @@
 # Field Projections
 
-| Metadata |                                                              |
-| -------- | ------------------------------------------------------------ |
-| Owner(s) | @y86-dev                                                     |
-| Teams    | [lang], [libs], [compiler]                                   |
-| Status   | Proposed                                                     |
+| Metadata |                            |
+|----------|----------------------------|
+| Owner(s) | @y86-dev                   |
+| Teams    | [lang], [libs], [compiler] |
+| Status   | Proposed                   |
 
 ## Summary
 
@@ -183,14 +183,14 @@ feel similar to using field access today.
 
 **Owner:** @y86-dev
 
-| Subgoal                                        | Owner(s) or team(s)        | Notes |
-| ---------------------------------------------- | -------------------------- | ----- |
-| Accept [Field Projections RFC]                 |                            |       |
-| ↳ Design meeting                               | ![Team][] [lang] |       |
-| ↳ RFC decisions                                | ![Team][] [lang]           |       |
-| Nightly Implementation for Field Projections   |                            |       |
-| ↳ Implementation                               | ![Help wanted][], @y86-dev |       |
-| ↳ Standard reviews                             | ![Team][] [compiler]       |       |
+| Subgoal                                      | Owner(s) or team(s)        | Notes |
+|----------------------------------------------|----------------------------|-------|
+| Accept [Field Projections RFC]               |                            |       |
+| ↳ Design meeting                             | ![Team][] [lang]           |       |
+| ↳ RFC decision                               | ![Team][] [lang]           |       |
+| Nightly Implementation for Field Projections |                            |       |
+| ↳ Implementation                             | ![Help wanted][], @y86-dev |       |
+| ↳ Standard reviews                           | ![Team][] [compiler]       |       |
 
 ### Definitions
 

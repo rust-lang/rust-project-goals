@@ -1,10 +1,10 @@
 # rustc-perf improvements
 
-| Metadata |                                                              |
-| -------- | ------------------------------------------------------------ |
-| Owner(s) | Rust team at Arm, @kobzol                                    |
-| Teams    | [infra], [compiler]                                          |
-| Status   | Proposed                                                     |
+| Metadata |                           |
+|----------|---------------------------|
+| Owner(s) | Rust team at Arm, @kobzol |
+| Teams    | [infra], [compiler]       |
+| Status   | Proposed                  |
 
 *Arm's Rust team is @davidtwco, @adamgemmell, @jacobbramley, @JamieCunliffe and @Jamesbarford.
 This goal will be primarily worked on by @Jamesbarford, but @davidtwco can always be contacted for
@@ -67,17 +67,18 @@ will be added to rustc-perf, but this is unlikely to warrant further goals.
 
 ## Ownership and team asks
 
-| Subgoal                                        | Owner(s) or team(s)     | Notes |
-| ---------------------------------------------- | ----------------------- | ----- |
-| Discussion and moral support                   | ![Team][] [infra]       |       |
-| Set-up testing infrastructure                  | ![Team][] [infra]       |       |
-| Improve rustc-perf                             |                         |       |
-| ↳ Implementation                               | @Jamesbarford           |       |
-| ↳ Standard reviews                             | ![Team][] [infra]       |       |
-| Deploy rustc-perf improvements                 | ![Team][] [infra]       |       |
-| Update performance regression policy           | ![Team][] [compiler]    |       |
-| ↳ Draft policy and discuss with team           | @davidtwco              |       |
-| Inside Rust blog post announcing improvements  | ![Team][] [infra]       |       |
+| Subgoal                                       | Owner(s) or team(s)  | Notes                                |
+|-----------------------------------------------|----------------------|--------------------------------------|
+| Discussion and moral support                  | ![Team][] [infra]    |                                      |
+| Deploy to production                          | ![Team][] [infra]    | Set-up testing infrastructure        |
+| Improve rustc-perf                            |                      |                                      |
+| ↳ Implementation                              | @Jamesbarford        |                                      |
+| ↳ Standard reviews                            | ![Team][] [infra]    |                                      |
+| ↳ Deploy to production                        | ![Team][] [infra]    | rustc-perf improvements              |
+| Performance regression policy                 |                      |                                      |
+| ↳ Draft policy and discuss with team          | @davidtwco           |                                      |
+| ↳ Policy decision                             | ![Team][] [compiler] | Update performance regression policy |
+| Inside Rust blog post announcing improvements | @davidtwco           |                                      |
 
 ### Definitions
 

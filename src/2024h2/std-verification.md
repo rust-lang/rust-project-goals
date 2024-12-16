@@ -124,7 +124,7 @@ semantics will lower the barrier for users to understand and be able to write th
 | Subgoal                            | Owner(s) or team(s)  | Notes                                                                 |
 |------------------------------------|----------------------|-----------------------------------------------------------------------|
 | Discussion and moral support       | ![Team][] [libs][]   |                                                                       |
-| Standard review                    | ![Team][] [libs][]   | We would like to contribute upstream the contracts added to the fork. |
+| Standard reviews                    | ![Team][] [libs][]   | We would like to contribute upstream the contracts added to the fork. |
 | Problem proposals                  | Help Wanted          |                                                                       |
 | Fork maintenance                   | @celinval, @jaisnan  |                                                                       |
 | Fork PR Reviews                    | [Own Committee]      | We are gathering a few contributors with expertise knowledge.         |

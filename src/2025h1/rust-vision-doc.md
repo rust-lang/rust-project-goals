@@ -100,12 +100,12 @@ We also expect that the Vision Doc template may be useful in other more narrow c
 
 ## Ownership and team asks
 
-| Subgoal                                                | Owner(s) or team(s)            | Notes |
-|--------------------------------------------------------|--------------------------------|-------|
-| Select support team members                            | @nikomatsakis                  |       |
-| Create supporting subteam + Zulip stream               | ![Team][] [leadership-council] |       |
-| Gathering of status quo stories                        | vision team                    |       |
-| Prepare draft of RFC to be presented at Rust all hands | vision team                    |       |
+| Subgoal                                                | Owner(s) or team(s)            | Notes                                    |
+|--------------------------------------------------------|--------------------------------|------------------------------------------|
+| Select support team members                            | @nikomatsakis                  |                                          |
+| Miscellaneous                                          | ![Team][] [leadership-council] | Create supporting subteam + Zulip stream |
+| Gathering of status quo stories                        | vision team                    |                                          |
+| Prepare draft of RFC to be presented at Rust all hands | vision team                    |                                          |
 
 ### Definitions
 
