@@ -66,13 +66,13 @@ unless users opt-in for contract runtime checks.
 
 **Owner:** @celinval and @tautschnig
 
-| Subgoal                      | Owner(s) or team(s) | Notes |
+| Task                         | Owner(s) or team(s) | Notes |
 |------------------------------|---------------------|-------|
 | Discussion and moral support | ![Team][] [libs]    |       |
 
 ### Experimental Contract attributes
 
-| Subgoal          | Owner(s) or team(s)  | Notes                                   |
+| Task             | Owner(s) or team(s)  | Notes                                   |
 |------------------|----------------------|-----------------------------------------|
 | Author MCP       |                      | ![Complete][] Done already by @pnkfelix |
 | Implementation   | @celinval            | In progress.                            |
@@ -81,7 +81,7 @@ unless users opt-in for contract runtime checks.
 
 ### Standard Library Contracts
 
-| Subgoal                    | Owner(s) or team(s)    | Notes |
+| Task                       | Owner(s) or team(s)    | Notes |
 |----------------------------|------------------------|-------|
 | Standard Library Contracts | @celinval, @tautschnig |       |
 | Writing new contracts      | Help wanted            |       |

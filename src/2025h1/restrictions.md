@@ -40,7 +40,7 @@ high level, but are not the focus of this project goal.
 
 **Owner:** @jhpratt
 
-| Subgoal                                 | Owner(s) or team(s)  | Notes                                      |
+| Task                                    | Owner(s) or team(s)  | Notes                                      |
 |-----------------------------------------|----------------------|--------------------------------------------|
 | Discussion and moral support            | ![Team][] [lang]     |                                            |
 | Implementation                          | @jhpratt             | [old PR][pr] is plausibly workable         |

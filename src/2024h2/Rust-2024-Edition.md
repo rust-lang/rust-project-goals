@@ -51,7 +51,7 @@ The "Edition Axioms" were [laid out in RFC #3085](https://rust-lang.github.io/rf
 
 **Owner:** @traviscross
 
-| Subgoal                  | Owner(s) or team(s)            | Notes                       |
+| Task                     | Owner(s) or team(s)            | Notes                       |
 | ------------------------ | ------------------------------ | --------------------------- |
 | RFC decision             | ![Team][] [leadership-council] | ![Complete][] ([RFC #3501]) |
 | Stabilization decision   | ![Team][] [lang] [types]       |                             |

@@ -87,7 +87,7 @@ Resources: Domain and CI for the autodiff work is being provided by MIT. This mi
 
 Minimal "smoke test" reviews will be needed from the compiler-team. The Rust language changes at this stage are expected to be a minimal wrapper around the underlying LLVM functionality and the compiler team need only vet that the feature will not hinder usability for ordinary Rust users or cause undue burden on the compiler architecture itself. There is no requirement to vet the quality or usability of the design.
 
-| Subgoal              | Owner(s) or team(s)    | Notes      |
+| Task                 | Owner(s) or team(s)    | Notes      |
 | -------------------- | ---------------------- | ---------- |
 | Development          | @ZuseZ4                |            |
 | Lang-team experiment | ![Team][] [lang][]     | (approved) |

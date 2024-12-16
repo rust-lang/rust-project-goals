@@ -129,7 +129,7 @@ could reserve such syntax in all editions.
 **Owner / Responsible Reporting Party:** @joshtriplett
 
 
-| Subgoal                                          | Owner(s) or team(s) | Notes                                                                                      |
+| Task                                             | Owner(s) or team(s) | Notes                                                                                      |
 |--------------------------------------------------|---------------------|--------------------------------------------------------------------------------------------|
 | Discussion and moral support                     | ![Team][] [lang]    |                                                                                            |
 | Propose discussion session at RustWeek           | @joshtriplett       |                                                                                            |
@@ -139,7 +139,7 @@ could reserve such syntax in all editions.
 
 ### Design for `macro_rules!` attributes/derives
 
-| Subgoal                                | Owner(s) or team(s) | Notes |
+| Task                                   | Owner(s) or team(s) | Notes |
 |----------------------------------------|---------------------|-------|
 | Author/revise/iterate RFCs             | @joshtriplett       |       |
 | Prioritized nominations                | ![Team][] [lang]    |       |
@@ -150,7 +150,7 @@ could reserve such syntax in all editions.
 
 ### Design and iteration for macro fragment fields
 
-| Subgoal                                       | Owner(s) or team(s)          | Notes |
+| Task                                          | Owner(s) or team(s)          | Notes |
 |-----------------------------------------------|------------------------------|-------|
 | Author initial RFC                            | @joshtriplett                |       |
 | Design meeting                                | ![Team][] [lang]             |       |
@@ -163,7 +163,7 @@ could reserve such syntax in all editions.
 
 ### Design for macro metavariable constructs
 
-| Subgoal                         | Owner(s) or team(s)          | Notes |
+| Task                            | Owner(s) or team(s)          | Notes |
 |---------------------------------|------------------------------|-------|
 | Design research and discussions | @joshtriplett                |       |
 | Discussion and moral support    | ![Team][] [lang] [wg-macros] |       |

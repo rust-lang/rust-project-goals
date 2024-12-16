@@ -51,7 +51,7 @@ Repeating an event tends to be much easier than organising one from scratch.
 
 **Owner:** Mara
 
-| Subgoal                                   | Owner(s) or team(s)            | Notes                                                             |
+| Task                                      | Owner(s) or team(s)            | Notes                                                             |
 |-------------------------------------------|--------------------------------|-------------------------------------------------------------------|
 | Pick the dates                            | [RustNL], [leadership-council] | ![Complete][]                                                     |
 | Allocate funds                            | ![Team][] [leadership-council] | ![Complete][] for event                                           |
@@ -75,14 +75,14 @@ Repeating an event tends to be much easier than organising one from scratch.
 
 ### Team swag
 
-| Subgoal       | Owner(s) or team(s)            | Notes                                          |
+| Task          | Owner(s) or team(s)            | Notes                                          |
 |---------------|--------------------------------|------------------------------------------------|
 | Miscellaneous | ![Team][] [leadership-council] | Decide on team swag; suggestions very welcome! |
 | Acquire swag  | [RustNL]                       |                                                |
 
 ### Make plans for what to do at the all-hands
 
-| Subgoal                                  | Owner(s) or team(s)        | Notes                                          |
+| Task                                     | Owner(s) or team(s)        | Notes                                          |
 |------------------------------------------|----------------------------|------------------------------------------------|
 | Gather input from your teams             | *team leads* (or delegate) |                                                |
 | Provide input for planning team          | *team leads* (or delegate) |                                                |
@@ -92,7 +92,7 @@ Repeating an event tends to be much easier than organising one from scratch.
 
 ### Organise an optional "pre all-hands day"
 
-| Subgoal                 | Owner(s) or team(s) | Notes                                                               |
+| Task                    | Owner(s) or team(s) | Notes                                                               |
 |-------------------------|---------------------|---------------------------------------------------------------------|
 | Organisation            | Mara, [RustNL]      | An optional day without an agenda, with space for social activities |
 | Acquire gifts (secret!) | Mara                | ![Complete][]                                                       |

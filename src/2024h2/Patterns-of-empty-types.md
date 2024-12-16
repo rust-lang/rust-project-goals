@@ -95,7 +95,7 @@ already for several months.
   the compiler team, but not more than the ordinary.
 
 
-| Subgoal                      | Owner(s) or team(s)  | Notes |
+| Task                         | Owner(s) or team(s)  | Notes |
 | ---------------------------- | -------------------- | ----- |
 | Author RFC                   | @Nadrieril           |       |
 | Implementation               | @Nadrieril           |       |

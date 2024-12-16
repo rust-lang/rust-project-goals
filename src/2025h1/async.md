@@ -83,13 +83,13 @@ This section defines the specific work items that are planned and who is expecte
 
 ### Overall program management
 
-| Subgoal              | Owner(s) or team(s) | Notes |
+| Task                 | Owner(s) or team(s) | Notes |
 |----------------------|---------------------|-------|
 | AFIT story blog post | @tmandry            |       |
 
 ### Return type notation
 
-| Subgoal                 | Owner(s) or team(s)          | Notes         |
+| Task                    | Owner(s) or team(s)          | Notes         |
 |-------------------------|------------------------------|---------------|
 | Initial implementation  | @compiler-errors             | ![Complete][] |
 | Author RFC              | @nikomatsakis                | ![Complete][] |
@@ -100,7 +100,7 @@ This section defines the specific work items that are planned and who is expecte
 
 ### Implementable trait aliases
 
-| Subgoal          | Owner(s) or team(s)          | Notes |
+| Task             | Owner(s) or team(s)          | Notes |
 |------------------|------------------------------|-------|
 | Author RFC       | @tmandry                     |       |
 | Implementation   | @compiler-errors             |       |
@@ -109,7 +109,7 @@ This section defines the specific work items that are planned and who is expecte
 
 ### Pin reborrowing
 
-| Subgoal        | Owner(s) or team(s) | Notes |
+| Task           | Owner(s) or team(s) | Notes |
 |----------------|---------------------|-------|
 | Implementation | @eholk              |       |
 | Author RFC     | @eholk              |       |
@@ -117,7 +117,7 @@ This section defines the specific work items that are planned and who is expecte
 
 ### Trait for generators (sync)
 
-| Subgoal        | Owner(s) or team(s)         | Notes               |
+| Task           | Owner(s) or team(s)         | Notes               |
 |----------------|-----------------------------|---------------------|
 | Implementation | @eholk                      |                     |
 | Author RFC     |                             |                     |
@@ -126,7 +126,7 @@ This section defines the specific work items that are planned and who is expecte
 
 ### Trait for async iteration
 
-| Subgoal        | Owner(s) or team(s)         | Notes               |
+| Task           | Owner(s) or team(s)         | Notes               |
 |----------------|-----------------------------|---------------------|
 | Author RFC     |                             |                     |
 | RFC decision   | ![Team][] [libs-api] [lang] |                     |
@@ -135,7 +135,7 @@ This section defines the specific work items that are planned and who is expecte
 
 ### Dynosaur 1.0
 
-| Subgoal                       | Owner(s) or team(s)            | Notes                 |
+| Task                          | Owner(s) or team(s)            | Notes                 |
 |-------------------------------|--------------------------------|-----------------------|
 | Implementation                | @spastorino                    |                       |
 | Standard reviews              | @tmandry                       |                       |

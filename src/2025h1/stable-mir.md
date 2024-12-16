@@ -67,7 +67,7 @@ fostering innovation and reducing bottlenecks.
 ## Ownership and team asks
 
 
-| Subgoal                      | Owner(s) or team(s)            | Notes |
+| Task                         | Owner(s) or team(s)            | Notes |
 |------------------------------|--------------------------------|-------|
 | Discussion and moral support | ![Team][] [compiler]           |       |
 | Implementation               | @celinval                      |       |

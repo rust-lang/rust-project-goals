@@ -432,7 +432,7 @@ fn goal_plan(subgoal: Option<String>, section: &Section) -> anyhow::Result<Optio
         0 => Ok(None),
         1 => {
             let table = &section.tables[0];
-            expect_headers(table, &["Subgoal", "Owner(s) or team(s)", "Notes"])?;
+            expect_headers(table, &["Task", "Owner(s) or team(s)", "Notes"])?;
         
             let mut rows = table.rows.iter().peekable();
             let mut plan_items = vec![];

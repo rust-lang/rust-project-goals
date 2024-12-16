@@ -7,7 +7,7 @@
 > designed to help you get started. 
 
 | Metadata |                                                              |
-| -------- | ------------------------------------------------------------ |
+|----------|--------------------------------------------------------------|
 | Owner(s) | *Github usernames or other identifying info for goal owners* |
 | Teams    | *Names of teams being asked to commit to the goal*           |
 | Status   | Proposed                                                     |
@@ -44,27 +44,28 @@
 
 **Owner:** *Identify a specific person or small group of people if possible, else the group that will provide the owner. Github user names are commonly used to remove ambiguity.*
 
-*This section defines the specific work items that are planned and who is expected to do them. It should also include what will be needed from Rust teams. The table below shows some common sets of asks and work, but feel free to adjust it as needed. Every row in the table should either correspond to something done by a contributor or something asked of a team. For items done by a contributor, list the contributor, or ![Heap wanted][] if you don't yet know who will do it. For things asked of teams, list ![Team][] and the name of the team. The things typically asked of teams are defined in the [Definitions](#definitions) section below.*
+*This section lists out the work to be done and the asks from Rust teams. Every row in the table should either correspond to something done by a contributor or something asked of a team. For items done by a contributor, list the contributor, or ![Heap wanted][] if you don't yet know who will do it. For things asked of teams, list ![Team][] and the name of the team, e.g. `![Team][] [compiler]` or `![Team][] [compiler], [lang]` (note the trailing `[]` in `![Team][]`, that is needed for markdown to parse correctly). For team asks, the "task" must be one of the tasks defined in [rust-project-goals.toml](../rust-project-goals.toml) or `cargo rpg check` will error.*
 
-| Subgoal                                        | Owner(s) or team(s)     | Notes |
-| ---------------------------------------------- | ----------------------- | ----- |
-| Discussion and moral support                   | ![Team][] [cargo]       |       |
-| Stabilize Feature X (typical language feature) |                         |       |
-| ↳ Author RFC                                   | *Goal owner, typically* |       |
-| ↳ Implementation                               | *Goal owner, typically* |       |
-| ↳ Standard reviews                             | ![Team][] [compiler]    |       |
-| ↳ Design meeting                               | ![Team][] [lang]        |       |
-| ↳ RFC decision                                 | ![Team][] [lang]        |       |
-| ↳ Secondary RFC review                         | ![Team][] [lang]        |       |
-| ↳ Author stabilization report                  | *Goal owner, typically* |       |
-| ↳ Stabilization decision                       | ![Team][] [lang]        |       |
-| Nightly experiment for X                       |                         | pla   |
-| ↳ Lang-team experiment                         | ![Team][] [lang]        |       |
-| ↳ Author RFC                                   | *Goal owner, typically* |       |
-| ↳ Implementation                               | *Goal owner, typically* |       |
-| ↳ Standard reviews                             | ![Team][] [compiler]    |       |
-| Inside Rust blog post inviting feedback        | ![Team][] (any team)    |       |
-| Top-level Rust blog post inviting feedback     | ![Team][] [leadership-council]          |       |
+| Task                         | Owner(s) or team(s) | Notes |
+|------------------------------|---------------------|-------|
+| Discussion and moral support | ![Team][] [cargo]   |       |
+| Do the work                  | *owner*             |       |
+
+### Stabilize feature X
+
+*If you have a complex goal, you can include subsections for different parts of it, each with their own table. Must goals do not need this and can make do with a single table. The table in this section also lists the full range of "asks" for a typical language feature; feel free to copy some subset of them into your main table if you are primarily proposing a single feature (note that most features don't need all the entries below).*
+
+| Task                        | Owner(s) or team(s)     | Notes                                                         |
+|-----------------------------|-------------------------|---------------------------------------------------------------|
+| Lang-team experiment        | ![Team][] [lang]        | allows coding pre-RFC; only for trusted contributors          |
+| Author RFC                  | *Goal owner, typically* |                                                               |
+| Implementation              | *Goal owner, typically* |                                                               |
+| Standard reviews            | ![Team][] [compiler]    |                                                               |
+| Design meeting              | ![Team][] [lang]        |                                                               |
+| RFC decision                | ![Team][] [lang]        |                                                               |
+| Secondary RFC review        | ![Team][] [lang]        | most features don't need this                                 |
+| Author stabilization report | *Goal owner, typically* |                                                               |
+| Stabilization decision      | ![Team][] [lang]        | it's rare to author rfc, implement, AND stabilize in 6 months |
 
 ### Definitions
 

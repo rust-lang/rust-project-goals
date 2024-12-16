@@ -77,7 +77,7 @@ More concretely, assuming this goal program is successful, we would like to begi
 
 * @nikomatsakis can commit 20% time (avg of 1 days per week) to pursue this task, which he estimates to be sufficient.
 
-| Subgoal                                    | Owner(s) or team(s)            | Notes                                                                                     |
+| Task                                       | Owner(s) or team(s)            | Notes                                                                                     |
 | ------------------------------------------ | ------------------------------ | ----------------------------------------------------------------------------------------- |
 | RFC decision                               | ![Team][] [leadership-council] | ![Complete][]                                                                             |
 | Inside Rust blog post inviting feedback    |                                | [Posted](https://blog.rust-lang.org/inside-rust/2024/05/07/announcing-project-goals.html) |

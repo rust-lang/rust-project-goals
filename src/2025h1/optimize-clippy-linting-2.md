@@ -53,7 +53,7 @@ A developer shouldn't have to get a high-end machine to run a compiler swiftly; 
 
 **Owner:** @blyxyas
 
-| Subgoal           | Owner(s) or team(s)  | Notes |
+| Task              | Owner(s) or team(s)  | Notes |
 |-------------------|----------------------|-------|
 | Implementation    | @blyxyas, @Alexendoo |       |
 | Standard reviews  | ![Team][] [clippy]   |       |

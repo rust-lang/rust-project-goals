@@ -67,7 +67,7 @@ will be added to rustc-perf, but this is unlikely to warrant further goals.
 
 ## Ownership and team asks
 
-| Subgoal                                       | Owner(s) or team(s)  | Notes                                           |
+| Task                                          | Owner(s) or team(s)  | Notes                                           |
 |-----------------------------------------------|----------------------|-------------------------------------------------|
 | Discussion and moral support                  | ![Team][] [infra]    |                                                 |
 | Improve rustc-perf implementation work        | @Jamesbarford        |                                                 |
