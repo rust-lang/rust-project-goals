@@ -186,7 +186,7 @@ feel similar to using field access today.
 | Subgoal                                        | Owner(s) or team(s)        | Notes |
 | ---------------------------------------------- | -------------------------- | ----- |
 | Accept [Field Projections RFC]                 |                            |       |
-| ↳ Design meeting                               | @y86-dev, ![Team][] [lang] |       |
+| ↳ Design meeting                               | ![Team][] [lang] |       |
 | ↳ RFC decisions                                | ![Team][] [lang]           |       |
 | Nightly Implementation for Field Projections   |                            |       |
 | ↳ Implementation                               | ![Help wanted][], @y86-dev |       |
