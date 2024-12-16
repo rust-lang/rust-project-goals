@@ -100,7 +100,7 @@ We also expect that the Vision Doc template may be useful in other more narrow c
 
 ## Ownership and team asks
 
-| Subgoal                                                | Owner(s) or team(s)            | Notes                                    |
+| Task                                                   | Owner(s) or team(s)            | Notes                                    |
 |--------------------------------------------------------|--------------------------------|------------------------------------------|
 | Select support team members                            | @nikomatsakis                  |                                          |
 | Miscellaneous                                          | ![Team][] [leadership-council] | Create supporting subteam + Zulip stream |

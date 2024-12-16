@@ -45,7 +45,7 @@ I (@eh2406) will be working full time on this effort. I am a member of the Cargo
 
 Integrating the new resolver into Cargo and reaching the shiny future will require extensive collaboration and review from the Cargo Team. However, the next milestones involve independent work exhaustively searching for differences in behavior between the new and old resolvers and fixing them. So only occasional consultation-level conversations will be needed during this proposal.
 
-| Subgoal                                | Owner(s) or team(s) | Notes |
+| Task                                   | Owner(s) or team(s) | Notes |
 | -------------------------------------- | ------------------- | ----- |
 | Implementation work on pubgrub library | eh2046              |       |
 | Discussion and moral support           | ![Team] [cargo]     |       |

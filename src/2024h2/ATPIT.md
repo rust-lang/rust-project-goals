@@ -60,7 +60,7 @@ None.
 
 **Owner:** oli-obk owns this goal.
 
-| Subgoal                | Owner(s) or team(s)      | Notes |
+| Task                   | Owner(s) or team(s)      | Notes |
 |------------------------|--------------------------|-------|
 | Implementation         | @oli-obk                 |       |
 | FCP decision(s)           | ![Team][] [types]        |       |

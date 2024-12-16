@@ -42,23 +42,43 @@ The outputs of rustc and cargo are fully using annotate-snippets, with no regres
 
 **Owner:** @estebank, @Muscraft
 
-| Subgoal                                         | Owner(s) or team(s)            | Notes                          |
-| ----------------------------------------------- | ------------------------------ | ------------------------------ |
-| Reach output parity of rustc/annotate-snippets  |                                |                                |
-| ↳ add suggestions                               | @Muscraft                      |                                |
-| ↳ Port a subset of rustc's UI tests             | @Muscraft                      |                                |
-| ↳ address divergences                           | @Muscraft                      |                                |
-| Initial use of annotate-snippets                |                                |                                |
-| ↳ update annotate-snippets to latest version    |                                |                                |
-| ↳ teach cargo to pass annotate-snippets flag    | @estebank                      |                                |
-| ↳ add ui test mode comparing new output         |                                |                                |
-| ↳ switch default nightly rustc output           |                                |                                |
-| Production use of annotate-snippets             |                                |                                |
-| ↳ switch default rustc output                   |                                |                                |
-| ↳ release notes                                 |                                |                                |
-| ↳ switch ui tests to only check new output      |                                |                                |
-| ↳ Dedicated reviewer                            | ![Team][] [compiler]           | @estebank will be the reviewer |
-| Standard reviews                                | ![Team][] [compiler]           |                                |
-| Top-level Rust blog post inviting feedback      |                                |                                |
+### Reach output parity of rustc/annotate-snippets
+
+| Task                                       | Owner(s) or team(s) | Notes |
+|-------------------------------------------|---------------------|--------|
+| add suggestions                           | @Muscraft          |        |
+| Port a subset of rustc's UI tests        | @Muscraft          |        |
+| address divergences                       | @Muscraft          |        |
+
+### Initial use of annotate-snippets
+
+| Task                                       | Owner(s) or team(s) | Notes |
+|-------------------------------------------|---------------------|--------|
+| update annotate-snippets to latest version |                    |        |
+| teach cargo to pass annotate-snippets flag | @estebank          |        |
+| add ui test mode comparing new output      |                    |        |
+| switch default nightly rustc output        |                    |        |
+
+### Production use of annotate-snippets
+
+| Task                                       | Owner(s) or team(s)  | Notes                          |
+|-------------------------------------------|---------------------|--------------------------------|
+| switch default rustc output               |                     |                                |
+| release notes                             |                     |                                |
+| switch ui tests to only check new output  |                     |                                |
+| Dedicated reviewer                        | ![Team][] [compiler] | @estebank will be the reviewer |
+
+### Standard reviews
+
+| Task              | Owner(s) or team(s)  | Notes |
+|-------------------|---------------------|--------|
+| Standard reviews  | ![Team][] [compiler] |        |
+
+### Top-level Rust blog post inviting feedback
+
+| Task                                       | Owner(s) or team(s) | Notes |
+|-------------------------------------------|---------------------|--------|
+| Top-level Rust blog post inviting feedback |                    |        |
+
 
 [cargo-lints]: https://github.com/rust-lang/cargo/issues/12235

@@ -2,10 +2,10 @@
 (a.k.a The Clippy Performance Project)
 
 | Metadata       |                                    |
-| ---            | ---                                |
+|----------------|------------------------------------|
 | Owner(s)       | @blyxyas                           |
 | Teams          | [clippy]                           |
-| Status         | Proposed                     |
+| Status         | Proposed                           |
 | Tracking issue | [rust-lang/rust-project-goals#114] |
 
 ## Summary
@@ -53,11 +53,10 @@ A developer shouldn't have to get a high-end machine to run a compiler swiftly; 
 
 **Owner:** @blyxyas
 
-| Subgoal            | Owner(s) or team(s)  | Notes |
-| ------------------ | -------------------- | ----- |
-| Optimization work  |                      |       |
-| ↳ Implementation   | @blyxyas, @Alexendoo |       |
-| ↳ Standard reviews | ![Team][] [clippy]   |       |
+| Task              | Owner(s) or team(s)  | Notes |
+|-------------------|----------------------|-------|
+| Implementation    | @blyxyas, @Alexendoo |       |
+| Standard reviews  | ![Team][] [clippy]   |       |
 
 
 [pr125116]: https://github.com/rust-lang/rust/pull/125116

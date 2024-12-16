@@ -54,7 +54,7 @@ The parallel front end should be:
 
 **Owner:** @SparrowLii and Parallel Rustc WG own this goal
 
-| Subgoal                      | Owner(s) or team(s)  | Notes |
+| Task                         | Owner(s) or team(s)  | Notes |
 | ---------------------------- | -------------------- | ----- |
 | Implementation               | @SparrowLii          |       |
 | Author tests                 | @SparrowLii          |       |

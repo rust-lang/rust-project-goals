@@ -1,10 +1,10 @@
 # Enable incremental Rust adoption in C++ codebases
 
-| Metadata |                                                              |
-| -------- | ------------------------------------------------------------ |
-| Owner(s) | @baumanj and @tmandry                                        |
-| Teams    | [lang] [compiler]                                            |
-| Status   | Proposed                                                     |
+| Metadata |                       |
+|----------|-----------------------|
+| Owner(s) | @baumanj and @tmandry |
+| Teams    | [lang] [compiler]     |
+| Status   | Proposed              |
 
 ## Summary
 
@@ -107,12 +107,12 @@ In addition, it proposes the following axioms:
 
 **Owner:** @baumanj and @tmandry
 
-| Subgoal                                        | Owner(s) or team(s)     | Notes |
-| ---------------------------------------------- | ----------------------- | ----- |
-| Discussion and moral support                   | ![Team][] [lang] [compiler] |       |
-| Design meeting                                 | ![Team][] [lang] [compiler] | 2 meetings expected; ideal audience is lang team with compiler team reps |
-| ↳ Author design doc                             | @tmandry can drive      |                     |
-| ↳ Author design doc                             | ![Help wanted][]        |                     |
+| Task                         | Owner(s) or team(s)         | Notes                                                                    |
+|------------------------------|-----------------------------|--------------------------------------------------------------------------|
+| Discussion and moral support | ![Team][] [lang] [compiler] |                                                                          |
+| Design meeting               | ![Team][] [lang] [compiler] | 2 meetings expected; ideal audience is lang team with compiler team reps |
+| Author design doc            | @tmandry can drive          |                                                                          |
+| Author design doc            | ![Help wanted][]            |                                                                          |
 
 ## Frequently asked questions
 

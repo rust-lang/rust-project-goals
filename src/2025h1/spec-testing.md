@@ -37,14 +37,13 @@ The integration of testing into the specification should:
 **Owner:** Connor Horman
 
 
-| Subgoal                          | Owner(s) or team(s)                                                        | Notes     |
-|----------------------------------|----------------------------------------------------------------------------|-----------|
-| Determine precise test structure |                                                                            |           |
-| ↳ Author RFC                     | Connor Horman                                                              |           |
-| ↳ RFC decision                   | ![Team][] [spec]  ![Team][] [compiler] ![Team][bootstrap] ![Team][] [lang] |           |
-| ↳ Move/Extract Tests             | Connor Horman                                                              | As Needed |
-| ↳ Annotate Moved Tests           |                                                                            |           |
-| ↳ Author new tests               | Connor Horman                                                              |           |
+| Task                 | Owner(s) or team(s)                                    | Notes     |
+|----------------------|--------------------------------------------------------|-----------|
+| Author RFC           | Connor Horman                                          |           |
+| RFC decision         | ![Team][] [spec][] [compiler][] [bootstrap][] [lang][] |           |
+| Move/Extract Tests   | Connor Horman                                          | As Needed |
+| Annotate Moved Tests |                                                        |           |
+| Author new tests     | Connor Horman                                          |           |
 
 ## Frequently asked questions
 

@@ -42,20 +42,29 @@ We'll add support for similar cryptographic security for third-party crate repos
 
 ## Ownership and team asks
 
-| Subgoal                                                      | Owner(s) or team(s)                   | Notes                                             |
-|--------------------------------------------------------------|---------------------------------------|---------------------------------------------------|
-| Quorum-based cryptographic infrastructure (RFC 3724)         |                                       |                                                   |
-| ↳ Further revisions to RFC                                   | @walterhpearce                        |                                                   |
-| ↳ RFC decision                                               | ![Team][] [cargo] [crates-io] [infra] |                                                   |
-| ↳ Implementation and staging deployment                      | @walterhpearce, [crates-io], [infra]  |                                                   |
-| ↳ Miscellaneous                                              | ![Team][] [leadership-council]        | Select root quorum                                |
-| ↳ Deploy to production                                       | ![Team][] [crates-io] [infra]         |                                                   |
-| Inside Rust blog post about staging deployment               | @walterhpearce                        |                                                   |
-| Blog post approval                                           | ![Team][] [leadership-council]        | Top-level Rust blog post on production deployment |
-| Draft RFC for mirroring crates.io via alternate repositories |                                       |                                                   |
-| ↳ Discussion and moral support                               | ![Team][] [cargo]                     |                                                   |
-| ↳ Author RFC                                                 | @walterhpearce @joshtriplett          |                                                   |
-| ↳ Proof of concept technical experiments                     | @walterhpearce                        |                                                   |
+| Task                                              | Owner(s) or team(s) | Notes |
+|---------------------------------------------------|---------------------|-------|
+| Inside Rust blog post about staging deployment    | @walterhpearce      |       |
+| Top-level Rust blog post on production deployment | @walterhpearce      |       |
+
+### Quorum-based cryptographic infrastructure (RFC 3724)
+
+| Task                                  | Owner(s) or team(s)                   | Notes              |
+|---------------------------------------|---------------------------------------|--------------------|
+| Further revisions to RFC              | @walterhpearce                        |                    |
+| RFC decision                          | ![Team][] [cargo] [crates-io] [infra] |                    |
+| Implementation and staging deployment | @walterhpearce, [crates-io], [infra]  |                    |
+| Miscellaneous                         | ![Team][] [leadership-council]        | Select root quorum |
+| Deploy to production                  | ![Team][] [crates-io] [infra]         |                    |
+
+### Draft RFC for mirroring crates.io via alternate repositories
+
+| Task                                   | Owner(s) or team(s)          | Notes |
+|----------------------------------------|------------------------------|-------|
+| Discussion and moral support           | ![Team][] [cargo]            |       |
+| Author RFC                             | @walterhpearce @joshtriplett |       |
+| Proof of concept technical experiments | @walterhpearce               |       |
+
 
 ### Definitions
 

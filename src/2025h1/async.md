@@ -81,41 +81,64 @@ Despite async Rust's popularity, using async I/O makes Rust significantly harder
 
 This section defines the specific work items that are planned and who is expected to do them. It should also include what will be needed from Rust teams. The overall owner of the effort is @tmandry. We have identified owners for subitems below; these may change over time.
 
-| Subgoal                     | Owner(s) or team(s)          | Notes               |
-|-----------------------------|------------------------------|---------------------|
-| Overall program management  | @tmandry                     |                     |
-| ↳ AFIT story blog post      | @tmandry                     |                     |
-| Return type notation        | @nikomatsakis                |                     |
-| ↳ Initial implementation    | @compiler-errors             | ![Complete][]       |
-| ↳ Author RFC                | @nikomatsakis                | ![Complete][]       |
-| ↳ RFC decision              | ![Team][] [lang]             | ![Complete][]       |
-| ↳ Finished implementation   | @compiler-errors             |                     |
-| ↳ Standard reviews          | ![Team][] [types] [compiler] |                     |
-| ↳ Stabilization decision    | ![Team][] [lang]             |                     |
-| Implementable trait aliases | @tmandry                     |                     |
-| ↳ Author RFC                | @tmandry                     |                     |
-| ↳ Implementation            | @compiler-errors             |                     |
-| ↳ Standard reviews          | ![Team][] [types] [compiler] |                     |
-| ↳ RFC decision              | ![Team][] [lang]  [types]    |                     |
-| Pin reborrowing             | @eholk                       |                     |
-| ↳ Implementation            | @eholk                       |                     |
-| ↳ Author RFC                | @eholk                       |                     |
-| ↳ RFC decision              | ![Team][] [lang]             |                     |
-| Trait for generators (sync) |                              |                     |
-| ↳ Implementation            | @eholk                       |                     |
-| ↳ Author RFC                |                              |                     |
-| ↳ RFC decision              | ![Team][] [libs-api] [lang]  |                     |
-| ↳ Design meeting            | ![Team][] [lang]             | 2 meetings expected |
-| Trait for async iteration   |                              |                     |
-| ↳ Author RFC                |                              |                     |
-| ↳ RFC decision              | ![Team][] [libs-api] [lang]  |                     |
-| ↳ Design meeting            | ![Team][] [lang]             | 2 meetings expected |
-| ↳ Implementation            |                              |                     |
-| Dynosaur 1.0                | @spastorino                  |                     |
-| ↳ Implementation            | @spastorino                  |                     |
-| ↳ Standard reviews          | @tmandry                     |                     |
+### Overall program management
 
-TODO: Stretch goals
+| Task                 | Owner(s) or team(s) | Notes |
+|----------------------|---------------------|-------|
+| AFIT story blog post | @tmandry            |       |
+
+### Return type notation
+
+| Task                    | Owner(s) or team(s)          | Notes         |
+|-------------------------|------------------------------|---------------|
+| Initial implementation  | @compiler-errors             | ![Complete][] |
+| Author RFC              | @nikomatsakis                | ![Complete][] |
+| RFC decision            | ![Team][] [lang]             | ![Complete][] |
+| Finished implementation | @compiler-errors             |               |
+| Standard reviews        | ![Team][] [types] [compiler] |               |
+| Stabilization decision  | ![Team][] [lang]             |               |
+
+### Implementable trait aliases
+
+| Task             | Owner(s) or team(s)          | Notes |
+|------------------|------------------------------|-------|
+| Author RFC       | @tmandry                     |       |
+| Implementation   | @compiler-errors             |       |
+| Standard reviews | ![Team][] [types] [compiler] |       |
+| RFC decision     | ![Team][] [lang] [types]     |       |
+
+### Pin reborrowing
+
+| Task           | Owner(s) or team(s) | Notes |
+|----------------|---------------------|-------|
+| Implementation | @eholk              |       |
+| Author RFC     | @eholk              |       |
+| RFC decision   | ![Team][] [lang]    |       |
+
+### Trait for generators (sync)
+
+| Task           | Owner(s) or team(s)         | Notes               |
+|----------------|-----------------------------|---------------------|
+| Implementation | @eholk                      |                     |
+| Author RFC     |                             |                     |
+| RFC decision   | ![Team][] [libs-api] [lang] |                     |
+| Design meeting | ![Team][] [lang]            | 2 meetings expected |
+
+### Trait for async iteration
+
+| Task           | Owner(s) or team(s)         | Notes               |
+|----------------|-----------------------------|---------------------|
+| Author RFC     |                             |                     |
+| RFC decision   | ![Team][] [libs-api] [lang] |                     |
+| Design meeting | ![Team][] [lang]            | 2 meetings expected |
+| Implementation |                             |                     |
+
+### Dynosaur 1.0
+
+| Task                          | Owner(s) or team(s)            | Notes                 |
+|-------------------------------|--------------------------------|-----------------------|
+| Implementation                | @spastorino                    |                       |
+| Standard reviews              | @tmandry                       |                       |
 
 ### Definitions
 

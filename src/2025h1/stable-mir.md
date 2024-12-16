@@ -1,10 +1,10 @@
 # Publish first version of StableMIR on crates.io
 
-| Metadata |                                |
-| -------- |--------------------------------|
-| Owner(s) | @celinval                      |
+| Metadata |                      |
+|----------|----------------------|
+| Owner(s) | @celinval            |
 | Teams    | [project-stable-mir] |
-| Status   | Proposed                       |
+| Status   | Proposed             |
 
 ## Summary
 
@@ -67,11 +67,11 @@ fostering innovation and reducing bottlenecks.
 ## Ownership and team asks
 
 
-| Subgoal                      | Owner(s) or team(s)            | Notes |
+| Task                         | Owner(s) or team(s)            | Notes |
 |------------------------------|--------------------------------|-------|
-| Refactor crates dependencies |                                |       |
-| ↳ Implementation             | @celinval                      |       |
-| ↳ Standard reviews           | ![Team][] [project-stable-mir] |       |
+| Discussion and moral support | ![Team][] [compiler]           |       |
+| Implementation               | @celinval                      |       |
+| Standard reviews             | ![Team][] [project-stable-mir] |       |
 | Fork configuration           | Help needed                    |       |
 | Documentation                | Help needed                    |       |
 | Publish crate                | @celinval                      |       |

@@ -38,7 +38,7 @@ Other support provided by @amandasystems as part of her PhD.
 
 [amanda]: https://github.com/amandasystems
 
-| Subgoal          | Owner(s) or team(s)  | Notes          |
+| Task             | Owner(s) or team(s)  | Notes          |
 | ---------------- | -------------------- | -------------- |
 | Design review    | @nikomatsakis        |                |
 | Implementation   | @lqd, @amandasystems |                |

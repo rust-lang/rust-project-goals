@@ -132,7 +132,7 @@ To accomplish this, `cargo-semver-checks` needs the ability to express more kind
 
 I (@obi1kenobi) will be working on this effort. The only other resource request would be occasional discussions and moral support from the [cargo] team, of which I already have the privilege as maintainer of a popular cargo plugin.
 
-| Subgoal                                          | Owner(s) or team(s)     | Notes |
+| Task                                             | Owner(s) or team(s)     | Notes |
 | ------------------------------------------------ | ----------------------- | ----- |
 | Implementation of cargo manifest linting + CLI   | @obi1kenobi             |       |
 | Initial design for cross-crate checking          | @obi1kenobi             |       |
