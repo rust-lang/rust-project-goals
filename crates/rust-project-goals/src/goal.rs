@@ -3,9 +3,10 @@ use std::path::Path;
 use std::sync::Arc;
 use std::{collections::BTreeSet, path::PathBuf};
 
-use anyhow::Context;
+use anyhow::{bail, Context};
 use regex::Regex;
 
+use crate::config::Configuration;
 use crate::gh::issue_id::{IssueId, Repository};
 use crate::markwaydown::{self, Section, Table};
 use crate::re::USERNAME;
@@ -353,7 +354,7 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata>> {
     else {
         anyhow::bail!("metadata table has no `Owner(s)` row")
     };
-
+ 
     let Some(status_row) = first_table.rows.iter().find(|row| row[0] == "Status") else {
         anyhow::bail!("metadata table has no `Status` row")
     };
@@ -524,6 +525,16 @@ impl PlanItem {
 
         let teams = self.teams_being_asked()?;
         if !teams.is_empty() {
+            let config = Configuration::get();
+            if !config.team_asks.contains_key(&self.text) {
+                bail!("unrecognized team ask {:?}, team asks must be one of the following:\n{}",
+                    self.text,
+                    config.team_asks.iter().map(|(ask, explanation)| {
+                        format!("* {ask:?}, meaning team should {explanation}")
+                    }).collect::<Vec<_>>().join("\n"),
+                );
+            }
+
             asks.push(TeamAsk {
                 link_path: link_path.clone(),
                 ask_description: self.text.clone(),

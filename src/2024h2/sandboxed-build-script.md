@@ -140,7 +140,7 @@ I would be happy to support them as a Cargo maintainer.
 | Discussion and moral support               | ![Team][] [cargo]    |             |
 | Security reviews                           | ![Help wanted][]     |             |
 | Standard reviews                           | ![Team][] [cargo]    |             |
-| Collaboration with GSoC proc-macro project | ![Team][] [compiler] |             |
+| Miscellaneous | ![Team][] [compiler] | Collaboration with GSoC proc-macro project |
 | Summary of experiments or RFC              | @weihanglo           | (or mentee) |
 
 > For security reviews,
