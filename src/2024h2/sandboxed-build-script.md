@@ -134,7 +134,7 @@ Currently out of scope:
 **Owner:** @weihanglo, though I also welcome someone else to take ownership of it.
 I would be happy to support them as a Cargo maintainer.
 
-| Subgoal                                    | Owner(s) or team(s)  | Notes       |
+| Task                                       | Owner(s) or team(s)  | Notes       |
 | ------------------------------------------ | -------------------- | ----------- |
 | Design                                     | @weihanglo           | (or mentee) |
 | Discussion and moral support               | ![Team][] [cargo]    |             |

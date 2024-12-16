@@ -183,7 +183,7 @@ feel similar to using field access today.
 
 **Owner:** @y86-dev
 
-| Subgoal          | Owner(s) or team(s)        | Notes |
+| Task             | Owner(s) or team(s)        | Notes |
 |------------------|----------------------------|-------|
 | Design meeting   | ![Team][] [lang]           |       |
 | RFC decision     | ![Team][] [lang]           |       |

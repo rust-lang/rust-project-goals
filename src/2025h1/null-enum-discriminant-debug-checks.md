@@ -78,7 +78,7 @@ Particularly as next steps we would like to check for UB when:
 
 **Owner:** @1c3t3a
 
-| Subgoal                      | Owner(s) or team(s)           | Notes |
+| Task                         | Owner(s) or team(s)           | Notes |
 |------------------------------|-------------------------------|-------|
 | Discussion and moral support | ![Team][], [lang], [opsem]    |       |
 | Implementation               | @1c3t3a, @vabr-g              |       |

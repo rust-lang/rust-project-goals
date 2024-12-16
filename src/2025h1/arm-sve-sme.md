@@ -114,13 +114,13 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 the work to be done by owners and the work to be done by Rust teams (subject to approval by the
 team in an RFC/FCP).
 
-| Subgoal                      | Owner(s) or team(s)                   | Notes |
+| Task                         | Owner(s) or team(s)                   | Notes |
 |------------------------------|---------------------------------------|-------|
 | Discussion and moral support | ![Team][] [lang], [types], [compiler] |       |
 
 ### Land nightly experiment for SVE types
 
-| Subgoal                               | Owner(s) or team(s)       | Notes                                                                         |
+| Task                                  | Owner(s) or team(s)       | Notes                                                                         |
 |---------------------------------------|---------------------------|-------------------------------------------------------------------------------|
 | Land nightly experiment for SVE types | @JamieCunliffe            |                                                                               |
 | Author RFC                            |                           | Update [rfcs#3268][rfc_sve], will still rely on exceptions in the type system |
@@ -130,13 +130,13 @@ team in an RFC/FCP).
 
 ### Upstream SVE types and intrinsics
 
-| Subgoal                           | Owner(s) or team(s) | Notes                                                                                |
+| Task                              | Owner(s) or team(s) | Notes                                                                                |
 |-----------------------------------|---------------------|--------------------------------------------------------------------------------------|
 | Upstream SVE types and intrinsics | @JamieCunliffe      | Using `repr(scalable)` from previous work, upstream the nightly intrinsics and types |
 
 ### Extending type system to support scalable vectors
 
-| Subgoal                                           | Owner(s) or team(s)       | Notes |
+| Task                                              | Owner(s) or team(s)       | Notes |
 |---------------------------------------------------|---------------------------|-------|
 | Extending type system to support scalable vectors | @davidtwco                |       |
 | Author RFC                                        |                           |       |
@@ -146,7 +146,7 @@ team in an RFC/FCP).
 
 ### Investigate SME support
 
-| Subgoal                      | Owner(s) or team(s)                   | Notes |
+| Task                         | Owner(s) or team(s)                   | Notes |
 |------------------------------|---------------------------------------|-------|
 | Investigate SME support      | @JamieCunliffe, @davidtwco            |       |
 | Discussion and moral support | ![Team][] [lang], [types], [compiler] |       |

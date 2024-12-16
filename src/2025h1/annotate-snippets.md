@@ -44,7 +44,7 @@ The outputs of rustc and cargo are fully using annotate-snippets, with no regres
 
 ### Reach output parity of rustc/annotate-snippets
 
-| Subgoal                                    | Owner(s) or team(s) | Notes |
+| Task                                       | Owner(s) or team(s) | Notes |
 |-------------------------------------------|---------------------|--------|
 | add suggestions                           | @Muscraft          |        |
 | Port a subset of rustc's UI tests        | @Muscraft          |        |
@@ -52,7 +52,7 @@ The outputs of rustc and cargo are fully using annotate-snippets, with no regres
 
 ### Initial use of annotate-snippets
 
-| Subgoal                                    | Owner(s) or team(s) | Notes |
+| Task                                       | Owner(s) or team(s) | Notes |
 |-------------------------------------------|---------------------|--------|
 | update annotate-snippets to latest version |                    |        |
 | teach cargo to pass annotate-snippets flag | @estebank          |        |
@@ -61,7 +61,7 @@ The outputs of rustc and cargo are fully using annotate-snippets, with no regres
 
 ### Production use of annotate-snippets
 
-| Subgoal                                    | Owner(s) or team(s)  | Notes                          |
+| Task                                       | Owner(s) or team(s)  | Notes                          |
 |-------------------------------------------|---------------------|--------------------------------|
 | switch default rustc output               |                     |                                |
 | release notes                             |                     |                                |
@@ -70,13 +70,13 @@ The outputs of rustc and cargo are fully using annotate-snippets, with no regres
 
 ### Standard reviews
 
-| Subgoal           | Owner(s) or team(s)  | Notes |
+| Task              | Owner(s) or team(s)  | Notes |
 |-------------------|---------------------|--------|
 | Standard reviews  | ![Team][] [compiler] |        |
 
 ### Top-level Rust blog post inviting feedback
 
-| Subgoal                                    | Owner(s) or team(s) | Notes |
+| Task                                       | Owner(s) or team(s) | Notes |
 |-------------------------------------------|---------------------|--------|
 | Top-level Rust blog post inviting feedback |                    |        |
 

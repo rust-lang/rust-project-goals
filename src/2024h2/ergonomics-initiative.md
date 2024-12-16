@@ -191,7 +191,7 @@ Alex heard Rust was difficult to learn, but they're generally happy. Their Rust 
 
 The work here is proposed by @jkelleyrtp on behalf of Dioxus Labs. We have funding for 1-2 engineers depending on the scope of work. Dioxus Labs is willing to take ownership and commit funding to solve these problems.
 
-| Subgoal                  | Owner(s) or team(s) | Notes |
+| Task                     | Owner(s) or team(s) | Notes |
 | ------------------------ | ------------------- | ----- |
 | `.clone()` problem       | @jkelleyrtp + tbd   |       |
 | partial borrows          | @jkelleyrtp + tbd   |       |

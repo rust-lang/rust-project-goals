@@ -107,7 +107,7 @@ In addition, it proposes the following axioms:
 
 **Owner:** @baumanj and @tmandry
 
-| Subgoal                      | Owner(s) or team(s)         | Notes                                                                    |
+| Task                         | Owner(s) or team(s)         | Notes                                                                    |
 |------------------------------|-----------------------------|--------------------------------------------------------------------------|
 | Discussion and moral support | ![Team][] [lang] [compiler] |                                                                          |
 | Design meeting               | ![Team][] [lang] [compiler] | 2 meetings expected; ideal audience is lang team with compiler team reps |

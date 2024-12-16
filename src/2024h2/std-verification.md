@@ -121,7 +121,7 @@ semantics will lower the barrier for users to understand and be able to write th
 
 **Owner:** @celinval
 
-| Subgoal                            | Owner(s) or team(s)  | Notes                                                                 |
+| Task                               | Owner(s) or team(s)  | Notes                                                                 |
 |------------------------------------|----------------------|-----------------------------------------------------------------------|
 | Discussion and moral support       | ![Team][] [libs][]   |                                                                       |
 | Standard reviews                    | ![Team][] [libs][]   | We would like to contribute upstream the contracts added to the fork. |

@@ -115,7 +115,7 @@ which can be designed and implemented to complete the build-std feature.
 
 ## Ownership and team asks
 
-| Subgoal                      | Owner(s) or team(s) | Notes |
+| Task                         | Owner(s) or team(s) | Notes |
 |------------------------------|---------------------|-------|
 | Discussion and moral support | ![Team][] [cargo]   |       |
 | Author RFC                   | @adamgemmell        |       |

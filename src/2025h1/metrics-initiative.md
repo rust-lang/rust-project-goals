@@ -70,7 +70,7 @@ We'd like to get to the point where lang and libs can pull up a simple dashboard
 
 ## Ownership and team asks
 
-| Subgoal                                                                                | Owner(s) or team(s) | Notes |
+| Task                                                                                   | Owner(s) or team(s) | Notes |
 |----------------------------------------------------------------------------------------|---------------------|-------|
 | Discussion and moral support                                                           | [compiler], [infra] |       |
 | Implementation                                                                         | @yaahc              |       |

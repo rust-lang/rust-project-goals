@@ -61,14 +61,14 @@ This section defines the specific work items that are planned and who is expecte
 
 *Adjust the table below; some common examples are shown below.*
 
-| Subgoal                                    | Owner(s) or team(s)  | Notes |
+| Task                                       | Owner(s) or team(s)  | Notes |
 |--------------------------------------------|----------------------|-------|
 | Standard reviews                           | ![Team][] [compiler] |       |
 | Top-level Rust blog post inviting feedback |                      |       |
 
 ### Reach output parity for rustc/annotation-snippets
 
-| Subgoal                                       | Owner(s) or team(s) | Notes |
+| Task                                          | Owner(s) or team(s) | Notes |
 |-----------------------------------------------|---------------------|-------|
 | Port a subset of rustc's UI tests             | @Muscraft           |       |
 | Make list of current unnaddressed divergences | @Muscraft           |       |
@@ -76,7 +76,7 @@ This section defines the specific work items that are planned and who is expecte
 
 ### Initial use of annotate-snippets
 
-| Subgoal                                    | Owner(s) or team(s) | Notes |
+| Task                                       | Owner(s) or team(s) | Notes |
 |--------------------------------------------|---------------------|-------|
 | update annotate-snippets to latest version |                     |       |
 | teach cargo to pass annotate-snippets flag | @estebank           |       |
@@ -85,7 +85,7 @@ This section defines the specific work items that are planned and who is expecte
 
 ### Production use of annotate-snippets
 
-| Subgoal                                  | Owner(s) or team(s)  | Notes                          |
+| Task                                     | Owner(s) or team(s)  | Notes                          |
 |------------------------------------------|----------------------|--------------------------------|
 | switch default rustc output              |                      |                                |
 | release notes                            |                      |                                |

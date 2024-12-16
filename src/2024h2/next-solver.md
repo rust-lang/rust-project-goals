@@ -57,13 +57,13 @@ In order of importance, the next-generation trait solver should be:
 
 Add'l implementation work: @compiler-errors
 
-| Subgoal                      | Owner(s) or team(s) | Notes |
+| Task                         | Owner(s) or team(s) | Notes |
 |------------------------------|---------------------|-------|
 | Discussion and moral support | ![Team][] [types]   |       |
 
 ### Stabilize next-generation solver in coherence
 
-| Subgoal                | Owner(s) or team(s)       | Notes |
+| Task                   | Owner(s) or team(s)       | Notes |
 |------------------------|---------------------------|-------|
 | Implementation         | @lcnr, @compiler-errors   |       |
 | Standard reviews       | ![Team][] [types]         |       |
@@ -72,7 +72,7 @@ Add'l implementation work: @compiler-errors
 
 ### Support next-generation solver in rust-analyzer
 
-| Subgoal                             | Owner(s) or team(s)       | Notes |
+| Task                                | Owner(s) or team(s)       | Notes |
 |-------------------------------------|---------------------------|-------|
 | Implementation (library side)       | owner and others          |       |
 | Implementation (rust-analyzer side) | TBD                       |       |

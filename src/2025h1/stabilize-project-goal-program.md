@@ -66,7 +66,7 @@ Running the Rust Project Goals program will be a relatively scalable task that c
 
 * @nikomatsakis can commit 20% time (avg of 1 days per week) to pursue this task, which he estimates to be sufficient.
 
-| Subgoal                                   | Owner(s) or team(s)          | Notes                        |
+| Task                                      | Owner(s) or team(s)          | Notes                        |
 |-------------------------------------------|------------------------------|------------------------------|
 | Begin soliciting goals in Nov 2024        | nikomatsakis                 |                              |
 | Approve goal slate for 2025h1             | *leads of each team*         |                              |

@@ -42,14 +42,14 @@ We'll add support for similar cryptographic security for third-party crate repos
 
 ## Ownership and team asks
 
-| Subgoal                                           | Owner(s) or team(s) | Notes |
+| Task                                              | Owner(s) or team(s) | Notes |
 |---------------------------------------------------|---------------------|-------|
 | Inside Rust blog post about staging deployment    | @walterhpearce      |       |
 | Top-level Rust blog post on production deployment | @walterhpearce      |       |
 
 ### Quorum-based cryptographic infrastructure (RFC 3724)
 
-| Subgoal                               | Owner(s) or team(s)                   | Notes              |
+| Task                                  | Owner(s) or team(s)                   | Notes              |
 |---------------------------------------|---------------------------------------|--------------------|
 | Further revisions to RFC              | @walterhpearce                        |                    |
 | RFC decision                          | ![Team][] [cargo] [crates-io] [infra] |                    |
@@ -59,7 +59,7 @@ We'll add support for similar cryptographic security for third-party crate repos
 
 ### Draft RFC for mirroring crates.io via alternate repositories
 
-| Subgoal                                | Owner(s) or team(s)          | Notes |
+| Task                                   | Owner(s) or team(s)          | Notes |
 |----------------------------------------|------------------------------|-------|
 | Discussion and moral support           | ![Team][] [cargo]            |       |
 | Author RFC                             | @walterhpearce @joshtriplett |       |

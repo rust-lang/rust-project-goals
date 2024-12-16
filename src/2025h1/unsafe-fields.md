@@ -75,7 +75,7 @@ The design of `unsafe` fields is guided by three axioms:
 
 **Owner:** @jswrenn
 
-| Subgoal                      | Owner(s) or team(s)  | Notes                          |
+| Task                         | Owner(s) or team(s)  | Notes                          |
 |------------------------------|----------------------|--------------------------------|
 | Discussion and moral support | ![Team][] [lang]     | [Zulip]                        |
 | Author RFC                   | @jhpratt             | [RFC3458], [Living Design Doc] |

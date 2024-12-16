@@ -37,7 +37,7 @@ The integration of testing into the specification should:
 **Owner:** Connor Horman
 
 
-| Subgoal              | Owner(s) or team(s)                                    | Notes     |
+| Task                 | Owner(s) or team(s)                                    | Notes     |
 |----------------------|--------------------------------------------------------|-----------|
 | Author RFC           | Connor Horman                                          |           |
 | RFC decision         | ![Team][] [spec][] [compiler][] [bootstrap][] [lang][] |           |

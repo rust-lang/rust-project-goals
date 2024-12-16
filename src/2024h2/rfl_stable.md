@@ -139,13 +139,13 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 
 * The ![Team][] badge indicates a requirement where Team support is needed.
 
-| Subgoal                    | Owner(s) or team(s)          | Notes |
+| Task                       | Owner(s) or team(s)          | Notes |
 |----------------------------|------------------------------|-------|
 | Overall program management | @nikomatsakis, @joshtriplett |       |
 
 ### Arbitrary self types v2
 
-| Subgoal                | Owner(s) or team(s)  | Notes                     |
+| Task                   | Owner(s) or team(s)  | Notes                     |
 |------------------------|----------------------|---------------------------|
 | ~~author RFC~~         |                      | ![Complete][] [RFC #3519] |
 | ~~RFC decision~~       | ~~[lang]~~           | ![Complete][]             |
@@ -155,7 +155,7 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 
 ### Derive smart pointer
 
-| Subgoal                     | Owner(s) or team(s) | Notes         |
+| Task                        | Owner(s) or team(s) | Notes         |
 |-----------------------------|---------------------|---------------|
 | ~~author RFC~~              |                     | [RFC #3621]   |
 | RFC decision                | ![Team][] [lang]    | ![Complete][] |
@@ -165,7 +165,7 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 
 ### `asm_goto`
 
-| Subgoal                          | Owner(s) or team(s) | Notes         |
+| Task                             | Owner(s) or team(s) | Notes         |
 |----------------------------------|---------------------|---------------|
 | ~~implementation~~               |                     | ![Complete][] |
 | Real-world usage in Linux kernel | @Darksonn           |               |
@@ -175,7 +175,7 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 
 ### RFL on Rust CI
 
-| Subgoal            | Owner(s) or team(s)  | Notes                   |
+| Task               | Owner(s) or team(s)  | Notes                   |
 |--------------------|----------------------|-------------------------|
 | ~~implementation~~ |                      | ![Complete][] [#125209] |
 | Policy draft       |                      |                         |
@@ -183,7 +183,7 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 
 ### Pointers to static in constants
 
-| Subgoal                | Owner(s) or team(s) | Notes |
+| Task                   | Owner(s) or team(s) | Notes |
 |------------------------|---------------------|-------|
 | Stabilization report   |                     |       |
 | Stabilization decision | ![Team][] [lang]    |       |

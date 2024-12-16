@@ -48,13 +48,13 @@ The following [design axioms][da] apply:
 
 Some subgoals list an expected due/completion date. If one is omitted, compeletion by the end of 2025h1 is implied.
 
-| Subgoal       | Owner(s) or team(s) | Notes                                                               |
+| Task          | Owner(s) or team(s) | Notes                                                               |
 |---------------|---------------------|---------------------------------------------------------------------|
 | Miscellaneous | ![Team][] [spec]    | Take ownership of the FLS (prior to, or shortly into January 2025). |
 
 ### Integrate FLS into T-spec processes
 
-| Subgoal                                          | Owner(s) or team(s) | Notes                   |
+| Task                                             | Owner(s) or team(s) | Notes                   |
 |--------------------------------------------------|---------------------|-------------------------|
 | Review Existing Editorial Standards in the FLS   |                     | End of January 2025     |
 | Review Tooling used by the FLS                   | Connor Horman       | End of January 2025     |
@@ -65,7 +65,7 @@ Some subgoals list an expected due/completion date. If one is omitted, compeleti
 
 ### Integrate FLS into release process
 
-| Subgoal                                           | Owner(s) or team(s) | Notes          |
+| Task                                              | Owner(s) or team(s) | Notes          |
 |---------------------------------------------------|---------------------|----------------|
 | Discussion and moral support                      | ![Team][] [release] | Februrary 2025 |
 | Link tooling used with FLS to the release process |                     | April 2025     |

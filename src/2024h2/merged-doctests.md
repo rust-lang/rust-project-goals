@@ -34,7 +34,7 @@ N/A
 
 **Owner:** @GuillaumeGomez
 
-| Subgoal          | Owner(s) or team(s) | Notes |
+| Task             | Owner(s) or team(s) | Notes |
 | ---------------- | ------------------- | ----- |
 | Implementation   | @GuillaumeGomez     |       |
 | Standard reviews | ![Team][] [rustdoc] |       |

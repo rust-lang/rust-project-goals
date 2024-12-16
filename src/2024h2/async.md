@@ -178,13 +178,13 @@ Our eventual goal is to provide Rust users building on async with
 
 Here is a detailed list of the work to be done and who is expected to do it. This table includes the work to be done by owners and the work to be done by Rust teams (subject to approval by the team in an RFC/FCP). The overall owners of the async effort (and authors of this goal document) are @tmandry and @nikomatsakis. We have identified owners for subitems below; these may change over time.
 
-| Subgoal                    | Owner(s) or team(s)     | Notes |
+| Task                       | Owner(s) or team(s)     | Notes |
 |----------------------------|-------------------------|-------|
 | Overall program management | @tmandry, @nikomatsakis |       |
 
 ### "Send bound" problem
 
-| Subgoal                | Owner(s) or team(s)  | Notes         |
+| Task                   | Owner(s) or team(s)  | Notes         |
 |------------------------|----------------------|---------------|
 | ~~Implementation~~     | ~~@compiler-errors~~ | ![Complete][] |
 | ~~Author RFC~~         | @nikomatsakis        | ![Complete][] |
@@ -193,14 +193,14 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 
 ### Async WG reorganization
 
-| Subgoal         | Owner(s) or team(s)      | Notes |
+| Task            | Owner(s) or team(s)      | Notes |
 |-----------------|--------------------------|-------|
 | Author proposal |                          |       |
 | Org decision    | ![Team][] [libs], [lang] |       |
 
 ### Async closures
 
-| Subgoal                | Owner(s) or team(s) | Notes               |
+| Task                   | Owner(s) or team(s) | Notes               |
 |------------------------|---------------------|---------------------|
 | ~~implementation~~     |                     | ![Complete][]       |
 | Author RFC             |                     |                     |
@@ -211,7 +211,7 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 
 ### Trait for async iteration
 
-| Subgoal        | Owner(s) or team(s)         | Notes               |
+| Task           | Owner(s) or team(s)         | Notes               |
 |----------------|-----------------------------|---------------------|
 | Author RFC     |                             |                     |
 | RFC decision   | ![Team][] [libs-api] [lang] |                     |
@@ -220,14 +220,14 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 
 ### Dyn dispatch for AFIT
 
-| Subgoal          | Owner(s) or team(s) | Notes |
+| Task             | Owner(s) or team(s) | Notes |
 |------------------|---------------------|-------|
 | Implementation   | @spastorino         |       |
 | Standard reviews | @tmandry            |       |
 
 ### Async drop experiments
 
-| Subgoal             | Owner(s) or team(s)  | Notes               |
+| Task                | Owner(s) or team(s)  | Notes               |
 |---------------------|----------------------|---------------------|
 | ~~author MCP~~      |                      | ![Complete][]       |
 | ~~MCP decision~~    | ~~[compiler]~~       | ![Complete][]       |

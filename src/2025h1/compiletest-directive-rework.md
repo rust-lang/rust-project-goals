@@ -94,7 +94,7 @@ but AFAIK is (in practice) currently not really actively maintained by anyone el
 team asks are probably mostly [compiler] for feedback on their use cases (as a test infra consumer)
 and [bootstrap] for implementation review.
 
-| Subgoal                                              | Owner(s) or team(s)                          | Notes                                                                                          |
+| Task                                                 | Owner(s) or team(s)                          | Notes                                                                                          |
 |------------------------------------------------------|----------------------------------------------|------------------------------------------------------------------------------------------------|
 | Discussion and moral support                         | ![Team][] [bootstrap], [compiler], [rustdoc] | including consultations for desired test behaviors and testing infra consumers                 |
 | Experimental prototype implementation[^1]            | @jieyouxu                                    | to see how approaches look like and gain experience/feedback                                   |

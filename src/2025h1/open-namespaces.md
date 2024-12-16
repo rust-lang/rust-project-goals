@@ -33,7 +33,7 @@ Implement at least Cargo and compiler support for this to be experimented with a
 
 ## Ownership and team asks
 
-| Subgoal                                        | Owner(s) or team(s)     | Notes |
+| Task                                           | Owner(s) or team(s)     | Notes |
 | ---------------------------------------------- | ----------------------- | ----- |
 | Discussion and moral support                   | ![Team][] [cargo], [compiler]       |       |
 | Compiler implementation                               | ![Help wanted][]  |       |
