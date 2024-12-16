@@ -1,7 +1,7 @@
 # Resolve the biggest blockers to Linux building on stable Rust
 
 | Metadata       |                                    |
-| ---            | ---                                |
+|----------------|------------------------------------|
 | Short title    | Rust-for-Linux                     |
 | Owner(s)       | @nikomatsakis, @joshtriplett       |
 | Teams          | [lang], [libs-api], [compiler]     |
@@ -139,37 +139,55 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 
 * The ![Team][] badge indicates a requirement where Team support is needed.
 
-| Subgoal                            | Owner(s) or team(s)          | Notes                     |
-| ---------------------------------- | ---------------------------- | ------------------------- |
-| Overall program management         | @nikomatsakis, @joshtriplett |                           |
-| Arbitrary self types v2            | @adetaylor                   |                           |
-| ↳ ~~author RFC~~                   |                              | ![Complete][] [RFC #3519] |
-| ↳ ~~RFC decision~~                 | ~~[lang]~~                   | ![Complete][]             |
-| ↳ Implementation                   |                              |                           |
-| ↳ Standard reviews                 | ![Team] [compiler]           |                           |
-| ↳ Stabilization decision           | ![Team] [lang]               |                           |
-| Derive smart pointer               | @Darksonn                    |                           |
-| ↳ ~~author RFC~~                   |                              | [RFC #3621]               |
-| ↳ RFC decision                     | ![Team][] [lang]             | ![Complete][]             |
-| ↳ Implementation                   | @dingxiangfei2009            |                           |
-| ↳ Author stabilization report      | @dingxiangfei2009            |                           |
-| ↳ Stabilization decision           | ![Team][] [lang]             |                           |
-| `asm_goto`                         | @nbdd0121                    |                           |
-| ↳ ~~implementation~~               |                              | ![Complete][]             |
-| ↳ Real-world usage in Linux kernel | @Darksonn                    |                           |
-| ↳ Extend to cover full RFC         |                              |                           |
-| ↳ Author stabilization report      |                              |                           |
-| ↳ Stabilization decision           | ![Team][] [lang]             |                           |
-| Extended `offset_of` syntax        | @dingxiangfei2009            |                           |
-| ↳ Stabilization report             |                              |                           |
-| ↳ Stabilization decision           | ![Team][] [libs-api]         |                           |
-| ~~RFL on Rust CI~~                 | @Kobzol                      |                           |
-| ↳ ~~implementation~~               |                              | ![Complete][] [#125209]   |
-| ↳ Policy draft                     |                              |                           |
-| ↳ Policy decision                  | ![Team][] [compiler]         |                           |
-| Pointers to static in constants    | @nikomatsakis                |                           |
-| ↳ Stabilization report             |                              |                           |
-| ↳ Stabilization decision           | ![Team][] [lang]             |                           |
+| Task                       | Owner(s) or team(s)          | Notes |
+|----------------------------|------------------------------|-------|
+| Overall program management | @nikomatsakis, @joshtriplett |       |
+
+### Arbitrary self types v2
+
+| Task                   | Owner(s) or team(s)  | Notes                     |
+|------------------------|----------------------|---------------------------|
+| ~~author RFC~~         |                      | ![Complete][] [RFC #3519] |
+| ~~RFC decision~~       | ~~[lang]~~           | ![Complete][]             |
+| Implementation         |                      |                           |
+| Standard reviews       | ![Team][] [compiler] |                           |
+| Stabilization decision | ![Team][] [lang]     |                           |
+
+### Derive smart pointer
+
+| Task                        | Owner(s) or team(s) | Notes         |
+|-----------------------------|---------------------|---------------|
+| ~~author RFC~~              |                     | [RFC #3621]   |
+| RFC decision                | ![Team][] [lang]    | ![Complete][] |
+| Implementation              | @dingxiangfei2009   |               |
+| Author stabilization report | @dingxiangfei2009   |               |
+| Stabilization decision      | ![Team][] [lang]    |               |
+
+### `asm_goto`
+
+| Task                             | Owner(s) or team(s) | Notes         |
+|----------------------------------|---------------------|---------------|
+| ~~implementation~~               |                     | ![Complete][] |
+| Real-world usage in Linux kernel | @Darksonn           |               |
+| Extend to cover full RFC         |                     |               |
+| Author stabilization report      |                     |               |
+| Stabilization decision           | ![Team][] [lang]    |               |
+
+### RFL on Rust CI
+
+| Task               | Owner(s) or team(s)  | Notes                   |
+|--------------------|----------------------|-------------------------|
+| ~~implementation~~ |                      | ![Complete][] [#125209] |
+| Policy draft       |                      |                         |
+| Policy decision    | ![Team][] [compiler] |                         |
+
+### Pointers to static in constants
+
+| Task                   | Owner(s) or team(s) | Notes |
+|------------------------|---------------------|-------|
+| Stabilization report   |                     |       |
+| Stabilization decision | ![Team][] [lang]    |       |
+
 
 ### Support needed from the project
 

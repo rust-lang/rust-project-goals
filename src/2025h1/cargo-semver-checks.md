@@ -136,7 +136,7 @@ To accomplish this, `cargo-semver-checks` needs the ability to express more kind
 
 I (@obi1kenobi) will be working on this effort. The only other resource request would be occasional discussions and moral support from the [cargo] and [rustdoc] teams, of which I already have the privilege as maintainer of a popular cargo plugin that makes extensive use of rustdoc JSON.
 
-| Subgoal                                            | Owner(s) or team(s)         | Notes |
+| Task                                               | Owner(s) or team(s)         | Notes |
 | -------------------------------------------------- | --------------------------- | ----- |
 | Prototype cross-crate linting using workarounds    | @obi1kenobi                 |       |
 | Allow linting generic types, lifetimes, bounds     | @obi1kenobi                 |       |

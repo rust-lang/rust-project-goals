@@ -54,17 +54,16 @@ When considering this feature, we need to balance our desire for a perfect, stru
 * @Rustin170506: wearing my crates.io team member's hat
 * @Rustin170506: wearing my Cargo regular contributor's hat
 
-| Subgoal                                   | Owner(s) or team(s)            | Notes |
-|-------------------------------------------|--------------------------------|-------|
-| Yank crates with a reason                 |                                |       |
-| ↳ Implementation                          | @Rustin170506                  |       |
-| ↳ Standard reviews                        | ![Team][] [crates-io]          |       |
-| ↳ Deploy to production                    | ![Team][] [crates-io]          |       |
-| ↳ Author RFC                              | @Rustin170506                  |       |
-| ↳ RFC decision                             | ![Team][] [cargo], [crates-io] |       |
-| ↳ Implementation in Cargo side            | @Rustin170506                  |       |
-| ↳ Inside Rust blog post inviting feedback | @Rustin170506                  |       |
-| ↳ Stabilization decision                  | ![Team][] [cargo]              |       |
+| Task                                    | Owner(s) or team(s)            | Notes |
+|-----------------------------------------|--------------------------------|-------|
+| Implementation                          | @Rustin170506                  |       |
+| Standard reviews                        | ![Team][] [crates-io]          |       |
+| Deploy to production                    | ![Team][] [crates-io]          |       |
+| Author RFC                              | @Rustin170506                  |       |
+| RFC decision                            | ![Team][] [cargo], [crates-io] |       |
+| Implementation in Cargo side            | @Rustin170506                  |       |
+| Inside Rust blog post inviting feedback | @Rustin170506                  |       |
+| Stabilization decision                  | ![Team][] [cargo]              |       |
 
 [TBD]: https://img.shields.io/badge/TBD-red
 [Team]: https://img.shields.io/badge/Team%20ask-red

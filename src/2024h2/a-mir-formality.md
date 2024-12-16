@@ -48,7 +48,7 @@ We also envision it being tested both through fuzzing and by comparing its resul
 
 We will require participation from at least 2 other members of T-types. Current candidates are lcnr + compiler-errors.
 
-| Subgoal          | Owner(s) or team(s)            | Notes |
+| Task             | Owner(s) or team(s)            | Notes |
 | ---------------- | ------------------------------ | ----- |
 | Implementation   | @nikomatsakis, lcnr, and others |       |
 | Standard reviews | ![Team][] [types]              |       |

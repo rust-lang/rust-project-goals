@@ -1,7 +1,7 @@
 ## Bring the Async Rust experience closer to parity with sync Rust
 
 | Metadata       |                                    |
-| ---            | ---                                |
+|----------------|------------------------------------|
 | Short title    | Async                              |
 | Owner(s)       | @tmandry, @nikomatsakis            |
 | Teams          | [lang], [libs], [libs-api]         |
@@ -178,38 +178,63 @@ Our eventual goal is to provide Rust users building on async with
 
 Here is a detailed list of the work to be done and who is expected to do it. This table includes the work to be done by owners and the work to be done by Rust teams (subject to approval by the team in an RFC/FCP). The overall owners of the async effort (and authors of this goal document) are @tmandry and @nikomatsakis. We have identified owners for subitems below; these may change over time.
 
-| Subgoal                    | Owner(s) or team(s)         | Notes               |
-| -------------------------- | --------------------------- | ------------------- |
-| Overall program management | @tmandry, @nikomatsakis     |                     |
-| "Send bound" problem       | @nikomatsakis               |                     |
-| ↳ ~~Implementation~~       | ~~@compiler-errors~~        | ![Complete][]       |
-| ↳ ~~Author RFC~~           | @nikomatsakis               | ![Complete][]       |
-| ↳ RFC decision             | ![Team][] [lang]            | ![Complete][]       |
-| ↳ Stabilization decision   | ![Team][] [lang]            |                     |
-| Async WG reorganization    | @nikomatsakis               |                     |
-| ↳ Author proposal          |                             |                     |
-| ↳ Org decision             | ![Team][] [libs], [lang]    |                     |
-| Async closures             | @compiler-errors            |                     |
-| ↳ ~~implementation~~       |                             | ![Complete][]       |
-| ↳ Author RFC               |                             |                     |
-| ↳ RFC decision             | ![Team][] [lang]            |                     |
-| ↳ Design meeting           | ![Team][] [lang]            | 2 meetings expected |
-| ↳ Author call for usage    | @compiler-errors            |                     |
-| ↳ Stabilization decision   | ![Team][] [lang]            |                     |
-| Trait for async iteration  | @eholk                      |                     |
-| ↳ Author RFC               |                             |                     |
-| ↳ RFC decision             | ![Team][] [libs-api] [lang] |                     |
-| ↳ Design meeting           | ![Team][] [lang]            | 2 meetings expected |
-| ↳ Implementation           |                             |                     |
-| Dyn dispatch for AFIT      | @spastorino                 |                     |
-| ↳ Implementation           | @spastorino                 |                     |
-| ↳ Standard reviews         | @tmandry                    |                     |
-| Async drop experiments     | @petrochenkov               |                     |
-| ↳ ~~author MCP~~           |                             | ![Complete][]       |
-| ↳ ~~MCP decision~~         | ~~[compiler]~~              | ![Complete][]       |
-| ↳ Implementation work      |                             | ![Not funded][] (*) |
-| ↳ Design meeting           | ![Team][] [lang]            | 2 meetings expected |
-| ↳ Standard reviews         | ![Team][] [compiler]        |                     |
+| Task                       | Owner(s) or team(s)     | Notes |
+|----------------------------|-------------------------|-------|
+| Overall program management | @tmandry, @nikomatsakis |       |
+
+### "Send bound" problem
+
+| Task                   | Owner(s) or team(s)  | Notes         |
+|------------------------|----------------------|---------------|
+| ~~Implementation~~     | ~~@compiler-errors~~ | ![Complete][] |
+| ~~Author RFC~~         | @nikomatsakis        | ![Complete][] |
+| RFC decision           | ![Team][] [lang]     | ![Complete][] |
+| Stabilization decision | ![Team][] [lang]     |               |
+
+### Async WG reorganization
+
+| Task            | Owner(s) or team(s)      | Notes |
+|-----------------|--------------------------|-------|
+| Author proposal |                          |       |
+| Org decision    | ![Team][] [libs], [lang] |       |
+
+### Async closures
+
+| Task                   | Owner(s) or team(s) | Notes               |
+|------------------------|---------------------|---------------------|
+| ~~implementation~~     |                     | ![Complete][]       |
+| Author RFC             |                     |                     |
+| RFC decision           | ![Team][] [lang]    |                     |
+| Design meeting         | ![Team][] [lang]    | 2 meetings expected |
+| Author call for usage  | @compiler-errors    |                     |
+| Stabilization decision | ![Team][] [lang]    |                     |
+
+### Trait for async iteration
+
+| Task           | Owner(s) or team(s)         | Notes               |
+|----------------|-----------------------------|---------------------|
+| Author RFC     |                             |                     |
+| RFC decision   | ![Team][] [libs-api] [lang] |                     |
+| Design meeting | ![Team][] [lang]            | 2 meetings expected |
+| Implementation |                             |                     |
+
+### Dyn dispatch for AFIT
+
+| Task             | Owner(s) or team(s) | Notes |
+|------------------|---------------------|-------|
+| Implementation   | @spastorino         |       |
+| Standard reviews | @tmandry            |       |
+
+### Async drop experiments
+
+| Task                | Owner(s) or team(s)  | Notes               |
+|---------------------|----------------------|---------------------|
+| ~~author MCP~~      |                      | ![Complete][]       |
+| ~~MCP decision~~    | ~~[compiler]~~       | ![Complete][]       |
+| Implementation work |                      | ![Not funded][] (*) |
+| Design meeting      | ![Team][] [lang]     | 2 meetings expected |
+| Standard reviews    | ![Team][] [compiler] |                     |
+
 
 (*) Implementation work on async drop experiments is currently unfunded. We are trying to figure out next steps.
 

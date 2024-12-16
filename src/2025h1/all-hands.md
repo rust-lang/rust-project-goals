@@ -51,38 +51,51 @@ Repeating an event tends to be much easier than organising one from scratch.
 
 **Owner:** Mara
 
-| Subgoal                                    | Owner(s) or team(s)            | Notes                                                               |
-|--------------------------------------------|--------------------------------|---------------------------------------------------------------------|
-| Pick the dates                             | [RustNL], [leadership-council] | ![Complete][]                                                       |
-| Allocate funds                             | ![Team][] [leadership-council] | ![Complete][] for event                                             |
-| Allocate funds                             | Rust Foundation                | ![Complete][] for travel                                            |
-| Book the venue                             | [RustNL]                       | ![Complete][]                                                       |
-| Catering / snacks / food / drinks          | [RustNL]                       | ![Complete][]                                                       |
-| [Register] for the Rust All-Hands 2025     | *every project member*         | Majority already signed up!                                         |
-| Send out conformations/tickets             | Mara                           |                                                                     |
-| Send out detailed information              | Mara                           |                                                                     |
-| Answer logistical questions                | Mara                           |                                                                     |
-| Interface between project and RustNL       | Mara                           |                                                                     |
-| Make hotel reservations                    | [RustNL]                       | In progress                                                         |
-| Book hotel                                 | *all participants*             | RustNL will provide suggestions                                     |
-| Book travel                                | *all participants*             |                                                                     |
-| Team swag                                  |                                |                                                                     |
-| ↳ Miscellaneous                            | ![Team][] [leadership-council] | Decide on team swag; suggestions very welcome!                      |
-| ↳ Acquire swag                             | [RustNL]                       |                                                                     |
-| Make plans for what to do at the all-hands | *every team*                   |                                                                     |
-| ↳ Gather input from your teams             | *team leads* (or delegate)     |                                                                     |
-| ↳ Provide input for planning team          | *team leads* (or delegate)     |                                                                     |
-| ↳ Make an agenda for your team's room      | *team leads* (or delegate)     |                                                                     |
-| ↳ Coordinate the overall process           | Planning team                  | Small group of 2-3 people. Volunteers welcome!                      |
-| ↳ Make a room plan (after gathering input) | Planning team                  |                                                                     |
-| Miscellaneous                              | ![Team][] [leadership-council] | Prepare one or two plenary sessions                                 |
-| Submit talks for the "Rust Project Track"  | *project members*              | Possibility to give talks at the conference before the all-hands.   |
-| Organise an optional "pre all-hands day"   | Mara, [RustNL]                 | An optional day without an agenda, with space for social activities |
-| ↳ Acquire gifts (secret!)                  | Mara                           | ![Complete][]                                                       |
-| Moderation / safety                        | [RustNL] and moderator team    |                                                                     |
-| Accessibility and covid safety             | [RustNL]                       |                                                                     |
-| Come to the Rust All-Hands 2025            | *all participants*             |                                                                     |
-| Reimburse travel costs                     | Rust Foundation                |                                                                     |
+| Task                                      | Owner(s) or team(s)            | Notes                                                             |
+|-------------------------------------------|--------------------------------|-------------------------------------------------------------------|
+| Pick the dates                            | [RustNL], [leadership-council] | ![Complete][]                                                     |
+| Allocate funds                            | ![Team][] [leadership-council] | ![Complete][] for event                                           |
+| Allocate funds                            | Rust Foundation                | ![Complete][] for travel                                          |
+| Book the venue                            | [RustNL]                       | ![Complete][]                                                     |
+| Catering / snacks / food / drinks         | [RustNL]                       | ![Complete][]                                                     |
+| [Register] for the Rust All-Hands 2025    | *every project member*         | Majority already signed up!                                       |
+| Send out conformations/tickets            | Mara                           |                                                                   |
+| Send out detailed information             | Mara                           |                                                                   |
+| Answer logistical questions               | Mara                           |                                                                   |
+| Interface between project and RustNL      | Mara                           |                                                                   |
+| Make hotel reservations                   | [RustNL]                       | In progress                                                       |
+| Book hotel                                | *all participants*             | RustNL will provide suggestions                                   |
+| Book travel                               | *all participants*             |                                                                   |
+| Miscellaneous                             | ![Team][] [leadership-council] | Prepare one or two plenary sessions                               |
+| Submit talks for the "Rust Project Track" | *project members*              | Possibility to give talks at the conference before the all-hands. |
+| Moderation / safety                       | [RustNL] and moderator team    |                                                                   |
+| Accessibility and covid safety            | [RustNL]                       |                                                                   |
+| Come to the Rust All-Hands 2025           | *all participants*             |                                                                   |
+| Reimburse travel costs                    | Rust Foundation                |                                                                   |
+
+### Team swag
+
+| Task          | Owner(s) or team(s)            | Notes                                          |
+|---------------|--------------------------------|------------------------------------------------|
+| Miscellaneous | ![Team][] [leadership-council] | Decide on team swag; suggestions very welcome! |
+| Acquire swag  | [RustNL]                       |                                                |
+
+### Make plans for what to do at the all-hands
+
+| Task                                     | Owner(s) or team(s)        | Notes                                          |
+|------------------------------------------|----------------------------|------------------------------------------------|
+| Gather input from your teams             | *team leads* (or delegate) |                                                |
+| Provide input for planning team          | *team leads* (or delegate) |                                                |
+| Make an agenda for your team's room      | *team leads* (or delegate) |                                                |
+| Coordinate the overall process           | Planning team              | Small group of 2-3 people. Volunteers welcome! |
+| Make a room plan (after gathering input) | Planning team              |                                                |
+
+### Organise an optional "pre all-hands day"
+
+| Task                    | Owner(s) or team(s) | Notes                                                               |
+|-------------------------|---------------------|---------------------------------------------------------------------|
+| Organisation            | Mara, [RustNL]      | An optional day without an agenda, with space for social activities |
+| Acquire gifts (secret!) | Mara                | ![Complete][]                                                       |
 
 [RustNL]: https://rustweek.org/about/
 [Register]: https://docs.google.com/forms/d/e/1FAIpQLSeeoEsZGLGokSK0Gn8GVRHhM23KgbwKsp67oxi79KfdsbipkQ/viewform

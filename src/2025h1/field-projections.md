@@ -183,14 +183,12 @@ feel similar to using field access today.
 
 **Owner:** @y86-dev
 
-| Subgoal                                      | Owner(s) or team(s)        | Notes |
-|----------------------------------------------|----------------------------|-------|
-| Accept [Field Projections RFC]               |                            |       |
-| ↳ Design meeting                             | ![Team][] [lang]           |       |
-| ↳ RFC decision                               | ![Team][] [lang]           |       |
-| Nightly Implementation for Field Projections |                            |       |
-| ↳ Implementation                             | ![Help wanted][], @y86-dev |       |
-| ↳ Standard reviews                           | ![Team][] [compiler]       |       |
+| Task             | Owner(s) or team(s)        | Notes |
+|------------------|----------------------------|-------|
+| Design meeting   | ![Team][] [lang]           |       |
+| RFC decision     | ![Team][] [lang]           |       |
+| Implementation   | ![Help wanted][], @y86-dev |       |
+| Standard reviews | ![Team][] [compiler]       |       |
 
 ### Definitions
 
