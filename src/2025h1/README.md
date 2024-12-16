@@ -51,7 +51,7 @@ The flagship goals proposed for this roadmap are as follows:
 
 The full slate of project goals are as follows. These goals all have identified owners who will drive the work forward as well as a viable work plan. The goals include asks from the listed Rust teams, which are cataloged in the [reference-level explanation](#reference-level-explanation) section below.
 
-Some goals here do not yet have an owner (look for the ![Help wanted][] badge). Teams have reserved some capacity to pursue these goals but until an appropriate owner is found they are only considered provisionally accepted. If you are interested in serving as the owner for one of these orphaned goals, reach out to the mentor listed in the goal to discuss.
+**Invited goals.** Some goals of the goals below are "invited goals", meaning that for that goal to happen we need someone to step up and serve as an owner. To find the invited goals, look for the ![Help wanted][] badge in the table below. Invited goals have reserved capacity for teams and a mentor, so if you are someone looking to help Rust progress, they are a great way to get involved.
 
 <!-- GOALS 'Proposed' -->
 
