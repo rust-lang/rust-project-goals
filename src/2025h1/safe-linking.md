@@ -1,10 +1,10 @@
 # Research: How to achieve safety when linking separately compiled code
 
-| Metadata |                                                              |
-| -------- | ------------------------------------------------------------ |
+| Metadata |                                                                                                   |
+|----------|---------------------------------------------------------------------------------------------------|
 | Owner(s) | [Mara Bos](https://github.com/m-ou-se) and [Jonathan Dönszelman](https://github.com/jdonszelmann) |
-| Teams    | [lang], [compiler]                                           |
-| Status   | Proposed                                                     |
+| Teams    | [lang], [compiler]                                                                                |
+| Status   | Proposed                                                                                          |
 
 ## Summary
 
@@ -101,20 +101,19 @@ safe cross-language linking.
 
 **Owner:** [Mara Bos](https://github.com/m-ou-se) and/or [Jonathan Dönszelman](https://github.com/jdonszelmann).
 
-| Subgoal                                        | Owner(s) or team(s)     | Notes |
-| ---------------------------------------------- | ----------------------- | ----- |
-| Coordination with university                   | Jonathan                | Delft University of Technology |
-| Acquire funding                                | Hexcat (=Mara+Jonathan) |       |
-| Research                                       | Research team (MSc student, professor, etc.) | |
-| Mentoring and interfacing with Rust project    | Mara, Jonathan          |       |
-| Input and discussion on concept of safety      | ![Team][] [lang]        |       |
-| Blog post (author, review)                     | MSc student, Jonathan, Mara |   |
-| Feedback on conclusions                        | ![Team][] [lang]        | also the Rust community (users) |
-| Experimental implementation                    | Msc student             |       |
-| ↳ Mentoring                                    | Jonathan, Mara          |       |
-| ↳ Review/accept lang experiment                | ![Team][] [lang]        |       |
-| ↳ Reviews/feedback                             | ![Team][] [compiler]    |       |
-| Thesis / Paper                                 | Research team (MSc student, professor, etc.) | |
+| Subgoal                                     | Owner(s) or team(s)                          | Notes                          |
+|---------------------------------------------|----------------------------------------------|--------------------------------|
+| Discussion and moral support                | ![Team][] [lang]                             |                                |
+| Coordination with university                | Jonathan                                     | Delft University of Technology |
+| Acquire funding                             | Hexcat (=Mara+Jonathan)                      |                                |
+| Research                                    | Research team (MSc student, professor, etc.) |                                |
+| Mentoring and interfacing with Rust project | Mara, Jonathan                               |                                |
+| Blog post (author, review)                  | MSc student, Jonathan, Mara                  |                                |
+| Experimental implementation                 | Msc student                                  |                                |
+| ↳ Mentoring                                 | Jonathan, Mara                               |                                |
+| ↳ Lang-team experiment                      | ![Team][] [lang]                             | @nikomatsakis as liaison       |
+| ↳ Standard reviews                          | ![Team][] [compiler]                         |                                |
+| Thesis / Paper                              | Research team (MSc student, professor, etc.) |                                |
 
 ## Frequently asked questions
 

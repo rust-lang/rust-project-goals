@@ -76,7 +76,7 @@ This section defines the specific work items that are planned and who is expecte
 | ↳ switch default rustc output                   |                                |                                |
 | ↳ release notes                                 |                                |                                |
 | ↳ switch ui tests to only check new output      |                                |                                |
-| ↳ dedicated reviewer                            | ![Team][] [compiler]           | @estebank will be the reviewer |
+| ↳ Dedicated reviewer                            | ![Team][] [compiler]           | @estebank will be the reviewer |
 | Standard reviews                                | ![Team][] [compiler]           |                                |
 | Top-level Rust blog post inviting feedback      | 
 

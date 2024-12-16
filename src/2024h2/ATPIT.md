@@ -1,7 +1,7 @@
 # Associated type position impl trait
 
 | Metadata       |                                    |
-| ---            | ---                                |
+|----------------|------------------------------------|
 | Owner(s)       | @oli-obk                           |
 | Teams          | [types], [lang]                    |
 | Status         | Accepted                           |
@@ -61,9 +61,9 @@ None.
 **Owner:** oli-obk owns this goal.
 
 | Subgoal                | Owner(s) or team(s)      | Notes |
-| ---------------------- | ------------------------ | ----- |
+|------------------------|--------------------------|-------|
 | Implementation         | @oli-obk                 |       |
-| FCP decisions          | ![Team][] [types]        |       |
+| FCP decision(s)           | ![Team][] [types]        |       |
 | Stabilization decision | ![Team][] [types] [lang] |       |
 
 ## Frequently asked questions

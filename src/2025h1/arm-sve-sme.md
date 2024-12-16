@@ -1,7 +1,7 @@
 # SVE and SME on AArch64
 
 | Metadata |                             |
-| -------- | --------------------------- |
+|----------|-----------------------------|
 | Owner(s) | Rust team at Arm            |
 | Teams    | [lang], [types], [compiler] |
 | Status   | Proposed                    |
@@ -114,27 +114,23 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 the work to be done by owners and the work to be done by Rust teams (subject to approval by the
 team in an RFC/FCP).
 
-| Subgoal                                           | Owner(s) or team(s)                 | Notes |
-| ------------------------------------------------- | ------------------------------------| ----- |
-| Discussions and moral support                     | ![Team] [lang], [types], [compiler] |
-| Land nightly experiment for SVE types             | @JamieCunliffe                      |
-| ↳ Author RFC                                      |                                     | Update [rfcs#3268][rfc_sve], will still rely on exceptions in the type system
-| ↳ RFC decision                                    | ![Team] [lang], [types]             |
-| ↳ Implementation                                  |                                     | Update [rust#118917][impl_sve]
-| ↳ Standard reviews                                | ![Team] [compiler]                  |
-| Upstream SVE types and intrinsics                 | @JamieCunliffe                      | Using `repr(scalable)` from previous work, upstream the nightly intrinsics and types 
-| Extending type system to support scalable vectors | @davidtwco                          |
-| ↳ Author RFC                                      |                                     |
-| ↳ RFC decision                                    | ![Team] [lang], [types]             |
-| ↳ Implementation                                  |                                     |
-| ↳ Standard reviews                                | ![Team] [compiler]                  |
-| Stabilize SVE types                               | @JamieCunliffe, @davidtwco          |
-| ↳ Implementation                                  | @JamieCunliffe                      | Update existing implementation to use new type system features
-| ↳ Stabilisations                                  | ![Team] [lang]                      |
-| ↳ Blog post announcing feature                    | @davidtwco                          |
-| Investigate SME support                           | @JamieCunliffe, @davidtwco          |
-| ↳ Discussions and moral support                   | ![Team] [lang], [types], [compiler] |
-| ↳ Draft next goal                                 | @davidtwco                          |
+| Subgoal                                           | Owner(s) or team(s)                   | Notes                                                                                |
+|---------------------------------------------------|---------------------------------------|--------------------------------------------------------------------------------------|
+| Discussion and moral support                      | ![Team][] [lang], [types], [compiler] |                                                                                      |
+| Land nightly experiment for SVE types             | @JamieCunliffe                        |                                                                                      |
+| ↳ Author RFC                                      |                                       | Update [rfcs#3268][rfc_sve], will still rely on exceptions in the type system        |
+| ↳ RFC decision                                    | ![Team][] [lang], [types]             |                                                                                      |
+| ↳ Implementation                                  |                                       | Update [rust#118917][impl_sve]                                                       |
+| ↳ Standard reviews                                | ![Team][] [compiler]                  |                                                                                      |
+| Upstream SVE types and intrinsics                 | @JamieCunliffe                        | Using `repr(scalable)` from previous work, upstream the nightly intrinsics and types |
+| Extending type system to support scalable vectors | @davidtwco                            |                                                                                      |
+| ↳ Author RFC                                      |                                       |                                                                                      |
+| ↳ RFC decision                                    | ![Team][] [lang], [types]             |                                                                                      |
+| ↳ Implementation                                  |                                       |                                                                                      |
+| ↳ Standard reviews                                | ![Team][] [compiler]                  |                                                                                      |
+| Investigate SME support                           | @JamieCunliffe, @davidtwco            |                                                                                      |
+| ↳ Discussion and moral support                    | ![Team][] [lang], [types], [compiler] |                                                                                      |
+| ↳ Draft next goal                                 | @davidtwco                            |                                                                                      |
 
 ### Definitions
 

@@ -1,10 +1,10 @@
 # Secure quorum-based cryptographic verification and mirroring for crates.io
 
-| Metadata |                                                              |
-| -------- | ------------------------------------------------------------ |
-| Owner(s) | @walterhpearce |
+| Metadata |                         |
+|----------|-------------------------|
+| Owner(s) | @walterhpearce          |
 | Teams    | crates.io, cargo, infra |
-| Status   | Proposed                                                     |
+| Status   | Proposed                |
 
 ## Summary
 
@@ -42,19 +42,20 @@ We'll add support for similar cryptographic security for third-party crate repos
 
 ## Ownership and team asks
 
-| Subgoal                                        | Owner(s) or team(s)     | Notes |
-| ---------------------------------------------- | ----------------------- | ----- |
-| Quorum-based cryptographic infrastructure (RFC 3724) | ![Team][] [cargo] [crates-io] [infra] |       |
-| ↳ Further revisions to RFC | @walterhpearce |       |
-| ↳ RFC decision                                 | ![Team][] [cargo] [crates-io] [infra] |       |
-| ↳ Implementation and staging deployment        | @walterhpearce, [crates-io], [infra] |       |
-| ↳ Leadership Council selects root quorum                             | ![Team][] [leadership-council]    |       |
-| ↳ Production Deployment                             | ![Team][] [crates-io] [infra]    |       |
-| Inside Rust blog post about staging deployment | ![Team][] [crates-io]    |       |
-| Top-level Rust blog post on production deployment     | ![Team][] [leadership-council]          |       |
-| Draft RFC for mirroring crates.io via alternate repositories | @walterhpearce @joshtriplett |       |
-| ↳ Discussion and moral support                     | ![Team][] [cargo]    |       |
-| ↳ Proof of concept technical experiments | @walterhpearce   |       |
+| Subgoal                                                      | Owner(s) or team(s)                   | Notes                                             |
+|--------------------------------------------------------------|---------------------------------------|---------------------------------------------------|
+| Quorum-based cryptographic infrastructure (RFC 3724)         |                                       |                                                   |
+| ↳ Further revisions to RFC                                   | @walterhpearce                        |                                                   |
+| ↳ RFC decision                                               | ![Team][] [cargo] [crates-io] [infra] |                                                   |
+| ↳ Implementation and staging deployment                      | @walterhpearce, [crates-io], [infra]  |                                                   |
+| ↳ Miscellaneous                                              | ![Team][] [leadership-council]        | Select root quorum                                |
+| ↳ Deploy to production                                       | ![Team][] [crates-io] [infra]         |                                                   |
+| Inside Rust blog post about staging deployment               | @walterhpearce                        |                                                   |
+| Blog post approval                                           | ![Team][] [leadership-council]        | Top-level Rust blog post on production deployment |
+| Draft RFC for mirroring crates.io via alternate repositories |                                       |                                                   |
+| ↳ Discussion and moral support                               | ![Team][] [cargo]                     |                                                   |
+| ↳ Author RFC                                                 | @walterhpearce @joshtriplett          |                                                   |
+| ↳ Proof of concept technical experiments                     | @walterhpearce                        |                                                   |
 
 ### Definitions
 
