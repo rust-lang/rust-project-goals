@@ -1,7 +1,7 @@
 # Implement restrictions, prepare for stabilization
 
 | Metadata |          |
-| -------- | -------- |
+|----------|----------|
 | Owner(s) | @jhpratt |
 | Teams    | [lang]   |
 | Status   | Proposed |
@@ -41,15 +41,15 @@ high level, but are not the focus of this project goal.
 **Owner:** @jhpratt
 
 | Subgoal                                 | Owner(s) or team(s)  | Notes                                      |
-| --------------------------------------- | -------------------- | ------------------------------------------ |
+|-----------------------------------------|----------------------|--------------------------------------------|
 | Discussion and moral support            | ![Team][] [lang]     |                                            |
 | Stabilize restrictions                  |                      |                                            |
 | ↳ Implementation                        | @jhpratt             | [old PR][pr] is plausibly workable         |
-| ↳ Code reviews                          | ![Team][] [compiler] |                                            |
-| ↳ Design decisions                      | ![Team][] [lang]     | for unresolved questions, including syntax |
+| ↳ Standard reviews                      | ![Team][] [compiler] |                                            |
+| ↳ Prioritized nominations               | ![Team][] [lang]     | for unresolved questions, including syntax |
 | ↳ Author stabilization report           | @jhpratt             |                                            |
 | ↳ Stabilization decision                | ![Team][] [lang]     |                                            |
-| Inside Rust blog post inviting feedback | ![Team][] [lang] | feedback on syntax if no team consensus    |
+| Inside Rust blog post inviting feedback | @jhpratt             | feedback on syntax if no team consensus    |
 
 ### Definitions
 

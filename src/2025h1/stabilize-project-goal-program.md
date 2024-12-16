@@ -1,19 +1,19 @@
-# "Stabilize" the project goal program
+# Run the 2025H1 project goal program
 
-| Metadata |                                                              |
-| -------- | ------------------------------------------------------------ |
-| Owner(s) | nikomatsakis |
-| Teams    | [Leadership Council]  |
-| Status   | Proposed                                                     |
+| Metadata |                      |
+|----------|----------------------|
+| Owner(s) | nikomatsakis         |
+| Teams    | [Leadership Council] |
+| Status   | Proposed             |
 
 ## Summary
 
+* Create a *goals team* for running the project-goals-program
 * Run the second round of the Rust project goal program experiment
-* Author an RFC proposing it as a permanent fixture
 
 ## Motivation
 
-Over the second half of last year we ran the first round of an experimental new Rust Project Goal program to reasonable success. We propose to continue with this program for another 6 months. This second experimental round will validate the project goal system as designed. We will also use this time to author an RFC describing the structure of the project goal program and making it a recurring part of project life.
+Over 2024H2 we ran the first round of an experimental new Rust Project Goal program to reasonable success. Based on feedback received, we will make some minor adjustments to the plan and try a second round. We will also create a team so that the program is being run in a more sustainable way. Assuming that this second result continues to be positive, then in 2025h2 we would be looking to author an RFC describing the structure of the project goal program and making it a recurring part of project life.
 
 ### The status quo
 
@@ -41,8 +41,8 @@ For more details, see
 
 ### The next 6 months
 
+* Create a team to run the goal program in a more sustainable way
 * Publish monthly status updates on the goals selected for 2025h1
-* Author an RFC describing the final form of the project goals program
 
 ### The "shiny future" we are working towards
 
@@ -66,20 +66,21 @@ Running the Rust Project Goals program will be a relatively scalable task that c
 
 * @nikomatsakis can commit 20% time (avg of 1 days per week) to pursue this task, which he estimates to be sufficient.
 
-| Subgoal                                        | Owner(s) or team(s)     | Notes |
-| ---------------------------------------------- | ----------------------- | ----- |
-| Begin soliciting goals in Nov 2024             | nikomatsakis |
-| Approve goal slate for 2025h1                  | ![Team][] [leadership-council]    |       |
-| Top-level Rust blog post for 2025h1 goals      | nikomatsakis    |       |
-| January goal update                            | nikomatsakis |
-| February goal update                           | nikomatsakis |
-| Author RFC                                     | nikomatsakis |
-| March goal update                              | nikomatsakis |
-| RFC decision                                   | ![Team][] [leadership-council]    |       |
-| Begin soliciting goals for 2025h2              | nikomatsakis |
-| April goal update                              | nikomatsakis |
-| May goal update                                | nikomatsakis |
-| June goal update                               | nikomatsakis |
+| Subgoal                                   | Owner(s) or team(s)          | Notes                        |
+|-------------------------------------------|------------------------------|------------------------------|
+| Begin soliciting goals in Nov 2024        | nikomatsakis                 |                              |
+| Approve goal slate for 2025h1             | *leads of each team*         |                              |
+| Top-level Rust blog post for 2025h1 goals | nikomatsakis                 |                              |
+| Propose team membership                   | nikomatsakis                 |                              |
+| Org decision                              | ![Team] [leadership-council] | approve creation of new team |
+| January goal update                       | goals team                   |                              |
+| February goal update                      | goals team                   |                              |
+| Author RFC                                | goals team                   |                              |
+| March goal update                         | goals team                   |                              |
+| Begin soliciting goals for 2025h2         | goals team                   |                              |
+| April goal update                         | goals team                   |                              |
+| May goal update                           | goals team                   |                              |
+| June goal update                          | goals team                   |                              |
 
 ### Definitions
 

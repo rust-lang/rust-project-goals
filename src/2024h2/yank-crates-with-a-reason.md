@@ -1,7 +1,7 @@
 # Provided reasons for yanked crates
 
 | Metadata       |                                    |
-| ---            | ---                                |
+|----------------|------------------------------------|
 | Owner(s)       | @Rustin170506                      |
 | Teams          | [crates-io], [cargo]               |
 | Status         | Accepted                           |
@@ -55,15 +55,15 @@ When considering this feature, we need to balance our desire for a perfect, stru
 * @Rustin170506: wearing my Cargo regular contributor's hat
 
 | Subgoal                                   | Owner(s) or team(s)            | Notes |
-| ----------------------------------------- | ------------------------------ | ----- |
+|-------------------------------------------|--------------------------------|-------|
 | Yank crates with a reason                 |                                |       |
-| ↳ Implementation                          | @Rustin170506                     |       |
+| ↳ Implementation                          | @Rustin170506                  |       |
 | ↳ Standard reviews                        | ![Team][] [crates-io]          |       |
-| ↳ Try it out in crates.io                 | ![Team][] [crates-io]          |       |
-| ↳ Author RFC                              | @Rustin170506                     |       |
-| ↳ Approve RFC                             | ![Team][] [cargo], [crates-io] |       |
-| ↳ Implementation in Cargo side            | @Rustin170506                     |       |
-| ↳ Inside Rust blog post inviting feedback | @Rustin170506                     |       |
+| ↳ Deploy to production                    | ![Team][] [crates-io]          |       |
+| ↳ Author RFC                              | @Rustin170506                  |       |
+| ↳ RFC decision                             | ![Team][] [cargo], [crates-io] |       |
+| ↳ Implementation in Cargo side            | @Rustin170506                  |       |
+| ↳ Inside Rust blog post inviting feedback | @Rustin170506                  |       |
 | ↳ Stabilization decision                  | ![Team][] [cargo]              |       |
 
 [TBD]: https://img.shields.io/badge/TBD-red

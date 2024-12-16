@@ -57,7 +57,7 @@ The outputs of rustc and cargo are fully using annotate-snippets, with no regres
 | ↳ switch default rustc output                   |                                |                                |
 | ↳ release notes                                 |                                |                                |
 | ↳ switch ui tests to only check new output      |                                |                                |
-| ↳ dedicated reviewer                            | ![Team][] [compiler]           | @estebank will be the reviewer |
+| ↳ Dedicated reviewer                            | ![Team][] [compiler]           | @estebank will be the reviewer |
 | Standard reviews                                | ![Team][] [compiler]           |                                |
 | Top-level Rust blog post inviting feedback      |                                |                                |
 

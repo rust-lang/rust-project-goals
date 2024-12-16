@@ -1,7 +1,7 @@
 # Next-generation trait solver
 
 | Metadata       |                                    |
-| ---            | ---                                |
+|----------------|------------------------------------|
 | Owner(s)       | @lcnr                              |
 | Teams          | [types]                            |
 | Status         | Proposed                           |
@@ -60,13 +60,13 @@ In order of importance, the next-generation trait solver should be:
 
 Add'l implementation work: @compiler-errors
 
-| Subgoal                                         | Owner(s) or team(s)           | Notes |
-| ----------------------------------------------- | ----------------------------- | ----- |
-| Discussion and moral support                    | ![Team][] [types]             |       |
-| Work towards stabilization                      |                               |       |
-| ↳ Implementation                                | @lcnr, @compiler-errors       |       |
-| ↳ Standard reviews                              | ![Team][] [types]             |       |
-| ↳ FCP decisions on necessary refactorings       | ![Team][] [types][]           |       |
+| Subgoal                      | Owner(s) or team(s)     | Notes                      |
+|------------------------------|-------------------------|----------------------------|
+| Discussion and moral support | ![Team][] [types]       |                            |
+| Work towards stabilization   |                         |                            |
+| ↳ Implementation             | @lcnr, @compiler-errors |                            |
+| ↳ Standard reviews           | ![Team][] [types]       |                            |
+| ↳ FCP decision(s)            | ![Team][] [types][]     | for necessary refactorings |
 
 ### Support needed from the project
 

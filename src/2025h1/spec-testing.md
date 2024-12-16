@@ -1,10 +1,10 @@
 # Rust Specification Testing
 
-| Metadata |                                                              |
-| -------- | ------------------------------------------------------------ |
+| Metadata |               |
+|----------|---------------|
 | Owner(s) | Connor Horman |
-| Teams    | T-spec           |
-| Status   | Proposed                                                     |
+| Teams    | T-spec        |
+| Status   | Proposed      |
 
 ## Summary
 
@@ -37,14 +37,14 @@ The integration of testing into the specification should:
 **Owner:** Connor Horman
 
 
-| Subgoal                          | Owner(s) or team(s) | Notes                                    |
-| -------------------------------- | ------------------- | ---------------------------------------- |
-| Determine precise test structure |                     |                                          |
-| ↳Author RFC                      | Connor Horman       |                                          |
-| ↳Review RFC                      | ![Team][] [spec]  ![Team][] [compiler] ![Team][bootstrap] ![Team][] [lang]   |  |
-| ↳Move/Extract Tests              | Connor Horman       | As Needed |
-| ↳Annotate Moved Tests | |                                          |
-| ↳Author new tests                | Connor Horman       |                                          |
+| Subgoal                          | Owner(s) or team(s)                                                        | Notes     |
+|----------------------------------|----------------------------------------------------------------------------|-----------|
+| Determine precise test structure |                                                                            |           |
+| ↳ Author RFC                     | Connor Horman                                                              |           |
+| ↳ RFC decision                   | ![Team][] [spec]  ![Team][] [compiler] ![Team][bootstrap] ![Team][] [lang] |           |
+| ↳ Move/Extract Tests             | Connor Horman                                                              | As Needed |
+| ↳ Annotate Moved Tests           |                                                                            |           |
+| ↳ Author new tests               | Connor Horman                                                              |           |
 
 ## Frequently asked questions
 
