@@ -97,12 +97,9 @@ and [bootstrap] for implementation review.
 | Subgoal                                              | Owner(s) or team(s)                          | Notes                                                                                          |
 |------------------------------------------------------|----------------------------------------------|------------------------------------------------------------------------------------------------|
 | Discussion and moral support                         | ![Team][] [bootstrap], [compiler], [rustdoc] | including consultations for desired test behaviors and testing infra consumers                 |
-| Experimental prototype[^1]                           |                                              | to see how approaches look like and gain experience/feedback                                   |
-| ↳ Implementation                                     | @jieyouxu                                    |                                                                                                |
-| ↳ Standard reviews                                   | ![Team][] [bootstrap], ![Team][] [compiler]  | Probably mostly [bootstrap] or whoever is more interested in reviewing [`compiletest`] changes |
-| [`compiletest`] changes w/ experience from prototype |                                              |                                                                                                |
-| ↳ Implementation                                     | @jieyouxu                                    |                                                                                                |
-| ↳ Standard reviews                                   | ![Team][] [bootstrap], ![Team][] [compiler]  | Probably mostly [bootstrap] or whoever is more interested in reviewing [`compiletest`] changes |
+| Experimental prototype implementation[^1]            | @jieyouxu                                    | to see how approaches look like and gain experience/feedback                                   |
+| [`compiletest`] changes w/ experience from prototype | @jieyouxu                                    |                                                                                                |
+| Standard reviews                                     | ![Team][] [bootstrap], [compiler]            | Probably mostly [bootstrap] or whoever is more interested in reviewing [`compiletest`] changes |
 | Inside Rust blog post for project outcome            | @jieyouxu                                    |                                                                                                |
 
 [^1]: I want to start with an out-of-tree experimental prototype to see how the pieces are fit

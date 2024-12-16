@@ -1,7 +1,7 @@
 # Unsafe Fields
 
 | Metadata |          |
-| ---      | ---      |
+|----------|----------|
 | Owner(s) | @jswrenn |
 | Teams    | [lang]   |
 | Status   | Proposed |
@@ -75,16 +75,15 @@ The design of `unsafe` fields is guided by three axioms:
 
 **Owner:** @jswrenn
 
-| Subgoal                                        | Owner(s) or team(s)  | Notes                          |
-| ---------------------------------------------- | -------------------- | ---------                      |
-| Discussion and moral support                   | ![Team][] [lang]     | [Zulip]                        |
-| Stabilize Unsafe Fields                        |                      |                                |
-| ↳ Author RFC                                   | @jhpratt             | [RFC3458], [Living Design Doc] |
-| ↳ Implementation                               | @veluca93            |                                |
-| ↳ Standard reviews                             | ![Team][] [compiler] |                                |
-| ↳ Design meeting                               | ![Team][] [lang]     |                                |
-| ↳ RFC decision                                 | ![Team][] [lang]     |                                |
-| ↳ Author stabilization report                  | @jswrenn             |                                |
+| Subgoal                      | Owner(s) or team(s)  | Notes                          |
+|------------------------------|----------------------|--------------------------------|
+| Discussion and moral support | ![Team][] [lang]     | [Zulip]                        |
+| Author RFC                   | @jhpratt             | [RFC3458], [Living Design Doc] |
+| Implementation               | @veluca93            |                                |
+| Standard reviews             | ![Team][] [compiler] |                                |
+| Design meeting               | ![Team][] [lang]     |                                |
+| RFC decision                 | ![Team][] [lang]     |                                |
+| Author stabilization report  | @jswrenn             |                                |
 
 [Zulip]: https://rust-lang.zulipchat.com/#narrow/channel/213817-t-lang/topic/unsafe.20fields.20RFC
 [RFC3458]: https://github.com/rust-lang/rfcs/pull/3458

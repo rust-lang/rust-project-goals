@@ -1,7 +1,7 @@
 # Instrument the Rust standard library with safety contracts
 
 | Metadata |                           |
-| -------- |---------------------------|
+|----------|---------------------------|
 | Owner(s) | @celinval and @tautschnig |
 | Teams    | [libs][compiler]          |
 | Status   | Proposed                  |
@@ -66,17 +66,27 @@ unless users opt-in for contract runtime checks.
 
 **Owner:** @celinval and @tautschnig
 
-| Subgoal                          | Owner(s) or team(s)    | Notes                |
-|----------------------------------|------------------------|----------------------|
-| Discussion and moral support     | ![Team][] [libs]       |                      |
-| Experimental Contract attributes |                        |                      |
-| ↳ Author MCP                     |                        | Done already by @pnkfelix |
-| ↳ Implementation                 | @celinval              | This is in progress. |
-| ↳ Standard reviews               | ![Team][] [compiler]   |                      |
-| ↳ Design meeting                 | ![Team][] [compiler]   |                      |
-| Standard Library Contracts       | @celinval, @tautschnig |                      |
-| ↳ Writing new contracts          | Help wanted            |                      |
-| ↳ Standard reviews               | ![Team][] [libs]       |                      |
+| Subgoal                      | Owner(s) or team(s) | Notes |
+|------------------------------|---------------------|-------|
+| Discussion and moral support | ![Team][] [libs]    |       |
+
+### Experimental Contract attributes
+
+| Subgoal          | Owner(s) or team(s)  | Notes                                   |
+|------------------|----------------------|-----------------------------------------|
+| Author MCP       |                      | ![Complete][] Done already by @pnkfelix |
+| Implementation   | @celinval            | In progress.                            |
+| Standard reviews | ![Team][] [compiler] |                                         |
+| Design meeting   | ![Team][] [compiler] |                                         |
+
+### Standard Library Contracts
+
+| Subgoal                    | Owner(s) or team(s)    | Notes |
+|----------------------------|------------------------|-------|
+| Standard Library Contracts | @celinval, @tautschnig |       |
+| Writing new contracts      | Help wanted            |       |
+| Standard reviews           | ![Team][] [libs]       |       |
+
 
 ### Definitions
 

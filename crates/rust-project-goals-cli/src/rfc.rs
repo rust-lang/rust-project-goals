@@ -18,7 +18,7 @@ use rust_project_goals::{
         },
         labels::GhLabel,
     },
-    goal::{self, GoalDocument, ParsedOwners, PlanItem, Status},
+    goal::{self, GoalDocument, GoalPlan, ParsedOwners, Status},
     team::{get_person_data, TeamName},
 };
 
@@ -324,8 +324,8 @@ fn issue<'doc>(timeframe: &str, document: &'doc GoalDocument) -> anyhow::Result<
 
 fn issue_text(timeframe: &str, document: &GoalDocument) -> anyhow::Result<String> {
     let mut tasks = vec![];
-    for plan_item in &document.plan_items {
-        tasks.extend(task_items(plan_item)?);
+    for goal_plan in &document.goal_plans {
+        tasks.extend(task_items(goal_plan)?);
     }
 
     let teams = document
@@ -361,35 +361,38 @@ fn issue_text(timeframe: &str, document: &GoalDocument) -> anyhow::Result<String
     ))
 }
 
-fn task_items(plan_item: &PlanItem) -> anyhow::Result<Vec<String>> {
+fn task_items(goal_plan: &GoalPlan) -> anyhow::Result<Vec<String>> {
     use std::fmt::Write;
+
 
     let mut tasks = vec![];
 
-    let mut description = format!(
-        "* {box} {text}",
-        box = if plan_item.is_complete() { "[x]" } else { "[ ]" },
-        text = plan_item.text
-    );
-
-    if let Some(parsed_owners) = plan_item.parse_owners()? {
-        match parsed_owners {
-            ParsedOwners::TeamAsks(asks) => {
-                let teams: Vec<String> = asks.iter().map(|ask| ask.name_and_link()).collect();
-
-                write!(description, " ({} ![Team][])", teams.join(", "))?;
-            }
-
-            ParsedOwners::Usernames(usernames) => {
-                write!(description, " ({})", usernames.join(", "))?;
-            }
-        }
+    if let Some(title) = &goal_plan.subgoal {
+        tasks.push(format!("### {title}"));
     }
 
-    tasks.push(description);
+    for plan_item in &goal_plan.plan_items {
+        let mut description = format!(
+            "* {box} {text}",
+            box = if plan_item.is_complete() { "[x]" } else { "[ ]" },
+            text = plan_item.text
+        );
 
-    for task in &plan_item.children {
-        tasks.extend(task_items(task)?.into_iter().map(|t| format!("  {}", &t)));
+        if let Some(parsed_owners) = plan_item.parse_owners()? {
+            match parsed_owners {
+                ParsedOwners::TeamAsks(asks) => {
+                    let teams: Vec<String> = asks.iter().map(|ask| ask.name_and_link()).collect();
+
+                    write!(description, " ({} ![Team][])", teams.join(", "))?;
+                }
+
+                ParsedOwners::Usernames(usernames) => {
+                    write!(description, " ({})", usernames.join(", "))?;
+                }
+            }
+        }
+
+        tasks.push(description);
     }
 
     Ok(tasks)

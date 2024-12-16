@@ -128,35 +128,46 @@ could reserve such syntax in all editions.
 
 **Owner / Responsible Reporting Party:** @joshtriplett
 
-| Subgoal                                          | Owner(s) or team(s)                        | Notes                                                                                      |
-|--------------------------------------------------|--------------------------------------------|--------------------------------------------------------------------------------------------|
-| Discussion and moral support                     | ![Team][] [lang]                           |                                                                                            |
-| Design for `macro_rules!` attributes/derives     |                                            |                                                                                            |
-| ↳ Author/revise/iterate RFCs                     | @joshtriplett                              |                                                                                            |
-| ↳ Prioritized nominations                        | ![Team][] [lang]                           |                                                                                            |
-| ↳ RFC decision                                   | ![Team][] [lang]                           |                                                                                            |
-| ↳ Iterate on design as needed                    | @joshtriplett                              |                                                                                            |
-| ↳ Author stabilization report (if ready)         | @joshtriplett                              |                                                                                            |
-| ↳ Stabilization decision                         | ![Team][] [lang]                           |                                                                                            |
-| Policy and delegation improvements for wg-macros | @joshtriplett, [lang], @eholk, [wg-macros] | Discussed with @eholk; lang would decide whether to delegate specific matters to wg-macros |
-| Design and iteration for macro fragment fields   |                                            |                                                                                            |
-| ↳ Author initial RFC                             | @joshtriplett                              |                                                                                            |
-| ↳ Design meeting                                 | ![Team][] [lang]                           |                                                                                            |
-| ↳ RFC decision                                   | ![Team][] [lang]                           |                                                                                            |
-| ↳ Iterate on design as needed                    | @joshtriplett                              |                                                                                            |
-| ↳ Process feedback from crate authors            | @joshtriplett                              |                                                                                            |
-| ↳ Support lang experiments for fragment fields   | @joshtriplett                              |                                                                                            |
-| ↳ Author small RFCs for further fragment fields  | @joshtriplett                              |                                                                                            |
-| ↳ RFC decision                                   | ![Team][] [lang] [wg-macros]               |                                                                                            |
-| Design for macro metavariable constructs         |                                            |                                                                                            |
-| ↳ Design research and discussions                | @joshtriplett                              |                                                                                            |
-| ↳ Discussion and moral support                   | ![Team][] [lang] [wg-macros]               |                                                                                            |
-| ↳ Author initial RFC                             | @joshtriplett                              |                                                                                            |
-| Inside Rust blog post on attribute/derive macros | @joshtriplett                              |                                                                                            |
-| ↳ Process feedback from blog post                | @joshtriplett                              |                                                                                            |
-| Inside Rust blog post on additional capabilities | @joshtriplett                              |                                                                                            |
-| ↳ Process feedback from blog post                | @joshtriplett                              |                                                                                            |
-| Propose discussion session at RustWeek           | @joshtriplett                              |                                                                                            |
+
+| Subgoal                                          | Owner(s) or team(s) | Notes                                                                                      |
+|--------------------------------------------------|---------------------|--------------------------------------------------------------------------------------------|
+| Discussion and moral support                     | ![Team][] [lang]    |                                                                                            |
+| Propose discussion session at RustWeek           | @joshtriplett       |                                                                                            |
+| Inside Rust blog post on attribute/derive macros | @joshtriplett       |                                                                                            |
+| Inside Rust blog post on additional capabilities | @joshtriplett       |                                                                                            |
+| Policy decision                                  | ![Team][] [lang]    | Discussed with @eholk; lang would decide whether to delegate specific matters to wg-macros |
+
+### Design for `macro_rules!` attributes/derives
+
+| Subgoal                                | Owner(s) or team(s) | Notes |
+|----------------------------------------|---------------------|-------|
+| Author/revise/iterate RFCs             | @joshtriplett       |       |
+| Prioritized nominations                | ![Team][] [lang]    |       |
+| RFC decision                           | ![Team][] [lang]    |       |
+| Iterate on design as needed            | @joshtriplett       |       |
+| Author stabilization report (if ready) | @joshtriplett       |       |
+| Stabilization decision                 | ![Team][] [lang]    |       |
+
+### Design and iteration for macro fragment fields
+
+| Subgoal                                       | Owner(s) or team(s)          | Notes |
+|-----------------------------------------------|------------------------------|-------|
+| Author initial RFC                            | @joshtriplett                |       |
+| Design meeting                                | ![Team][] [lang]             |       |
+| RFC decision                                  | ![Team][] [lang]             |       |
+| Iterate on design as needed                   | @joshtriplett                |       |
+| Process feedback from crate authors           | @joshtriplett                |       |
+| Support lang experiments for fragment fields  | @joshtriplett                |       |
+| Author small RFCs for further fragment fields | @joshtriplett                |       |
+| RFC decision                                  | ![Team][] [lang] [wg-macros] |       |
+
+### Design for macro metavariable constructs
+
+| Subgoal                         | Owner(s) or team(s)          | Notes |
+|---------------------------------|------------------------------|-------|
+| Design research and discussions | @joshtriplett                |       |
+| Discussion and moral support    | ![Team][] [lang] [wg-macros] |       |
+| Author initial RFC              | @joshtriplett                |       |
 
 ### Definitions
 

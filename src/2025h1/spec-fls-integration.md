@@ -48,23 +48,30 @@ The following [design axioms][da] apply:
 
 Some subgoals list an expected due/completion date. If one is omitted, compeletion by the end of 2025h1 is implied.
 
+| Subgoal       | Owner(s) or team(s) | Notes                                                               |
+|---------------|---------------------|---------------------------------------------------------------------|
+| Miscellaneous | ![Team][] [spec]    | Take ownership of the FLS (prior to, or shortly into January 2025). |
 
-| Subgoal                                             | Owner(s) or team(s) | Notes                                                               |
-|-----------------------------------------------------|---------------------|---------------------------------------------------------------------|
-| Miscellaneous                                       | ![Team][] [spec]    | Take ownership of the FLS (prior to, or shortly into January 2025). |
-| Integrate FLS into T-spec processes                 |                     |                                                                     |
-| ↳ Review Existing Editorial Standards in the FLS    |                     | End of January 2025                                                 |
-| ↳ Review Tooling used by the FLS                    | Connor Horman       | End of January 2025                                                 |
-| ↳ Author Proposal for specifics of FLS integration  | Connor Horman       | Mid-Late Februrary 2025                                             |
-| ↳ RFC decision                                      | ![Team][] [spec]    | End of March 2025                                                   |
-| ↳ Adjust Tooling, as needed                         | Connor Horman       | April 2025                                                          |
-| ↳ Begin implementing the integration Proposal       | Connor Horman       |                                                                     |
-| Integrate FLS into release process                  |                     |                                                                     |
-| ↳ Discussion and moral support                      | ![Team][] [release] | Februrary 2025                                                      |
-| ↳ Link tooling used with FLS to the release process |                     | April 2025                                                          |
-| ↳ Review of FLS prior to release                    |                     | May 2025                                                            |
-| ↳ Get FLS into a Rust Release                       |                     | Rust 1.89                                                           |
-| ↳ Standard reviews                                  | ![Team][] [release] |                                                                     |
+### Integrate FLS into T-spec processes
+
+| Subgoal                                          | Owner(s) or team(s) | Notes                   |
+|--------------------------------------------------|---------------------|-------------------------|
+| Review Existing Editorial Standards in the FLS   |                     | End of January 2025     |
+| Review Tooling used by the FLS                   | Connor Horman       | End of January 2025     |
+| Author Proposal for specifics of FLS integration | Connor Horman       | Mid-Late Februrary 2025 |
+| RFC decision                                     | ![Team][] [spec]    | End of March 2025       |
+| Adjust Tooling, as needed                        | Connor Horman       | April 2025              |
+| Begin implementing the integration Proposal      | Connor Horman       |                         |
+
+### Integrate FLS into release process
+
+| Subgoal                                           | Owner(s) or team(s) | Notes          |
+|---------------------------------------------------|---------------------|----------------|
+| Discussion and moral support                      | ![Team][] [release] | Februrary 2025 |
+| Link tooling used with FLS to the release process |                     | April 2025     |
+| Review of FLS prior to release                    |                     | May 2025       |
+| Get FLS into a Rust Release                       |                     | Rust 1.89      |
+| Standard reviews                                  | ![Team][] [release] |                |
 
 
 ## Frequently asked questions

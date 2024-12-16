@@ -30,7 +30,7 @@ pub struct GoalDocument {
     pub summary: String,
 
     /// The "plan" for completing the goal (includes things owners will do as well as team asks)
-    pub plan_items: Vec<PlanItem>,
+    pub goal_plans: Vec<GoalPlan>,
 
     /// List of team asks extracted from the goal
     pub team_asks: Vec<TeamAsk>,
@@ -50,13 +50,22 @@ pub struct Metadata {
 
 pub const TRACKING_ISSUE_ROW: &str = "Tracking issue";
 
+/// Items required to complete the goal.
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
+pub struct GoalPlan {
+    /// If `Some`, title of the subsection in which these items were found.
+    pub subgoal: Option<String>,
+
+    /// List of items found in the table.
+    pub plan_items: Vec<PlanItem>,
+}
+
 /// Identifies a particular ask for a set of Rust teams
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub struct PlanItem {
     pub text: String,
     pub owners: String,
     pub notes: String,
-    pub children: Vec<PlanItem>,
 }
 
 /// Returns the "owner(s)" of a plan-item, which can be
@@ -116,7 +125,7 @@ impl GoalDocument {
 
         let link_path = Arc::new(link_path.to_path_buf());
 
-        let plan_items = match metadata.status {
+        let goal_plans = match metadata.status {
             Status::Flagship | Status::Accepted | Status::Proposed => {
                 extract_plan_items(&sections)?
             }
@@ -124,12 +133,15 @@ impl GoalDocument {
         };
 
         let mut team_asks = vec![];
-        for plan_item in &plan_items {
-            team_asks.extend(plan_item.team_asks(
-                &link_path,
-                &metadata.short_title,
-                &metadata.owners,
-            )?);
+        for goal_plan in &goal_plans {
+            let goal_title = goal_plan.subgoal.as_deref().unwrap_or(&metadata.short_title);
+            for plan_item in &goal_plan.plan_items {
+                team_asks.extend(plan_item.team_asks(
+                    &link_path,
+                    goal_title,
+                    &metadata.owners,
+                )?);
+            }
         }
 
         Ok(Some(GoalDocument {
@@ -138,7 +150,7 @@ impl GoalDocument {
             summary: summary.unwrap_or_else(|| metadata.title.clone()),
             metadata,
             team_asks,
-            plan_items,
+            goal_plans,
         }))
     }
 
@@ -201,7 +213,7 @@ pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> anyhow::Result<String>
 
         for subgoal in subgoals {
             table.push(vec![
-                format!("*{}*", subgoal),
+                format!("**{}**", subgoal),
                 "".to_string(),
                 "".to_string(),
             ]);
@@ -390,29 +402,52 @@ fn extract_summary(sections: &[Section]) -> anyhow::Result<Option<String>> {
     Ok(Some(ownership_section.text.trim().to_string()))
 }
 
-fn extract_plan_items<'i>(sections: &[Section]) -> anyhow::Result<Vec<PlanItem>> {
-    let Some(ownership_section) = sections
+fn extract_plan_items<'i>(sections: &[Section]) -> anyhow::Result<Vec<GoalPlan>> {
+    let Some(ownership_index) = sections
         .iter()
-        .find(|section| section.title == "Ownership and team asks")
+        .position(|section| section.title == "Ownership and team asks")
     else {
         anyhow::bail!("no `Ownership and team asks` section found")
     };
 
-    let Some(table) = ownership_section.tables.first() else {
-        anyhow::bail!(
-            "on line {}, no table found in `Ownership and team asks` section",
-            ownership_section.line_num
-        )
-    };
+    // Extract the plan items from the main section (if any)
+    let level= sections[ownership_index].level;
 
-    expect_headers(table, &["Subgoal", "Owner(s) or team(s)", "Notes"])?;
+    let mut goal_plans = vec![];
+    goal_plans.extend(goal_plan(None, &sections[ownership_index])?);
 
-    let mut rows = table.rows.iter().peekable();
-    let mut plan_items = vec![];
-    while rows.peek().is_some() {
-        plan_items.push(extract_plan_item(&mut rows)?);
+    for subsection in sections.iter().skip(ownership_index + 1).take_while(|s| s.level > level) {
+        goal_plans.extend(goal_plan(Some(subsection.title.clone()), subsection)?);
     }
-    Ok(plan_items)
+
+    if goal_plans.is_empty() {
+        anyhow::bail!("no goal table items found in the `Ownership and team asks` section or subsections")
+    }
+
+    Ok(goal_plans)
+}
+
+fn goal_plan(subgoal: Option<String>, section: &Section) -> anyhow::Result<Option<GoalPlan>> {
+    match section.tables.len() {
+        0 => Ok(None),
+        1 => {
+            let table = &section.tables[0];
+            expect_headers(table, &["Subgoal", "Owner(s) or team(s)", "Notes"])?;
+        
+            let mut rows = table.rows.iter().peekable();
+            let mut plan_items = vec![];
+            while rows.peek().is_some() {
+                plan_items.push(extract_plan_item(&mut rows)?);
+            }
+        
+            Ok(Some(GoalPlan {
+                subgoal,
+                plan_items,
+            }))
+        }
+        _ => anyhow::bail!("multiple goal tables found in section `{}`", section.title),
+    }
+    
 }
 
 fn extract_plan_item(
@@ -422,33 +457,11 @@ fn extract_plan_item(
         anyhow::bail!("unexpected end of table");
     };
 
-    let mut subgoal = row[0].trim();
-    let mut is_child = false;
-
-    if subgoal.starts_with(ARROW) {
-        // e.g., "↳ stabilization" is a subtask of the metagoal
-        subgoal = row[0][ARROW.len()..].trim();
-        is_child = true;
-    }
-
-    let mut item = PlanItem {
-        text: subgoal.to_string(),
+    Ok(PlanItem {
+        text: row[0].to_string(),
         owners: row[1].to_string(),
         notes: row[2].to_string(),
-        children: vec![],
-    };
-
-    if !is_child {
-        while let Some(row) = rows.peek() {
-            if !row[0].starts_with(ARROW) {
-                break;
-            }
-
-            item.children.push(extract_plan_item(rows)?);
-        }
-    }
-
-    Ok(item)
+    })
 }
 
 impl PlanItem {
@@ -541,16 +554,6 @@ impl PlanItem {
                 owners: goal_owners.to_string(),
                 notes: self.notes.clone(),
             });
-        }
-
-        for child in &self.children {
-            // If this item has owners listed, they take precedence, otherwise use the owners in scope.
-            let owners = if self.owners.is_empty() {
-                goal_owners
-            } else {
-                &self.owners
-            };
-            asks.extend(child.team_asks(link_path, &self.text, owners)?);
         }
 
         Ok(asks)
