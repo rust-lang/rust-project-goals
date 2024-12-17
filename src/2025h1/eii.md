@@ -95,7 +95,7 @@ The experimental feature we implement should:
   - E.g. if a crate wants to change the signature or kind of an externally implementable item,
     it should be possible to have some backwards-compatible path forward.
 - be as close to zero-cost as possible.
-  - E.g. adding the option for more fine grained panic handlers should not result in a loss of performance.
+  - E.g. adding the option for more fine grained panic handlers to `core` should not result in a loss of performance.
 
 ## Ownership and team asks
 
