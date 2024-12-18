@@ -3,7 +3,7 @@
 | Metadata |               |
 |----------|---------------|
 | Owner(s) | @joshtriplett |
-| Teams    | [lang]        |
+| Teams    | [lang], [wg-macros]        |
 | Status   | Proposed      |
 
 ## Summary
@@ -18,10 +18,7 @@ features, to encourage crate authors to try them and provide feedback, and to
 plan transitions within the ecosystem.
 
 The scope of this goal is an arc of many related RFCs that tell a complete
-story. The scope of this goal does not encompass the full implementation work,
-though I commit to spending time iterating on the design with potential
-implementers, and to shepherding and handling procedural matters (e.g.
-stabilization reports) as needed.
+story, as well as the implementation of the first few steps.
 
 ## Motivation
 
@@ -54,8 +51,8 @@ their dependencies.
 ### The next 6 months
 
 Over the next 6 months, I'll propose RFCs to improve the current state of
-declarative (`macro_rules!`) macros, and work to get those RFCs accepted. Those
-RFCs together will enable:
+declarative (`macro_rules!`) macros, and work with @eholk and @vincenzopalazzo
+to get those RFCs implemented. Those RFCs together will enable:
 
 - Using `macro_rules!` to define attribute macros (`#[attr]`)
 - Using `macro_rules!` to define derive macros (`#[derive(Trait)]`)
@@ -77,9 +74,10 @@ language. I expect these to reach pre-RFC form and be suitable for discussion
 at RustWeek in May 2025, and hopefully reach consensus, but I do not expect
 them to be fully accepted or shipped in the next 6 months.
 
-There is already a wg-macros team. I've spoken with @eholk on that team about
-revitalizing that team, and considering policy and potential delegation from
-[lang], in a similar spirit to wg-const-eval, t-types, and t-opsem.
+In addition, as part of this goal, I intend to work with @eholk and
+@vincenzopalazzo to revitalize the wg-macros team, and evaluate potential
+policies and delegations from [lang], in a similar spirit to wg-const-eval,
+t-types, and t-opsem.
 
 Much as with the const eval system, I expect this to be a long incremental
 road, with regular improvements to capabilities and simplicity. Crate authors
@@ -131,20 +129,34 @@ could reserve such syntax in all editions.
 
 | Task                                             | Owner(s) or team(s) | Notes                                                                                      |
 |--------------------------------------------------|---------------------|--------------------------------------------------------------------------------------------|
-| Discussion and moral support                     | ![Team][] [lang]    |                                                                                            |
 | Propose discussion session at RustWeek           | @joshtriplett       |                                                                                            |
-| Inside Rust blog post on attribute/derive macros | @joshtriplett       |                                                                                            |
-| Inside Rust blog post on additional capabilities | @joshtriplett       |                                                                                            |
-| Policy decision                                  | ![Team][] [lang]    | Discussed with @eholk; lang would decide whether to delegate specific matters to wg-macros |
+| Policy decision                                  | ![Team][] [lang] [wg-macros] | Discussed with @eholk and @vincenzopalazzo; lang would decide whether to delegate specific matters to wg-macros |
 
-### Design for `macro_rules!` attributes/derives
+### `macro_rules!` attributes
 
 | Task                                   | Owner(s) or team(s) | Notes |
 |----------------------------------------|---------------------|-------|
 | Author/revise/iterate RFCs             | @joshtriplett       |       |
 | Prioritized nominations                | ![Team][] [lang]    |       |
 | RFC decision                           | ![Team][] [lang]    |       |
+| Implementation of RFC                  | @eholk, @vincenzopalazzo |  |
 | Iterate on design as needed            | @joshtriplett       |       |
+| Inside Rust blog post on attribute macros | @joshtriplett    |       |
+| Process feedback from crate authors    | @joshtriplett       |       |
+| Author stabilization report (if ready) | @joshtriplett       |       |
+| Stabilization decision                 | ![Team][] [lang]    |       |
+
+### `macro_rules!` derives
+
+| Task                                   | Owner(s) or team(s) | Notes |
+|----------------------------------------|---------------------|-------|
+| Author/revise/iterate RFCs             | @joshtriplett       |       |
+| Prioritized nominations                | ![Team][] [lang]    |       |
+| RFC decision                           | ![Team][] [lang]    |       |
+| Implementation of RFC                  | @eholk, @vincenzopalazzo |  |
+| Iterate on design as needed            | @joshtriplett       |       |
+| Inside Rust blog post on derive macros | @joshtriplett       |       |
+| Process feedback from crate authors    | @joshtriplett       |       |
 | Author stabilization report (if ready) | @joshtriplett       |       |
 | Stabilization decision                 | ![Team][] [lang]    |       |
 
@@ -155,11 +167,14 @@ could reserve such syntax in all editions.
 | Author initial RFC                            | @joshtriplett                |       |
 | Design meeting                                | ![Team][] [lang]             |       |
 | RFC decision                                  | ![Team][] [lang]             |       |
+| Implementation of RFC                         | @eholk, @vincenzopalazzo     |       |
 | Iterate on design as needed                   | @joshtriplett                |       |
+| Inside Rust blog post on additional capabilities | @joshtriplett             |       |
 | Process feedback from crate authors           | @joshtriplett                |       |
+| Author stabilization report (if ready)        | @joshtriplett                |       |
+| Stabilization decision                        | ![Team][] [lang]             |       |
 | Support lang experiments for fragment fields  | @joshtriplett                |       |
 | Author small RFCs for further fragment fields | @joshtriplett                |       |
-| RFC decision                                  | ![Team][] [lang] [wg-macros] |       |
 
 ### Design for macro metavariable constructs
 
