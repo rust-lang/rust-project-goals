@@ -30,7 +30,7 @@ Despite async Rust's popularity, using async I/O makes Rust significantly harder
 
 * Common language features do not support async, meaning that [users cannot write Rust code in the way they are accustomed to](https://rust-lang.github.io/wg-async/vision/submitted_stories/status_quo/barbara_plays_with_async.html?highlight=closure#the-story):
   * [x] ~~[traits](https://rust-lang.github.io/wg-async/vision/submitted_stories/status_quo/alan_needs_async_in_traits.html)~~ (they [do now][afitblog], though gaps remain)
-  * [x] closures (about to [stabilize](https://github.com/rust-lang/rust/pull/132706))
+  * [x] ~~closures~~ ([stabilized](https://github.com/rust-lang/rust/pull/132706))
   * [ ] [drop](https://rust-lang.github.io/wg-async/vision/submitted_stories/status_quo/alan_finds_database_drops_hard.html)
   In many cases there are workarounds or crates that can close the gap, but users have to learn about and find those crates.
 * Common async idioms have "sharp edges" that lead to unexpected failures, forcing users to manage [cancellation safety](https://rust-lang.github.io/wg-async/vision/submitted_stories/status_quo/barbara_gets_burned_by_select.html), subtle [deadlocks](https://rust-lang.github.io/wg-async/vision/submitted_stories/status_quo/aws_engineer/solving_a_deadlock.html) and other failure modes for [buffered streams](https://rust-lang.github.io/wg-async/vision/submitted_stories/status_quo/barbara_battles_buffered_streams.html). See also tmandry's blog post on [Making async Rust reliable](https://tmandry.gitlab.io/blog/posts/making-async-reliable/)).
@@ -51,13 +51,18 @@ Despite async Rust's popularity, using async I/O makes Rust significantly harder
 #### Improve ergonomics around `Pin`
 
 * Ratify and implement an RFC for auto-reborrowing of pinned references
-* Stretch goal: Ratify an RFC for safe pin projection
+* Stretch goal: Discuss and implement a design for safe pin projection
 
 #### Work toward asynchronous generators
 
-* Ratify an RFC for synchronous generators
-* Review 1-2 RFCs for asynchronous iteration trait with the lang and libs-api teams and decide on the core trait to be stabilized
-* Stretch goal: Ratify an RFC for unsafe binders and RTN in type position
+* Have design meetings and ratify an RFC for synchronous generators
+* Have a design meeting for asynchronous iteration
+* Stretch goal: Ratify an RFC for unsafe binders
+
+In H2 we hope to tackle the following:
+
+* RTN in type position
+* Ratified RFC for asynchronous iteration
 
 ### The "shiny future" we are working towards
 
@@ -98,6 +103,14 @@ This section defines the specific work items that are planned and who is expecte
 | Standard reviews        | ![Team][] [types] [compiler] |               |
 | Stabilization decision  | ![Team][] [lang]             |               |
 
+### Unsafe binders
+
+| Task                    | Owner(s) or team(s)          | Notes         |
+|-------------------------|------------------------------|---------------|
+| Initial implementation  | @compiler-errors             | Stretch goal  |
+| Author RFC              | @nikomatsakis                | Stretch goal  |
+| RFC decision            | ![Team][] [lang]             | Stretch goal  |
+
 ### Implementable trait aliases
 
 | Task             | Owner(s) or team(s)          | Notes |
@@ -107,6 +120,13 @@ This section defines the specific work items that are planned and who is expecte
 | Standard reviews | ![Team][] [types] [compiler] |       |
 | RFC decision     | ![Team][] [lang] [types]     |       |
 
+### `async fn` in `dyn Trait`
+
+| Task                 | Owner(s) or team(s)          | Notes        |
+|----------------------|------------------------------|--------------|
+| Lang-team experiment | @nikomatsakis                | (Approved)   |
+| Implementation       | @compiler-errors             | Stretch goal |
+
 ### Pin reborrowing
 
 | Task           | Owner(s) or team(s) | Notes |
@@ -114,6 +134,14 @@ This section defines the specific work items that are planned and who is expecte
 | Implementation | @eholk              |       |
 | Author RFC     | @eholk              |       |
 | RFC decision   | ![Team][] [lang]    |       |
+
+### Safe pin projection
+
+| Task                 | Owner(s) or team(s) | Notes        |
+|----------------------|---------------------|--------------|
+| Lang-team experiment | ![Team][] [lang]    |              |
+| Implementation       |                     | Stretch goal |
+| Design meeting       | ![Team][] [lang]    | Stretch goal |
 
 ### Trait for generators (sync)
 
@@ -126,12 +154,9 @@ This section defines the specific work items that are planned and who is expecte
 
 ### Trait for async iteration
 
-| Task           | Owner(s) or team(s)         | Notes               |
-|----------------|-----------------------------|---------------------|
-| Author RFC     |                             |                     |
-| RFC decision   | ![Team][] [libs-api] [lang] |                     |
-| Design meeting | ![Team][] [lang]            | 2 meetings expected |
-| Implementation |                             |                     |
+| Task           | Owner(s) or team(s)         | Notes |
+|----------------|-----------------------------|-------|
+| Design meeting | ![Team][] [lang] [libs-api] |       |
 
 ### Dynosaur 1.0
 
