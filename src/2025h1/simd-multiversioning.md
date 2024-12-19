@@ -1,10 +1,10 @@
 # Nightly support for ergonomic SIMD multiversioning
 
-| Metadata |                                                              |
-|----------|--------------------------------------------------------------|
-| Owner(s) | veluca93 |
-| Teams    | lang           |
-| Status   | Proposed                                                     |
+| Metadata         |           |
+|------------------|-----------|
+| Point of contact | @veluca93 |
+| Teams            | lang      |
+| Status           | Proposed  |
 
 
 ## Summary
@@ -62,13 +62,13 @@ This significantly increases the adoption of Rust in performance-critical, safet
 
 **Owner:** *Identify a specific person or small group of people if possible, else the group that will provide the owner. Github user names are commonly used to remove ambiguity.*
 
-| Task                         | Owner(s) or team(s) | Notes |
-|------------------------------|---------------------|-------|
-| Design meeting | ![Team][] [lang]   |       |
-| Lang-team experiment                | ![Team][] [lang]   |       |
-| Experimental implementation         | [Luca Versari](https://github.com/veluca93)   |       |
-| Author RFC | [Luca Versari](https://github.com/veluca93)   |       |
-| RFC decision | ![Team][] [lang]   |       |
+| Task                        | Owner(s) or team(s) | Notes |
+|-----------------------------|---------------------|-------|
+| Design meeting              | ![Team][] [lang]    |       |
+| Lang-team experiment        | ![Team][] [lang]    |       |
+| Experimental implementation | @veluca93           |       |
+| Author RFC                  | @veluca93           |       |
+| RFC decision                | ![Team][] [lang]    |       |
 
 
 ### Definitions

@@ -18,8 +18,9 @@
 # 📖 Learn about
 
 - [Goal motivations](./about/motivation.md)
-- [Goal owners](./about/owners.md)
-- [Provisional goals](./about/provisional_goals.md)
+- [Invited goals](./about/invited_goals.md)
+- [Point of contact](./about/poc.md)
+- [Task owners](./about/owners.md)
 - [Design axioms](./about/design_axioms.md)
 - [RFC](./rfc.md)
 

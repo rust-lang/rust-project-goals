@@ -2,7 +2,7 @@
 
 | Metadata       |                                    |
 | ---            | ---                                |
-| Owner(s)       | @eh2406                            |
+| Point of contact | @eh2406                            |
 | Teams          | [cargo]                            |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#110] |

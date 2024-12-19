@@ -1,10 +1,10 @@
 # Prototype a new set of Cargo "plumbing" commands
 
-| Metadata |                  |
-|----------|------------------|
-| Owner(s) | ![Help wanted][] |
-| Teams    | [cargo]          |
-| Status   | Proposed         |
+| Metadata         |                         |
+|------------------|-------------------------|
+| Point of contact | @epage                  |
+| Teams            | [cargo]                 |
+| Status           | Proposed for mentorship |
 
 ## Summary
 

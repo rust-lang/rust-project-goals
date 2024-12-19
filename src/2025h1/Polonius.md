@@ -2,7 +2,7 @@
 
 | Metadata       |                                    |
 | ---            | ---                                |
-| Owner(s)       | @lqd                               |
+| Point of contact | @lqd                               |
 | Teams          | [types]                            |
 | Status         | Proposed                           |
 

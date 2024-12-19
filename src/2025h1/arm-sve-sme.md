@@ -1,10 +1,10 @@
 # SVE and SME on AArch64
 
-| Metadata |                             |
-|----------|-----------------------------|
-| Owner(s) | Rust team at Arm            |
-| Teams    | [lang], [types], [compiler] |
-| Status   | Proposed                    |
+| Metadata         |                             |
+|------------------|-----------------------------|
+| Point of contact | @davidtwco                  |
+| Teams            | [lang], [types], [compiler] |
+| Status           | Proposed                    |
 
 *Arm's Rust team is @davidtwco, @adamgemmell, @jacobbramley, @JamieCunliffe and @Jamesbarford, as
 well as @mrkajetanp and @harmou01 as graduates on rotation. This goal will be primarily worked on

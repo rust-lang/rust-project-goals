@@ -2,7 +2,7 @@
 
 | Metadata |                     |
 | -------- | ------------------- |
-| Owner(s) | ![Help wanted][]    |
+| Point of contact | @nikomatsakis    |
 | Teams    | [lang][], [types][] |
 | Status   | Not accepted        |
 

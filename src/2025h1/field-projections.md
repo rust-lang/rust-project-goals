@@ -2,7 +2,7 @@
 
 | Metadata |                            |
 |----------|----------------------------|
-| Owner(s) | @y86-dev                   |
+| Point of contact | @y86-dev                   |
 | Teams    | [lang], [libs], [compiler] |
 | Status   | Proposed                   |
 

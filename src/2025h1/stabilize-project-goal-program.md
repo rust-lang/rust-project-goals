@@ -1,10 +1,10 @@
 # Run the 2025H1 project goal program
 
-| Metadata |                      |
-|----------|----------------------|
-| Owner(s) | nikomatsakis         |
-| Teams    | [Leadership Council] |
-| Status   | Proposed             |
+| Metadata         |                      |
+|------------------|----------------------|
+| Point of contact | @nikomatsakis        |
+| Teams            | [Leadership Council] |
+| Status           | Proposed             |
 
 ## Summary
 
@@ -68,10 +68,10 @@ Running the Rust Project Goals program will be a relatively scalable task that c
 
 | Task                                      | Owner(s) or team(s)          | Notes                        |
 |-------------------------------------------|------------------------------|------------------------------|
-| Begin soliciting goals in Nov 2024        | nikomatsakis                 |                              |
+| Begin soliciting goals in Nov 2024        | @nikomatsakis                |                              |
 | Approve goal slate for 2025h1             | *leads of each team*         |                              |
-| Top-level Rust blog post for 2025h1 goals | nikomatsakis                 |                              |
-| Propose team membership                   | nikomatsakis                 |                              |
+| Top-level Rust blog post for 2025h1 goals | @nikomatsakis                |                              |
+| Propose team membership                   | @nikomatsakis                |                              |
 | Org decision                              | ![Team] [leadership-council] | approve creation of new team |
 | January goal update                       | goals team                   |                              |
 | February goal update                      | goals team                   |                              |

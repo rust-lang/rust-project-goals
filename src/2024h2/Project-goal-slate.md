@@ -2,7 +2,7 @@
 
 | Metadata       |                                    |
 | ---            | ---                                |
-| Owner(s)       | @nikomatsakis                      |
+| Point of contact | @nikomatsakis                      |
 | Teams          | [leadership-council]               |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#102] |

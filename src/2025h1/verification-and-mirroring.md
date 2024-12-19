@@ -2,7 +2,7 @@
 
 | Metadata |                         |
 |----------|-------------------------|
-| Owner(s) | @walterhpearce          |
+| Point of contact | @walterhpearce          |
 | Teams    | crates.io, cargo, infra |
 | Status   | Proposed                |
 

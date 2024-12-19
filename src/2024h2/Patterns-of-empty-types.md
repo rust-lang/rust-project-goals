@@ -2,7 +2,7 @@
 
 | Metadata       |                                    |
 | ---            | ---                                |
-| Owner(s)       | @Nadrieril                         |
+| Point of contact | @Nadrieril                         |
 | Teams          | [lang]                             |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#115] |

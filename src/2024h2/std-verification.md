@@ -2,7 +2,7 @@
 
 | Metadata       |                                    |
 | ---            | ---                                |
-| Owner(s)       | @celinval                          |
+| Point of contact | @celinval                          |
 | Teams          | [Libs]                             |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#126] |

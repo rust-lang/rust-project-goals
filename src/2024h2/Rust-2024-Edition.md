@@ -2,7 +2,7 @@
 
 | Metadata       |                                    |
 | ---            | ---                                |
-| Owner(s)       | @traviscross                       |
+| Point of contact | @traviscross                       |
 | Teams          | [lang], [types]                    |
 | Status         | Flagship                           |
 | Tracking issue | [rust-lang/rust-project-goals#117] |

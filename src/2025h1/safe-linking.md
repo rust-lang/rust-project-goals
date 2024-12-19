@@ -1,10 +1,10 @@
 # Research: How to achieve safety when linking separately compiled code
 
-| Metadata |                                                                                                   |
-|----------|---------------------------------------------------------------------------------------------------|
-| Owner(s) | [Mara Bos](https://github.com/m-ou-se) and [Jonathan Dönszelman](https://github.com/jdonszelmann) |
-| Teams    | [lang], [compiler]                                                                                |
-| Status   | Proposed                                                                                          |
+| Metadata         |                    |
+|------------------|--------------------|
+| Point of contact | @m-ou-se           |
+| Teams            | [lang], [compiler] |
+| Status           | Proposed           |
 
 ## Summary
 
@@ -99,16 +99,16 @@ safe cross-language linking.
 
 ## Ownership and team asks
 
-**Owner:** [Mara Bos](https://github.com/m-ou-se) and/or [Jonathan Dönszelman](https://github.com/jdonszelmann).
+**Owner:** @m-ou-se and/or @jdonszelmann
 
 | Task                                        | Owner(s) or team(s)                          | Notes                          |
 |---------------------------------------------|----------------------------------------------|--------------------------------|
 | Discussion and moral support                | ![Team][] [lang]                             |                                |
-| Coordination with university                | Jonathan                                     | Delft University of Technology |
-| Acquire funding                             | Hexcat (=Mara+Jonathan)                      |                                |
+| Coordination with university                | @jdonszelmann                                | Delft University of Technology |
+| Acquire funding                             | Hexcat (= @m-ou-se + @jdonszelmann)          |                                |
 | Research                                    | Research team (MSc student, professor, etc.) |                                |
-| Mentoring and interfacing with Rust project | Mara, Jonathan                               |                                |
-| Blog post (author, review)                  | MSc student, Jonathan, Mara                  |                                |
+| Mentoring and interfacing with Rust project | @m-ou-se, @jdonszelmann                      |                                |
+| Blog post (author, review)                  | MSc student, @jdonszelmann, @m-ou-se         |                                |
 | Experimental implementation                 | Msc student                                  |                                |
 | Lang-team experiment                        | ![Team][] [lang]                             | @nikomatsakis as liaison       |
 | Standard reviews                            | ![Team][] [compiler]                         |                                |
