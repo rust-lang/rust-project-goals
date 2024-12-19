@@ -5,7 +5,7 @@
 |------------------|----------------------------------|
 | Point of contact | @epage                           |
 | Teams            | [cargo], [compiler], [crates-io] |
-| Status           | Proposed                         |
+| Status           | Proposed for mentorship          |
 
 ## Summary
 

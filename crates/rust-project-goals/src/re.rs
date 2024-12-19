@@ -5,8 +5,24 @@ lazy_static! {
     pub static ref TEAM_ASKS: Regex = Regex::new(r"<!-- TEAM ASKS -->").unwrap();
 }
 
+// List of all goals, flagship or otherwise
 lazy_static! {
-    pub static ref GOAL_LIST: Regex = Regex::new(r"<!-- GOALS '(.*)' -->").unwrap();
+    pub static ref GOAL_LIST: Regex = Regex::new(r"<!-- GOALS -->").unwrap();
+}
+
+// List of flagship goals (accepted or pending)
+lazy_static! {
+    pub static ref FLAGSHIP_GOAL_LIST: Regex = Regex::new(r"<!-- FLAGSHIP GOALS -->").unwrap();
+}
+
+// List of non-flagship goals (accepted or pending)
+lazy_static! {
+    pub static ref OTHER_GOAL_LIST: Regex = Regex::new(r"<!-- OTHER GOALS -->").unwrap();
+}
+
+// List of not accepted goals
+lazy_static! {
+    pub static ref GOAL_NOT_ACCEPTED_LIST: Regex = Regex::new(r"<!-- GOALS NOT ACCEPTED -->").unwrap();
 }
 
 lazy_static! {

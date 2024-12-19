@@ -37,7 +37,6 @@ impl Preprocessor for GoalPreprocessor {
 
 pub struct GoalPreprocessorWithContext<'c> {
     team_asks: &'static Regex,
-    goal_list: &'static Regex,
     goal_count: &'static Regex,
     username: &'static Regex,
     ctx: &'c PreprocessorContext,
@@ -116,7 +115,6 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         Ok(GoalPreprocessorWithContext {
             ctx,
             team_asks: &re::TEAM_ASKS,
-            goal_list: &re::GOAL_LIST,
             goal_count: &re::GOAL_COUNT,
             username: &re::USERNAME,
             links,
@@ -163,7 +161,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
         let count = goals
             .iter()
-            .filter(|g| g.metadata.status != Status::NotAccepted)
+            .filter(|g| g.metadata.status.is_not_not_accepted())
             .count();
 
         chapter.content = self
@@ -175,54 +173,54 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     }
 
     fn replace_goal_lists(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        let Some(m) = self.goal_list.captures(&chapter.content) else {
-            return Ok(());
-        };
-        let range = m.get(0).unwrap().range();
-        let statuses = m[1]
-            .split(',')
-            .map(|s| s.trim())
-            .map(Status::try_from)
-            .collect::<anyhow::Result<Vec<Status>>>()?;
+        self.replace_goal_lists_helper(chapter, &re::FLAGSHIP_GOAL_LIST, |status| status.is_flagship && status.is_not_not_accepted())?;
+        self.replace_goal_lists_helper(chapter, &re::OTHER_GOAL_LIST, |status| !status.is_flagship && status.is_not_not_accepted())?;
+        self.replace_goal_lists_helper(chapter, &re::GOAL_LIST, |status| status.is_not_not_accepted())?;
+        self.replace_goal_lists_helper(chapter, &re::GOAL_NOT_ACCEPTED_LIST, |status| !status.is_not_not_accepted())?;
+        Ok(())
+    }
+    
+    fn replace_goal_lists_helper(&mut self, chapter: &mut Chapter, regex: &Regex, filter: impl Fn(Status) -> bool) -> anyhow::Result<()> {
+        loop {
+            let Some(m) = regex.find(&chapter.content) else {
+                return Ok(());
+            };
+            let range = m.range();
 
-        let Some(chapter_path) = &chapter.path else {
-            anyhow::bail!("found `<!-- GOALS -->` but chapter has no path")
-        };
+            let Some(chapter_path) = &chapter.path else {
+                anyhow::bail!("found `{regex}` but chapter has no path")
+            };
 
-        // Extract out the list of goals with the given status.
-        let goals = self.goal_documents(chapter_path)?;
-        let mut goals_with_status: Vec<&GoalDocument> = statuses
-            .iter()
-            .flat_map(|&status| goals.iter().filter(move |g| g.metadata.status == status))
-            .collect();
+            // Extract out the list of goals with the given status.
+            let goals = self.goal_documents(chapter_path)?;
+            let mut goals_with_status: Vec<&GoalDocument> = goals.iter().filter(|g| filter(g.metadata.status)).collect();
 
-        goals_with_status.sort_by_key(|g| &g.metadata.title);
+            goals_with_status.sort_by_key(|g| &g.metadata.title);
 
-        // Format the list of goals and replace the `<!-- -->` comment with that.
-        let output = goal::format_goal_table(&goals_with_status)?;
-        chapter.content.replace_range(range, &output);
+            // Format the list of goals and replace the `<!-- -->` comment with that.
+            let output = goal::format_goal_table(&goals_with_status)?;
+            chapter.content.replace_range(range, &output);
 
-        // Populate with children if this is not README
-        if chapter_path.file_stem() != Some("README".as_ref()) {
-            let mut parent_names = chapter.parent_names.clone();
-            parent_names.push(chapter.name.clone());
-            for (goal, index) in goals_with_status.iter().zip(0..) {
-                let content = std::fs::read_to_string(&goal.path)
-                    .with_context(|| format!("reading `{}`", goal.path.display()))?;
-                let path = goal.path.strip_prefix(&self.ctx.config.book.src).unwrap();
-                let mut new_chapter =
-                    Chapter::new(&goal.metadata.title, content, path, parent_names.clone());
+            // Populate with children if this is not README
+            if chapter_path.file_stem() != Some("README".as_ref()) {
+                let mut parent_names = chapter.parent_names.clone();
+                parent_names.push(chapter.name.clone());
+                for (goal, index) in goals_with_status.iter().zip(0..) {
+                    let content = std::fs::read_to_string(&goal.path)
+                        .with_context(|| format!("reading `{}`", goal.path.display()))?;
+                    let path = goal.path.strip_prefix(&self.ctx.config.book.src).unwrap();
+                    let mut new_chapter =
+                        Chapter::new(&goal.metadata.title, content, path, parent_names.clone());
 
-                if let Some(mut number) = chapter.number.clone() {
-                    number.0.push(index + 1);
-                    new_chapter.number = Some(number);
+                    if let Some(mut number) = chapter.number.clone() {
+                        number.0.push(index + 1);
+                        new_chapter.number = Some(number);
+                    }
+
+                    chapter.sub_items.push(BookItem::Chapter(new_chapter));
                 }
-
-                chapter.sub_items.push(BookItem::Chapter(new_chapter));
             }
         }
-
-        self.replace_goal_lists(chapter)
     }
 
     /// Look for `<!-- TEAM ASKS -->` in the chapter content and replace it with the team asks.
@@ -239,7 +237,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         let goals = self.goal_documents(path)?;
         let asks_of_any_team: Vec<&TeamAsk> = goals
             .iter()
-            .filter(|g| g.metadata.status != Status::NotAccepted)
+            .filter(|g| g.metadata.status.is_not_not_accepted())
             .flat_map(|g| &g.team_asks)
             .collect();
         let format_team_asks = format_team_asks(&asks_of_any_team)?;
