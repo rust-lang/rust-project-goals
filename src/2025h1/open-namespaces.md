@@ -1,11 +1,11 @@
 # Implement Open API Namespace Support
 
 
-| Metadata |                                                              |
-| -------- | ------------------------------------------------------------ |
-| Owner(s)       | ![Help wanted][]                   |
-| Teams    | [cargo], [compiler], [crates-io]           |
-| Status   | Proposed                                                     |
+| Metadata         |                                  |
+|------------------|----------------------------------|
+| Point of contact | @epage                           |
+| Teams            | [cargo], [compiler], [crates-io] |
+| Status           | Proposed for mentorship          |
 
 ## Summary
 
@@ -33,11 +33,11 @@ Implement at least Cargo and compiler support for this to be experimented with a
 
 ## Ownership and team asks
 
-| Task                                           | Owner(s) or team(s)     | Notes |
-| ---------------------------------------------- | ----------------------- | ----- |
-| Discussion and moral support                   | ![Team][] [cargo], [compiler]       |       |
-| Compiler implementation                               | ![Help wanted][]  |       |
-| Work through lingering cargo issues                             | Goal owner, @epage    |       |
+| Task                                | Owner(s) or team(s)           | Notes |
+|-------------------------------------|-------------------------------|-------|
+| Discussion and moral support        | ![Team][] [cargo], [compiler] |       |
+| Compiler implementation             | ![Help wanted][]              |       |
+| Work through lingering cargo issues | Goal owner, @epage            |       |
 
 ### Definitions
 

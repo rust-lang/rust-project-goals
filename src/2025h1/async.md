@@ -2,7 +2,7 @@
 
 | Metadata |                                     |
 |----------|-------------------------------------|
-| Owner(s) | @tmandry                            |
+| Point of contact | @tmandry                            |
 | Teams    | [lang], [libs], [libs-api], [types] |
 | Status   | Proposed                            |
 

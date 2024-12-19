@@ -2,7 +2,7 @@
 
 | Metadata |                            |
 | -------- | -------------------------- |
-| Owner(s) | @pnkfelix                  |
+| Point of contact | @pnkfelix                  |
 | Teams    | [lang], [libs], [compiler] |
 | Status   | Not accepted               |
 

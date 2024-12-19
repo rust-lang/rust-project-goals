@@ -1,22 +1,17 @@
 # Resolve the biggest blockers to Linux building on stable Rust
 
-| Metadata         |                                    |
-|------------------|------------------------------------|
-| Short title      | Rust-for-Linux                     |
+| Metadata       |                                    |
+|----------------|------------------------------------|
+| Short title    | Rust-for-Linux                     |
 | Point of contact | @nikomatsakis                      |
-| Teams            | [lang], [libs-api], [compiler]     |
-| Status           | Flagship                           |
-| Tracking issue   | [rust-lang/rust-project-goals#116] |
+| Teams          | [lang], [libs-api], [compiler]     |
+| Status         | Flagship                           |
+| Tracking issue | [rust-lang/rust-project-goals#116] |
 
 
 ## Summary
 
-Stabilize unstable features required by Rust for Linux project including
-
-* Stable support for RFL's customized ARC type
-* Labeled goto in inline assembler and extended `offset_of!` support
-* RFL on Rust CI
-* Pointers to statics in constants
+Continue working towards Rust for Linux on stable, turning focus from language features to compiler and tooling.
 
 ## Motivation
 

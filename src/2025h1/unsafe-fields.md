@@ -2,7 +2,7 @@
 
 | Metadata |          |
 |----------|----------|
-| Owner(s) | @jswrenn |
+| Point of contact | @jswrenn |
 | Teams    | [lang]   |
 | Status   | Proposed |
 

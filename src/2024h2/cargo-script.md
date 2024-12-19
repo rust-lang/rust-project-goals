@@ -2,7 +2,7 @@
 
 | Metadata       |                                    |
 | ---            | ---                                |
-| Owner(s)       | @epage                             |
+| Point of contact | @epage                             |
 | Teams          | [cargo], [lang]                    |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#119] |

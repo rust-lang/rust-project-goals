@@ -2,7 +2,7 @@
 
 | Metadata       |                                    |
 |----------------|------------------------------------|
-| Owner(s)       | @oli-obk                           |
+| Point of contact | @oli-obk                           |
 | Teams          | [types], [lang]                    |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#103] |

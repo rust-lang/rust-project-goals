@@ -2,7 +2,7 @@
 
 | Metadata |               |
 |----------|---------------|
-| Owner(s) | @joshtriplett |
+| Point of contact | @joshtriplett |
 | Teams    | [lang], [wg-macros]        |
 | Status   | Proposed      |
 

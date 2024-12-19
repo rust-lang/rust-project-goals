@@ -6,12 +6,12 @@ This page lists the <!-- #GOALS --> project goals accepted for 2024h2.
 
 Flagship goals represent the goals expected to have the broadest overall impact. 
 
-<!-- GOALS 'Flagship' -->
+<!-- FLAGSHIP GOALS -->
 
 ## Other goals
 
-These are the other accepted goals. 
+This is the full list of goals (including flagship).
 
-**Orphaned goals.** Some goals here are marked with the ![Help wanted][] badge for their owner. These goals are called "orphaned goals". Teams have reserved some capacity to pursue these goals but until an appropriate owner is found they are only considered provisionally accepted. If you are interested in serving as the owner for one of these orphaned goals, reach out to the mentor listed in the goal to discuss.
+**Invited goals.** Some goals here are marked with the ![Help wanted][] badge for their point of contact. These goals are called "invited goals". Teams have reserved some capacity to pursue these goals but until an appropriate owner is found they are only considered provisionally accepted. If you are interested in serving as the owner for one of these invited goals, reach out to the point of contact listed in the goal description.
 
-<!-- GOALS 'Accepted' -->
+<!-- OTHER GOALS -->

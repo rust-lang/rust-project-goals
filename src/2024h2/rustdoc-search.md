@@ -2,7 +2,7 @@
 
 | Metadata       |                                    |
 |----------------|------------------------------------|
-| Owner(s)       | @notriddle                         |
+| Point of contact | @notriddle                         |
 | Teams          | [rustdoc], [rustdoc-frontend]      |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#112] |

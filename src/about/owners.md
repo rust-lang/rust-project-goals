@@ -1,5 +1,11 @@
 # Owners
 
+To be fully accepted each goal needs a set of **owners** -- the people who will do the work.
+This is often a single person or a small group.
+Owners are written in 
+Each goal has an associated list of tasks to be completed over the next six months.
+To be accepted, most of the tasks need to have designated **owners**.
+
 To be fully accepted, a goal must have a designated **owner**. This is ideally a single, concrete person, though it *can* be a small group.
 
 Goals without owners can only be accepted in [provisional form](./provisional_goals.md).

@@ -2,7 +2,7 @@
 
 | Metadata       |                                    |
 |----------------|------------------------------------|
-| Owner(s)       | @lcnr                              |
+| Point of contact | @lcnr                              |
 | Teams          | [types]                            |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#113] |

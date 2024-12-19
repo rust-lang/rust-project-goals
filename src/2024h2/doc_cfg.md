@@ -2,7 +2,7 @@
 
 | Metadata       |                                    |
 | ---            | ---                                |
-| Owner(s)       | @GuillaumeGomez                    |
+| Point of contact | @GuillaumeGomez                    |
 | Teams          | [rustdoc]                          |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#120] |

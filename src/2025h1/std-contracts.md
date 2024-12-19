@@ -1,10 +1,10 @@
 # Instrument the Rust standard library with safety contracts
 
-| Metadata |                           |
-|----------|---------------------------|
-| Owner(s) | @celinval and @tautschnig |
-| Teams    | [libs][compiler]          |
-| Status   | Proposed                  |
+| Metadata         |                  |
+|------------------|------------------|
+| Point of contact | @celinval        |
+| Teams            | [libs][compiler] |
+| Status           | Proposed         |
 
 ## Summary
 

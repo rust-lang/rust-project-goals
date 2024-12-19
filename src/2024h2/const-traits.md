@@ -2,7 +2,7 @@
 
 | Metadata       |                                    |
 | ---            | ---                                |
-| Owner(s)       | @fee1-dead                         |
+| Point of contact | @fee1-dead                         |
 | Teams          | [types], [lang]                    |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#106] |
