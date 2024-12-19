@@ -37,7 +37,7 @@ In brief:
 - have functions automatically inherit the target features of their callers
 - let features depend on const generic arguments to functions
 
-The trade-offs between the different approaches are complex, and there is no consensus on the best path forward. More details on the proposals can be found in [this document](https://hackmd.io/@veluca93/simd-multiversioning).
+The trade-offs between the different approaches are complex, and there is no consensus on the best path forward. More details on the proposals can be found in [this document](https://hackmd.io/%40veluca93/simd-multiversioning).
 
 ### The next 6 months
 
