@@ -42,5 +42,6 @@ level = 0
 "/2024h2/accepted.html" = "goals.html"
 "/2024h2/flagship.html" = "goals.html"
 "/introduction.html" = "index.html"
+"/about/provisional_goals.html" = "about/invited_goals.html"
 
 [output.markdown]

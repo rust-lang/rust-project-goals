@@ -3,7 +3,7 @@
 
 | Metadata       |                                    |
 |----------------|------------------------------------|
-| Owner(s)       | @blyxyas                           |
+| Point of contact | @blyxyas                           |
 | Teams          | [clippy]                           |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#114] |

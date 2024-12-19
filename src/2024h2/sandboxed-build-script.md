@@ -2,7 +2,7 @@
 
 | Metadata       |                                    |
 | ---            | ---                                |
-| Owner(s)       | @weihanglo                         |
+| Point of contact | @weihanglo                         |
 | Teams          | [cargo]                            |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#108] |

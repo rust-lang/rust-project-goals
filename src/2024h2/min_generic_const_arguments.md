@@ -2,7 +2,7 @@
 
 | Metadata       |                                    |
 | ---            | ---                                |
-| Owner(s)       | @BoxyUwU                           |
+| Point of contact | @BoxyUwU                           |
 | Teams          | [types]                            |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#100] |

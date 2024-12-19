@@ -2,7 +2,7 @@
 
 | Metadata       |                                    |
 | ---            | ---                                |
-| Owner(s)       | @obi1kenobi                        |
+| Point of contact | @obi1kenobi                        |
 | Teams          | [cargo]                            |
 | Status         | Proposed                           |
 

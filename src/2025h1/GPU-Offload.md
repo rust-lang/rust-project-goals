@@ -2,7 +2,7 @@
 
 | Metadata              |                                                  |
 |-----------------------|--------------------------------------------------|
-| Owner(s)              | @ZuseZ4                                          |
+| Point of contact | @ZuseZ4                                          |
 | Teams                 | [lang], [compiler]                               |
 | Status                | Proposed                                         |
 | Tracking issue        | [rust-lang/rust-project-goals#109]               |

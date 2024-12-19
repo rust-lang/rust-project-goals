@@ -54,3 +54,9 @@ lazy_static! {
         Regex::new(r"https://github.com/(?P<org>[^#/]*)/(?P<repo>[^#/]*)/issues/(?P<issue>[0-9]+)")
             .unwrap();
 }
+
+/// True if the entire string `s` matches `re`
+pub fn is_just(re: &Regex, s: &str) -> bool {
+    let output = re.replace(s, "X");
+    output == "X"
+}

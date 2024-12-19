@@ -2,7 +2,7 @@
 
 | Metadata       |                                    |
 | ---            | ---                                |
-| Owner(s)       | @jkelleyrtp                        |
+| Point of contact | @jkelleyrtp                        |
 | Teams          | [lang], [libs-api]                 |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#107] |

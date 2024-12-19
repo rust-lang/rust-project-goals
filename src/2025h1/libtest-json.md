@@ -8,7 +8,7 @@
 
 | Metadata |                                                              |
 | -------- | ------------------------------------------------------------ |
-| Owner(s) | @epage |
+| Point of contact | @epage |
 | Teams    | [testing-devex], [libs-api]          |
 | Status   | Proposed                                                     |
 

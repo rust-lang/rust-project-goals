@@ -2,7 +2,7 @@
 
 | Metadata |             |
 |----------|-------------|
-| Owner(s) | @1c3t3a     |
+| Point of contact | @1c3t3a     |
 | Teams    | lang, opsem |
 | Status   | Proposed    |
 

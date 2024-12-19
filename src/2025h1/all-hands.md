@@ -1,10 +1,10 @@
 # Rust All-Hands 2025!
 
-| Metadata |                      |
-|----------|----------------------|
-| Owner(s) | Mara                 |
-| Teams    | [leadership-council] |
-| Status   | Proposed             |
+| Metadata         |                      |
+|------------------|----------------------|
+| Point of contact | @m-ou-se             |
+| Teams            | [leadership-council] |
+| Status           | Proposed             |
 
 ## Summary
 
@@ -59,10 +59,10 @@ Repeating an event tends to be much easier than organising one from scratch.
 | Book the venue                            | [RustNL]                       | ![Complete][]                                                     |
 | Catering / snacks / food / drinks         | [RustNL]                       | ![Complete][]                                                     |
 | [Register] for the Rust All-Hands 2025    | *every project member*         | Majority already signed up!                                       |
-| Send out conformations/tickets            | Mara                           |                                                                   |
-| Send out detailed information             | Mara                           |                                                                   |
-| Answer logistical questions               | Mara                           |                                                                   |
-| Interface between project and RustNL      | Mara                           |                                                                   |
+| Send out conformations/tickets            | @m-ou-se                       |                                                                   |
+| Send out detailed information             | @m-ou-se                       |                                                                   |
+| Answer logistical questions               | @m-ou-se                       |                                                                   |
+| Interface between project and RustNL      | @m-ou-se                       |                                                                   |
 | Make hotel reservations                   | [RustNL]                       | In progress                                                       |
 | Book hotel                                | *all participants*             | RustNL will provide suggestions                                   |
 | Book travel                               | *all participants*             |                                                                   |
@@ -94,8 +94,8 @@ Repeating an event tends to be much easier than organising one from scratch.
 
 | Task                    | Owner(s) or team(s) | Notes                                                               |
 |-------------------------|---------------------|---------------------------------------------------------------------|
-| Organisation            | Mara, [RustNL]      | An optional day without an agenda, with space for social activities |
-| Acquire gifts (secret!) | Mara                | ![Complete][]                                                       |
+| Organisation            | @m-ou-se, [RustNL]  | An optional day without an agenda, with space for social activities |
+| Acquire gifts (secret!) | @m-ou-se            | ![Complete][]                                                       |
 
 [RustNL]: https://rustweek.org/about/
 [Register]: https://docs.google.com/forms/d/e/1FAIpQLSeeoEsZGLGokSK0Gn8GVRHhM23KgbwKsp67oxi79KfdsbipkQ/viewform

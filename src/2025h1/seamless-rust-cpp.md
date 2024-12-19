@@ -1,10 +1,10 @@
 # Evaluate approaches for seamless interop between C++ and Rust
 
-| Metadata |                              |
-| -------- | ---------------------------- |
-| Owner(s) | @baumanj and @tmandry        |
-| Teams    | [lang] [compiler] [libs-api] |
-| Status   | Proposed                     |
+| Metadata         |                              |
+|------------------|------------------------------|
+| Point of contact | @tmandry                     |
+| Teams            | [lang] [compiler] [libs-api] |
+| Status           | Proposed                     |
 
 ## Summary
 
@@ -117,7 +117,7 @@ In addition, it proposes the following axioms:
 **Owner:** @baumanj and @tmandry
 
 | Task                         | Owner(s) or team(s)                    | Notes                                   |
-| ---------------------------- | -------------------------------------- | --------------------------------------- |
+|------------------------------|----------------------------------------|-----------------------------------------|
 | Discussion and moral support | ![Team][] [lang] [compiler] [libs-api] |                                         |
 | Design meeting               | ![Team][] [lang] [compiler] [libs-api] | 2-3 meetings expected; all involve lang |
 | Author design doc            | @tmandry can drive                     |                                         |

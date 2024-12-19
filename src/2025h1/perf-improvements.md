@@ -1,10 +1,10 @@
 # rustc-perf improvements
 
-| Metadata |                           |
-|----------|---------------------------|
-| Owner(s) | Rust team at Arm, @kobzol |
-| Teams    | [infra], [compiler]       |
-| Status   | Proposed                  |
+| Metadata         |                     |
+|------------------|---------------------|
+| Point of contact | @kobzol             |
+| Teams            | [infra], [compiler] |
+| Status           | Proposed            |
 
 *Arm's Rust team is @davidtwco, @adamgemmell, @jacobbramley, @JamieCunliffe and @Jamesbarford.
 This goal will be primarily worked on by @Jamesbarford, but @davidtwco can always be contacted for

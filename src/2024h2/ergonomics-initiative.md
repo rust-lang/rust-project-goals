@@ -2,7 +2,7 @@
 
 | Metadata |              |
 | -------- | ------------ |
-| Owner(s) | @jkelleyrtp  |
+| Point of contact | @jkelleyrtp  |
 | Teams    | [lang]       |
 | Status   | Not accepted |
 

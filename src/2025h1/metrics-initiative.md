@@ -1,10 +1,10 @@
 # Metrics Initiative
 
-| Metadata |                   |
-|----------|-------------------|
-| Owner(s) | @yaahc, @estebank |
-| Teams    | Compiler          |
-| Status   | Proposed          |
+| Metadata         |          |
+|------------------|----------|
+| Point of contact | @yaahc   |
+| Teams            | Compiler |
+| Status           | Proposed |
 
 ## Summary
 
