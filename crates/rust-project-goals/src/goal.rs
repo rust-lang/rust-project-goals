@@ -125,11 +125,10 @@ impl GoalDocument {
 
         let link_path = Arc::new(link_path.to_path_buf());
 
-        let goal_plans = match metadata.status {
-            Status::Flagship | Status::Accepted | Status::Proposed => {
-                extract_plan_items(&sections)?
-            }
-            Status::NotAccepted => vec![],
+        let goal_plans = if metadata.status.is_not_not_accepted() {
+            extract_plan_items(&sections)?
+        } else {
+            vec![]
         };
 
         let mut team_asks = vec![];
@@ -164,10 +163,7 @@ impl GoalDocument {
 
     /// True if this goal is a candidate (may yet be accepted)
     pub fn is_not_not_accepted(&self) -> bool {
-        match self.metadata.status {
-            Status::Flagship | Status::Accepted | Status::Proposed => true,
-            Status::NotAccepted => false,
-        }
+        self.metadata.status.is_not_not_accepted()
     }
 
     /// Modify the goal document on disk to link to the given issue number in the metadata.
@@ -176,8 +172,18 @@ impl GoalDocument {
         metadata_table.add_key_value_row(TRACKING_ISSUE_ROW, &number);
         self.metadata
             .table
+
             .overwrite_in_path(&self.path, &metadata_table)?;
         Ok(())
+    }
+
+    /// In goal lists, we render our point-of-contact as "Help Wanted" if this is an invited goal.
+    pub fn point_of_contact_for_goal_list(&self) -> String {
+        if self.metadata.status.is_invited {
+            "![Help Wanted][]".to_string()
+        } else {
+            self.metadata.pocs.clone()
+        }
     }
 }
 
@@ -243,7 +249,7 @@ pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> anyhow::Result<String>
 
 pub fn format_goal_table(goals: &[&GoalDocument]) -> anyhow::Result<String> {
     // If any of the goals have tracking issues, include those in the table.
-    let goals_are_proposed = goals.iter().any(|g| g.metadata.status == Status::Proposed);
+    let goals_are_proposed = goals.iter().any(|g| g.metadata.status.acceptance == AcceptanceStatus::Proposed);
 
     let mut table;
 
@@ -276,7 +282,7 @@ pub fn format_goal_table(goals: &[&GoalDocument]) -> anyhow::Result<String> {
 
             table.push(vec![
                 format!("[{}]({})", goal.metadata.title, goal.link_path.display()),
-                goal.metadata.pocs.clone(),
+                goal.point_of_contact_for_goal_list(),
                 progress_bar,
             ]);
         }
@@ -297,7 +303,7 @@ pub fn format_goal_table(goals: &[&GoalDocument]) -> anyhow::Result<String> {
             let teams: Vec<&TeamName> = teams.into_iter().collect();
             table.push(vec![
                 format!("[{}]({})", goal.metadata.title, goal.link_path.display()),
-                goal.metadata.pocs.clone(),
+                goal.point_of_contact_for_goal_list(),
                 commas(&teams),
             ]);
         }
@@ -306,36 +312,58 @@ pub fn format_goal_table(goals: &[&GoalDocument]) -> anyhow::Result<String> {
 }
 
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Copy, Clone)]
-pub enum Status {
-    Flagship,
-    Accepted,
-    Proposed,
-    NotAccepted,
+pub struct Status {
+    /// If true, this is a flagship goal (or a flagship candidate)
+    pub is_flagship: bool,
+
+    pub acceptance: AcceptanceStatus,
+
+    /// If true, this is an INVITED goal, meaning that it lacks a primary owner
+    pub is_invited: bool,
+}
+
+impl Status {
+    /// True if this goal has not yet been rejected
+    pub fn is_not_not_accepted(&self) -> bool {
+        self.acceptance != AcceptanceStatus::NotAccepted
+    }
 }
 
 impl TryFrom<&str> for Status {
     type Error = anyhow::Error;
 
     fn try_from(value: &str) -> anyhow::Result<Self> {
-        let status_values = &[
-            ("Flagship", Status::Flagship),
-            ("Accepted", Status::Accepted),
-            ("Proposed", Status::Proposed),
-            ("Not accepted", Status::NotAccepted),
+        let value = value.trim();
+
+        let valid_values = [
+            ("Flagship", Status { is_flagship: true, acceptance: AcceptanceStatus::Accepted, is_invited: false }),
+            ("Accepted", Status { is_flagship: false, acceptance: AcceptanceStatus::Accepted, is_invited: false }),
+            ("Invited", Status { is_flagship: false, acceptance: AcceptanceStatus::Accepted, is_invited: true }),
+            ("Proposed", Status { is_flagship: false, acceptance: AcceptanceStatus::Proposed, is_invited: false }),
+            ("Proposed for flagship", Status { is_flagship: true, acceptance: AcceptanceStatus::Proposed, is_invited: true }),
+            ("Proposed for mentorship", Status { is_flagship: false, acceptance: AcceptanceStatus::Proposed, is_invited: true }),
+            ("Not accepted", Status { is_flagship: false, acceptance: AcceptanceStatus::NotAccepted, is_invited: false }),
         ];
 
-        status_values
-            .iter()
-            .find(|pair| value == pair.0)
-            .map(|pair| pair.1)
-            .ok_or_else(|| {
-                anyhow::anyhow!(
-                    "unrecognized status `{}`, expected one of: {}",
-                    value,
-                    commas(status_values.iter().map(|pair| pair.0))
-                )
-            })
+        for (valid_value, status) in valid_values {
+            if value == valid_value {
+                return Ok(status);
+            }
+        }
+
+        anyhow::bail!(
+            "unrecognized status `{}`, expected one of {:?}", 
+            value,
+            valid_values.iter().map(|(s, _)| s).collect::<Vec<_>>(),
+        )
     }
+}
+
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Copy, Clone)]
+pub enum AcceptanceStatus {
+    Proposed,
+    Accepted,
+    NotAccepted,
 }
 
 fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata>> {

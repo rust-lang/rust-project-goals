@@ -18,7 +18,7 @@ use rust_project_goals::{
         },
         labels::GhLabel,
     },
-    goal::{self, GoalDocument, GoalPlan, ParsedOwners, Status},
+    goal::{self, GoalDocument, GoalPlan, ParsedOwners},
     team::{get_person_data, TeamName},
 };
 
@@ -305,7 +305,7 @@ fn issue<'doc>(timeframe: &str, document: &'doc GoalDocument) -> anyhow::Result<
     }
 
     let mut labels = vec!["C-tracking-issue".to_string()];
-    if let Status::Flagship = document.metadata.status {
+    if document.metadata.status.is_flagship {
         labels.push("Flagship Goal".to_string());
     }
     for team in document.teams_with_asks() {
