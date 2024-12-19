@@ -3,7 +3,7 @@
 | Metadata |                                                                |
 | -------- | -------------------------------------------------------------- |
 | Owner(s) | [Jonathan Dönszelmann](@jdonszelmann) and [Mara Bos](@m-ou-se) |
-| Teams    | [lang], [compiler], [libs]                                     |
+| Teams    | [lang], [compiler]                                             |
 | Status   | Proposed                                                       |
 
 ## Summary
@@ -101,7 +101,16 @@ The experimental feature we implement should:
 
 **Owner:** [Jonathan Dönszelmann](@jdonszelmann) and [Mara Bos](@m-ou-se)
 
-TODO
+| Task                                           | Owner(s) or team(s)     | Notes |
+| ---------------------------------------------- | ----------------------- | ----- |
+| Discussion and moral support                   | [compiler], [lang]      |       |
+| Lang-team experiment                           | ![Team][] [lang]        | Already approved |
+| Design experiment (syntax, etc.)               | *Jonathan and Mara*     | Done |
+| Refactor attributes in rustc                   | *Jonathan*              | In progress, refactor merged |
+| Implement experiment                           | *Jonathan and Mara*     |       |
+| Standard reviews                               | ![Team][] [compiler]    |       |
+| Blog post inviting feedback                    | *Jonathan and Mara*     |       |
+| Update RFC with new findings                   | *Jonathan and Mara*     |       |
 
 ## Frequently asked questions
 
