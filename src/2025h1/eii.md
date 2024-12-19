@@ -19,7 +19,7 @@ but the priority is at functions right now.
 (as per the rfcs[^1][^2][^3] on this):
 
 We have several items in the standard library that are overridable/definable by the user crate.
-For example, the (no_std) `panic_handler`, the global allocator for `alloc`, and so on.
+For example, the (`no_std`) `panic_handler`, the global allocator for `alloc`, and so on.
 
 Each of those is a special lang item with its own special handling.
 Having a general mechanism simplifies the language and makes this functionality available for other crates,
@@ -43,8 +43,8 @@ Some of these are magical lang items, whereas others need to be set at runtime o
 
 After [RFC 3632], which proposes a new syntax for externally implementable _functions_,
 several alternative ideas were proposed in rapid succession
-that focussing on [statics](https://github.com/rust-lang/rfcs/pull/3635), [traits](https://github.com/rust-lang/rfcs/pull/3645), and [impl blocks](https://github.com/rust-lang/rfcs/pull/3632) rather than function definitions.
-Each of these having rougly equivalent power, but using a different part of Rust to achieve it.
+that focus on [statics](https://github.com/rust-lang/rfcs/pull/3635), [traits](https://github.com/rust-lang/rfcs/pull/3645), and [impl blocks](https://github.com/rust-lang/rfcs/pull/3632) rather than function definitions.
+Each of these having roughly equivalent power, but using a different part of Rust to achieve it.
 
 The lang team agreed that this is a problem worth solving, and accepted it as a _lang experiment_.[^4]
 
