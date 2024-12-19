@@ -2,7 +2,7 @@
 
 | Metadata |                  |
 |----------|------------------|
-| Owner(s) | Rust team at Arm |
+| Point of contact | @davidtwco |
 | Teams    | [cargo]          |
 | Status   | Proposed         |
 

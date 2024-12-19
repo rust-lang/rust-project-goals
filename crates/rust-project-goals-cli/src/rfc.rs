@@ -338,11 +338,11 @@ fn issue_text(timeframe: &str, document: &GoalDocument) -> anyhow::Result<String
 
     Ok(format!(
         r##"
-| Metadata      | |
-| --------      | --- |
-| Owner(s)      | {owners} |
-| Team(s)       | {teams} |
-| Goal document | [{timeframe}/{goal_file}](https://rust-lang.github.io/rust-project-goals/{timeframe}/{goal_file}.html) |
+| Metadata         | |
+| --------         | --- |
+| Point of contact | {poc} |
+| Team(s)          | {teams} |
+| Goal document    | [{timeframe}/{goal_file}](https://rust-lang.github.io/rust-project-goals/{timeframe}/{goal_file}.html) |
 
 ## Summary
 
@@ -354,7 +354,7 @@ fn issue_text(timeframe: &str, document: &GoalDocument) -> anyhow::Result<String
 
 [Team]: https://img.shields.io/badge/Team%20ask-red
 "##,
-        owners = &document.metadata.owner_usernames().join(", "),
+        poc = &document.metadata.owner_usernames().join(", "),
         teams = teams.join(", "),
         summary = document.summary,
         tasks = tasks.join("\n"),

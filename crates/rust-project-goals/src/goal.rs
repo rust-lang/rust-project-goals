@@ -9,7 +9,7 @@ use regex::Regex;
 use crate::config::Configuration;
 use crate::gh::issue_id::{IssueId, Repository};
 use crate::markwaydown::{self, Section, Table};
-use crate::re::USERNAME;
+use crate::re::{self, USERNAME};
 use crate::team::{self, TeamName};
 use crate::util::{self, commas, markdown_files, ARROW};
 
@@ -42,7 +42,7 @@ pub struct Metadata {
     #[allow(unused)]
     pub title: String,
     pub short_title: String,
-    pub owners: String,
+    pub pocs: String,
     pub status: Status,
     pub tracking_issue: Option<IssueId>,
     pub table: Table,
@@ -139,7 +139,7 @@ impl GoalDocument {
                 team_asks.extend(plan_item.team_asks(
                     &link_path,
                     goal_title,
-                    &metadata.owners,
+                    &metadata.pocs,
                 )?);
             }
         }
@@ -207,7 +207,7 @@ pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> anyhow::Result<String>
 
         let mut table = vec![vec![
             "Goal".to_string(),
-            "Owner".to_string(),
+            "Point of contact".to_string(),
             "Notes".to_string(),
         ]];
 
@@ -250,7 +250,7 @@ pub fn format_goal_table(goals: &[&GoalDocument]) -> anyhow::Result<String> {
     if !goals_are_proposed {
         table = vec![vec![
             "Goal".to_string(),
-            "Owner".to_string(),
+            "Point of contact".to_string(),
             "Progress".to_string(),
         ]];
 
@@ -276,14 +276,14 @@ pub fn format_goal_table(goals: &[&GoalDocument]) -> anyhow::Result<String> {
 
             table.push(vec![
                 format!("[{}]({})", goal.metadata.title, goal.link_path.display()),
-                goal.metadata.owners.clone(),
+                goal.metadata.pocs.clone(),
                 progress_bar,
             ]);
         }
     } else {
         table = vec![vec![
             "Goal".to_string(),
-            "Owner".to_string(),
+            "Point of contact".to_string(),
             "Team".to_string(),
         ]];
 
@@ -297,7 +297,7 @@ pub fn format_goal_table(goals: &[&GoalDocument]) -> anyhow::Result<String> {
             let teams: Vec<&TeamName> = teams.into_iter().collect();
             table.push(vec![
                 format!("[{}]({})", goal.metadata.title, goal.link_path.display()),
-                goal.metadata.owners.clone(),
+                goal.metadata.pocs.clone(),
                 commas(&teams),
             ]);
         }
@@ -357,13 +357,17 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata>> {
 
     let short_title_row = first_table.rows.iter().find(|row| row[0] == "Short title");
 
-    let Some(owners_row) = first_table
+    let Some(poc_row) = first_table
         .rows
         .iter()
-        .find(|row| row[0] == "Owner" || row[0] == "Owner(s)" || row[0] == "Owners")
+        .find(|row| row[0] == "Point of contact")
     else {
-        anyhow::bail!("metadata table has no `Owner(s)` row")
+        anyhow::bail!("metadata table has no `Point of contact` row")
     };
+
+    if !re::is_just(&re::USERNAME, poc_row[1].trim()) {
+        anyhow::bail!("point of contact must be a single github username (found {:?})", poc_row[1])
+    }
  
     let Some(status_row) = first_table.rows.iter().find(|row| row[0] == "Status") else {
         anyhow::bail!("metadata table has no `Status` row")
@@ -387,7 +391,7 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata>> {
         } else {
             title.to_string()
         },
-        owners: owners_row[1].to_string(),
+        pocs: poc_row[1].to_string(),
         status,
         tracking_issue: issue,
         table: first_table.clone(),
@@ -589,7 +593,7 @@ fn extract_identifiers(s: &str) -> Vec<&str> {
 impl Metadata {
     /// Extracts the `@abc` usernames found in the owner listing.
     pub fn owner_usernames(&self) -> Vec<&str> {
-        owner_usernames(&self.owners)
+        owner_usernames(&self.pocs)
     }
 }
 

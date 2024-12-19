@@ -2,7 +2,7 @@
 
 | Metadata |          |
 |----------|----------|
-| Owner(s) | @eh2406  |
+| Point of contact | @eh2406  |
 | Teams    | [cargo]  |
 | Status   | Proposed |
 

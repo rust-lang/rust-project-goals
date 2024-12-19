@@ -2,7 +2,7 @@
 
 | Metadata |                                                              |
 | -------- | ------------------------------------------------------------ |
-| Owner(s)       | ![Help wanted][]                   |
+| Point of contact | @epage                |
 | Teams    | [cargo], [compiler]           |
 | Status   | Proposed                                                     |
 

@@ -29,7 +29,7 @@ For larger project goals, it can be more convenient to track progress via github
 ```
 | Metadata      | |
 | --------      | --- |
-| Owner(s)      | ... |
+| Point of contact | ... |
 | Team(s)       | ... |
 | Goal document | ... |
 | Tracked issues | [rust-lang/rust label:A-edition-2024 label:C-tracking-issue -label:t-libs](...) |
@@ -46,7 +46,7 @@ If you already have a tracking issue elsewhere, just add a "See also" line into 
 ```
 | Metadata      | |
 | --------      | --- |
-| Owner(s)      | ... |
+| Point of contact | ... |
 | Team(s)       | ... |
 | Goal document | ... |
 | See also | rust-lang/rust#123 |

@@ -2,7 +2,7 @@
 
 | Metadata |          |
 |----------|----------|
-| Owner(s) | @jhpratt |
+| Point of contact | @jhpratt |
 | Teams    | [lang]   |
 | Status   | Proposed |
 

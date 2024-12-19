@@ -2,7 +2,7 @@
 
 | Metadata       |                                    |
 | ---            | ---                                |
-| Owner(s)       | @lqd                               |
+| Point of contact | @lqd                               |
 | Teams          | [types]                            |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#118] |

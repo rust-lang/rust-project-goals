@@ -2,7 +2,7 @@
 
 | Metadata | |
 | --- | --- |
-| Owner(s) | *Github usernames or other identifying info for goal owners* |
+| Point of contact | @joshtriplett |
 | Teams | *Names of teams being asked to commit to the goal* |
 | Status | Not accepted |
 

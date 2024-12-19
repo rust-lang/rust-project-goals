@@ -3,7 +3,7 @@
 | Metadata       |                                    |
 |----------------|------------------------------------|
 | Short title    | Async                              |
-| Owner(s)       | @tmandry, @nikomatsakis            |
+| Point of contact | @tmandry            |
 | Teams          | [lang], [libs], [libs-api]         |
 | Status         | Flagship                           |
 | Tracking issue | [rust-lang/rust-project-goals#105] |

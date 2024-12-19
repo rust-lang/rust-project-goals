@@ -1,10 +1,10 @@
 # Faster build experience
 
-| Metadata |                             |
-| -------- | --------------------------- |
-| Owner(s) | @jkelleyrtp                 |
-| Teams    | [lang], [compiler], [cargo] |
-| Status   | Not accepted                |
+| Metadata         |                             |
+|------------------|-----------------------------|
+| Point of contact | @jkelleyrtp                 |
+| Teams            | [lang], [compiler], [cargo] |
+| Status           | Not accepted                |
 
 ## Summary
 
@@ -85,7 +85,7 @@ The work here is proposed by Jonathan Kelley on behalf of Dioxus Labs. We have f
 
 
 | Task                         | Owner(s) or team(s) | Notes |
-| ---------------------------- | ------------------- | ----- |
+|------------------------------|---------------------|-------|
 | proc macro expansion caching | [jkelleyrtp] + tbd  |       |
 | global dependency cache      | [jkelleyrtp] + tbd  |       |
 

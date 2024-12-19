@@ -10,11 +10,11 @@
 
 -->
 
-| Metadata |                      |
-|----------|----------------------|
-| Owner(s) | @folkertdev, @bjorn3 |
-| Teams    | T-compiler           |
-| Status   | Proposed             |
+| Metadata         |             |
+|------------------|-------------|
+| Point of contact | @folkertdev |
+| Teams            | T-compiler  |
+| Status           | Proposed    |
 
 ## Summary
 

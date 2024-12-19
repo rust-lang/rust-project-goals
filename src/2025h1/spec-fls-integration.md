@@ -2,7 +2,7 @@
 
 | Metadata |             |
 |----------|-------------|
-| Owner(s) | Joel Marcey |
+| Point of contact | @joelmarcey |
 | Teams    | spec        |
 | Status   | Proposed    |
 

@@ -1,10 +1,10 @@
 # Rust Vision Document
 
-| Metadata |                                  |
-|----------|----------------------------------|
-| Owner(s) | vision team led by @nikomatsakis |
-| Teams    | [Leadership Council]             |
-| Status   | Proposed                         |
+| Metadata         |                      |
+|------------------|----------------------|
+| Point of contact | @nikomatsakis        |
+| Teams            | [Leadership Council] |
+| Status           | Proposed             |
 
 ## Summary
 

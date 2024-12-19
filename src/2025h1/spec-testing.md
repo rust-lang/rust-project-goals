@@ -1,10 +1,10 @@
 # Rust Specification Testing
 
-| Metadata |               |
-|----------|---------------|
-| Owner(s) | Connor Horman |
-| Teams    | T-spec        |
-| Status   | Proposed      |
+| Metadata         |              |
+|------------------|--------------|
+| Point of contact | @chorman0773 |
+| Teams            | T-spec       |
+| Status           | Proposed     |
 
 ## Summary
 
@@ -39,11 +39,11 @@ The integration of testing into the specification should:
 
 | Task                 | Owner(s) or team(s)                                    | Notes     |
 |----------------------|--------------------------------------------------------|-----------|
-| Author RFC           | Connor Horman                                          |           |
+| Author RFC           | @chorman0773                                           |           |
 | RFC decision         | ![Team][] [spec][] [compiler][] [bootstrap][] [lang][] |           |
-| Move/Extract Tests   | Connor Horman                                          | As Needed |
+| Move/Extract Tests   | @chorman0773                                           | As Needed |
 | Annotate Moved Tests |                                                        |           |
-| Author new tests     | Connor Horman                                          |           |
+| Author new tests     | @chorman0773                                           |           |
 
 ## Frequently asked questions
 

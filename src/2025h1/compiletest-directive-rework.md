@@ -1,10 +1,10 @@
 # Making compiletest more maintainable: reworking directive handling
 
-| Metadata |                         |
-|----------|-------------------------|
-| Owner(s) | [@jieyouxu]             |
-| Teams    | [bootstrap], [compiler] |
-| Status   | Proposed                |
+| Metadata         |                         |
+|------------------|-------------------------|
+| Point of contact | @jieyouxu               |
+| Teams            | [bootstrap], [compiler] |
+| Status           | Proposed                |
 
 ## Summary
 

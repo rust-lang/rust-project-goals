@@ -2,7 +2,7 @@
 
 | Metadata |                      |
 |----------|----------------------|
-| Owner(s) | @celinval            |
+| Point of contact | @celinval            |
 | Teams    | [project-stable-mir] |
 | Status   | Proposed             |
 

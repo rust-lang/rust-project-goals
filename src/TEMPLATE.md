@@ -5,12 +5,14 @@
 > (e.g., "stabilize X" or "nightly support for X" or "gather data about X").
 > Feel free to replace any text with anything, but there are placeholders
 > designed to help you get started. 
+>
+> The **point of contact** is the person responsible for providing updates.
 
-| Metadata |                                                              |
-|----------|--------------------------------------------------------------|
-| Owner(s) | *Github usernames or other identifying info for goal owners* |
-| Teams    | *Names of teams being asked to commit to the goal*           |
-| Status   | Proposed                                                     |
+| Metadata         |                                                    |
+|------------------|----------------------------------------------------|
+| Point of contact | *must be a single Github username like @ghost*     |
+| Teams            | *Names of teams being asked to commit to the goal* |
+| Status           | Proposed                                           |
 
 ## Summary
 
@@ -42,9 +44,11 @@
 
 ## Ownership and team asks
 
-**Owner:** *Identify a specific person or small group of people if possible, else the group that will provide the owner. Github user names are commonly used to remove ambiguity.*
+*This section lists out the work to be done and the asks from Rust teams. Every row in the table should either correspond to something done by a contributor or something asked of a team.*
 
-*This section lists out the work to be done and the asks from Rust teams. Every row in the table should either correspond to something done by a contributor or something asked of a team. For items done by a contributor, list the contributor, or ![Heap wanted][] if you don't yet know who will do it. For things asked of teams, list ![Team][] and the name of the team, e.g. `![Team][] [compiler]` or `![Team][] [compiler], [lang]` (note the trailing `[]` in `![Team][]`, that is needed for markdown to parse correctly). For team asks, the "task" must be one of the tasks defined in [rust-project-goals.toml](../rust-project-goals.toml) or `cargo rpg check` will error.*
+*For items done by a contributor, list the contributor, or ![Heap wanted][] if you don't yet know who will do it. The owner is ideally identified as a github username like `@ghost`.*
+
+*For items asked of teams, list ![Team][] and the name of the team, e.g. `![Team][] [compiler]` or `![Team][] [compiler], [lang]` (note the trailing `[]` in `![Team][]`, that is needed for markdown to parse correctly). For team asks, the "task" must be one of the tasks defined in [rust-project-goals.toml](../rust-project-goals.toml) or `cargo rpg check` will error.*
 
 | Task                         | Owner(s) or team(s) | Notes |
 |------------------------------|---------------------|-------|
