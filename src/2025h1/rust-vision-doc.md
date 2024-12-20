@@ -76,7 +76,7 @@ Here is the overall plan for 2025H1:
 | Review RFC Draft 1 at Rust All Hands         |     |     |     |     |     | ███ | ███ |     |
 | Publish a blog post with summarized feedback |     |     |     |     |     |     |     | ███ |
 
-The plan actually begins *now*, in the goal construction phase. One of the tasks to be done is building up a **small support team** of researchers who will help with doing the interviews and authoring status quo stories and other parts of the document. As goal owner, nikomatsakis will select initial members. With the Async Vision Doc, our experience was that most Rust users are eager to share their experiences, but that authoring and upleveling that into a status quo story is challenging. It's better to centralize that authorship into a small group of motivated people.
+The plan actually begins *now*, in the goal construction phase. One of the tasks to be done is building up a **small support team** of researchers who will help with doing the interviews and authoring status quo stories and other parts of the document. As goal point of contact, nikomatsakis will select initial members. With the Async Vision Doc, our experience was that most Rust users are eager to share their experiences, but that authoring and upleveling that into a status quo story is challenging. It's better to centralize that authorship into a small group of motivated people.
 
 The plan to finalize the document is as follows:
 

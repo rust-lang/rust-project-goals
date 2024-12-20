@@ -1,6 +1,6 @@
 # Report status
 
-Every accepted project goal has an associated tracking issue. These are created [automatically by the project-goals admin tool](../admin/issues.md). Your job as a project goal owner is to provide regular status updates in the form of a comment indicating how things are going. These will be collected into regular blog posts on the Rust blog as well as being promoted in other channels.
+Every accepted project goal has an associated tracking issue. These are created [automatically by the project-goals admin tool](../admin/issues.md). Your job as a project goal point of contact is to provide regular status updates in the form of a comment indicating how things are going. These will be collected into regular blog posts on the Rust blog as well as being promoted in other channels.
 
 ## Updating the progress bar
 
