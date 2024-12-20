@@ -16,7 +16,7 @@ It's been too long since we've had a Rust All-Hands. Time to bring it back!
 
 ### The status quo
 
-Previous Rust All-Hands events were very useful and succesful, but after the changes at Mozilla, we haven't had a Rust All-Hands in six years.
+Previous Rust All-Hands events were very useful and successful, but after the changes at Mozilla, we haven't had a Rust All-Hands in six years.
 Meanwhile, the project has grown a lot, making it much harder and expensive to organise a new Rust All-Hands.
 
 A few months ago, when Jack brought up having a new Rust All-Hands in the Leadership Council meeting,
@@ -33,7 +33,7 @@ See https://blog.rust-lang.org/inside-rust/2024/09/02/all-hands.html
 
 ### The "shiny future" we are working towards
 
-The immediate goal is a very succesful and productive Rust All-Hands 2025.
+The immediate goal is a very successful and productive Rust All-Hands 2025.
 Hopefully, this will be the first step towards the larger goal of having regular Rust All-Hands again.
 
 We should be able to use the feedback and lessons learned from this event for the next ones,

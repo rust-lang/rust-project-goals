@@ -7,7 +7,7 @@
 > * Search and replace `YYYYHN` with `2222H1` and delete this section.
 > * Look for other "TBD" sections, you'll want to replace those eventually.
 
-**As of today, we are officially accepting proposals for Rust Project Goals targeting YYYYHN (the (TBD) half of YYYY).** If you'd like to particiapte in the process, or just to follow along, please check out the [YYYYHN goal page][YYYYHN]. It includes listings of the goals currently under consideration , more details about the goals program, and instructions for how to submit a goal.
+**As of today, we are officially accepting proposals for Rust Project Goals targeting YYYYHN (the (TBD) half of YYYY).** If you'd like to participate in the process, or just to follow along, please check out the [YYYYHN goal page][YYYYHN]. It includes listings of the goals currently under consideration , more details about the goals program, and instructions for how to submit a goal.
 
 [YYYYHN]: https://rust-lang.github.io/rust-project-goals/YYYYHN/index.html
 
@@ -16,7 +16,7 @@
 Every six months, the Rust project commits to a set of goals for the upcoming half-year. The process involves:
 
 * the owner of the goal program (currently me) posts a call for proposals (this post);
-* would-be goal owners [open PRs][] against the [rust-project-goals] repository;
+* would-be goal points of contact [open PRs][] against the [rust-project-goals] repository;
 * the goal-program owner gathers feedback on these goals and chooses some of them to be included in the RFC proposing the final slate of goals.
 
 To get an idea what the final slate of goals looks like, check out the RFC from the previous round of goals, [RFC (TBD)][]. The RFC describes a set of goals, designates a few of them as flagship goals, and summarizes the work expected from each team. The RFC is approved by (at least) the leads of each team, effectively committing their team to prove the support that is described.
