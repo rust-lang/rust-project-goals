@@ -7,7 +7,7 @@
 > * Search and replace `YYYYHN` with `2222H1` and delete this section.
 > * Look for other "TBD" sections, you'll want to replace those eventually.
 
-**As of today, we are officially accepting proposals for Rust Project Goals targeting YYYYHN (the (TBD) half of YYYY).** If you'd like to particiapte in the process, or just to follow along, please check out the [YYYYHN goal page][YYYYHN]. It includes listings of the goals currently under consideration , more details about the goals program, and instructions for how to submit a goal.
+**As of today, we are officially accepting proposals for Rust Project Goals targeting YYYYHN (the (TBD) half of YYYY).** If you'd like to participate in the process, or just to follow along, please check out the [YYYYHN goal page][YYYYHN]. It includes listings of the goals currently under consideration , more details about the goals program, and instructions for how to submit a goal.
 
 [YYYYHN]: https://rust-lang.github.io/rust-project-goals/YYYYHN/index.html
 

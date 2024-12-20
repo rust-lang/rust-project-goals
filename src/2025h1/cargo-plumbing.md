@@ -73,11 +73,11 @@ This is exclusively focused on build while other operations may be of interest t
 We can evaluate those commands in the future as they tend to still build off of these same core primitives.
 
 At minimum, later commands in the process would accept output from earlier commands,
-allowing the caller to either replace commands (e.g. custom depedency resolver)
+allowing the caller to either replace commands (e.g. custom dependency resolver)
 or customize the output (e.g. remove `dev-dependencies` from manifests).
 
 Encapsulating stabilized file formats can serve as a starting point for output
-schemas as we already output those and have to deal with stability guarentees
+schemas as we already output those and have to deal with stability guarantees
 around these.
 
 Between planning a build and executing abuild is likely to look like

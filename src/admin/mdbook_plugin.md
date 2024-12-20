@@ -4,10 +4,10 @@ The mdbook is controlled by the `mdbook-goals` plugin in this repo.
 This plugin makes various edits to the source:
 
 * Linking usernames like <code>&#x40;foo</code> to their github page and replacing them with their display name.
-* Linking GH references lke rust-lang/rust#123.
+* Linking GH references like rust-lang/rust#123.
 * Collating goals, creating tables, etc.
 
-The plugin can also be used [from the commmand line](./commands.md).
+The plugin can also be used [from the command line](./commands.md).
 
 ## Expected book structure
 
