@@ -2,7 +2,7 @@
 
 | Metadata         |                     |
 |------------------|---------------------|
-| Point of contact | @kobzol             |
+| Point of contact | @davidtwco          |
 | Teams            | [infra], [compiler] |
 | Status           | Proposed            |
 
