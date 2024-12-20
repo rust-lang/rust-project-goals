@@ -21,7 +21,7 @@ This goal continues our push to support the Linux kernel building on stable Rust
 
 ### The status quo
 
-The [Rust For Linux (RFL)][RFL] project has been accepted into the Linux kernel in experimental status. The project's goal, as described in the [Kernel RFC introducing it][RFL-RFC], is to add support for authoring kernel components (modules, subsystems) using Rust. Rust would join C as the only two languages permitted in the linux kernel. This is a very exciting milestone for Rust, but it's also a big challenge.
+The [Rust for Linux (RFL)][RFL] project has been accepted into the Linux kernel in experimental status. The project's goal, as described in the [Kernel RFC introducing it][RFL-RFC], is to add support for authoring kernel components (modules, subsystems) using Rust. Rust would join C as the only two languages permitted in the Linux kernel. This is a very exciting milestone for Rust, but it's also a big challenge.
 
 [RFL-RFC]: https://lore.kernel.org/lkml/20210414184604.23473-1-ojeda@kernel.org/
 
@@ -55,7 +55,7 @@ We began the push towards stable support for RFL in 2024H2 with [a project goal 
 * Stabilized basic usage of `asm_goto`. Based on a survey of the kernel's usage, we [modified the existing design](https://github.com/rust-lang/rust/issues/132078) and also proposed [two](https://github.com/rust-lang/rust/issues/128464) [extensions](https://github.com/rust-lang/rust/pull/131523).
 * Stabilized `offset_of` syntax applied to structs.
 * Added Rust-for-Linux to the Rust CI to avoid accidental breakage.
-* Stabilized support for pointers to static in constants. 
+* Stabilized support for pointers to static in constants.
 
 The one feature which was not stabilized yet is [arbitrary self types v2](https://github.com/rust-lang/rust/issues/44874), which reached "feature complete" status in its implementation. Stabilization is expected in early 2025.
 
