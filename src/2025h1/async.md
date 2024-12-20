@@ -4,7 +4,7 @@
 |----------|-------------------------------------|
 | Point of contact | @tmandry                            |
 | Teams    | [lang], [libs], [libs-api], [types] |
-| Status   | Proposed                            |
+| Status   | Proposed for flagship                           |
 
 ## Summary
 
