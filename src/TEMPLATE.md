@@ -4,7 +4,7 @@
 > Give it a title that describes what you plan to get done in the next 6 months
 > (e.g., "stabilize X" or "nightly support for X" or "gather data about X").
 > Feel free to replace any text with anything, but there are placeholders
-> designed to help you get started. 
+> designed to help you get started.
 >
 > The **point of contact** is the person responsible for providing updates.
 >
@@ -38,6 +38,8 @@
 > *If this goal is part of a larger plan that will extend beyond this goal period, sketch out the goal you are working towards. It may be worth adding some text about why these particular goals were chosen as the next logical step to focus on.*
 >
 > *This text is NORMATIVE, in the sense that teams should review this and make sure they are aligned. If not, then the shiny future should be moved to frequently asked questions with a title like "what might we do next".*
+
+*However, for most proposals, alignment on exact syntax should not be required to start a goal, only alignment on the problem and the general sketch of the solution. This may vary for goals that are specifically about syntax, such as ergonomic improvements.*
 
 ## Design axioms
 
