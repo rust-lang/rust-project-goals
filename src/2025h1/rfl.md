@@ -14,7 +14,7 @@ Continue working towards Rust for Linux on stable, turning focus from language f
 
 ## Motivation
 
-This goal continues our push to support the Linux kernel building on stable Rust. The focus in 2025H1 is shifting from language features, which were largely completed in 2024H2, towards compiler flags and tooling support. The Linux Kernel makes use of a number of unstable options in the compiler for target specific optimizations, code hardening, and sanitizer integration. It also requires a custom build of the standard library and has hacky integration with rustdoc to enable the use of doctests. We are looking to put all of these items onto a stable foundation.
+This goal continues our push to support the Linux kernel building on stable Rust. The focus in 2025H1 is shifting from language features, which were largely completed in 2024H2, towards compiler flags and tooling support. The Linux Kernel makes use of a [number of unstable options][RFL#2] in the compiler for target specific optimizations, code hardening, and sanitizer integration. It also requires a custom build of the standard library and has hacky integration with rustdoc to enable the use of doctests. We are looking to put all of these items onto a stable foundation.
 
 [RFL.com]: https://rust-for-linux.com/
 [RFL#2]: https://github.com/Rust-for-Linux/linux/issues/2
@@ -38,9 +38,9 @@ Longer term, having Rust in the Linux kernel is an opportunity to expose more C 
 
 For deeper background, please refer to these materials:
 
-* The article on the latest Maintainer Summit: [Committing to Rust for kernel code](https://lwn.net/Articles/952029/)
+* The article on the latest Maintainers Summit: [Committing to Rust in the kernel](https://lwn.net/Articles/991062/)
 * The [LWN index on articles related to Rust in the kernel](https://lwn.net/Kernel/Index/#Development_tools-Rust)
-* [The latest status update at LPC](https://www.youtube.com/watch?v=qvlgIaYrd3g).
+* [The latest status update at LPC](https://www.youtube.com/watch?v=tamydDnWoLs).
 * [Linus talking about Rust](https://www.youtube.com/watch?v=OvuEYtkOH88&t=335s).
 * [Rust in the linux kernel, by Alice Ryhl](https://www.youtube.com/watch?v=CEznkXjYFb4)
 * [Using Rust in the binder driver, by Alice Ryhl](https://www.youtube.com/watch?v=Kt3hpvMZv8o)
