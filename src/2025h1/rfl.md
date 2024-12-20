@@ -32,7 +32,9 @@ This interop requires Rust to expose low-level capabilities that don't currently
 [pinned-init]: https://rust-for-linux.com/pinned-init
 [arclk]: https://rust-for-linux.com/arc-in-the-linux-kernel
 
-The dependency on unstable features is the biggest blocker to Rust exiting "experimental" status. Because unstable features have no kind of reliability guarantee, this in turn means that RFL can only be built with a specific, pinned version of the Rust compiler. This is a challenge for distributions which wish to be able to build a range of kernel sources with the same compiler, rather than having to select a particular toolchain for a particular kernel version.
+The Rust side of the kernel needs to support [a range of compiler versions][RFL-Rust-version-policy], just like the C side does. For instance, distributions wish to be able to build a range of kernel sources with the same compiler, rather than having to select a particular toolchain for a particular kernel version. Thus RFL is already declaring an MSRV. Because unstable features have no kind of reliability guarantee, this in turn means that it is a priority to remove the dependency on unstable features so that Linux can be built with future Rust compilers without major changes on the kernel side.
+
+[RFL-Rust-version-policy]: https://rust-for-linux.com/rust-version-policy
 
 Longer term, having Rust in the Linux kernel is an opportunity to expose more C developers to the benefits of using Rust. But that exposure can go both ways. If Rust is constantly causing pain related to toolchain instability, or if Rust isn't able to interact gracefully with the kernel's data structures, kernel developers may have a bad first impression that causes them to write off Rust altogether. We wish to avoid that outcome. And besides, the Linux kernel is exactly the sort of low-level systems application we want Rust to be great for!
 
