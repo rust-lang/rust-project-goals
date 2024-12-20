@@ -59,7 +59,27 @@ We also began work on tooling stabilization with an [RFC proposing an approach t
 
 ### The next six months
 
-Over the next six months our goal is to stabilize the major bits of tooling used by the Rust for Linux project...
+Over the next six months our goal is to stabilize the major bits of tooling used by the Rust for Linux project. Some of these work items are complex enough to be tracked independently as their own project goals, in which case they are linked.
+
+* implementing RFC #3716 to stabilize ABI-modifying compiler flags to control code generation, sanitizer integration, and so forth:
+    * arm64: `-Zbranch-protection`, `-Zfixed-x18`, `-Zuse-sync-unwind`.
+    * x86: `-Zcf-protection`, `-Zfunction-return`, `-Zno-jump-tables`, `-Zpatchable-function-entry`, retpoline (`+retpoline-external-thunk,+retpoline-indirect-branches,+retpoline-indirect-calls`), SLS (`+harden-sls-ijmp,+harden-sls-ret`).
+    * x86 32-bit: `-Zregparm=3`, `-Zreg-struct-return`.
+    * LoongArch: `-Zdirect-access-external-data`.
+    * production sanitizer flags: `-Zsanitizer=shadow-call-stack`, `-Zsanitizer=kcfi`, `-Zsanitizer-cfi-normalize-integer`.
+* the ability to extract dependency info and to configure no-std without requiring it in the source file:
+    * currently using `-Zbinary_dep_depinfo=y` and `-Zcrate-attr`
+* stable rustdoc features allowing the RFL project to extract and customize rustdoc tests:
+* clippy configuration (`.clippy.toml` in particular and `CLIPPY_CONF_DIR`);
+* [a blessed way to rebuild std](./build-std.md): RFL needs a way to rebuild the standard library using stable calls to rustc. Currently building the standard library with rustc is not supported. This is a precursor to what is commonly called `-Zbuild-std`; it is also a blocker to making full use of API-modifying compiler flags and similar features, since they can't be used effectively unless the kernel is rebuilt.
+
+In addition, as follow-up from 2024H2, we wish to complete [arbitrary self types v2][astv2] stabilization.
+
+### The "shiny future" we are working towards
+
+The ultimate target for this line of work is that Rust code in the Linux kernel builds on stable Rust with a Minimum Supported Rust Version (MSRV) tied to some external benchmark, such as Debian stable. This is the minimum requirement for Rust integration to proceed from an "experiment" so something that could become a permanent part of Linux.
+
+Looking past the bare minimum, the next target would be making "quality of life" improvements that make it more ergonomic to write Rust code in the kernel (and similar codebases). One such example is the proposed experiment for [field projections](./field-projections.md).
 
 ## Design axioms
 
@@ -72,10 +92,59 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 
 * The ![Team][] badge indicates a requirement where Team support is needed.
 
-| Task                       | Owner(s) or team(s) | Notes |
-|----------------------------|---------------------|-------|
-| Overall program management | @nikomatsakis       |       |
+| Task                         | Owner(s) or team(s)                          | Notes |
+|------------------------------|----------------------------------------------|-------|
+| Discussion and moral support | ![Team][] [compiler][] [rustdoc][] [cargo][] |       |
+| Overall program management   | @nikomatsakis                                |       |
 
+### ABI-modifying compiler flags
 
+Goal: stabilizing various ABI-modifying flags such as `-Zbranch-protection` and friends.
 
+| Task                   | Owner(s) or team(s)    | Notes                                                   |
+|------------------------|------------------------|---------------------------------------------------------|
+| Author RFC             | @darksonn              | ![Completed][]                                          |
+| RFC decision           | ![Team][] [compiler][] | RFC #3716, currently in PFCP                            |
+| Implementation         | ![Help Wanted][]       | For each flag, need to move flags from `-Z` to `-C` etc |
+| Standard reviews       | ![Team][] [compiler]   |                                                         |
+| Stabilization decision | ![Team][] [compiler][] | For each of the relevant compiler flags                 |
 
+### Extract dependency information, configure no-std externally
+
+Goal: support extraction of dependency information (similar to `-Zbinary_dep_depinfo=y` today) and ability to write crates without explicit, per-crate `![no_std]` (achieved via `-Zcrate-attr` today).
+
+Right now there is no plan for how to approach this. This task needs an owner to pick it up, make a plan, and execute.
+
+| Task                   | Owner(s) or team(s)    | Notes |
+|------------------------|------------------------|-------|
+| Author a plan          | ![Help Wanted][]       |       |
+| Implementation         | ![Help Wanted][]       |       |
+| Standard reviews       | ![Team][] [compiler]   |       |
+| Stabilization decision | ![Team][] [compiler][] |       |
+
+### Rustdoc features to extract doc tests
+
+Goal: stable rustdoc features sufficient to extract doc tests without hacky regular expressions
+
+| Task                   | Owner(s) or team(s)   | Notes |
+|------------------------|-----------------------|-------|
+| Author RFC             | ![Help Wanted][]      |       |
+| RFC decision           | ![Team][] [rustdoc][] |       |
+| Implementation         | ![Help Wanted][]      |       |
+| Standard reviews       | ![Team][] [rustdoc]   |       |
+| Stabilization decision | ![Team][] [rustdoc][] |       |
+
+### Clippy configuration
+
+Goal: stabilized approach to customizing clippy (like `.clippy.toml` and `CLIPPY_CONF_DIR` today).
+
+As discussed on [Zulip](https://rust-lang.zulipchat.com/#narrow/channel/257328-clippy/topic/stablization.20of.20clippy.2Etoml.20a), the relevant policy is already correct, but documentation is needed.
+
+| Task                   | Owner(s) or team(s)  | Notes |
+|------------------------|----------------------|-------|
+| Author documentation   | ![Help Wanted][]     |       |
+| Stabilization decision | ![Team][] [clippy][] |       |
+
+### Blessed way to rebuild std
+
+See [build-std](./build-std.md) goal.
