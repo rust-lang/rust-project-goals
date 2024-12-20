@@ -73,8 +73,8 @@ Over the next six months our goal is to stabilize the major bits of tooling used
     * production sanitizer flags: `-Zsanitizer=shadow-call-stack`, `-Zsanitizer=kcfi`, `-Zsanitizer-cfi-normalize-integer`.
 * the ability to extract dependency info and to configure no-std without requiring it in the source file:
     * currently using `-Zbinary_dep_depinfo=y` and `-Zcrate-attr`
-* stable rustdoc features allowing the RFL project to extract and customize rustdoc tests:
-* clippy configuration (`.clippy.toml` in particular and `CLIPPY_CONF_DIR`);
+* stable rustdoc features allowing the RFL project to extract and customize rustdoc tests (`--extract-doctests`);
+* clippy configuration (possibly `.clippy.toml` and `CLIPPY_CONF_DIR`);
 * [a blessed way to rebuild std](./build-std.md): RFL needs a way to rebuild the standard library using stable calls to rustc. Currently building the standard library with rustc is not supported. This is a precursor to what is commonly called `-Zbuild-std`; it is also a blocker to making full use of API-modifying compiler flags and similar features, since they can't be used effectively unless the kernel is rebuilt.
 
 In addition, as follow-up from 2024H2, we wish to complete [arbitrary self types v2][astv2] stabilization.
