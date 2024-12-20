@@ -1,6 +1,6 @@
 # Goals team
 
-The Rust goals program is administered by the Goals team. 
+The Rust goals program is administered by the Goals team.
 This document serves as the team charter.
 
 ## Mission
@@ -21,7 +21,7 @@ Team members perform some subset of the following roles:
 * During the year:
     * Authoring round-up blog posts highlighting progress
     * Updating and maintaining the web-site
-    * Checking in with the owners of goals that are not reporting progress to see if they need help
+    * Checking in with the goal points of contact that are not reporting progress to see if they need help
 
 ## Role of the lead
 
