@@ -16,7 +16,7 @@
 Every six months, the Rust project commits to a set of goals for the upcoming half-year. The process involves:
 
 * the owner of the goal program (currently me) posts a call for proposals (this post);
-* would-be goal owners [open PRs][] against the [rust-project-goals] repository;
+* would-be goal points of contact [open PRs][] against the [rust-project-goals] repository;
 * the goal-program owner gathers feedback on these goals and chooses some of them to be included in the RFC proposing the final slate of goals.
 
 To get an idea what the final slate of goals looks like, check out the RFC from the previous round of goals, [RFC (TBD)][]. The RFC describes a set of goals, designates a few of them as flagship goals, and summarizes the work expected from each team. The RFC is approved by (at least) the leads of each team, effectively committing their team to prove the support that is described.

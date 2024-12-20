@@ -37,7 +37,7 @@ Implement at least Cargo and compiler support for this to be experimented with a
 |-------------------------------------|-------------------------------|-------|
 | Discussion and moral support        | ![Team][] [cargo], [compiler] |       |
 | Compiler implementation             | ![Help wanted][]              |       |
-| Work through lingering cargo issues | Goal owner, @epage            |       |
+| Work through lingering cargo issues | Goal point of contact, @epage |       |
 
 ### Definitions
 
