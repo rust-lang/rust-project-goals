@@ -340,7 +340,7 @@ impl TryFrom<&str> for Status {
             ("Accepted", Status { is_flagship: false, acceptance: AcceptanceStatus::Accepted, is_invited: false }),
             ("Invited", Status { is_flagship: false, acceptance: AcceptanceStatus::Accepted, is_invited: true }),
             ("Proposed", Status { is_flagship: false, acceptance: AcceptanceStatus::Proposed, is_invited: false }),
-            ("Proposed for flagship", Status { is_flagship: true, acceptance: AcceptanceStatus::Proposed, is_invited: true }),
+            ("Proposed for flagship", Status { is_flagship: true, acceptance: AcceptanceStatus::Proposed, is_invited: false }),
             ("Proposed for mentorship", Status { is_flagship: false, acceptance: AcceptanceStatus::Proposed, is_invited: true }),
             ("Not accepted", Status { is_flagship: false, acceptance: AcceptanceStatus::NotAccepted, is_invited: false }),
         ];
