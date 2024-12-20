@@ -39,7 +39,7 @@ Writing the "status quo" stories helped us to compensate for the [curse of knowl
 [Async Vision Doc]: https://rust-lang.github.io/wg-async/vision.html
 [status quo]: https://rust-lang.github.io/wg-async/vision/submitted_stories.html
 [shiny future]: https://rust-lang.github.io/wg-async/vision/shiny_future/users_manual.html
-[cast of four characteres]: https://rust-lang.github.io/wg-async/vision/characters.html
+[cast of four characters]: https://rust-lang.github.io/wg-async/vision/characters.html
 
 #### Gathering stories from both individuals and groups
 
@@ -71,7 +71,7 @@ Here is the overall plan for 2025H1:
 |----------------------------------------------|-----|-----|-----|-----|-----|-----|-----|-----|
 | Form a team                                  | ███ | ███ |     |     |     |     |     |     |
 | Gather status quo stories                    |     |     | ███ | ███ | ░░░ |     |     |     |
-| Coallesce stores and personae                |     |     | ░░░ | ███ | ███ |     |     |     |
+| Coalesce stories and personae                |     |     | ░░░ | ███ | ███ |     |     |     |
 | Develop recommendations and goals            |     |     |     | ░░░ | ███ |     |     |     |
 | Review RFC Draft 1 at Rust All Hands         |     |     |     |     |     | ███ | ███ |     |
 | Publish a blog post with summarized feedback |     |     |     |     |     |     |     | ███ |
@@ -89,7 +89,7 @@ Approval of the RFC indicates general alignment with the framing and prioritizes
 
 ### The "shiny future" we are working towards
 
-Assuming this vision doc is succesful, we believe it should be refreshed on a regular basis. This would be a good completement to the Rust Project Goal system. Project Goals describe the next few steps. The Vision Doc helps to outline the destination.
+Assuming this vision doc is successful, we believe it should be refreshed on a regular basis. This would be a good completement to the Rust Project Goal system. Project Goals describe the next few steps. The Vision Doc helps to outline the destination.
 
 We also expect that the Vision Doc template may be useful in other more narrow contexts, such as a revised version of the Async Vision Doc,a vision doc for Rust in UI, machine learning, etc.
 
