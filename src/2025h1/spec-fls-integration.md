@@ -8,11 +8,11 @@
 
 ## Summary
 
-Ferrous Systems will be transfering the Ferrocene Language Specification (FLS) to the Rust Project, under the ownership of the Specification Team, or `t-spec`. In the first half of 2025, the Specification team will integrate the FLS, under an appropriate name, into both its design and development processes, and the project as a whole.
+Ferrous Systems will be transferring the Ferrocene Language Specification (FLS) to the Rust Project, under the ownership of the Specification Team, or `t-spec`. In the first half of 2025, the Specification team will integrate the FLS, under an appropriate name, into both its design and development processes, and the project as a whole.
 
 ## Motivation
 
-The Specification Team has been working for the past year on preparing a specification of Rust. Over this time, the Team has made and began executing several distinct plans to achieve this: creating a new document; modifying the reference; and most recently, agreeing with Ferrous Systems to take ownership of the FLS to support its specification delivery efforts. The current plan is to do the latter two processes in parrallel, and in order to do that effectively the Ferrocene Language Specification needs to be adopted and integrated into the project processes and tooling.
+The Specification Team has been working for the past year on preparing a specification of Rust. Over this time, the Team has made and began executing several distinct plans to achieve this: creating a new document; modifying the reference; and most recently, agreeing with Ferrous Systems to take ownership of the FLS to support its specification delivery efforts. The current plan is to do the latter two processes in parallel, and in order to do that effectively the Ferrocene Language Specification needs to be adopted and integrated into the project processes and tooling.
 
 ### The status quo
 
@@ -38,7 +38,7 @@ The goal is designed to move forward the Rust Specification, in a way that is sa
 The following [design axioms][da] apply:
 * Making Decisions Effectively, but Efficiently: When the goal asks the Team to make a decision, the Team should be prepared in advance with the necessary background, and come to consensus based on as much information as is possible, but at the same time, acting with efficiency and alacrity, not spending more time than is necessary on a decision. In particular, the team should not delay discussing a decision more than is necessary.
     * Elaborating on the last part, decisions the team are well aware of needing to make should not be deferred once all of the requesite information is available, unless a higher priority decision needs to supplant it.
-* Iterative changes are better: When it comes to making modifications, particularily to the FLS, slow and gradual ones should be preferred to sharp, major ones.
+* Iterative changes are better: When it comes to making modifications, particularly to the FLS, slow and gradual ones should be preferred to sharp, major ones.
 
 [da]: ../about/design_axioms.md
 

@@ -64,17 +64,17 @@
 
 > *If you have a complex goal, you can include subsections for different parts of it, each with their own table. Must goals do not need this and can make do with a single table. The table in this section also lists the full range of "asks" for a typical language feature; feel free to copy some subset of them into your main table if you are primarily proposing a single feature (note that most features don't need all the entries below).*
 
-| Task                        | Owner(s) or team(s)     | Notes                                                         |
-|-----------------------------|-------------------------|---------------------------------------------------------------|
-| Lang-team experiment        | ![Team][] [lang]        | allows coding pre-RFC; only for trusted contributors          |
-| Author RFC                  | *Goal owner, typically* |                                                               |
-| Implementation              | *Goal owner, typically* |                                                               |
-| Standard reviews            | ![Team][] [compiler]    |                                                               |
-| Design meeting              | ![Team][] [lang]        |                                                               |
-| RFC decision                | ![Team][] [lang]        |                                                               |
-| Secondary RFC review        | ![Team][] [lang]        | most features don't need this                                 |
-| Author stabilization report | *Goal owner, typically* |                                                               |
-| Stabilization decision      | ![Team][] [lang]        | it's rare to author rfc, implement, AND stabilize in 6 months |
+| Task                        | Owner(s) or team(s)                | Notes                                                         |
+|-----------------------------|------------------------------------|---------------------------------------------------------------|
+| Lang-team experiment        | ![Team][] [lang]                   | allows coding pre-RFC; only for trusted contributors          |
+| Author RFC                  | *Goal point of contact, typically* |                                                               |
+| Implementation              | *Goal point of contact, typically* |                                                               |
+| Standard reviews            | ![Team][] [compiler]               |                                                               |
+| Design meeting              | ![Team][] [lang]                   |                                                               |
+| RFC decision                | ![Team][] [lang]                   |                                                               |
+| Secondary RFC review        | ![Team][] [lang]                   | most features don't need this                                 |
+| Author stabilization report | *Goal point of contact, typically* |                                                               |
+| Stabilization decision      | ![Team][] [lang]                   | it's rare to author rfc, implement, AND stabilize in 6 months |
 
 ### Definitions
 
