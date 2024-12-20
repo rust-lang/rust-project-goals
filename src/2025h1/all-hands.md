@@ -4,7 +4,7 @@
 |------------------|----------------------|
 | Point of contact | @m-ou-se             |
 | Teams            | [leadership-council] |
-| Status           | Proposed             |
+| Status           | Proposed for flagship            |
 
 ## Summary
 
