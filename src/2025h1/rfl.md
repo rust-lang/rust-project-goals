@@ -10,7 +10,7 @@
 
 ## Summary
 
-Continue working towards Rust for Linux on stable, turning focus from language features to compiler and tooling.
+Continue working towards Rust for Linux on stable, turning focus to compiler and tooling.
 
 ## Motivation
 
@@ -65,12 +65,7 @@ We also began work on tooling stabilization with an [RFC proposing an approach t
 
 Over the next six months our goal is to stabilize the major bits of tooling used by the Rust for Linux project. Some of these work items are complex enough to be tracked independently as their own project goals, in which case they are linked.
 
-* implementing RFC #3716 to stabilize ABI-modifying compiler flags to control code generation, sanitizer integration, and so forth:
-    * arm64: `-Zbranch-protection`, `-Zfixed-x18`, `-Zuse-sync-unwind`.
-    * x86: `-Zcf-protection`, `-Zfunction-return`, `-Zno-jump-tables`, `-Zpatchable-function-entry`, retpoline (`+retpoline-external-thunk,+retpoline-indirect-branches,+retpoline-indirect-calls`), SLS (`+harden-sls-ijmp,+harden-sls-ret`).
-    * x86 32-bit: `-Zregparm=3`, `-Zreg-struct-return`.
-    * LoongArch: `-Zdirect-access-external-data`.
-    * production sanitizer flags: `-Zsanitizer=shadow-call-stack`, `-Zsanitizer=kcfi`, `-Zsanitizer-cfi-normalize-integer`.
+* implementing RFC #3716 to allow stabilizing ABI-modifying compiler flags to control code generation, sanitizer integration, and so forth
 * the ability to extract dependency info and to configure no-std without requiring it in the source file:
     * currently using `-Zbinary_dep_depinfo=y` and `-Zcrate-attr`
 * stable rustdoc features allowing the RFL project to extract and customize rustdoc tests (`--extract-doctests`);
@@ -152,3 +147,17 @@ As discussed on [Zulip](https://rust-lang.zulipchat.com/#narrow/channel/257328-c
 ### Blessed way to rebuild std
 
 See [build-std](./build-std.md) goal.
+
+## Frequently asked questions
+
+### What kind of compiler flags will Rust-for-Linux need?
+
+Implementing RFC #3716, coupled with a [blessed way to build std](./build-std.md), will allow the full use of flags that modify the ABI. We will need to ultimately stabilize the full set of flags used by RFL, which include at least the following:
+
+* arm64: `-Zbranch-protection`, `-Zfixed-x18`, `-Zuse-sync-unwind`.
+* x86: `-Zcf-protection`, `-Zfunction-return`, `-Zno-jump-tables`, `-Zpatchable-function-entry`, retpoline (`+retpoline-external-thunk,+retpoline-indirect-branches,+retpoline-indirect-calls`), SLS (`+harden-sls-ijmp,+harden-sls-ret`).
+* x86 32-bit: `-Zregparm=3`, `-Zreg-struct-return`.
+* LoongArch: `-Zdirect-access-external-data`.
+* production sanitizer flags: `-Zsanitizer=shadow-call-stack`, `-Zsanitizer=kcfi`, `-Zsanitizer-cfi-normalize-integer`.
+
+Stabilization decisions for each flag will be made independently. We will likely take a future goal to drive some percentage of them to stabilization once RFC #3716 is implemented.
