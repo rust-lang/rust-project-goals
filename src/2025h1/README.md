@@ -41,11 +41,30 @@ We believe that...
 
 The flagship goals proposed for this roadmap are as follows:
 
-(TBD)
+* Continue making Rust easier to use for network systems by [**bringing the Async Rust experience closer to parity with sync Rust**](./async.md). In 2025H1 we plan to:
+    * tell a complete story for the use of async fn in traits, unblocking wide ecosystem adoption;
+    * improve the ergonomics of `Pin`, which is frequently used in low-level async code; and
+    * prepare to support asynchronous (and synchronous) generators in the language.
+* Continue helping Rust support low-level projects by [**stabilizing compiler options and tooling used by the Rust-for-Linux (RFL) project**](./rfl.md). In 2025H1 we plan to:
+    * implement RFC #3716 to allow stabilizing ABI-modifying compiler flags to control code generation, sanitizer integration, and so forth;
+    * taking the first step towards stabilizing [`build-std`](https://doc.rust-lang.org/cargo/reference/unstable.html#build-std) by [creating a stable way to rebuild core with specific compiler options](./build-std.md);
+    * add rustdoc features to extract and customize rustdoc tests (`--extract-doctests`);
+    * stabilize clippy configuration like `.clippy.toml` and `CLIPPY_CONF_DIR`;
+    * stabilize compiler flags to extract dependency info (e.g., as via `-Zbinary_dep_depinfo=y`) and to configure no-std without requiring it in the source file (e.g., as via `-Zcrate-attr`);
+* Address the biggest concerns raised by Rust maintainers, lack of face-to-face interaction, by [**organizing the Rust All-Hands 2025**](./all-hands.md). In 2025H1 we plan to:
+    * convene Rust maintainers to celebrate Rust's tenth birthday at [RustWeek 2025](https://2025.rustweek.org) (co-organized with [RustNL](https://2025.rustweek.org/about/);
+    * author a first draft for a [Rust vision doc](./rust-vision-doc.md) and gather feedback.
 
 #### Why these particular flagship goals?
 
-(TBD--typically one paragraph per goal)
+[**Async.**](./async.md) Rust is a great fit for server development thanks to its ability to scale to very high load while retaining low memory usage and tight tail latency. 52% of the respondents in the [2023 Rust survey](https://blog.rust-lang.org/2024/02/19/2023-Rust-Annual-Survey-2023-results.html) indicated that they use Rust to build server-side or backend applications. In [2025H1 our plan](./async.md) is to deliver (a) improved support for async-fn-in-traits, completely subsuming the functionality of the [`async-trait` crate](https://crates.io/crates/async-trait); (b) finalize a design for sync and async generators, simplifying the creation of iterators and async data streams; (c) and improve the ergonomics of `Pin`, making lower-level async coding more approachable. These items together start to unblock the creation of the next generation of async libraries in the wider ecosystem, as progress there has been blocked on a stable solution for async traits and streams.
+
+[**Rust for Linux.**](./rfl.md) The [experimental support for Rust development in the Linux kernel][RFL.com] is a watershed moment for Rust, demonstrating to the world that Rust is indeed a true alternative to C. Currently the Linux kernel support depends on a wide variety of unstable features in Rust; these same features block other embedded and low-level systems applications. We are working to stabilize all of these features so that RFL can be built on a stable toolchain. As we have successfully stabilized the majority of the language features used by RFL, we plan in 2025H1 to turn our focus to compiler flags and tooling options. We will (a) implement RFC #3716 which lays out a design for ABI-modifying flags; (b) take the first step towards stabilizing [`build-std`](https://doc.rust-lang.org/cargo/reference/unstable.html#build-std) by [creating a stable way to rebuild core with specific compiler options](./build-std.md); (c) extending rustdoc, clippy, and the compiler with features that extract metadata for integration into other build systems (in this case, the kernel's build system).
+
+[**Rust All Hands 2025.**](./all-hands.md) May 15, 2025 marks the 10-year anniversary of Rust's 1.0 release; it also marks 10 years since the [creation of the Rust subteams](https://internals.rust-lang.org/t/announcing-the-subteams/2042). At the time [there were 6 Rust teams with 24 people in total](http://web.archive.org/web/20150517235608/http://www.rust-lang.org/team.html). There are now 57 teams with 166 people. In-person All Hands meetings are an effective way to help these maintainers get to know one another with high-bandwidth discussions. This year, the Rust project will be coming together for [RustWeek 2025](https://2025.rustweek.org), a joint event organized with [RustNL](https://2025.rustweek.org/about/). Participating project teams will use the time to share knowledge, make plans, or just get to know one another better. One particular goal for the All Hands is reviewing a draft of the [Rust Vision Doc](./rust-vision-doc.md), a document that aims to take stock of where Rust is and lay out high-level goals for the next few years.
+
+[RFL.com]: https://rust-for-linux.com/
+[RFL#2]: https://github.com/Rust-for-Linux/linux/issues/2
 
 ### Project goals
 
