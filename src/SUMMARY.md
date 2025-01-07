@@ -18,6 +18,7 @@
 # 📖 Learn about
 
 - [Goal motivations](./about/motivation.md)
+- [Flagship goals](./about/flagship_goals.md)
 - [Invited goals](./about/invited_goals.md)
 - [Point of contact](./about/poc.md)
 - [Task owners](./about/owners.md)
