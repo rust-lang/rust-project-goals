@@ -50,7 +50,7 @@ The flagship goals proposed for this roadmap are as follows:
     * taking the first step towards stabilizing [`build-std`](https://doc.rust-lang.org/cargo/reference/unstable.html#build-std) by [creating a stable way to rebuild core with specific compiler options](./build-std.md);
     * add rustdoc features to extract and customize rustdoc tests (`--extract-doctests`);
     * stabilize clippy configuration like `.clippy.toml` and `CLIPPY_CONF_DIR`;
-    * stabilize compiler flags to extract dependency info (e.g., as via `-Zbinary_dep_depinfo=y`) and to configure no-std without requiring it in the source file (e.g., as via `-Zcrate-attr`);
+    * stabilize compiler flags to extract dependency info (e.g., as via `-Zbinary-dep-depinfo=y`) and to configure no-std without requiring it in the source file (e.g., as via `-Zcrate-attr`);
 * Address the biggest concerns raised by Rust maintainers, lack of face-to-face interaction, by [**organizing the Rust All-Hands 2025**](./all-hands.md). In 2025H1 we plan to:
     * convene Rust maintainers to celebrate Rust's tenth birthday at [RustWeek 2025](https://2025.rustweek.org) (co-organized with [RustNL](https://2025.rustweek.org/about/);
     * author a first draft for a [Rust vision doc](./rust-vision-doc.md) and gather feedback.
