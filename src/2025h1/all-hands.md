@@ -1,4 +1,4 @@
-# Rust All-Hands 2025!
+# Organize Rust All-Hands 2025
 
 | Metadata         |                      |
 |------------------|----------------------|
@@ -30,6 +30,7 @@ See https://blog.rust-lang.org/inside-rust/2024/09/02/all-hands.html
 - Prepare the all-hands and everything around it.
 - Have a social and informal "pre-all hands day" on Rust's 10th birtday: May 15, 2025.
 - Have a two-day all-hands on May 16 and May 17, 2025.
+- During the all hands, coordinate reviews of the proposed [Rust Vision Doc](./rust-vision-doc.md)
 
 ### The "shiny future" we are working towards
 
