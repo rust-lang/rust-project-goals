@@ -16,7 +16,7 @@ Specifically, figure out how it'd be possible to provide any kind of safety when
 Rust has a very clear definition of "safe" and "unsafe" and (usually) makes it easy to stay in the "safe" world.
 `unsafe` blocks usually only have to encapsulate very small blocks of which one can (and should) prove soundness manually.
 
-When using `#[no_mangle]` and/or `extern { … }` to connect separately compiled code, however, any concept safety pretty much disappears.
+When using `#[no_mangle]` and/or `extern { … }` to connect separately compiled code, however, any concept of safety pretty much disappears.
 
 While it might be reasonable to make some assumptions about (standardized) symbols like `strlen`,
 the _unsafe assumption_ that a symbol with the same name will refer to something of the expected signature
