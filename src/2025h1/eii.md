@@ -69,7 +69,7 @@ but we estimate that six months is enough to make the feature available for expe
 
 ### The "shiny future" we are working towards
 
-In the longer term, this feature should be able to replace the magic behind the panic handler, global allocator, oom handler, and so on.
+This feature should be able to replace the magic behind the panic handler, global allocator, oom handler, and so on.
 At that point, an attribute like `#[panic_handler]` would simply be a regular (externally implementable) item exported by `core`, for example.
 
 After stabilization, other crates in the ecosystem, such as the `log` crate, should be able to make use of this as well.
