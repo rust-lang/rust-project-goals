@@ -16,7 +16,6 @@ Continue working towards Rust for Linux on stable, turning focus to compiler and
 
 This goal continues our push to support the Linux kernel building on stable Rust. The focus in 2025H1 is shifting from language features, which were largely completed in 2024H2, towards compiler flags and tooling support. The Linux Kernel makes use of a [number of unstable options][RFL#2] in the compiler for target specific optimizations, code hardening, and sanitizer integration. It also requires a custom build of the standard library and has hacky integration with rustdoc to enable the use of doctests. We are looking to put all of these items onto a stable foundation.
 
-[RFL.com]: https://rust-for-linux.com/
 [RFL#2]: https://github.com/Rust-for-Linux/linux/issues/2
 
 ### The status quo
@@ -57,7 +56,7 @@ We began the push towards stable support for RFL in 2024H2 with [a project goal 
 * Added Rust-for-Linux to the Rust CI to avoid accidental breakage.
 * Stabilized support for pointers to static in constants.
 
-The one feature which was not stabilized yet is [arbitrary self types v2](https://github.com/rust-lang/rust/issues/44874), which reached "feature complete" status in its implementation. Stabilization is expected in early 2025.
+The one feature which was not stabilized yet is [arbitrary self types v2][astv2], which reached "feature complete" status in its implementation. Stabilization is expected in early 2025.
 
 We also began work on tooling stabilization with an [RFC proposing an approach to stabilizing ABI-modifying compiler flags](https://github.com/rust-lang/rfcs/pull/3716).
 
@@ -65,7 +64,7 @@ We also began work on tooling stabilization with an [RFC proposing an approach t
 
 Over the next six months our goal is to stabilize the major bits of tooling used by the Rust for Linux project. Some of these work items are complex enough to be tracked independently as their own project goals, in which case they are linked.
 
-* implementing RFC #3716 to allow stabilizing ABI-modifying compiler flags to control code generation, sanitizer integration, and so forth
+* implementing [RFC #3716] to allow stabilizing ABI-modifying compiler flags to control code generation, sanitizer integration, and so forth
 * the ability to extract dependency info and to configure no-std without requiring it in the source file:
     * currently using `-Zbinary_dep_depinfo=y` and `-Zcrate-attr`
 * stable rustdoc features allowing the RFL project to extract and customize rustdoc tests (`--extract-doctests`);
@@ -73,6 +72,8 @@ Over the next six months our goal is to stabilize the major bits of tooling used
 * [a blessed way to rebuild std](./build-std.md): RFL needs a way to rebuild the standard library using stable calls to rustc. Currently building the standard library with rustc is not supported. This is a precursor to what is commonly called `-Zbuild-std`; it is also a blocker to making full use of API-modifying compiler flags and similar features, since they can't be used effectively unless the kernel is rebuilt.
 
 In addition, as follow-up from 2024H2, we wish to complete [arbitrary self types v2][astv2] stabilization.
+
+[astv2]: https://github.com/rust-lang/rust/issues/44874
 
 ### The "shiny future" we are working towards
 
@@ -103,7 +104,7 @@ Goal: stabilizing various ABI-modifying flags such as `-Zbranch-protection` and 
 | Task                   | Owner(s) or team(s)    | Notes                                                   |
 |------------------------|------------------------|---------------------------------------------------------|
 | Author RFC             | @darksonn              | ![Completed][]                                          |
-| RFC decision           | ![Team][] [compiler][] | RFC #3716, currently in PFCP                            |
+| RFC decision           | ![Team][] [compiler][] | [RFC #3716], currently in PFCP                          |
 | Implementation         | ![Help Wanted][]       | For each flag, need to move flags from `-Z` to `-C` etc |
 | Standard reviews       | ![Team][] [compiler]   |                                                         |
 | Stabilization decision | ![Team][] [compiler][] | For each of the relevant compiler flags                 |
@@ -152,7 +153,7 @@ See [build-std](./build-std.md) goal.
 
 ### What kind of compiler flags will Rust-for-Linux need?
 
-Implementing RFC #3716, coupled with a [blessed way to build std](./build-std.md), will allow the full use of flags that modify the ABI. We will need to ultimately stabilize the full set of flags used by RFL, which include at least the following:
+Implementing [RFC #3716], coupled with a [blessed way to build std](./build-std.md), will allow the full use of flags that modify the ABI. We will need to ultimately stabilize the full set of flags used by RFL, which include at least the following:
 
 * arm64: `-Zbranch-protection`, `-Zfixed-x18`, `-Zuse-sync-unwind`.
 * x86: `-Zcf-protection`, `-Zfunction-return`, `-Zno-jump-tables`, `-Zpatchable-function-entry`, retpoline (`+retpoline-external-thunk,+retpoline-indirect-branches,+retpoline-indirect-calls`), SLS (`+harden-sls-ijmp,+harden-sls-ret`).
@@ -160,4 +161,4 @@ Implementing RFC #3716, coupled with a [blessed way to build std](./build-std.md
 * LoongArch: `-Zdirect-access-external-data`.
 * production sanitizer flags: `-Zsanitizer=shadow-call-stack`, `-Zsanitizer=kcfi`, `-Zsanitizer-cfi-normalize-integer`.
 
-Stabilization decisions for each flag will be made independently. We will likely take a future goal to drive some percentage of them to stabilization once RFC #3716 is implemented.
+Stabilization decisions for each flag will be made independently. We will likely take a future goal to drive some percentage of them to stabilization once [RFC #3716] is implemented.
