@@ -21,3 +21,5 @@ We do not currently have a regularly scheduled meeting. Sync meetings are coordi
 To track work items, we use [issues tagged with the `meta` label](https://github.com/rust-lang/rust-project-goals/issues?q=is%3Aissue%20state%3Aopen%20label%3Ameta) on the [rust-lang/rust-project-goals](https://github.com/rust-lang/rust-project-goals/) repository.
 
 Issues [tagged with "help wanted"](https://github.com/rust-lang/rust-project-goals/issues?q=state%3Aopen%20label%3A%22help%20wanted%22) indicates places where we would like somebody to jump in. **Every such issue will also be tagged with mentoring instructions giving some idea how to get started.**
+
+There are also "meta" milestones for each program period to track specific goals related to that period.
