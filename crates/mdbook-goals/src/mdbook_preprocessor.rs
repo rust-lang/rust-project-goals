@@ -411,7 +411,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
         let Some(chapter_path) = chapter.path.as_ref() else {
             anyhow::bail!(
-                "goal chapter `{}` has TEAMS_WITH_ASKS placeholder but no path",
+                "goal chapter `{}` matches placeholder regex but has no path",
                 chapter.name
             );
         };
