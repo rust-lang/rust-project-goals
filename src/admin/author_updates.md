@@ -16,7 +16,7 @@ We need to improve this UI.
 
 ## Drafting the post
 
-The `cargo rpg` tool offers the `updates` command ([documented here](./updates.md)) which will prepare a rough draft blog post using the [updates template][]. The rough draft is prepared using an LLM which will require setting up an AWS account.
+The [blog post template][updates template] includes a longer description of the flagship goals as well as a bullet-point or two for each of the other goals -- more than that and the blog post becomes overwhelming, the goal is mostly to let people find the goal they're interested in and click to read the full details. You can fill out the template by hand but you can also use the `cargo rpg updates` ([documented here](./updates.md)) to prepare a rough draft; the tool uses an LLM currently hosted on AWS Bedrock and hence requires setting up an AWS account.
 
 ```bash
 > cargo rpg updates
