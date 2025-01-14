@@ -1,6 +1,6 @@
 # Call for proposals
 
-Each goal milestone corresponds to six months, designated in the format YYYYHN, e.g., 2024H2 or 2025H1. To launch a new goal season, you should get started a month or two before the new season starts:
+Each goal milestone corresponds to six months, designated in the format YYYYhN, e.g., 2024h2 or 2025h1. To launch a new goal season, you should get started a couple of months before the new season starts:
 
 * For an H1 season, start around mid October of the year before.
 * For an H2 season, start around mid April of the year before.
