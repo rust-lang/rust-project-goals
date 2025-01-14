@@ -3,7 +3,8 @@
 | Metadata |               |
 |----------|---------------|
 | Point of contact | @joshtriplett |
-| Teams    | [lang], [wg-macros]        |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status   | Proposed      |
 
 ## Summary

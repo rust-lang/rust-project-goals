@@ -3,7 +3,8 @@
 | Metadata       |                                    |
 |----------------|------------------------------------|
 | Point of contact | @Rustin170506                      |
-| Teams          | [crates-io], [cargo]               |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#101] |
 

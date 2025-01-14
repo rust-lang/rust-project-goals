@@ -3,7 +3,8 @@
 | Metadata       |                                    |
 |----------------|------------------------------------|
 | Point of contact | @oli-obk                           |
-| Teams          | [types], [lang]                    |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#103] |
 

@@ -3,7 +3,8 @@
 | Metadata         |                                    |
 |------------------|------------------------------------|
 | Point of contact | @epage                             |
-| Teams            | [cargo]                            |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status           | Invited                            |
 | Tracking issue   | [rust-lang/rust-project-goals#124] |
 

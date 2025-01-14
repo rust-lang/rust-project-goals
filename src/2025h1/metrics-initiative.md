@@ -1,10 +1,11 @@
 # Metrics Initiative
 
-| Metadata         |          |
-|------------------|----------|
-| Point of contact | @yaahc   |
-| Teams            | Compiler |
-| Status           | Proposed |
+| Metadata         |                          |
+|------------------|--------------------------|
+| Point of contact | @yaahc                   |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS -->     |
+| Status           | Proposed                 |
 
 ## Summary
 

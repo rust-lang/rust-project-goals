@@ -3,7 +3,8 @@
 | Metadata |                     |
 | -------- | ------------------- |
 | Point of contact | @nikomatsakis    |
-| Teams    | [lang][], [types][] |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status   | Not accepted        |
 
 ## Summary

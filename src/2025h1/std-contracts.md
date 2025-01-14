@@ -3,7 +3,8 @@
 | Metadata         |                  |
 |------------------|------------------|
 | Point of contact | @celinval        |
-| Teams            | [libs][compiler] |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status           | Proposed         |
 
 ## Summary

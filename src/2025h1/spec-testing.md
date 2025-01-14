@@ -3,7 +3,8 @@
 | Metadata         |              |
 |------------------|--------------|
 | Point of contact | @chorman0773 |
-| Teams            | T-spec       |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status           | Proposed     |
 
 ## Summary
