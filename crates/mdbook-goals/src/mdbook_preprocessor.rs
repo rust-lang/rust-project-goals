@@ -379,7 +379,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         Ok(())
     }
 
-    /// Replace TEAMS_WITH_ASKS placeholder with a list of teams.
+    /// Replace placeholders like TASK_OWNERS and TEAMS_WITH_ASKS.
     /// All goal documents should have this in their metadata table;
     /// that is enforced during goal parsing.
     fn replace_metadata_placeholders(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
