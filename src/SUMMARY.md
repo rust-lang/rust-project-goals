@@ -48,5 +48,7 @@
     * [Overall setup](./admin/setup.md)
     * [Mdbook plugin details](./admin/mdbook_plugin.md)
     * [`cargo rpg` command reference](./admin/commands.md)
+        * [`rfc`, export RFC text](./admin/rfc_command.md)
+        * [`fcp`, create the FCP merge comment](./admin/fcp_command.md)
         * [`issues`, creating tracking issues](./admin/issues.md)
         * [`updates`, create monthly blog post summary](./admin/updates.md) 
