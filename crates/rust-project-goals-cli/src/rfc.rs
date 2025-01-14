@@ -61,7 +61,7 @@ pub fn generate_comment(path: &Path) -> anyhow::Result<()> {
         }
 
         for member in members {
-            println!("* [ ] @{} (optional)", member.github);
+            println!("* [ ] {} (optional)", member.github);
         }
     }
 

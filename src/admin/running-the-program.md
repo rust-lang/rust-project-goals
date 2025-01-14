@@ -1,69 +1,35 @@
 # Running the program
 
-So... somebody suckered you into serving as the owner of the goals program. Congratulations!
-This page will walk you through the process.
+Thank you for helping to run the goals program. Congratulations!
+This page will walk you through what is involved at each step of the the process.
 
-## Call for proposals
+## Calendar
 
-Each goal milestone corresponds to six months, designated in the format YYYYHN, e.g., 2024H2 or 2025H1.
-To launch a new goal season, you should get started a month or two before the new season starts:
+This section summarizes the dates involved with a theoretical program taking place in the year 2222.
+Each item has a link to more instructions.
 
-* For an H1 season, start around mid Oct or November of the year before.
-* For an H2 season, start around mid April or May of the year before.
+Each of the calendars has someoverlap with the previous and next previous.
 
-This is the checklist of steps to starting accepting goal proposals:
+### H1 calendar
 
-* [ ] Prepare a Call For Proposals blog post on the [Inside Rust] blog based on [this sample](./samples/cfp.md).
-    * We use Inside Rust and not the Main blog because the target audience is would-be Rust contributors and maintainers.
-* [ ] Update the [main README page](../README.md) to indicate that the next round of goals is begin accepted.
-    * [Sample text to include.](./samples/main-readme.md)
-* [ ] Create a new directory `src/YYYYhN`, e.g., `src/2025h1`, with the following files. Note that the sample files below include `<!-- XXX -->` directives that are detected by the [mdbook plugin](./mdbook_plugin.md) and replaced with appropriate content automatically.
-    * A `src/YYYYhN/README.md` file that contains the draft RFC.
-        * [You can start with this sample file.](./samples/rfc.md)
-    * A `src/YYYYhN/goals.md` file containing the draft goal listing.
-        * [You can start with this sample file.](./samples/goals.md)
-    * A `src/YYYYhN/not_accepted.md` file containing the list of goals that were not accepted.
-        * [You can start with this sample file.](./samples/not_accepted.md)
-* [ ] Modify SUMMARY.md to include your new milestone with some text like what is shown below.
+| Task      | *Nov–Dec <br> (prev. H2)* | Jan | Feb–Jun         | *Jul <br> (next H2*) |
+|-----------|---------------------------|-----|-----------------|----------------------|
+| [CFP]     | ██████                    | ░░░ |                 |                      |
+| [RFC]     |                           | ███ |                 |                      |
+| [Updates] |                           |     | ███████████████ |                      |
+| [Retro]   |                           |     |                 | ███                  |
 
-Sample `SUMMARY.md` comments from 2025H1:
+### H2 calendar
 
-```
-# ⏳ 2025H1 goal process
-
-- [Overview](./2025h1/README.md)
-- [Proposed goals](./2025h1/goals.md)
-- [Goals not accepted](./2025h1/not_accepted.md)
-```
-
-[Inside Rust]: https://blog.rust-lang.org/inside-rust/
-
-## Receiving PRs
-
-*to be written*
-
-## Preparing the RFC
-
-*to be written*
-
-## Opening the RFC
-
-*to be written*
-
-## Once the RFC is accepted
-
-*to be written*
-
-## Running the goal season
-
-* Every Monday go to Zulip and run:
-    * `@triagebot ping-goals 14 Oct-21`
-* To prepare the monthly blog post:
-    * Run [the `cargo run -- updates` command](./updates.md)
-    * Create a new post in main Rust blog found at [the blog.rust-lang.org repository](https://github.com/rust-lang/blog.rust-lang.org).
+| Task      | *May–Jun <br> (prev. H1)* | Jul | Aug–Dec         | *Jan <br> (next H1)* |
+|-----------|---------------------------|-----|-----------------|----------------------|
+| [CFP]     | ██████                    | ░░░ |                 |                      |
+| [RFC]     |                           | ███ |                 |                      |
+| [Updates] |                           |     | ███████████████ |                      |
+| [Retro]   |                           |     |                 | ███                  |
 
 
-
-## Finalizing the goal season
-
-
+[CFP]: ./cfp.md
+[RFC]: ./prepare_rfc.md
+[Updates]: ./author_updates.md
+[Retro]: ./retro.md
