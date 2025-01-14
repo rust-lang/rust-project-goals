@@ -1,4 +1,4 @@
-# Const traits
+# Prepare const traits for stabilization
 
 | Metadata         |                          |
 |------------------|--------------------------|
