@@ -1,6 +1,6 @@
 # Running the program
 
-So... somebody suckered you into serving as the owner of the goals program. Congratulations!
+Thank you for helping to run the goals program. Congratulations!
 This page will walk you through what is involved at each step of the the process.
 
 ## Calendar
