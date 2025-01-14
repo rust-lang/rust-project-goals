@@ -71,14 +71,14 @@ We'd like to get to the point where lang and libs can pull up a simple dashboard
 
 ## Ownership and team asks
 
-| Task                                                                                   | Owner(s) or team(s) | Notes |
-|----------------------------------------------------------------------------------------|---------------------|-------|
-| Discussion and moral support                                                           | [compiler], [infra] |       |
-| Implementation                                                                         | @yaahc              |       |
-| backend for storing metrics                                                            | @estebank           |       |
-| integration with docs.rs or crates.io to gather metrics from open source rust projects | @yaahc              |       |
-| proof of concept dashboard visualizing unstable feature usage data                     | ![Help Wanted][]    |       |
-| Standard reviews                                                                       | [compiler]          |       |
+| Task                                                                                   | Owner(s) or team(s)           | Notes |
+|----------------------------------------------------------------------------------------|-------------------------------|-------|
+| Discussion and moral support                                                           | ![Team][] [compiler], [infra] |       |
+| Implementation                                                                         | @yaahc                        |       |
+| backend for storing metrics                                                            | @estebank                     |       |
+| integration with docs.rs or crates.io to gather metrics from open source rust projects | @yaahc                        |       |
+| proof of concept dashboard visualizing unstable feature usage data                     | ![Help Wanted][]              |       |
+| Standard reviews                                                                       | ![Team][] [compiler]          |       |
 
 
 ## Frequently asked questions
