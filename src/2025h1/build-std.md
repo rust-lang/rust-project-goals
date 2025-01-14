@@ -3,7 +3,8 @@
 | Metadata |                  |
 |----------|------------------|
 | Point of contact | @davidtwco |
-| Teams    | [cargo]          |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status   | Proposed         |
 
 *Arm's Rust team is @davidtwco, @adamgemmell, @jacobbramley, @JamieCunliffe and @Jamesbarford. This

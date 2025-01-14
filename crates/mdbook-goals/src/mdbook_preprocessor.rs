@@ -127,6 +127,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     fn process_book_item(&mut self, book_item: &mut BookItem) -> anyhow::Result<()> {
         match book_item {
             BookItem::Chapter(chapter) => {
+                self.replace_metadata_placeholders(chapter)?;
                 self.replace_team_asks(chapter)?;
                 self.replace_goal_lists(chapter)?;
                 self.replace_goal_count(chapter)?;
@@ -173,14 +174,27 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     }
 
     fn replace_goal_lists(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        self.replace_goal_lists_helper(chapter, &re::FLAGSHIP_GOAL_LIST, |status| status.is_flagship && status.is_not_not_accepted())?;
-        self.replace_goal_lists_helper(chapter, &re::OTHER_GOAL_LIST, |status| !status.is_flagship && status.is_not_not_accepted())?;
-        self.replace_goal_lists_helper(chapter, &re::GOAL_LIST, |status| status.is_not_not_accepted())?;
-        self.replace_goal_lists_helper(chapter, &re::GOAL_NOT_ACCEPTED_LIST, |status| !status.is_not_not_accepted())?;
+        self.replace_goal_lists_helper(chapter, &re::FLAGSHIP_GOAL_LIST, |status| {
+            status.is_flagship && status.is_not_not_accepted()
+        })?;
+        self.replace_goal_lists_helper(chapter, &re::OTHER_GOAL_LIST, |status| {
+            !status.is_flagship && status.is_not_not_accepted()
+        })?;
+        self.replace_goal_lists_helper(chapter, &re::GOAL_LIST, |status| {
+            status.is_not_not_accepted()
+        })?;
+        self.replace_goal_lists_helper(chapter, &re::GOAL_NOT_ACCEPTED_LIST, |status| {
+            !status.is_not_not_accepted()
+        })?;
         Ok(())
     }
-    
-    fn replace_goal_lists_helper(&mut self, chapter: &mut Chapter, regex: &Regex, filter: impl Fn(Status) -> bool) -> anyhow::Result<()> {
+
+    fn replace_goal_lists_helper(
+        &mut self,
+        chapter: &mut Chapter,
+        regex: &Regex,
+        filter: impl Fn(Status) -> bool,
+    ) -> anyhow::Result<()> {
         loop {
             let Some(m) = regex.find(&chapter.content) else {
                 return Ok(());
@@ -193,7 +207,8 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
             // Extract out the list of goals with the given status.
             let goals = self.goal_documents(chapter_path)?;
-            let mut goals_with_status: Vec<&GoalDocument> = goals.iter().filter(|g| filter(g.metadata.status)).collect();
+            let mut goals_with_status: Vec<&GoalDocument> =
+                goals.iter().filter(|g| filter(g.metadata.status)).collect();
 
             goals_with_status.sort_by_key(|g| &g.metadata.title);
 
@@ -246,25 +261,22 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         Ok(())
     }
 
+    /// Find the goal documents for the milestone in which this `chapter_path` resides.
+    /// e.g., if invoked with `2024h2/xxx.md`, will find all goal documents in `2024h2`.
     fn goal_documents(&mut self, chapter_path: &Path) -> anyhow::Result<Arc<Vec<GoalDocument>>> {
-        // let chapter_path = self.ctx.config.book.src.join(chapter_path);
 
-        if let Some(goals) = self.goal_document_map.get(chapter_path) {
+        let Some(milestone_path) = chapter_path.parent() else {
+            anyhow::bail!("cannot get goal documents from `{chapter_path:?}`")
+        };
+
+        if let Some(goals) = self.goal_document_map.get(milestone_path) {
             return Ok(goals.clone());
         }
 
-        let goal_documents = goal::goals_in_dir(
-            self.ctx
-                .config
-                .book
-                .src
-                .join(chapter_path)
-                .parent()
-                .unwrap(),
-        )?;
+        let goal_documents = goal::goals_in_dir(&self.ctx.config.book.src.join(milestone_path))?;
         let goals = Arc::new(goal_documents);
         self.goal_document_map
-            .insert(chapter_path.to_path_buf(), goals.clone());
+            .insert(milestone_path.to_path_buf(), goals.clone());
         Ok(goals)
     }
 
@@ -363,6 +375,65 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 .content
                 .push_str(&format!("{team}: {}\n", team.url()));
         }
+        Ok(())
+    }
+
+    /// Replace placeholders like TASK_OWNERS and TEAMS_WITH_ASKS.
+    /// All goal documents should have this in their metadata table;
+    /// that is enforced during goal parsing.
+    fn replace_metadata_placeholders(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        self.replace_metadata_placeholder(chapter, &re::TASK_OWNERS, |goal| {
+            goal.task_owners.iter().cloned().collect()
+        })?;
+
+        self.replace_metadata_placeholder(chapter, &re::TEAMS_WITH_ASKS, |goal| {
+            goal.teams_with_asks()
+                .iter()
+                .map(|team_name| team_name.name())
+                .collect()
+        })?;
+
+        Ok(())
+    }
+
+    /// Replace one of the placeholders that occur in the goal document metadata,
+    /// like [`re::TASK_OWNERS`][].
+    fn replace_metadata_placeholder(
+        &mut self,
+        chapter: &mut Chapter,
+        regex: &Regex,
+        op: impl Fn(&GoalDocument) -> Vec<String>,
+    ) -> anyhow::Result<()> {
+        let Some(m) = regex.find(&chapter.content) else {
+            return Ok(());
+        };
+        let range = m.range();
+
+        let Some(chapter_path) = chapter.path.as_ref() else {
+            anyhow::bail!(
+                "goal chapter `{}` matches placeholder regex but has no path",
+                chapter.name
+            );
+        };
+
+        // Hack: leave this stuff alone in the template
+        if chapter_path.file_name().unwrap() == "TEMPLATE.md" {
+            return Ok(());
+        }
+
+        let goals = self.goal_documents(&chapter_path)?;
+        let chapter_in_context = self.ctx.config.book.src.join(chapter_path);
+        let Some(goal) = goals.iter().find(|gd| gd.path == chapter_in_context) else {
+            anyhow::bail!(
+                "goal chapter `{}` has no goal document at path {:?}",
+                chapter.name,
+                chapter_path,
+            );
+        };
+
+        let replacement = op(goal).join(", ");
+        chapter.content.replace_range(range, &replacement);
+
         Ok(())
     }
 }

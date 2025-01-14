@@ -3,7 +3,8 @@
 | Metadata |          |
 |----------|----------|
 | Point of contact | @jhpratt |
-| Teams    | [lang]   |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status   | Proposed |
 
 [rfc]: https://rust-lang.github.io/rfcs/3323-restrictions.html

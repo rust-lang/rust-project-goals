@@ -3,7 +3,8 @@
 | Metadata         |                    |
 |------------------|--------------------|
 | Point of contact | @m-ou-se           |
-| Teams            | [lang], [compiler] |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status           | Proposed           |
 
 ## Summary

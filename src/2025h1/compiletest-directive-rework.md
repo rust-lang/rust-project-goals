@@ -3,7 +3,8 @@
 | Metadata         |                         |
 |------------------|-------------------------|
 | Point of contact | @jieyouxu               |
-| Teams            | [bootstrap], [compiler] |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status           | Proposed                |
 
 ## Summary

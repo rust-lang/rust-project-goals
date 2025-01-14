@@ -3,7 +3,8 @@
 | Metadata         |                             |
 |------------------|-----------------------------|
 | Point of contact | @epage                      |
-| Teams            | [testing-devex], [libs-api] |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status           | Proposed                    |
 
 ## Summary

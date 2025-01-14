@@ -3,7 +3,8 @@
 | Metadata |             |
 |----------|-------------|
 | Point of contact | @1c3t3a     |
-| Teams    | lang, opsem |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status   | Proposed    |
 
 ## Summary

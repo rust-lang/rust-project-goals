@@ -3,7 +3,8 @@
 | Metadata       |                                    |
 | ---            | ---                                |
 | Point of contact | @traviscross                       |
-| Teams          | [lang], [types]                    |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status         | Flagship                           |
 | Tracking issue | [rust-lang/rust-project-goals#117] |
 

@@ -3,7 +3,8 @@
 | Metadata |                         |
 |----------|-------------------------|
 | Point of contact | @walterhpearce          |
-| Teams    | crates.io, cargo, infra |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status   | Proposed                |
 
 ## Summary

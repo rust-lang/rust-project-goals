@@ -3,7 +3,8 @@
 | Metadata |              |
 | -------- | ------------ |
 | Point of contact | @jkelleyrtp  |
-| Teams    | [lang]       |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status   | Not accepted |
 
 ## Motivation

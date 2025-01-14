@@ -9,7 +9,7 @@ use regex::Regex;
 use crate::config::Configuration;
 use crate::gh::issue_id::{IssueId, Repository};
 use crate::markwaydown::{self, Section, Table};
-use crate::re::{self, USERNAME};
+use crate::re::{self, TASK_OWNERS_STR, TEAMS_WITH_ASKS_STR};
 use crate::team::{self, TeamName};
 use crate::util::{self, commas, markdown_files, ARROW};
 
@@ -31,6 +31,9 @@ pub struct GoalDocument {
 
     /// The "plan" for completing the goal (includes things owners will do as well as team asks)
     pub goal_plans: Vec<GoalPlan>,
+
+    /// Owners of any task that are not team asks.
+    pub task_owners: BTreeSet<String>,
 
     /// List of team asks extracted from the goal
     pub team_asks: Vec<TeamAsk>,
@@ -133,15 +136,25 @@ impl GoalDocument {
 
         let mut team_asks = vec![];
         for goal_plan in &goal_plans {
-            let goal_title = goal_plan.subgoal.as_deref().unwrap_or(&metadata.short_title);
+            let goal_title = goal_plan
+                .subgoal
+                .as_deref()
+                .unwrap_or(&metadata.short_title);
             for plan_item in &goal_plan.plan_items {
-                team_asks.extend(plan_item.team_asks(
-                    &link_path,
-                    goal_title,
-                    &metadata.pocs,
-                )?);
+                team_asks.extend(plan_item.team_asks(&link_path, goal_title, &metadata.pocs)?);
             }
         }
+
+        // Enforce that every goal has some team asks (unless it is not accepted)
+        if metadata.status.is_not_not_accepted() && team_asks.is_empty() {
+            anyhow::bail!("no team asks in goal; did you include `![Team]` in the table?");
+        }
+
+        let task_owners = goal_plans
+            .iter()
+            .flat_map(|goal_plan| &goal_plan.plan_items)
+            .flat_map(|plan_item| plan_item.task_owners())
+            .collect();
 
         Ok(Some(GoalDocument {
             path: path.to_path_buf(),
@@ -150,6 +163,7 @@ impl GoalDocument {
             metadata,
             team_asks,
             goal_plans,
+            task_owners,
         }))
     }
 
@@ -172,7 +186,6 @@ impl GoalDocument {
         metadata_table.add_key_value_row(TRACKING_ISSUE_ROW, &number);
         self.metadata
             .table
-
             .overwrite_in_path(&self.path, &metadata_table)?;
         Ok(())
     }
@@ -249,7 +262,9 @@ pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> anyhow::Result<String>
 
 pub fn format_goal_table(goals: &[&GoalDocument]) -> anyhow::Result<String> {
     // If any of the goals have tracking issues, include those in the table.
-    let goals_are_proposed = goals.iter().any(|g| g.metadata.status.acceptance == AcceptanceStatus::Proposed);
+    let goals_are_proposed = goals
+        .iter()
+        .any(|g| g.metadata.status.acceptance == AcceptanceStatus::Proposed);
 
     let mut table;
 
@@ -336,13 +351,62 @@ impl TryFrom<&str> for Status {
         let value = value.trim();
 
         let valid_values = [
-            ("Flagship", Status { is_flagship: true, acceptance: AcceptanceStatus::Accepted, is_invited: false }),
-            ("Accepted", Status { is_flagship: false, acceptance: AcceptanceStatus::Accepted, is_invited: false }),
-            ("Invited", Status { is_flagship: false, acceptance: AcceptanceStatus::Accepted, is_invited: true }),
-            ("Proposed", Status { is_flagship: false, acceptance: AcceptanceStatus::Proposed, is_invited: false }),
-            ("Proposed for flagship", Status { is_flagship: true, acceptance: AcceptanceStatus::Proposed, is_invited: false }),
-            ("Proposed for mentorship", Status { is_flagship: false, acceptance: AcceptanceStatus::Proposed, is_invited: true }),
-            ("Not accepted", Status { is_flagship: false, acceptance: AcceptanceStatus::NotAccepted, is_invited: false }),
+            (
+                "Flagship",
+                Status {
+                    is_flagship: true,
+                    acceptance: AcceptanceStatus::Accepted,
+                    is_invited: false,
+                },
+            ),
+            (
+                "Accepted",
+                Status {
+                    is_flagship: false,
+                    acceptance: AcceptanceStatus::Accepted,
+                    is_invited: false,
+                },
+            ),
+            (
+                "Invited",
+                Status {
+                    is_flagship: false,
+                    acceptance: AcceptanceStatus::Accepted,
+                    is_invited: true,
+                },
+            ),
+            (
+                "Proposed",
+                Status {
+                    is_flagship: false,
+                    acceptance: AcceptanceStatus::Proposed,
+                    is_invited: false,
+                },
+            ),
+            (
+                "Proposed for flagship",
+                Status {
+                    is_flagship: true,
+                    acceptance: AcceptanceStatus::Proposed,
+                    is_invited: false,
+                },
+            ),
+            (
+                "Proposed for mentorship",
+                Status {
+                    is_flagship: false,
+                    acceptance: AcceptanceStatus::Proposed,
+                    is_invited: true,
+                },
+            ),
+            (
+                "Not accepted",
+                Status {
+                    is_flagship: false,
+                    acceptance: AcceptanceStatus::NotAccepted,
+                    is_invited: false,
+                },
+            ),
         ];
 
         for (valid_value, status) in valid_values {
@@ -352,7 +416,7 @@ impl TryFrom<&str> for Status {
         }
 
         anyhow::bail!(
-            "unrecognized status `{}`, expected one of {:?}", 
+            "unrecognized status `{}`, expected one of {:?}",
             value,
             valid_values.iter().map(|(s, _)| s).collect::<Vec<_>>(),
         )
@@ -394,9 +458,12 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata>> {
     };
 
     if !re::is_just(&re::USERNAME, poc_row[1].trim()) {
-        anyhow::bail!("point of contact must be a single github username (found {:?})", poc_row[1])
+        anyhow::bail!(
+            "point of contact must be a single github username (found {:?})",
+            poc_row[1]
+        )
     }
- 
+
     let Some(status_row) = first_table.rows.iter().find(|row| row[0] == "Status") else {
         anyhow::bail!("metadata table has no `Status` row")
     };
@@ -412,6 +479,9 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata>> {
         None => None,
     };
 
+    verify_row(&first_table.rows, "Teams", TEAMS_WITH_ASKS_STR)?;
+    verify_row(&first_table.rows, "Task owners", TASK_OWNERS_STR)?;
+
     Ok(Some(Metadata {
         title: title.to_string(),
         short_title: if let Some(row) = short_title_row {
@@ -424,6 +494,22 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata>> {
         tracking_issue: issue,
         table: first_table.clone(),
     }))
+}
+
+fn verify_row(rows: &[Vec<String>], key: &str, value: &str) -> anyhow::Result<()> {
+    let Some(row) = rows.iter().find(|row| row[0] == key) else {
+        anyhow::bail!("metadata table has no `{}` row", key)
+    };
+
+    if row[1] != value {
+        anyhow::bail!(
+            "metadata table has incorrect `{}` row, expected `{}`",
+            key,
+            value
+        )
+    }
+
+    Ok(())
 }
 
 fn extract_summary(sections: &[Section]) -> anyhow::Result<Option<String>> {
@@ -443,17 +529,23 @@ fn extract_plan_items<'i>(sections: &[Section]) -> anyhow::Result<Vec<GoalPlan>>
     };
 
     // Extract the plan items from the main section (if any)
-    let level= sections[ownership_index].level;
+    let level = sections[ownership_index].level;
 
     let mut goal_plans = vec![];
     goal_plans.extend(goal_plan(None, &sections[ownership_index])?);
 
-    for subsection in sections.iter().skip(ownership_index + 1).take_while(|s| s.level > level) {
+    for subsection in sections
+        .iter()
+        .skip(ownership_index + 1)
+        .take_while(|s| s.level > level)
+    {
         goal_plans.extend(goal_plan(Some(subsection.title.clone()), subsection)?);
     }
 
     if goal_plans.is_empty() {
-        anyhow::bail!("no goal table items found in the `Ownership and team asks` section or subsections")
+        anyhow::bail!(
+            "no goal table items found in the `Ownership and team asks` section or subsections"
+        )
     }
 
     Ok(goal_plans)
@@ -465,13 +557,13 @@ fn goal_plan(subgoal: Option<String>, section: &Section) -> anyhow::Result<Optio
         1 => {
             let table = &section.tables[0];
             expect_headers(table, &["Task", "Owner(s) or team(s)", "Notes"])?;
-        
+
             let mut rows = table.rows.iter().peekable();
             let mut plan_items = vec![];
             while rows.peek().is_some() {
                 plan_items.push(extract_plan_item(&mut rows)?);
             }
-        
+
             Ok(Some(GoalPlan {
                 subgoal,
                 plan_items,
@@ -479,7 +571,6 @@ fn goal_plan(subgoal: Option<String>, section: &Section) -> anyhow::Result<Optio
         }
         _ => anyhow::bail!("multiple goal tables found in section `{}`", section.title),
     }
-    
 }
 
 fn extract_plan_item(
@@ -550,6 +641,20 @@ impl PlanItem {
         Ok(teams)
     }
 
+    /// Extract the usernames of task owners from the `owners` field.
+    /// Just treat it like a comma-separated list.
+    fn task_owners(&self) -> Vec<String> {
+        if self.is_team_ask() {
+            return vec![];
+        }
+
+        self.owners
+            .split(',')
+            .map(|s| s.trim().to_string())
+            .filter(|s| !s.is_empty())
+            .collect()
+    }
+
     /// Return a vector of all the team-asks from this item and its children.
     /// Invoked during `GoalDocument`.
     ///
@@ -570,11 +675,17 @@ impl PlanItem {
         if !teams.is_empty() {
             let config = Configuration::get();
             if !config.team_asks.contains_key(&self.text) {
-                bail!("unrecognized team ask {:?}, team asks must be one of the following:\n{}",
+                bail!(
+                    "unrecognized team ask {:?}, team asks must be one of the following:\n{}",
                     self.text,
-                    config.team_asks.iter().map(|(ask, explanation)| {
-                        format!("* {ask:?}, meaning team should {explanation}")
-                    }).collect::<Vec<_>>().join("\n"),
+                    config
+                        .team_asks
+                        .iter()
+                        .map(|(ask, explanation)| {
+                            format!("* {ask:?}, meaning team should {explanation}")
+                        })
+                        .collect::<Vec<_>>()
+                        .join("\n"),
                 );
             }
 
@@ -627,7 +738,7 @@ impl Metadata {
 
 fn owner_usernames(text: &str) -> Vec<&str> {
     text.split(char::is_whitespace)
-        .filter_map(|owner| USERNAME.captures(owner))
+        .filter_map(|owner| re::USERNAME.captures(owner))
         .map(|captures| captures.get(0).unwrap().as_str())
         .collect()
 }

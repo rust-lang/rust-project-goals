@@ -4,7 +4,8 @@
 | Metadata       |                                    |
 |----------------|------------------------------------|
 | Point of contact | @blyxyas                           |
-| Teams          | [clippy]                           |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status         | Proposed                           |
 | Tracking issue | [rust-lang/rust-project-goals#114] |
 

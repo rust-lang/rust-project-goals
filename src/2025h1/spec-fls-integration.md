@@ -3,7 +3,8 @@
 | Metadata |             |
 |----------|-------------|
 | Point of contact | @joelmarcey |
-| Teams    | spec        |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status   | Proposed    |
 
 ## Summary

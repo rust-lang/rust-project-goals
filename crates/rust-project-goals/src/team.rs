@@ -85,7 +85,12 @@ impl TeamName {
         get_teams().unwrap().get(self).unwrap()
     }
 
-    /// Name and link
+    /// Name in braces (markdown link), like `"[compiler][]"`
+    pub fn name(&self) -> String {
+        format!("[{}][]", self.0)
+    }    
+
+    /// Name and link, like `"[compiler](https://...)"`
     pub fn name_and_link(&self) -> String {
         format!("[{}]({})", self.0, self.url())
     }

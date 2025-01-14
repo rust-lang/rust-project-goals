@@ -3,7 +3,8 @@
 | Metadata       |                                    |
 | ---            | ---                                |
 | Point of contact | @BoxyUwU                           |
-| Teams          | [types]                            |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#100] |
 
