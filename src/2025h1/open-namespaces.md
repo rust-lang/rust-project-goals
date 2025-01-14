@@ -4,7 +4,8 @@
 | Metadata         |                                  |
 |------------------|----------------------------------|
 | Point of contact | @epage                           |
-| Teams            | [cargo], [compiler], [crates-io] |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status           | Proposed for mentorship          |
 
 ## Summary

@@ -3,7 +3,8 @@
 | Metadata | |
 | --- | --- |
 | Point of contact | @joshtriplett |
-| Teams | *Names of teams being asked to commit to the goal* |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status | Not accepted |
 
 ## Summary

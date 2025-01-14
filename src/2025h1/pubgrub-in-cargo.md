@@ -3,7 +3,8 @@
 | Metadata |          |
 |----------|----------|
 | Point of contact | @eh2406  |
-| Teams    | [cargo]  |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status   | Proposed |
 
 

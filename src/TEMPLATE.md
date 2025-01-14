@@ -14,7 +14,8 @@
 | Metadata         |                                                    |
 |------------------|----------------------------------------------------|
 | Point of contact | *must be a single Github username like @ghost*     |
-| Teams            | *Names of teams being asked to commit to the goal* |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status           | Proposed                                           |
 
 ## Summary

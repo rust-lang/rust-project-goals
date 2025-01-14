@@ -22,7 +22,20 @@ lazy_static! {
 
 // List of not accepted goals
 lazy_static! {
-    pub static ref GOAL_NOT_ACCEPTED_LIST: Regex = Regex::new(r"<!-- GOALS NOT ACCEPTED -->").unwrap();
+    pub static ref GOAL_NOT_ACCEPTED_LIST: Regex =
+        Regex::new(r"<!-- GOALS NOT ACCEPTED -->").unwrap();
+}
+
+// List of teams with asks for this goal
+pub const TEAMS_WITH_ASKS_STR: &str = r"<!-- TEAMS WITH ASKS -->";
+lazy_static! {
+    pub static ref TEAMS_WITH_ASKS: Regex = Regex::new(TEAMS_WITH_ASKS_STR).unwrap();
+}
+
+// List of task owners for this goal
+pub const TASK_OWNERS_STR: &str = r"<!-- TASK OWNERS -->";
+lazy_static! {
+    pub static ref TASK_OWNERS: Regex = Regex::new(TASK_OWNERS_STR).unwrap();
 }
 
 lazy_static! {
@@ -30,7 +43,14 @@ lazy_static! {
 }
 
 lazy_static! {
-    pub static ref USERNAME: Regex = Regex::new(r"@([-a-zA-Z0-9])+").unwrap();
+    /// Github username.
+    ///
+    /// According to [this random page I found with a google search](https://github.com/GrantBirki/github-username-regex-js):
+    /// * GitHub usernames may only contain alphanumeric characters or hyphens
+    /// * GitHub usernames cannot have multiple consecutive hyphens
+    /// * GitHub usernames cannot begin or end with a hyphen
+    /// * Usernames can have a maximum of 39 characters
+    pub static ref USERNAME: Regex = Regex::new(r"@([-_a-zA-Z0-9])+").unwrap();
 }
 
 lazy_static! {

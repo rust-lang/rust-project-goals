@@ -4,7 +4,8 @@
 |------------------|------------------------------------|
 | Short title      | Rust-for-Linux                     |
 | Point of contact | @nikomatsakis                      |
-| Teams            | [lang], [libs-api], [compiler]     |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status           | Flagship                           |
 | Tracking issue   | [rust-lang/rust-project-goals#116] |
 

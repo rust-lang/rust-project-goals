@@ -3,7 +3,8 @@
 | Metadata         |                              |
 |------------------|------------------------------|
 | Point of contact | @tmandry                     |
-| Teams            | [lang] [compiler] [libs-api] |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status           | Proposed                     |
 
 ## Summary
