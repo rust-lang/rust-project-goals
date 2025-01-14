@@ -116,12 +116,4 @@ Definitions for terms used above:
 [SC]: ./Rust-for-SciComp.md
 [OC]: ./optimize-clippy.md
 
-# Frequently asked questions
-
-## What goals were not accepted?
-
-The following goals were proposed but not accepted:
-
-<!-- GOALS NOT ACCEPTED -->
-
 <!-- Github usernames -->
