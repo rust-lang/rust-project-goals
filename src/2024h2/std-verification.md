@@ -3,7 +3,8 @@
 | Metadata       |                                    |
 | ---            | ---                                |
 | Point of contact | @celinval                          |
-| Teams          | [Libs]                             |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#126] |
 

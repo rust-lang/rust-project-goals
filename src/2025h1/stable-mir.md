@@ -3,7 +3,8 @@
 | Metadata |                      |
 |----------|----------------------|
 | Point of contact | @celinval            |
-| Teams    | [project-stable-mir] |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status   | Proposed             |
 
 ## Summary

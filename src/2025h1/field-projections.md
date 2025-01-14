@@ -3,7 +3,8 @@
 | Metadata |                            |
 |----------|----------------------------|
 | Point of contact | @y86-dev                   |
-| Teams    | [lang], [libs], [compiler] |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status   | Proposed                   |
 
 ## Summary

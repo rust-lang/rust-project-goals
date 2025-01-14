@@ -3,7 +3,8 @@
 | Metadata |          |
 |----------|----------|
 | Point of contact | @jswrenn |
-| Teams    | [lang]   |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status   | Proposed |
 
 ## Summary

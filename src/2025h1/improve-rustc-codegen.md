@@ -13,7 +13,8 @@
 | Metadata         |             |
 |------------------|-------------|
 | Point of contact | @folkertdev |
-| Teams            | T-compiler  |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status           | Proposed    |
 
 ## Summary

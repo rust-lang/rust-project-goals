@@ -3,7 +3,8 @@
 | Metadata         |                                    |
 |------------------|------------------------------------|
 | Point of contact | @Muscraft                          |
-| Teams            | [compiler]                         |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status           | Accepted                           |
 | Tracking issue   | [rust-lang/rust-project-goals#123] |
 

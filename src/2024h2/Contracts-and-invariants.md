@@ -3,7 +3,8 @@
 | Metadata |                            |
 | -------- | -------------------------- |
 | Point of contact | @pnkfelix                  |
-| Teams    | [lang], [libs], [compiler] |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status   | Not accepted               |
 
 ## Motivation

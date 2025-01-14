@@ -4,7 +4,8 @@
 |----------------|------------------------------------|
 | Short title    | Async                              |
 | Point of contact | @tmandry            |
-| Teams          | [lang], [libs], [libs-api]         |
+| Teams | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status         | Flagship                           |
 | Tracking issue | [rust-lang/rust-project-goals#105] |
 
