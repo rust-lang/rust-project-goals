@@ -264,7 +264,6 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     /// Find the goal documents for the milestone in which this `chapter_path` resides.
     /// e.g., if invoked with `2024h2/xxx.md`, will find all goal documents in `2024h2`.
     fn goal_documents(&mut self, chapter_path: &Path) -> anyhow::Result<Arc<Vec<GoalDocument>>> {
-        // let chapter_path = self.ctx.config.book.src.join(chapter_path);
 
         let Some(milestone_path) = chapter_path.parent() else {
             anyhow::bail!("cannot get goal documents from `{chapter_path:?}`")
