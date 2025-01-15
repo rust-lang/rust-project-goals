@@ -92,11 +92,11 @@ pub fn generate_rfc(path: &Path) -> anyhow::Result<()> {
         )
     })?;
 
-    let regex = Regex::new(r"\((.*).md(#[^)]*)?\)").unwrap();
+    let regex = Regex::new(r"\]\(([^(]*)\.md(#[^)]*)?\)").unwrap();
 
     let result = regex.replace_all(
         &generated_text,
-        format!("(https://rust-lang.github.io/rust-project-goals/{timeframe}/$1.html$2)"),
+        format!("](https://rust-lang.github.io/rust-project-goals/{timeframe}/$1.html$2)"),
     );
 
     println!("{result}");
