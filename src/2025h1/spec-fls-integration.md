@@ -1,11 +1,14 @@
 # Integration of the FLS into the Rust Project
 
-| Metadata |             |
-|----------|-------------|
-| Point of contact | @joelmarcey |
+| Metadata         |                      |
+|------------------|----------------------|
+| Point of contact | @joelmarcey          |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |
-| Status   | Proposed    |
+| Status           | Proposed             |
+| Zulip channel    | [#t-spec][channel]   |
+
+[channel]: https://rust-lang.zulipchat.com/#narrow/channel/399173-t-spec
 
 ## Summary
 

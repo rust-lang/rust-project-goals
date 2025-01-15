@@ -1,11 +1,12 @@
 # Declarative (`macro_rules!`) macro improvements
 
-| Metadata |               |
-|----------|---------------|
+| Metadata         |               |
+|------------------|---------------|
 | Point of contact | @joshtriplett |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |
-| Status   | Proposed      |
+| Status           | Proposed      |
+| Zulip channel    | N/A           |
 
 ## Summary
 

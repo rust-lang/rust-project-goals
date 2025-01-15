@@ -6,6 +6,9 @@
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |
 | Status           | Proposed            |
+| Zulip channel    | [#project-goals/2025h1/rustc-perf-improvements][channel] |
+
+[channel]: https://rust-lang.zulipchat.com/#narrow/channel/478771-project-goals.2F2025h1.2Frustc-perf-improvements
 
 *Arm's Rust team is @davidtwco, @adamgemmell, @jacobbramley, @JamieCunliffe and @Jamesbarford.
 This goal will be primarily worked on by @Jamesbarford, but @davidtwco can always be contacted for

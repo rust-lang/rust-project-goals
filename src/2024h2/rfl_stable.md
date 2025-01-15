@@ -8,7 +8,9 @@
 | Task owners      | <!-- TASK OWNERS --> |
 | Status           | Flagship                           |
 | Tracking issue   | [rust-lang/rust-project-goals#116] |
+| Zulip channel    | [#rust-for-linux][channel]         |
 
+[channel]: https://rust-lang.zulipchat.com/#narrow/channel/425075-rust-for-linux/
 
 ## Summary
 

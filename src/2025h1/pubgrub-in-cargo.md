@@ -1,11 +1,12 @@
 # Extend pubgrub to match cargo's dependency resolution
 
-| Metadata |          |
-|----------|----------|
-| Point of contact | @eh2406  |
+| Metadata         |                    |
+|------------------|--------------------|
+| Point of contact | @eh2406            |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |
-| Status   | Proposed |
+| Status           | Proposed           |
+| Zulip channel    | N/A                |
 
 
 ## Summary

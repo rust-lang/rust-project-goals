@@ -2,10 +2,13 @@
 
 | Metadata |                                     |
 |----------|-------------------------------------|
-| Point of contact | @tmandry                            |
+| Point of contact | @tmandry                    |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |
-| Status   | Proposed for flagship                           |
+| Status           | Proposed for flagship       |
+| Zulip channel    | [#wg-async][channel]        |
+
+[channel]: https://rust-lang.zulipchat.com/#narrow/channel/187312-wg-async/
 
 ## Summary
 
