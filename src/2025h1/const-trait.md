@@ -13,7 +13,7 @@ Prepare `const Trait` bounds for stabilization.
 
 ## Motivation
 
-`const fn` on stable are unable to invoke trait methods, limiting their usefulness. After years of experimentation, the compiler now has a promising implementation of `const traits` and significant parts of the stdlib have been updated to use it. However, the feature is still firmly in experimental territory: there has never been an RFC describing its syntax.
+`const fn` on stable are unable to invoke trait methods, limiting their usefulness. After years of experimentation, the compiler now has a promising implementation of `const traits` and key parts of the stdlib have been updated to use it. However, the feature is still firmly in experimental territory: there has never been an RFC describing its syntax.
 
 The goal for the next 6 months is to author an RFC proposing an end-user syntax for const bounds and a specific semantics. Our believe is that the core implementation work is done and that it should be possible to merge the RFC, implement the syntactic choices, issue a public call for experimentation, and otherwise pave the ground for stabilization (stabilization itself is a stretch goal and seems likely to occur in 2025H2).
 
