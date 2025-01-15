@@ -6,7 +6,7 @@ This is a draft for the eventual RFC proposing the 2025H1 goals.
 
 ## Motivation
 
-The 2025H1 goal slate consists of <!-- #GOALS --> project goals, of which we have selected (TBD) as **flagship goals**. Flagship goals represent the goals expected to have the broadest overall impact.
+The 2025H1 goal slate consists of <!-- #GOALS --> project goals, of which we have selected 3 as **flagship goals**. Flagship goals represent the goals expected to have the broadest overall impact.
 
 ### How the goal process works
 
