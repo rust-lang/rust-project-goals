@@ -61,7 +61,7 @@ Steps towards the primary goal of doing everything towards stabilization apart f
 | Standard reviews                   | ![Team][] [compiler]           |                                                                 |
 | Design meeting                     | ![Team][] [lang]               | first meeting scheduled for Jan; second meeting may be required |
 | RFC decision                       | ![Team][] [lang]               |                                                                 |
-| Secondary review                   | ![Team][] [types]              | Types team needs to validate the approach                       |
+| RFC secondary review                   | ![Team][] [types]              | Types team needs to validate the approach                       |
 | Author stabilization report        | @oli-obk                       | stretch goal                                                    |
 
 ### Formalize const-traits in a-mir-formality
