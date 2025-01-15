@@ -1,11 +1,12 @@
 # Unsafe Fields
 
-| Metadata |          |
-|----------|----------|
-| Point of contact | @jswrenn |
+| Metadata         |                      |
+|------------------|----------------------|
+| Point of contact | @jswrenn             |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |
-| Status   | Proposed |
+| Status           | Proposed             |
+| Zulip channel    | N/A                  |
 
 ## Summary
 

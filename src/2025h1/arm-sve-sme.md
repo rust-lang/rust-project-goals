@@ -6,6 +6,7 @@
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |
 | Status           | Proposed                    |
+| Zulip channel    | N/A                         |
 
 *Arm's Rust team is @davidtwco, @adamgemmell, @jacobbramley, @JamieCunliffe and @Jamesbarford, as
 well as @mrkajetanp and @harmou01 as graduates on rotation. This goal will be primarily worked on

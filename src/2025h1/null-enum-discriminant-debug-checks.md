@@ -1,11 +1,12 @@
 # Null and enum-discriminant runtime checks in debug builds
 
-| Metadata |             |
-|----------|-------------|
-| Point of contact | @1c3t3a     |
+| Metadata         |                      |
+|------------------|----------------------|
+| Point of contact | @1c3t3a              |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |
-| Status   | Proposed    |
+| Status           | Proposed             |
+| Zulip channel    | N/A                  |
 
 ## Summary
 

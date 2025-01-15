@@ -1,11 +1,12 @@
 # Field Projections
 
-| Metadata |                            |
-|----------|----------------------------|
+| Metadata         |                            |
+|------------------|----------------------------|
 | Point of contact | @y86-dev                   |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |
-| Status   | Proposed                   |
+| Status           | Proposed                   |
+| Zulip channel    | N/A                        |
 
 ## Summary
 

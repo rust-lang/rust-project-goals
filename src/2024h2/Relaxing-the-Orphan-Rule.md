@@ -6,6 +6,7 @@
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |
 | Status   | Not accepted        |
+| Zulip channel  | N/A                                |
 
 ## Summary
 

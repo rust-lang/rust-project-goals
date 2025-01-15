@@ -1,11 +1,12 @@
 # Continue resolving `cargo-semver-checks` blockers for merging into cargo
 
-| Metadata       |                                    |
-| ---            | ---                                |
+| Metadata         |                                    |
+| ---              | ---                                |
 | Point of contact | @obi1kenobi                        |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |
-| Status         | Proposed                           |
+| Status           | Proposed                           |
+| Zulip channel    | N/A                                |
 
 
 ## Summary

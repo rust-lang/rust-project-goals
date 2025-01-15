@@ -1,13 +1,15 @@
 # Const traits
 
-| Metadata       |                                    |
-| ---            | ---                                |
-| Point of contact | @fee1-dead                         |
+| Metadata       |                                             |
+| ---            | ---                                         |
+| Point of contact | @fee1-dead                                |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |
-| Status         | Accepted                           |
-| Tracking issue | [rust-lang/rust-project-goals#106] |
+| Status         | Accepted                                    |
+| Tracking issue | [rust-lang/rust-project-goals#106]          |
+| Zulip channel  | [#t-compiler/project-const-traits][channel] |
 
+[channel]: https://rust-lang.zulipchat.com/#narrow/channel/419616-t-compiler.2Fproject-const-traits
 
 ## Summary
 
