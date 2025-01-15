@@ -51,18 +51,18 @@ None.
 
 Steps towards the primary goal of doing everything towards stabilization apart from approving stabilization itself:
 
-| Task                               | Owner(s) or team(s)  | Notes                                                           |
-|------------------------------------|----------------------|-----------------------------------------------------------------|
-| Lang-team experiment               | ![Team][] [lang]     | ![Complete][]                                                   |
-| Experimental implementation        | @compiler-errors     | ![Complete][]                                                   |
-| Author RFC                         | @oli-obk             | ![Complete][]                                                   |
-| Adjust implementation to match RFC | @fee1-dead           |                                                                 |
-| Call for testing                   | @oli-obk             |                                                                 |
-| Standard reviews                   | ![Team][] [compiler] |                                                                 |
-| Design meeting                     | ![Team][] [lang]     | first meeting scheduled for Jan; second meeting may be required |
-| RFC decision                       | ![Team][] [lang]     |                                                                 |
-| Secondary review                   | ![Team][] [types]    | Types team needs to validate the approach                       |
-| Author stabilization report        | @oli-obk             | stretch goal                                                    |
+| Task                               | Owner(s) or team(s)            | Notes                                                           |
+|------------------------------------|--------------------------------|-----------------------------------------------------------------|
+| Lang-team experiment               | ![Team][] [lang]               | ![Complete][]                                                   |
+| Experimental implementation        | @fee1-dead, @compiler-errors   | ![Complete][]                                                   |
+| Author RFC                         | @oli-obk                       | ![Complete][]                                                   |
+| Adjust implementation to match RFC | rust-lang/project-const-traits |                                                                 |
+| Call for testing                   | @oli-obk                       |                                                                 |
+| Standard reviews                   | ![Team][] [compiler]           |                                                                 |
+| Design meeting                     | ![Team][] [lang]               | first meeting scheduled for Jan; second meeting may be required |
+| RFC decision                       | ![Team][] [lang]               |                                                                 |
+| Secondary review                   | ![Team][] [types]              | Types team needs to validate the approach                       |
+| Author stabilization report        | @oli-obk                       | stretch goal                                                    |
 
 ### Formalize const-traits in a-mir-formality
 
