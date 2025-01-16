@@ -1,11 +1,12 @@
 # build-std
 
-| Metadata |                  |
-|----------|------------------|
-| Point of contact | @davidtwco |
+| Metadata         |                  |
+|------------------|------------------|
+| Point of contact | @davidtwco       |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |
-| Status   | Proposed         |
+| Status           | Proposed         |
+| Zulip channel    | N/A              |
 
 *Arm's Rust team is @davidtwco, @adamgemmell, @jacobbramley, @JamieCunliffe and @Jamesbarford. This
 goal will be primarily worked on by @adamgemmell, but @davidtwco can always be contacted for

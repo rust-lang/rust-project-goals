@@ -1,12 +1,15 @@
 # Stabilize parallel front end
 
-| Metadata       |                                    |
-| ---            | ---                                |
-| Point of contact | @SparrowLii                        |
+| Metadata       |                                          |
+| ---            | ---                                      |
+| Point of contact | @SparrowLii                            |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |
-| Status         | Accepted                           |
-| Tracking issue | [rust-lang/rust-project-goals#121] |
+| Status         | Accepted                                 |
+| Tracking issue | [rust-lang/rust-project-goals#121]       |
+| Zulip channel  | [#t-compiler/wg-parallel-rustc][channel] |
+
+[channel]: https://rust-lang.zulipchat.com/#narrow/channel/187679-t-compiler.2Fwg-parallel-rustc/
 
 
 ## Summary
