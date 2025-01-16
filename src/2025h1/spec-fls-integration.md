@@ -58,7 +58,7 @@ Some subgoals list an expected due/completion date. If one is omitted, compeleti
 | Task                                             | Owner(s) or team(s) | Notes                   |
 |--------------------------------------------------|---------------------|-------------------------|
 | Review Existing Editorial Standards in the FLS   |                     | End of January 2025     |
-| Review Tooling used by the FLS                   | Connor Horman       | End of January 2025     |
+| Review Tooling used by the FLS                   | Joel Marcey         | End of January 2025     |
 | Author Proposal for specifics of FLS integration | Connor Horman       | Mid-Late Februrary 2025 |
 | RFC decision                                     | ![Team][] [spec]    | End of March 2025       |
 | Adjust Tooling, as needed                        | Connor Horman       | April 2025              |
