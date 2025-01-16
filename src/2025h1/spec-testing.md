@@ -1,11 +1,14 @@
 # Rust Specification Testing
 
-| Metadata         |              |
-|------------------|--------------|
-| Point of contact | @chorman0773 |
+| Metadata         |                    |
+|------------------|--------------------|
+| Point of contact | @chorman0773       |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |
-| Status           | Proposed     |
+| Status           | Proposed           |
+| Zulip channel    | [#t-spec][channel] |
+
+[channel]: https://rust-lang.zulipchat.com/#narrow/channel/399173-t-spec
 
 ## Summary
 

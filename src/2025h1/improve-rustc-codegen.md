@@ -16,6 +16,7 @@
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |
 | Status           | Proposed    |
+| Zulip channel    | N/A         |
 
 ## Summary
 

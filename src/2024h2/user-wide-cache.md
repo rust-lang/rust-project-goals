@@ -7,6 +7,7 @@
 | Task owners      | <!-- TASK OWNERS --> |
 | Status           | Invited                            |
 | Tracking issue   | [rust-lang/rust-project-goals#124] |
+| Zulip channel  | N/A                                |
 
 
 ## Summary

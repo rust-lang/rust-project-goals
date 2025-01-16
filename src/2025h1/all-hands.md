@@ -6,6 +6,7 @@
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |
 | Status           | Proposed for flagship            |
+| Zulip channel    | N/A                  |
 
 ## Summary
 

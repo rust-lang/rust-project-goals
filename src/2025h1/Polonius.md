@@ -6,7 +6,9 @@
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |
 | Status         | Proposed                           |
+| Zulip channel  | [#t-types/polonius][channel]       |
 
+[channel]: https://rust-lang.zulipchat.com/#narrow/channel/186049-t-types.2Fpolonius
 
 
 ## Summary

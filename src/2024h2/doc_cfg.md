@@ -7,6 +7,7 @@
 | Task owners      | <!-- TASK OWNERS --> |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#120] |
+| Zulip channel  | N/A                                |
 
 
 @GuillaumeGomez: https://github.com/GuillaumeGomez

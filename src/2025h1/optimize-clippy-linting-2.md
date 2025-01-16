@@ -1,13 +1,14 @@
 # Optimizing Clippy & linting
 (a.k.a The Clippy Performance Project)
 
-| Metadata       |                                    |
-|----------------|------------------------------------|
+| Metadata         |                                    |
+|------------------|------------------------------------|
 | Point of contact | @blyxyas                           |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |
-| Status         | Proposed                           |
-| Tracking issue | [rust-lang/rust-project-goals#114] |
+| Status           | Proposed                           |
+| Tracking issue   | [rust-lang/rust-project-goals#114] |
+| Zulip channel    | N/A                                |
 
 ## Summary
 

@@ -1,11 +1,12 @@
 # Secure quorum-based cryptographic verification and mirroring for crates.io
 
-| Metadata |                         |
-|----------|-------------------------|
+| Metadata         |                         |
+|------------------|-------------------------|
 | Point of contact | @walterhpearce          |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |
-| Status   | Proposed                |
+| Status           | Proposed                |
+| Zulip channel    | N/A                     |
 
 ## Summary
 
