@@ -1,12 +1,12 @@
 # Publish first rust-lang-owned release of "FLS"
 
-| Metadata         |                      |
-|------------------|----------------------|
-| Point of contact | @joelmarcey          |
+| Metadata         |                          |
+|------------------|--------------------------|
+| Point of contact | @joelmarcey              |
 | Teams            | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
-| Status           | Proposed             |
-| Zulip channel    | [#t-spec][channel]   |
+| Task owners      | <!-- TASK OWNERS -->     |
+| Status           | Proposed                 |
+| Zulip channel    | [#t-spec][channel]       |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/399173-t-spec
 
@@ -52,13 +52,13 @@ The following [design axioms][da] apply:
 
 Some subgoals list an expected due/completion date. If one is omitted, compeletion by the end of 2025h1 is implied.
 
-| Task                                | Owner(s) or team(s)            | Notes                    |
-|-------------------------------------|--------------------------------|--------------------------|
-| Discussion and moral support        | ![Team][] [release][] [spec][] |                          |
-| Copyright cleanup and assignment    | @JoelMarcey                    | End of January 2025      |
-| Adjust tooling, as needed           | @JoelMarcey                    | Joel to find appropriate person |
-| Standard reviews                    | ![Team][] [release][]          | for the tooling integration |
-| Miscellaneous                       | Ferrous Systems                | Continued updates for new releases |
+| Task                               | Owner(s) or team(s)            | Notes                           |
+|------------------------------------|--------------------------------|---------------------------------|
+| Discussion and moral support       | ![Team][] [release][] [spec][] |                                 |
+| Copyright cleanup and assignment   | @JoelMarcey                    | End of January 2025             |
+| Adjust tooling, as needed          | @JoelMarcey                    | Joel to find appropriate person |
+| Standard reviews                   | ![Team][] [release][]          | For the tooling integration     |
+| Continued updates for new releases | Ferrous Systems                |                                 |
 
 ## Frequently asked questions
 
