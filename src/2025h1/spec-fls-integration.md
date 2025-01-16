@@ -1,12 +1,12 @@
-# Integration of the FLS into the Rust Project
+# Publish first rust-lang-owned release of "FLS"
 
-| Metadata         |                      |
-|------------------|----------------------|
-| Point of contact | @joelmarcey          |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
-| Status           | Proposed             |
-| Zulip channel    | [#t-spec][channel]   |
+| Metadata         |                          |
+|------------------|--------------------------|
+| Point of contact | @joelmarcey              |
+| Teams            | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS -->     |
+| Status           | Proposed                 |
+| Zulip channel    | [#t-spec][channel]       |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/399173-t-spec
 
@@ -29,7 +29,7 @@ Based on more recent discussions and agreements with Ferrous Systems, the Specif
 
 ### The next 6 months
 
-In order to properly integrate the Ferrocene Language Specification, presumably under a different name, the specification team will need to adopt processes surrounding modification, editing, review, and release of the document. 
+The goal is to merge the Ferrocene Language Specification (FLS) into the rust-lang infrastructure and publish at least one version in some form under some (TBD) name. The expectation is that it will be integrated into our release process in a similar fashion as other rust-lang maintained books (the reference, rust book, etc) but because the FLS uses distinct tooling that may or may not be possible.
 
 ### The "shiny future" we are working towards
 
@@ -52,31 +52,13 @@ The following [design axioms][da] apply:
 
 Some subgoals list an expected due/completion date. If one is omitted, compeletion by the end of 2025h1 is implied.
 
-| Task          | Owner(s) or team(s) | Notes                                                               |
-|---------------|---------------------|---------------------------------------------------------------------|
-| Miscellaneous | ![Team][] [spec]    | Take ownership of the FLS (prior to, or shortly into January 2025). |
-
-### Integrate FLS into T-spec processes
-
-| Task                                             | Owner(s) or team(s) | Notes                   |
-|--------------------------------------------------|---------------------|-------------------------|
-| Review Existing Editorial Standards in the FLS   |                     | End of January 2025     |
-| Review Tooling used by the FLS                   | Joel Marcey         | End of January 2025     |
-| Author Proposal for specifics of FLS integration | Connor Horman       | Mid-Late Februrary 2025 |
-| RFC decision                                     | ![Team][] [spec]    | End of March 2025       |
-| Adjust Tooling, as needed                        | Connor Horman       | April 2025              |
-| Begin implementing the integration Proposal      | Connor Horman       |                         |
-
-### Integrate FLS into release process
-
-| Task                                              | Owner(s) or team(s) | Notes          |
-|---------------------------------------------------|---------------------|----------------|
-| Discussion and moral support                      | ![Team][] [release] | Februrary 2025 |
-| Link tooling used with FLS to the release process |                     | April 2025     |
-| Review of FLS prior to release                    |                     | May 2025       |
-| Get FLS into a Rust Release                       |                     | Rust 1.89      |
-| Standard reviews                                  | ![Team][] [release] |                |
-
+| Task                               | Owner(s) or team(s)            | Notes                           |
+|------------------------------------|--------------------------------|---------------------------------|
+| Discussion and moral support       | ![Team][] [release][] [spec][] |                                 |
+| Copyright cleanup and assignment   | @JoelMarcey                    | End of January 2025             |
+| Adjust tooling, as needed          | @JoelMarcey                    | Joel to find appropriate person |
+| Standard reviews                   | ![Team][] [release][]          | For the tooling integration     |
+| Continued updates for new releases | Ferrous Systems                |                                 |
 
 ## Frequently asked questions
 
