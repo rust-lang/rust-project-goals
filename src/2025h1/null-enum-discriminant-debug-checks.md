@@ -85,8 +85,6 @@ Particularly as next steps we would like to check for UB when:
 | Discussion and moral support | ![Team][], [lang], [opsem]    |       |
 | Implementation               | @1c3t3a, @vabr-g              |       |
 | Standard reviews             | ![Team][] [compiler], [opsem] |       |
-| Design meeting               | ![Team][] [lang], [opsem]     |       |
-| Lang-team experiment         | ![Team][] [lang]              |       |
 
 ### Definitions
 
