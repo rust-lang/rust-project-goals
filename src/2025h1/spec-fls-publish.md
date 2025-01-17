@@ -48,7 +48,7 @@ The following [design axioms][da] apply:
 
 ## Ownership and team asks
 
-**Owner:** As the hired specification editor, Joel Marcey will own the overall goal. Connor Horman will also aid in bringing the goal to completion in their role as a Contractor. 
+**Owner:** @JoelMarcey, in his capacity of `t-spec` team member and Rust Foundation representative, will lead this project goal.
 
 Some subgoals list an expected due/completion date. If one is omitted, compeletion by the end of 2025h1 is implied.
 
