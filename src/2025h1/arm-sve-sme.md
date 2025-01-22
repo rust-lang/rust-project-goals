@@ -1,7 +1,7 @@
 # SVE and SME on AArch64
 
 | Metadata         |                             |
-|------------------|-----------------------------|
+|:-----------------|-----------------------------|
 | Point of contact | @davidtwco                  |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |

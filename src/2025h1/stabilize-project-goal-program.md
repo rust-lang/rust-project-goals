@@ -1,7 +1,7 @@
 # Run the 2025H1 project goal program
 
 | Metadata         |                           |
-|------------------|---------------------------|
+|:-----------------|---------------------------|
 | Point of contact | @nikomatsakis             |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |

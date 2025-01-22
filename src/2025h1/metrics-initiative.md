@@ -1,7 +1,7 @@
 # Metrics Initiative
 
 | Metadata         |                          |
-|------------------|--------------------------|
+|:-----------------|--------------------------|
 | Point of contact | @yaahc                   |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS -->     |

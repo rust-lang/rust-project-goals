@@ -1,7 +1,7 @@
 # Promoting Parallel Front End
 
 | Metadata         |                                          |
-|------------------|------------------------------------------|
+|:-----------------|------------------------------------------|
 | Point of contact | @SparrowLii                              |
 | Teams            | <!-- TEAMS WITH ASKS -->                 |
 | Task owners      | <!-- TASK OWNERS -->                     |

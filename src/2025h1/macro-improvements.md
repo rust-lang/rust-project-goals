@@ -1,7 +1,7 @@
 # Declarative (`macro_rules!`) macro improvements
 
 | Metadata         |               |
-|------------------|---------------|
+|:-----------------|---------------|
 | Point of contact | @joshtriplett |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |

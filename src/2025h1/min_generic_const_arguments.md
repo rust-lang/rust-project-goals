@@ -1,7 +1,7 @@
 # "Stabilizable" prototype for expanded const generics
 
 | Metadata         |                                    |
-|------------------|------------------------------------|
+|:-----------------|------------------------------------|
 | Point of contact | @BoxyUwU                           |
 | Teams            | <!-- TEAMS WITH ASKS -->           |
 | Task owners      | <!-- TASK OWNERS -->               |

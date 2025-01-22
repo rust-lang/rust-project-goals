@@ -1,7 +1,7 @@
 # build-std
 
 | Metadata         |                  |
-|------------------|------------------|
+|:-----------------|------------------|
 | Point of contact | @davidtwco       |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |

@@ -1,7 +1,7 @@
 # Stabilize tooling needed by Rust for Linux
 
 | Metadata         |                                    |
-|------------------|------------------------------------|
+|:-----------------|------------------------------------|
 | Short title      | Rust-for-Linux                     |
 | Point of contact | @nikomatsakis                      |
 | Teams            | <!-- TEAMS WITH ASKS -->           |

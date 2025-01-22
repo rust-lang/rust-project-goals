@@ -1,7 +1,7 @@
 # Instrument the Rust standard library with safety contracts
 
 | Metadata         |                          |
-|------------------|--------------------------|
+|:-----------------|--------------------------|
 | Point of contact | @celinval                |
 | Teams            | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS -->     |

@@ -1,7 +1,7 @@
 # Model coherence in a-mir-formality
 
 | Metadata         |                               |
-|------------------|-------------------------------|
+|:-----------------|-------------------------------|
 | Point of contact | @nikomatsakis                 |
 | Teams            | <!-- TEAMS WITH ASKS -->      |
 | Task owners      | <!-- TASK OWNERS -->          |

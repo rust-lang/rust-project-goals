@@ -1,7 +1,7 @@
 # Bring the Async Rust experience closer to parity with sync Rust
 
 | Metadata         |                          |
-|------------------|--------------------------|
+|:-----------------|--------------------------|
 | Point of contact | @tmandry                 |
 | Teams            | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS -->     |

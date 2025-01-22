@@ -1,7 +1,7 @@
 # Expose experimental LLVM features for GPU offloading
 
 | Metadata              |                                                  |
-|-----------------------|--------------------------------------------------|
+|:----------------------|--------------------------------------------------|
 | Point of contact      | @ZuseZ4                                          |
 | Teams                 | <!-- TEAMS WITH ASKS -->                         |
 | Task owners           | <!-- TASK OWNERS -->                             |

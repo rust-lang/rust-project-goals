@@ -2,7 +2,7 @@
 (a.k.a The Clippy Performance Project)
 
 | Metadata         |                                    |
-|------------------|------------------------------------|
+|:-----------------|------------------------------------|
 | Point of contact | @blyxyas                           |
 | Teams            | <!-- TEAMS WITH ASKS -->           |
 | Task owners      | <!-- TASK OWNERS -->               |

@@ -1,7 +1,7 @@
 # Extend pubgrub to match cargo's dependency resolution
 
 | Metadata         |                          |
-|------------------|--------------------------|
+|:-----------------|--------------------------|
 | Point of contact | @eh2406                  |
 | Teams            | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS -->     |

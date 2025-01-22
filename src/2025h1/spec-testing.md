@@ -1,7 +1,7 @@
 # Rust Specification Testing
 
 | Metadata         |                    |
-|------------------|--------------------|
+|:-----------------|--------------------|
 | Point of contact | @chorman0773       |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |

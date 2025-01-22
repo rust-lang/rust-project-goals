@@ -1,7 +1,7 @@
 # Next-generation trait solver
 
 | Metadata         |                                           |
-|------------------|-------------------------------------------|
+|:-----------------|-------------------------------------------|
 | Point of contact | @lcnr                                     |
 | Teams            | <!-- TEAMS WITH ASKS -->                  |
 | Task owners      | <!-- TASK OWNERS -->                      |

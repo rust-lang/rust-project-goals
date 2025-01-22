@@ -12,7 +12,7 @@
 > or **Proposed, Invited** (if you do not yet).
 
 | Metadata         |                                                                                  |
-|------------------|----------------------------------------------------------------------------------|
+|:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | *must be a single Github username like @ghost*                                   |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |

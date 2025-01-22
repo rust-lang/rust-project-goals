@@ -1,7 +1,7 @@
 # Rust Vision Document
 
 | Metadata         |                      |
-|------------------|----------------------|
+|:-----------------|----------------------|
 | Point of contact | @nikomatsakis        |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |

@@ -1,7 +1,7 @@
 # Scalable Polonius support on nightly
 
 | Metadata         |                              |
-|------------------|------------------------------|
+|:-----------------|------------------------------|
 | Point of contact | @lqd                         |
 | Teams            | <!-- TEAMS WITH ASKS -->     |
 | Task owners      | <!-- TASK OWNERS -->         |
