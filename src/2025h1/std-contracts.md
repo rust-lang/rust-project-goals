@@ -89,7 +89,7 @@ unless users opt-in for contract runtime checks.
 | Task                       | Owner(s) or team(s)    | Notes |
 |----------------------------|------------------------|-------|
 | Standard Library Contracts | @celinval, @tautschnig |       |
-| Writing new contracts      | Help wanted            |       |
+| Writing new contracts      | ![Help wanted][]       |       |
 | Standard reviews           | ![Team][] [libs]       |       |
 
 
