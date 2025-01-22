@@ -4,11 +4,14 @@
 | Metadata         |                                    |
 |------------------|------------------------------------|
 | Point of contact | @blyxyas                           |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
+| Teams            | <!-- TEAMS WITH ASKS -->           |
+| Task owners      | <!-- TASK OWNERS -->               |
 | Status           | Proposed                           |
 | Tracking issue   | [rust-lang/rust-project-goals#114] |
 | Zulip channel    | N/A                                |
+| Continuing goal  | [2024h2 project goal]              |
+
+[2024h2 project goal]: https://rust-lang.github.io/rust-project-goals/2024h2/optimize-clippy.html
 
 ## Summary
 

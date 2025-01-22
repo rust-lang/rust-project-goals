@@ -1,15 +1,17 @@
 # Promoting Parallel Front End
 
-| Metadata       |                                    |
-| ---            | ---                                |
-| Point of contact | @SparrowLii                        |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
-| Status         | Accepted                           |
-| Tracking issue | [rust-lang/rust-project-goals#121] |
-| Zulip channel  | [#t-compiler/wg-parallel-rustc][channel] |
+| Metadata         |                                          |
+|------------------|------------------------------------------|
+| Point of contact | @SparrowLii                              |
+| Teams            | <!-- TEAMS WITH ASKS -->                 |
+| Task owners      | <!-- TASK OWNERS -->                     |
+| Status           | Proposed                                 |
+| Tracking issue   | [rust-lang/rust-project-goals#121]       |
+| Zulip channel    | [#t-compiler/wg-parallel-rustc][channel] |
+| Continuing goal  | [2024h2 project goal]                    |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/187679-t-compiler.2Fwg-parallel-rustc/
+[2024h2 project goal]: https://rust-lang.github.io/rust-project-goals/2024h2/parallel-front-end.html
 
 ## Summary
 

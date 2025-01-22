@@ -1,12 +1,15 @@
 # Instrument the Rust standard library with safety contracts
 
-| Metadata         |                  |
-|------------------|------------------|
-| Point of contact | @celinval        |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
-| Status           | Proposed         |
-| Zulip channel    | N/A                |
+| Metadata         |                          |
+|------------------|--------------------------|
+| Point of contact | @celinval                |
+| Teams            | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS -->     |
+| Status           | Proposed                 |
+| Zulip channel    | N/A                      |
+| Continuing goal  | [2024h2 project goal]    |
+
+[2024h2 project goal]: https://rust-lang.github.io/rust-project-goals/2024h2/std-verification.html
 
 ## Summary
 

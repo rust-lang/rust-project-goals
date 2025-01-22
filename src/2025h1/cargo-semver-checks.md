@@ -1,13 +1,15 @@
 # Continue resolving `cargo-semver-checks` blockers for merging into cargo
 
-| Metadata         |                                    |
-| ---              | ---                                |
-| Point of contact | @obi1kenobi                        |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
-| Status           | Proposed                           |
-| Zulip channel    | N/A                                |
+| Metadata         |                          |
+| -----------------|--------------------------|
+| Point of contact | @obi1kenobi              |
+| Teams            | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS -->     |
+| Status           | Proposed                 |
+| Zulip channel    | N/A                      |
+| Continuing goal  | [2024h2 project goal]    |
 
+[2024h2 project goal]: https://rust-lang.github.io/rust-project-goals/2024h2/cargo-semver-checks.html
 
 ## Summary
 

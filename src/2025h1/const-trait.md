@@ -6,6 +6,9 @@
 | Teams            | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS -->     |
 | Status           | Proposed                 |
+| Continuing goal  | [2024h2 project goal]    |
+
+[2024h2 project goal]: https://rust-lang.github.io/rust-project-goals/2024h2/const-traits.html
 
 ## Summary
 

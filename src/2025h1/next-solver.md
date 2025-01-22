@@ -1,15 +1,17 @@
 # Next-generation trait solver
 
-| Metadata       |                                    |
-|----------------|------------------------------------|
-| Point of contact | @lcnr                              |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
-| Status         | Proposed                           |
-| Tracking issue | [rust-lang/rust-project-goals#113] |
-| Zulip channel  | [#t-types/trait-system-refactor][channel] |
+| Metadata         |                                           |
+|------------------|-------------------------------------------|
+| Point of contact | @lcnr                                     |
+| Teams            | <!-- TEAMS WITH ASKS -->                  |
+| Task owners      | <!-- TASK OWNERS -->                      |
+| Status           | Proposed                                  |
+| Tracking issue   | [rust-lang/rust-project-goals#113]        |
+| Zulip channel    | [#t-types/trait-system-refactor][channel] |
+| Continuing goal  | [2024h2 project goal]                     |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/364551-t-types.2Ftrait-system-refactor
+[2024h2 project goal]: https://rust-lang.github.io/rust-project-goals/2024h2/next-solver.html
 
 
 ## Summary

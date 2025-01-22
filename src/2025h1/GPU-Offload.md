@@ -2,15 +2,17 @@
 
 | Metadata              |                                                  |
 |-----------------------|--------------------------------------------------|
-| Point of contact | @ZuseZ4                                          |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
+| Point of contact      | @ZuseZ4                                          |
+| Teams                 | <!-- TEAMS WITH ASKS -->                         |
+| Task owners           | <!-- TASK OWNERS -->                             |
 | Status                | Proposed                                         |
 | Tracking issue        | [rust-lang/rust-project-goals#109]               |
 | Other tracking issues | [rust-lang/rust#124509], [rust-lang/rust#124509] |
 | Zulip channel         | [#wg-autodiff][channel]                          |
+| Continuing goal       | [2024h2 project goal]                            |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/390790-wg-autodiff
+[2024h2 project goal]: https://rust-lang.github.io/rust-project-goals/2024h2/Rust-for-SciComp.html
 
 
 ## Summary

@@ -1,14 +1,16 @@
 # Bring the Async Rust experience closer to parity with sync Rust
 
-| Metadata |                                     |
-|----------|-------------------------------------|
-| Point of contact | @tmandry                    |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
-| Status           | Proposed for flagship       |
-| Zulip channel    | [#wg-async][channel]        |
+| Metadata         |                          |
+|------------------|--------------------------|
+| Point of contact | @tmandry                 |
+| Teams            | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS -->     |
+| Status           | Proposed for flagship    |
+| Zulip channel    | [#wg-async][channel]     |
+| Continuing goal  | [2024h2 project goal]    |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/187312-wg-async/
+[2024h2 project goal]: https://rust-lang.github.io/rust-project-goals/2024h2/async.html
 
 ## Summary
 
