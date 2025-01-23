@@ -8,10 +8,9 @@
 | Status           | Proposed                           |
 | Tracking issue   | [rust-lang/rust-project-goals#100] |
 | Zulip channel    | [#project-const-generics][channel] |
-| Continuing goal  | [2024h2 project goal]              |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/260443-project-const-generics/
-[2024h2 project goal]: https://rust-lang.github.io/rust-project-goals/2024h2/min_generic_const_arguments.html
+
 
 ## Summary
 

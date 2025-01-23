@@ -1,16 +1,15 @@
 # Scalable Polonius support on nightly
 
-| Metadata         |                              |
-|:-----------------|------------------------------|
-| Point of contact | @lqd                         |
-| Teams            | <!-- TEAMS WITH ASKS -->     |
-| Task owners      | <!-- TASK OWNERS -->         |
-| Status           | Proposed                     |
-| Zulip channel    | [#t-types/polonius][channel] |
-| Continuing goal  | [2024h2 project goal]        |
+| Metadata         |                                    |
+|:-----------------|------------------------------------|
+| Point of contact | @lqd                               |
+| Teams            | <!-- TEAMS WITH ASKS -->           |
+| Task owners      | <!-- TASK OWNERS -->               |
+| Status           | Proposed                           |
+| Tracking issue   | [rust-lang/rust-project-goals#118] |
+| Zulip channel    | [#t-types/polonius][channel]       |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/186049-t-types.2Fpolonius
-[2024h2 project goal]: https://rust-lang.github.io/rust-project-goals/2024h2/Polonius.html
 
 
 ## Summary

@@ -1,16 +1,15 @@
 # Model coherence in a-mir-formality
 
-| Metadata         |                               |
-|:-----------------|-------------------------------|
-| Point of contact | @nikomatsakis                 |
-| Teams            | <!-- TEAMS WITH ASKS -->      |
-| Task owners      | <!-- TASK OWNERS -->          |
-| Status           | Proposed                      |
-| Zulip channel    | [#t-types/formality][channel] |
-| Continuing goal  | [2024h2 project goal]         |
+| Metadata         |                                    |
+|:-----------------|------------------------------------|
+| Point of contact | @nikomatsakis                      |
+| Teams            | <!-- TEAMS WITH ASKS -->           |
+| Task owners      | <!-- TASK OWNERS -->               |
+| Status           | Proposed                           |
+| Tracking issue   | [rust-lang/rust-project-goals#122] |
+| Zulip channel    | [#t-types/formality][channel]      |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/402470-t-types.2Fformality
-[2024h2 project goal]: https://rust-lang.github.io/rust-project-goals/2024h2/a-mir-formality.html
 
 ## Summary
 

@@ -9,10 +9,9 @@
 | Status           | Proposed for flagship              |
 | Tracking issue   | [rust-lang/rust-project-goals#116] |
 | Zulip channel    | [#rust-for-linux][channel]         |
-| Continuing goal  | [2024h2 project goal]              |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/425075-rust-for-linux/
-[2024h2 project goal]: https://rust-lang.github.io/rust-project-goals/2024h2/rfl_stable.html
+
 
 ## Summary
 

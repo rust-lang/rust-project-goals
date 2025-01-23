@@ -1,15 +1,14 @@
 # Use annotate-snippets for rustc diagnostic output
 
-| Metadata         |                          |
-|:-----------------|--------------------------|
-| Point of contact | @Muscraft                |
-| Teams            | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS -->     |
-| Status           | Proposed                 |
-| Zulip channel    | N/A                      |
-| Continuing goal  | [2024h2 project goal]    |
+| Metadata         |                                    |
+|:-----------------|------------------------------------|
+| Point of contact | @Muscraft                          |
+| Teams            | <!-- TEAMS WITH ASKS -->           |
+| Task owners      | <!-- TASK OWNERS -->               |
+| Status           | Proposed                           |
+| Tracking issue   | [rust-lang/rust-project-goals#123] |
+| Zulip channel    | N/A                                |
 
-[2024h2 project goal]: https://rust-lang.github.io/rust-project-goals/2024h2/annotate-snippets.html
 
 ## Summary
 

@@ -1,14 +1,14 @@
 # Prepare const traits for stabilization
 
-| Metadata         |                          |
-|:-----------------|--------------------------|
-| Point of contact | @oli-obk                 |
-| Teams            | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS -->     |
-| Status           | Proposed                 |
-| Continuing goal  | [2024h2 project goal]    |
+| Metadata         |                                    |
+|:-----------------|------------------------------------|
+| Point of contact | @oli-obk                           |
+| Teams            | <!-- TEAMS WITH ASKS -->           |
+| Task owners      | <!-- TASK OWNERS -->               |
+| Status           | Proposed                           |
+| Tracking issue   | [rust-lang/rust-project-goals#106] |
+| Zulip channel    | N/A                                |
 
-[2024h2 project goal]: https://rust-lang.github.io/rust-project-goals/2024h2/const-traits.html
 
 ## Summary
 
