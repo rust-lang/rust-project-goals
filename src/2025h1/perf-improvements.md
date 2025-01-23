@@ -71,15 +71,15 @@ will be added to rustc-perf, but this is unlikely to warrant further goals.
 
 ## Ownership and team asks
 
-| Task                                          | Owner(s) or team(s)  | Notes                                           |
-|-----------------------------------------------|----------------------|-------------------------------------------------|
-| Discussion and moral support                  | ![Team][] [infra]    |                                                 |
-| Improve rustc-perf implementation work        | @Jamesbarford        |                                                 |
-| Standard reviews                              | ![Team][] [infra]    |                                                 |
-| Deploy to production                          | ![Team][] [infra]    | rustc-perf improvements, testing infrastructure |
-| Draft performance regression policy           | @davidtwco           |                                                 |
-| Policy decision                               | ![Team][] [compiler] | Update performance regression policy            |
-| Inside Rust blog post announcing improvements | @davidtwco           |                                                 |
+| Task                                          | Owner(s) or team(s)    | Notes                                           |
+|-----------------------------------------------|------------------------|-------------------------------------------------|
+| Discussion and moral support                  | ![Team][] [infra]      |                                                 |
+| Improve rustc-perf implementation work        | @Jamesbarford, @Kobzol |                                                 |
+| Standard reviews                              | ![Team][] [infra]      |                                                 |
+| Deploy to production                          | ![Team][] [infra]      | rustc-perf improvements, testing infrastructure |
+| Draft performance regression policy           | @davidtwco             |                                                 |
+| Policy decision                               | ![Team][] [compiler]   | Update performance regression policy            |
+| Inside Rust blog post announcing improvements | @davidtwco             |                                                 |
 
 ### Definitions
 
