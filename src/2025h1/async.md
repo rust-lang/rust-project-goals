@@ -100,38 +100,40 @@ This section defines the specific work items that are planned and who is expecte
 
 ### Return type notation
 
-| Task                    | Owner(s) or team(s)          | Notes         |
-|-------------------------|------------------------------|---------------|
-| Initial implementation  | @compiler-errors             | ![Complete][] |
-| Author RFC              | @nikomatsakis                | ![Complete][] |
-| RFC decision            | ![Team][] [lang]             | ![Complete][] |
-| Finished implementation | @compiler-errors             |               |
-| Standard reviews        | ![Team][] [types] [compiler] |               |
-| Stabilization decision  | ![Team][] [lang]             |               |
+| Task                           | Owner(s) or team(s)                                | Notes         |
+|--------------------------------|----------------------------------------------------|---------------|
+| Initial implementation         | @compiler-errors                                   | ![Complete][] |
+| Author RFC                     | @nikomatsakis                                      | ![Complete][] |
+| RFC decision                   | ![Team][] [lang]                                   | ![Complete][] |
+| Finished implementation        | @compiler-errors                                   | ![Complete][] |
+| Standard reviews               | ![Team][] [types], [compiler]                      |               |
+| Author specification 1st draft | TBD (@compiler-errors, @tmandry, or @nikomatsakis) |               |
+| Finalize specification text    | ![Team][] [spec]                                   |               |
+| Stabilization decision         | ![Team][] [lang]                                   |               |
 
 ### Unsafe binders
 
-| Task                    | Owner(s) or team(s)          | Notes         |
-|-------------------------|------------------------------|---------------|
-| Initial implementation  | @compiler-errors             | Stretch goal  |
-| Author RFC              | @nikomatsakis                | Stretch goal  |
-| RFC decision            | ![Team][] [lang]             | Stretch goal  |
+| Task                   | Owner(s) or team(s) | Notes        |
+|------------------------|---------------------|--------------|
+| Initial implementation | @compiler-errors    | Stretch goal |
+| Author RFC             | @nikomatsakis       | Stretch goal |
+| RFC decision           | ![Team][] [lang]    | Stretch goal |
 
 ### Implementable trait aliases
 
-| Task             | Owner(s) or team(s)          | Notes |
-|------------------|------------------------------|-------|
-| Author RFC       | @tmandry                     |       |
-| Implementation   | @compiler-errors             |       |
-| Standard reviews | ![Team][] [types] [compiler] |       |
-| RFC decision     | ![Team][] [lang] [types]     |       |
+| Task             | Owner(s) or team(s)           | Notes |
+|------------------|-------------------------------|-------|
+| Author RFC       | @tmandry                      |       |
+| Implementation   | @compiler-errors              |       |
+| Standard reviews | ![Team][] [types], [compiler] |       |
+| RFC decision     | ![Team][] [lang] [types]      |       |
 
 ### `async fn` in `dyn Trait`
 
-| Task                 | Owner(s) or team(s)          | Notes        |
-|----------------------|------------------------------|--------------|
-| Lang-team experiment | @nikomatsakis                | (Approved)   |
-| Implementation       | @compiler-errors             | Stretch goal |
+| Task                 | Owner(s) or team(s) | Notes        |
+|----------------------|---------------------|--------------|
+| Lang-team experiment | @nikomatsakis       | (Approved)   |
+| Implementation       | @compiler-errors    | Stretch goal |
 
 ### Pin reborrowing
 
@@ -151,25 +153,25 @@ This section defines the specific work items that are planned and who is expecte
 
 ### Trait for generators (sync)
 
-| Task           | Owner(s) or team(s)         | Notes               |
-|----------------|-----------------------------|---------------------|
-| Implementation | @eholk                      |                     |
-| Author RFC     |                             |                     |
-| RFC decision   | ![Team][] [libs-api] [lang] |                     |
-| Design meeting | ![Team][] [lang]            | 2 meetings expected |
+| Task           | Owner(s) or team(s)          | Notes               |
+|----------------|------------------------------|---------------------|
+| Implementation | @eholk                       |                     |
+| Author RFC     |                              |                     |
+| RFC decision   | ![Team][] [libs-api], [lang] |                     |
+| Design meeting | ![Team][] [lang]             | 2 meetings expected |
 
 ### Trait for async iteration
 
-| Task           | Owner(s) or team(s)         | Notes |
-|----------------|-----------------------------|-------|
-| Design meeting | ![Team][] [lang] [libs-api] |       |
+| Task           | Owner(s) or team(s)          | Notes |
+|----------------|------------------------------|-------|
+| Design meeting | ![Team][] [lang], [libs-api] |       |
 
 ### Dynosaur 1.0
 
-| Task                          | Owner(s) or team(s)            | Notes                 |
-|-------------------------------|--------------------------------|-----------------------|
-| Implementation                | @spastorino                    |                       |
-| Standard reviews              | @tmandry                       |                       |
+| Task             | Owner(s) or team(s) | Notes |
+|------------------|---------------------|-------|
+| Implementation   | @spastorino         |       |
+| Standard reviews | @tmandry            |       |
 
 ### Definitions
 

@@ -1,12 +1,12 @@
 # Declarative (`macro_rules!`) macro improvements
 
-| Metadata         |               |
-|:-----------------|---------------|
-| Point of contact | @joshtriplett |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
-| Status           | Proposed      |
-| Zulip channel    | N/A           |
+| Metadata         |                          |
+|:-----------------|--------------------------|
+| Point of contact | @joshtriplett            |
+| Teams            | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS -->     |
+| Status           | Proposed                 |
+| Zulip channel    | N/A                      |
 
 ## Summary
 
@@ -129,54 +129,60 @@ could reserve such syntax in all editions.
 **Owner / Responsible Reporting Party:** @joshtriplett
 
 
-| Task                                             | Owner(s) or team(s) | Notes                                                                                      |
-|--------------------------------------------------|---------------------|--------------------------------------------------------------------------------------------|
-| Propose discussion session at RustWeek           | @joshtriplett       |                                                                                            |
-| Policy decision                                  | ![Team][] [lang] [wg-macros] | Discussed with @eholk and @vincenzopalazzo; lang would decide whether to delegate specific matters to wg-macros |
+| Task                                   | Owner(s) or team(s)          | Notes                                                                                                           |
+|----------------------------------------|------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| Propose discussion session at RustWeek | @joshtriplett                |                                                                                                                 |
+| Policy decision                        | ![Team][] [lang] [wg-macros] | Discussed with @eholk and @vincenzopalazzo; lang would decide whether to delegate specific matters to wg-macros |
 
 ### `macro_rules!` attributes
 
-| Task                                   | Owner(s) or team(s) | Notes |
-|----------------------------------------|---------------------|-------|
-| Author/revise/iterate RFCs             | @joshtriplett       |       |
-| Prioritized nominations                | ![Team][] [lang]    |       |
-| RFC decision                           | ![Team][] [lang]    |       |
-| Implementation of RFC                  | @eholk, @vincenzopalazzo |  |
-| Iterate on design as needed            | @joshtriplett       |       |
-| Inside Rust blog post on attribute macros | @joshtriplett    |       |
-| Process feedback from crate authors    | @joshtriplett       |       |
-| Author stabilization report (if ready) | @joshtriplett       |       |
-| Stabilization decision                 | ![Team][] [lang]    |       |
+| Task                                      | Owner(s) or team(s)      | Notes |
+|-------------------------------------------|--------------------------|-------|
+| Author/revise/iterate RFCs                | @joshtriplett            |       |
+| Prioritized nominations                   | ![Team][] [lang]         |       |
+| RFC decision                              | ![Team][] [lang]         |       |
+| Implementation of RFC                     | @eholk, @vincenzopalazzo |       |
+| Iterate on design as needed               | @joshtriplett            |       |
+| Inside Rust blog post on attribute macros | @joshtriplett            |       |
+| Process feedback from crate authors       | @joshtriplett            |       |
+| Author stabilization report (if ready)    | @joshtriplett            |       |
+| Author specification 1st draft            | @joshtriplett            |       |
+| Finalize specification text               | ![Team][] [spec]         |       |
+| Stabilization decision                    | ![Team][] [lang]         |       |
 
 ### `macro_rules!` derives
 
-| Task                                   | Owner(s) or team(s) | Notes |
-|----------------------------------------|---------------------|-------|
-| Author/revise/iterate RFCs             | @joshtriplett       |       |
-| Prioritized nominations                | ![Team][] [lang]    |       |
-| RFC decision                           | ![Team][] [lang]    |       |
-| Implementation of RFC                  | @eholk, @vincenzopalazzo |  |
-| Iterate on design as needed            | @joshtriplett       |       |
-| Inside Rust blog post on derive macros | @joshtriplett       |       |
-| Process feedback from crate authors    | @joshtriplett       |       |
-| Author stabilization report (if ready) | @joshtriplett       |       |
-| Stabilization decision                 | ![Team][] [lang]    |       |
+| Task                                   | Owner(s) or team(s)      | Notes |
+|----------------------------------------|--------------------------|-------|
+| Author/revise/iterate RFCs             | @joshtriplett            |       |
+| Prioritized nominations                | ![Team][] [lang]         |       |
+| RFC decision                           | ![Team][] [lang]         |       |
+| Implementation of RFC                  | @eholk, @vincenzopalazzo |       |
+| Iterate on design as needed            | @joshtriplett            |       |
+| Inside Rust blog post on derive macros | @joshtriplett            |       |
+| Process feedback from crate authors    | @joshtriplett            |       |
+| Author stabilization report (if ready) | @joshtriplett            |       |
+| Author specification 1st draft         | @joshtriplett            |       |
+| Finalize specification text            | ![Team][] [spec]         |       |
+| Stabilization decision                 | ![Team][] [lang]         |       |
 
 ### Design and iteration for macro fragment fields
 
-| Task                                          | Owner(s) or team(s)          | Notes |
-|-----------------------------------------------|------------------------------|-------|
-| Author initial RFC                            | @joshtriplett                |       |
-| Design meeting                                | ![Team][] [lang]             |       |
-| RFC decision                                  | ![Team][] [lang]             |       |
-| Implementation of RFC                         | @eholk, @vincenzopalazzo     |       |
-| Iterate on design as needed                   | @joshtriplett                |       |
-| Inside Rust blog post on additional capabilities | @joshtriplett             |       |
-| Process feedback from crate authors           | @joshtriplett                |       |
-| Author stabilization report (if ready)        | @joshtriplett                |       |
-| Stabilization decision                        | ![Team][] [lang]             |       |
-| Support lang experiments for fragment fields  | @joshtriplett                |       |
-| Author small RFCs for further fragment fields | @joshtriplett                |       |
+| Task                                             | Owner(s) or team(s)      | Notes |
+|--------------------------------------------------|--------------------------|-------|
+| Author initial RFC                               | @joshtriplett            |       |
+| Design meeting                                   | ![Team][] [lang]         |       |
+| RFC decision                                     | ![Team][] [lang]         |       |
+| Implementation of RFC                            | @eholk, @vincenzopalazzo |       |
+| Iterate on design as needed                      | @joshtriplett            |       |
+| Inside Rust blog post on additional capabilities | @joshtriplett            |       |
+| Process feedback from crate authors              | @joshtriplett            |       |
+| Author stabilization report (if ready)           | @joshtriplett            |       |
+| Author specification 1st draft                   | @joshtriplett            |       |
+| Finalize specification text                      | ![Team][] [spec]         |       |
+| Stabilization decision                           | ![Team][] [lang]         |       |
+| Support lang experiments for fragment fields     | @joshtriplett            |       |
+| Author small RFCs for further fragment fields    | @joshtriplett            |       |
 
 ### Design for macro metavariable constructs
 
