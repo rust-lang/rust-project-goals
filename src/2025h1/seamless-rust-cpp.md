@@ -1,7 +1,7 @@
 # Evaluate approaches for seamless interop between C++ and Rust
 
 | Metadata         |                              |
-|------------------|------------------------------|
+|:-----------------|------------------------------|
 | Point of contact | @tmandry                     |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |

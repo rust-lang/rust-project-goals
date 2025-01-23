@@ -1,16 +1,17 @@
 # Stabilize tooling needed by Rust for Linux
 
 | Metadata         |                                    |
-|------------------|------------------------------------|
+|:-----------------|------------------------------------|
 | Short title      | Rust-for-Linux                     |
 | Point of contact | @nikomatsakis                      |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
+| Teams            | <!-- TEAMS WITH ASKS -->           |
+| Task owners      | <!-- TASK OWNERS -->               |
 | Status           | Proposed for flagship              |
 | Tracking issue   | [rust-lang/rust-project-goals#116] |
-| Zulip channel    | [#rust-for-linux][channel]               |
+| Zulip channel    | [#rust-for-linux][channel]         |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/425075-rust-for-linux/
+
 
 ## Summary
 

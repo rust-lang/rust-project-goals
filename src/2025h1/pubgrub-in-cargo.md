@@ -1,12 +1,13 @@
 # Extend pubgrub to match cargo's dependency resolution
 
-| Metadata         |                    |
-|------------------|--------------------|
-| Point of contact | @eh2406            |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
-| Status           | Proposed           |
-| Zulip channel    | N/A                |
+| Metadata         |                                    |
+|:-----------------|------------------------------------|
+| Point of contact | @eh2406                            |
+| Teams            | <!-- TEAMS WITH ASKS -->           |
+| Task owners      | <!-- TASK OWNERS -->               |
+| Status           | Proposed                           |
+| Tracking issue   | [rust-lang/rust-project-goals#110] |
+| Zulip channel    | N/A                                |
 
 
 ## Summary

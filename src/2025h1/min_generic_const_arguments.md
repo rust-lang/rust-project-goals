@@ -1,15 +1,16 @@
 # "Stabilizable" prototype for expanded const generics
 
-| Metadata       |                                    |
-| ---            | ---                                |
+| Metadata         |                                    |
+|:-----------------|------------------------------------|
 | Point of contact | @BoxyUwU                           |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
-| Status         | Proposed                           |
-| Tracking issue | [rust-lang/rust-project-goals#100] |
-| Zulip channel  | [#project-const-generics][channel] |
+| Teams            | <!-- TEAMS WITH ASKS -->           |
+| Task owners      | <!-- TASK OWNERS -->               |
+| Status           | Proposed                           |
+| Tracking issue   | [rust-lang/rust-project-goals#100] |
+| Zulip channel    | [#project-const-generics][channel] |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/260443-project-const-generics/
+
 
 ## Summary
 

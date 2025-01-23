@@ -2,13 +2,14 @@
 (a.k.a The Clippy Performance Project)
 
 | Metadata         |                                    |
-|------------------|------------------------------------|
+|:-----------------|------------------------------------|
 | Point of contact | @blyxyas                           |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
+| Teams            | <!-- TEAMS WITH ASKS -->           |
+| Task owners      | <!-- TASK OWNERS -->               |
 | Status           | Proposed                           |
 | Tracking issue   | [rust-lang/rust-project-goals#114] |
 | Zulip channel    | N/A                                |
+
 
 ## Summary
 

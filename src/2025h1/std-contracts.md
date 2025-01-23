@@ -1,12 +1,14 @@
 # Instrument the Rust standard library with safety contracts
 
-| Metadata         |                  |
-|------------------|------------------|
-| Point of contact | @celinval        |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
-| Status           | Proposed         |
-| Zulip channel    | N/A                |
+| Metadata         |                                    |
+|:-----------------|------------------------------------|
+| Point of contact | @celinval                          |
+| Teams            | <!-- TEAMS WITH ASKS -->           |
+| Task owners      | <!-- TASK OWNERS -->               |
+| Status           | Proposed                           |
+| Tracking issue   | [rust-lang/rust-project-goals#126] |
+| Zulip channel    | N/A                                |
+
 
 ## Summary
 
@@ -86,7 +88,7 @@ unless users opt-in for contract runtime checks.
 | Task                       | Owner(s) or team(s)    | Notes |
 |----------------------------|------------------------|-------|
 | Standard Library Contracts | @celinval, @tautschnig |       |
-| Writing new contracts      | Help wanted            |       |
+| Writing new contracts      | ![Help wanted][]       |       |
 | Standard reviews           | ![Team][] [libs]       |       |
 
 

@@ -1,7 +1,7 @@
 # Unsafe Fields
 
 | Metadata         |                      |
-|------------------|----------------------|
+|:-----------------|----------------------|
 | Point of contact | @jswrenn             |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |

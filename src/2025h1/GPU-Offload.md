@@ -1,10 +1,10 @@
 # Expose experimental LLVM features for GPU offloading
 
 | Metadata              |                                                  |
-|-----------------------|--------------------------------------------------|
-| Point of contact | @ZuseZ4                                          |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
+|:----------------------|--------------------------------------------------|
+| Point of contact      | @ZuseZ4                                          |
+| Teams                 | <!-- TEAMS WITH ASKS -->                         |
+| Task owners           | <!-- TASK OWNERS -->                             |
 | Status                | Proposed                                         |
 | Tracking issue        | [rust-lang/rust-project-goals#109]               |
 | Other tracking issues | [rust-lang/rust#124509], [rust-lang/rust#124509] |

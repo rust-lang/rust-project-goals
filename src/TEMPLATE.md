@@ -12,11 +12,12 @@
 > or **Proposed, Invited** (if you do not yet).
 
 | Metadata         |                                                                                  |
-|------------------|----------------------------------------------------------------------------------|
+|:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | *must be a single Github username like @ghost*                                   |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
+| Teams            | <!-- TEAMS WITH ASKS -->                                                         |
+| Task owners      | <!-- TASK OWNERS -->                                                             |
 | Status           | Proposed                                                                         |
+| Tracking issue   | *if this is a continuing goal, add the old tracking issue, else leave blank*     |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
 
 ## Summary

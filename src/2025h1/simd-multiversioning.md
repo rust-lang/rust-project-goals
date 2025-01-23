@@ -1,7 +1,7 @@
 # Nightly support for ergonomic SIMD multiversioning
 
 | Metadata         |                                   |
-|------------------|-----------------------------------|
+|:-----------------|-----------------------------------|
 | Point of contact | @veluca93                         |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |

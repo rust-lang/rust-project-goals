@@ -1,7 +1,7 @@
 # Field Projections
 
 | Metadata         |                            |
-|------------------|----------------------------|
+|:-----------------|----------------------------|
 | Point of contact | @y86-dev                   |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |

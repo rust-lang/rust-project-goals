@@ -1,7 +1,7 @@
 # Stabilize public/private dependencies
 
 | Metadata         |                         |
-|------------------|-------------------------|
+|:-----------------|-------------------------|
 | Point of contact | @epage                  |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |
