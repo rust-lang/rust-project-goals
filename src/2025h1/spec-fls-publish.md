@@ -1,7 +1,7 @@
 # Publish first rust-lang-owned release of "FLS"
 
 | Metadata         |                          |
-|------------------|--------------------------|
+|:-----------------|--------------------------|
 | Point of contact | @joelmarcey              |
 | Teams            | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS -->     |

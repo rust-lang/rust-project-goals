@@ -1,7 +1,7 @@
 # Prototype a new set of Cargo "plumbing" commands
 
 | Metadata         |                         |
-|------------------|-------------------------|
+|:-----------------|-------------------------|
 | Point of contact | @epage                  |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |

@@ -1,7 +1,7 @@
 # Externally Implementable Items
 
 | Metadata         |                    |
-|------------------|--------------------|
+|:-----------------|--------------------|
 | Point of contact | @m-ou-se           |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |

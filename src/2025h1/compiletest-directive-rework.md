@@ -1,7 +1,7 @@
 # Making compiletest more maintainable: reworking directive handling
 
 | Metadata         |                         |
-|------------------|-------------------------|
+|:-----------------|-------------------------|
 | Point of contact | @jieyouxu               |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |

@@ -1,7 +1,7 @@
 # Implement restrictions, prepare for stabilization
 
 | Metadata         |                   |
-|------------------|-------------------|
+|:-----------------|-------------------|
 | Point of contact | @jhpratt          |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |

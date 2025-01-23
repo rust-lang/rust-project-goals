@@ -1,7 +1,7 @@
 # Research: How to achieve safety when linking separately compiled code
 
 | Metadata         |                    |
-|------------------|--------------------|
+|:-----------------|--------------------|
 | Point of contact | @m-ou-se           |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |

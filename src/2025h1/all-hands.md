@@ -1,7 +1,7 @@
 # Organize Rust All-Hands 2025
 
 | Metadata         |                      |
-|------------------|----------------------|
+|:-----------------|----------------------|
 | Point of contact | @m-ou-se             |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |

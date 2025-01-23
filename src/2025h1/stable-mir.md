@@ -1,7 +1,7 @@
 # Publish first version of StableMIR on crates.io
 
 | Metadata         |                                |
-|------------------|--------------------------------|
+|:-----------------|--------------------------------|
 | Point of contact | @celinval                      |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |

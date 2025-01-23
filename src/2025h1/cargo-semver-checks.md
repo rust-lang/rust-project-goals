@@ -1,11 +1,12 @@
 # Continue resolving `cargo-semver-checks` blockers for merging into cargo
 
 | Metadata         |                                    |
-| ---              | ---                                |
+|:-----------------|------------------------------------|
 | Point of contact | @obi1kenobi                        |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
+| Teams            | <!-- TEAMS WITH ASKS -->           |
+| Task owners      | <!-- TASK OWNERS -->               |
 | Status           | Proposed                           |
+| Tracking issue   | [rust-lang/rust-project-goals#104] |
 | Zulip channel    | N/A                                |
 
 

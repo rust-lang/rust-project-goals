@@ -11,7 +11,7 @@
 -->
 
 | Metadata         |             |
-|------------------|-------------|
+|:-----------------|-------------|
 | Point of contact | @folkertdev |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |
