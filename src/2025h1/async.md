@@ -137,11 +137,13 @@ This section defines the specific work items that are planned and who is expecte
 
 ### Pin reborrowing
 
-| Task           | Owner(s) or team(s) | Notes |
-|----------------|---------------------|-------|
-| Implementation | @eholk              |       |
-| Author RFC     | @eholk              |       |
-| RFC decision   | ![Team][] [lang]    |       |
+| Task                           | Owner(s) or team(s) | Notes |
+|--------------------------------|---------------------|-------|
+| Implementation                 | @eholk              |       |
+| Author RFC                     | @eholk              |       |
+| RFC decision                   | ![Team][] [lang]    |       |
+| Author specification 1st draft | @eholk              |       |
+| Finalize specification text    | ![Team][] [spec]    |       |
 
 ### Safe pin projection
 
