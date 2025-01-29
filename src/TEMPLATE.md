@@ -67,7 +67,7 @@
 
 ### Design language feature to solve problem X
 
-> *Some goals propose to design a feature to solve a problem. Typically the outcome from this goal is an draft or accepted RFC. If you would like to work on an experimental implementation in-tree before an RFC is accepted, you can create a [lang team experiment](https://lang-team.rust-lang.org/how_to/experiment.html), but not that a trusted contributor is required.*
+> *Some goals propose to design a feature to solve a problem. Typically the outcome from this goal is an draft or accepted RFC. If you would like to work on an experimental implementation in-tree before an RFC is accepted, you can create a [lang team experiment](https://lang-team.rust-lang.org/how_to/experiment.html), but note that a trusted contributor is required.*
 
 | Task                 | Owner(s) or team(s)                | Notes                                                               |
 |----------------------|------------------------------------|---------------------------------------------------------------------|
