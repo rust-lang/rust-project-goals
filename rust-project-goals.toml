@@ -5,6 +5,7 @@
 "Discussion and moral support" = "approve of this direction and be prepared for light discussion on Zulip or elsewhere"
 "Design meeting" = "hold a synchronous meeting to review a proposal and provide feedback (no decision expected)"
 "Stabilization decision" = "reach a decision on a stabilization proposal"
+"Finalize specification text" = "assign a spec team liaison to finalize edits to Rust reference/specification"
 "Prioritized nominations" = "prioritize discussion and resolution of nominated issues"
 "Deploy to production" = "deploy code to production (e.g., on crates.io"
 "Standard reviews" = "review PRs (PRs are not expected to be unduly large or complicated)"

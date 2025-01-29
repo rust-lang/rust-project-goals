@@ -1,14 +1,14 @@
 ## Bring the Async Rust experience closer to parity with sync Rust
 
-| Metadata       |                                    |
-|----------------|------------------------------------|
-| Short title    | Async                              |
-| Point of contact | @tmandry            |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
-| Status         | Flagship                           |
-| Tracking issue | [rust-lang/rust-project-goals#105] |
-| Zulip channel  | [#wg-async][channel]               |
+| Metadata         |                                    |
+|------------------|------------------------------------|
+| Short title      | Async                              |
+| Point of contact | @tmandry                           |
+| Teams            | <!-- TEAMS WITH ASKS -->           |
+| Task owners      | <!-- TASK OWNERS -->               |
+| Status           | Flagship                           |
+| Tracking issue   | [rust-lang/rust-project-goals#105] |
+| Zulip channel    | [#wg-async][channel]               |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/187312-wg-async/
 
@@ -187,12 +187,12 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 
 ### "Send bound" problem
 
-| Task                   | Owner(s) or team(s)  | Notes         |
-|------------------------|----------------------|---------------|
-| ~~Implementation~~     | ~~@compiler-errors~~ | ![Complete][] |
-| ~~Author RFC~~         | @nikomatsakis        | ![Complete][] |
-| RFC decision           | ![Team][] [lang]     | ![Complete][] |
-| Stabilization decision | ![Team][] [lang]     |               |
+| Task                           | Owner(s) or team(s)  | Notes         |
+|--------------------------------|----------------------|---------------|
+| ~~Implementation~~             | ~~@compiler-errors~~ | ![Complete][] |
+| ~~Author RFC~~                 | @nikomatsakis        | ![Complete][] |
+| RFC decision                   | ![Team][] [lang]     | ![Complete][] |
+| Stabilization decision         | ![Team][] [lang]     |               |
 
 ### Async WG reorganization
 

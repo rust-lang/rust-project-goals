@@ -54,6 +54,8 @@
 
 > *This section lists out the work to be done and the asks from Rust teams. Every row in the table should either correspond to something done by a contributor or something asked of a team.*
 >
+> *For most goals, a single table will suffice, but you can also add subsections with `###`. We give several example subsections below that also demonstrate the most common kinds of goals. Remember that the items in the table only corresponds to what you plan to do over the next 6 months.*
+>
 > *For items done by a contributor, list the contributor, or ![Heap wanted][] if you don't yet know who will do it. The owner is ideally identified as a github username like `@ghost`.*
 >
 > *For items asked of teams, list ![Team][] and the name of the team, e.g. `![Team][] [compiler]` or `![Team][] [compiler], [lang]` (note the trailing `[]` in `![Team][]`, that is needed for markdown to parse correctly). For team asks, the "task" must be one of the tasks defined in [rust-project-goals.toml](../rust-project-goals.toml) or `cargo rpg check` will error.*
@@ -63,21 +65,49 @@
 | Discussion and moral support | ![Team][] [cargo]   |       |
 | Do the work                  | *owner*             |       |
 
-### Stabilize feature X
+### Design language feature to solve problem X
 
-> *If you have a complex goal, you can include subsections for different parts of it, each with their own table. Must goals do not need this and can make do with a single table. The table in this section also lists the full range of "asks" for a typical language feature; feel free to copy some subset of them into your main table if you are primarily proposing a single feature (note that most features don't need all the entries below).*
+> *Some goals propose to design a feature to solve a problem. Typically the outcome from this goal is an draft or accepted RFC. If you would like to work on an experimental implementation in-tree before an RFC is accepted, you can create a [lang team experiment](https://lang-team.rust-lang.org/how_to/experiment.html), but note that a trusted contributor is required.*
 
-| Task                        | Owner(s) or team(s)                | Notes                                                         |
-|-----------------------------|------------------------------------|---------------------------------------------------------------|
-| Lang-team experiment        | ![Team][] [lang]                   | allows coding pre-RFC; only for trusted contributors          |
-| Author RFC                  | *Goal point of contact, typically* |                                                               |
-| Implementation              | *Goal point of contact, typically* |                                                               |
-| Standard reviews            | ![Team][] [compiler]               |                                                               |
-| Design meeting              | ![Team][] [lang]                   |                                                               |
-| RFC decision                | ![Team][] [lang]                   |                                                               |
-| Secondary RFC review        | ![Team][] [lang]                   | most features don't need this                                 |
-| Author stabilization report | *Goal point of contact, typically* |                                                               |
-| Stabilization decision      | ![Team][] [lang]                   | it's rare to author rfc, implement, AND stabilize in 6 months |
+| Task                 | Owner(s) or team(s)                | Notes                                                               |
+|----------------------|------------------------------------|---------------------------------------------------------------------|
+| Lang-team experiment | ![Team][] [lang]                   | allows coding pre-RFC; only for trusted contributors                |
+| Author RFC           | *Goal point of contact, typically* |                                                                     |
+| Design meeting       | ![Team][] [lang]                   |                                                                     |
+| RFC decision         | ![Team][] [lang]                   |                                                                     |
+| Secondary RFC review | ![Team][] [types]                  | request bandwidth from a second team, most features don't need this |
+
+### Implement language feature X
+
+> *If there is an accepted RFC, or you are doing a [lang-team experiment](https://lang-team.rust-lang.org/how_to/experiment.html), you commonly need someone to write the code, support from the compiler to review your PRs, and possibly lang-team design meetings to review interesting design questions. Once implementation completes we recommend a call for testing blog post.*
+
+| Task                              | Owner(s) or team(s)                | Notes |
+|-----------------------------------|------------------------------------|-------|
+| Implementation                    | *Goal point of contact, typically* |       |
+| Standard reviews                  | ![Team][] [compiler]               |       |
+| Design meeting                    | ![Team][] [lang]                   |       |
+| Author call for testing blog post | *Goal point of contact, typically* |       |
+
+### Stabilize language feature X
+
+> *If the feature has been RFC'd and implemented and experiences are positive, [stabilization](https://rustc-dev-guide.rust-lang.org/stabilization_guide.html) may be the right next step. In this case, you will need to author a first draft of text for the Rust reference and make a Team Ask to request someone from the the spec team to adapt that text for final inclusion. You will also need to author a stabilization report.
+
+| Task                           | Owner(s) or team(s)                | Notes |
+|--------------------------------|------------------------------------|-------|
+| Author specification 1st draft | *Goal point of contact, typically* |       |
+| Finalize specification text    | ![Team][] [spec]                   |       |
+| Author stabilization report    | *Goal point of contact, typically* |       |
+| Author stabilization PR        | *Goal point of contact, typically* |       |
+| Stabilization decision         | ![Team][] [lang]                   |       |
+
+### Stabilize library feature
+
+> *Standard library features follow the [libs-api stabilization process](https://rustc-dev-guide.rust-lang.org/stability.html#stabilizing-a-library-feature). 
+
+| Task                           | Owner(s) or team(s)                | Notes |
+|--------------------------------|------------------------------------|-------|
+| Author stabilization PR        | *Goal point of contact, typically* |       |
+| Stabilization decision         | ![Team][] [libs-api]               |       |
 
 ### Definitions
 
