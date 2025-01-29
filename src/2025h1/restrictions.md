@@ -50,7 +50,7 @@ high level, but are not the focus of this project goal.
 | Prioritized nominations                 | ![Team][] [lang]     | for unresolved questions, including syntax |
 | Author stabilization report             | @jhpratt             |                                            |
 | Author specification 1st draft          | @jhpratt             |                                            |
-| Finalize specification text             | ![Team][] [spec]     |                                            |
+| Finalize specification text             | ![Team][] [spec]     | @nikomatsakis                              |
 | Stabilization decision                  | ![Team][] [lang]     |                                            |
 | Inside Rust blog post inviting feedback | @jhpratt             | feedback on syntax if no team consensus    |
 

@@ -86,7 +86,7 @@ The design of `unsafe` fields is guided by three axioms:
 | Design meeting                 | ![Team][] [lang]     |                                |
 | RFC decision                   | ![Team][] [lang]     |                                |
 | Author specification 1st draft | @jswrenn             |                                |
-| Finalize specification text    | ![Team][] [spec]     |                                |
+| Finalize specification text    | ![Team][] [spec]     | @ehuss                       |
 | Author stabilization report    | @jswrenn             |                                |
 
 [Zulip]: https://rust-lang.zulipchat.com/#narrow/channel/213817-t-lang/topic/unsafe.20fields.20RFC

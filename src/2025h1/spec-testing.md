@@ -5,7 +5,7 @@
 | Point of contact | @chorman0773       |
 | Teams | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS --> |
-| Status           | Proposed           |
+| Status           | Not accepted           |
 | Zulip channel    | [#t-spec][channel] |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/399173-t-spec

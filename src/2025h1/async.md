@@ -108,7 +108,7 @@ This section defines the specific work items that are planned and who is expecte
 | Finished implementation        | @compiler-errors                                   | ![Complete][] |
 | Standard reviews               | ![Team][] [types], [compiler]                      |               |
 | Author specification 1st draft | TBD (@compiler-errors, @tmandry, or @nikomatsakis) |               |
-| Finalize specification text    | ![Team][] [spec]                                   |               |
+| Finalize specification text    | ![Team][] [spec]                                   | nikomatsakis  |
 | Stabilization decision         | ![Team][] [lang]                                   |               |
 
 ### Unsafe binders
@@ -142,8 +142,6 @@ This section defines the specific work items that are planned and who is expecte
 | Implementation                 | @eholk              |       |
 | Author RFC                     | @eholk              |       |
 | RFC decision                   | ![Team][] [lang]    |       |
-| Author specification 1st draft | @eholk              |       |
-| Finalize specification text    | ![Team][] [spec]    |       |
 
 ### Safe pin projection
 
