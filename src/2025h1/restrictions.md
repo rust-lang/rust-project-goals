@@ -1,12 +1,12 @@
 # Implement restrictions, prepare for stabilization
 
-| Metadata         |                   |
-|:-----------------|-------------------|
-| Point of contact | @jhpratt          |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
-| Status           | Proposed          |
-| Zulip channel    | N/A               |
+| Metadata         |                          |
+|:-----------------|--------------------------|
+| Point of contact | @jhpratt                 |
+| Teams            | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS -->     |
+| Status           | Proposed                 |
+| Zulip channel    | N/A                      |
 
 [rfc]: https://rust-lang.github.io/rfcs/3323-restrictions.html
 [pr]: https://github.com/rust-lang/rust/pull/106074
@@ -49,6 +49,8 @@ high level, but are not the focus of this project goal.
 | Standard reviews                        | ![Team][] [compiler] |                                            |
 | Prioritized nominations                 | ![Team][] [lang]     | for unresolved questions, including syntax |
 | Author stabilization report             | @jhpratt             |                                            |
+| Author specification 1st draft          | @jhpratt             |                                            |
+| Finalize specification text             | ![Team][] [spec]     | @nikomatsakis                              |
 | Stabilization decision                  | ![Team][] [lang]     |                                            |
 | Inside Rust blog post inviting feedback | @jhpratt             | feedback on syntax if no team consensus    |
 
