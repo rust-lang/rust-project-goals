@@ -109,7 +109,7 @@ This section defines the specific work items that are planned and who is expecte
 | Standard reviews               | ![Team][] [types], [compiler]                      |               |
 | Author stabilization report    | @compiler-errors                                   |               |
 | Author specification 1st draft | TBD (@compiler-errors, @tmandry, or @nikomatsakis) |               |
-| Finalize specification text    | ![Team][] [spec]                                   | nikomatsakis  |
+| Finalize specification text    | ![Team][] [spec]                                   | @nikomatsakis  |
 | Stabilization decision         | ![Team][] [lang], [types]                          |               |
 
 ### Unsafe binders
