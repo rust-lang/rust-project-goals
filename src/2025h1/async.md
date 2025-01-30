@@ -143,7 +143,7 @@ This section defines the specific work items that are planned and who is expecte
 | Implementation   | @eholk              |       |
 | Author RFC       | @eholk              |       |
 | RFC decision     | ![Team][] [lang]    |       |
-| Secondary review | ![Team][] [types]   |       |
+| RFC secondary review | ![Team][] [types]   |       |
 
 ### Safe pin projection
 
