@@ -54,10 +54,10 @@ Some subgoals list an expected due/completion date. If one is omitted, compeleti
 
 | Task                               | Owner(s) or team(s)            | Notes                           |
 |------------------------------------|--------------------------------|---------------------------------|
-| Discussion and moral support       | ![Team][] [release][] [spec][] |                                 |
-| Copyright cleanup and assignment   | @JoelMarcey                    | End of January 2025             |
+| Discussion and moral support       | ![Team][] [spec][]             |                                 |
+| Copyright cleanup and assignment   | @JoelMarcey                    | End of February 2025            |
 | Adjust tooling, as needed          | @JoelMarcey                    | Joel to find appropriate person |
-| Standard reviews                   | ![Team][] [release][]          | For the tooling integration     |
+| Standard reviews                   | ![Team][] [bootstrap][]        | For any tooling integration     |
 | Continued updates for new releases | Ferrous Systems                |                                 |
 
 ## Frequently asked questions
