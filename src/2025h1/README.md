@@ -1,8 +1,23 @@
-> *![Status: Accepting goal proposals](https://img.shields.io/badge/Status-Accepting%20goal%20proposals-yellow) We are in the process of assembling the goal slate.*
+> *![Status: RFC pending](https://img.shields.io/badge/Status-RFC%20pending-yellow) This set of goals has proposed as [RFC #3764](https://github.com/rust-lang/rfcs/pull/3764) on the Rust RFC repository.*
 
 ## Summary
 
-This is a draft for the eventual RFC proposing the 2025H1 goals.
+Propose a slate of <!-- #GOALS --> project goals for 2025H1, including 3 flagship goals:
+
+* Continue making Rust easier to use for network systems by [**bringing the Async Rust experience closer to parity with sync Rust**](./async.md). In 2025H1 we plan to:
+    * tell a complete story for the use of async fn in traits, unblocking wide ecosystem adoption;
+    * improve the ergonomics of `Pin`, which is frequently used in low-level async code; and
+    * prepare to support asynchronous (and synchronous) generators in the language.
+* Continue helping Rust support low-level projects by [**stabilizing compiler options and tooling used by the Rust-for-Linux project**](./rfl.md). In 2025H1 we plan to:
+    * implement [RFC #3716] to allow stabilizing ABI-modifying compiler flags to control code generation, sanitizer integration, and so forth;
+    * taking the first step towards stabilizing [`build-std`](https://rust-lang.github.io/rust-project-goals/2025h1/https://doc.rust-lang.org/cargo/reference/unstable.html#build-std) by [creating a stable way to rebuild core with specific compiler options](./build-std.html);
+    * add rustdoc features to extract and customize rustdoc tests (`--extract-doctests`);
+    * stabilize clippy configuration like `.clippy.toml` and `CLIPPY_CONF_DIR`;
+    * stabilize compiler flags to extract dependency info (e.g., as via `-Zbinary-dep-depinfo=y`) and to configure no-std without requiring it in the source file (e.g., as via `-Zcrate-attr`);
+* Address the biggest concerns raised by Rust maintainers, lack of face-to-face interaction, by [**organizing the Rust All-Hands 2025**](./all-hands.md). In 2025H1 we plan to:
+    * convene Rust maintainers to celebrate Rust's tenth birthday at [RustWeek 2025](https://2025.rustweek.org) (co-organized with [RustNL](https://2025.rustweek.org/about/);
+    * author a first draft for a [Rust vision doc](./rust-vision-doc.md) and gather feedback.
+
 
 ## Motivation
 
