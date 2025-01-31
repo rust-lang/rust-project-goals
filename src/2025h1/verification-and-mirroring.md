@@ -1,12 +1,12 @@
 # Secure quorum-based cryptographic verification and mirroring for crates.io
 
-| Metadata         |                         |
-|:-----------------|-------------------------|
-| Point of contact | @walterhpearce          |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
-| Status           | Proposed                |
-| Zulip channel    | N/A                     |
+| Metadata         |                          |
+|:-----------------|--------------------------|
+| Point of contact | @walterhpearce           |
+| Teams            | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS -->     |
+| Status           | Proposed                 |
+| Zulip channel    | N/A                      |
 
 ## Summary
 
@@ -28,7 +28,7 @@ Finally, supply chain security is a growing concern, particularly among corporat
 
 ### The next 6 months
 
-We would like to have a working production signing pipeline for all crates published to crates.io, which can be verified back to the Rust Project. The leadership council will have selected a trusted root quorum for the project, and that quorum will have completed their first signing ceremony. Crates.io will have integrated automatic signing of published crates into their pipeline and the signatures will be included in the index. Finally, we'll provide some method for end users to verify these signatures (ideally in cargo, but at a minimum as a cargo subcommand for proof-of-concept). We'll use that infrastructure to demonstrate how a mirror could function.
+We would like to have a working production signing pipeline for all crates published to crates.io, which can be verified back to the Rust Project. There will be a system for selecting a trusted root quorum for the project (endorsed by the leadership council), and that quorum will have completed their first signing ceremony. Crates.io will have integrated automatic signing of published crates into their pipeline and the signatures will be included in the index. Finally, we'll provide some method for end users to verify these signatures (ideally in cargo, but at a minimum as a cargo subcommand for proof-of-concept). We'll use that infrastructure to demonstrate how a mirror could function.
 
 ### The "shiny future" we are working towards
 
@@ -51,13 +51,13 @@ We'll add support for similar cryptographic security for third-party crate repos
 
 ### Quorum-based cryptographic infrastructure (RFC 3724)
 
-| Task                                  | Owner(s) or team(s)                   | Notes              |
-|---------------------------------------|---------------------------------------|--------------------|
-| Further revisions to RFC              | @walterhpearce                        |                    |
-| RFC decision                          | ![Team][] [cargo] [crates-io] [infra] |                    |
-| Implementation and staging deployment | @walterhpearce, [crates-io], [infra]  |                    |
-| Miscellaneous                         | ![Team][] [leadership-council]        | Select root quorum |
-| Deploy to production                  | ![Team][] [crates-io] [infra]         |                    |
+| Task                                  | Owner(s) or team(s)                     | Notes                                                                                                                       |
+|---------------------------------------|-----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| Further revisions to RFC              | @walterhpearce                          |                                                                                                                             |
+| RFC decision                          | ![Team][] [cargo], [crates-io], [infra] |                                                                                                                             |
+| RFC secondary review                  | ![Team][] [leadership-council]          | Specifically: advise on the best way to select the root quorum, simulacrum to serve as leadership council liaison if needed |
+| Implementation and staging deployment | @walterhpearce, [crates-io], [infra]    |                                                                                                                             |
+| Deploy to production                  | ![Team][] [crates-io], [infra]          |                                                                                                                             |
 
 ### Draft RFC for mirroring crates.io via alternate repositories
 
