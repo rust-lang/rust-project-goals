@@ -19,7 +19,7 @@ Rust has seen broad and growing adoption across the software industry. This has 
 We should aim to spread the benefits of Rust and its underlying ideas as far as possible across our industry and its users. While the current uptake of Rust is encouraging, it is limited today to areas where Rust adoption is relatively easy. There exists a large portion of production code in use today that cannot feasibly adopt Rust, and it is time we looked seriously at what it would take to change that.
 
 [cra]: https://digital-strategy.ec.europa.eu/en/library/cyber-resilience-act
-[wh]: https://www.whitehouse.gov/oncd/briefing-room/2024/02/26/press-release-technical-report/
+[wh]: https://bidenwhitehouse.archives.gov/oncd/briefing-room/2024/02/26/press-release-technical-report/
 
 ### The status quo
 
