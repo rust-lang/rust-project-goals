@@ -87,23 +87,23 @@ The project choosing to adopt this strategy and infrastructure will require ongo
 
 | Task                                              | Owner(s) or team(s) | Notes |
 |---------------------------------------------------|---------------------|-------|
-| Inside Rust blog post about proof-of-concept deployment    | @walterhpearce      |       |
-| Series of documents (RFC components or Inside Rust blog posts) | @walterhpearce      |       |
-| 1 hour synchronously discussing the threat models, policy, and quorum mechanism    |![Team][] [leadership-council]      | The ask from the Leadership Council is not a detailed exploration of *how* we address these threat models; rather, this will be a presentation of the threat models and a policy decision that the project cares about those threat models, along with the specific explanation of why a quorum is desirable to address those threat models.      |
-| 1 hour Overall Design and threat model | ![Team][] [cargo]      |       |
-| 1 hour General design/implementation for index verification | ![Team][] [cargo]      |       |
-| 1 hour Design for novel incremental download mechanism for bandwidth conservation | ![Team][] [cargo]      |       |
-| 1 hour Overall Design, threat model, and discussion of key management and quorums    | ![Team][] [crates-io]      |       |
-| 1 hour General design/implementation for automated index signing.    | ![Team][] [crates-io]      |       |
-| 3 hours of design and threat model discussion    | ![Team][] [infra]      |   Specific production infrastructure setup will come at a later time after the initial proof of concept.    |
-| Asynchronous discussion of the release team's role in the chain of trust, and preliminary approval of an experimental proof of concept    | ![Team][] [release]      |    Approximately ~1 hour of total time across the 6-month period   |
+| Inside Rust blog post about proof-of-concept | @walterhpearce      |       |
+| Series of documents (RFC components or Inside Rust blog posts) | @walterhpearce, @joshtriplett     |       |
+| Policy decision | ![Team][] [leadership-council]      | 1 hour synchronously discussing the threat models, policy, and quorum mechanism. Note: The ask from the Leadership Council is not a detailed exploration of *how* we address these threat models; rather, this will be a presentation of the threat models and a policy decision that the project cares about those threat models, along with the specific explanation of why a quorum is desirable to address those threat models.      |
+| Design meeting | ![Team][] [cargo]      | 1 hour Overall Design and threat model |
+| Design meeting | ![Team][] [cargo]      | 1 hour General design/implementation for index verification |
+| Dedicated reviewer | ![Team][] [cargo]      | 1 hour Design for novel incremental download mechanism for bandwidth conservation |
+| Design meeting | ![Team][] [crates-io]      | 1 hour Overall Design, threat model, and discussion of key management and quorums |
+| Design meeting | ![Team][] [crates-io]      | 1 hour General design/implementation for automated index signing |
+| Design meeting | ![Team][] [infra]      | 3 hours of design and threat model discussion. Specific production infrastructure setup will come at a later time after the initial proof of concept. |
+| Discussion and moral support | ![Team][] [release]      | Asynchronous discussion of the release team's role in the chain of trust, and preliminary approval of an experimental proof of concept. Approximately ~1 hour of total time across the 6-month period. |
 
 ### Quorum-based cryptographic infrastructure (RFC 3724)
 
 | Task                                  | Owner(s) or team(s)                     | Notes                                                                                                                       |
 |---------------------------------------|-----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
 | Further revisions to RFC              | @walterhpearce, @joshtriplett           |                                                                                                                             |
-| RFC iteration and consensus           | ![Team][] [cargo], [crates-io], [infra] | We expect the specific team asks above to feed into a consensus of a final version of the RFC by the end of this goal cycle |
+| FCP decision(s) | ![Team][] [cargo], [crates-io], [infra] | We intend for the specific team asks above to feed into a consensus of a final version of the RFC by the end of this goal cycle |
 | Implementation and proof-of-concept deployment | @walterhpearce    |                                                                                                                             |
 
 ### Definitions
