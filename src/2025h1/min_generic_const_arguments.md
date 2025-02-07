@@ -73,7 +73,7 @@ This section defines the specific work items that are planned and who is expecte
 
 | Task                         | Owner(s) or team(s)       | Notes |
 | ---------------------------- | ------------------------- | ----- |
-| Discussion and moral support | ![Team][] [lang] [types]  |       |
+| Discussion and moral support | ![Team][] [lang], [types] |       |
 | Implementation and mentoring | @BoxyUwu                  |       |
 | Implementation               | @camelid @compiler-errors |       |
 | Reviewer                     | @compiler-errors          |       |
