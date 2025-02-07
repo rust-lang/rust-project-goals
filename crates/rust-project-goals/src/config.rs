@@ -1,11 +1,23 @@
-use std::{collections::BTreeMap, path::PathBuf};
+use std::path::PathBuf;
 
 use anyhow::Context;
+use indexmap::IndexMap;
 use serde::Deserialize;
 
 #[derive(Deserialize)]
 pub struct Configuration {
-    pub team_asks: BTreeMap<String, String>,
+    /// Defines the valid "asks" of teams. The key is the ask, the value is an extended description.
+    /// IndexMap is used to preserve the ordering as defined in the TOML file.
+    pub team_asks: IndexMap<String, TeamAskDetails>,
+}
+
+#[derive(Deserialize)]
+pub struct TeamAskDetails {
+    /// A short descriptor of the team ask suitable for inclusion in a table
+    pub short: String,
+
+    /// Longer description
+    pub about: String,
 }
 
 impl Configuration {

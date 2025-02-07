@@ -21,6 +21,7 @@
 - [Flagship goals](./about/flagship_goals.md)
 - [Invited goals](./about/invited_goals.md)
 - [Point of contact](./about/poc.md)
+- [Team asks](./about/team_asks.md)
 - [Task owners](./about/owners.md)
 - [Design axioms](./about/design_axioms.md)
 - [RFC](./rfc.md)

@@ -1,4 +1,3 @@
-use std::fmt::Write;
 use std::path::Path;
 use std::sync::Arc;
 use std::{collections::BTreeSet, path::PathBuf};
@@ -6,12 +5,12 @@ use std::{collections::BTreeSet, path::PathBuf};
 use anyhow::{bail, Context};
 use regex::Regex;
 
-use crate::config::Configuration;
+use crate::config::{Configuration, TeamAskDetails};
 use crate::gh::issue_id::{IssueId, Repository};
 use crate::markwaydown::{self, Section, Table};
 use crate::re::{self, TASK_OWNERS_STR, TEAMS_WITH_ASKS_STR};
 use crate::team::{self, TeamName};
-use crate::util::{self, commas, markdown_files, ARROW};
+use crate::util::{self, commas, markdown_files};
 
 /// Data parsed from a goal file in the expected format
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
@@ -90,8 +89,8 @@ pub struct TeamAsk {
     /// What the team is being asked for (e.g., RFC decision)
     pub ask_description: String,
 
-    /// Title of the subgoal (or goal, if there are no subgoals)
-    pub subgoal_title: String,
+    /// Title(s) of the goal. The first element is the title of the goal. The second, if present, is the subgoal.
+    pub goal_titles: Vec<String>,
 
     /// Name(s) of the teams being asked to do the thing
     pub teams: Vec<&'static TeamName>,
@@ -136,12 +135,12 @@ impl GoalDocument {
 
         let mut team_asks = vec![];
         for goal_plan in &goal_plans {
-            let goal_title = goal_plan
-                .subgoal
-                .as_deref()
-                .unwrap_or(&metadata.short_title);
+            let mut goal_titles = vec![metadata.short_title.clone()];
+            if let Some(subgoal) = &goal_plan.subgoal {
+                goal_titles.push(subgoal.clone());
+            }
             for plan_item in &goal_plan.plan_items {
-                team_asks.extend(plan_item.team_asks(&link_path, goal_title, &metadata.pocs)?);
+                team_asks.extend(plan_item.team_asks(&link_path, &goal_titles, &metadata.pocs)?);
             }
         }
 
@@ -198,66 +197,6 @@ impl GoalDocument {
             self.metadata.pocs.clone()
         }
     }
-}
-
-/// Format a set of team asks into a table, with asks separated by team and grouped by kind.
-pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> anyhow::Result<String> {
-    let mut output = String::new();
-
-    let all_teams: BTreeSet<&TeamName> = asks_of_any_team
-        .iter()
-        .flat_map(|a| &a.teams)
-        .copied()
-        .collect();
-
-    for team_name in all_teams {
-        let asks_of_this_team: Vec<_> = asks_of_any_team
-            .iter()
-            .filter(|a| a.teams.contains(&team_name))
-            .collect();
-
-        let team_data = team_name.data();
-        write!(output, "\n### {} team\n", team_data.name)?;
-
-        let subgoals: BTreeSet<&String> = asks_of_this_team
-            .iter()
-            .map(|a| &a.ask_description)
-            .collect();
-
-        let mut table = vec![vec![
-            "Goal".to_string(),
-            "Point of contact".to_string(),
-            "Notes".to_string(),
-        ]];
-
-        for subgoal in subgoals {
-            table.push(vec![
-                format!("**{}**", subgoal),
-                "".to_string(),
-                "".to_string(),
-            ]);
-
-            for ask in asks_of_this_team
-                .iter()
-                .filter(|a| a.ask_description == *subgoal)
-            {
-                table.push(vec![
-                    format!(
-                        "{} [{}]({}#ownership-and-team-asks)",
-                        ARROW,
-                        ask.subgoal_title,
-                        ask.link_path.display()
-                    ),
-                    ask.owners.to_string(),
-                    ask.notes.to_string(),
-                ]);
-            }
-        }
-
-        write!(output, "{}", util::format_table(&table))?;
-    }
-
-    Ok(output)
 }
 
 pub fn format_goal_table(goals: &[&GoalDocument]) -> anyhow::Result<String> {
@@ -666,7 +605,7 @@ impl PlanItem {
     fn team_asks(
         &self,
         link_path: &Arc<PathBuf>,
-        goal_title: &str,
+        goal_titles: &Vec<String>,
         goal_owners: &str,
     ) -> anyhow::Result<Vec<TeamAsk>> {
         let mut asks = vec![];
@@ -681,8 +620,8 @@ impl PlanItem {
                     config
                         .team_asks
                         .iter()
-                        .map(|(ask, explanation)| {
-                            format!("* {ask:?}, meaning team should {explanation}")
+                        .map(|(ask, TeamAskDetails { about, .. })| {
+                            format!("* {ask:?}, meaning team should {about}")
                         })
                         .collect::<Vec<_>>()
                         .join("\n"),
@@ -692,7 +631,7 @@ impl PlanItem {
             asks.push(TeamAsk {
                 link_path: link_path.clone(),
                 ask_description: self.text.clone(),
-                subgoal_title: goal_title.to_string(),
+                goal_titles: goal_titles.clone(),
                 teams,
                 owners: goal_owners.to_string(),
                 notes: self.notes.clone(),

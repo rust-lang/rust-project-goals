@@ -139,7 +139,6 @@ could reserve such syntax in all editions.
 | Task                                      | Owner(s) or team(s)      | Notes    |
 |-------------------------------------------|--------------------------|----------|
 | Author/revise/iterate RFCs                | @joshtriplett            |          |
-| Prioritized nominations                   | ![Team][] [lang]         |          |
 | RFC decision                              | ![Team][] [lang]         |          |
 | Implementation of RFC                     | @eholk, @vincenzopalazzo |          |
 | Iterate on design as needed               | @joshtriplett            |          |
@@ -155,7 +154,6 @@ could reserve such syntax in all editions.
 | Task                                   | Owner(s) or team(s)      | Notes    |
 |----------------------------------------|--------------------------|----------|
 | Author/revise/iterate RFCs             | @joshtriplett            |          |
-| Prioritized nominations                | ![Team][] [lang]         |          |
 | RFC decision                           | ![Team][] [lang]         |          |
 | Implementation of RFC                  | @eholk, @vincenzopalazzo |          |
 | Iterate on design as needed            | @joshtriplett            |          |

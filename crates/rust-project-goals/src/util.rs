@@ -42,7 +42,7 @@ pub fn format_table(rows: &[Vec<String>]) -> String {
         if row == 0 {
             for width in widths.iter() {
                 output.push('|');
-                write!(output, " {text:<width$} ", text = "---", width = width).unwrap();
+                write!(output, " {text:<width$} ", text = ":--", width = width).unwrap();
             }
             output.push('|');
             output.push('\n');

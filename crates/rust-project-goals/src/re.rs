@@ -43,6 +43,10 @@ lazy_static! {
 }
 
 lazy_static! {
+    pub static ref VALID_TEAM_ASKS: Regex = Regex::new(r"<!-- VALID TEAM ASKS -->").unwrap();
+}
+
+lazy_static! {
     /// Github username.
     ///
     /// According to [this random page I found with a google search](https://github.com/GrantBirki/github-username-regex-js):
