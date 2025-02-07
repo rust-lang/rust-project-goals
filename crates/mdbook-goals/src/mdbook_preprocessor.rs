@@ -8,10 +8,12 @@ use mdbook::book::{Book, Chapter};
 use mdbook::preprocess::{Preprocessor, PreprocessorContext};
 use mdbook::BookItem;
 use regex::{Captures, Regex};
-use rust_project_goals::util::GithubUserInfo;
+use rust_project_goals::config::Configuration;
+use rust_project_goals::format_team_ask::format_team_asks;
+use rust_project_goals::util::{self, GithubUserInfo};
 
 use rust_project_goals::{
-    goal::{self, format_team_asks, GoalDocument, Status, TeamAsk},
+    goal::{self, GoalDocument, Status, TeamAsk},
     re, team,
 };
 
@@ -129,6 +131,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             BookItem::Chapter(chapter) => {
                 self.replace_metadata_placeholders(chapter)?;
                 self.replace_team_asks(chapter)?;
+                self.replace_valid_team_asks(chapter)?;
                 self.replace_goal_lists(chapter)?;
                 self.replace_goal_count(chapter)?;
                 self.link_teams(chapter)?;
@@ -261,10 +264,30 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         Ok(())
     }
 
+    /// Look for `<!-- TEAM ASKS -->` in the chapter content and replace it with the team asks.
+    fn replace_valid_team_asks(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        if !re::VALID_TEAM_ASKS.is_match(&chapter.content) {
+            return Ok(());
+        }
+        let config = Configuration::get();
+        let rows = std::iter::once(vec!["Ask".to_string(), "aka".to_string(), "Description".to_string()])
+            .chain(config.team_asks.iter().map(|(name, details)| {
+                vec![
+                    format!("{name:?}"),
+                    details.short.to_string(),
+                    details.about.to_string(),
+                ]
+            }))
+            .collect::<Vec<Vec<String>>>();
+        let table = util::format_table(&rows);
+        let new_content = re::VALID_TEAM_ASKS.replace_all(&chapter.content, table);
+        chapter.content = new_content.to_string();
+        Ok(())
+    }
+
     /// Find the goal documents for the milestone in which this `chapter_path` resides.
     /// e.g., if invoked with `2024h2/xxx.md`, will find all goal documents in `2024h2`.
     fn goal_documents(&mut self, chapter_path: &Path) -> anyhow::Result<Arc<Vec<GoalDocument>>> {
-
         let Some(milestone_path) = chapter_path.parent() else {
             anyhow::bail!("cannot get goal documents from `{chapter_path:?}`")
         };

@@ -93,7 +93,9 @@ The full slate of project goals are as follows. These goals all have identified 
 [reference-level-explanation]: #reference-level-explanation
 
 The following table highlights the asks from each affected team.
-The "owner" in the column is the person expecting to do the design/implementation work that the team will be approving.
+The rows are goals and columns are [asks being made of the team][valid_team_asks].
+The contents of each cell may contain extra notes (or sometimes footnotes) with more details.
+Teams often use these notes to indicate the person on the team signed up to do the work, for example.
 
 <!-- TEAM ASKS -->
 
@@ -130,5 +132,21 @@ Definitions for terms used above:
 [YKR]: ./yank-crates-with-a-reason.md
 [SC]: ./Rust-for-SciComp.md
 [OC]: ./optimize-clippy.md
+
+# Frequently asked questions
+
+## What goals were not accepted?
+
+The following goals were proposed but ultimately not accepted, either for want of resources or consensus. In some cases narrower versions of these goals were prepared.
+
+<!-- GOALS NOT ACCEPTED -->
+
+## What do the column names like "Ded. r?" mean?
+
+[valid_team_asks]: #what-do-the-column-names-like-ded-r-mean
+
+Those column names refer to specific things that can be asked of teams:
+
+<!-- VALID TEAM ASKS -->
 
 <!-- Github usernames -->
