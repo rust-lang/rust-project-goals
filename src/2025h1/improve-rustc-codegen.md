@@ -84,6 +84,7 @@ The shiny future is to improve rust codegen to encourage wider adoption of rust 
 |------------------------------|----------------------|-------|
 | Discussion and moral support | ![Team][] [compiler] |       |
 | Lang-team experiment         | ![Team][] [lang]     |       |
+| Lang-team champion           | ![Team][] [lang]     | @traviscross      |
 | Refine RFC 3720              | @folkertdev          |       |
 | Implementation               | @folkertdev, @bjorn3 |       |
 | Standard reviews             | ![Team][] [compiler] |       |

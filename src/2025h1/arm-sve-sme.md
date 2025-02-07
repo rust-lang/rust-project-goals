@@ -126,7 +126,7 @@ team in an RFC/FCP).
 |---------------------------------------|---------------------------|-------------------------------------------------------------------------------|
 | Land nightly experiment for SVE types | @JamieCunliffe            |                                                                               |
 | Author RFC                            |                           | Update [rfcs#3268][rfc_sve], will still rely on exceptions in the type system |
-| RFC decision                          | ![Team][] [lang], [types] |                                                                               |
+| RFC decision                          | ![Team][] [types] |                                                                               |
 | Implementation                        |                           | Update [rust#118917][impl_sve]                                                |
 | Standard reviews                      | ![Team][] [compiler]      |                                                                               |
 
@@ -142,7 +142,8 @@ team in an RFC/FCP).
 |---------------------------------------------------|---------------------------|-------|
 | Extending type system to support scalable vectors | @davidtwco                |       |
 | Author RFC                                        |                           |       |
-| RFC decision                                      | ![Team][] [lang], [types] |       |
+| Lang-team champion                                | ![Team][] [lang]          | @davidtwco |
+| RFC decision                                      | ![Team][] [types], [lang] |       |
 | Implementation                                    |                           |       |
 | Standard reviews                                  | ![Team][] [compiler]      |       |
 
