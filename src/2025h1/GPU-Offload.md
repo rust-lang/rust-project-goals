@@ -87,7 +87,8 @@ Minimal "smoke test" reviews will be needed from the compiler-team. The Rust lan
 | Task                 | Owner(s) or team(s)    | Notes      |
 |----------------------|------------------------|------------|
 | Development          | @ZuseZ4                |            |
-| Lang-team experiment | ![Team][] [lang][]     | (approved) |
+| Lang-team experiment | ![Team][] [lang][]     | ![Complete][] |
+| Lang-team champion | ![Team][] [lang][]     | @traviscross |
 | Standard reviews     | ![Team][] [compiler][] |            |
 
 [Team]: https://img.shields.io/badge/Team%20ask-red
