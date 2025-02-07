@@ -104,7 +104,6 @@ The project choosing to adopt this strategy and infrastructure will require ongo
 | Task                                  | Owner(s) or team(s)                     | Notes                                                                                                                       |
 |---------------------------------------|-----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
 | Further revisions to RFC              | @walterhpearce, @joshtriplett           |                                                                                                                             |
-| FCP decision(s) | ![Team][] [cargo], [crates-io], [infra] | We intend for the specific team asks above to feed into a consensus of a final version of the RFC by the end of this goal cycle |
 | Implementation and proof-of-concept deployment | @walterhpearce    |                                                                                                                             |
 
 ### Definitions
