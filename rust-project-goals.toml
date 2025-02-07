@@ -1,22 +1,25 @@
 # Configuration for the project-goals code
+#
+# Ordering is significant because it affects presentation.
+# Prefer to put things earlier in the process first.
 
 [team_asks]
-"Allocate funds" = "allocate funding"
-"Discussion and moral support" = "approve of this direction and be prepared for light discussion on Zulip or elsewhere"
-"Design meeting" = "hold a synchronous meeting to review a proposal and provide feedback (no decision expected)"
-"Stabilization decision" = "reach a decision on a stabilization proposal"
-"Finalize specification text" = "assign a spec team liaison to finalize edits to Rust reference/specification"
-"Prioritized nominations" = "prioritize discussion and resolution of nominated issues"
-"Deploy to production" = "deploy code to production (e.g., on crates.io"
-"Standard reviews" = "review PRs (PRs are not expected to be unduly large or complicated)"
-"Dedicated reviewer" = "assign a specific person (or people) to review a series of PRs, appropriate for large or complex asks"
-"Lang-team experiment" = "begin a [lang-team experiment](https://lang-team.rust-lang.org/how_to/experiment.html) authorizing experimental impl of lang changes before an RFC is written; limited to trusted contributors"
-"RFC decision" = "review an RFC and deciding whether to accept"
-"RFC secondary review" = "briefly review an RFC without need of a formal decision"
-"Org decision" = "reach a decision on an organizational or policy matter"
-"MCP decision" = "accept a [Major Change Proposal](https://forge.rust-lang.org/compiler/mcp.html)"
-"ACP decision" = "accept an [API Change Proposal](https://std-dev-guide.rust-lang.org/development/feature-lifecycle.html)"
-"Policy decision" = "make a decision related to team policy"
-"FCP decision(s)" = "make formal decision(s) that require 'checkboxes' and a FCP (Final Comment Period)"
-"Blog post approval" = "approve of posting about this on the main Rust blog"
-"Miscellaneous" = "do some one-off action as described in the notes"
+"Allocate funds" = { short="Alloc funds", about="allocate funding" }
+"Discussion and moral support" = { short="Good vibes", about="approve of this direction and be prepared for light discussion on Zulip or elsewhere" }
+"Deploy to production" = { short="Deploy", about="deploy code to production (e.g., on crates.io" }
+"Standard reviews" = { short="r?", about="review PRs (PRs are not expected to be unduly large or complicated)" }
+"Dedicated reviewer" = { short="Ded. r?", about="assign a specific person (or people) to review a series of PRs, appropriate for large or complex asks" }
+"Lang-team champion" = { short="Champion", about="begin a [lang-team experiment](https://lang-team.rust-lang.org/how_to/experiment.html) authorizing experimental impl of lang changes before an RFC is written; limited to trusted contributors" }
+"Lang-team experiment" = { short="Experiment", about="begin a [lang-team experiment](https://lang-team.rust-lang.org/how_to/experiment.html) authorizing experimental impl of lang changes before an RFC is written; limited to trusted contributors" }
+"Design meeting" = { short="Design mtg.", about="hold a synchronous meeting to review a proposal and provide feedback (no decision expected)" }
+"RFC decision" = { short="RFC", about="review an RFC and deciding whether to accept" }
+"RFC secondary review" = { short="RFC rev.", about="briefly review an RFC without need of a formal decision" }
+"Org decision" = { short="Org", about="reach a decision on an organizational or policy matter" }
+"MCP decision" = { short="MCP", about="accept a [Major Change Proposal](https://forge.rust-lang.org/compiler/mcp.html)" }
+"ACP decision" = { short="ACP", about="accept an [API Change Proposal](https://std-dev-guide.rust-lang.org/development/feature-lifecycle.html)" }
+"Finalize specification text" = { short="Spec text", about="assign a spec team liaison to finalize edits to Rust reference/specification" }
+"Stabilization decision" = { short="Stabilize.", about="reach a decision on a stabilization proposal" }
+"Policy decision" = { short="Policy", about="make a decision related to team policy" }
+"FCP decision(s)" = { short="FCP", about="make formal decision(s) that require 'checkboxes' and a FCP (Final Comment Period)" }
+"Blog post approval" = { short="Blog", about="approve of posting about this on the main Rust blog"}
+"Miscellaneous" = { short="Misc", about="do some one-off action as described in the notes" }
