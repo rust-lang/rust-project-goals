@@ -122,9 +122,8 @@ pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> anyhow::Result<String>
                     ask_headings
                         .iter()
                         .map(|&ask_kind| format!(
-                            "[{team_ask_short}]({team_asks_url})",
+                            "[{team_ask_short}][valid_team_asks]", // HACK: This should not be hardcoded in the code.
                             team_ask_short = config.team_asks[ask_kind].short,
-                            team_asks_url = "/about/team_asks.html", // HACK: This should not be hardcoded in the code.
                         ))
                 ) // e.g. "discussion and moral support"
                 .collect::<Vec<String>>();
