@@ -106,7 +106,8 @@ The experimental feature we implement should:
 | Task                             | Owner(s) or team(s)  | Notes                        |
 |----------------------------------|----------------------|------------------------------|
 | Discussion and moral support     | [compiler], [lang]   |                              |
-| Lang-team experiment             | ![Team][] [lang]     | Already approved             |
+| Lang-team experiment             | ![Team][] [lang]     | ![Complete][]             |
+| Lang-team champion               | ![Team][] [lang]     | @nikomatsakis    |
 | Design experiment (syntax, etc.) | *Jonathan and Mara*  | Done                         |
 | Refactor attributes in rustc     | *Jonathan*           | In progress, refactor merged |
 | Implement experiment             | *Jonathan and Mara*  |                              |

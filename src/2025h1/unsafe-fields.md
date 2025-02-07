@@ -79,15 +79,15 @@ The design of `unsafe` fields is guided by three axioms:
 
 | Task                           | Owner(s) or team(s)  | Notes                          |
 |--------------------------------|----------------------|--------------------------------|
-| Discussion and moral support   | ![Team][] [lang]     | [Zulip]                        |
+| Discussion and moral support   | ![Team][] [lang]     |                        |
 | Author RFC                     | @jhpratt             | [RFC3458], [Living Design Doc] |
 | Implementation                 | @veluca93            |                                |
 | Standard reviews               | ![Team][] [compiler] |                                |
 | Design meeting                 | ![Team][] [lang]     |                                |
+| Lang-team champion             | ![Team][] [lang]     | @scottmcm                      |
 | RFC decision                   | ![Team][] [lang]     |                                |
-| Author specification 1st draft | @jswrenn             |                                |
-| Finalize specification text    | ![Team][] [spec]     | @ehuss                       |
-| Author stabilization report    | @jswrenn             |                                |
+
+Ongoing discussion on [Zulip][].
 
 [Zulip]: https://rust-lang.zulipchat.com/#narrow/channel/213817-t-lang/topic/unsafe.20fields.20RFC
 [RFC3458]: https://github.com/rust-lang/rfcs/pull/3458

@@ -65,7 +65,7 @@ Users in higher-level domains are accustomed to the ergonomics of Python or Type
 
 ### The next 6 months
 
-In 2024H2 we began work on an experimental implementation (not yet landed) and authored a corresponding RFC, which has received substantial feedback. In 2025H1 we will continue by (a) landing the experimental branch and (b) addressing feedback on the RFC, reading it with the lang-team, and reaching a decision.
+In 2024H2 we began work on an experimental implementation (not yet landed) and authored a corresponding RFC, which has received substantial feedback. In 2025H1 we will focus on driving the experimental branch to completion.
 
 ### The "shiny future" we are working towards
 
@@ -88,9 +88,8 @@ We don't have consensus around a full set of "design axioms" for this design, bu
 |----------------|---------------------|---------------|
 | Implementation | @spastorino         |               |
 | Reviews        | @nikomatsakis       |               |
+| Lang-team champion | ![Team][] [lang] | @nikomatsakis |
 | Author RFC     | @joshtriplett       | ![Complete][] |
-| Design meeting | ![Team][] [lang]    |               |
-| RFC decision   | ![Team][] [lang]    |               |
 
 ### Definitions
 
