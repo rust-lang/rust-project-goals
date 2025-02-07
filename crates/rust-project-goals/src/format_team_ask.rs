@@ -80,7 +80,7 @@ pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> anyhow::Result<String>
                 ),
             };
 
-            let row = goal_rows.entry(goal_title.clone()).or_insert_with(empty_row);
+            let row = goal_rows.entry(goal_title).or_insert_with(empty_row);
 
             let index = ask_headings
                 .iter()
@@ -96,7 +96,7 @@ pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> anyhow::Result<String>
             let mut maybe_footnote = |text: &str| -> String {
                 if text.len() > FOOTNOTE_LEN {
                     let footnote_index = footnotes.len() + 1;
-                    footnotes.push(format!("\\*{footnote_index}: {text} (from {goal_title})"));
+                    footnotes.push(format!("\\*{footnote_index}: {text} ([from here]({link}))", link = ask.link_path.display()));
                     format!("\\*{footnote_index}")
                 } else {
                     text.to_string()
@@ -110,15 +110,9 @@ pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> anyhow::Result<String>
             }
         }
 
-        // Sort the goal rows by which has the most "complex" asks (we assume the ordering is already this way).
-        // After that, generally prefer asks with more names over asks with fewer.
-        goal_rows.sort_by_cached_key(|ask_names, ask_rows| {
-            (
-                // Integer that is smaller the more "right-most" the asks are
-                ask_headings.len() - (ask_rows.iter().rposition(|r| !r.is_empty()).unwrap_or(0)),
-                // The names themselves
-                ask_names.clone(),
-            )
+        // Sort the goal rows by name (ignoring case).
+        goal_rows.sort_by_cached_key(|ask_names, _ask_rows| {  
+            ask_names.clone().to_uppercase()
         });
 
         // Create the table itself.

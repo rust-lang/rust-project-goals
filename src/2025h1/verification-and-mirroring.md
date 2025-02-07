@@ -2,7 +2,7 @@
 
 | Metadata         |                          |
 |:-----------------|--------------------------|
-| Short title      | crates.io mirroring      |
+| Short title      | Crates.io mirroring      |
 | Point of contact | @walterhpearce           |
 | Teams            | <!-- TEAMS WITH ASKS --> |
 | Task owners      | <!-- TASK OWNERS -->     |
