@@ -1,7 +1,7 @@
 # Bring the Async Rust experience closer to parity with sync Rust
 
 | Metadata         |                                    |
-| :--------------- | ---------------------------------- |
+|:-----------------|------------------------------------|
 | Short title      | Async                              |
 | Point of contact | @tmandry                           |
 | Teams            | <!-- TEAMS WITH ASKS -->           |
@@ -62,14 +62,13 @@ Despite async Rust's popularity, using async I/O makes Rust significantly harder
 
 #### Work toward asynchronous generators
 
-* Have design meetings and ratify an RFC for synchronous generators
-* Have a design meeting for asynchronous iteration
+* Have design meetings and ratify an RFC for a syntax for authoring synchronous iterators (e.g., synchronous generators)
 * Stretch goal: Ratify an RFC for unsafe binders
 
 In H2 we hope to tackle the following:
 
 * RTN in type position
-* Ratified RFC for asynchronous iteration
+* Ratified RFC for syntactic support for asynchronous iteration
 
 ### The "shiny future" we are working towards
 
@@ -96,83 +95,74 @@ This section defines the specific work items that are planned and who is expecte
 ### Overall program management
 
 | Task                 | Owner(s) or team(s) | Notes |
-| -------------------- | ------------------- | ----- |
+|----------------------|---------------------|-------|
 | AFIT story blog post | @tmandry            |       |
 
 ### Return type notation
 
 | Task                           | Owner(s) or team(s)                                | Notes         |
-| ------------------------------ | -------------------------------------------------- | ------------- |
+|--------------------------------|----------------------------------------------------|---------------|
 | Initial implementation         | @compiler-errors                                   | ![Complete][] |
 | Author RFC                     | @nikomatsakis                                      | ![Complete][] |
 | RFC decision                   | ![Team][] [lang]                                   | ![Complete][] |
 | Finished implementation        | @compiler-errors                                   | ![Complete][] |
+| Lang-team champion             | ![Team][] [lang]                                   | @nikomatsakis |
 | Standard reviews               | ![Team][] [types], [compiler]                      |               |
 | Author stabilization report    | @compiler-errors                                   |               |
 | Author specification 1st draft | TBD (@compiler-errors, @tmandry, or @nikomatsakis) |               |
-| Finalize specification text    | ![Team][] [spec]                                   | @nikomatsakis  |
+| Finalize specification text    | ![Team][] [spec]                                   | @nikomatsakis |
 | Stabilization decision         | ![Team][] [lang], [types]                          |               |
 
 ### Unsafe binders
 
-| Task                   | Owner(s) or team(s)       | Notes        |
-| ---------------------- | ------------------------- | ------------ |
-| Initial implementation | @compiler-errors          | Stretch goal |
-| Author RFC             | @nikomatsakis             | Stretch goal |
-| RFC decision           | ![Team][] [lang], [types] | Stretch goal |
+| Task                   | Owner(s) or team(s)       | Notes                   |
+|------------------------|---------------------------|-------------------------|
+| Initial implementation | @compiler-errors          | Stretch goal            |
+| Author RFC             | @nikomatsakis             | Stretch goal            |
+| Lang-team champion     | ![Team][] [lang]          | @nikomatsakis (stretch) |
+| RFC decision           | ![Team][] [lang], [types] | Stretch goal            |
 
 ### Implementable trait aliases
 
-| Task             | Owner(s) or team(s)           | Notes |
-| ---------------- | ----------------------------- | ----- |
-| Author RFC       | @tmandry                      |       |
-| Implementation   | @compiler-errors              |       |
-| Standard reviews | ![Team][] [types], [compiler] |       |
-| RFC decision     | ![Team][] [lang], [types]     |       |
+| Task               | Owner(s) or team(s)           | Notes    |
+|--------------------|-------------------------------|----------|
+| Author RFC         | @tmandry                      |          |
+| Implementation     | @compiler-errors              |          |
+| Lang-team champion | ![Team][] [lang]              | @tmandry |
+| Standard reviews   | ![Team][] [types], [compiler] |          |
+| RFC decision       | ![Team][] [lang], [types]     |          |
 
 ### `async fn` in `dyn Trait`
 
-| Task                 | Owner(s) or team(s) | Notes        |
-| -------------------- | ------------------- | ------------ |
-| Lang-team experiment | @nikomatsakis       | (Approved)   |
-| Implementation       | @compiler-errors    | Stretch goal |
+| Task                 | Owner(s) or team(s) | Notes         |
+|----------------------|---------------------|---------------|
+| Lang-team experiment | @nikomatsakis       | (Approved)    |
+| Lang-team champion   | ![Team][] [lang]    | @nikomatsakis |
+| Implementation       | @compiler-errors    | Stretch goal  |
 
-### Pin reborrowing
+### Pin ergonomics
 
-| Task             | Owner(s) or team(s) | Notes |
-| ---------------- | ------------------- | ----- |
-| Implementation   | @eholk              |       |
-| Author RFC       | @eholk              |       |
-| RFC decision     | ![Team][] [lang]    |       |
-| RFC secondary review | ![Team][] [types]   |       |
-
-### Safe pin projection
-
-| Task                 | Owner(s) or team(s) | Notes        |
-| -------------------- | ------------------- | ------------ |
-| Lang-team experiment | ![Team][] [lang]    |              |
-| Implementation       |                     | Stretch goal |
-| Design meeting       | ![Team][] [lang]    | Stretch goal |
+| Task                 | Owner(s) or team(s) | Notes         |
+|----------------------|---------------------|---------------|
+| Implementation       | @eholk              |               |
+| Author RFC           | @eholk              |               |
+| Lang-team experiment | ![Team][] [lang]    | ![Complete][] |
+| Lang-team champion   | ![Team][] [lang]    | @tmandry      |
 
 ### Trait for generators (sync)
 
-| Task           | Owner(s) or team(s)          | Notes               |
-| -------------- | ---------------------------- | ------------------- |
-| Implementation | @eholk                       |                     |
-| Author RFC     |                              |                     |
-| RFC decision   | ![Team][] [libs-api], [lang] |                     |
-| Design meeting | ![Team][] [lang]             | 2 meetings expected |
-
-### Trait for async iteration
-
-| Task           | Owner(s) or team(s)          | Notes |
-| -------------- | ---------------------------- | ----- |
-| Design meeting | ![Team][] [lang], [libs-api] |       |
+| Task               | Owner(s) or team(s)          | Notes               |
+|--------------------|------------------------------|---------------------|
+| Implementation     | @eholk                       |                     |
+| Author RFC         |                              |                     |
+| RFC decision       | ![Team][] [libs-api], [lang] |                     |
+| Design meeting     | ![Team][] [lang]             | 2 meetings expected |
+| Lang-team champion | ![Team][] [lang]             | @tmandry            |
 
 ### Dynosaur 1.0
 
 | Task             | Owner(s) or team(s) | Notes |
-| ---------------- | ------------------- | ----- |
+|------------------|---------------------|-------|
 | Implementation   | @spastorino         |       |
 | Standard reviews | @tmandry            |       |
 
