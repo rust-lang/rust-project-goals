@@ -145,10 +145,6 @@ could reserve such syntax in all editions.
 | Iterate on design as needed               | @joshtriplett            |               |
 | Inside Rust blog post on attribute macros | @joshtriplett            |               |
 | Process feedback from crate authors       | @joshtriplett            |               |
-| Author stabilization report (if ready)    | @joshtriplett            |               |
-| Author specification 1st draft            | @joshtriplett            |               |
-| Finalize specification text               | ![Team][] [spec]         | @m-ou-se      |
-| Stabilization decision                    | ![Team][] [lang]         |               |
 
 ### `macro_rules!` derives
 
@@ -161,10 +157,6 @@ could reserve such syntax in all editions.
 | Iterate on design as needed            | @joshtriplett            |                        |
 | Inside Rust blog post on derive macros | @joshtriplett            |                        |
 | Process feedback from crate authors    | @joshtriplett            |                        |
-| Author stabilization report (if ready) | @joshtriplett            |                        |
-| Author specification 1st draft         | @joshtriplett            |                        |
-| Finalize specification text            | ![Team][] [spec]         | @m-ou-se (stretch ask) |
-| Stabilization decision                 | ![Team][] [lang]         |                        |
 
 ### Design and iteration for macro fragment fields
 
@@ -178,10 +170,6 @@ could reserve such syntax in all editions.
 | Iterate on design as needed                      | @joshtriplett            |                        |
 | Inside Rust blog post on additional capabilities | @joshtriplett            |                        |
 | Process feedback from crate authors              | @joshtriplett            |                        |
-| Author stabilization report (if ready)           | @joshtriplett            |                        |
-| Author specification 1st draft                   | @joshtriplett            |                        |
-| Finalize specification text                      | ![Team][] [spec]         | @m-ou-se (stretch ask) |
-| Stabilization decision                           | ![Team][] [lang]         |                        |
 | Support lang experiments for fragment fields     | @joshtriplett            |                        |
 | Author small RFCs for further fragment fields    | @joshtriplett            |                        |
 
