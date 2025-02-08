@@ -1,8 +1,6 @@
-use std::collections::BTreeSet;
+use std::{collections::{BTreeMap, BTreeSet}, path::PathBuf};
 
-use indexmap::IndexMap;
-
-use crate::{config::Configuration, goal::TeamAsk, team::TeamName, util};
+use crate::{config::Configuration, goal::TeamAsk, team::TeamName, util::{self, ARROW}};
 
 /// Format a set of team asks into a table, with asks separated by team and grouped by kind.
 ///
@@ -65,22 +63,11 @@ pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> anyhow::Result<String>
         };
 
         // Collect the asks by goal. The `rows` map goes from goal title to a row with entries
-        let mut goal_rows: IndexMap<String, Vec<String>> = IndexMap::default();
+        let mut goal_rows: BTreeMap<GoalData<'_>, Vec<String>> = BTreeMap::default();
         for ask in &asks_of_this_team {
-            let link = format!("{}", ask.link_path.display());
+            let goal_data = GoalData::new(ask)?;
 
-            let goal_title = match &ask.goal_titles[..] {
-                [goal_title] => format!("[{goal_title}]({link}#ownership-and-team-asks)"),
-                [goal_title, subgoal_title] => {
-                    format!("[{subgoal_title}]({link}#ownership-and-team-asks) (part of [{goal_title}]({link}))")
-                }
-                _ => anyhow::bail!(
-                    "expected either 1 or 2 goal titles, not {:?}",
-                    ask.goal_titles
-                ),
-            };
-
-            let row = goal_rows.entry(goal_title).or_insert_with(empty_row);
+            let row = goal_rows.entry(goal_data).or_insert_with(empty_row);
 
             let index = ask_headings
                 .iter()
@@ -110,10 +97,12 @@ pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> anyhow::Result<String>
             }
         }
 
-        // Sort the goal rows by name (ignoring case).
-        goal_rows.sort_by_cached_key(|ask_names, _ask_rows| {  
-            ask_names.clone().to_uppercase()
-        });
+        // Ensure that we have an entry for the "meta-goal", even if there are no asks.
+        for ask in &asks_of_this_team {
+            let mut goal_data = GoalData::new(ask)?;
+            goal_data.subgoal_title = None;
+            goal_rows.entry(goal_data).or_insert_with(empty_row);
+        }
 
         // Create the table itself.
         let table = {
@@ -128,8 +117,8 @@ pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> anyhow::Result<String>
                 ) // e.g. "discussion and moral support"
                 .collect::<Vec<String>>();
 
-            let rows = goal_rows.into_iter().map(|(goal_title, goal_columns)| {
-                std::iter::once(goal_title)
+            let rows = goal_rows.into_iter().map(|(goal_data, goal_columns)| {
+                std::iter::once(goal_data.goal_title())
                     .chain(goal_columns)
                     .collect::<Vec<String>>()
             });
@@ -145,4 +134,34 @@ pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> anyhow::Result<String>
     }
 
     Ok(output)
+}
+
+#[derive(Eq, PartialEq, PartialOrd, Ord, Hash, Copy, Clone, Debug)]
+struct GoalData<'g> {
+    goal_title: &'g String,
+    subgoal_title: Option<&'g String>,
+    link: &'g PathBuf,
+}
+
+impl<'g> GoalData<'g> {
+    fn new(ask: &'g TeamAsk) -> anyhow::Result<Self> {
+        match &ask.goal_titles[..] {
+            [goal_title] => Ok(Self { goal_title, subgoal_title: None, link: &ask.link_path }),
+            [goal_title, subgoal_title] => {
+                Ok(Self { goal_title, subgoal_title: Some(subgoal_title), link: &ask.link_path })
+            }
+            _ => anyhow::bail!(
+                "expected either 1 or 2 goal titles, not {:?}",
+                ask.goal_titles
+            ),
+        }
+    }
+
+    fn goal_title(&self) -> String {
+        if let Some(subgoal_title) = self.subgoal_title {
+            format!("{} {}", ARROW, subgoal_title)
+        } else {
+            format!("[{}]({})", self.goal_title, self.link.display())
+        }
+    }
 }
