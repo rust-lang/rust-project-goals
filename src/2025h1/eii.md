@@ -101,19 +101,19 @@ The experimental feature we implement should:
 
 ## Ownership and team asks
 
-**Owner:** [Jonathan Dönszelmann](@jdonszelmann) and [Mara Bos](@m-ou-se)
+**Owner:** [Jana Dönszelmann](@jdonszelmann) and [Mara Bos](@m-ou-se)
 
 | Task                             | Owner(s) or team(s)  | Notes                        |
 |----------------------------------|----------------------|------------------------------|
 | Discussion and moral support     | [compiler], [lang]   |                              |
 | Lang-team experiment             | ![Team][] [lang]     | ![Complete][]             |
 | Lang-team champion               | ![Team][] [lang]     | @nikomatsakis    |
-| Design experiment (syntax, etc.) | *Jonathan and Mara*  | Done                         |
-| Refactor attributes in rustc     | *Jonathan*           | In progress, refactor merged |
-| Implement experiment             | *Jonathan and Mara*  |                              |
+| Design experiment (syntax, etc.) | *Jana and Mara*      | Done                         |
+| Refactor attributes in rustc     | *Jana*               | In progress, refactor merged |
+| Implement experiment             | *Jana and Mara*      |                              |
 | Standard reviews                 | ![Team][] [compiler] |                              |
-| Blog post inviting feedback      | *Jonathan and Mara*  |                              |
-| Update RFC with new findings     | *Jonathan and Mara*  |                              |
+| Blog post inviting feedback      | *Jana and Mara*      |                              |
+| Update RFC with new findings     | *Jana and Mara*      |                              |
 
 ## Frequently asked questions
 
