@@ -13,7 +13,8 @@ use rust_project_goals::{
     gh::{
         issue_id::{IssueId, Repository},
         issues::{
-            create_issue, list_issues_in_milestone, lock_issue, sync_assignees, FLAGSHIP_LABEL,
+            change_milestone, create_issue, list_tracking_issues, lock_issue, sync_assignees,
+            FLAGSHIP_LABEL,
         },
         labels::GhLabel,
     },
@@ -177,6 +178,11 @@ enum GithubAction<'doc> {
         issue: GithubIssue<'doc>,
     },
 
+    ChangeMilestone {
+        number: u64,
+        milestone: String,
+    },
+
     // We intentionally do not sync the issue *text*, because it may have been edited.
     SyncAssignees {
         number: u64,
@@ -248,7 +254,8 @@ fn initialize_issues<'doc>(
         .collect::<anyhow::Result<_>>()?;
 
     // Compare desired issues against existing issues
-    let existing_issues = list_issues_in_milestone(repository, timeframe)?;
+    let existing_issues = list_tracking_issues(repository)?;
+
     let mut actions = BTreeSet::new();
     for desired_issue in desired_issues {
         match existing_issues.iter().find(|issue| {
@@ -269,6 +276,13 @@ fn initialize_issues<'doc>(
                             .difference(&existing_issue.assignees)
                             .cloned()
                             .collect(),
+                    });
+                }
+
+                if existing_issue.milestone.as_ref().map(|m| m.title.as_str()) != Some(timeframe) {
+                    actions.insert(GithubAction::ChangeMilestone {
+                        number: existing_issue.number,
+                        milestone: timeframe.to_string(),
                     });
                 }
 
@@ -419,6 +433,9 @@ impl Display for GithubAction<'_> {
             GithubAction::CreateIssue { issue } => {
                 write!(f, "create issue \"{}\"", issue.title)
             }
+            GithubAction::ChangeMilestone { number, milestone } => {
+                write!(f, "update issue #{} milestone to \"{}\"", number, milestone)
+            }
             GithubAction::SyncAssignees {
                 number,
                 remove_owners,
@@ -478,6 +495,12 @@ impl GithubAction<'_> {
 
                 Ok(())
             }
+
+            GithubAction::ChangeMilestone { number, milestone } => {
+                change_milestone(repository, number, &milestone)?;
+                Ok(())
+            }
+
             GithubAction::SyncAssignees {
                 number,
                 remove_owners,
