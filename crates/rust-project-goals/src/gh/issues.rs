@@ -11,7 +11,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::{re, util::comma};
 
-use super::{issue_id::Repository, labels::GhLabel};
+use super::{issue_id::Repository, labels::GhLabel, milestone::GhMilestone};
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 pub struct ExistingGithubIssue {
@@ -22,6 +22,7 @@ pub struct ExistingGithubIssue {
     pub body: String,
     pub state: GithubIssueState,
     pub labels: Vec<GhLabel>,
+    pub milestone: GhMilestone,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
@@ -42,6 +43,7 @@ struct ExistingGithubIssueJson {
     body: String,
     state: GithubIssueState,
     labels: Vec<GhLabel>,
+    milestone: GhMilestone,
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
@@ -135,7 +137,7 @@ pub fn list_issue_titles_in_milestone(
         .arg("-s")
         .arg("all")
         .arg("--json")
-        .arg("title,assignees,number,comments,body,state,labels")
+        .arg("title,assignees,number,comments,body,state,labels,milestone")
         .output()
         .with_context(|| format!("running github cli tool `gh`"))?;
 
@@ -176,6 +178,33 @@ pub fn create_issue(
         Err(anyhow::anyhow!(
             "failed to create issue `{}`: {}",
             title,
+            String::from_utf8_lossy(&output.stderr)
+        ))
+    } else {
+        Ok(())
+    }
+}
+
+pub fn change_milestone(
+    repository: &Repository,
+    number: u64,
+    milestone: &str,
+) -> anyhow::Result<()> {
+    let mut command = Command::new("gh");
+    command
+        .arg("-R")
+        .arg(&repository.to_string())
+        .arg("issue")
+        .arg("edit")
+        .arg(number.to_string())
+        .arg("milestone")
+        .arg(milestone);
+
+    let output = command.output()?;
+    if !output.status.success() {
+        Err(anyhow::anyhow!(
+            "failed to change milestone `{}`: {}",
+            number,
             String::from_utf8_lossy(&output.stderr)
         ))
     } else {
@@ -310,6 +339,7 @@ impl From<ExistingGithubIssueJson> for ExistingGithubIssue {
             body: e_i.body,
             state: e_i.state,
             labels: e_i.labels,
+            milestone: e_i.milestone,
         }
     }
 }

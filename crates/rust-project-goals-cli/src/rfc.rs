@@ -13,8 +13,8 @@ use rust_project_goals::{
     gh::{
         issue_id::{IssueId, Repository},
         issues::{
-            create_issue, list_issue_titles_in_milestone, lock_issue, sync_assignees,
-            FLAGSHIP_LABEL,
+            change_milestone, create_issue, list_issue_titles_in_milestone, lock_issue,
+            sync_assignees, FLAGSHIP_LABEL,
         },
         labels::GhLabel,
     },
@@ -178,6 +178,11 @@ enum GithubAction<'doc> {
         issue: GithubIssue<'doc>,
     },
 
+    ChangeMilestone {
+        number: u64,
+        milestone: String,
+    },
+
     // We intentionally do not sync the issue *text*, because it may have been edited.
     SyncAssignees {
         number: u64,
@@ -267,6 +272,13 @@ fn initialize_issues<'doc>(
                             .difference(&existing_issue.assignees)
                             .cloned()
                             .collect(),
+                    });
+                }
+
+                if existing_issue.milestone.title != timeframe {
+                    actions.insert(GithubAction::ChangeMilestone {
+                        number: existing_issue.number,
+                        milestone: timeframe.to_string(),
                     });
                 }
 
@@ -364,7 +376,6 @@ fn issue_text(timeframe: &str, document: &GoalDocument) -> anyhow::Result<String
 fn task_items(goal_plan: &GoalPlan) -> anyhow::Result<Vec<String>> {
     use std::fmt::Write;
 
-
     let mut tasks = vec![];
 
     if let Some(title) = &goal_plan.subgoal {
@@ -417,6 +428,9 @@ impl Display for GithubAction<'_> {
             }
             GithubAction::CreateIssue { issue } => {
                 write!(f, "create issue \"{}\"", issue.title)
+            }
+            GithubAction::ChangeMilestone { number, milestone } => {
+                write!(f, "change issue #{} milestone \"{}\"", number, milestone)
             }
             GithubAction::SyncAssignees {
                 number,
@@ -477,6 +491,12 @@ impl GithubAction<'_> {
 
                 Ok(())
             }
+
+            GithubAction::ChangeMilestone { number, milestone } => {
+                change_milestone(repository, number, &milestone)?;
+                Ok(())
+            }
+
             GithubAction::SyncAssignees {
                 number,
                 remove_owners,
