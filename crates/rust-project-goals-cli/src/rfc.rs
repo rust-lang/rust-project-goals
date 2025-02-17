@@ -251,10 +251,10 @@ fn initialize_issues<'doc>(
     let existing_issues = list_issues_in_milestone(repository, timeframe)?;
     let mut actions = BTreeSet::new();
     for desired_issue in desired_issues {
-        match existing_issues
-            .iter()
-            .find(|issue| issue.title == desired_issue.title)
-        {
+        match existing_issues.iter().find(|issue| {
+            let issue_id = IssueId::new(repository.clone(), issue.number);
+            Some(&issue_id) == desired_issue.tracking_issue || issue.title == desired_issue.title
+        }) {
             Some(existing_issue) => {
                 if existing_issue.assignees != desired_issue.assignees {
                     actions.insert(GithubAction::SyncAssignees {
