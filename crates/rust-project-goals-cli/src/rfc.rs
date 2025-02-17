@@ -13,8 +13,7 @@ use rust_project_goals::{
     gh::{
         issue_id::{IssueId, Repository},
         issues::{
-            create_issue, list_issue_titles_in_milestone, lock_issue, sync_assignees,
-            FLAGSHIP_LABEL,
+            create_issue, list_issues_in_milestone, lock_issue, sync_assignees, FLAGSHIP_LABEL,
         },
         labels::GhLabel,
     },
@@ -249,10 +248,13 @@ fn initialize_issues<'doc>(
         .collect::<anyhow::Result<_>>()?;
 
     // Compare desired issues against existing issues
-    let existing_issues = list_issue_titles_in_milestone(repository, timeframe)?;
+    let existing_issues = list_issues_in_milestone(repository, timeframe)?;
     let mut actions = BTreeSet::new();
     for desired_issue in desired_issues {
-        match existing_issues.get(&desired_issue.title) {
+        match existing_issues
+            .iter()
+            .find(|issue| issue.title == desired_issue.title)
+        {
             Some(existing_issue) => {
                 if existing_issue.assignees != desired_issue.assignees {
                     actions.insert(GithubAction::SyncAssignees {
@@ -363,7 +365,6 @@ fn issue_text(timeframe: &str, document: &GoalDocument) -> anyhow::Result<String
 
 fn task_items(goal_plan: &GoalPlan) -> anyhow::Result<Vec<String>> {
     use std::fmt::Write;
-
 
     let mut tasks = vec![];
 

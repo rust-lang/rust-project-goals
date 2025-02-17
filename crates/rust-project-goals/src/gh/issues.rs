@@ -1,8 +1,4 @@
-use std::{
-    collections::{BTreeMap, BTreeSet},
-    process::Command,
-    str::FromStr,
-};
+use std::{collections::BTreeSet, process::Command, str::FromStr};
 
 use anyhow::Context;
 use chrono::NaiveDate;
@@ -16,6 +12,7 @@ use super::{issue_id::Repository, labels::GhLabel};
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 pub struct ExistingGithubIssue {
     pub number: u64,
+    pub title: String,
     /// Just github username, no `@`
     pub assignees: BTreeSet<String>,
     pub comments: Vec<ExistingGithubComment>,
@@ -121,10 +118,10 @@ pub fn fetch_issue(repository: &Repository, issue: u64) -> anyhow::Result<Existi
     Ok(ExistingGithubIssue::from(e_i))
 }
 
-pub fn list_issue_titles_in_milestone(
+pub fn list_issues_in_milestone(
     repository: &Repository,
     timeframe: &str,
-) -> anyhow::Result<BTreeMap<String, ExistingGithubIssue>> {
+) -> anyhow::Result<Vec<ExistingGithubIssue>> {
     let output = Command::new("gh")
         .arg("-R")
         .arg(&repository.to_string())
@@ -143,7 +140,7 @@ pub fn list_issue_titles_in_milestone(
 
     Ok(existing_issues
         .into_iter()
-        .map(|e_i| (e_i.title.clone(), ExistingGithubIssue::from(e_i)))
+        .map(|e_i| ExistingGithubIssue::from(e_i))
         .collect())
 }
 
@@ -296,6 +293,7 @@ impl From<ExistingGithubIssueJson> for ExistingGithubIssue {
     fn from(e_i: ExistingGithubIssueJson) -> Self {
         ExistingGithubIssue {
             number: e_i.number,
+            title: e_i.title,
             assignees: e_i.assignees.into_iter().map(|a| a.login).collect(),
             comments: e_i
                 .comments
