@@ -2,7 +2,7 @@ use std::path::PathBuf;
 
 use rust_project_goals::gh::{
     issue_id::Repository,
-    issues::{checkboxes, list_issue_titles_in_milestone, ExistingGithubComment},
+    issues::{checkboxes, list_issues_in_milestone, ExistingGithubComment},
 };
 use rust_project_goals_json::{TrackingIssue, TrackingIssueUpdate, TrackingIssues};
 
@@ -11,16 +11,16 @@ pub(super) fn generate_json(
     milestone: &str,
     json_path: &Option<PathBuf>,
 ) -> anyhow::Result<()> {
-    let issues = list_issue_titles_in_milestone(repository, milestone)?;
+    let issues = list_issues_in_milestone(repository, milestone)?;
 
     let issues = TrackingIssues {
         issues: issues
             .into_iter()
-            .map(|(title, issue)| {
+            .map(|issue| {
                 let progress = checkboxes(&issue);
                 TrackingIssue {
                     number: issue.number,
-                    title,
+                    title: issue.title.clone(),
                     flagship: issue.has_flagship_label(),
                     progress,
                     assignees: issue.assignees.into_iter().collect(),
