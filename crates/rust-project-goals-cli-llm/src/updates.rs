@@ -2,7 +2,6 @@ use anyhow::Context;
 use chrono::{Datelike, NaiveDate};
 use rust_project_goals::util::comma;
 use rust_project_goals_json::GithubIssueState;
-use std::collections::BTreeMap;
 use std::io::Write;
 use std::path::Path;
 use std::process::{Command, Stdio};
@@ -12,7 +11,7 @@ use crate::templates::{self, Updates, UpdatesGoal};
 use rust_project_goals::gh::issues::ExistingGithubIssue;
 use rust_project_goals::gh::{
     issue_id::{IssueId, Repository},
-    issues::{checkboxes, list_issue_titles_in_milestone, ExistingGithubComment},
+    issues::{checkboxes, list_issues_in_milestone, ExistingGithubComment},
 };
 
 const QUICK_UPDATES: &[&str] = &[
@@ -51,7 +50,7 @@ pub async fn updates(
 
     let llm = LargeLanguageModel::new(model_id, region).await?;
 
-    let issues = list_issue_titles_in_milestone(repository, milestone)?;
+    let issues = list_issues_in_milestone(repository, milestone)?;
 
     let filter = Filter {
         start_date: match start_date {
@@ -111,21 +110,23 @@ pub async fn updates(
 
 async fn prepare_flagship_goals(
     repository: &Repository,
-    issues: &BTreeMap<String, ExistingGithubIssue>,
+    issues: &[ExistingGithubIssue],
     filter: &Filter<'_>,
     llm: &LargeLanguageModel,
     quick: bool,
     updates: &mut Updates,
 ) -> anyhow::Result<()> {
     // First process the flagship goals, for which we capture the full text of comments.
-    for (title, issue) in issues {
+    for issue in issues {
         if !issue.has_flagship_label() {
             continue;
         }
 
+        let title = &issue.title;
+
         progress_bar::print_progress_bar_info(
             &format!("Issue #{number}", number = issue.number),
-            &title,
+            title,
             progress_bar::Color::Green,
             progress_bar::Style::Bold,
         );
@@ -182,7 +183,7 @@ async fn prepare_flagship_goals(
 
 async fn prepare_other_goals(
     repository: &Repository,
-    issues: &BTreeMap<String, ExistingGithubIssue>,
+    issues: &[ExistingGithubIssue],
     filter: &Filter<'_>,
     llm: &LargeLanguageModel,
     quick: bool,
@@ -190,14 +191,16 @@ async fn prepare_other_goals(
 ) -> anyhow::Result<()> {
     // Next process the remaining goals, for which we generate a summary using an LLVM.
     let mut quick_comments = comments_forever();
-    for (title, issue) in issues {
+    for issue in issues {
         if issue.has_flagship_label() {
             continue;
         }
 
+        let title = &issue.title;
+
         progress_bar::print_progress_bar_info(
             &format!("Issue #{number}", number = issue.number),
-            &title,
+            title,
             progress_bar::Color::Green,
             progress_bar::Style::Bold,
         );
