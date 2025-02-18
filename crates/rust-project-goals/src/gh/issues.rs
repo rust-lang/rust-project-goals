@@ -7,7 +7,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::{re, util::comma};
 
-use super::{issue_id::Repository, labels::GhLabel};
+use super::{issue_id::Repository, labels::GhLabel, milestone::GhMilestone};
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 pub struct ExistingGithubIssue {
@@ -19,6 +19,7 @@ pub struct ExistingGithubIssue {
     pub body: String,
     pub state: GithubIssueState,
     pub labels: Vec<GhLabel>,
+    pub milestone: Option<GhMilestone>,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
@@ -39,6 +40,7 @@ struct ExistingGithubIssueJson {
     body: String,
     state: GithubIssueState,
     labels: Vec<GhLabel>,
+    milestone: Option<GhMilestone>,
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
@@ -122,17 +124,34 @@ pub fn list_issues_in_milestone(
     repository: &Repository,
     timeframe: &str,
 ) -> anyhow::Result<Vec<ExistingGithubIssue>> {
-    let output = Command::new("gh")
-        .arg("-R")
+    list_issues(repository, &[("-m", timeframe)])
+}
+
+pub fn list_tracking_issues(repository: &Repository) -> anyhow::Result<Vec<ExistingGithubIssue>> {
+    list_issues(repository, &[("-l", "C-tracking-issue")])
+}
+
+pub fn list_issues(
+    repository: &Repository,
+    filter: &[(&str, &str)],
+) -> anyhow::Result<Vec<ExistingGithubIssue>> {
+    let mut cmd = Command::new("gh");
+
+    cmd.arg("-R")
         .arg(&repository.to_string())
         .arg("issue")
         .arg("list")
-        .arg("-m")
-        .arg(timeframe)
         .arg("-s")
-        .arg("all")
+        .arg("all");
+
+    for (opt, val) in filter {
+        cmd.arg(opt);
+        cmd.arg(val);
+    }
+
+    let output = cmd
         .arg("--json")
-        .arg("title,assignees,number,comments,body,state,labels")
+        .arg("title,assignees,number,comments,body,state,labels,milestone")
         .output()
         .with_context(|| format!("running github cli tool `gh`"))?;
 
@@ -180,6 +199,55 @@ pub fn create_issue(
     }
 }
 
+pub fn change_milestone(
+    repository: &Repository,
+    number: u64,
+    milestone: &str,
+) -> anyhow::Result<()> {
+    let mut command = Command::new("gh");
+    command
+        .arg("-R")
+        .arg(&repository.to_string())
+        .arg("issue")
+        .arg("edit")
+        .arg(number.to_string())
+        .arg("-m")
+        .arg(milestone);
+
+    let output = command.output()?;
+    if !output.status.success() {
+        Err(anyhow::anyhow!(
+            "failed to change milestone `{}`: {}",
+            number,
+            String::from_utf8_lossy(&output.stderr)
+        ))
+    } else {
+        Ok(())
+    }
+}
+
+pub fn create_comment(repository: &Repository, number: u64, body: &str) -> anyhow::Result<()> {
+    let output = Command::new("gh")
+        .arg("-R")
+        .arg(&repository.to_string())
+        .arg("issue")
+        .arg("comment")
+        .arg(number.to_string())
+        .arg("-b")
+        .arg(body)
+        .output()?;
+
+    if !output.status.success() {
+        Err(anyhow::anyhow!(
+            "failed to leave comment on issue `{}`: {}",
+            number,
+            String::from_utf8_lossy(&output.stderr)
+        ))
+    } else {
+        Ok(())
+    }
+}
+
 pub fn sync_assignees(
     repository: &Repository,
     number: u64,
@@ -216,7 +284,7 @@ pub fn sync_assignees(
 
 pub const FLAGSHIP_LABEL: &str = "Flagship Goal";
 
-const LOCK_TEXT: &str = "This issue is intended for status updates only.\n\nFor general questions or comments, please contact the owner(s) directly.";
+pub const LOCK_TEXT: &str = "This issue is intended for status updates only.\n\nFor general questions or comments, please contact the owner(s) directly.";
 
 impl ExistingGithubIssue {
     /// We use the presence of a "lock comment" as a signal that we successfully locked the issue.
@@ -255,25 +323,6 @@ pub fn lock_issue(repository: &Repository, number: u64) -> anyhow::Result<()> {
         }
     }
 
-    // Leave a comment explaining what is going on.
-    let output = Command::new("gh")
-        .arg("-R")
-        .arg(&repository.to_string())
-        .arg("issue")
-        .arg("comment")
-        .arg(number.to_string())
-        .arg("-b")
-        .arg(LOCK_TEXT)
-        .output()?;
-
-    if !output.status.success() {
-        return Err(anyhow::anyhow!(
-            "failed to leave lock comment `{}`: {}",
-            number,
-            String::from_utf8_lossy(&output.stderr)
-        ));
-    }
-
     Ok(())
 }
 
@@ -308,6 +357,7 @@ impl From<ExistingGithubIssueJson> for ExistingGithubIssue {
             body: e_i.body,
             state: e_i.state,
             labels: e_i.labels,
+            milestone: e_i.milestone,
         }
     }
 }
