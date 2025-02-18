@@ -109,6 +109,14 @@ pub fn generate_issues(
     commit: bool,
     sleep: u64,
 ) -> anyhow::Result<()> {
+    // Verify the `gh` client is installed to compute which actions need to be taken in the repo.
+    let sanity_check = Command::new("gh").arg("--version").output();
+    if sanity_check.is_err() {
+        return Err(anyhow::anyhow!(
+            "The github `gh` client is missing and needs to be installed and configured with a token."
+        ));
+    }
+
     // Hacky but works: we loop because after creating the issue, we sometimes have additional sync to do,
     // and it's easier this way.
     loop {
