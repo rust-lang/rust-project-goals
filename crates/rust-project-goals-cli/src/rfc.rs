@@ -13,8 +13,8 @@ use rust_project_goals::{
     gh::{
         issue_id::{IssueId, Repository},
         issues::{
-            change_milestone, create_issue, list_tracking_issues, lock_issue, sync_assignees,
-            FLAGSHIP_LABEL,
+            change_milestone, create_comment, create_issue, list_tracking_issues, lock_issue,
+            sync_assignees, FLAGSHIP_LABEL,
         },
         labels::GhLabel,
     },
@@ -183,6 +183,11 @@ enum GithubAction<'doc> {
         milestone: String,
     },
 
+    Comment {
+        number: u64,
+        body: String,
+    },
+
     // We intentionally do not sync the issue *text*, because it may have been edited.
     SyncAssignees {
         number: u64,
@@ -283,6 +288,14 @@ fn initialize_issues<'doc>(
                     actions.insert(GithubAction::ChangeMilestone {
                         number: existing_issue.number,
                         milestone: timeframe.to_string(),
+                    });
+                    actions.insert(GithubAction::Comment {
+                        number: existing_issue.number,
+                        body: format!(
+                            "This is a continuing project goal, and the updates below \
+                            this comment will be for the new period {}",
+                            timeframe
+                        ),
                     });
                 }
 
@@ -436,6 +449,9 @@ impl Display for GithubAction<'_> {
             GithubAction::ChangeMilestone { number, milestone } => {
                 write!(f, "update issue #{} milestone to \"{}\"", number, milestone)
             }
+            GithubAction::Comment { number, body } => {
+                write!(f, "post comment on issue #{}: \"{}\"", number, body)
+            }
             GithubAction::SyncAssignees {
                 number,
                 remove_owners,
@@ -498,6 +514,11 @@ impl GithubAction<'_> {
 
             GithubAction::ChangeMilestone { number, milestone } => {
                 change_milestone(repository, number, &milestone)?;
+                Ok(())
+            }
+
+            GithubAction::Comment { number, body } => {
+                create_comment(repository, number, &body)?;
                 Ok(())
             }
 

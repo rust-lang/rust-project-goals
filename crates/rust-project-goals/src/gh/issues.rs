@@ -232,6 +232,29 @@ pub fn change_milestone(
     }
 }
 
+pub fn create_comment(repository: &Repository, number: u64, body: &str) -> anyhow::Result<()> {
+    let mut command = Command::new("gh");
+    command
+        .arg("-R")
+        .arg(&repository.to_string())
+        .arg("issue")
+        .arg("comment")
+        .arg(number.to_string())
+        .arg("-b")
+        .arg(body);
+
+    let output = command.output()?;
+    if !output.status.success() {
+        Err(anyhow::anyhow!(
+            "failed to create comment on issue `{}`: {}",
+            number,
+            String::from_utf8_lossy(&output.stderr)
+        ))
+    } else {
+        Ok(())
+    }
+}
+
 pub fn sync_assignees(
     repository: &Repository,
     number: u64,
