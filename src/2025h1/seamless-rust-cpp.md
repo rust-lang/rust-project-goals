@@ -1,7 +1,6 @@
 # Evaluate approaches for seamless interop between C++ and Rust
 
 | Metadata           |                                    |
-| :--                | :--                                |
 | :----------------- | ------------------------------     |
 | Point of contact   | @tmandry                           |
 | Teams              | <!-- TEAMS WITH ASKS -->           |
@@ -27,15 +26,15 @@ We should aim to spread the benefits of Rust and its underlying ideas as far as 
 
 #### Costs of memory unsafety
 
-Memory safety vulnerabilities are the most costly kinds of vulnerabilities, both for product owners and their users. These vulnerabilities and their costs have persisted despite the deployment of many mitigation measures in memory unsafe languages which often impose costs of their own.[^ag][^rust-in-android]
+Memory safety vulnerabilities are the most costly kinds of vulnerabilities, both for product owners and their users. These vulnerabilities and their costs have persisted despite the deployment of many mitigation measures in memory unsafe languages which often impose costs of their own.[^ag] [^rust-in-android]
 
 Experience has shown that regardless of the size of an existing codebase, incrementally adopting a memory safe language like Rust in new code brings roughly linear benefits in terms of new memory safety vulnerabilities. **This is because most vulnerabilities come from new code, not old code.**[^android] This means Rust adoption has value even if only adopted in new code.
 
 Given the growing recognition of this problem from within various technical communities, major technology companies, and major governmental bodies, there is increasing pressure to adopt memory safe languages across the board for all new code. As this proposal explains, this presents both a significant opportunity and a significant challenge for Rust.
 
-[^ag]: https://alexgaynor.net/2020/may/27/science-on-memory-unsafety-and-security/
-[^rust-in-android]: https://security.googleblog.com/2021/04/rust-in-android-platform.html
-[^android]: See https://security.googleblog.com/2024/09/eliminating-memory-safety-vulnerabilities-Android.html and https://security.googleblog.com/2022/12/memory-safe-languages-in-android-13.html.
+[^ag]: <https://alexgaynor.net/2020/may/27/science-on-memory-unsafety-and-security/>
+[^rust-in-android]: <https://security.googleblog.com/2021/04/rust-in-android-platform.html>
+[^android]: See <https://security.googleblog.com/2024/09/eliminating-memory-safety-vulnerabilities-Android.html> and <https://security.googleblog.com/2022/12/memory-safe-languages-in-android-13.html>.
 
 #### Obstacles to memory safety
 
@@ -45,14 +44,14 @@ For example, safety has become more socially desirable in many technical communi
 
 For C/C++ this has led to an improvement along the technical front in terms of automated checking, in both static and dynamic tooling. However, this protracted effort has also revealed the limits of such an approach without language changes. While there have been calls for C++ to adopt memory safety features,[^safe-cpp] they have not gained traction within the C++ standards body for a combination of technical, social, and economic reasons.[^corentin-profiles]
 
-[^safe-cpp]: https://safecpp.org/draft.html
-[^corentin-profiles]: https://cor3ntin.github.io/posts/profiles
+[^safe-cpp]: <https://safecpp.org/draft.html>
+[^corentin-profiles]: <https://cor3ntin.github.io/posts/profiles>
 
 #### Obstacles to Rust adoption
 
 > Changing languages at a large scale is fearfully expensive.[^oncd]
 
-[^oncd]: https://downloads.regulations.gov/ONCD-2023-0002-0020/attachment_1.pdf
+[^oncd]: <https://downloads.regulations.gov/ONCD-2023-0002-0020/attachment_1.pdf>
 
 Rust itself is a major technical breakthrough that enables safety from all kinds of undefined behavior, including spatial safety, temporal safety, and data race safety, with very high confidence. This makes it appealing for those looking to introduce safety to their codebase. Rust adoption is feasible in the following situations:
 
@@ -124,8 +123,8 @@ In addition, it proposes the following axioms:
 |------------------------------|----------------------------------------|-----------------------------------------|
 | Discussion and moral support | ![Team][] [lang], [compiler], [libs-api] |                                         |
 | Design meeting               | ![Team][] [lang], [compiler], [libs-api] | 2-3 meetings expected; all involve lang |
-| Lang-team champion           | ![Team][] [lang]                       | @tmandry |
-| Author design doc            | @tmandry can drive                     |                                         |
+| Lang-team champion           | ![Team][] [lang]                       | @tmandry                                |
+| Author design doc            | @tmandry                               |                                         |
 | Author design doc            | ![Help wanted][]                       |                                         |
 | Author design doc            | ![Help wanted][]                       |                                         |
 
