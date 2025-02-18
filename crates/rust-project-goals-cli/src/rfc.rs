@@ -140,6 +140,7 @@ pub fn generate_issues(
                 progress_bar::Color::Blue,
                 progress_bar::Style::Bold,
             );
+            let mut success = 0;
             for action in actions.into_iter() {
                 progress_bar::print_progress_bar_info(
                     "Action",
@@ -147,12 +148,24 @@ pub fn generate_issues(
                     progress_bar::Color::Green,
                     progress_bar::Style::Bold,
                 );
-                action.execute(repository, &timeframe)?;
+                if let Err(e) = action.execute(repository, &timeframe) {
+                    progress_bar::print_progress_bar_info(
+                        "Error",
+                        &format!("{}", e),
+                        progress_bar::Color::Red,
+                        progress_bar::Style::Bold,
+                    );
+                } else {
+                    success += 1;
+                }
                 progress_bar::inc_progress_bar();
 
                 std::thread::sleep(Duration::from_millis(sleep));
             }
             progress_bar::finalize_progress_bar();
+            if success == 0 {
+                anyhow::bail!("all actions failed, aborting")
+            }
         } else {
             eprintln!("Actions to be executed:");
             for action in &actions {
@@ -162,6 +175,7 @@ pub fn generate_issues(
             eprintln!("Use `--commit` to execute the actions.");
             return Ok(());
         }
+
     }
 }
 
@@ -310,9 +324,6 @@ fn initialize_issues<'doc>(
                 }
 
                 if existing_issue.milestone.as_ref().map(|m| m.title.as_str()) != Some(timeframe) {
-                    eprintln!("existing_issue: {}", existing_issue.number);
-                    eprintln!("timeframe: {timeframe}");
-                    eprintln!("milestone: {:?}", existing_issue.milestone);
                     actions.insert(GithubAction::ChangeMilestone {
                         number: existing_issue.number,
                         milestone: timeframe.to_string(),
@@ -559,6 +570,8 @@ impl GithubAction<'_> {
                 remove_owners,
                 add_owners,
             } => {
+                // NOTE: Swallow errors here because sometimes people are not present in the org.
+                // We don't want to stop everything for that.
                 sync_assignees(repository, number, &remove_owners, &add_owners)?;
                 Ok(())
             }
