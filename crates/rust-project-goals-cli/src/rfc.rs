@@ -13,8 +13,7 @@ use rust_project_goals::{
     gh::{
         issue_id::{IssueId, Repository},
         issues::{
-            change_milestone, create_comment, create_issue, fetch_issue, fetch_issue_by_title,
-            lock_issue, sync_assignees, FLAGSHIP_LABEL, LOCK_TEXT,
+            change_milestone, create_comment, create_issue, fetch_issue, list_issues_in_milestone, lock_issue, sync_assignees, FLAGSHIP_LABEL, LOCK_TEXT
         },
         labels::GhLabel,
     },
@@ -266,12 +265,30 @@ fn initialize_issues<'doc>(
         .map(|goal_document| issue(timeframe, goal_document))
         .collect::<anyhow::Result<_>>()?;
 
+    // the list of existing issues in the target milestone
+    let milestone_issues = list_issues_in_milestone(repository, timeframe)?;
+
     let mut actions = BTreeSet::new();
+
+    // Go through each of the issues we want to exist (derived from the goals defined in the target folder)
     for desired_issue in desired_issues {
+        // Check if we already created a tracking issue...
+        //
         let existing_issue = if let Some(tracking_issue) = desired_issue.tracking_issue {
+            // a. We first check if there is a declared tracking issue in the markdown file.
+            // If so, then we just load its information from the repository by number.
             Some(fetch_issue(repository, tracking_issue.number)?)
         } else {
-            fetch_issue_by_title(repository, &desired_issue.title)?
+            // b. If the markdown does not have a declared tracking issue, then we can search through
+            // the issues in the milestone for one with the correct title.
+            // We could also do a fresh GH query for an issue with the desired title
+            // but that is slower.
+            //
+            // This addresses a kind of awkward gap in our handling-- when a new project goal
+            // is created, we first create an issue for it, then do a loop and execute again.
+            // This second time, we will find the issue with the known title, get its
+            // number, and put that number into the markdown.
+            milestone_issues.iter().find(|issue| issue.title == desired_issue.title).cloned()
         };
 
         match existing_issue {
@@ -293,6 +310,9 @@ fn initialize_issues<'doc>(
                 }
 
                 if existing_issue.milestone.as_ref().map(|m| m.title.as_str()) != Some(timeframe) {
+                    eprintln!("existing_issue: {}", existing_issue.number);
+                    eprintln!("timeframe: {timeframe}");
+                    eprintln!("milestone: {:?}", existing_issue.milestone);
                     actions.insert(GithubAction::ChangeMilestone {
                         number: existing_issue.number,
                         milestone: timeframe.to_string(),

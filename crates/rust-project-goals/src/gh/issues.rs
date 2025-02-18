@@ -112,35 +112,12 @@ pub fn fetch_issue(repository: &Repository, issue: u64) -> anyhow::Result<Existi
         .arg("view")
         .arg(&format!("{issue}"))
         .arg("--json")
-        .arg("title,assignees,number,comments,body,state,labels")
+        .arg("title,assignees,number,comments,body,state,labels,milestone")
         .output()?;
 
     let e_i: ExistingGithubIssueJson = serde_json::from_slice(&output.stdout)?;
 
     Ok(ExistingGithubIssue::from(e_i))
-}
-
-pub fn fetch_issue_by_title(
-    repository: &Repository,
-    title: &str,
-) -> anyhow::Result<Option<ExistingGithubIssue>> {
-    let output = Command::new("gh")
-        .arg("-R")
-        .arg(&repository.to_string())
-        .arg("issue")
-        .arg("list")
-        .arg("-S")
-        .arg(format!("{} in:title", title))
-        .arg("--json")
-        .arg("title,assignees,number,comments,body,state,labels")
-        .output()?;
-
-    let existing_issues: Vec<ExistingGithubIssueJson> = serde_json::from_slice(&output.stdout)?;
-
-    Ok(existing_issues
-        .into_iter()
-        .next()
-        .map(|e_i| ExistingGithubIssue::from(e_i)))
 }
 
 pub fn list_issues_in_milestone(
@@ -161,7 +138,9 @@ pub fn list_issues(
         .arg("issue")
         .arg("list")
         .arg("-s")
-        .arg("all");
+        .arg("all")
+        .arg("-L")
+        .arg("5000");
 
     for (opt, val) in filter {
         cmd.arg(opt);
