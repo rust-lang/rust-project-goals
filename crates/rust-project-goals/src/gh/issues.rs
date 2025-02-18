@@ -120,15 +120,34 @@ pub fn fetch_issue(repository: &Repository, issue: u64) -> anyhow::Result<Existi
     Ok(ExistingGithubIssue::from(e_i))
 }
 
+pub fn fetch_issue_by_title(
+    repository: &Repository,
+    title: &str,
+) -> anyhow::Result<Option<ExistingGithubIssue>> {
+    let output = Command::new("gh")
+        .arg("-R")
+        .arg(&repository.to_string())
+        .arg("issue")
+        .arg("list")
+        .arg("-S")
+        .arg(format!("{} in:title", title))
+        .arg("--json")
+        .arg("title,assignees,number,comments,body,state,labels")
+        .output()?;
+
+    let existing_issues: Vec<ExistingGithubIssueJson> = serde_json::from_slice(&output.stdout)?;
+
+    Ok(existing_issues
+        .into_iter()
+        .next()
+        .map(|e_i| ExistingGithubIssue::from(e_i)))
+}
+
 pub fn list_issues_in_milestone(
     repository: &Repository,
     timeframe: &str,
 ) -> anyhow::Result<Vec<ExistingGithubIssue>> {
     list_issues(repository, &[("-m", timeframe)])
-}
-
-pub fn list_tracking_issues(repository: &Repository) -> anyhow::Result<Vec<ExistingGithubIssue>> {
-    list_issues(repository, &[("-l", "C-tracking-issue")])
 }
 
 pub fn list_issues(

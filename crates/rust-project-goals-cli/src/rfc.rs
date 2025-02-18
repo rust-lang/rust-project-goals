@@ -13,8 +13,8 @@ use rust_project_goals::{
     gh::{
         issue_id::{IssueId, Repository},
         issues::{
-            change_milestone, create_comment, create_issue, list_tracking_issues, lock_issue,
-            sync_assignees, FLAGSHIP_LABEL, LOCK_TEXT,
+            change_milestone, create_comment, create_issue, fetch_issue, fetch_issue_by_title,
+            lock_issue, sync_assignees, FLAGSHIP_LABEL, LOCK_TEXT,
         },
         labels::GhLabel,
     },
@@ -266,15 +266,15 @@ fn initialize_issues<'doc>(
         .map(|goal_document| issue(timeframe, goal_document))
         .collect::<anyhow::Result<_>>()?;
 
-    // Compare desired issues against existing issues
-    let existing_issues = list_tracking_issues(repository)?;
-
     let mut actions = BTreeSet::new();
     for desired_issue in desired_issues {
-        match existing_issues.iter().find(|issue| {
-            let issue_id = IssueId::new(repository.clone(), issue.number);
-            Some(&issue_id) == desired_issue.tracking_issue || issue.title == desired_issue.title
-        }) {
+        let existing_issue = if let Some(tracking_issue) = desired_issue.tracking_issue {
+            Some(fetch_issue(repository, tracking_issue.number)?)
+        } else {
+            fetch_issue_by_title(repository, &desired_issue.title)?
+        };
+
+        match existing_issue {
             Some(existing_issue) => {
                 if existing_issue.assignees != desired_issue.assignees {
                     actions.insert(GithubAction::SyncAssignees {
