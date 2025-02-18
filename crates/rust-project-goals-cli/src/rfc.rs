@@ -14,7 +14,7 @@ use rust_project_goals::{
         issue_id::{IssueId, Repository},
         issues::{
             change_milestone, create_comment, create_issue, list_tracking_issues, lock_issue,
-            sync_assignees, FLAGSHIP_LABEL,
+            sync_assignees, FLAGSHIP_LABEL, LOCK_TEXT,
         },
         labels::GhLabel,
     },
@@ -302,6 +302,10 @@ fn initialize_issues<'doc>(
                 if !existing_issue.was_locked() {
                     actions.insert(GithubAction::LockIssue {
                         number: existing_issue.number,
+                    });
+                    actions.insert(GithubAction::Comment {
+                        number: existing_issue.number,
+                        body: LOCK_TEXT.to_string(),
                     });
                 }
 

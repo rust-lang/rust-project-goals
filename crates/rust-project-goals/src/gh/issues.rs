@@ -227,20 +227,19 @@ pub fn change_milestone(
 }
 
 pub fn create_comment(repository: &Repository, number: u64, body: &str) -> anyhow::Result<()> {
-    let mut command = Command::new("gh");
-    command
+    let output = Command::new("gh")
         .arg("-R")
         .arg(&repository.to_string())
         .arg("issue")
         .arg("comment")
         .arg(number.to_string())
         .arg("-b")
-        .arg(body);
+        .arg(body)
+        .output()?;
 
-    let output = command.output()?;
     if !output.status.success() {
         Err(anyhow::anyhow!(
-            "failed to create comment on issue `{}`: {}",
+            "failed to leave comment on issue `{}`: {}",
             number,
             String::from_utf8_lossy(&output.stderr)
         ))
@@ -285,7 +284,7 @@ pub fn sync_assignees(
 
 pub const FLAGSHIP_LABEL: &str = "Flagship Goal";
 
-const LOCK_TEXT: &str = "This issue is intended for status updates only.\n\nFor general questions or comments, please contact the owner(s) directly.";
+pub const LOCK_TEXT: &str = "This issue is intended for status updates only.\n\nFor general questions or comments, please contact the owner(s) directly.";
 
 impl ExistingGithubIssue {
     /// We use the presence of a "lock comment" as a signal that we successfully locked the issue.
@@ -322,25 +321,6 @@ pub fn lock_issue(repository: &Repository, number: u64) -> anyhow::Result<()> {
                 String::from_utf8_lossy(&output.stderr)
             ));
         }
-    }
-
-    // Leave a comment explaining what is going on.
-    let output = Command::new("gh")
-        .arg("-R")
-        .arg(&repository.to_string())
-        .arg("issue")
-        .arg("comment")
-        .arg(number.to_string())
-        .arg("-b")
-        .arg(LOCK_TEXT)
-        .output()?;
-
-    if !output.status.success() {
-        return Err(anyhow::anyhow!(
-            "failed to leave lock comment `{}`: {}",
-            number,
-            String::from_utf8_lossy(&output.stderr)
-        ));
     }
 
     Ok(())
