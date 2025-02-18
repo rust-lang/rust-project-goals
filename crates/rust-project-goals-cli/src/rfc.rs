@@ -13,7 +13,8 @@ use rust_project_goals::{
     gh::{
         issue_id::{IssueId, Repository},
         issues::{
-            create_issue, list_issues_in_milestone, lock_issue, sync_assignees, FLAGSHIP_LABEL,
+            change_milestone, create_comment, create_issue, list_tracking_issues, lock_issue,
+            sync_assignees, FLAGSHIP_LABEL, LOCK_TEXT,
         },
         labels::GhLabel,
     },
@@ -177,6 +178,16 @@ enum GithubAction<'doc> {
         issue: GithubIssue<'doc>,
     },
 
+    ChangeMilestone {
+        number: u64,
+        milestone: String,
+    },
+
+    Comment {
+        number: u64,
+        body: String,
+    },
+
     // We intentionally do not sync the issue *text*, because it may have been edited.
     SyncAssignees {
         number: u64,
@@ -248,7 +259,8 @@ fn initialize_issues<'doc>(
         .collect::<anyhow::Result<_>>()?;
 
     // Compare desired issues against existing issues
-    let existing_issues = list_issues_in_milestone(repository, timeframe)?;
+    let existing_issues = list_tracking_issues(repository)?;
+
     let mut actions = BTreeSet::new();
     for desired_issue in desired_issues {
         match existing_issues.iter().find(|issue| {
@@ -272,9 +284,28 @@ fn initialize_issues<'doc>(
                     });
                 }
 
+                if existing_issue.milestone.as_ref().map(|m| m.title.as_str()) != Some(timeframe) {
+                    actions.insert(GithubAction::ChangeMilestone {
+                        number: existing_issue.number,
+                        milestone: timeframe.to_string(),
+                    });
+                    actions.insert(GithubAction::Comment {
+                        number: existing_issue.number,
+                        body: format!(
+                            "This is a continuing project goal, and the updates below \
+                            this comment will be for the new period {}",
+                            timeframe
+                        ),
+                    });
+                }
+
                 if !existing_issue.was_locked() {
                     actions.insert(GithubAction::LockIssue {
                         number: existing_issue.number,
+                    });
+                    actions.insert(GithubAction::Comment {
+                        number: existing_issue.number,
+                        body: LOCK_TEXT.to_string(),
                     });
                 }
 
@@ -419,6 +450,12 @@ impl Display for GithubAction<'_> {
             GithubAction::CreateIssue { issue } => {
                 write!(f, "create issue \"{}\"", issue.title)
             }
+            GithubAction::ChangeMilestone { number, milestone } => {
+                write!(f, "update issue #{} milestone to \"{}\"", number, milestone)
+            }
+            GithubAction::Comment { number, body } => {
+                write!(f, "post comment on issue #{}: \"{}\"", number, body)
+            }
             GithubAction::SyncAssignees {
                 number,
                 remove_owners,
@@ -478,6 +515,17 @@ impl GithubAction<'_> {
 
                 Ok(())
             }
+
+            GithubAction::ChangeMilestone { number, milestone } => {
+                change_milestone(repository, number, &milestone)?;
+                Ok(())
+            }
+
+            GithubAction::Comment { number, body } => {
+                create_comment(repository, number, &body)?;
+                Ok(())
+            }
+
             GithubAction::SyncAssignees {
                 number,
                 remove_owners,
