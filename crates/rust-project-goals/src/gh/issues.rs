@@ -124,38 +124,32 @@ pub fn list_issues_in_milestone(
     repository: &Repository,
     timeframe: &str,
 ) -> anyhow::Result<Vec<ExistingGithubIssue>> {
-    let output = Command::new("gh")
-        .arg("-R")
-        .arg(&repository.to_string())
-        .arg("issue")
-        .arg("list")
-        .arg("-m")
-        .arg(timeframe)
-        .arg("-s")
-        .arg("all")
-        .arg("--json")
-        .arg("title,assignees,number,comments,body,state,labels,milestone")
-        .output()
-        .with_context(|| format!("running github cli tool `gh`"))?;
-
-    let existing_issues: Vec<ExistingGithubIssueJson> = serde_json::from_slice(&output.stdout)?;
-
-    Ok(existing_issues
-        .into_iter()
-        .map(|e_i| ExistingGithubIssue::from(e_i))
-        .collect())
+    list_issues(repository, &[("-m", timeframe)])
 }
 
 pub fn list_tracking_issues(repository: &Repository) -> anyhow::Result<Vec<ExistingGithubIssue>> {
-    let output = Command::new("gh")
-        .arg("-R")
+    list_issues(repository, &[("-l", "C-tracking-issue")])
+}
+
+pub fn list_issues(
+    repository: &Repository,
+    filter: &[(&str, &str)],
+) -> anyhow::Result<Vec<ExistingGithubIssue>> {
+    let mut cmd = Command::new("gh");
+
+    cmd.arg("-R")
         .arg(&repository.to_string())
         .arg("issue")
         .arg("list")
         .arg("-s")
-        .arg("all")
-        .arg("-l")
-        .arg("C-tracking-issue")
+        .arg("all");
+
+    for (opt, val) in filter {
+        cmd.arg(opt);
+        cmd.arg(val);
+    }
+
+    let output = cmd
         .arg("--json")
         .arg("title,assignees,number,comments,body,state,labels,milestone")
         .output()
