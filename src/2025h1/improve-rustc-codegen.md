@@ -10,13 +10,15 @@
 
 -->
 
-| Metadata         |             |
-|:-----------------|-------------|
-| Point of contact | @folkertdev |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
-| Status           | Proposed    |
-| Zulip channel    | N/A         |
+| Metadata           |                                    |
+| :--                | :--                                |
+| :----------------- | -------------                      |
+| Point of contact   | @folkertdev                        |
+| Teams              | <!-- TEAMS WITH ASKS -->           |
+| Task owners        | <!-- TASK OWNERS -->               |
+| Status             | Proposed                           |
+| Zulip channel      | N/A                                |
+| Tracking issue     | [rust-lang/rust-project-goals#258] |
 
 ## Summary
 

@@ -1,12 +1,14 @@
 # Stabilize public/private dependencies
 
-| Metadata         |                         |
-|:-----------------|-------------------------|
-| Point of contact | @epage                  |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
-| Status           | Proposed for mentorship |
-| Zulip channel    | N/A                  |
+| Metadata           |                                    |
+| :--                | :--                                |
+| :----------------- | -------------------------          |
+| Point of contact   | @epage                             |
+| Teams              | <!-- TEAMS WITH ASKS -->           |
+| Task owners        | <!-- TASK OWNERS -->               |
+| Status             | Proposed for mentorship            |
+| Zulip channel      | N/A                                |
+| Tracking issue     | [rust-lang/rust-project-goals#272] |
 
 ## Summary
 

@@ -1,12 +1,14 @@
 # Nightly support for ergonomic SIMD multiversioning
 
-| Metadata         |                                   |
-|:-----------------|-----------------------------------|
-| Point of contact | @veluca93                         |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
-| Status           | Proposed                          |
-| Zulip channel    | [#project-portable-simd][channel] |
+| Metadata           |                                     |
+| :--                | :--                                 |
+| :----------------- | ----------------------------------- |
+| Point of contact   | @veluca93                           |
+| Teams              | <!-- TEAMS WITH ASKS -->            |
+| Task owners        | <!-- TASK OWNERS -->                |
+| Status             | Proposed                            |
+| Zulip channel      | [#project-portable-simd][channel]   |
+| Tracking issue     | [rust-lang/rust-project-goals#261]  |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/257879-project-portable-simd/
 

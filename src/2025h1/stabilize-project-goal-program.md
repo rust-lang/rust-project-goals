@@ -1,12 +1,14 @@
 # Run the 2025H1 project goal program
 
-| Metadata         |                           |
-|:-----------------|---------------------------|
-| Point of contact | @nikomatsakis             |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
-| Status           | Proposed                  |
-| Zulip channel    | [#project-goals][channel] |
+| Metadata           |                                    |
+| :--                | :--                                |
+| :----------------- | ---------------------------        |
+| Point of contact   | @nikomatsakis                      |
+| Teams              | <!-- TEAMS WITH ASKS -->           |
+| Task owners        | <!-- TASK OWNERS -->               |
+| Status             | Proposed                           |
+| Zulip channel      | [#project-goals][channel]          |
+| Tracking issue     | [rust-lang/rust-project-goals#268] |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/435869-project-goals
 

@@ -1,12 +1,14 @@
 # Organize Rust All-Hands 2025
 
-| Metadata         |                      |
-|:-----------------|----------------------|
-| Point of contact | @m-ou-se             |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
-| Status           | Proposed for flagship            |
-| Zulip channel    | N/A                  |
+| Metadata           |                                    |
+| :--                | :--                                |
+| :----------------- | ----------------------             |
+| Point of contact   | @m-ou-se                           |
+| Teams              | <!-- TEAMS WITH ASKS -->           |
+| Task owners        | <!-- TASK OWNERS -->               |
+| Status             | Proposed for flagship              |
+| Zulip channel      | N/A                                |
+| Tracking issue     | [rust-lang/rust-project-goals#263] |
 
 ## Summary
 

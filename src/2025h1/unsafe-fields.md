@@ -1,12 +1,14 @@
 # Unsafe Fields
 
-| Metadata         |                          |
-|:-----------------|--------------------------|
-| Point of contact | @jswrenn                 |
-| Teams            | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS -->     |
-| Status           | Proposed                 |
-| Zulip channel    | N/A                      |
+| Metadata           |                                    |
+| :--                | :--                                |
+| :----------------- | --------------------------         |
+| Point of contact   | @jswrenn                           |
+| Teams              | <!-- TEAMS WITH ASKS -->           |
+| Task owners        | <!-- TASK OWNERS -->               |
+| Status             | Proposed                           |
+| Zulip channel      | N/A                                |
+| Tracking issue     | [rust-lang/rust-project-goals#273] |
 
 ## Summary
 
