@@ -1,12 +1,14 @@
 # Rust Vision Document
 
-| Metadata         |                      |
-|:-----------------|----------------------|
-| Point of contact | @nikomatsakis        |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
-| Status           | Proposed             |
-| Zulip channel    | N/A                  |
+| Metadata           |                                    |
+| :--                | :--                                |
+| :----------------- | ----------------------             |
+| Point of contact   | @nikomatsakis                      |
+| Teams              | <!-- TEAMS WITH ASKS -->           |
+| Task owners        | <!-- TASK OWNERS -->               |
+| Status             | Proposed                           |
+| Zulip channel      | N/A                                |
+| Tracking issue     | [rust-lang/rust-project-goals#269] |
 
 ## Summary
 

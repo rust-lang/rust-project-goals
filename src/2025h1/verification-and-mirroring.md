@@ -1,13 +1,15 @@
 # Secure quorum-based cryptographic verification and mirroring for crates.io
 
-| Metadata         |                          |
-|:-----------------|--------------------------|
-| Short title      | Crates.io mirroring      |
-| Point of contact | @walterhpearce           |
-| Teams            | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS -->     |
-| Status           | Proposed                 |
-| Zulip channel    | N/A                      |
+| Metadata           |                                    |
+| :--                | :--                                |
+| :----------------- | --------------------------         |
+| Short title        | Crates.io mirroring                |
+| Point of contact   | @walterhpearce                     |
+| Teams              | <!-- TEAMS WITH ASKS -->           |
+| Task owners        | <!-- TASK OWNERS -->               |
+| Status             | Proposed                           |
+| Zulip channel      | N/A                                |
+| Tracking issue     | [rust-lang/rust-project-goals#271] |
 
 ## Summary
 

@@ -1,12 +1,14 @@
 # Publish first rust-lang-owned release of "FLS"
 
-| Metadata         |                          |
-|:-----------------|--------------------------|
-| Point of contact | @joelmarcey              |
-| Teams            | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS -->     |
-| Status           | Proposed                 |
-| Zulip channel    | [#t-spec][channel]       |
+| Metadata           |                                    |
+| :--                | :--                                |
+| :----------------- | --------------------------         |
+| Point of contact   | @joelmarcey                        |
+| Teams              | <!-- TEAMS WITH ASKS -->           |
+| Task owners        | <!-- TASK OWNERS -->               |
+| Status             | Proposed                           |
+| Zulip channel      | [#t-spec][channel]                 |
+| Tracking issue     | [rust-lang/rust-project-goals#265] |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/399173-t-spec
 
@@ -61,4 +63,3 @@ Some subgoals list an expected due/completion date. If one is omitted, compeleti
 | Continued updates for new releases | Ferrous Systems                |                                 |
 
 ## Frequently asked questions
-

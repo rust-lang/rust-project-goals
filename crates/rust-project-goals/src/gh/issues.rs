@@ -112,7 +112,7 @@ pub fn fetch_issue(repository: &Repository, issue: u64) -> anyhow::Result<Existi
         .arg("view")
         .arg(&format!("{issue}"))
         .arg("--json")
-        .arg("title,assignees,number,comments,body,state,labels")
+        .arg("title,assignees,number,comments,body,state,labels,milestone")
         .output()?;
 
     let e_i: ExistingGithubIssueJson = serde_json::from_slice(&output.stdout)?;
@@ -127,10 +127,6 @@ pub fn list_issues_in_milestone(
     list_issues(repository, &[("-m", timeframe)])
 }
 
-pub fn list_tracking_issues(repository: &Repository) -> anyhow::Result<Vec<ExistingGithubIssue>> {
-    list_issues(repository, &[("-l", "C-tracking-issue")])
-}
-
 pub fn list_issues(
     repository: &Repository,
     filter: &[(&str, &str)],
@@ -142,7 +138,9 @@ pub fn list_issues(
         .arg("issue")
         .arg("list")
         .arg("-s")
-        .arg("all");
+        .arg("all")
+        .arg("-L")
+        .arg("5000");
 
     for (opt, val) in filter {
         cmd.arg(opt);

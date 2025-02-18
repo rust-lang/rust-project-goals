@@ -13,8 +13,7 @@ use rust_project_goals::{
     gh::{
         issue_id::{IssueId, Repository},
         issues::{
-            change_milestone, create_comment, create_issue, list_tracking_issues, lock_issue,
-            sync_assignees, FLAGSHIP_LABEL, LOCK_TEXT,
+            change_milestone, create_comment, create_issue, fetch_issue, list_issues_in_milestone, lock_issue, sync_assignees, FLAGSHIP_LABEL, LOCK_TEXT
         },
         labels::GhLabel,
     },
@@ -141,6 +140,7 @@ pub fn generate_issues(
                 progress_bar::Color::Blue,
                 progress_bar::Style::Bold,
             );
+            let mut success = 0;
             for action in actions.into_iter() {
                 progress_bar::print_progress_bar_info(
                     "Action",
@@ -148,12 +148,24 @@ pub fn generate_issues(
                     progress_bar::Color::Green,
                     progress_bar::Style::Bold,
                 );
-                action.execute(repository, &timeframe)?;
+                if let Err(e) = action.execute(repository, &timeframe) {
+                    progress_bar::print_progress_bar_info(
+                        "Error",
+                        &format!("{}", e),
+                        progress_bar::Color::Red,
+                        progress_bar::Style::Bold,
+                    );
+                } else {
+                    success += 1;
+                }
                 progress_bar::inc_progress_bar();
 
                 std::thread::sleep(Duration::from_millis(sleep));
             }
             progress_bar::finalize_progress_bar();
+            if success == 0 {
+                anyhow::bail!("all actions failed, aborting")
+            }
         } else {
             eprintln!("Actions to be executed:");
             for action in &actions {
@@ -163,6 +175,7 @@ pub fn generate_issues(
             eprintln!("Use `--commit` to execute the actions.");
             return Ok(());
         }
+
     }
 }
 
@@ -266,15 +279,33 @@ fn initialize_issues<'doc>(
         .map(|goal_document| issue(timeframe, goal_document))
         .collect::<anyhow::Result<_>>()?;
 
-    // Compare desired issues against existing issues
-    let existing_issues = list_tracking_issues(repository)?;
+    // the list of existing issues in the target milestone
+    let milestone_issues = list_issues_in_milestone(repository, timeframe)?;
 
     let mut actions = BTreeSet::new();
+
+    // Go through each of the issues we want to exist (derived from the goals defined in the target folder)
     for desired_issue in desired_issues {
-        match existing_issues.iter().find(|issue| {
-            let issue_id = IssueId::new(repository.clone(), issue.number);
-            Some(&issue_id) == desired_issue.tracking_issue || issue.title == desired_issue.title
-        }) {
+        // Check if we already created a tracking issue...
+        //
+        let existing_issue = if let Some(tracking_issue) = desired_issue.tracking_issue {
+            // a. We first check if there is a declared tracking issue in the markdown file.
+            // If so, then we just load its information from the repository by number.
+            Some(fetch_issue(repository, tracking_issue.number)?)
+        } else {
+            // b. If the markdown does not have a declared tracking issue, then we can search through
+            // the issues in the milestone for one with the correct title.
+            // We could also do a fresh GH query for an issue with the desired title
+            // but that is slower.
+            //
+            // This addresses a kind of awkward gap in our handling-- when a new project goal
+            // is created, we first create an issue for it, then do a loop and execute again.
+            // This second time, we will find the issue with the known title, get its
+            // number, and put that number into the markdown.
+            milestone_issues.iter().find(|issue| issue.title == desired_issue.title).cloned()
+        };
+
+        match existing_issue {
             Some(existing_issue) => {
                 if existing_issue.assignees != desired_issue.assignees {
                     actions.insert(GithubAction::SyncAssignees {
@@ -539,6 +570,8 @@ impl GithubAction<'_> {
                 remove_owners,
                 add_owners,
             } => {
+                // NOTE: Swallow errors here because sometimes people are not present in the org.
+                // We don't want to stop everything for that.
                 sync_assignees(repository, number, &remove_owners, &add_owners)?;
                 Ok(())
             }

@@ -1,12 +1,14 @@
 # Implement restrictions, prepare for stabilization
 
-| Metadata         |                          |
-|:-----------------|--------------------------|
-| Point of contact | @jhpratt                 |
-| Teams            | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS -->     |
-| Status           | Proposed                 |
-| Zulip channel    | N/A                      |
+| Metadata           |                                    |
+| :--                | :--                                |
+| :----------------- | --------------------------         |
+| Point of contact   | @jhpratt                           |
+| Teams              | <!-- TEAMS WITH ASKS -->           |
+| Task owners        | <!-- TASK OWNERS -->               |
+| Status             | Proposed                           |
+| Zulip channel      | N/A                                |
+| Tracking issue     | [rust-lang/rust-project-goals#257] |
 
 [rfc]: https://rust-lang.github.io/rfcs/3323-restrictions.html
 [pr]: https://github.com/rust-lang/rust/pull/106074

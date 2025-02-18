@@ -1,12 +1,14 @@
 # Null and enum-discriminant runtime checks in debug builds
 
-| Metadata         |                      |
-|:-----------------|----------------------|
-| Point of contact | @1c3t3a              |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
-| Status           | Proposed             |
-| Zulip channel    | N/A                  |
+| Metadata           |                                    |
+| :--                | :--                                |
+| :----------------- | ----------------------             |
+| Point of contact   | @1c3t3a                            |
+| Teams              | <!-- TEAMS WITH ASKS -->           |
+| Task owners        | <!-- TASK OWNERS -->               |
+| Status             | Proposed                           |
+| Zulip channel      | N/A                                |
+| Tracking issue     | [rust-lang/rust-project-goals#262] |
 
 ## Summary
 

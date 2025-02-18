@@ -1,12 +1,14 @@
 # Evaluate approaches for seamless interop between C++ and Rust
 
-| Metadata         |                              |
-|:-----------------|------------------------------|
-| Point of contact | @tmandry                     |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
-| Status           | Proposed                     |
-| Zulip channel    | N/A                          |
+| Metadata           |                                    |
+| :--                | :--                                |
+| :----------------- | ------------------------------     |
+| Point of contact   | @tmandry                           |
+| Teams              | <!-- TEAMS WITH ASKS -->           |
+| Task owners        | <!-- TASK OWNERS -->               |
+| Status             | Proposed                           |
+| Zulip channel      | N/A                                |
+| Tracking issue     | [rust-lang/rust-project-goals#253] |
 
 ## Summary
 
