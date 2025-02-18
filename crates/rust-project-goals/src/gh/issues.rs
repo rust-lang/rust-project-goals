@@ -142,7 +142,9 @@ pub fn list_issues(
         .arg("issue")
         .arg("list")
         .arg("-s")
-        .arg("all");
+        .arg("all")
+        .arg("-L")
+        .arg("50000");
 
     for (opt, val) in filter {
         cmd.arg(opt);
