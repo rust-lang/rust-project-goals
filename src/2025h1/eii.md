@@ -1,12 +1,14 @@
 # Externally Implementable Items
 
-| Metadata         |                    |
-|:-----------------|--------------------|
-| Point of contact | @m-ou-se           |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
-| Status           | Proposed           |
-| Zulip channel    | N/A                |
+| Metadata           |                                    |
+| :--                | :--                                |
+| :----------------- | --------------------               |
+| Point of contact   | @m-ou-se                           |
+| Teams              | <!-- TEAMS WITH ASKS -->           |
+| Task owners        | <!-- TASK OWNERS -->               |
+| Status             | Proposed                           |
+| Zulip channel      | N/A                                |
+| Tracking issue     | [rust-lang/rust-project-goals#254] |
 
 ## Summary
 

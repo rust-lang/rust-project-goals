@@ -1,12 +1,14 @@
 # Declarative (`macro_rules!`) macro improvements
 
-| Metadata         |                          |
-|:-----------------|--------------------------|
-| Point of contact | @joshtriplett            |
-| Teams            | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS -->     |
-| Status           | Proposed                 |
-| Zulip channel    | N/A                      |
+| Metadata           |                                    |
+| :--                | :--                                |
+| :----------------- | --------------------------         |
+| Point of contact   | @joshtriplett                      |
+| Teams              | <!-- TEAMS WITH ASKS -->           |
+| Task owners        | <!-- TASK OWNERS -->               |
+| Status             | Proposed                           |
+| Zulip channel      | N/A                                |
+| Tracking issue     | [rust-lang/rust-project-goals#252] |
 
 ## Summary
 

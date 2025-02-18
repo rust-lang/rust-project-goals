@@ -1,12 +1,14 @@
 # SVE and SME on AArch64
 
-| Metadata         |                             |
-|:-----------------|-----------------------------|
-| Point of contact | @davidtwco                  |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
-| Status           | Proposed                    |
-| Zulip channel    | N/A                         |
+| Metadata           |                                    |
+| :--                | :--                                |
+| :----------------- | -----------------------------      |
+| Point of contact   | @davidtwco                         |
+| Teams              | <!-- TEAMS WITH ASKS -->           |
+| Task owners        | <!-- TASK OWNERS -->               |
+| Status             | Proposed                           |
+| Zulip channel      | N/A                                |
+| Tracking issue     | [rust-lang/rust-project-goals#270] |
 
 *Arm's Rust team is @davidtwco, @adamgemmell, @jacobbramley, @JamieCunliffe and @Jamesbarford, as
 well as @mrkajetanp and @harmou01 as graduates on rotation. This goal will be primarily worked on

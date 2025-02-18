@@ -1,12 +1,14 @@
 # build-std
 
-| Metadata         |                  |
-|:-----------------|------------------|
-| Point of contact | @davidtwco       |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
-| Status           | Proposed         |
-| Zulip channel    | N/A              |
+| Metadata           |                                    |
+| :--                | :--                                |
+| :----------------- | ------------------                 |
+| Point of contact   | @davidtwco                         |
+| Teams              | <!-- TEAMS WITH ASKS -->           |
+| Task owners        | <!-- TASK OWNERS -->               |
+| Status             | Proposed                           |
+| Zulip channel      | N/A                                |
+| Tracking issue     | [rust-lang/rust-project-goals#274] |
 
 *Arm's Rust team is @davidtwco, @adamgemmell, @jacobbramley, @JamieCunliffe and @Jamesbarford. This
 goal will be primarily worked on by @adamgemmell, but @davidtwco can always be contacted for

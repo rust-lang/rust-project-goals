@@ -1,12 +1,14 @@
 # Publish first version of StableMIR on crates.io
 
-| Metadata         |                                |
-|:-----------------|--------------------------------|
-| Point of contact | @celinval                      |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
-| Status           | Proposed                       |
-| Zulip channel    | [#project-stable-mir][channel] |
+| Metadata           |                                    |
+| :--                | :--                                |
+| :----------------- | --------------------------------   |
+| Point of contact   | @celinval                          |
+| Teams              | <!-- TEAMS WITH ASKS -->           |
+| Task owners        | <!-- TASK OWNERS -->               |
+| Status             | Proposed                           |
+| Zulip channel      | [#project-stable-mir][channel]     |
+| Tracking issue     | [rust-lang/rust-project-goals#266] |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/320896-project-stable-mir
 
