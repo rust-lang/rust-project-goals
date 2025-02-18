@@ -6,5 +6,5 @@ pub struct GhMilestone {
     pub title: String,
     pub description: String,
     #[serde(rename = "dueOn")]
-    pub due_on: String,
+    pub due_on: Option<String>,
 }
