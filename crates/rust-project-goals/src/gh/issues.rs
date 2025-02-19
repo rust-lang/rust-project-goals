@@ -246,6 +246,28 @@ pub fn create_comment(repository: &Repository, number: u64, body: &str) -> anyho
     }
 }
 
+pub fn update_issue_body(repository: &Repository, number: u64, body: &str) -> anyhow::Result<()> {
+    let output = Command::new("gh")
+        .arg("-R")
+        .arg(&repository.to_string())
+        .arg("issue")
+        .arg("edit")
+        .arg(number.to_string())
+        .arg("-b")
+        .arg(body)
+        .output()?;
+
+    if !output.status.success() {
+        Err(anyhow::anyhow!(
+            "failed to adjust issue body on issue `{}`: {}",
+            number,
+            String::from_utf8_lossy(&output.stderr)
+        ))
+    } else {
+        Ok(())
+    }
+}
+
 pub fn sync_assignees(
     repository: &Repository,
     number: u64,

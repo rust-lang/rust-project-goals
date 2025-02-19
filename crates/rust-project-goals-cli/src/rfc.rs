@@ -13,7 +13,7 @@ use rust_project_goals::{
     gh::{
         issue_id::{IssueId, Repository},
         issues::{
-            change_milestone, create_comment, create_issue, fetch_issue, list_issues_in_milestone, lock_issue, sync_assignees, FLAGSHIP_LABEL, LOCK_TEXT
+            change_milestone, create_comment, create_issue, fetch_issue, list_issues_in_milestone, lock_issue, sync_assignees, update_issue_body, FLAGSHIP_LABEL, LOCK_TEXT
         },
         labels::GhLabel,
     },
@@ -209,6 +209,11 @@ enum GithubAction<'doc> {
         body: String,
     },
 
+    UpdateIssueBody {
+        number: u64,
+        body: String,
+    },
+
     // We intentionally do not sync the issue *text*, because it may have been edited.
     SyncAssignees {
         number: u64,
@@ -348,6 +353,14 @@ fn initialize_issues<'doc>(
                     });
                 }
 
+                let link_text = goal_document_link(timeframe, &desired_issue.goal_document);
+                if !existing_issue.body.contains(&link_text) {
+                    actions.insert(GithubAction::UpdateIssueBody {
+                        number: existing_issue.number,
+                        body: existing_issue.body,
+                    });
+                }
+
                 let issue_id = IssueId::new(repository.clone(), existing_issue.number);
                 if desired_issue.tracking_issue != Some(&issue_id) {
                     actions.insert(GithubAction::LinkToTrackingIssue {
@@ -394,6 +407,11 @@ fn issue<'doc>(timeframe: &str, document: &'doc GoalDocument) -> anyhow::Result<
     })
 }
 
+fn goal_document_link(timeframe: &str, document: &GoalDocument) -> String {
+    let goal_file = document.link_path.file_stem().unwrap().to_str().unwrap();
+    format!("[{timeframe}/{goal_file}](https://rust-lang.github.io/rust-project-goals/{timeframe}/{goal_file}.html)")
+}
+
 fn issue_text(timeframe: &str, document: &GoalDocument) -> anyhow::Result<String> {
     let mut tasks = vec![];
     for goal_plan in &document.goal_plans {
@@ -406,15 +424,13 @@ fn issue_text(timeframe: &str, document: &GoalDocument) -> anyhow::Result<String
         .map(|team| team.name_and_link())
         .collect::<Vec<_>>();
 
-    let goal_file = document.link_path.file_stem().unwrap().to_str().unwrap();
-
     Ok(format!(
         r##"
 | Metadata         | |
 | --------         | --- |
 | Point of contact | {poc} |
 | Team(s)          | {teams} |
-| Goal document    | [{timeframe}/{goal_file}](https://rust-lang.github.io/rust-project-goals/{timeframe}/{goal_file}.html) |
+| Goal document    | {goaldocument} |
 
 ## Summary
 
@@ -430,6 +446,7 @@ fn issue_text(timeframe: &str, document: &GoalDocument) -> anyhow::Result<String
         teams = teams.join(", "),
         summary = document.summary,
         tasks = tasks.join("\n"),
+        goaldocument = goal_document_link(timeframe, document),
     ))
 }
 
@@ -494,6 +511,9 @@ impl Display for GithubAction<'_> {
             }
             GithubAction::Comment { number, body } => {
                 write!(f, "post comment on issue #{}: \"{}\"", number, body)
+            }
+            GithubAction::UpdateIssueBody { number, body: _ } => {
+                write!(f, "update the body on issue #{} for new milestone", number)
             }
             GithubAction::SyncAssignees {
                 number,
@@ -562,6 +582,11 @@ impl GithubAction<'_> {
 
             GithubAction::Comment { number, body } => {
                 create_comment(repository, number, &body)?;
+                Ok(())
+            }
+
+            GithubAction::UpdateIssueBody { number, body } => {
+                update_issue_body(repository, number, &body)?;
                 Ok(())
             }
 
