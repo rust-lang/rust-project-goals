@@ -295,8 +295,14 @@ fn initialize_issues<'doc>(
         //
         let existing_issue = if let Some(tracking_issue) = desired_issue.tracking_issue {
             // a. We first check if there is a declared tracking issue in the markdown file.
-            // If so, then we just load its information from the repository by number.
-            Some(fetch_issue(repository, tracking_issue.number)?)
+            // If so, check if we've already loaded its data.
+            if let Some(issue) = milestone_issues.iter().find(|issue| issue.number == tracking_issue.number) {
+                // If so, reuse it to avoid latency.
+                Some(issue.clone())
+            } else {
+                // If not, load its information from the repository by number.
+                Some(fetch_issue(repository, tracking_issue.number)?)
+            }
         } else {
             // b. If the markdown does not have a declared tracking issue, then we can search through
             // the issues in the milestone for one with the correct title.
@@ -357,7 +363,7 @@ fn initialize_issues<'doc>(
                 if !existing_issue.body.contains(&link_text) {
                     actions.insert(GithubAction::UpdateIssueBody {
                         number: existing_issue.number,
-                        body: existing_issue.body,
+                        body: desired_issue.body,
                     });
                 }
 
