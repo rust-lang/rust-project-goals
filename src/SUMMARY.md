@@ -2,18 +2,15 @@
 
 [👋 Introduction](./README.md)
 
-# ⚙️ 2024H2 goal process 
-
-- [Overview](./2024h2/README.md)
-- [Goals](./2024h2/goals.md)
-- [Goals not accepted](./2024h2/not_accepted.md)
-- [General notes](./2024h2/notes.md)
-
-# ⏳ 2025H1 goal process
+# ⚙️ 2025H1 goal process
 
 - [Overview](./2025h1/README.md)
-- [Proposed goals](./2025h1/goals.md)
+- [Goals](./2025h1/goals.md)
 - [Goals not accepted](./2025h1/not_accepted.md)
+
+# ⏳ 2025H2 goal process
+
+- [Not yet started]()
 
 # 📖 Learn about
 
@@ -25,6 +22,11 @@
 - [Task owners](./about/owners.md)
 - [Design axioms](./about/design_axioms.md)
 - [RFC](./rfc.md)
+* [Archived goal lists]()
+    * [2024H2](./2024h2/README.md)
+        * [Goals](./2024h2/goals.md)
+        * [Goals not accepted](./2024h2/not_accepted.md)
+        * [General notes](./2024h2/notes.md)
 
 # ❓ How to
 
@@ -39,6 +41,7 @@
     * [Team coordination](./admin/coordination.md)
     * [Call for proposals](./admin/cfp.md)
     * [Preparing the RFC](./admin/prepare_rfc.md)
+    * [Merging the RFC](./admin/merge_rfc.md)
     * [Authoring monthly updates](./admin/author_updates.md)
     * [Sample texts](./admin/samples.md)
         * [Sample: Call for Proposal blog post](./admin/samples/cfp.md)
