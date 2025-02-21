@@ -41,6 +41,7 @@
     * [Team coordination](./admin/coordination.md)
     * [Call for proposals](./admin/cfp.md)
     * [Preparing the RFC](./admin/prepare_rfc.md)
+    * [Merging the RFC](./admin/merge_rfc.md)
     * [Authoring monthly updates](./admin/author_updates.md)
     * [Sample texts](./admin/samples.md)
         * [Sample: Call for Proposal blog post](./admin/samples/cfp.md)
