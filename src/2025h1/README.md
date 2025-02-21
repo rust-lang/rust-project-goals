@@ -1,4 +1,4 @@
-> *![Status: RFC pending](https://img.shields.io/badge/Status-RFC%20pending-yellow) This set of goals has proposed as [RFC #3764](https://github.com/rust-lang/rfcs/pull/3764) on the Rust RFC repository.*
+> ![Status: Accepted](https://img.shields.io/badge/Status-Accepted-green) [RFC #3764] has been **accepted**, establishing [<!-- #GOALS --> total Rust project goals for 2025H1](./goals.md).
 
 ## Summary
 
