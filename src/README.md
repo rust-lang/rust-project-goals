@@ -24,7 +24,7 @@ The 2025H1 goal period runs from Jan 1 to Jun 30. We have identified three flags
 
 ## Next goal period (2025h2)
 
-Discussion about goals for the next goal period will begin in 
+Discussion about goals for the next goal period will begin in May.
 
 ## About the process
 
