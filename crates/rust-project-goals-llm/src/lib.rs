@@ -13,10 +13,6 @@ pub struct UpdateArgs {
 
     /// Quick mode does not use an LLM to generate a summary.
     #[arg(long)]
-    pub quick: bool,
-
-    /// Quick mode does not use an LLM to generate a summary.
-    #[arg(long)]
     pub vscode: bool,
 
     /// If specified, write the output into the given file.
@@ -30,12 +26,4 @@ pub struct UpdateArgs {
     /// End date for comments.
     /// If not given, no end date.
     pub end_date: Option<chrono::NaiveDate>,
-
-    /// Set a custom model id for the LLM.
-    #[arg(long)]
-    pub model_id: Option<String>,
-
-    /// Set a custom region.
-    #[arg(long)]
-    pub region: Option<String>,
 }
