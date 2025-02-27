@@ -13,7 +13,7 @@ use rust_project_goals::{
     gh::{
         issue_id::{IssueId, Repository},
         issues::{
-            change_milestone, change_title, create_comment, create_issue, fetch_issue, list_issues_in_milestone, lock_issue, sync_assignees, update_issue_body, FLAGSHIP_LABEL, LOCK_TEXT
+            change_milestone, change_title, create_comment, create_issue, fetch_issue, list_issues_in_milestone, lock_issue, sync_assignees, update_issue_body, CONTINUING_GOAL_PREFIX, FLAGSHIP_LABEL, LOCK_TEXT
         },
         labels::GhLabel,
     },
@@ -351,9 +351,7 @@ fn initialize_issues<'doc>(
                     actions.insert(GithubAction::Comment {
                         number: existing_issue.number,
                         body: format!(
-                            "This is a continuing project goal, and the updates below \
-                            this comment will be for the new period {}",
-                            timeframe
+                            "{CONTINUING_GOAL_PREFIX} {timeframe}",
                         ),
                     });
                 }

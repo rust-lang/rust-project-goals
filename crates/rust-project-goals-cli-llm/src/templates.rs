@@ -44,8 +44,7 @@ handlebars::handlebars_helper!(is_complete: |p: Progress| match p {
 pub struct Updates {
     pub milestone: String,
     pub flagship_goals: Vec<UpdatesGoal>,
-    pub other_goals_with_updates: Vec<UpdatesGoal>,
-    pub other_goals_without_updates: Vec<UpdatesGoal>,
+    pub other_goals: Vec<UpdatesGoal>,
 }
 
 impl Updates {

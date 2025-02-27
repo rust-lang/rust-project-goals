@@ -333,6 +333,8 @@ pub const FLAGSHIP_LABEL: &str = "Flagship Goal";
 
 pub const LOCK_TEXT: &str = "This issue is intended for status updates only.\n\nFor general questions or comments, please contact the owner(s) directly.";
 
+pub const CONTINUING_GOAL_PREFIX: &str = "This is a continuing project goal, and the updates below this comment will be for the new period";
+
 impl ExistingGithubIssue {
     /// We use the presence of a "lock comment" as a signal that we successfully locked the issue.
     /// The github CLI doesn't let you query that directly.
@@ -376,7 +378,8 @@ pub fn lock_issue(repository: &Repository, number: u64) -> anyhow::Result<()> {
 impl ExistingGithubComment {
     /// True if this is one of the special comments that we put on issues.
     pub fn is_automated_comment(&self) -> bool {
-        self.body.trim() == LOCK_TEXT
+        let trimmed_body = self.body.trim();
+        trimmed_body == LOCK_TEXT || trimmed_body.starts_with(CONTINUING_GOAL_PREFIX)
     }
 
     pub fn created_at_date(&self) -> NaiveDate {
