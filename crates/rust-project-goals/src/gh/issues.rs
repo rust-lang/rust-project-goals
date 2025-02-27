@@ -197,6 +197,33 @@ pub fn create_issue(
     }
 }
 
+pub fn change_title(
+    repository: &Repository,
+    number: u64,
+    title: &str,
+) -> anyhow::Result<()> {
+    let mut command = Command::new("gh");
+    command
+        .arg("-R")
+        .arg(&repository.to_string())
+        .arg("issue")
+        .arg("edit")
+        .arg(number.to_string())
+        .arg("-t")
+        .arg(title);
+
+    let output = command.output()?;
+    if !output.status.success() {
+        Err(anyhow::anyhow!(
+            "failed to change milestone `{}`: {}",
+            number,
+            String::from_utf8_lossy(&output.stderr)
+        ))
+    } else {
+        Ok(())
+    }
+}
+
 pub fn change_milestone(
     repository: &Repository,
     number: u64,

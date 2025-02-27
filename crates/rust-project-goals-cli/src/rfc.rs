@@ -13,7 +13,7 @@ use rust_project_goals::{
     gh::{
         issue_id::{IssueId, Repository},
         issues::{
-            change_milestone, create_comment, create_issue, fetch_issue, list_issues_in_milestone, lock_issue, sync_assignees, update_issue_body, FLAGSHIP_LABEL, LOCK_TEXT
+            change_milestone, change_title, create_comment, create_issue, fetch_issue, list_issues_in_milestone, lock_issue, sync_assignees, update_issue_body, FLAGSHIP_LABEL, LOCK_TEXT
         },
         labels::GhLabel,
     },
@@ -199,6 +199,11 @@ enum GithubAction<'doc> {
         issue: GithubIssue<'doc>,
     },
 
+    ChangeTitle {
+        number: u64,
+        title: String,
+    },
+
     ChangeMilestone {
         number: u64,
         milestone: String,
@@ -332,6 +337,10 @@ fn initialize_issues<'doc>(
                             .cloned()
                             .collect(),
                     });
+                }
+                
+                if existing_issue.title != desired_issue.title {
+                    actions.insert(GithubAction::ChangeTitle { number: existing_issue.number, title: desired_issue.title });
                 }
 
                 if existing_issue.milestone.as_ref().map(|m| m.title.as_str()) != Some(timeframe) {
@@ -525,6 +534,9 @@ impl Display for GithubAction<'_> {
             GithubAction::ChangeMilestone { number, milestone } => {
                 write!(f, "update issue #{} milestone to \"{}\"", number, milestone)
             }
+            GithubAction::ChangeTitle { number, title } => {
+                write!(f, "update issue #{} title to \"{}\"", number, title)
+            }
             GithubAction::Comment { number, body } => {
                 write!(f, "post comment on issue #{}: \"{}\"", number, body)
             }
@@ -596,6 +608,11 @@ impl GithubAction<'_> {
                 Ok(())
             }
 
+            GithubAction::ChangeTitle { number, title } => {
+                change_title(repository, number, &title)?;
+                Ok(())
+            }
+            
             GithubAction::Comment { number, body } => {
                 create_comment(repository, number, &body)?;
                 Ok(())
