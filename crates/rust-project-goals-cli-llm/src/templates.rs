@@ -1,6 +1,7 @@
 use std::path::{Path, PathBuf};
 
 use handlebars::{DirectorySourceOptions, Handlebars};
+use rust_project_goals::gh::issues::ExistingGithubComment;
 use serde::Serialize;
 
 use rust_project_goals_json::Progress;
@@ -73,7 +74,10 @@ pub struct UpdatesGoal {
     pub is_closed: bool,
 
     /// Markdown with update text (bullet list)
-    pub updates_markdown: String,
+    pub comments: Vec<ExistingGithubComment>,
+
+    /// Comments.len but accessible to the template
+    pub num_comments: usize,
 
     /// Progress towards the goal
     pub progress: Progress,

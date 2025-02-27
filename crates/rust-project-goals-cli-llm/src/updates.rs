@@ -44,12 +44,9 @@ pub async fn updates(
 
     let mut updates = templates::Updates {
         milestone: milestone.to_string(),
-        flagship_goals: vec![],
-        other_goals: vec![],
+        flagship_goals: prepare_goals(repository, &issues, &filter, true).await?,
+        other_goals: prepare_goals(repository, &issues, &filter, false).await?,
     };
-
-    prepare_flagship_goals(repository, &issues, &filter, &mut updates).await?;
-    prepare_other_goals(repository, &issues, &filter, &mut updates).await?;
 
     progress_bar::finalize_progress_bar();
 
@@ -82,15 +79,16 @@ pub async fn updates(
     Ok(())
 }
 
-async fn prepare_flagship_goals(
+async fn prepare_goals(
     repository: &Repository,
     issues: &[ExistingGithubIssue],
     filter: &Filter<'_>,
-    updates: &mut Updates,
-) -> anyhow::Result<()> {
+    flagship: bool,
+) -> anyhow::Result<Vec<UpdatesGoal>> {
+    let mut result = vec![];
     // First process the flagship goals, for which we capture the full text of comments.
     for issue in issues {
-        if !issue.has_flagship_label() {
+        if flagship != issue.has_flagship_label() {
             continue;
         }
 
@@ -109,13 +107,7 @@ async fn prepare_flagship_goals(
         comments.sort_by_key(|c| c.created_at.clone());
         comments.retain(|c| !c.is_automated_comment() && filter.matches(c));
 
-        let mut summary = String::new();
-        for c in comments {
-            summary.push_str(&c.body);
-            summary.push_str("\n\n");
-        }
-
-        updates.flagship_goals.push(UpdatesGoal {
+        result.push(UpdatesGoal {
             title: title.clone(),
             issue_number: issue.number,
             issue_assignees: comma(&issue.assignees),
@@ -126,70 +118,13 @@ async fn prepare_flagship_goals(
             .url(),
             progress,
             is_closed: issue.state == GithubIssueState::Closed,
-            updates_markdown: summary,
+            num_comments: comments.len(),
+            comments,
         });
 
         progress_bar::inc_progress_bar();
     }
-    Ok(())
-}
-
-async fn prepare_other_goals(
-    repository: &Repository,
-    issues: &[ExistingGithubIssue],
-    filter: &Filter<'_>,
-    updates: &mut Updates,
-) -> anyhow::Result<()> {
-    // Next process the remaining goals, for which we generate a summary using an LLVM.
-    for issue in issues {
-        if issue.has_flagship_label() {
-            continue;
-        }
-
-        let title = &issue.title;
-
-        progress_bar::print_progress_bar_info(
-            &format!("Issue #{number}", number = issue.number),
-            title,
-            progress_bar::Color::Green,
-            progress_bar::Style::Bold,
-        );
-
-        // Find the relevant updates that have occurred.
-        let mut comments = issue.comments.clone();
-        comments.sort_by_key(|c| c.created_at.clone());
-        comments.retain(|c| !c.is_automated_comment() && filter.matches(c));
-
-        // Use an LLM to summarize the updates.
-        let summary = if comments.len() == 0 {
-            format!("No updates in this period.")
-        } else {
-            format!(
-                "[{N} updates available.]({LINK})",
-                N = comments.len(),
-                LINK = comments.first().unwrap().url,
-            )
-        };
-
-        let goal = UpdatesGoal {
-            title: title.clone(),
-            issue_number: issue.number,
-            issue_assignees: comma(&issue.assignees),
-            issue_url: IssueId {
-                repository: repository.clone(),
-                number: issue.number,
-            }
-            .url(),
-            is_closed: issue.state == GithubIssueState::Closed,
-            updates_markdown: summary,
-            progress: checkboxes(&issue),
-        };
-
-        updates.other_goals.push(goal);
-
-        progress_bar::inc_progress_bar();
-    }
-    Ok(())
+    Ok(result)
 }
 
 struct Filter<'f> {

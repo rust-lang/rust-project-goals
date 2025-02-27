@@ -1,0 +1,17 @@
+{{#if comments}}
+
+<details>
+<summary>{{num_comments}} updates posted.</summary>
+
+{{#each comments}}
+{{body}}
+{{/each}}
+</details>
+
+{{else}}
+
+<!-- -->
+No updates in this tracking period.
+
+{{/if}}
+
