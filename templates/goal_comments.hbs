@@ -3,14 +3,31 @@
 <details>
 <summary>{{num_comments}} updates posted.</summary>
 
+<!-- this comment helps to convince the markdown parser to do the right thing -->
+
 {{#each comments}}
-{{body}}
+
+<!-- this comment helps to convince the markdown parser to do the right thing -->
+
+<a href="{{url}}">Comment by {{author}} posted on {{created_at}}:</a><br><br>
+
+<blockquote>
+
+<!-- this comment helps to convince the markdown parser to do the right thing -->
+
+{{{body}}}
+
+<!-- this comment helps to convince the markdown parser to do the right thing -->
+
+</blockquote>
+
 {{/each}}
 </details>
 
 {{else}}
 
-<!-- -->
+<!-- this comment helps to convince the markdown parser to do the right thing -->
+
 No updates in this tracking period.
 
 {{/if}}
