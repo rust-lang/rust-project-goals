@@ -24,13 +24,10 @@ async fn main() -> anyhow::Result<()> {
     } = Opt::parse();
     let UpdateArgs {
         milestone,
-        quick,
         vscode,
         output_file,
         start_date,
         end_date,
-        model_id,
-        region,
     } = &serde_json::from_str(&updates_json)?;
     updates::updates(
         &repository,
@@ -38,10 +35,7 @@ async fn main() -> anyhow::Result<()> {
         output_file.as_deref(),
         start_date,
         end_date,
-        *quick,
         *vscode,
-        model_id.as_deref(),
-        region.as_deref(),
     )
     .await?;
     Ok(())

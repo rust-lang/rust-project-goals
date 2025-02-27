@@ -6,7 +6,6 @@ use std::io::Write;
 use std::path::Path;
 use std::process::{Command, Stdio};
 
-use crate::llm::LargeLanguageModel;
 use crate::templates::{self, Updates, UpdatesGoal};
 use rust_project_goals::gh::issues::ExistingGithubIssue;
 use rust_project_goals::gh::{
@@ -14,41 +13,17 @@ use rust_project_goals::gh::{
     issues::{checkboxes, list_issues_in_milestone, ExistingGithubComment},
 };
 
-const QUICK_UPDATES: &[&str] = &[
-    "Jack and Jill went up the hill",
-    "To fetch a pail of water",
-    "Jack fell down and broke his crown",
-    "And Jill came tumbling after.",
-    "Up Jack got and home did trot,",
-    "As fast as he could caper;",
-    "Went to bed to mend his head",
-    "With vinegar and brown paper.",
-    "Jill came in and she did grin",
-    "To see his paper plaster;",
-    "Mother, vex’d, did whip her next",
-    "For causing Jack's disaster.",
-];
-
-fn comments_forever() -> impl Iterator<Item = &'static str> {
-    QUICK_UPDATES.iter().copied().cycle()
-}
-
 pub async fn updates(
     repository: &Repository,
     milestone: &str,
     output_file: Option<&Path>,
     start_date: &Option<NaiveDate>,
     end_date: &Option<NaiveDate>,
-    quick: bool,
     vscode: bool,
-    model_id: Option<&str>,
-    region: Option<&str>,
 ) -> anyhow::Result<()> {
     if output_file.is_none() && !vscode {
         anyhow::bail!("either `--output-file` or `--vscode` must be specified");
     }
-
-    let llm = LargeLanguageModel::new(model_id, region).await?;
 
     let issues = list_issues_in_milestone(repository, milestone)?;
 
@@ -69,13 +44,9 @@ pub async fn updates(
 
     let mut updates = templates::Updates {
         milestone: milestone.to_string(),
-        flagship_goals: vec![],
-        other_goals_with_updates: vec![],
-        other_goals_without_updates: vec![],
+        flagship_goals: prepare_goals(repository, &issues, &filter, true).await?,
+        other_goals: prepare_goals(repository, &issues, &filter, false).await?,
     };
-
-    prepare_flagship_goals(repository, &issues, &filter, &llm, quick, &mut updates).await?;
-    prepare_other_goals(repository, &issues, &filter, &llm, quick, &mut updates).await?;
 
     progress_bar::finalize_progress_bar();
 
@@ -108,17 +79,16 @@ pub async fn updates(
     Ok(())
 }
 
-async fn prepare_flagship_goals(
+async fn prepare_goals(
     repository: &Repository,
     issues: &[ExistingGithubIssue],
     filter: &Filter<'_>,
-    llm: &LargeLanguageModel,
-    quick: bool,
-    updates: &mut Updates,
-) -> anyhow::Result<()> {
-    // First process the flagship goals, for which we capture the full text of comments.
+    flagship: bool,
+) -> anyhow::Result<Vec<UpdatesGoal>> {
+    let mut result = vec![];
+    // We process flagship and regular goals in two passes, and capture comments differently for flagship goals.
     for issue in issues {
-        if !issue.has_flagship_label() {
+        if flagship != issue.has_flagship_label() {
             continue;
         }
 
@@ -135,34 +105,9 @@ async fn prepare_flagship_goals(
 
         let mut comments = issue.comments.clone();
         comments.sort_by_key(|c| c.created_at.clone());
-        comments.retain(|c| filter.matches(c));
+        comments.retain(|c| !c.is_automated_comment() && filter.matches(c));
 
-        let summary: String = if comments.len() == 0 {
-            format!("No updates in this period.")
-        } else if quick {
-            QUICK_UPDATES.iter().copied().collect()
-        } else {
-            let prompt = format!(
-                "The following comments are updates to a project goal entitled '{title}'. \
-                The goal is assigned to {people} ({assignees}). \
-                Summarize the major developments, writing for general Rust users. \
-                Write the update in the third person and do not use pronouns when referring to people. \
-                Do not respond with anything but the summary paragraphs. \
-                ",
-                people = if issue.assignees.len() == 1 {
-                    "1 person".to_string()
-                } else {
-                    format!("{} people", issue.assignees.len())
-                },
-                assignees = comma(&issue.assignees),
-            );
-            let updates: String = comments.iter().map(|c| format!("\n{}\n", c.body)).collect();
-            llm.query(&prompt, &updates)
-                .await
-                .with_context(|| format!("making request to LLM failed"))?
-        };
-
-        updates.flagship_goals.push(UpdatesGoal {
+        result.push(UpdatesGoal {
             title: title.clone(),
             issue_number: issue.number,
             issue_assignees: comma(&issue.assignees),
@@ -173,96 +118,13 @@ async fn prepare_flagship_goals(
             .url(),
             progress,
             is_closed: issue.state == GithubIssueState::Closed,
-            updates_markdown: summary,
+            num_comments: comments.len(),
+            comments,
         });
 
         progress_bar::inc_progress_bar();
     }
-    Ok(())
-}
-
-async fn prepare_other_goals(
-    repository: &Repository,
-    issues: &[ExistingGithubIssue],
-    filter: &Filter<'_>,
-    llm: &LargeLanguageModel,
-    quick: bool,
-    updates: &mut Updates,
-) -> anyhow::Result<()> {
-    // Next process the remaining goals, for which we generate a summary using an LLVM.
-    let mut quick_comments = comments_forever();
-    for issue in issues {
-        if issue.has_flagship_label() {
-            continue;
-        }
-
-        let title = &issue.title;
-
-        progress_bar::print_progress_bar_info(
-            &format!("Issue #{number}", number = issue.number),
-            title,
-            progress_bar::Color::Green,
-            progress_bar::Style::Bold,
-        );
-
-        // Find the relevant updates that have occurred.
-        let mut comments = issue.comments.clone();
-        comments.sort_by_key(|c| c.created_at.clone());
-        comments.retain(|c| filter.matches(c));
-
-        // Use an LLM to summarize the updates.
-        let summary = if comments.len() == 0 {
-            format!("* No updates in this period.")
-        } else if quick {
-            let num_comments = std::cmp::min(comments.len(), 3);
-            quick_comments
-                .by_ref()
-                .take(num_comments)
-                .map(|c| format!("* {c}\n"))
-                .collect()
-        } else {
-            let prompt = format!(
-                "The following comments are updates to a project goal entitled '{title}'. \
-                The goal is assigned to {people} ({assignees}). \
-                Summarize the updates with a list of one or two bullet points, each one sentence. \
-                Write the update in the third person and do not use pronouns when referring to people. \
-                Format the bullet points as markdown with each bullet point beginning with `* `. \
-                Do not respond with anything but the bullet points. \
-                ",
-                people = if issue.assignees.len() == 1 {
-                    "1 person".to_string()
-                } else {
-                    format!("{} people", issue.assignees.len())
-                },
-                assignees = comma(&issue.assignees),
-            );
-            let updates: String = comments.iter().map(|c| format!("\n{}\n", c.body)).collect();
-            llm.query(&prompt, &updates).await?
-        };
-
-        let goal = UpdatesGoal {
-            title: title.clone(),
-            issue_number: issue.number,
-            issue_assignees: comma(&issue.assignees),
-            issue_url: IssueId {
-                repository: repository.clone(),
-                number: issue.number,
-            }
-            .url(),
-            is_closed: issue.state == GithubIssueState::Closed,
-            updates_markdown: summary,
-            progress: checkboxes(&issue),
-        };
-
-        if comments.len() > 0 {
-            updates.other_goals_with_updates.push(goal);
-        } else {
-            updates.other_goals_without_updates.push(goal);
-        }
-
-        progress_bar::inc_progress_bar();
-    }
-    Ok(())
+    Ok(result)
 }
 
 struct Filter<'f> {
