@@ -86,7 +86,7 @@ async fn prepare_goals(
     flagship: bool,
 ) -> anyhow::Result<Vec<UpdatesGoal>> {
     let mut result = vec![];
-    // First process the flagship goals, for which we capture the full text of comments.
+    // We process flagship and regular goals in two passes, and capture comments differently for flagship goals.
     for issue in issues {
         if flagship != issue.has_flagship_label() {
             continue;
