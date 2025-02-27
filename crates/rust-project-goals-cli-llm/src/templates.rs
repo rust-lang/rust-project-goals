@@ -81,4 +81,10 @@ pub struct UpdatesGoal {
 
     /// Progress towards the goal
     pub progress: Progress,
+
+    /// TL;DR comment (if any, empty string if none)
+    pub tldr: Option<String>,
+
+    /// Contents of a "Why this goal?" section in the tracking issue (empty string if not present)
+    pub why_this_goal: String,
 }

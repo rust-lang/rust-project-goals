@@ -4,6 +4,17 @@ The Rust project is currently working towards a [slate of 26 project goals](http
 
 {{#each flagship_goals}}
 {{>introduce_goal}}
+
+<!-- markdown separator --> 
+
+**Why this goal?** {{why_this_goal}}
+
+{{#if tldr}}
+**What has happened?** {{tldr}}
+{{/if}}
+
+<!-- markdown separator --> 
+
 {{>goal_comments}}
 {{/each}}
 
@@ -11,5 +22,14 @@ The Rust project is currently working towards a [slate of 26 project goals](http
 
 {{#each other_goals}}
 {{>introduce_goal}}
+
+<!-- markdown separator --> 
+
+{{#if tldr}}
+{{tldr}}
+{{/if}}
+
+<!-- markdown separator --> 
+
 {{>goal_comments}}
 {{/each}}
