@@ -1,5 +1,6 @@
 use anyhow::Context;
 use chrono::{Datelike, NaiveDate};
+use rust_project_goals::markwaydown;
 use rust_project_goals::util::comma;
 use rust_project_goals_json::GithubIssueState;
 use std::io::Write;
@@ -92,6 +93,11 @@ async fn prepare_goals(
             continue;
         }
 
+        let issue_id = IssueId {
+            repository: repository.clone(),
+            number: issue.number,
+        };
+
         let title = &issue.title;
 
         progress_bar::print_progress_bar_info(
@@ -107,24 +113,37 @@ async fn prepare_goals(
         comments.sort_by_key(|c| c.created_at.clone());
         comments.retain(|c| !c.is_automated_comment() && filter.matches(c));
 
+        let why_this_goal = why_this_goal(&issue_id, issue)?;
+
         result.push(UpdatesGoal {
             title: title.clone(),
             issue_number: issue.number,
             issue_assignees: comma(&issue.assignees),
-            issue_url: IssueId {
-                repository: repository.clone(),
-                number: issue.number,
-            }
-            .url(),
+            issue_url: issue_id.url(),
             progress,
             is_closed: issue.state == GithubIssueState::Closed,
             num_comments: comments.len(),
             comments,
+            tldr: None, // FIXME
+            why_this_goal,
         });
 
         progress_bar::inc_progress_bar();
     }
     Ok(result)
+}
+
+fn why_this_goal(
+    issue_id: &IssueId,
+    issue: &ExistingGithubIssue,
+) -> anyhow::Result<String> {
+    let sections = markwaydown::parse_text(issue_id.url(), &issue.body)?;
+    for section in sections {
+        if section.title == "Why this goal?" {
+            return Ok(section.text.trim().to_string());
+        }
+    }
+    return Ok("".to_string());
 }
 
 struct Filter<'f> {
