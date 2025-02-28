@@ -1,7 +1,7 @@
 {{#if comments}}
 
 <details>
-<summary>{{num_comments}} update(s) posted.</summary>
+<summary>{{details_summary}}</summary>
 
 <!-- this comment helps to convince the markdown parser to do the right thing -->
 
@@ -9,7 +9,7 @@
 
 <!-- this comment helps to convince the markdown parser to do the right thing -->
 
-<a href="{{url}}">Comment by {{author}} posted on {{created_at}}:</a><br><br>
+<a href="{{url}}">Comment by {{author}} posted on {{created_at}}:</a><br>
 
 <blockquote>
 
@@ -29,7 +29,7 @@
 <!-- this comment helps to convince the markdown parser to do the right thing -->
 
 <details>
-<summary>No updates posted.</summary>
+<summary>{{details_summary}}</summary>
 </details>
 
 {{/if}}

@@ -46,9 +46,24 @@ pub struct Updates {
     pub milestone: String,
     pub flagship_goals: Vec<UpdatesGoal>,
     pub other_goals: Vec<UpdatesGoal>,
+    pub goal_count: usize,
+    pub flagship_goal_count: usize,
 }
 
 impl Updates {
+    pub fn new(
+        milestone: String,
+        flagship_goals: Vec<UpdatesGoal>,
+        other_goals: Vec<UpdatesGoal>,
+    ) -> Self {
+        Updates {
+            milestone,
+            flagship_goal_count: flagship_goals.len(),
+            goal_count: flagship_goals.len() + other_goals.len(),
+            flagship_goals,
+            other_goals,
+        }
+    }
     pub fn render(self) -> anyhow::Result<String> {
         let templates = Templates::new()?;
         Ok(templates.reg.render("updates", &self)?)
@@ -83,8 +98,8 @@ pub struct UpdatesGoal {
     /// Markdown with update text (bullet list)
     pub comments: Vec<ExistingGithubComment>,
 
-    /// Comments.len but accessible to the template
-    pub num_comments: usize,
+    /// The "<details>" summary, a prettified version of comments.len().
+    pub details_summary: String,
 
     /// Progress towards the goal
     pub progress: Progress,
@@ -94,6 +109,9 @@ pub struct UpdatesGoal {
 
     /// Contents of a "Why this goal?" section in the tracking issue (empty string if not present)
     pub why_this_goal: String,
+
+    /// If this goal needs to be separated from its following sibling by an empty line.
+    pub needs_separator: bool,
 }
 
 #[derive(Serialize, Debug)]

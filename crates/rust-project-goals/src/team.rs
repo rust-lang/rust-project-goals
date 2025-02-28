@@ -88,7 +88,7 @@ impl TeamName {
     /// Name in braces (markdown link), like `"[compiler][]"`
     pub fn name(&self) -> String {
         format!("[{}][]", self.0)
-    }    
+    }
 
     /// Name and link, like `"[compiler](https://...)"`
     pub fn name_and_link(&self) -> String {
