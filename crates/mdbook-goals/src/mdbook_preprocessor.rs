@@ -46,6 +46,7 @@ pub struct GoalPreprocessorWithContext<'c> {
     links: Vec<(String, String)>,
     linkifiers: Vec<(Regex, String)>,
     display_names: BTreeMap<String, Rc<String>>,
+    ignore_users: Vec<String>,
     goal_document_map: BTreeMap<PathBuf, Arc<Vec<GoalDocument>>>,
 }
 
