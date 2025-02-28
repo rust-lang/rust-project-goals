@@ -44,11 +44,9 @@ pub async fn updates(
         progress_bar::Style::Bold,
     );
 
-    let updates = templates::Updates {
-        milestone: milestone.to_string(),
-        flagship_goals: prepare_goals(repository, &issues, &filter, true).await?,
-        other_goals: prepare_goals(repository, &issues, &filter, false).await?,
-    };
+    let flagship_goals = prepare_goals(repository, &issues, &filter, true).await?;
+    let other_goals = prepare_goals(repository, &issues, &filter, false).await?;
+    let updates = templates::Updates::new(milestone.to_string(), flagship_goals, other_goals);
 
     progress_bar::finalize_progress_bar();
 
