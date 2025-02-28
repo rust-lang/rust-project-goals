@@ -59,20 +59,7 @@ pub struct GithubUserInfo {
 
 impl GithubUserInfo {
     pub fn load(login: &str) -> anyhow::Result<Self> {
-        let path = PathBuf::from("gh-cache").join(format!("{}.bincode", login));
-        let persist = DiskPersist::init_with_path(&path)?;
-        if let Some(info) = persist.read()? {
-            Ok(info)
-        } else {
-            let info = Self::github_request(login)?;
-            persist.write(&info)?;
-            eprintln!(
-                "cached info for `{}` from github in `{}`",
-                login,
-                path.display()
-            );
-            Ok(info)
-        }
+        Self::github_request(login)
     }
 
     fn github_request(login: &str) -> anyhow::Result<Self> {
