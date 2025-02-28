@@ -10,7 +10,7 @@ The [project-goals/meta channel][pgm] on Zulip is used for meta discussions abou
 
 [pgm]: https://rust-lang.zulipchat.com/#narrow/channel/478266-project-goals.2Fmeta
 
-To broadcast updates about the status of the goal program, we create a goal in every goal program correpsonding to running the program. Updates posted on that tracking issue will be posted in `project-goals`.
+To broadcast updates about the status of the goal program, we create a goal in every goal program corresponding to running the program. Updates posted on that tracking issue will be posted in `project-goals`.
 
 ## Meetings
 
