@@ -18,12 +18,19 @@ The Rust project is currently working towards a [slate of 26 project goals](http
 {{>goal_comments}}
 {{/each}}
 
-## Other goals
+## Goals looking for help
 
 {{#each other_goals}}
+{{#if help_wanted}}
 {{>introduce_goal}}
 
+{{#each help_wanted}}
+
 <!-- markdown separator --> 
+![Help wanted](https://img.shields.io/badge/Help%20wanted-yellow) {{{text}}}
+<!-- markdown separator --> 
+
+{{/each}}
 
 {{#if tldr}}
 {{tldr}}
@@ -32,4 +39,20 @@ The Rust project is currently working towards a [slate of 26 project goals](http
 <!-- markdown separator --> 
 
 {{>goal_comments}}
+{{/if}}
+{{/each}}
+
+## Other goal updates
+
+{{#each other_goals}}
+{{#if help_wanted}}
+{{else}}
+{{>introduce_goal}}
+<!-- markdown separator --> 
+{{#if tldr}}
+{{tldr}}
+{{/if}}
+<!-- markdown separator --> 
+{{>goal_comments}}
+{{/if}}
 {{/each}}
