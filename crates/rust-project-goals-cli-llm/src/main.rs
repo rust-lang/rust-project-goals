@@ -5,7 +5,6 @@ use clap::Parser;
 use rust_project_goals::gh::issue_id::Repository;
 use rust_project_goals_llm::UpdateArgs;
 
-mod llm;
 mod templates;
 mod updates;
 
