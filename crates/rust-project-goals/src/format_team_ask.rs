@@ -1,6 +1,14 @@
-use std::{collections::{BTreeMap, BTreeSet}, path::PathBuf};
+use std::{
+    collections::{BTreeMap, BTreeSet},
+    path::PathBuf,
+};
 
-use crate::{config::Configuration, goal::TeamAsk, team::TeamName, util::{self, ARROW}};
+use crate::{
+    config::Configuration,
+    goal::TeamAsk,
+    team::TeamName,
+    util::{self, ARROW},
+};
 
 /// Format a set of team asks into a table, with asks separated by team and grouped by kind.
 ///
@@ -83,7 +91,10 @@ pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> anyhow::Result<String>
             let mut maybe_footnote = |text: &str| -> String {
                 if text.len() > FOOTNOTE_LEN {
                     let footnote_index = footnotes.len() + 1;
-                    footnotes.push(format!("\\*{footnote_index}: {text} ([from here]({link}))", link = ask.link_path.display()));
+                    footnotes.push(format!(
+                        "\\*{footnote_index}: {text} ([from here]({link}))",
+                        link = ask.link_path.display()
+                    ));
                     format!("\\*{footnote_index}")
                 } else {
                     text.to_string()
@@ -107,14 +118,12 @@ pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> anyhow::Result<String>
         // Create the table itself.
         let table = {
             let headings = std::iter::once("Goal".to_string())
-                .chain(
-                    ask_headings
-                        .iter()
-                        .map(|&ask_kind| format!(
-                            "[{team_ask_short}][valid_team_asks]", // HACK: This should not be hardcoded in the code.
-                            team_ask_short = config.team_asks[ask_kind].short,
-                        ))
-                ) // e.g. "discussion and moral support"
+                .chain(ask_headings.iter().map(|&ask_kind| {
+                    format!(
+                        "[{team_ask_short}][valid_team_asks]", // HACK: This should not be hardcoded in the code.
+                        team_ask_short = config.team_asks[ask_kind].short,
+                    )
+                })) // e.g. "discussion and moral support"
                 .collect::<Vec<String>>();
 
             let rows = goal_rows.into_iter().map(|(goal_data, goal_columns)| {
@@ -146,10 +155,16 @@ struct GoalData<'g> {
 impl<'g> GoalData<'g> {
     fn new(ask: &'g TeamAsk) -> anyhow::Result<Self> {
         match &ask.goal_titles[..] {
-            [goal_title] => Ok(Self { goal_title, subgoal_title: None, link: &ask.link_path }),
-            [goal_title, subgoal_title] => {
-                Ok(Self { goal_title, subgoal_title: Some(subgoal_title), link: &ask.link_path })
-            }
+            [goal_title] => Ok(Self {
+                goal_title,
+                subgoal_title: None,
+                link: &ask.link_path,
+            }),
+            [goal_title, subgoal_title] => Ok(Self {
+                goal_title,
+                subgoal_title: Some(subgoal_title),
+                link: &ask.link_path,
+            }),
             _ => anyhow::bail!(
                 "expected either 1 or 2 goal titles, not {:?}",
                 ask.goal_titles

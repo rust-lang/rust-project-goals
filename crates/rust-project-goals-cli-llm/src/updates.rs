@@ -8,7 +8,7 @@ use std::io::Write;
 use std::path::Path;
 use std::process::{Command, Stdio};
 
-use crate::templates::{self, HelpWanted, Updates, UpdatesGoal};
+use crate::templates::{self, HelpWanted, UpdatesGoal};
 use rust_project_goals::gh::issues::ExistingGithubIssue;
 use rust_project_goals::gh::{
     issue_id::{IssueId, Repository},
@@ -44,11 +44,9 @@ pub async fn updates(
         progress_bar::Style::Bold,
     );
 
-    let mut updates = templates::Updates {
-        milestone: milestone.to_string(),
-        flagship_goals: prepare_goals(repository, &issues, &filter, true).await?,
-        other_goals: prepare_goals(repository, &issues, &filter, false).await?,
-    };
+    let flagship_goals = prepare_goals(repository, &issues, &filter, true).await?;
+    let other_goals = prepare_goals(repository, &issues, &filter, false).await?;
+    let updates = templates::Updates::new(milestone.to_string(), flagship_goals, other_goals);
 
     progress_bar::finalize_progress_bar();
 
@@ -113,6 +111,10 @@ async fn prepare_goals(
         let mut comments = issue.comments.clone();
         comments.sort_by_key(|c| c.created_at.clone());
         comments.retain(|c| !c.is_automated_comment() && filter.matches(c));
+        // Prettify the comments' timestamp after using it for sorting.
+        for comment in comments.iter_mut() {
+            comment.created_at = format!("{}", comment.created_at_date());
+        }
 
         let tldr = tldr(&issue_id, &mut comments)?;
 
@@ -120,6 +122,11 @@ async fn prepare_goals(
 
         let why_this_goal = why_this_goal(&issue_id, issue)?;
 
+        let details_summary = match comments.len() {
+            0 => String::from("No updates posted."),
+            1 => String::from("1 update posted."),
+            len => format!("{len} updates posted."),
+        };
         result.push(UpdatesGoal {
             title: title.clone(),
             issue_number: issue.number,
@@ -129,14 +136,24 @@ async fn prepare_goals(
             has_help_wanted,
             help_wanted,
             is_closed: issue.state == GithubIssueState::Closed,
-            num_comments: comments.len(),
+            details_summary,
             comments,
             tldr,
             why_this_goal,
+            needs_separator: true, // updated after sorting
         });
 
         progress_bar::inc_progress_bar();
     }
+
+    // Updates are in a random order, sort them.
+    result.sort_by_cached_key(|update| update.title.to_lowercase());
+
+    // Mark the last entry as not needing a separator from its following sibling, it has none.
+    if let Some(last) = result.last_mut() {
+        last.needs_separator = false;
+    }
+
     Ok(result)
 }
 
@@ -163,7 +180,11 @@ fn help_wanted(
 
     let mut help_wanted = vec![];
 
-    let tldr_has_help_wanted = tldr.as_deref().unwrap_or("").lines().any(|line| HELP_WANTED.is_match(line));
+    let tldr_has_help_wanted = tldr
+        .as_deref()
+        .unwrap_or("")
+        .lines()
+        .any(|line| HELP_WANTED.is_match(line));
 
     for comment in comments {
         let mut lines = comment.body.split('\n').peekable();
@@ -174,8 +195,8 @@ fn help_wanted(
             while let Some(line) = lines.next() {
                 if let Some(c) = HELP_WANTED.captures(line) {
                     help_wanted.push(HelpWanted {
-                        text: c["text"].to_string()
-                });
+                        text: c["text"].to_string(),
+                    });
                     break;
                 }
             }
@@ -194,10 +215,7 @@ fn help_wanted(
     Ok((tldr_has_help_wanted || !help_wanted.is_empty(), help_wanted))
 }
 
-fn why_this_goal(
-    issue_id: &IssueId,
-    issue: &ExistingGithubIssue,
-) -> anyhow::Result<String> {
+fn why_this_goal(issue_id: &IssueId, issue: &ExistingGithubIssue) -> anyhow::Result<String> {
     let sections = markwaydown::parse_text(issue_id.url(), &issue.body)?;
     for section in sections {
         if section.title == "Why this goal?" {
