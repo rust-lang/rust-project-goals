@@ -122,6 +122,11 @@ async fn prepare_goals(
 
         let why_this_goal = why_this_goal(&issue_id, issue)?;
 
+        let details_summary = match comments.len() {
+            0 => String::from("No updates posted."),
+            1 => String::from("1 update posted."),
+            len => format!("{len} updates posted."),
+        };
         result.push(UpdatesGoal {
             title: title.clone(),
             issue_number: issue.number,
@@ -131,7 +136,7 @@ async fn prepare_goals(
             has_help_wanted,
             help_wanted,
             is_closed: issue.state == GithubIssueState::Closed,
-            num_comments: comments.len(),
+            details_summary,
             comments,
             tldr,
             why_this_goal,
