@@ -98,8 +98,8 @@ pub struct UpdatesGoal {
     /// Markdown with update text (bullet list)
     pub comments: Vec<ExistingGithubComment>,
 
-    /// Comments.len but accessible to the template
-    pub num_comments: usize,
+    /// The "<details>" summary, a prettified version of comments.len().
+    pub details_summary: String,
 
     /// Progress towards the goal
     pub progress: Progress,
