@@ -141,6 +141,10 @@ async fn prepare_goals(
 
         progress_bar::inc_progress_bar();
     }
+
+    // Updates are in a random order, sort them.
+    result.sort_by_cached_key(|update| update.title.to_lowercase());
+
     Ok(result)
 }
 
