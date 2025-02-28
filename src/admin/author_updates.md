@@ -16,7 +16,7 @@ We need to improve this UI.
 
 ## Filling out the template
 
-Run the `cargo rpg updates` command to create the blog post template. If running from within vscode, the `--vscode` command will open the result in a fresh tab, which is convenient.
+Run the `cargo rpg updates` command to create the blog post template. If running from within vscode, the `--vscode` command will open the result in a fresh tab, which is convenient. Otherwise, use `--output-file $file.md` to create a new file.
 
 The template will be filled in with the list of flagship goals. Each flagship goal will have their [Why this goal?](./merge_rfc.md#author-the-why-this-goal-sections-for-the-flagship-goals) section auto-inserted from the corresponding tracking issue.
 
