@@ -103,7 +103,7 @@ The experimental feature we implement should:
 
 ## Ownership and team asks
 
-**Owner:** [Jana Dönszelmann](@jdonszelmann) and [Mara Bos](@m-ou-se)
+**Owner:** @Jdonszelmann and @m-ou-se
 
 | Task                             | Owner(s) or team(s)  | Notes                        |
 |----------------------------------|----------------------|------------------------------|
