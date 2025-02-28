@@ -169,7 +169,11 @@ fn help_wanted(
 
     let mut help_wanted = vec![];
 
-    let tldr_has_help_wanted = tldr.as_deref().unwrap_or("").lines().any(|line| HELP_WANTED.is_match(line));
+    let tldr_has_help_wanted = tldr
+        .as_deref()
+        .unwrap_or("")
+        .lines()
+        .any(|line| HELP_WANTED.is_match(line));
 
     for comment in comments {
         let mut lines = comment.body.split('\n').peekable();
@@ -180,8 +184,8 @@ fn help_wanted(
             while let Some(line) = lines.next() {
                 if let Some(c) = HELP_WANTED.captures(line) {
                     help_wanted.push(HelpWanted {
-                        text: c["text"].to_string()
-                });
+                        text: c["text"].to_string(),
+                    });
                     break;
                 }
             }
@@ -200,10 +204,7 @@ fn help_wanted(
     Ok((tldr_has_help_wanted || !help_wanted.is_empty(), help_wanted))
 }
 
-fn why_this_goal(
-    issue_id: &IssueId,
-    issue: &ExistingGithubIssue,
-) -> anyhow::Result<String> {
+fn why_this_goal(issue_id: &IssueId, issue: &ExistingGithubIssue) -> anyhow::Result<String> {
     let sections = markwaydown::parse_text(issue_id.url(), &issue.body)?;
     for section in sections {
         if section.title == "Why this goal?" {

@@ -13,7 +13,9 @@ use rust_project_goals::{
     gh::{
         issue_id::{IssueId, Repository},
         issues::{
-            change_milestone, change_title, create_comment, create_issue, fetch_issue, list_issues_in_milestone, lock_issue, sync_assignees, update_issue_body, CONTINUING_GOAL_PREFIX, FLAGSHIP_LABEL, LOCK_TEXT
+            change_milestone, change_title, create_comment, create_issue, fetch_issue,
+            list_issues_in_milestone, lock_issue, sync_assignees, update_issue_body,
+            CONTINUING_GOAL_PREFIX, FLAGSHIP_LABEL, LOCK_TEXT,
         },
         labels::GhLabel,
     },
@@ -175,7 +177,6 @@ pub fn generate_issues(
             eprintln!("Use `--commit` to execute the actions.");
             return Ok(());
         }
-
     }
 }
 
@@ -301,7 +302,10 @@ fn initialize_issues<'doc>(
         let existing_issue = if let Some(tracking_issue) = desired_issue.tracking_issue {
             // a. We first check if there is a declared tracking issue in the markdown file.
             // If so, check if we've already loaded its data.
-            if let Some(issue) = milestone_issues.iter().find(|issue| issue.number == tracking_issue.number) {
+            if let Some(issue) = milestone_issues
+                .iter()
+                .find(|issue| issue.number == tracking_issue.number)
+            {
                 // If so, reuse it to avoid latency.
                 Some(issue.clone())
             } else {
@@ -318,7 +322,10 @@ fn initialize_issues<'doc>(
             // is created, we first create an issue for it, then do a loop and execute again.
             // This second time, we will find the issue with the known title, get its
             // number, and put that number into the markdown.
-            milestone_issues.iter().find(|issue| issue.title == desired_issue.title).cloned()
+            milestone_issues
+                .iter()
+                .find(|issue| issue.title == desired_issue.title)
+                .cloned()
         };
 
         match existing_issue {
@@ -338,9 +345,12 @@ fn initialize_issues<'doc>(
                             .collect(),
                     });
                 }
-                
+
                 if existing_issue.title != desired_issue.title {
-                    actions.insert(GithubAction::ChangeTitle { number: existing_issue.number, title: desired_issue.title });
+                    actions.insert(GithubAction::ChangeTitle {
+                        number: existing_issue.number,
+                        title: desired_issue.title,
+                    });
                 }
 
                 if existing_issue.milestone.as_ref().map(|m| m.title.as_str()) != Some(timeframe) {
@@ -350,9 +360,7 @@ fn initialize_issues<'doc>(
                     });
                     actions.insert(GithubAction::Comment {
                         number: existing_issue.number,
-                        body: format!(
-                            "{CONTINUING_GOAL_PREFIX} {timeframe}",
-                        ),
+                        body: format!("{CONTINUING_GOAL_PREFIX} {timeframe}",),
                     });
                 }
 
@@ -610,7 +618,7 @@ impl GithubAction<'_> {
                 change_title(repository, number, &title)?;
                 Ok(())
             }
-            
+
             GithubAction::Comment { number, body } => {
                 create_comment(repository, number, &body)?;
                 Ok(())

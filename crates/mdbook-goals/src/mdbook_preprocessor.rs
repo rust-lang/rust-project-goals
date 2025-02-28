@@ -270,15 +270,19 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             return Ok(());
         }
         let config = Configuration::get();
-        let rows = std::iter::once(vec!["Ask".to_string(), "aka".to_string(), "Description".to_string()])
-            .chain(config.team_asks.iter().map(|(name, details)| {
-                vec![
-                    format!("{name:?}"),
-                    details.short.to_string(),
-                    details.about.to_string(),
-                ]
-            }))
-            .collect::<Vec<Vec<String>>>();
+        let rows = std::iter::once(vec![
+            "Ask".to_string(),
+            "aka".to_string(),
+            "Description".to_string(),
+        ])
+        .chain(config.team_asks.iter().map(|(name, details)| {
+            vec![
+                format!("{name:?}"),
+                details.short.to_string(),
+                details.about.to_string(),
+            ]
+        }))
+        .collect::<Vec<Vec<String>>>();
         let table = util::format_table(&rows);
         let new_content = re::VALID_TEAM_ASKS.replace_all(&chapter.content, table);
         chapter.content = new_content.to_string();
