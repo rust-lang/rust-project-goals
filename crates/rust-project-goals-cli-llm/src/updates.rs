@@ -1,7 +1,7 @@
 use anyhow::Context;
 use chrono::{Datelike, NaiveDate};
 use rust_project_goals::markwaydown;
-use rust_project_goals::re::HELP_WANTED;
+use rust_project_goals::re::{HELP_WANTED, TLDR};
 use rust_project_goals::util::comma;
 use rust_project_goals_json::GithubIssueState;
 use std::io::Write;
@@ -114,10 +114,18 @@ async fn prepare_goals(
         comments.sort_by_key(|c| c.created_at.clone());
         comments.retain(|c| !c.is_automated_comment() && filter.matches(c));
 
+        let tldr = tldr(&issue_id, &mut comments)?;
 
-        let help_wanted = help_wanted(&issue_id, issue)?;
+        let help_wanted = help_wanted(&issue_id, &comments)?;
 
         let why_this_goal = why_this_goal(&issue_id, issue)?;
+
+        progress_bar::print_progress_bar_info(
+            &format!("Issue #{number}", number = issue.number),
+            &format!("tldr={}, c={}", tldr.is_some(), comments.len()),
+            progress_bar::Color::Green,
+            progress_bar::Style::Bold,
+        );
 
         result.push(UpdatesGoal {
             title: title.clone(),
@@ -129,7 +137,7 @@ async fn prepare_goals(
             is_closed: issue.state == GithubIssueState::Closed,
             num_comments: comments.len(),
             comments,
-            tldr: None, // FIXME
+            tldr,
             why_this_goal,
         });
 
@@ -138,15 +146,29 @@ async fn prepare_goals(
     Ok(result)
 }
 
+/// Search for a TL;DR comment. If one is found, remove it and return the text.
+fn tldr(
+    _issue_id: &IssueId,
+    comments: &mut Vec<ExistingGithubComment>,
+) -> anyhow::Result<Option<String>> {
+    let Some(index) = comments.iter().position(|c| c.body.starts_with(TLDR)) else {
+        return Ok(None);
+    };
+
+    let comment = comments.remove(index);
+    Ok(Some(comment.body[TLDR.len()..].trim().to_string()))
+}
+
+/// Search for comments that talk about help being wanted and extract that
 fn help_wanted(
-    issue_id: &IssueId,
-    issue: &ExistingGithubIssue,
+    _issue_id: &IssueId,
+    comments: &[ExistingGithubComment],
 ) -> anyhow::Result<Vec<HelpWanted>> {
     use std::fmt::Write;
 
     let mut help_wanted = vec![];
 
-    for comment in &issue.comments {
+    for comment in comments {
         let mut lines = comment.body.split('\n').peekable();
 
         // Look for a line that says "Help wanted" at the front.
