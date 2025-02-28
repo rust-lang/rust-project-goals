@@ -108,9 +108,5 @@ lazy_static! {
             .unwrap();
 }
 
-lazy_static! {
-    /// If a comment begins with this text, it will be considered a summary.
-    pub static ref TLDR: Regex =
-        Regex::new(r"^TLDR")
-            .unwrap();
-}
+/// If a comment begins with this text, it will be considered a summary.
+pub const TLDR: &str = "TL;DR:";
