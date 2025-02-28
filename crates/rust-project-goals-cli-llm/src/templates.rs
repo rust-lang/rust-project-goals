@@ -46,9 +46,24 @@ pub struct Updates {
     pub milestone: String,
     pub flagship_goals: Vec<UpdatesGoal>,
     pub other_goals: Vec<UpdatesGoal>,
+    pub goal_count: usize,
+    pub flagship_goal_count: usize,
 }
 
 impl Updates {
+    pub fn new(
+        milestone: String,
+        flagship_goals: Vec<UpdatesGoal>,
+        other_goals: Vec<UpdatesGoal>,
+    ) -> Self {
+        Updates {
+            milestone,
+            flagship_goal_count: flagship_goals.len(),
+            goal_count: flagship_goals.len() + other_goals.len(),
+            flagship_goals,
+            other_goals,
+        }
+    }
     pub fn render(self) -> anyhow::Result<String> {
         let templates = Templates::new()?;
         Ok(templates.reg.render("updates", &self)?)
