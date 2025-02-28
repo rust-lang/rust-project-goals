@@ -58,16 +58,23 @@ We will recursively open up the "see also" issue and extract checkboxes (or sear
 
 If we don't find any of the above, we will consider your issue either 0% done if it is not yet closed or 100% done if it is.
 
-## Status update comments
+## Status update comments and summaries
 
-Status updates are posted as comments on the Github tracking issue. You will receive regular pings on Zulip to author status updates periodically. It's a good idea to take the opportunity to update your [progress checkboxes](#checkboxes) as well. 
-
-There is no strict format for these updates but we recommend including the following information:
+We encourage you to post regular detailed updates about your progress as comments on the Github tracking issue. There is no strict format for these updates but we recommend including the following information:
 
 * What happened since the last update? Were any key decisions made or milestones achieved?
 * What is the next step to get done?
 * Are you blocked on anyone or anything?
-* Is there any opportunity to others to pitch in and help out? 
+
+Status update comments will be included verbatim in a "details" section of the monthly blog post.
+
+### Help wanted comments
+
+If your updates include the text `Help wanted:` or `**Help wanted:**` at the start of a line, then the remainder of that line (and any non-block lines afterwards) will be extracted as a "help wanted" request. This will be highlighted in the monthly blog post.
+
+### Summary comments
+
+Once per month, you will start receiving pings to author a monthly status update. This is a special update that will be included verbatim in the blog post. Unless you have a flagship goal, the monthly status update should be short, no more than 2 or 3 bullet points. For a flagship goal it can be longer. To write your monthly status update, leave a comment that begins with the text "TL;DR:". It's a good idea to take the opportunity to update your [progress checkboxes](#checkboxes) as well, as the status bar in the blog post will be based on those.
 
 ## Closing the issue
 
