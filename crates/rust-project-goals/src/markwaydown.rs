@@ -31,8 +31,14 @@ pub struct Table {
     pub rows: Vec<Vec<String>>,
 }
 
-pub fn parse(path: &Path) -> anyhow::Result<Vec<Section>> {
+pub fn parse(path: impl AsRef<Path>) -> anyhow::Result<Vec<Section>> {
+    let path = path.as_ref();
     let text = std::fs::read_to_string(path)?;
+    parse_text(path, &text)
+}
+
+pub fn parse_text(path: impl AsRef<Path>, text: &str) -> anyhow::Result<Vec<Section>> {
+    let path: &Path = path.as_ref();
     let mut result = vec![];
     let mut open_section = None;
     let mut open_table = None;
@@ -54,11 +60,14 @@ pub fn parse(path: &Path) -> anyhow::Result<Vec<Section>> {
             }
             CategorizeLine::TableRow(mut row) => {
                 if open_section.is_none() {
-                    anyhow::bail!(
-                        "{}:{}: markdowwn table outside of any section",
-                        path.display(),
-                        line_num
-                    );
+                    // create an "anonymous" section to house the table
+                    open_section = Some(Section {
+                        line_num,
+                        level: 0,
+                        title: String::new(),
+                        text: String::new(),
+                        tables: vec![],
+                    });
                 }
 
                 if let Some(table) = &mut open_table {

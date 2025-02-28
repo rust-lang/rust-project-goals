@@ -1,20 +1,58 @@
-The Rust project is currently working towards a [slate of 26 project
-goals](https://rust-lang.github.io/rust-project-goals/2024h2/goals.html), with 3 of them designed as [Flagship
-Goals](https://rust-lang.github.io/rust-project-goals/2024h2/goals.html#flagship-goals). This post provides selected
-updates on our progress towards these goals (or, in some cases, lack thereof). The full details for any particular goal
-are available in its associated [tracking issue on the rust-project-goals
-repository](https://github.com/rust-lang/rust-project-goals/milestone/2).
+The Rust project is currently working towards a [slate of 26 project goals](https://rust-lang.github.io/rust-project-goals/{{milestone}}/goals.html), with 3 of them designed as [Flagship Goals](https://rust-lang.github.io/rust-project-goals/{{milestone}}/goals.html#flagship-goals). This post provides selected updates on our progress towards these goals (or, in some cases, lack thereof). The full details for any particular goal are available in its associated [tracking issue on the rust-project-goals repository](https://github.com/rust-lang/rust-project-goals/issues?q=is%3Aissue%20state%3Aopen%20label%3AC-tracking-issue).
 
 ## Flagship goals
 
 {{#each flagship_goals}}
 {{>introduce_goal}}
+
+<!-- markdown separator --> 
+
+**Why this goal?** {{why_this_goal}}
+
+**What has happened?** {{{tldr}}}
+
+<!-- markdown separator --> 
+
 {{>goal_comments}}
 {{/each}}
 
-## Other goals
+## Goals looking for help
 
 {{#each other_goals}}
+{{#if has_help_wanted}}
 {{>introduce_goal}}
+
+<!-- markdown separator --> 
+{{{tldr}}}
+<!-- markdown separator --> 
+
+{{#each help_wanted}}
+
+<!-- markdown separator --> 
+![Help wanted](https://img.shields.io/badge/Help%20wanted-yellow) {{{text}}}
+<!-- markdown separator --> 
+
+{{/each}}
+
+<!-- markdown separator --> 
+
 {{>goal_comments}}
+{{/if}}
+{{/each}}
+
+## Other goal updates
+
+{{#each other_goals}}
+{{#if has_help_wanted}}
+{{else}}
+{{>introduce_goal}}
+
+<!-- markdown separator --> 
+
+{{{tldr}}}
+
+<!-- markdown separator --> 
+
+{{>goal_comments}}
+{{/if}}
 {{/each}}
