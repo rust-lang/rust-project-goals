@@ -197,11 +197,7 @@ pub fn create_issue(
     }
 }
 
-pub fn change_title(
-    repository: &Repository,
-    number: u64,
-    title: &str,
-) -> anyhow::Result<()> {
+pub fn change_title(repository: &Repository, number: u64, title: &str) -> anyhow::Result<()> {
     let mut command = Command::new("gh");
     command
         .arg("-R")
