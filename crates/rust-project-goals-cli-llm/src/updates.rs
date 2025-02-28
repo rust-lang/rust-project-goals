@@ -140,6 +140,7 @@ async fn prepare_goals(
             comments,
             tldr,
             why_this_goal,
+            needs_separator: true, // updated after sorting
         });
 
         progress_bar::inc_progress_bar();
@@ -147,6 +148,11 @@ async fn prepare_goals(
 
     // Updates are in a random order, sort them.
     result.sort_by_cached_key(|update| update.title.to_lowercase());
+
+    // Mark the last entry as not needing a separator from its following sibling, it has none.
+    if let Some(last) = result.last_mut() {
+        last.needs_separator = false;
+    }
 
     Ok(result)
 }
