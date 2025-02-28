@@ -73,6 +73,13 @@ pub struct UpdatesGoal {
     /// True if the issue is closed.
     pub is_closed: bool,
 
+    /// True if there are "help wanted" comments OR the TL;DR includes a help wanted request.
+    pub has_help_wanted: bool,
+
+    /// If there are comments that include ["help wanted"](`rust_project_goals::re::HELP_WANTED`)
+    /// comments, those comments are included here.
+    pub help_wanted: Vec<HelpWanted>,
+
     /// Markdown with update text (bullet list)
     pub comments: Vec<ExistingGithubComment>,
 
@@ -81,4 +88,15 @@ pub struct UpdatesGoal {
 
     /// Progress towards the goal
     pub progress: Progress,
+
+    /// TL;DR comment (if any, empty string if none)
+    pub tldr: Option<String>,
+
+    /// Contents of a "Why this goal?" section in the tracking issue (empty string if not present)
+    pub why_this_goal: String,
+}
+
+#[derive(Serialize, Debug)]
+pub struct HelpWanted {
+    pub text: String,
 }

@@ -1,12 +1,14 @@
 use anyhow::Context;
 use chrono::{Datelike, NaiveDate};
+use rust_project_goals::markwaydown;
+use rust_project_goals::re::{HELP_WANTED, TLDR};
 use rust_project_goals::util::comma;
 use rust_project_goals_json::GithubIssueState;
 use std::io::Write;
 use std::path::Path;
 use std::process::{Command, Stdio};
 
-use crate::templates::{self, Updates, UpdatesGoal};
+use crate::templates::{self, HelpWanted, Updates, UpdatesGoal};
 use rust_project_goals::gh::issues::ExistingGithubIssue;
 use rust_project_goals::gh::{
     issue_id::{IssueId, Repository},
@@ -92,6 +94,11 @@ async fn prepare_goals(
             continue;
         }
 
+        let issue_id = IssueId {
+            repository: repository.clone(),
+            number: issue.number,
+        };
+
         let title = &issue.title;
 
         progress_bar::print_progress_bar_info(
@@ -107,24 +114,97 @@ async fn prepare_goals(
         comments.sort_by_key(|c| c.created_at.clone());
         comments.retain(|c| !c.is_automated_comment() && filter.matches(c));
 
+        let tldr = tldr(&issue_id, &mut comments)?;
+
+        let (has_help_wanted, help_wanted) = help_wanted(&issue_id, &tldr, &comments)?;
+
+        let why_this_goal = why_this_goal(&issue_id, issue)?;
+
         result.push(UpdatesGoal {
             title: title.clone(),
             issue_number: issue.number,
             issue_assignees: comma(&issue.assignees),
-            issue_url: IssueId {
-                repository: repository.clone(),
-                number: issue.number,
-            }
-            .url(),
+            issue_url: issue_id.url(),
             progress,
+            has_help_wanted,
+            help_wanted,
             is_closed: issue.state == GithubIssueState::Closed,
             num_comments: comments.len(),
             comments,
+            tldr,
+            why_this_goal,
         });
 
         progress_bar::inc_progress_bar();
     }
     Ok(result)
+}
+
+/// Search for a TL;DR comment. If one is found, remove it and return the text.
+fn tldr(
+    _issue_id: &IssueId,
+    comments: &mut Vec<ExistingGithubComment>,
+) -> anyhow::Result<Option<String>> {
+    let Some(index) = comments.iter().position(|c| c.body.starts_with(TLDR)) else {
+        return Ok(None);
+    };
+
+    let comment = comments.remove(index);
+    Ok(Some(comment.body[TLDR.len()..].trim().to_string()))
+}
+
+/// Search for comments that talk about help being wanted and extract that
+fn help_wanted(
+    _issue_id: &IssueId,
+    tldr: &Option<String>,
+    comments: &[ExistingGithubComment],
+) -> anyhow::Result<(bool, Vec<HelpWanted>)> {
+    use std::fmt::Write;
+
+    let mut help_wanted = vec![];
+
+    let tldr_has_help_wanted = tldr.as_deref().unwrap_or("").lines().any(|line| HELP_WANTED.is_match(line));
+
+    for comment in comments {
+        let mut lines = comment.body.split('\n').peekable();
+
+        // Look for a line that says "Help wanted" at the front.
+        // Then extract the rest of that line along with subsequent lines until we find a blank line.
+        while lines.peek().is_some() {
+            while let Some(line) = lines.next() {
+                if let Some(c) = HELP_WANTED.captures(line) {
+                    help_wanted.push(HelpWanted {
+                        text: c["text"].to_string()
+                });
+                    break;
+                }
+            }
+
+            while let Some(line) = lines.next() {
+                if line.trim().is_empty() {
+                    break;
+                } else {
+                    let last = help_wanted.len() - 1;
+                    writeln!(&mut help_wanted[last].text, "{line}")?;
+                }
+            }
+        }
+    }
+
+    Ok((tldr_has_help_wanted || !help_wanted.is_empty(), help_wanted))
+}
+
+fn why_this_goal(
+    issue_id: &IssueId,
+    issue: &ExistingGithubIssue,
+) -> anyhow::Result<String> {
+    let sections = markwaydown::parse_text(issue_id.url(), &issue.body)?;
+    for section in sections {
+        if section.title == "Why this goal?" {
+            return Ok(section.text.trim().to_string());
+        }
+    }
+    return Ok("".to_string());
 }
 
 struct Filter<'f> {
