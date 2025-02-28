@@ -73,6 +73,9 @@ pub struct UpdatesGoal {
     /// True if the issue is closed.
     pub is_closed: bool,
 
+    /// True if there are "help wanted" comments OR the TL;DR includes a help wanted request.
+    pub has_help_wanted: bool,
+
     /// If there are comments that include ["help wanted"](`rust_project_goals::re::HELP_WANTED`)
     /// comments, those comments are included here.
     pub help_wanted: Vec<HelpWanted>,

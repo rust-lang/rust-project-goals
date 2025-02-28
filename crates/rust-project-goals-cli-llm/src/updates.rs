@@ -116,16 +116,9 @@ async fn prepare_goals(
 
         let tldr = tldr(&issue_id, &mut comments)?;
 
-        let help_wanted = help_wanted(&issue_id, &comments)?;
+        let (has_help_wanted, help_wanted) = help_wanted(&issue_id, &tldr, &comments)?;
 
         let why_this_goal = why_this_goal(&issue_id, issue)?;
-
-        progress_bar::print_progress_bar_info(
-            &format!("Issue #{number}", number = issue.number),
-            &format!("tldr={}, c={}", tldr.is_some(), comments.len()),
-            progress_bar::Color::Green,
-            progress_bar::Style::Bold,
-        );
 
         result.push(UpdatesGoal {
             title: title.clone(),
@@ -133,6 +126,7 @@ async fn prepare_goals(
             issue_assignees: comma(&issue.assignees),
             issue_url: issue_id.url(),
             progress,
+            has_help_wanted,
             help_wanted,
             is_closed: issue.state == GithubIssueState::Closed,
             num_comments: comments.len(),
@@ -162,11 +156,14 @@ fn tldr(
 /// Search for comments that talk about help being wanted and extract that
 fn help_wanted(
     _issue_id: &IssueId,
+    tldr: &Option<String>,
     comments: &[ExistingGithubComment],
-) -> anyhow::Result<Vec<HelpWanted>> {
+) -> anyhow::Result<(bool, Vec<HelpWanted>)> {
     use std::fmt::Write;
 
     let mut help_wanted = vec![];
+
+    let tldr_has_help_wanted = tldr.as_deref().unwrap_or("").lines().any(|line| HELP_WANTED.is_match(line));
 
     for comment in comments {
         let mut lines = comment.body.split('\n').peekable();
@@ -194,7 +191,7 @@ fn help_wanted(
         }
     }
 
-    Ok(help_wanted)
+    Ok((tldr_has_help_wanted || !help_wanted.is_empty(), help_wanted))
 }
 
 fn why_this_goal(
