@@ -2,7 +2,6 @@
 
 | Metadata           |                                    |
 | :--                | :--                                |
-| :----------------- | --------------------               |
 | Point of contact   | @m-ou-se                           |
 | Teams              | <!-- TEAMS WITH ASKS -->           |
 | Task owners        | <!-- TASK OWNERS -->               |
@@ -114,8 +113,8 @@ safe cross-language linking.
 | Mentoring and interfacing with Rust project | @m-ou-se, @jdonszelmann                      |                                |
 | Blog post (author, review)                  | MSc student, @jdonszelmann, @m-ou-se         |                                |
 | Experimental implementation                 | Msc student                                  |                                |
-| Lang-team experiment                        | ![Team][] [lang]                             | @nikomatsakis       |
-| Lang-team champion                          | ![Team][] [lang]                             | @nikomatsakis       |
+| Lang-team experiment                        | ![Team][] [lang]                             | @nikomatsakis                  |
+| Lang-team champion                          | ![Team][] [lang]                             | @nikomatsakis                  |
 | Standard reviews                            | ![Team][] [compiler]                         |                                |
 | Thesis / Paper                              | Research team (MSc student, professor, etc.) |                                |
 
