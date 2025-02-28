@@ -4,7 +4,6 @@ use std::{
     path::{Path, PathBuf},
 };
 
-use disk_persist::DiskPersist;
 use walkdir::WalkDir;
 
 pub const ARROW: &str = "↳";
