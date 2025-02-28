@@ -102,16 +102,16 @@ safe cross-language linking.
 
 ## Ownership and team asks
 
-**Owner:** @m-ou-se and/or @jdonszelmann
+**Owner:** @m-ou-se and/or @Jdonszelmann
 
 | Task                                        | Owner(s) or team(s)                          | Notes                          |
 |---------------------------------------------|----------------------------------------------|--------------------------------|
 | Discussion and moral support                | ![Team][] [lang]                             |                                |
-| Coordination with university                | @jdonszelmann                                | Delft University of Technology |
-| Acquire funding                             | Hexcat (= @m-ou-se + @jdonszelmann)          |                                |
+| Coordination with university                | @Jdonszelmann                                | Delft University of Technology |
+| Acquire funding                             | Hexcat (= @m-ou-se + @Jdonszelmann)          |                                |
 | Research                                    | Research team (MSc student, professor, etc.) |                                |
-| Mentoring and interfacing with Rust project | @m-ou-se, @jdonszelmann                      |                                |
-| Blog post (author, review)                  | MSc student, @jdonszelmann, @m-ou-se         |                                |
+| Mentoring and interfacing with Rust project | @m-ou-se, @Jdonszelmann                      |                                |
+| Blog post (author, review)                  | MSc student, @Jdonszelmann, @m-ou-se         |                                |
 | Experimental implementation                 | Msc student                                  |                                |
 | Lang-team experiment                        | ![Team][] [lang]                             | @nikomatsakis                  |
 | Lang-team champion                          | ![Team][] [lang]                             | @nikomatsakis                  |
