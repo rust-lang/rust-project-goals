@@ -104,7 +104,7 @@ pub fn is_just(re: &Regex, s: &str) -> bool {
 lazy_static! {
     /// If a line within a comment begins with this text, it will be considered a request for help
     pub static ref HELP_WANTED: Regex =
-        Regex::new(r"^(Help wanted:|^**Help wanted:**) (?P<text>.*)")
+        Regex::new(r"^(?i:help wanted:|\*\*help wanted:\*\*) (?P<text>.*)")
             .unwrap();
 }
 
