@@ -22,7 +22,11 @@ command = "cargo run -p mdbook-goals --"
 
 [preprocessor.goals.users]
 "@Nadrieril" = "@Nadrieril"
-"@triagebot" = "@triagebot"
+
+preprocessor.goals.ignore_users = [
+    "@triagebot",
+]
+
 
 [output.html]
 git-repository-url = "https://github.com/rust-lang/rust-project-goals"

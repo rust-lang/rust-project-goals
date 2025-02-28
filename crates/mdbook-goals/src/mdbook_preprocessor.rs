@@ -20,6 +20,7 @@ use rust_project_goals::{
 const LINKS: &str = "links";
 const LINKIFIERS: &str = "linkifiers";
 const USERS: &str = "users";
+const IGNORE_USERS: &str = "ignore_users";
 
 pub struct GoalPreprocessor;
 
@@ -55,6 +56,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         let mut links: Vec<(String, String)> = Default::default();
         let mut linkifiers = Default::default();
         let mut display_names: BTreeMap<String, Rc<String>> = Default::default();
+        let mut ignore_users: Vec<String> = Default::default();
         if let Some(config) = ctx.config.get_preprocessor(GoalPreprocessor.name()) {
             if let Some(value) = config.get(LINKS) {
                 links = value
@@ -112,6 +114,24 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                     display_names.insert(user, Rc::new(display_name));
                 }
             }
+
+            if let Some(value) = config.get(IGNORE_USERS) {
+                ignore_users = value
+                    .as_array()
+                    .with_context(|| format!("`{}` must be an array", IGNORE_USERS))?
+                    .iter()
+                    .map(|v| {
+                        if let Some(v) = v.as_str() {
+                            Ok(v.to_string())
+                        } else {
+                            Err(anyhow::anyhow!(
+                                "ignore user value `{}` must be a string",
+                                v
+                            ))
+                        }
+                    })
+                    .collect::<anyhow::Result<Vec<_>>>()?;
+            }
         }
 
         Ok(GoalPreprocessorWithContext {
@@ -122,6 +142,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             links,
             linkifiers,
             display_names,
+            ignore_users,
             goal_document_map: Default::default(),
         })
     }
@@ -312,6 +333,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             .username
             .find_iter(&chapter.content)
             .map(|m| m.as_str().to_string())
+            .filter(|username| !self.ignore_users.contains(username))
             .collect();
 
         for username in &usernames {
