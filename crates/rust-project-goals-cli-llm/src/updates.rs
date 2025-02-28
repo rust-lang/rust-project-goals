@@ -8,7 +8,7 @@ use std::io::Write;
 use std::path::Path;
 use std::process::{Command, Stdio};
 
-use crate::templates::{self, HelpWanted, Updates, UpdatesGoal};
+use crate::templates::{self, HelpWanted, UpdatesGoal};
 use rust_project_goals::gh::issues::ExistingGithubIssue;
 use rust_project_goals::gh::{
     issue_id::{IssueId, Repository},
@@ -44,7 +44,7 @@ pub async fn updates(
         progress_bar::Style::Bold,
     );
 
-    let mut updates = templates::Updates {
+    let updates = templates::Updates {
         milestone: milestone.to_string(),
         flagship_goals: prepare_goals(repository, &issues, &filter, true).await?,
         other_goals: prepare_goals(repository, &issues, &filter, false).await?,
