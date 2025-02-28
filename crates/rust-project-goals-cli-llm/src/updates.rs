@@ -1,13 +1,14 @@
 use anyhow::Context;
 use chrono::{Datelike, NaiveDate};
 use rust_project_goals::markwaydown;
+use rust_project_goals::re::HELP_WANTED;
 use rust_project_goals::util::comma;
 use rust_project_goals_json::GithubIssueState;
 use std::io::Write;
 use std::path::Path;
 use std::process::{Command, Stdio};
 
-use crate::templates::{self, Updates, UpdatesGoal};
+use crate::templates::{self, HelpWanted, Updates, UpdatesGoal};
 use rust_project_goals::gh::issues::ExistingGithubIssue;
 use rust_project_goals::gh::{
     issue_id::{IssueId, Repository},
@@ -113,6 +114,9 @@ async fn prepare_goals(
         comments.sort_by_key(|c| c.created_at.clone());
         comments.retain(|c| !c.is_automated_comment() && filter.matches(c));
 
+
+        let help_wanted = help_wanted(&issue_id, issue)?;
+
         let why_this_goal = why_this_goal(&issue_id, issue)?;
 
         result.push(UpdatesGoal {
@@ -121,6 +125,7 @@ async fn prepare_goals(
             issue_assignees: comma(&issue.assignees),
             issue_url: issue_id.url(),
             progress,
+            help_wanted,
             is_closed: issue.state == GithubIssueState::Closed,
             num_comments: comments.len(),
             comments,
@@ -131,6 +136,43 @@ async fn prepare_goals(
         progress_bar::inc_progress_bar();
     }
     Ok(result)
+}
+
+fn help_wanted(
+    issue_id: &IssueId,
+    issue: &ExistingGithubIssue,
+) -> anyhow::Result<Vec<HelpWanted>> {
+    use std::fmt::Write;
+
+    let mut help_wanted = vec![];
+
+    for comment in &issue.comments {
+        let mut lines = comment.body.split('\n').peekable();
+
+        // Look for a line that says "Help wanted" at the front.
+        // Then extract the rest of that line along with subsequent lines until we find a blank line.
+        while lines.peek().is_some() {
+            while let Some(line) = lines.next() {
+                if let Some(c) = HELP_WANTED.captures(line) {
+                    help_wanted.push(HelpWanted {
+                        text: c["text"].to_string()
+                });
+                    break;
+                }
+            }
+
+            while let Some(line) = lines.next() {
+                if line.trim().is_empty() {
+                    break;
+                } else {
+                    let last = help_wanted.len() - 1;
+                    writeln!(&mut help_wanted[last].text, "{line}")?;
+                }
+            }
+        }
+    }
+
+    Ok(help_wanted)
 }
 
 fn why_this_goal(

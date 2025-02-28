@@ -100,3 +100,17 @@ pub fn is_just(re: &Regex, s: &str) -> bool {
     let output = re.replace(s, "X");
     output == "X"
 }
+
+lazy_static! {
+    /// If a line within a comment begins with this text, it will be considered a request for help
+    pub static ref HELP_WANTED: Regex =
+        Regex::new(r"^(Help wanted:|^**Help wanted:**) (?P<text>.*)")
+            .unwrap();
+}
+
+lazy_static! {
+    /// If a comment begins with this text, it will be considered a summary.
+    pub static ref TLDR: Regex =
+        Regex::new(r"^TLDR")
+            .unwrap();
+}
