@@ -71,7 +71,6 @@ Tracking issue [#136889](https://github.com/rust-lang/rust/issues/136889):
 | Rust-analyzer implementation      | @epage |       |
 | Standard reviews                  | ![Team][] [compiler]               |       |
 | Lang-team champion                | ![Team][] [lang]                   |       |
-| Design meeting                    | ![Team][] [lang]                   |       |
 | Author call for testing blog post | @epage |       |
 
 ### Stabilize language feature `frontmatter`
