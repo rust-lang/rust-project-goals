@@ -31,12 +31,12 @@ Currently, Cargo's plumbing commands are
   - deprecated
 - `cargo locate-project`:
   - works off of a `Cargo.toml` file on disk
-  - text or json output, undocumened json schema
+  - text or json output, undocumented json schema
   - uses a pre-1.0 term for package
 - `cargo metadata`:
   - works off of `Cargo.toml`, `Cargo.lock` files on disk
   - uses a custom json schema
-  - can include depednency resolution but excludes feature resolution
+  - can include dependency resolution but excludes feature resolution
   - some users want this faster
   - some users want this to report more information
   - See also [open issues](https://github.com/rust-lang/cargo/issues?q=is%3Aissue%20state%3Aopen%20label%3ACommand-metadata)
@@ -93,12 +93,12 @@ Cargo's APIs may not be able to expose each of these stages and work may need to
 
 The performance of piping output between these commands may be sub-par, coming from a combination of at least
 - Cargo's APIs may require doing more work than is needed for these stages
-- Cargo focuses on json for programamtic output which may prove sub-par (see also [zulip](https://rust-lang.zulipchat.com/#narrow/channel/246057-t-cargo/topic/.60cargo.20metadata.60.20performance/near/476523460))
+- Cargo focuses on json for programmatic output which may prove sub-par (see also [zulip](https://rust-lang.zulipchat.com/#narrow/channel/246057-t-cargo/topic/.60cargo.20metadata.60.20performance/near/476523460))
 - Cargo's serde structures may not be optimized
 - If customizing only a single step in this process,
   requiring serializing and deserializing through all of the other stages may be superfluous
 
-Low hanging or eggregious bottlenecks may need to be addressed.
+Low hanging or egregious bottlenecks may need to be addressed.
 Otherwise, performance should wait on user feedback.
 
 A schema evolution plan will need to be considered with the design of the schema.
