@@ -196,10 +196,11 @@ fn help_wanted(
         while lines.peek().is_some() {
             while let Some(line) = lines.next() {
                 if let Some(c) = HELP_WANTED.captures(line) {
-                    help_wanted.push(HelpWanted {
-                        text: c["text"].to_string(),
-                    });
-                    break;
+                    let text = c["text"].trim().to_string();
+                    if !text.is_empty() {
+                        help_wanted.push(HelpWanted { text });
+                        break;
+                    }
                 }
             }
 
