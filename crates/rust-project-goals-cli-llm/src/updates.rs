@@ -162,7 +162,9 @@ fn tldr(
     _issue_id: &IssueId,
     comments: &mut Vec<ExistingGithubComment>,
 ) -> anyhow::Result<Option<String>> {
-    let Some(index) = comments.iter().position(|c| c.body.starts_with(TLDR)) else {
+    // `comments` are sorted by creation date in an ascending order, so we look for the most recent
+    // TL;DR comment from the end.
+    let Some(index) = comments.iter().rposition(|c| c.body.starts_with(TLDR)) else {
         return Ok(None);
     };
 
