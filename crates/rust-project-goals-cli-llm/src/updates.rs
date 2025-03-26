@@ -125,7 +125,7 @@ async fn prepare_goals(
         let details_summary = match comments.len() {
             0 => String::from("No detailed updates available."),
             1 => String::from("1 detailed update available."),
-            len => format!("{len} detailed updates availabled."),
+            len => format!("{len} detailed updates available."),
         };
         result.push(UpdatesGoal {
             title: title.clone(),
