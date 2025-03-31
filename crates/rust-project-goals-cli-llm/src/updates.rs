@@ -125,7 +125,7 @@ async fn prepare_goals(
         let details_summary = match comments.len() {
             0 => String::from("No detailed updates available."),
             1 => String::from("1 detailed update available."),
-            len => format!("{len} detailed updates availabled."),
+            len => format!("{len} detailed updates available."),
         };
         result.push(UpdatesGoal {
             title: title.clone(),
@@ -162,7 +162,9 @@ fn tldr(
     _issue_id: &IssueId,
     comments: &mut Vec<ExistingGithubComment>,
 ) -> anyhow::Result<Option<String>> {
-    let Some(index) = comments.iter().position(|c| c.body.starts_with(TLDR)) else {
+    // `comments` are sorted by creation date in an ascending order, so we look for the most recent
+    // TL;DR comment from the end.
+    let Some(index) = comments.iter().rposition(|c| c.body.starts_with(TLDR)) else {
         return Ok(None);
     };
 
@@ -194,10 +196,11 @@ fn help_wanted(
         while lines.peek().is_some() {
             while let Some(line) = lines.next() {
                 if let Some(c) = HELP_WANTED.captures(line) {
-                    help_wanted.push(HelpWanted {
-                        text: c["text"].to_string(),
-                    });
-                    break;
+                    let text = c["text"].trim().to_string();
+                    if !text.is_empty() {
+                        help_wanted.push(HelpWanted { text });
+                        break;
+                    }
                 }
             }
 
