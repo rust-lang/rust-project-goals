@@ -24,10 +24,10 @@ The Specification Team has been working for the past year on preparing a specifi
 
 [RFC 3355] describes the goals of the specification as  "\[Serving\] the needs of Rust users, such as authors of unsafe Rust code, those working on safety critical Rust software, language designers, maintainers of Rust tooling, and so on," and "Incorporating it in their process for language evolution. For example, the language team could require a new language feature to be included in the specification as a requirement for stabilization."
 
-Presently, the working draft Specification of Rust consists of a modified version of the reference, achieved by adding paragraph identifiers (almost finished), and slowly modifying the content to more normatively describe the language. This may help achieve one of the presented goals for the the specification, namely incorporation into the language evolution process. 
+Presently, the working draft Specification of Rust consists of a modified version of the reference, achieved by adding paragraph identifiers (almost finished), and slowly modifying the content to more normatively describe the language. This may help achieve one of the presented goals for the specification, namely incorporation into the language evolution process. 
 However, Ferrous Systems has, over the past 2 years, developed the Ferrocene Language Specification, which has seen adoption in the Safety Critical Space, and a sharp change in the specification would create substantial financial burdens on those early adopters. 
 
-Based on more recent discussions and agreements with Ferrous Systems, the Specification Team will be incorporating the the Ferrocene Language Specification as-is into its processes. This will leave us with two documents to maintain, with decisions to make on how they will fit into the Specification delivery process overall.
+Based on more recent discussions and agreements with Ferrous Systems, the Specification Team will be incorporating the Ferrocene Language Specification as-is into its processes. This will leave us with two documents to maintain, with decisions to make on how they will fit into the Specification delivery process overall.
 
 ### The next 6 months
 
