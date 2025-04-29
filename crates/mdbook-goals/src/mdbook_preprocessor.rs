@@ -116,8 +116,17 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 }
             }
 
+            // Expected shape:
+            // ```toml
+            // [preprocessor.goals.ignore_users]
+            // ignore_users = [ ... ]
+            // ```
             if let Some(value) = config.get(IGNORE_USERS) {
                 ignore_users = value
+                    .as_table()
+                    .with_context(|| format!("`{}` config section must be a table", IGNORE_USERS))?
+                    .get(IGNORE_USERS)
+                    .with_context(|| format!("`{}` key must be present", IGNORE_USERS))?
                     .as_array()
                     .with_context(|| format!("`{}` must be an array", IGNORE_USERS))?
                     .iter()

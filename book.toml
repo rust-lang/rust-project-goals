@@ -23,7 +23,8 @@ command = "cargo run -p mdbook-goals --"
 [preprocessor.goals.users]
 "@Nadrieril" = "@Nadrieril"
 
-preprocessor.goals.ignore_users = [
+[preprocessor.goals.ignore_users]
+ignore_users = [
     "@triagebot",
 ]
 
