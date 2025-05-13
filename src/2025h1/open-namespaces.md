@@ -40,8 +40,8 @@ Implement at least Cargo and compiler support for this to be experimented with a
 | Task                                | Owner(s) or team(s)           | Notes |
 |-------------------------------------|-------------------------------|-------|
 | Discussion and moral support        | ![Team][] [cargo], [compiler] |       |
-| Compiler implementation             | ![Help wanted][]              |       |
-| Work through lingering cargo issues | ![Help wanted][], @epage |       |
+| Compiler implementation             | @b-naber                      |       |
+| Work through lingering cargo issues | @epage, @b-naber              |       |
 
 ### Definitions
 
