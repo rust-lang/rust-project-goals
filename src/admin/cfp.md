@@ -5,7 +5,50 @@ Each goal milestone corresponds to six months, designated in the format YYYYhN, 
 * For an H1 season, start around mid October of the year before.
 * For an H2 season, start around mid April of the year before.
 
-This is the checklist of steps to starting accepting goal proposals:
+## Using the automated setup command
+
+The easiest way to set up a new Call For Proposals (CFP) period is to use the `cargo rpg cfp` command. This command automates the process of creating the necessary directory structure, copying template files, and updating both the SUMMARY.md and README.md files.
+
+```bash
+# Basic usage
+cargo rpg cfp 2025h2
+
+# Force overwrite without asking for confirmation
+cargo rpg cfp 2025h2 --force
+
+# Dry run - don't make any changes, just show what would be done
+cargo rpg cfp 2025h2 --dry-run
+```
+
+The command will:
+1. Create a new directory for the specified timeframe (e.g., `src/2025h2/`)
+2. Copy and process template files from `src/admin/samples/` to the new directory
+3. Update the `SUMMARY.md` file to include the new timeframe section
+4. Update the main `README.md` with information about the new timeframe
+
+## Manual steps required
+
+After running the `cargo rpg cfp` command, there are still important manual steps that need to be completed:
+
+### 1. Prepare and publish a blog post
+
+You need to prepare a Call For Proposals blog post on the [Inside Rust] blog:
+* Use [this sample](./samples/cfp.md) as a starting point
+* Copy the sample to the `blog.rust-lang.org` repository as a new post
+* Replace placeholders like `YYYYHN` with the actual timeframe (e.g., `2025H2`)
+* We use Inside Rust and not the Main blog because the target audience is would-be Rust contributors and maintainers
+
+### 2. Email the mailing list
+
+Send an email to the `all@rust-lang.org` mailing list to announce the Call For Proposals:
+* Include a link to the blog post
+* Summarize the key dates and process
+* Encourage team participation and feedback
+* This step is crucial for ensuring all Rust team members are aware of the upcoming goal period
+
+## Manual setup checklist
+
+If you prefer to set up the CFP manually, or need to customize the process beyond what the automated command provides, here's a checklist of steps:
 
 * [ ] Prepare a Call For Proposals blog post on the [Inside Rust] blog based on [this sample](./samples/cfp.md).
     * We use Inside Rust and not the Main blog because the target audience is would-be Rust contributors and maintainers.
