@@ -1,4 +1,4 @@
-# Sample RFC
+# Rust project goals YYYYHN
 
 > **NOTE:** This is a sample RFC you can use as a starting point.
 > To begin a new goal season (e.g., 2222H1), do the following:
