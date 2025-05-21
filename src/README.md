@@ -22,9 +22,10 @@ The 2025H1 goal period runs from Jan 1 to Jun 30. We have identified three flags
 
 [The full list of 2025H1 goals is available here.](./2025h1/goals.md) We author monthly blog posts about our overall status, but you can also follow the tracking issue for a [particular goal](./2025h1/goals.md) to get updates specific to that goal.
 
-## Next goal period (2025h2)
 
-Discussion about goals for the next goal period will begin in May.
+## Next goal period (2025H2)
+
+The next goal period will be 2025H2, running from July 1 to December 30. We are currently in the process of assembling goals. [Click here](./2025h2/goals.md) to see the current list. If you'd like to propose a goal, [instructions can be found here](./how_to/propose_a_goal.md).
 
 ## About the process
 
