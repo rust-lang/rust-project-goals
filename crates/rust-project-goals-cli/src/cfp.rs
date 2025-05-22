@@ -157,7 +157,7 @@ pub mod text_processing {
         let capitalized_timeframe = format!("{}H{}", &timeframe[0..4], &timeframe[5..]);
         let new_section = format!(
             "\n## Next goal period ({})\n\n\
-             The next goal period will be {}, running from {} 1 to {} 30. \
+             The next goal period will be {}, running from the start of {} to the end of {}. \
              We are currently in the process of assembling goals. \
              [Click here](./{}/goals.md) to see the current list. \
              If you'd like to propose a goal, [instructions can be found here](./how_to/propose_a_goal.md).\n",
@@ -506,7 +506,7 @@ mod tests {
         let result = process_readme_content(content, "2026h2", "2026h2");
         
         assert!(result.contains("## Next goal period (2026H2)"));
-        assert!(result.contains("running from July 1 to December 30"));
+        assert!(result.contains("running from the start of July to the end of December"));
     }
     
     #[test]
@@ -516,6 +516,6 @@ mod tests {
         let result = process_readme_content(content, "2026h1", "2026h1");
         
         assert!(result.contains("## Next goal period (2026H1)"));
-        assert!(result.contains("running from January 1 to June 30"));
+        assert!(result.contains("running from the start of January to the end of June"));
     }
 }
