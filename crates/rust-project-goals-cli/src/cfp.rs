@@ -487,6 +487,18 @@ mod tests {
         assert!(result.contains("running from January 1 to June 30"));
         assert!(!result.contains("Old content."));
     }
+
+    #[test]
+    fn test_process_readme_content_with_existing_section_and_extra() {
+        // Test updating an existing section while preserving unrelated sections
+        let content = "# Project goals\n\n## Current goal period (2025H1)\n\nThe 2025H1 goal period runs from Jan 1 to Jun 30.\n\n## Next goal period (2026H1)\n\nOld content.\n\n## Extra section\nsome content";
+        let result = process_readme_content(content, "2026h1", "2026h1");
+        
+        assert!(result.contains("## Next goal period (2026H1)"));
+        assert!(result.contains("running from January 1 to June 30"));
+        assert!(!result.contains("Old content."));
+        assert!(result.contains("## Extra section\nsome content"));
+    }
     
     #[test]
     fn test_process_readme_content_with_different_timeframe() {
