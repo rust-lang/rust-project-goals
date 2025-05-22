@@ -7,6 +7,9 @@ title = "Rust Project Goals"
 
 [preprocessor.goals]
 command = "cargo run -p mdbook-goals --"
+ignore_users = [
+    "@triagebot",
+]
 
 [preprocessor.goals.links]
 "Help wanted" = "https://img.shields.io/badge/Help%20wanted-yellow"
@@ -22,10 +25,6 @@ command = "cargo run -p mdbook-goals --"
 
 [preprocessor.goals.users]
 "@Nadrieril" = "@Nadrieril"
-
-preprocessor.goals.ignore_users = [
-    "@triagebot",
-]
 
 
 [output.html]
