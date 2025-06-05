@@ -1,22 +1,15 @@
-# Rust project goals YYYYHN
+# Rust project goals 2025h2
 
-> **NOTE:** This is a sample RFC you can use as a starting point.
-> To begin a new goal season (e.g., 2222H1), do the following:
->
-> * Copy this file to `src/2222H1/README.md`.
-> * Search and replace `YYYYHN` with `2222H1` and delete this section.
-> * Look for other "TBD" sections, you'll want to replace those eventually.
-> * Customize anything else that seems relevant.
 
 ## Summary
 
 *![Status: Accepting goal proposals](https://img.shields.io/badge/Status-Accepting%20goal%20proposals-yellow) We are in the process of assembling the goal slate.*
 
-This is a draft for the eventual RFC proposing the YYYYHN goals.
+This is a draft for the eventual RFC proposing the 2025h2 goals.
 
 ## Motivation
 
-The YYYYHN goal slate consists of <!-- #GOALS --> project goals, of which we have selected (TBD) as **flagship goals**. Flagship goals represent the goals expected to have the broadest overall impact.
+The 2025h2 goal slate consists of <!-- #GOALS --> project goals, of which we have selected (TBD) as **flagship goals**. Flagship goals represent the goals expected to have the broadest overall impact.
 
 ### How the goal process works
 
