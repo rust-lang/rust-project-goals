@@ -285,7 +285,6 @@ dependencies = [
  "iana-time-zone",
  "js-sys",
  "num-traits",
- "serde",
  "wasm-bindgen",
  "windows-targets 0.52.6",
 ]
@@ -2008,35 +2007,9 @@ dependencies = [
 ]
 
 [[package]]
-name = "rust-project-goals-cli-llm"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "chrono",
- "clap",
- "comrak",
- "handlebars",
- "progress_bar",
- "rust-project-goals",
- "rust-project-goals-json",
- "rust-project-goals-llm",
- "serde",
- "serde_json",
-]
-
-[[package]]
 name = "rust-project-goals-json"
 version = "0.1.0"
 dependencies = [
- "serde",
-]
-
-[[package]]
-name = "rust-project-goals-llm"
-version = "0.1.0"
-dependencies = [
- "chrono",
- "clap",
  "serde",
 ]
 
