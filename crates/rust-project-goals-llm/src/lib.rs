@@ -1,4 +1,4 @@
-//! Library for the LLM execution -- just encodes the command-line arguments.
+//! Library for generating updates -- just encodes the command-line arguments.
 //! Most of the work is in the `main.rs` binary.
 
 use std::path::PathBuf;
@@ -11,7 +11,7 @@ pub struct UpdateArgs {
     /// Milestone for which we generate tracking issue data (e.g., `2024h2`).
     pub milestone: String,
 
-    /// Quick mode does not use an LLM to generate a summary.
+    /// Open the generated summary in vscode.
     #[arg(long)]
     pub vscode: bool,
 

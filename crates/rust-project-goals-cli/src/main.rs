@@ -86,7 +86,7 @@ enum Command {
     },
 
     /// Generate markdown with the list of updates for each tracking issue.
-    /// Collects updates
+    /// Collects goal updates.
     Updates {
         #[command(flatten)]
         updates: UpdateArgs,
@@ -140,8 +140,6 @@ fn main() -> anyhow::Result<()> {
             generate_json::generate_json(&opt.repository, &milestone, json_path)?;
         }
         Command::Updates { updates } => {
-            // The updates command is compiled separately so that we don't have to
-            // build all the LLM stuff if we are not using it.
             let status = std::process::Command::new("cargo")
                 .arg("run")
                 .arg("-p")

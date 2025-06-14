@@ -1,5 +1,4 @@
-//! Code to invoke a LLM to summarize content and generate blog posts.
-//! Currently based on AWS bedrock.
+//! Code to collect updates on tracking issues and generate blog posts.
 
 use clap::Parser;
 use rust_project_goals::gh::issue_id::Repository;
