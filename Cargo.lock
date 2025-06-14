@@ -1994,12 +1994,15 @@ name = "rust-project-goals-cli"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "chrono",
  "clap",
+ "comrak",
+ "handlebars",
  "progress_bar",
  "regex",
  "rust-project-goals",
  "rust-project-goals-json",
- "rust-project-goals-llm",
+ "serde",
  "serde_json",
  "walkdir",
 ]
