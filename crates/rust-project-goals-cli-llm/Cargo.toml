@@ -5,9 +5,6 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1.0.94"
-aws-config = "1.5.8"
-aws-sdk-bedrock = "1.57.0"
-aws-sdk-bedrockruntime = "1.55.0"
 chrono = "0.4.39"
 clap = { version = "4.5.23", features = ["derive"] }
 rust-project-goals = { version = "0.1.0", path = "../rust-project-goals" }
