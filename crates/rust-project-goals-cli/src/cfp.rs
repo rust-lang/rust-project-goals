@@ -472,8 +472,9 @@ mod tests {
         let content = "# Project goals\n\n## Current goal period (2025H1)\n\nThe 2025H1 goal period runs from Jan 1 to Jun 30.";
         let result = process_readme_content(content, "2026h1", "2026h1");
         
+        println!("{}", result);
         assert!(result.contains("## Next goal period (2026H1)"));
-        assert!(result.contains("running from January 1 to June 30"));
+        assert!(result.contains("running from the start of January to the end of June"));
         assert!(result.contains("[Click here](./2026h1/goals.md)"));
     }
     
@@ -484,7 +485,7 @@ mod tests {
         let result = process_readme_content(content, "2026h1", "2026h1");
         
         assert!(result.contains("## Next goal period (2026H1)"));
-        assert!(result.contains("running from January 1 to June 30"));
+        assert!(result.contains("running from the start of January to the end of June"));
         assert!(!result.contains("Old content."));
     }
 
@@ -495,7 +496,7 @@ mod tests {
         let result = process_readme_content(content, "2026h1", "2026h1");
         
         assert!(result.contains("## Next goal period (2026H1)"));
-        assert!(result.contains("running from January 1 to June 30"));
+        assert!(result.contains("running from the start of January to the end of June"));
         assert!(!result.contains("Old content."));
         assert!(result.contains("## Extra section\nsome content"));
     }
@@ -508,7 +509,7 @@ mod tests {
         
         assert!(result.contains("## Next goal period (2026H1)"));
         assert!(!result.contains("## Next goal period (2025H2)"));
-        assert!(result.contains("running from January 1 to June 30"));
+        assert!(result.contains("running from the start of January to the end of June"));
     }
     
     #[test]
