@@ -15,7 +15,7 @@ use rust_project_goals::gh::{
     issues::{checkboxes, list_issues_in_milestone, ExistingGithubComment},
 };
 
-pub async fn updates(
+pub(crate) fn generate_updates(
     repository: &Repository,
     milestone: &str,
     output_file: Option<&Path>,
@@ -44,8 +44,8 @@ pub async fn updates(
         progress_bar::Style::Bold,
     );
 
-    let flagship_goals = prepare_goals(repository, &issues, &filter, true).await?;
-    let other_goals = prepare_goals(repository, &issues, &filter, false).await?;
+    let flagship_goals = prepare_goals(repository, &issues, &filter, true)?;
+    let other_goals = prepare_goals(repository, &issues, &filter, false)?;
     let updates = templates::Updates::new(milestone.to_string(), flagship_goals, other_goals);
 
     progress_bar::finalize_progress_bar();
@@ -79,7 +79,7 @@ pub async fn updates(
     Ok(())
 }
 
-async fn prepare_goals(
+fn prepare_goals(
     repository: &Repository,
     issues: &[ExistingGithubIssue],
     filter: &Filter<'_>,

@@ -14,8 +14,7 @@ struct Opt {
     updates_json: String,
 }
 
-#[tokio::main]
-async fn main() -> anyhow::Result<()> {
+fn main() -> anyhow::Result<()> {
     let Opt {
         repository,
         updates_json,
@@ -27,7 +26,7 @@ async fn main() -> anyhow::Result<()> {
         start_date,
         end_date,
     } = &serde_json::from_str(&updates_json)?;
-    updates::updates(
+    updates::generate_updates(
         &repository,
         milestone,
         output_file.as_deref(),
@@ -35,6 +34,4 @@ async fn main() -> anyhow::Result<()> {
         end_date,
         *vscode,
     )
-    .await?;
-    Ok(())
 }
