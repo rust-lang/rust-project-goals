@@ -414,8 +414,8 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata>> {
         .iter()
         .find(|row| row[0] == TRACKING_ISSUE_ROW)
     {
-        Some(r) => Some(r[1].parse()?),
-        None => None,
+        Some(r) if !r[1].is_empty() => Some(r[1].parse()?),
+        _ => None,
     };
 
     verify_row(&first_table.rows, "Teams", TEAMS_WITH_ASKS_STR)?;
