@@ -30,7 +30,7 @@ enum Command {
 
     /// Print the RFC text to stdout
     RFC { path: PathBuf },
-    
+
     /// Set up a new Call For Proposals (CFP) period
     CFP {
         /// Timeframe for the new CFP period (e.g., 2025h1)
@@ -101,7 +101,11 @@ fn main() -> anyhow::Result<()> {
             rfc::generate_comment(&path)?;
         }
 
-        Command::CFP { timeframe, force, dry_run } => {
+        Command::CFP {
+            timeframe,
+            force,
+            dry_run,
+        } => {
             cfp::create_cfp(timeframe, *force, *dry_run)?;
         }
 
