@@ -409,13 +409,28 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata>> {
 
     let status = Status::try_from(status_row[1].as_str())?;
 
-    let issue = match first_table
+    let issue = if let Some(r) = first_table
         .rows
         .iter()
         .find(|row| row[0] == TRACKING_ISSUE_ROW)
     {
-        Some(r) if !r[1].is_empty() => Some(r[1].parse()?),
-        _ => None,
+        // Accepted goals must have a tracking issue.
+        let has_tracking_issue = !r[1].is_empty();
+        if status.acceptance == AcceptanceStatus::Accepted {
+            anyhow::ensure!(
+                has_tracking_issue,
+                "accepted goals cannot have an empty tracking issue"
+            );
+        }
+
+        // For the others, it's of course optional.
+        if has_tracking_issue {
+            Some(r[1].parse()?)
+        } else {
+            None
+        }
+    } else {
+        None
     };
 
     verify_row(&first_table.rows, "Teams", TEAMS_WITH_ASKS_STR)?;
