@@ -1,5 +1,6 @@
 use anyhow::Context;
 use chrono::{Datelike, NaiveDate};
+use regex::Regex;
 use rust_project_goals::markwaydown;
 use rust_project_goals::re::{HELP_WANTED, TLDR};
 use rust_project_goals::util::comma;
@@ -26,6 +27,14 @@ pub(crate) fn generate_updates(
 ) -> anyhow::Result<()> {
     if output_file.is_none() && !vscode {
         anyhow::bail!("either `--output-file` or `--vscode` must be specified");
+    }
+
+    let milestone_re = Regex::new(r"^\d{4}[hH][12]$").unwrap();
+    if !milestone_re.is_match(milestone) {
+        anyhow::bail!(
+            "the milestone `{}` does not follow the `$year$semester` format, where $semester is `h1` or `h2`",
+            milestone,
+        );
     }
 
     let issues = list_issues_in_milestone(repository, milestone)?;
