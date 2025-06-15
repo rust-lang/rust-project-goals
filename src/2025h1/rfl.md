@@ -6,7 +6,7 @@
 | Point of contact | @nikomatsakis                      |
 | Teams            | <!-- TEAMS WITH ASKS -->           |
 | Task owners      | <!-- TASK OWNERS -->               |
-| Status           | Proposed for flagship              |
+| Status           | Flagship                           |
 | Tracking issue   | [rust-lang/rust-project-goals#116] |
 | Zulip channel    | [#rust-for-linux][channel]         |
 

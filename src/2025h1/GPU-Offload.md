@@ -5,7 +5,7 @@
 | Point of contact      | @ZuseZ4                                          |
 | Teams                 | <!-- TEAMS WITH ASKS -->                         |
 | Task owners           | <!-- TASK OWNERS -->                             |
-| Status                | Proposed                                         |
+| Status                | Accepted                                         |
 | Tracking issue        | [rust-lang/rust-project-goals#109]               |
 | Other tracking issues | [rust-lang/rust#124509], [rust-lang/rust#124509] |
 | Zulip channel         | [#wg-autodiff][channel]                          |

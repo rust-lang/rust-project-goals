@@ -6,7 +6,7 @@
 | Point of contact | @tmandry                           |
 | Teams            | <!-- TEAMS WITH ASKS -->           |
 | Task owners      | <!-- TASK OWNERS -->               |
-| Status           | Proposed for flagship              |
+| Status           | Flagship                           |
 | Tracking issue   | [rust-lang/rust-project-goals#105] |
 | Zulip channel    | [#wg-async][channel]               |
 

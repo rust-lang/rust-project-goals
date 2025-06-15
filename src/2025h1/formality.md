@@ -5,7 +5,7 @@
 | Point of contact | @nikomatsakis                      |
 | Teams            | <!-- TEAMS WITH ASKS -->           |
 | Task owners      | <!-- TASK OWNERS -->               |
-| Status           | Proposed                           |
+| Status           | Accepted                           |
 | Tracking issue   | [rust-lang/rust-project-goals#122] |
 | Zulip channel    | [#t-types/formality][channel]      |
 

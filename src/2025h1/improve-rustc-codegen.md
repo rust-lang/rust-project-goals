@@ -1,22 +1,11 @@
 # Improve state machine codegen 
 
-<!--
-
-> **Instructions:** Copy this template to a fresh file with a name based on your plan.
-> Give it a title that describes what you plan to get done in the next 6 months
-> (e.g., "stabilize X" or "nightly support for X" or "gather data about X").
-> Feel free to replace any text with anything, but there are placeholders
-> designed to help you get started. 
-
--->
-
 | Metadata           |                                    |
 | :--                | :--                                |
-| :----------------- | -------------                      |
 | Point of contact   | @folkertdev                        |
 | Teams              | <!-- TEAMS WITH ASKS -->           |
 | Task owners        | <!-- TASK OWNERS -->               |
-| Status             | Proposed                           |
+| Status             | Accepted                           |
 | Zulip channel      | N/A                                |
 | Tracking issue     | [rust-lang/rust-project-goals#258] |
 

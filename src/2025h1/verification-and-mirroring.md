@@ -2,12 +2,11 @@
 
 | Metadata           |                                    |
 | :--                | :--                                |
-| :----------------- | --------------------------         |
 | Short title        | Crates.io mirroring                |
 | Point of contact   | @walterhpearce                     |
 | Teams              | <!-- TEAMS WITH ASKS -->           |
 | Task owners        | <!-- TASK OWNERS -->               |
-| Status             | Proposed                           |
+| Status             | Accepted                           |
 | Zulip channel      | N/A                                |
 | Tracking issue     | [rust-lang/rust-project-goals#271] |
 

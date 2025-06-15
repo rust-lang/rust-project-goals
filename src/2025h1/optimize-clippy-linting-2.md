@@ -6,7 +6,7 @@
 | Point of contact | @blyxyas                           |
 | Teams            | <!-- TEAMS WITH ASKS -->           |
 | Task owners      | <!-- TASK OWNERS -->               |
-| Status           | Proposed                           |
+| Status           | Accepted                           |
 | Tracking issue   | [rust-lang/rust-project-goals#114] |
 | Zulip channel    | N/A                                |
 

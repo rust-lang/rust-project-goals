@@ -5,7 +5,7 @@
 | Point of contact | @BoxyUwU                           |
 | Teams            | <!-- TEAMS WITH ASKS -->           |
 | Task owners      | <!-- TASK OWNERS -->               |
-| Status           | Proposed                           |
+| Status           | Accepted                           |
 | Tracking issue   | [rust-lang/rust-project-goals#100] |
 | Zulip channel    | [#project-const-generics][channel] |
 
