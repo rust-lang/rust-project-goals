@@ -4,6 +4,7 @@ use std::{
     path::{Path, PathBuf},
 };
 
+use spanned::Spanned;
 use walkdir::WalkDir;
 
 pub const ARROW: &str = "↳";
@@ -11,7 +12,7 @@ pub const ARROW: &str = "↳";
 /// Formats a table as markdown. The input should be a series of rows
 /// where each row has the same number of columns.
 /// The first row is the headers.
-pub fn format_table(rows: &[Vec<String>]) -> String {
+pub fn format_table(rows: &[Vec<Spanned<String>>]) -> String {
     let mut output = String::new();
 
     let Some((header_row, data_rows)) = rows.split_first() else {
@@ -31,7 +32,13 @@ pub fn format_table(rows: &[Vec<String>]) -> String {
         for (text, col) in columns.iter().zip(0..) {
             output.push('|');
 
-            write!(output, " {text:<width$} ", text = text, width = widths[col]).unwrap();
+            write!(
+                output,
+                " {text:<width$} ",
+                text = **text,
+                width = widths[col]
+            )
+            .unwrap();
         }
 
         output.push('|');

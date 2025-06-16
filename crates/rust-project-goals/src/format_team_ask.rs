@@ -3,6 +3,8 @@ use std::{
     path::PathBuf,
 };
 
+use spanned::Spanned;
+
 use crate::{
     config::Configuration,
     goal::TeamAsk,
@@ -117,19 +119,20 @@ pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> anyhow::Result<String>
 
         // Create the table itself.
         let table = {
-            let headings = std::iter::once("Goal".to_string())
+            let headings = std::iter::once(Spanned::here("Goal".to_string()))
                 .chain(ask_headings.iter().map(|&ask_kind| {
-                    format!(
+                    Spanned::here(format!(
                         "[{team_ask_short}][valid_team_asks]", // HACK: This should not be hardcoded in the code.
                         team_ask_short = config.team_asks[ask_kind].short,
-                    )
+                    ))
                 })) // e.g. "discussion and moral support"
-                .collect::<Vec<String>>();
+                .collect::<Vec<Spanned<String>>>();
 
             let rows = goal_rows.into_iter().map(|(goal_data, goal_columns)| {
                 std::iter::once(goal_data.goal_title())
                     .chain(goal_columns)
-                    .collect::<Vec<String>>()
+                    .map(Spanned::here)
+                    .collect::<Vec<Spanned<String>>>()
             });
 
             std::iter::once(headings).chain(rows).collect::<Vec<_>>()

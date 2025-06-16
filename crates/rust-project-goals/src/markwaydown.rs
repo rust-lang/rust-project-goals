@@ -2,59 +2,56 @@
 
 use std::{fmt::Display, path::Path};
 
+use spanned::Spanned;
+
 use crate::util;
 
 /// A "section" is a piece of markdown that begins with `##` and which extends until the next section.
 /// Note that we don't track the hierarchical structure of sections in particular.
 #[derive(Debug)]
 pub struct Section {
-    /// Line numberin the document
-    pub line_num: usize,
-
     /// Number of hashes
     pub level: usize,
 
     /// Title of the section -- what came after the `#` in the markdown.
-    pub title: String,
+    pub title: Spanned<String>,
 
     /// Markdown text until start of next section, excluding tables
-    pub text: String,
+    pub text: Spanned<String>,
 
     /// Tables are parsed and stored here
-    pub tables: Vec<Table>,
+    pub tables: Vec<Spanned<Table>>,
 }
 
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Table {
-    pub line_num: usize,
-    pub header: Vec<String>,
-    pub rows: Vec<Vec<String>>,
+    pub header: Vec<Spanned<String>>,
+    pub rows: Vec<Vec<Spanned<String>>>,
 }
 
 pub fn parse(path: impl AsRef<Path>) -> anyhow::Result<Vec<Section>> {
     let path = path.as_ref();
-    let text = std::fs::read_to_string(path)?;
-    parse_text(path, &text)
+    let text = Spanned::read_str_from_file(path).transpose()?;
+    parse_text(text.as_ref())
 }
 
-pub fn parse_text(path: impl AsRef<Path>, text: &str) -> anyhow::Result<Vec<Section>> {
-    let path: &Path = path.as_ref();
+pub fn parse_text(text: Spanned<&str>) -> anyhow::Result<Vec<Section>> {
     let mut result = vec![];
     let mut open_section = None;
     let mut open_table = None;
 
-    for (line, line_num) in text.lines().zip(1..) {
-        let categorized = categorize_line(line);
+    for line in text.lines() {
+        let line = line.to_str().unwrap();
+        let categorized = categorize_line(line.clone());
         // eprintln!("line = {:?}", line);
         // eprintln!("categorized = {:?}", categorized);
         match categorized {
             CategorizeLine::Title(level, title) => {
                 close_section(&mut result, &mut open_section, &mut open_table);
                 open_section = Some(Section {
-                    line_num,
                     level,
                     title,
-                    text: String::new(),
+                    text: Default::default(),
                     tables: vec![],
                 });
             }
@@ -62,10 +59,9 @@ pub fn parse_text(path: impl AsRef<Path>, text: &str) -> anyhow::Result<Vec<Sect
                 if open_section.is_none() {
                     // create an "anonymous" section to house the table
                     open_section = Some(Section {
-                        line_num,
                         level: 0,
-                        title: String::new(),
-                        text: String::new(),
+                        title: Default::default(),
+                        text: Default::default(),
                         tables: vec![],
                     });
                 }
@@ -73,57 +69,57 @@ pub fn parse_text(path: impl AsRef<Path>, text: &str) -> anyhow::Result<Vec<Sect
                 if let Some(table) = &mut open_table {
                     if row.len() > table.header.len() {
                         return Err(anyhow::anyhow!(
-                            "{}:{}: too many columns in table, expected no more than {}",
-                            path.display(),
-                            line_num,
+                            "{}: too many columns in table, expected no more than {}",
+                            row[table.header.len()].span,
                             table.header.len()
                         ));
                     }
 
                     while row.len() < table.header.len() {
-                        row.push(String::new());
+                        row.push(Spanned::here(String::new()));
                     }
 
-                    table.rows.push(row);
+                    table.content.rows.push(row);
                 } else {
-                    open_table = Some(Table {
-                        line_num,
-                        header: row,
-                        rows: vec![],
-                    });
+                    open_table = Some(Spanned::new(
+                        Table {
+                            header: row,
+                            rows: vec![],
+                        },
+                        line.span.clone().shrink_to_start(),
+                    ));
                 }
             }
-            CategorizeLine::TableDashRow(len) => {
+            CategorizeLine::TableDashRow(dashes) => {
                 if let Some(table) = &open_table {
-                    if table.header.len() != len {
+                    if table.header.len() != dashes.len() {
                         return Err(anyhow::anyhow!(
-                            "{}:{}: too many columns in table, expected no more than {}",
-                            path.display(),
-                            line_num,
+                            "{:?}: invalid number of columns in table, expected {}",
+                            dashes.last().unwrap(),
                             table.header.len()
                         ));
                     }
 
-                    if !table.rows.is_empty() {
+                    if let Some(first) = table.rows.first() {
                         return Err(anyhow::anyhow!(
-                            "{}:{}: did not expect table header here, already saw table rows",
-                            path.display(),
-                            line_num,
+                            "{:?}: did not expect table header here, already saw table rows: {:?}",
+                            dashes[0].span,
+                            first[0].span,
                         ));
                     }
                 } else {
                     return Err(anyhow::anyhow!(
-                        "{}:{}: did not expect table header here",
-                        path.display(),
-                        line_num,
+                        "{:?}: did not expect table header here",
+                        dashes[0]
                     ));
                 }
             }
             CategorizeLine::Other => {
                 close_table(&mut open_section, &mut open_table);
                 if let Some(section) = open_section.as_mut() {
-                    section.text.push_str(line);
-                    section.text.push('\n');
+                    section.text.span.bytes.end = line.span.bytes.end;
+                    section.text.content.push_str(&**line);
+                    section.text.content.push('\n');
                 }
             }
         }
@@ -134,7 +130,7 @@ pub fn parse_text(path: impl AsRef<Path>, text: &str) -> anyhow::Result<Vec<Sect
     Ok(result)
 }
 
-fn close_table(open_section: &mut Option<Section>, open_table: &mut Option<Table>) {
+fn close_table(open_section: &mut Option<Section>, open_table: &mut Option<Spanned<Table>>) {
     if let Some(table) = open_table.take() {
         open_section.as_mut().unwrap().tables.push(table);
     }
@@ -143,7 +139,7 @@ fn close_table(open_section: &mut Option<Section>, open_table: &mut Option<Table
 fn close_section(
     result: &mut Vec<Section>,
     open_section: &mut Option<Section>,
-    open_table: &mut Option<Table>,
+    open_table: &mut Option<Spanned<Table>>,
 ) {
     close_table(open_section, open_table);
     if let Some(section) = open_section.take() {
@@ -153,23 +149,23 @@ fn close_section(
 
 #[derive(Debug)]
 enum CategorizeLine {
-    Title(usize, String),
-    TableRow(Vec<String>),
-    TableDashRow(usize),
+    Title(usize, Spanned<String>),
+    TableRow(Vec<Spanned<String>>),
+    TableDashRow(Vec<Spanned<()>>),
     Other,
 }
 
-fn categorize_line(line: &str) -> CategorizeLine {
-    if line.starts_with('#') {
-        let level = line.chars().take_while(|&ch| ch == '#').count();
+fn categorize_line(line: Spanned<&str>) -> CategorizeLine {
+    if line.starts_with("#") {
+        let level = line.chars().take_while(|ch| **ch == '#').count();
         CategorizeLine::Title(level, line.trim_start_matches('#').trim().to_string())
     } else if let Some(line) = line
-        .strip_prefix('|')
-        .and_then(|line| line.strip_suffix('|'))
+        .strip_prefix("|")
+        .and_then(|line| line.strip_suffix("|"))
     {
         let columns = line.split('|').map(|s| s.trim());
-        if columns.clone().all(|s| s.chars().all(|c| c == '-')) {
-            CategorizeLine::TableDashRow(columns.count())
+        if columns.clone().all(|s| s.chars().all(|c| *c == '-')) {
+            CategorizeLine::TableDashRow(columns.map(|s| s.map(drop)).collect())
         } else {
             CategorizeLine::TableRow(columns.map(|s| s.to_string()).collect())
         }
@@ -187,12 +183,15 @@ impl Table {
 
         match self.rows.iter_mut().find(|row| row[0] == row_key) {
             Some(row) => {
-                row[1] = row_value.to_string();
+                // FIXME(oli-obk): get proper spans
+                row[1] = Spanned::here(row_value.to_string());
             }
 
             None => {
-                self.rows
-                    .push(vec![row_key.to_string(), row_value.to_string()]);
+                self.rows.push(vec![
+                    Spanned::here(row_key.to_string()),
+                    Spanned::here(row_value.to_string()),
+                ]);
             }
         }
     }
@@ -201,30 +200,16 @@ impl Table {
     pub fn overwrite_in_path(&self, path: &Path, new_table: &Table) -> anyhow::Result<()> {
         let full_text = std::fs::read_to_string(path)?;
 
-        let mut new_lines = vec![];
-        new_lines.extend(
-            full_text
-                .lines()
-                .take(self.line_num - 1)
-                .map(|s| s.to_string()),
-        );
+        let mut new_text = full_text[..self.header[0].span.bytes.start].to_string();
 
         let table_text = {
             let mut new_rows = vec![new_table.header.clone()];
             new_rows.extend(new_table.rows.iter().cloned());
             util::format_table(&new_rows)
         };
-        new_lines.push(table_text);
+        new_text.push_str(&table_text);
+        new_text.push_str(&full_text[self.rows.last().unwrap().last().unwrap().span.bytes.end..]);
 
-        new_lines.extend(
-            full_text
-                .lines()
-                .skip(self.line_num - 1)
-                .skip(2 + self.rows.len())
-                .map(|s| s.to_string()),
-        );
-
-        let new_text = new_lines.join("\n");
         std::fs::write(path, new_text)?;
 
         Ok(())

@@ -5,6 +5,7 @@ use rust_project_goals::markwaydown;
 use rust_project_goals::re::{HELP_WANTED, TLDR};
 use rust_project_goals::util::comma;
 use rust_project_goals_json::GithubIssueState;
+use spanned::{Span, Spanned};
 use std::io::Write;
 use std::path::Path;
 use std::process::{Command, Stdio};
@@ -229,7 +230,11 @@ fn help_wanted(
 }
 
 fn why_this_goal(issue_id: &IssueId, issue: &ExistingGithubIssue) -> anyhow::Result<String> {
-    let sections = markwaydown::parse_text(issue_id.url(), &issue.body)?;
+    let span = Span {
+        file: issue_id.url().into(),
+        bytes: 0..0,
+    };
+    let sections = markwaydown::parse_text(Spanned::new(&issue.body, span))?;
     for section in sections {
         if section.title == "Why this goal?" {
             return Ok(section.text.trim().to_string());
