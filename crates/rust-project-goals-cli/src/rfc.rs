@@ -487,7 +487,7 @@ fn task_items(goal_plan: &GoalPlan) -> anyhow::Result<Vec<String>> {
     let mut tasks = vec![];
 
     if let Some(title) = &goal_plan.subgoal {
-        tasks.push(format!("### {title}"));
+        tasks.push(format!("### {}", **title));
     }
 
     for plan_item in &goal_plan.plan_items {

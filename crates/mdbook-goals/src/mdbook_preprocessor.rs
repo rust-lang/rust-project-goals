@@ -16,6 +16,7 @@ use rust_project_goals::{
     goal::{self, GoalDocument, Status, TeamAsk},
     re, team,
 };
+use spanned::Spanned;
 
 const LINKS: &str = "links";
 const LINKIFIERS: &str = "linkifiers";
@@ -293,18 +294,18 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         }
         let config = Configuration::get();
         let rows = std::iter::once(vec![
-            "Ask".to_string(),
-            "aka".to_string(),
-            "Description".to_string(),
+            Spanned::here("Ask".to_string()),
+            Spanned::here("aka".to_string()),
+            Spanned::here("Description".to_string()),
         ])
         .chain(config.team_asks.iter().map(|(name, details)| {
             vec![
-                format!("{name:?}"),
-                details.short.to_string(),
-                details.about.to_string(),
+                Spanned::here(format!("{name:?}")),
+                Spanned::here(details.short.to_string()),
+                Spanned::here(details.about.to_string()),
             ]
         }))
-        .collect::<Vec<Vec<String>>>();
+        .collect::<Vec<Vec<Spanned<String>>>>();
         let table = util::format_table(&rows);
         let new_content = re::VALID_TEAM_ASKS.replace_all(&chapter.content, table);
         chapter.content = new_content.to_string();
