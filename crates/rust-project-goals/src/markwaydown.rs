@@ -163,8 +163,10 @@ fn categorize_line(line: &str) -> CategorizeLine {
     if line.starts_with('#') {
         let level = line.chars().take_while(|&ch| ch == '#').count();
         CategorizeLine::Title(level, line.trim_start_matches('#').trim().to_string())
-    } else if line.starts_with('|') && line.ends_with('|') {
-        let line = &line[1..line.len() - 1];
+    } else if let Some(line) = line
+        .strip_prefix('|')
+        .and_then(|line| line.strip_suffix('|'))
+    {
         let columns = line.split('|').map(|s| s.trim());
         if columns.clone().all(|s| s.chars().all(|c| c == '-')) {
             CategorizeLine::TableDashRow(columns.count())
