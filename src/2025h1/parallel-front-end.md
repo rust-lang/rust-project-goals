@@ -5,7 +5,7 @@
 | Point of contact | @SparrowLii                              |
 | Teams            | <!-- TEAMS WITH ASKS -->                 |
 | Task owners      | <!-- TASK OWNERS -->                     |
-| Status           | Proposed                                 |
+| Status           | Accepted                                 |
 | Tracking issue   | [rust-lang/rust-project-goals#121]       |
 | Zulip channel    | [#t-compiler/wg-parallel-rustc][channel] |
 

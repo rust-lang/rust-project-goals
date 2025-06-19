@@ -2,11 +2,10 @@
 
 | Metadata           |                                     |
 | :--                | :--                                 |
-| :----------------- | ----------------------------------- |
 | Point of contact   | @veluca93                           |
 | Teams              | <!-- TEAMS WITH ASKS -->            |
 | Task owners        | <!-- TASK OWNERS -->                |
-| Status             | Proposed                            |
+| Status             | Accepted                            |
 | Zulip channel      | [#project-portable-simd][channel]   |
 | Tracking issue     | [rust-lang/rust-project-goals#261]  |
 

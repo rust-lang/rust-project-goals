@@ -2,11 +2,10 @@
 
 | Metadata           |                                                          |
 | :--                | :--                                                      |
-| :----------------- | ---------------------                                    |
 | Point of contact   | @davidtwco                                               |
 | Teams              | <!-- TEAMS WITH ASKS -->                                 |
 | Task owners        | <!-- TASK OWNERS -->                                     |
-| Status             | Proposed                                                 |
+| Status             | Accepted                                                 |
 | Zulip channel      | [#project-goals/2025h1/rustc-perf-improvements][channel] |
 | Tracking issue     | [rust-lang/rust-project-goals#275]                       |
 

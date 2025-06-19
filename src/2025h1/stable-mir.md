@@ -2,11 +2,10 @@
 
 | Metadata           |                                    |
 | :--                | :--                                |
-| :----------------- | --------------------------------   |
 | Point of contact   | @celinval                          |
 | Teams              | <!-- TEAMS WITH ASKS -->           |
 | Task owners        | <!-- TASK OWNERS -->               |
-| Status             | Proposed                           |
+| Status             | Accepted                           |
 | Zulip channel      | [#project-stable-mir][channel]     |
 | Tracking issue     | [rust-lang/rust-project-goals#266] |
 

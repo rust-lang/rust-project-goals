@@ -1,8 +1,7 @@
-use anyhow::{bail, Context};
+use anyhow::Context;
 use clap::Parser;
 use regex::Regex;
 use rust_project_goals::gh::issue_id::Repository;
-use rust_project_goals_llm::UpdateArgs;
 use std::path::PathBuf;
 use walkdir::WalkDir;
 
@@ -10,6 +9,7 @@ mod cfp;
 mod generate_json;
 mod rfc;
 mod team_repo;
+mod updates;
 
 #[derive(clap::Parser, Debug)]
 #[structopt(about = "Project goal preprocessor")]
@@ -30,7 +30,7 @@ enum Command {
 
     /// Print the RFC text to stdout
     RFC { path: PathBuf },
-    
+
     /// Set up a new Call For Proposals (CFP) period
     CFP {
         /// Timeframe for the new CFP period (e.g., 2025h1)
@@ -86,10 +86,26 @@ enum Command {
     },
 
     /// Generate markdown with the list of updates for each tracking issue.
-    /// Collects updates
+    /// Collects goal updates.
     Updates {
-        #[command(flatten)]
-        updates: UpdateArgs,
+        /// Milestone for which we generate tracking issue data (e.g., `2024h2`).
+        milestone: String,
+
+        /// Open the generated summary in vscode.
+        #[arg(long)]
+        vscode: bool,
+
+        /// If specified, write the output into the given file.
+        #[arg(long)]
+        output_file: Option<PathBuf>,
+
+        /// Start date for comments.
+        /// If not given, defaults to 1 week before the start of this month.
+        start_date: Option<chrono::NaiveDate>,
+
+        /// End date for comments.
+        /// If not given, no end date.
+        end_date: Option<chrono::NaiveDate>,
     },
 }
 
@@ -101,7 +117,11 @@ fn main() -> anyhow::Result<()> {
             rfc::generate_comment(&path)?;
         }
 
-        Command::CFP { timeframe, force, dry_run } => {
+        Command::CFP {
+            timeframe,
+            force,
+            dry_run,
+        } => {
             cfp::create_cfp(timeframe, *force, *dry_run)?;
         }
 
@@ -135,22 +155,20 @@ fn main() -> anyhow::Result<()> {
         } => {
             generate_json::generate_json(&opt.repository, &milestone, json_path)?;
         }
-        Command::Updates { updates } => {
-            // The updates command is compiled separately so that we don't have to
-            // build all the LLM stuff if we are not using it.
-            let status = std::process::Command::new("cargo")
-                .arg("run")
-                .arg("-p")
-                .arg("rust-project-goals-cli-llm")
-                .arg("-q")
-                .arg("--")
-                .arg(&opt.repository.to_string())
-                .arg(&serde_json::to_string(updates).unwrap())
-                .status()?;
-            if !status.success() {
-                bail!("subcommand failed");
-            }
-        }
+        Command::Updates {
+            milestone,
+            vscode,
+            output_file,
+            start_date,
+            end_date,
+        } => updates::generate_updates(
+            &opt.repository,
+            milestone,
+            output_file.as_deref(),
+            start_date,
+            end_date,
+            *vscode,
+        )?,
     }
 
     Ok(())

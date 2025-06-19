@@ -5,7 +5,7 @@
 | Point of contact | @eh2406                            |
 | Teams            | <!-- TEAMS WITH ASKS -->           |
 | Task owners      | <!-- TASK OWNERS -->               |
-| Status           | Proposed                           |
+| Status           | Accepted                           |
 | Tracking issue   | [rust-lang/rust-project-goals#110] |
 | Zulip channel    | N/A                                |
 

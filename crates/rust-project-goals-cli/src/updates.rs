@@ -1,5 +1,6 @@
 use anyhow::Context;
 use chrono::{Datelike, NaiveDate};
+use regex::Regex;
 use rust_project_goals::markwaydown;
 use rust_project_goals::re::{HELP_WANTED, TLDR};
 use rust_project_goals::util::comma;
@@ -8,14 +9,15 @@ use std::io::Write;
 use std::path::Path;
 use std::process::{Command, Stdio};
 
-use crate::templates::{self, HelpWanted, UpdatesGoal};
+mod templates;
 use rust_project_goals::gh::issues::ExistingGithubIssue;
 use rust_project_goals::gh::{
     issue_id::{IssueId, Repository},
     issues::{checkboxes, list_issues_in_milestone, ExistingGithubComment},
 };
+use templates::{HelpWanted, UpdatesGoal};
 
-pub async fn updates(
+pub(crate) fn generate_updates(
     repository: &Repository,
     milestone: &str,
     output_file: Option<&Path>,
@@ -25,6 +27,14 @@ pub async fn updates(
 ) -> anyhow::Result<()> {
     if output_file.is_none() && !vscode {
         anyhow::bail!("either `--output-file` or `--vscode` must be specified");
+    }
+
+    let milestone_re = Regex::new(r"^\d{4}[hH][12]$").unwrap();
+    if !milestone_re.is_match(milestone) {
+        anyhow::bail!(
+            "the milestone `{}` does not follow the `$year$semester` format, where $semester is `h1` or `h2`",
+            milestone,
+        );
     }
 
     let issues = list_issues_in_milestone(repository, milestone)?;
@@ -44,8 +54,8 @@ pub async fn updates(
         progress_bar::Style::Bold,
     );
 
-    let flagship_goals = prepare_goals(repository, &issues, &filter, true).await?;
-    let other_goals = prepare_goals(repository, &issues, &filter, false).await?;
+    let flagship_goals = prepare_goals(repository, &issues, &filter, true)?;
+    let other_goals = prepare_goals(repository, &issues, &filter, false)?;
     let updates = templates::Updates::new(milestone.to_string(), flagship_goals, other_goals);
 
     progress_bar::finalize_progress_bar();
@@ -79,7 +89,7 @@ pub async fn updates(
     Ok(())
 }
 
-async fn prepare_goals(
+fn prepare_goals(
     repository: &Repository,
     issues: &[ExistingGithubIssue],
     filter: &Filter<'_>,

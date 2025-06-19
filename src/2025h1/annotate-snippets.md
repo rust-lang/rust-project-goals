@@ -5,7 +5,7 @@
 | Point of contact | @Muscraft                          |
 | Teams            | <!-- TEAMS WITH ASKS -->           |
 | Task owners      | <!-- TASK OWNERS -->               |
-| Status           | Proposed                           |
+| Status           | Accepted                           |
 | Tracking issue   | [rust-lang/rust-project-goals#123] |
 | Zulip channel    | N/A                                |
 
