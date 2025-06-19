@@ -5,7 +5,7 @@
 | Point of contact   | @epage                             |
 | Teams              | <!-- TEAMS WITH ASKS -->           |
 | Task owners        | <!-- TASK OWNERS -->               |
-| Status             | Invited                            |
+| Status             | Proposed for mentorship            |
 | Zulip channel      | N/A                                |
 | Tracking issue     | [rust-lang/rust-project-goals#264] |
 
@@ -57,7 +57,7 @@ There have been experiments for a plumbing for builds
 
 ### The next 6 months
 
-Create a third-party subcommand to experiment with plumbing commands.
+Continue on the third-party subcommand to experiment with plumbing commands ([source](https://github.com/crate-ci/cargo-plumbing)).
 
 A build in Cargo can roughly be split into
 1. Locate project

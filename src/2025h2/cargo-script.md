@@ -5,7 +5,7 @@
 | Point of contact | @epage                                                                           |
 | Teams            | <!-- TEAMS WITH ASKS -->                                                         |
 | Task owners      | <!-- TASK OWNERS -->                                                             |
-| Status           | Accepted                                                                         |
+| Status           | Proposed                                                                         |
 | Tracking issue   | [rust-lang/rust-project-goals#119]                                               |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
 
@@ -35,14 +35,15 @@ script in the path that calls `cargo run --manifest-path ...`).
 
 ### The next 6 months
 
-The support is already implemented on nightly.
-The goal is to stabilize support.
-With [RFC #3502] and [RFC #3503] approved, the next steps are being tracked in [rust-lang/cargo#12207].
+Cargo and basic rustc support is already implemented on nightly.
+The goal is to finalize things within the rust repo and stabilize.
+With [RFC #3502] and [RFC #3503] approved, the next steps are being tracked in [rust-lang/cargo#12207] and [rust-lang/rust#136889](https://github.com/rust-lang/rust/issues/136889).
 
 At a high-level, this is
-- Add support to the compiler for the frontmatter syntax
-- Add support in Cargo for scripts as a "source"
-- Polish
+- rustfmt gracefully handling the presence of a frontmatter
+- r-a gracefully handling the presence of a frontmatter
+- Fix a known bug in rustc's lexer ([rust-lang/rust#141367](https://github.com/rust-lang/rust/issues/141367)).
+- Improve error messages in Cargo
 
 ### The "shiny future" we are working towards
 
@@ -67,8 +68,8 @@ Tracking issue [#136889](https://github.com/rust-lang/rust/issues/136889):
 
 | Task                              | Owner(s) or team(s)                | Notes |
 |-----------------------------------|------------------------------------|-------|
-| Rustc implementation              | @epage |       |
 | Rust-analyzer implementation      | @epage |       |
+| rustfmt implementation      | @epage |       |
 | Standard reviews                  | ![Team][] [compiler]               |       |
 | Lang-team champion                | ![Team][] [lang]                   | @joshtriplett      |
 | Author call for testing blog post | @epage |       |
