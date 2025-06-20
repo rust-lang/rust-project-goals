@@ -24,7 +24,6 @@ When using const generics it is common to run into these limitations and be unab
 
 ### The next 6 months
 
-- Get `generic_arg_infer`'s reference PR pushed over the finish line
 - Write a document outlining the main design decisions of `adt_const_params` and discuss it with the lang team, follow up with an RFC
 - Finish implementing the `min_generic_const_args` (mgca) feature prototype 
 
