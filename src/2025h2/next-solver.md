@@ -5,7 +5,7 @@
 | Point of contact | @lcnr                                     |
 | Teams            | <!-- TEAMS WITH ASKS -->                  |
 | Task owners      | <!-- TASK OWNERS -->                      |
-| Status           | Accepted                                  |
+| Status           | Proposed                                  |
 | Tracking issue   | [rust-lang/rust-project-goals#113]        |
 | Zulip channel    | [#t-types/trait-system-refactor][channel] |
 
