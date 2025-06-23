@@ -4,6 +4,7 @@ use std::{collections::BTreeSet, path::PathBuf};
 
 use anyhow::{bail, Context};
 use regex::Regex;
+use spanned::Spanned;
 
 use crate::config::{Configuration, TeamAskDetails};
 use crate::gh::issue_id::{IssueId, Repository};
@@ -43,11 +44,11 @@ pub struct GoalDocument {
 pub struct Metadata {
     #[allow(unused)]
     pub title: String,
-    pub short_title: String,
+    pub short_title: Spanned<String>,
     pub pocs: String,
     pub status: Status,
     pub tracking_issue: Option<IssueId>,
-    pub table: Table,
+    pub table: Spanned<Table>,
 }
 
 pub const TRACKING_ISSUE_ROW: &str = "Tracking issue";
@@ -56,7 +57,7 @@ pub const TRACKING_ISSUE_ROW: &str = "Tracking issue";
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub struct GoalPlan {
     /// If `Some`, title of the subsection in which these items were found.
-    pub subgoal: Option<String>,
+    pub subgoal: Option<Spanned<String>>,
 
     /// List of items found in the table.
     pub plan_items: Vec<PlanItem>,
@@ -90,7 +91,7 @@ pub struct TeamAsk {
     pub ask_description: String,
 
     /// Title(s) of the goal. The first element is the title of the goal. The second, if present, is the subgoal.
-    pub goal_titles: Vec<String>,
+    pub goal_titles: Vec<Spanned<String>>,
 
     /// Name(s) of the teams being asked to do the thing
     pub teams: Vec<&'static TeamName>,
@@ -182,7 +183,9 @@ impl GoalDocument {
     /// Modify the goal document on disk to link to the given issue number in the metadata.
     pub fn link_issue(&self, number: IssueId) -> anyhow::Result<()> {
         let mut metadata_table = self.metadata.table.clone();
-        metadata_table.add_key_value_row(TRACKING_ISSUE_ROW, &number);
+        metadata_table
+            .content
+            .add_key_value_row(TRACKING_ISSUE_ROW, &number);
         self.metadata
             .table
             .overwrite_in_path(&self.path, &metadata_table)?;
@@ -209,9 +212,9 @@ pub fn format_goal_table(goals: &[&GoalDocument]) -> anyhow::Result<String> {
 
     if !goals_are_proposed {
         table = vec![vec![
-            "Goal".to_string(),
-            "Point of contact".to_string(),
-            "Progress".to_string(),
+            Spanned::here("Goal".to_string()),
+            Spanned::here("Point of contact".to_string()),
+            Spanned::here("Progress".to_string()),
         ]];
 
         for goal in goals {
@@ -235,16 +238,20 @@ pub fn format_goal_table(goals: &[&GoalDocument]) -> anyhow::Result<String> {
             };
 
             table.push(vec![
-                format!("[{}]({})", goal.metadata.title, goal.link_path.display()),
-                goal.point_of_contact_for_goal_list(),
-                progress_bar,
+                Spanned::here(format!(
+                    "[{}]({})",
+                    goal.metadata.title,
+                    goal.link_path.display()
+                )),
+                Spanned::here(goal.point_of_contact_for_goal_list()),
+                Spanned::here(progress_bar),
             ]);
         }
     } else {
         table = vec![vec![
-            "Goal".to_string(),
-            "Point of contact".to_string(),
-            "Team".to_string(),
+            Spanned::here("Goal".to_string()),
+            Spanned::here("Point of contact".to_string()),
+            Spanned::here("Team".to_string()),
         ]];
 
         for goal in goals {
@@ -256,9 +263,13 @@ pub fn format_goal_table(goals: &[&GoalDocument]) -> anyhow::Result<String> {
                 .collect();
             let teams: Vec<&TeamName> = teams.into_iter().collect();
             table.push(vec![
-                format!("[{}]({})", goal.metadata.title, goal.link_path.display()),
-                goal.point_of_contact_for_goal_list(),
-                commas(&teams),
+                Spanned::here(format!(
+                    "[{}]({})",
+                    goal.metadata.title,
+                    goal.link_path.display()
+                )),
+                Spanned::here(goal.point_of_contact_for_goal_list()),
+                Spanned::here(commas(&teams)),
             ]);
         }
     }
@@ -398,8 +409,8 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata>> {
 
     if !re::is_just(&re::USERNAME, poc_row[1].trim()) {
         anyhow::bail!(
-            "point of contact must be a single github username (found {:?})",
-            poc_row[1]
+            "point of contact must be a single github username (found {})",
+            poc_row[1].render()
         )
     }
 
@@ -425,7 +436,7 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata>> {
 
         // For the others, it's of course optional.
         if has_tracking_issue {
-            Some(r[1].parse()?)
+            Some(r[1].parse().transpose()?.content)
         } else {
             None
         }
@@ -439,9 +450,9 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata>> {
     Ok(Some(Metadata {
         title: title.to_string(),
         short_title: if let Some(row) = short_title_row {
-            row[1].to_string()
+            row[1].clone()
         } else {
-            title.to_string()
+            title.clone()
         },
         pocs: poc_row[1].to_string(),
         status,
@@ -450,7 +461,7 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata>> {
     }))
 }
 
-fn verify_row(rows: &[Vec<String>], key: &str, value: &str) -> anyhow::Result<()> {
+fn verify_row(rows: &[Vec<Spanned<String>>], key: &str, value: &str) -> anyhow::Result<()> {
     let Some(row) = rows.iter().find(|row| row[0] == key) else {
         anyhow::bail!("metadata table has no `{}` row", key)
     };
@@ -505,7 +516,10 @@ fn extract_plan_items<'i>(sections: &[Section]) -> anyhow::Result<Vec<GoalPlan>>
     Ok(goal_plans)
 }
 
-fn goal_plan(subgoal: Option<String>, section: &Section) -> anyhow::Result<Option<GoalPlan>> {
+fn goal_plan(
+    subgoal: Option<Spanned<String>>,
+    section: &Section,
+) -> anyhow::Result<Option<GoalPlan>> {
     match section.tables.len() {
         0 => Ok(None),
         1 => {
@@ -523,12 +537,15 @@ fn goal_plan(subgoal: Option<String>, section: &Section) -> anyhow::Result<Optio
                 plan_items,
             }))
         }
-        _ => anyhow::bail!("multiple goal tables found in section `{}`", section.title),
+        _ => anyhow::bail!(
+            "multiple goal tables found in section `{}`",
+            section.title.render()
+        ),
     }
 }
 
 fn extract_plan_item(
-    rows: &mut std::iter::Peekable<std::slice::Iter<Vec<String>>>,
+    rows: &mut std::iter::Peekable<std::slice::Iter<Vec<Spanned<String>>>>,
 ) -> anyhow::Result<PlanItem> {
     let Some(row) = rows.next() else {
         anyhow::bail!("unexpected end of table");
@@ -620,7 +637,7 @@ impl PlanItem {
     fn team_asks(
         &self,
         link_path: &Arc<PathBuf>,
-        goal_titles: &Vec<String>,
+        goal_titles: &Vec<Spanned<String>>,
         goal_owners: &str,
     ) -> anyhow::Result<Vec<TeamAsk>> {
         let mut asks = vec![];
@@ -659,11 +676,12 @@ impl PlanItem {
 
 fn expect_headers(table: &Table, expected: &[&str]) -> anyhow::Result<()> {
     if table.header != expected {
+        // FIXME: do a diff so we see which headers are missing or extraneous
         anyhow::bail!(
-            "on line {}, unexpected table header, expected `{:?}`, found `{:?}`",
-            table.line_num,
+            "{}: unexpected table header, expected `{:?}`, found `{:?}`",
+            table.header[0].render(),
             expected,
-            table.header
+            table.header.iter().map(|h| &h.content),
         );
     }
 
