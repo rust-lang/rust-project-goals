@@ -33,6 +33,7 @@ Fixing these issues in the existing implementation is prohibitively difficult as
 - continue work on performance
     - fix last known exponential slowdown when reevaluating goals due to changed provisional results
     - get all benchmarks to be neutral or improvements
+- fix remaining minor issues from user reports, crater, and our test suite
 - move additional lints and rustdoc to use the new solver by default
 - document the new solver and work on the stabilization report
 - publicly ask for testing of `-Znext-solver=globally`
