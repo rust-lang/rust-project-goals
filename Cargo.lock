@@ -2343,9 +2343,9 @@ dependencies = [
 
 [[package]]
 name = "spanned"
-version = "0.4.0"
+version = "0.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2e8e76fd7aeee255ddaa885b9de506484b21cbd458ae9d04d1b24851e82ee58a"
+checksum = "c92d4b0c055fde758f086eb4a6e73410247df8a3837fd606d2caeeaf72aa566d"
 dependencies = [
  "anyhow",
  "bstr",
