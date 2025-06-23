@@ -4,16 +4,17 @@ use rust_team_data::v1;
 use serde::de::DeserializeOwned;
 
 use crate::util::in_thread;
+use spanned::{Error, Result};
 
 trait Load<T> {
-    fn load(&self, op: impl FnOnce() -> anyhow::Result<T>) -> anyhow::Result<&T>;
+    fn load(&self, op: impl FnOnce() -> Result<T>) -> Result<&T>;
 }
 
-impl<T> Load<T> for OnceLock<anyhow::Result<T>> {
-    fn load(&self, op: impl FnOnce() -> anyhow::Result<T>) -> anyhow::Result<&T> {
+impl<T> Load<T> for OnceLock<Result<T>> {
+    fn load(&self, op: impl FnOnce() -> Result<T>) -> Result<&T> {
         match self.get_or_init(op) {
             Ok(data) => Ok(data),
-            Err(e) => Err(anyhow::anyhow!("failed to fetch: {e:?}")),
+            Err(e) => Err(Error::str(format!("failed to fetch: {e:?}"))),
         }
     }
 }
@@ -27,8 +28,8 @@ pub struct PersonData {
 }
 
 /// Given a username like `@foo` finds the corresponding person data (if any).
-pub fn get_person_data(username: &str) -> anyhow::Result<Option<&'static PersonData>> {
-    static DATA: OnceLock<anyhow::Result<BTreeMap<String, PersonData>>> = OnceLock::new();
+pub fn get_person_data(username: &str) -> Result<Option<&'static PersonData>> {
+    static DATA: OnceLock<Result<BTreeMap<String, PersonData>>> = OnceLock::new();
     let people = DATA.load(|| {
         let data: v1::People = fetch("people.json")?;
         Ok(data
@@ -58,12 +59,12 @@ impl std::fmt::Display for TeamName {
     }
 }
 
-pub fn get_team_names() -> anyhow::Result<impl Iterator<Item = &'static TeamName>> {
+pub fn get_team_names() -> Result<impl Iterator<Item = &'static TeamName>> {
     Ok(get_teams()?.keys())
 }
 
-fn get_teams() -> anyhow::Result<&'static BTreeMap<TeamName, v1::Team>> {
-    static DATA: OnceLock<anyhow::Result<BTreeMap<TeamName, v1::Team>>> = OnceLock::new();
+fn get_teams() -> Result<&'static BTreeMap<TeamName, v1::Team>> {
+    static DATA: OnceLock<Result<BTreeMap<TeamName, v1::Team>>> = OnceLock::new();
     DATA.load(|| {
         let teams: v1::Teams = fetch("teams.json")?;
         Ok(teams
@@ -74,7 +75,7 @@ fn get_teams() -> anyhow::Result<&'static BTreeMap<TeamName, v1::Team>> {
     })
 }
 
-pub fn get_team_name(team_name: &str) -> anyhow::Result<Option<&'static TeamName>> {
+pub fn get_team_name(team_name: &str) -> Result<Option<&'static TeamName>> {
     let team_name = TeamName(team_name.to_string());
     Ok(get_teams()?.get_key_value(&team_name).map(|(key, _)| key))
 }
@@ -112,7 +113,7 @@ impl TeamName {
     }
 }
 
-fn fetch<T>(path: &str) -> anyhow::Result<T>
+fn fetch<T>(path: &str) -> Result<T>
 where
     T: DeserializeOwned + Send,
 {
