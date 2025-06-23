@@ -15,9 +15,28 @@ Design, implement and experimentally land a reflection scheme based on `const fn
 
 ## Motivation & status quo
 
-Creating new general purpose crates (like serialization crates, log/tracing crates, game engine state inspection crates) that should work with almost all other data structures is nontrivial today. You either need to locally implement your traits for other crates, or the other crates need to depend on you and implement your traits. This often hinders rollout and will never reach everything.
+Creating new general purpose crates (like serialization crates, log/tracing crates, game engine state inspection crates) that should work with almost all other data structures is nontrivial today.
+You either need to locally implement your new traits for other (common) crates, or the other crates need to depend on you and implement your traits.
+This often hinders rollout and will never reach every crate. Most crate maintainers do not want to depend on 2+ serialization crates, and 3+ logging crates, so they will instead pick one,
+causing everyone to either pick the large popular crates or be limited in what they can serializer/log. This is a hindrance to innovation and will (imo) long term cause the ecosystem to
+stop evolving even when an objectively better solution to a problem is found.
 
-Reflection offers a way out of this dilemma, as you can write your logic for all types, by processing the type information at runtime (or even preprocess it at compile-time) without requiring trait bounds on your functions or trait impls anywhere.
+Reflection offers a way out of this dilemma, as you can write your logic for all types.
+You would be processing the type information at runtime (or even preprocess it at compile-time) without requiring trait bounds on your functions or trait impls anywhere.
+This means no one but consumers of your serialization/logging/game-engine will need to know about your crate.
+They immediately are able to interoperate with tuples of any size, arbitrary structs and enums from arbitrary crates that neither depend on yours nor you on theirs.
+
+If this experiment is successful, crates like `bevy` will be able to "just work" with arbitrary types instead of requiring authors to `#[derive(Component)]`, `#[derive(Bundle)]`, or `#[derive(Resource)]` their types
+just to get the `bevy_reflect` information built at compile-time.
+New serialization crates (e.g. for things that are non-goals of `serde` https://github.com/serde-rs/serde/issues/2877) could be used with any types without being limited to types from crates that know about the new serialization crate.
+
+Furthermore it opens up new possibilities of reflection-like behaviour by
+* specializing serialization on specific formats (e.g. serde won't support changing serialization depending on the serializer),
+* specializing trait impl method bodies to have more performant code paths for specific types, groups of types or shapes (e.g. based on the layout) of types.
+
+I consider reflection orthogonal to derives as they solve similar problems from different directions. Reflection lets you write the logic that processes your types in a way very similar to dynamic languages, by inspecting *values*, while derives generate the code that processes your types ahead of time. Proc macros derives have historically been shown to be fairly hard to debug and bootstrap from scratch. While reflection can get similarly complex fast, it allows for a more dynamic approach where you can easily debug the state your are in, as you do not have to pair the derive logic with the consumer logic (e.g. a serializer) and are instead directly writing just the consumer logic.
+
+Reflection often is not as efficient as derives, as the derives can generate the ideal code ahead of time, but once a fully functioning reflection system has been written for a use case, and performance becomes a problem, it should be significantly easier to now write a derive for the performance critical cases than to have started doing so from the start. 
 
 ### The next 6 months
 
@@ -30,7 +49,7 @@ Create basic building blocks that allow `facet`, `bevy-reflect` and `reflect` to
 
 ## Design axioms
 
-* Prefer procedural const-eval code over associated const based designs
+* Prefer procedural const-eval code over associated const based designs (see also "why not uwuflection" in the FAQ).
     * We picked `const fn` in general evaluation over associated const based designs that are equally expressive but are essentially a DSL
 * Ensure privacy is upheld, modulo things like `size_of` exposing whether new private fields have been added
 * Avoid new semver hazards and document any if unavoidable.
@@ -62,9 +81,7 @@ Create basic building blocks that allow `facet`, `bevy-reflect` and `reflect` to
 | Task                 | Owner(s) or team(s)                | Notes                                                               |
 |----------------------|------------------------------------|---------------------------------------------------------------------|
 | Lang-team experiment | ![Team][] [lang], [libs]           | Needs libstd data structures (lang items) to make the specialization data available |
-| Author RFC           |                                    | Not at that stage in the next 6 months                              |
 | Lang-team champion   | ![Team][] [lang]                   | TBD |
-| RFC decision         |                                    | Not at that stage in the next 6 months |
 
 ### Implement language feature
 
@@ -126,6 +143,16 @@ in order to use uwuflection in types in generic code you need to either write in
 
 ### Why not go full zig-style comptime?
 
+zig's approach to comptime from a very high level is effectively
+
+* generate AST for all source files
+* pick the `main` function and start compiling it and looking for what it needs to be compiled
+* if a comptime function call is found, look only for what code that needs to compile, compile it and produce the resulting code of the comptime function
+* continue the main compilation, which may now invoke the generated code and start compiling that
+
+we do not experiment with this approach at this time, because the compiler is not set up in a way to permit proc macros from accessing type information from the current crate.
+While there are ongoing refactorings that go into the direction of potentially allowing more of that in the future, that future seems to be more than 5 years away at my best guess.
+
 * the compiler is not set up to perform codegen while type information is already available. It possibly never will, and it would be an immense amount of work to get there. I'm doing lots of refactorings that would need to be done for sth like that anyway, even if the goal is just better incremental and general compilar architecture.
 * there are too many open language questions about it that we haven't even started to discuss
-* a hacky prototype that works for just tuples and that works with regular const eval exists right now, so pursueing the definitely possible implementation will pay off in a shorter term.
+* a hacky comptime reflection prototype that works for just tuples and that works with regular const eval exists right now, so pursueing the definitely possible implementation will pay off in a shorter term.
