@@ -24,14 +24,18 @@ fn main() -> anyhow::Result<()> {
     let opt = Opt::parse();
 
     let Some(cmd) = &opt.cmd else {
+        eprintln!("main - no cmd");
         return handle_preprocessing(&GoalPreprocessor);
     };
 
     match cmd {
         Command::Supports { renderer } => {
+            eprintln!("main - cmd, supports: {renderer}");
             handle_supports(&GoalPreprocessor, renderer)?;
         }
     }
+
+    eprintln!("main - cmd, done");
 
     Ok(())
 }

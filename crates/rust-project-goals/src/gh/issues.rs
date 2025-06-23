@@ -153,6 +153,14 @@ pub fn list_issues(
         .output()
         .with_context(|| format!("running github cli tool `gh`"))?;
 
+    if !output.status.success() {
+        anyhow::bail!(
+            "`gh` cli tool failed with\nstdout: {}\nstderr: {}",
+            String::from_utf8_lossy(&output.stdout),
+            String::from_utf8_lossy(&output.stderr),
+        );
+    }
+
     let existing_issues: Vec<ExistingGithubIssueJson> = serde_json::from_slice(&output.stdout)?;
 
     Ok(existing_issues

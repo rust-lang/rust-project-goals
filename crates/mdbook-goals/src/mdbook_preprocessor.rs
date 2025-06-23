@@ -31,10 +31,14 @@ impl Preprocessor for GoalPreprocessor {
     }
 
     fn run(&self, ctx: &PreprocessorContext, mut book: Book) -> anyhow::Result<Book> {
+        eprintln!("running goal preprocessor");
         let mut this = GoalPreprocessorWithContext::new(ctx)?;
+        eprintln!("processing book items");
         for section in &mut book.sections {
+            eprintln!("book item: {:?}", section);
             this.process_book_item(section)?;
         }
+        eprintln!("book items done");
         Ok(book)
     }
 }

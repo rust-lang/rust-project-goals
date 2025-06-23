@@ -19,7 +19,13 @@ jobs:
     - uses: extractions/setup-just@v2
     - name: Build and check
       run: just check
-    - name: tmp just buld
+    - name: Install mdBook
+      run: |
+        curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf -y | sh
+        rustup update
+        cargo install --version 0.4.40 mdbook
+    - name: tmp just build
       run: just build
       env:
           RUST_BACKTRACE: 1
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
