@@ -1,9 +1,9 @@
 use std::{collections::BTreeSet, process::Command, str::FromStr};
 
-use anyhow::Context;
 use chrono::NaiveDate;
 use rust_project_goals_json::{GithubIssueState, Progress};
 use serde::{Deserialize, Serialize};
+use spanned::{Context, Error, Result};
 
 use crate::{re, util::comma};
 
@@ -68,10 +68,7 @@ pub struct CountIssues {
     pub closed: u32,
 }
 
-pub fn count_issues_matching_search(
-    repository: &Repository,
-    search: &str,
-) -> anyhow::Result<CountIssues> {
+pub fn count_issues_matching_search(repository: &Repository, search: &str) -> Result<CountIssues> {
     #[derive(Deserialize)]
     struct JustState {
         state: GithubIssueState,
@@ -104,7 +101,7 @@ pub fn count_issues_matching_search(
     Ok(count_issues)
 }
 
-pub fn fetch_issue(repository: &Repository, issue: u64) -> anyhow::Result<ExistingGithubIssue> {
+pub fn fetch_issue(repository: &Repository, issue: u64) -> Result<ExistingGithubIssue> {
     let output = Command::new("gh")
         .arg("-R")
         .arg(&repository.to_string())
@@ -123,14 +120,14 @@ pub fn fetch_issue(repository: &Repository, issue: u64) -> anyhow::Result<Existi
 pub fn list_issues_in_milestone(
     repository: &Repository,
     timeframe: &str,
-) -> anyhow::Result<Vec<ExistingGithubIssue>> {
+) -> Result<Vec<ExistingGithubIssue>> {
     list_issues(repository, &[("-m", timeframe)])
 }
 
 pub fn list_issues(
     repository: &Repository,
     filter: &[(&str, &str)],
-) -> anyhow::Result<Vec<ExistingGithubIssue>> {
+) -> Result<Vec<ExistingGithubIssue>> {
     let mut cmd = Command::new("gh");
 
     cmd.arg("-R")
@@ -151,7 +148,7 @@ pub fn list_issues(
         .arg("--json")
         .arg("title,assignees,number,comments,body,state,labels,milestone")
         .output()
-        .with_context(|| format!("running github cli tool `gh`"))?;
+        .with_str_context("running github cli tool `gh`")?;
 
     let existing_issues: Vec<ExistingGithubIssueJson> = serde_json::from_slice(&output.stdout)?;
 
@@ -168,7 +165,7 @@ pub fn create_issue(
     labels: &[String],
     assignees: &BTreeSet<String>,
     milestone: &str,
-) -> anyhow::Result<()> {
+) -> Result<()> {
     let output = Command::new("gh")
         .arg("-R")
         .arg(&repository.to_string())
@@ -187,17 +184,17 @@ pub fn create_issue(
         .output()?;
 
     if !output.status.success() {
-        Err(anyhow::anyhow!(
+        Err(Error::str(format!(
             "failed to create issue `{}`: {}",
             title,
             String::from_utf8_lossy(&output.stderr)
-        ))
+        )))
     } else {
         Ok(())
     }
 }
 
-pub fn change_title(repository: &Repository, number: u64, title: &str) -> anyhow::Result<()> {
+pub fn change_title(repository: &Repository, number: u64, title: &str) -> Result<()> {
     let mut command = Command::new("gh");
     command
         .arg("-R")
@@ -210,21 +207,17 @@ pub fn change_title(repository: &Repository, number: u64, title: &str) -> anyhow
 
     let output = command.output()?;
     if !output.status.success() {
-        Err(anyhow::anyhow!(
+        Err(Error::str(format!(
             "failed to change milestone `{}`: {}",
             number,
             String::from_utf8_lossy(&output.stderr)
-        ))
+        )))
     } else {
         Ok(())
     }
 }
 
-pub fn change_milestone(
-    repository: &Repository,
-    number: u64,
-    milestone: &str,
-) -> anyhow::Result<()> {
+pub fn change_milestone(repository: &Repository, number: u64, milestone: &str) -> Result<()> {
     let mut command = Command::new("gh");
     command
         .arg("-R")
@@ -237,17 +230,17 @@ pub fn change_milestone(
 
     let output = command.output()?;
     if !output.status.success() {
-        Err(anyhow::anyhow!(
+        Err(Error::str(format!(
             "failed to change milestone `{}`: {}",
             number,
             String::from_utf8_lossy(&output.stderr)
-        ))
+        )))
     } else {
         Ok(())
     }
 }
 
-pub fn create_comment(repository: &Repository, number: u64, body: &str) -> anyhow::Result<()> {
+pub fn create_comment(repository: &Repository, number: u64, body: &str) -> Result<()> {
     let output = Command::new("gh")
         .arg("-R")
         .arg(&repository.to_string())
@@ -259,17 +252,17 @@ pub fn create_comment(repository: &Repository, number: u64, body: &str) -> anyho
         .output()?;
 
     if !output.status.success() {
-        Err(anyhow::anyhow!(
+        Err(Error::str(format!(
             "failed to leave comment on issue `{}`: {}",
             number,
             String::from_utf8_lossy(&output.stderr)
-        ))
+        )))
     } else {
         Ok(())
     }
 }
 
-pub fn update_issue_body(repository: &Repository, number: u64, body: &str) -> anyhow::Result<()> {
+pub fn update_issue_body(repository: &Repository, number: u64, body: &str) -> Result<()> {
     let output = Command::new("gh")
         .arg("-R")
         .arg(&repository.to_string())
@@ -281,11 +274,11 @@ pub fn update_issue_body(repository: &Repository, number: u64, body: &str) -> an
         .output()?;
 
     if !output.status.success() {
-        Err(anyhow::anyhow!(
+        Err(Error::str(format!(
             "failed to adjust issue body on issue `{}`: {}",
             number,
             String::from_utf8_lossy(&output.stderr)
-        ))
+        )))
     } else {
         Ok(())
     }
@@ -296,7 +289,7 @@ pub fn sync_assignees(
     number: u64,
     remove_owners: &BTreeSet<String>,
     add_owners: &BTreeSet<String>,
-) -> anyhow::Result<()> {
+) -> Result<()> {
     let mut command = Command::new("gh");
     command
         .arg("-R")
@@ -315,11 +308,11 @@ pub fn sync_assignees(
 
     let output = command.output()?;
     if !output.status.success() {
-        Err(anyhow::anyhow!(
+        Err(Error::str(format!(
             "failed to sync issue `{}`: {}",
             number,
             String::from_utf8_lossy(&output.stderr)
-        ))
+        )))
     } else {
         Ok(())
     }
@@ -349,7 +342,7 @@ impl ExistingGithubIssue {
     }
 }
 
-pub fn lock_issue(repository: &Repository, number: u64) -> anyhow::Result<()> {
+pub fn lock_issue(repository: &Repository, number: u64) -> Result<()> {
     let output = Command::new("gh")
         .arg("-R")
         .arg(&repository.to_string())
@@ -360,11 +353,11 @@ pub fn lock_issue(repository: &Repository, number: u64) -> anyhow::Result<()> {
 
     if !output.status.success() {
         if !output.stderr.starts_with(b"already locked") {
-            return Err(anyhow::anyhow!(
+            return Err(Error::str(format!(
                 "failed to lock issue `{}`: {}",
                 number,
                 String::from_utf8_lossy(&output.stderr)
-            ));
+            )));
         }
     }
 
@@ -424,14 +417,14 @@ pub fn checkboxes(issue: &ExistingGithubIssue) -> Progress {
     }
 }
 
-fn try_checkboxes(issue: &ExistingGithubIssue) -> anyhow::Result<Progress> {
+fn try_checkboxes(issue: &ExistingGithubIssue) -> Result<Progress> {
     let mut completed = 0;
     let mut total = 0;
 
     for line in issue.body.lines() {
         // Does this match TRACKED_ISSUES?
         if let Some(c) = re::TRACKED_ISSUES_QUERY.captures(line) {
-            let repo = Repository::from_str(&c["repo"])?;
+            let repo = Repository::from_str(&c["repo"]).map_err(|e| Error::str(e.to_string()))?;
             let query = &c["query"];
 
             let CountIssues { open, closed } = count_issues_matching_search(&repo, query)?;
@@ -450,7 +443,9 @@ fn try_checkboxes(issue: &ExistingGithubIssue) -> anyhow::Result<Progress> {
                 ) {
                     (Some(c), _) => c,
                     (None, Some(c)) => c,
-                    (None, None) => anyhow::bail!("invalid issue URL `{issue_url}`"),
+                    (None, None) => {
+                        spanned::bail_here!("invalid issue URL `{issue_url}`")
+                    }
                 };
                 let repository = Repository::new(&c["org"], &c["repo"]);
                 let issue_number = c["issue"].parse::<u64>()?;
@@ -472,7 +467,7 @@ fn try_checkboxes(issue: &ExistingGithubIssue) -> anyhow::Result<Progress> {
                     }
 
                     Progress::Error { message } => {
-                        anyhow::bail!("error parsing {repository}#{issue_number}: {message}")
+                        spanned::bail_here!("error parsing {repository}#{issue_number}: {message}")
                     }
                 }
             }
