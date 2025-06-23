@@ -49,6 +49,7 @@ jobs:
         run: just build
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUST_BACKTRACE: 1
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
