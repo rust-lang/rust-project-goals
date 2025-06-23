@@ -12,11 +12,11 @@ use rust_project_goals::config::Configuration;
 use rust_project_goals::format_team_ask::format_team_asks;
 use rust_project_goals::util::{self, GithubUserInfo};
 
+use rust_project_goals::spanned::Spanned;
 use rust_project_goals::{
     goal::{self, GoalDocument, Status, TeamAsk},
     re, team,
 };
-use spanned::Spanned;
 
 const LINKS: &str = "links";
 const LINKIFIERS: &str = "linkifiers";

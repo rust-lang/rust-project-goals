@@ -16,4 +16,4 @@ rust_team_data = { git = "https://github.com/rust-lang/team" }
 rust-project-goals-json = { version = "0.1.0", path = "../rust-project-goals-json" }
 toml = "0.8.19"
 indexmap = "2.7.1"
-spanned = "0.4.0"
+spanned = "0.5.0"

@@ -409,8 +409,8 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata>> {
 
     if !re::is_just(&re::USERNAME, poc_row[1].trim()) {
         anyhow::bail!(
-            "point of contact must be a single github username (found {})",
-            poc_row[1].render()
+            "point of contact must be a single github username (found {:?})",
+            poc_row[1]
         )
     }
 
@@ -538,8 +538,8 @@ fn goal_plan(
             }))
         }
         _ => anyhow::bail!(
-            "multiple goal tables found in section `{}`",
-            section.title.render()
+            "multiple goal tables found in section `{:?}`",
+            section.title
         ),
     }
 }
@@ -678,8 +678,8 @@ fn expect_headers(table: &Table, expected: &[&str]) -> anyhow::Result<()> {
     if table.header != expected {
         // FIXME: do a diff so we see which headers are missing or extraneous
         anyhow::bail!(
-            "{}: unexpected table header, expected `{:?}`, found `{:?}`",
-            table.header[0].render(),
+            "{:?}: unexpected table header, expected `{:?}`, found `{:?}`",
+            table.header[0],
             expected,
             table.header.iter().map(|h| &h.content),
         );

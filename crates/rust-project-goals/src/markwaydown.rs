@@ -32,7 +32,7 @@ pub struct Table {
 pub fn parse(path: impl AsRef<Path>) -> anyhow::Result<Vec<Section>> {
     let path = path.as_ref();
     let text = Spanned::read_str_from_file(path).transpose()?;
-    parse_text(text.as_ref())
+    parse_text(text.as_ref().map(|s| s.as_ref()))
 }
 
 pub fn parse_text(text: Spanned<&str>) -> anyhow::Result<Vec<Section>> {
