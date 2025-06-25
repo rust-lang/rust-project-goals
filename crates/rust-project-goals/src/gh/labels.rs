@@ -3,6 +3,7 @@ use std::process::Command;
 use serde::{Deserialize, Serialize};
 
 use super::issue_id::Repository;
+use spanned::{Error, Result};
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 pub struct GhLabel {
@@ -11,7 +12,7 @@ pub struct GhLabel {
 }
 
 impl GhLabel {
-    pub fn list(repository: &Repository) -> anyhow::Result<Vec<GhLabel>> {
+    pub fn list(repository: &Repository) -> Result<Vec<GhLabel>> {
         let output = Command::new("gh")
             .arg("-R")
             .arg(&repository.to_string())
@@ -26,7 +27,7 @@ impl GhLabel {
         Ok(labels)
     }
 
-    pub fn create(&self, repository: &Repository) -> anyhow::Result<()> {
+    pub fn create(&self, repository: &Repository) -> Result<()> {
         let output = Command::new("gh")
             .arg("-R")
             .arg(&repository.to_string())
@@ -39,11 +40,11 @@ impl GhLabel {
             .output()?;
 
         if !output.status.success() {
-            Err(anyhow::anyhow!(
+            Err(Error::str(format!(
                 "failed to create label `{}`: {}",
                 self.name,
                 String::from_utf8_lossy(&output.stderr)
-            ))
+            )))
         } else {
             Ok(())
         }

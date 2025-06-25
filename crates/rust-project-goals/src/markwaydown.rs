@@ -2,7 +2,7 @@
 
 use std::{fmt::Display, path::Path};
 
-use spanned::Spanned;
+use spanned::{Error, Result, Spanned};
 
 use crate::util;
 
@@ -29,13 +29,13 @@ pub struct Table {
     pub rows: Vec<Vec<Spanned<String>>>,
 }
 
-pub fn parse(path: impl AsRef<Path>) -> anyhow::Result<Vec<Section>> {
+pub fn parse(path: impl AsRef<Path>) -> Result<Vec<Section>> {
     let path = path.as_ref();
     let text = Spanned::read_str_from_file(path).transpose()?;
-    parse_text(text.as_ref())
+    parse_text(text.as_ref().map(|s| s.as_ref()))
 }
 
-pub fn parse_text(text: Spanned<&str>) -> anyhow::Result<Vec<Section>> {
+pub fn parse_text(text: Spanned<&str>) -> Result<Vec<Section>> {
     let mut result = vec![];
     let mut open_section = None;
     let mut open_table = None;
@@ -68,11 +68,11 @@ pub fn parse_text(text: Spanned<&str>) -> anyhow::Result<Vec<Section>> {
 
                 if let Some(table) = &mut open_table {
                     if row.len() > table.header.len() {
-                        return Err(anyhow::anyhow!(
-                            "{}: too many columns in table, expected no more than {}",
-                            row[table.header.len()].span,
+                        spanned::bail!(
+                            row[table.header.len()],
+                            "too many columns in table, expected no more than {}",
                             table.header.len()
-                        ));
+                        );
                     }
 
                     while row.len() < table.header.len() {
@@ -93,25 +93,23 @@ pub fn parse_text(text: Spanned<&str>) -> anyhow::Result<Vec<Section>> {
             CategorizeLine::TableDashRow(dashes) => {
                 if let Some(table) = &open_table {
                     if table.header.len() != dashes.len() {
-                        return Err(anyhow::anyhow!(
-                            "{:?}: invalid number of columns in table, expected {}",
+                        spanned::bail!(
                             dashes.last().unwrap(),
+                            "invalid number of columns in table, expected {}",
                             table.header.len()
-                        ));
+                        );
                     }
 
                     if let Some(first) = table.rows.first() {
-                        return Err(anyhow::anyhow!(
-                            "{:?}: did not expect table header here, already saw table rows: {:?}",
-                            dashes[0].span,
-                            first[0].span,
-                        ));
+                        return Err(Error::new_str(
+                            dashes[0]
+                                .as_ref()
+                                .map(|_| "did not expect table header here"),
+                        )
+                        .wrap_str(first[0].as_ref().map(|_| "already saw table row here")));
                     }
                 } else {
-                    return Err(anyhow::anyhow!(
-                        "{:?}: did not expect table header here",
-                        dashes[0]
-                    ));
+                    spanned::bail!(dashes[0], "did not expect table header here",);
                 }
             }
             CategorizeLine::Other => {
@@ -197,7 +195,7 @@ impl Table {
     }
 
     /// Modify `path` to replace the lines containing this table with `new_table`.
-    pub fn overwrite_in_path(&self, path: &Path, new_table: &Table) -> anyhow::Result<()> {
+    pub fn overwrite_in_path(&self, path: &Path, new_table: &Table) -> Result<()> {
         let full_text = std::fs::read_to_string(path)?;
 
         let mut new_text = full_text[..self.header[0].span.bytes.start].to_string();
