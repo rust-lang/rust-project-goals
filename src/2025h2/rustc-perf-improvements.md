@@ -34,16 +34,41 @@ architectures.
 
 ### The status quo
 
-rustc-perf does not currently support scheduling and accepting benchmarks from
-multiple machines, requiring a non-trivial rearchitecting to do so. None of our
-policies around performance triage and handling regressions currently consider
-what to do in case of conflicting benchmarking results.
+rustc-perf does not yet support scheduling or accepting benchmarks from
+multiple machines.
 
-...
+To ensure ongoing changes don't break existing functionality, tests have
+been added to guard the current system. Notable progress includes the
+introduction of database tests and incremental improvements to error
+handling in the new system.
+
+A new system architecture has been outlined in this
+[design document][design_doc] of which progress has commenced in implementing
+it. The new system will operate in parallel with the existing one until we
+are confident it can fully replace it. rustc-perf does not currently support
+scheduling and accepting benchmarks from multiple machines, requiring a
+non-trivial rearchitecting to do so. None of our policies around performance
+triage and handling regressions currently consider what to do in case of
+conflicting benchmarking results.
+
+[design_doc]: https://hackmd.io/wq30YNEIQMSFLWWcWDSI9A
 
 ### The next 6 months
 
-...
+This period is a continuation of the previous six months, during which
+meaningful progress was made in beginning the implementation of a new system
+for rustc-perf.
+
+* Switch the default collector to the new AX-42, initially running on the
+  legacy non-parallel system.
+* Enable benchmarking to run in parallel across multiple collectors.
+* Continue expanding test coverage for the new distributed rustc-perf
+  infrastructure to reduce the risk of future regressions.
+* Build a status page to display the health of each collector.
+* Add support for benchmarking on AArch64 as a separate architecture.
+* Enhance perf.rust-lang.org to display performance data from multiple
+  collectors, with the ability to compare results within a given configuration
+  (not across different configurations).
 
 ### The "shiny future" we are working towards
 
