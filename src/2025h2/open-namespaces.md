@@ -1,6 +1,5 @@
 # Implement Open API Namespace Support
 
-
 | Metadata           |                                    |
 | :--                | :--                                |
 | Point of contact   | @epage                             |
@@ -22,13 +21,14 @@ This covers multiple teams and needs a lot of coordination to balance the needs 
 
 ### The status quo
 
-Cargo support is partially implemented.
-No compiler support.
-There is a crates-io prototype for a previous iteration of RFC 3243 but that code base has likely diverged a lot since then.
+- Cargo support is partially implemented.
+- Compiler design is agreed on and partially implemented.
+- There is a crates-io prototype for a previous iteration of RFC 3243 but that code base has likely diverged a lot since then.
 
 ### The next 6 months
 
-Implement at least Cargo and compiler support for this to be experimented with and allow crates-io work.
+- Implement Cargo and compiler support for this to be experimented with and allow crates-io work.
+- Understand what changes are needed for crates.io support, and what it will take to implement these.
 
 ### The "shiny future" we are working towards
 
@@ -38,7 +38,7 @@ Implement at least Cargo and compiler support for this to be experimented with a
 
 | Task                                | Owner(s) or team(s)           | Notes |
 |-------------------------------------|-------------------------------|-------|
-| Discussion and moral support        | ![Team][] [cargo], [compiler] |       |
+| Discussion and moral support        | ![Team][] [cargo], [compiler], [crates-io] |       |
 | Compiler implementation             | @b-naber                      |       |
 | Work through lingering cargo issues | @epage, @b-naber              |       |
 
