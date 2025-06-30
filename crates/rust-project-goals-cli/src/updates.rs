@@ -232,7 +232,7 @@ fn help_wanted(
 fn why_this_goal(issue_id: &IssueId, issue: &ExistingGithubIssue) -> anyhow::Result<String> {
     let span = Span {
         file: issue_id.url().into(),
-        bytes: 0..0,
+        bytes: 0..issue.body.len(),
     };
     let sections = markwaydown::parse_text(Spanned::new(&issue.body, span))?;
     for section in sections {
