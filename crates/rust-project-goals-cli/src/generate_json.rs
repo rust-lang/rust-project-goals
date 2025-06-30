@@ -4,13 +4,14 @@ use rust_project_goals::gh::{
     issue_id::Repository,
     issues::{checkboxes, list_issues_in_milestone, ExistingGithubComment},
 };
+use rust_project_goals::spanned::Result;
 use rust_project_goals_json::{TrackingIssue, TrackingIssueUpdate, TrackingIssues};
 
 pub(super) fn generate_json(
     repository: &Repository,
     milestone: &str,
     json_path: &Option<PathBuf>,
-) -> anyhow::Result<()> {
+) -> Result<()> {
     let issues = list_issues_in_milestone(repository, milestone)?;
 
     let issues = TrackingIssues {

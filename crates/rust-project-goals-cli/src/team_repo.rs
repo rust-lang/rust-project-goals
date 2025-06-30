@@ -2,16 +2,18 @@ use std::collections::BTreeSet;
 use std::fmt::Write;
 use std::process::Command;
 
-use anyhow::Context;
-
-use rust_project_goals::{goal, team};
+use rust_project_goals::{
+    goal,
+    spanned::{self, Context as _, Result},
+    team,
+};
 
 pub(crate) fn generate_team_repo(
     paths: &[std::path::PathBuf],
     team_repo_path: &std::path::PathBuf,
-) -> anyhow::Result<()> {
+) -> Result<()> {
     if !team_repo_path.is_dir() {
-        anyhow::bail!(
+        spanned::bail_here!(
             "output path not a directory: `{}`",
             team_repo_path.display()
         );
@@ -37,7 +39,7 @@ pub(crate) fn generate_team_repo(
     let team_file = team_file(&owners)?;
     let team_toml_file = team_repo_path.join("teams").join("goal-owners.toml");
     std::fs::write(&team_toml_file, team_file)
-        .with_context(|| format!("writing to `{}`", team_toml_file.display()))?;
+        .with_path_context(&team_toml_file, "writing team toml file")?;
     progress_bar::inc_progress_bar();
 
     // generate rudimentary people files if needed
@@ -56,7 +58,7 @@ pub(crate) fn generate_team_repo(
     Ok(())
 }
 
-fn ensure_person_file(owner: &str, team_repo_path: &std::path::PathBuf) -> anyhow::Result<()> {
+fn ensure_person_file(owner: &str, team_repo_path: &std::path::PathBuf) -> Result<()> {
     let person_toml_file = team_repo_path
         .join("people")
         .join(&owner[1..])
@@ -78,16 +80,16 @@ fn ensure_person_file(owner: &str, team_repo_path: &std::path::PathBuf) -> anyho
         .arg(&owner[1..])
         .current_dir(team_repo_path)
         .status()
-        .with_context(|| format!("running `cargo run add-person` for {owner}"))?;
+        .with_str_context(format!("running `cargo run add-person` for {owner}"))?;
 
     if !status.success() {
-        anyhow::bail!("`cargo run add-person` failed for {owner}");
+        spanned::bail_here!("`cargo run add-person` failed for {owner}");
     }
 
     Ok(())
 }
 
-fn team_file(owners: &BTreeSet<&str>) -> anyhow::Result<String> {
+fn team_file(owners: &BTreeSet<&str>) -> Result<String> {
     let mut out = String::new();
     writeln!(
         out,

@@ -4,6 +4,7 @@ use handlebars::{DirectorySourceOptions, Handlebars};
 use rust_project_goals::gh::issues::ExistingGithubComment;
 use serde::Serialize;
 
+use rust_project_goals::spanned::Result;
 use rust_project_goals_json::Progress;
 
 pub struct Templates<'h> {
@@ -11,12 +12,12 @@ pub struct Templates<'h> {
 }
 
 impl<'h> Templates<'h> {
-    pub fn new() -> anyhow::Result<Self> {
+    pub fn new() -> Result<Self> {
         let templates = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../templates");
         Self::from_templates_dir(&templates)
     }
 
-    pub fn from_templates_dir(dir_path: impl AsRef<Path>) -> anyhow::Result<Self> {
+    pub fn from_templates_dir(dir_path: impl AsRef<Path>) -> Result<Self> {
         let dir_path = dir_path.as_ref();
         let mut reg = Handlebars::new();
 
@@ -64,7 +65,7 @@ impl Updates {
             other_goals,
         }
     }
-    pub fn render(self) -> anyhow::Result<String> {
+    pub fn render(self) -> Result<String> {
         let templates = Templates::new()?;
         Ok(templates.reg.render("updates", &self)?)
     }

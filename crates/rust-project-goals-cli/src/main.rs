@@ -1,7 +1,9 @@
-use anyhow::Context;
 use clap::Parser;
 use regex::Regex;
-use rust_project_goals::gh::issue_id::Repository;
+use rust_project_goals::{
+    gh::issue_id::Repository,
+    spanned::{Result, Spanned},
+};
 use std::path::PathBuf;
 use walkdir::WalkDir;
 
@@ -109,7 +111,7 @@ enum Command {
     },
 }
 
-fn main() -> anyhow::Result<()> {
+fn main() -> Result<()> {
     let opt: Opt = Opt::parse();
 
     match &opt.cmd {
@@ -138,8 +140,11 @@ fn main() -> anyhow::Result<()> {
             commit,
             sleep,
         } => {
-            rfc::generate_issues(&opt.repository, path, *commit, *sleep)
-                .with_context(|| format!("failed to adjust issues; rerun command to resume"))?;
+            rfc::generate_issues(&opt.repository, path, *commit, *sleep).map_err(|e| {
+                e.wrap_str(Spanned::here(
+                    "failed to adjust issues; rerun command to resume",
+                ))
+            })?;
         }
 
         Command::TeamRepo {
@@ -174,7 +179,7 @@ fn main() -> anyhow::Result<()> {
     Ok(())
 }
 
-fn check() -> anyhow::Result<()> {
+fn check() -> Result<()> {
     // Look for all directories like `2024h2` or `2025h1` and load goals from those directories.
     let regex = Regex::new(r"\d\d\d\dh[12]")?;
 
