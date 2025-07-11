@@ -30,7 +30,7 @@ Cargo does not persist information about previous builds.
 While the [`--timings`] flag provides per-build data on how long each unit takes to compile,
 this information:
 
-* Is tied to a single build session
+* You have to know you will care about a timings report and can't look it up afterwards
 * Exists primarily in HTML form, which is not suited for machine analysis  
 
 Additionally, Cargo does not track:
