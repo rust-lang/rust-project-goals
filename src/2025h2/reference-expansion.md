@@ -74,7 +74,7 @@ Other items, which are out of the scope of this project goal:
   bound the behavior of the borrow checker, the latest of which is Tree Borrows
   ( https://www.ralfj.de/blog/2023/06/02/tree-borrows.html ) by Ralf Jung, a
   successor to the previous Stacked Borrows model. Specifying this will also
-  carefully distinguishing between description of the current behavior and
+  carefully distinguish between description of the current behavior and
   bounds on future behavior, as the borrow checker likely will improve further
   in the future. 
 - The operational semantics of the Rust language, which includes the work
@@ -111,7 +111,7 @@ We hope to continue providing ongoing support for reference updates in our
 areas of expertise, as well as making it easier for others to make ongoing
 contributions by providing a starting point. While we don't expect the
 Reference to ever be "done" (much as the Rust language will not be), we hope to
-substantially close the gap between the Reference and the language, 
+substantially close the gap between the Reference and the language.
 
 In the future, we hope that the reference will include full and complete
 documentation for all parts of the Rust language, including the borrow checker
