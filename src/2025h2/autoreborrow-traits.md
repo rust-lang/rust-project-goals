@@ -2,11 +2,11 @@
 
 | Metadata         |                                                                                  |
 |:-----------------|----------------------------------------------------------------------------------|
-| Point of contact | @aapoalas                                   |
+| Point of contact | @aapoalas                                                                        |
 | Teams            | &lt;!-- TEAMS WITH ASKS --&gt;                                                   |
 | Task owners      | &lt;!-- TASK OWNERS --&gt;                                                       |
 | Status           | Proposed                                                                         |
-| Tracking issue   | *if this is a continuing goal, add the old tracking issue, else leave blank*     |
+| Tracking issue   |                                                                                  |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
 
 ## Summary
