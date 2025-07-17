@@ -121,6 +121,7 @@ and the operational semantics.
 
 The following [design axioms][da] apply:
 * Some documentation may be better suited for the rustc-dev-guide rather than the Rust Reference. If we find ourselves with material better suited for the rustc-dev-guide, we can submit it there, and submit appropriate user-focused subsets of it to the Rust Reference.
+* Large changes all at once can be harder to review. When possible, we should endeavor to share outlines of new material in advance, and make sure we're broadly aligned, before writing and submitting full prose.
 * When writing down descriptions of Rust based on the observed current behavior of `rustc`, we sometimes encounter areas where we're not entirely sure whether we want to guarantee the observed behavior as the behavior of Rust. There are two cases:  
   1. We're unhappy with the current behavior of some edge cases. Here, we will prefer to document the current user-visible behavior while leaving an appropriate disclaimer in the Reference (following conventions of the Reference) that there are open questions about whether we may wish to change this behavior.
   2. We're uncertain about whether the behavior represents a stable guarantee or simply a description of one of many behaviors that Rust could validly exhibit. Here, we will describe the current behavior in an explicitly non-normative fashion (following conventions of the Reference), noting specifically that this does not represent a Rust language guarantee and that other behaviors are possible.
