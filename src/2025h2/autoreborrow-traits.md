@@ -3,7 +3,7 @@
 | Metadata         |                                                                                  |
 |:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | @aapoalas                                                                        |
-| Teams            | &lt;!-- TEAMS WITH ASKS --&gt;                                                   |
+| Teams            | &lt;!-- lang, compiler --&gt;                                                   |
 | Task owners      | &lt;!-- TASK OWNERS --&gt;                                                       |
 | Status           | Proposed                                                                         |
 | Tracking issue   |                                                                                  |
