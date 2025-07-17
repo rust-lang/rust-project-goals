@@ -140,6 +140,6 @@ will lead this project goal.
 | Discussion and moral support       | ![Team][] [spec][]             | |
 | New reference chapters             | @lcnr, @jackh726, @Amanieu, @GuillaumeGomez, @yaahc | |
 | Standard reviews                   | @joshtriplett, @lcnr, @jackh726, @Amanieu, @GuillaumeGomez, @m-ou-se, @petrochenkov, @yaahc | |
-| Standard reviews                   | ![Team][] [spec][]             | |
+| Standard reviews                   | ![Team][] [spec][] [lang-docs][]            | |
 
 ## Frequently asked questions
