@@ -5,7 +5,7 @@
 | Point of contact | @BennoLossin                                                                     |
 | Teams            | <!-- TEAMS WITH ASKS -->                                                         |
 | Task owners      | <!-- TASK OWNERS -->                                                             |
-| Status           | Proposed, Invited                                                                |
+| Status           | Proposed                                                                         |
 | Tracking issue   |                                                                                  |
 | Zulip channel    | N/A                                                                              |
 
