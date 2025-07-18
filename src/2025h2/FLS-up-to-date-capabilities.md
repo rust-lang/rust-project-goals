@@ -39,7 +39,7 @@ The shiny future we are working towards is to ensure that we have the capability
 
 | Task                               | Owner(s) or team(s)            | Notes                           |
 |------------------------------------|--------------------------------|---------------------------------|
-| Discussion and moral support       | ![Team][] [t-spec], [t-lang]             |                                 |
+| Discussion and moral support       | ![Team][] [spec], [lang]       |                                 |
 | Adjust tooling, as needed          | @JoelMarcey                    | Joel to find appropriate person |
 | Standard reviews                   | ![Team][] [t-lang],[t-opsem], [t-types], [bootstrap]       | For any process changes, document updates and/or tooling integration     |
 | Continued updates for the FLS | Contributors from Ferrous Systems and others TBD               |                                 |
