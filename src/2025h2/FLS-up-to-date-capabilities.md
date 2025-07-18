@@ -2,7 +2,7 @@
 
 | Metadata         |                                                                                  |
 |:-----------------|----------------------------------------------------------------------------------|
-| Point of contact | *@JoelMarcey*                                                                    |
+| Point of contact | @JoelMarcey                                                                    |
 | Teams            | &lt;!-- #t-spec, #t-lang, #t-opsem --&gt;                                                  |
 | Task owners      | &lt;!-- @JoelMarcey --&gt;                                                       |
 | Status           | Proposed                                                                         |
