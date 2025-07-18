@@ -121,7 +121,7 @@ like `PhantomExclusive<'a>` and `PhantomShared<'b>` to discern the difference.
 | Author RFC           | *Goal point of contact, typically* |                                                                     |
 | Lang-team champion   | ![Team][] [lang]                   | Username here |
 | RFC decision         | ![Team][] [lang]                   |                                                                     |
-| Secondary RFC review | ![Team][] [types]                  | request bandwidth from a second team, most features don't need this |
+| RFC secondary review | ![Team][] [types]                  | request bandwidth from a second team, most features don't need this |
 
 ### Implement non-recursive autoreborrowing
 
