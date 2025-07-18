@@ -80,7 +80,7 @@
 | Author RFC           | *Goal point of contact, typically* |                                                                     |
 | Lang-team champion   | ![Team][] [lang]                   | Username here |
 | RFC decision         | ![Team][] [lang]                   |                                                                     |
-| Secondary RFC review | ![Team][] [types]                  | request bandwidth from a second team, most features don't need this |
+| RFC secondary review | ![Team][] [types]                  | request bandwidth from a second team, most features don't need this |
 
 ### Implement language feature X
 
@@ -125,7 +125,7 @@ For definitions for terms used above, see the [About > Team Asks](https://rust-l
 * *Design meeting* means holding a synchronous meeting to review a proposal and provide feedback (no decision expected).
 * *RFC decisions* means reviewing an RFC and deciding whether to accept.
 * *Org decisions* means reaching a decision on an organizational or policy matter.
-* *Secondary review* of an RFC means that the team is "tangentially" involved in the RFC and should be expected to briefly review.
+* *RFC secondary review* means that the team is "tangentially" involved in the RFC and should be expected to briefly review.
 * *Stabilizations* means reviewing a stabilization and report and deciding whether to stabilize.
 * *Standard reviews* refers to reviews for PRs against the repository; these PRs are not expected to be unduly large or complicated.
 * *Prioritized nominations* refers to prioritized lang-team response to nominated issues, with the expectation that there will be *some* response from the next weekly triage meeting.
