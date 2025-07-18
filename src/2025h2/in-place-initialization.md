@@ -143,7 +143,7 @@ scheduled.
 | Task                         | Owner(s) or team(s)                   | Notes |
 |------------------------------|---------------------------------------|-------|
 | Discussion and moral support | ![Team][] [lang]                      |       |
-| Two design meetings          | ![Team][] [lang]                      |       |
+| Design meeting               | ![Team][] [lang]                      | Two design meetings |
 | Be the main author of an RFC | @Darksonn                             |       |
 | Contribute to the RFC        | @cramertj, @yoshuawuyts, @BennoLossin, @nbdd0121 |       |
 | Lang-team liason             | @joshtriplett                         |       |
