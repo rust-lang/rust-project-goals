@@ -123,13 +123,13 @@ For definitions for terms used above, see the [About > Team Asks](https://rust-l
 * *Discussion and moral support* is the lowest level offering, basically committing the team to nothing but good vibes and general support for this endeavor.
 * *Author RFC* and *Implementation* means actually writing the code, document, whatever.
 * *Design meeting* means holding a synchronous meeting to review a proposal and provide feedback (no decision expected).
-* *RFC decisions* means reviewing an RFC and deciding whether to accept.
-* *Org decisions* means reaching a decision on an organizational or policy matter.
+* *RFC decision* means reviewing an RFC and deciding whether to accept.
+* *Org decision* means reaching a decision on an organizational or policy matter.
 * *RFC secondary review* means that the team is "tangentially" involved in the RFC and should be expected to briefly review.
-* *Stabilizations* means reviewing a stabilization and report and deciding whether to stabilize.
+* *Stabilization decision* means reviewing a stabilization and report and deciding whether to stabilize.
 * *Standard reviews* refers to reviews for PRs against the repository; these PRs are not expected to be unduly large or complicated.
 * *Prioritized nominations* refers to prioritized lang-team response to nominated issues, with the expectation that there will be *some* response from the next weekly triage meeting.
-* *Dedicated review* means identifying an individual (or group of individuals) who will review the changes, as they're expected to require significant context.
+* *Dedicated reviewer* means identifying an individual (or group of individuals) who will review the changes, as they're expected to require significant context.
 * Other kinds of decisions:
     * [Lang team experiments](https://lang-team.rust-lang.org/how_to/experiment.html) are used to add nightly features that do not yet have an RFC. They are limited to trusted contributors and are used to resolve design details such that an RFC can be written.
     * Compiler [Major Change Proposal (MCP)](https://forge.rust-lang.org/compiler/mcp.html) is used to propose a 'larger than average' change and get feedback from the compiler team.
