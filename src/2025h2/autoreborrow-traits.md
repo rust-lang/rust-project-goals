@@ -91,7 +91,7 @@ Users of `reborrow` crate and similar should be enabled to move to core solution
 | Task                         | Owner(s) or team(s) | Notes |
 |------------------------------|---------------------|-------|
 | Discussion and moral support | ![Team][] [lang]    | Normal RFC process |
-| Help around impl             | ![Team][] [compiler]| Trait-impl querying in rustc to replace `Pin<&mut T>` special case |
+| Standard reviews             | ![Team][] [compiler]| Trait-impl querying in rustc to replace `Pin<&mut T>` special case |
 | Do the work                  | @aapoalas           |       |
 
 ### Design autoreborrow internals
