@@ -145,7 +145,7 @@ I (@obi1kenobi) will be working on this effort. The only other resource request 
 
 | Task                                               | Owner(s) or team(s)         | Notes |
 | -------------------------------------------------- | --------------------------- | ----- |
-| Expose precise `'static` and `?Sized` info         | @obi1kenobi  ![Team][] [rustdoc] |       |
+| Expose precise `'static` and `?Sized` info         | @obi1kenobi  |       |
 | Lints for `'static` and `?Sized`                   | @obi1kenobi                 |       |
 | Audit lints for lifetime and trait bounds          | @obi1kenobi                 |       |
 | Support our GSoC contributor's work on witness programs and type-checking infra | @obi1kenobi |       |
