@@ -49,7 +49,7 @@ With these items completed, we believe that we can confidently recommend the use
 
 ### The "shiny future" we are working towards
 
-We believe we can get to a production-ready `rustc_codegen_cranelift` implementation for Linux and macOS within the context of this project goal. The problems and solutions are mapped out, and there are many similarities between these targets.
+We believe we can get to a production-ready `rustc_codegen_cranelift` implementation for Linux and macOS, on `x86_64` and `aarch64`, within the context of this project goal. The problems and solutions are mapped out, and there are many similarities between these targets.
 
 Ultimately, we'd like to provide the same level of quality for Windows, but this is much more challenging. Progress on this front is highly dependent on additional funding, and will take considerably more time.
 
