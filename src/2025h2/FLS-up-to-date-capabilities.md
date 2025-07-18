@@ -5,7 +5,7 @@
 | Point of contact | @JoelMarcey                                                                      |
 | Teams            | <!-- TEAMS WITH ASKS -->                                                         |
 | Task owners      | <!-- TASK OWNERS -->                                                             |
-| Status           | Proposed                                                                         |     
+| Status           | Proposed                                                                         |
 | Tracking issue   |                                                                                  |
 | Zulip channel    | #t-spec                                                                          |
 
