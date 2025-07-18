@@ -3,7 +3,7 @@
 | Metadata         |                                                                                  |
 | :--------------- | :------------------------------------------------------------------------------- |
 | Point of contact | @jakos-sec                                                                       |
-| Teams            | compiler, infra                                                                  |
+| Teams            | <!-- TEAMS WITH ASKS -->                                                         |
 | Status           | Proposed                                                                         |
 | Task owners      | [@jakos-sec](https://github.com/jakos-sec), [@1c3t3a](https://github.com/1c3t3a) |
 | Tracking issue   |                                                                                  |
