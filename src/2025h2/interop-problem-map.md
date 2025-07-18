@@ -77,4 +77,22 @@ Fundamentally, this goal is about organizing knowledge in a useful way. I will b
 
 ## Frequently asked questions
 
-None yet.
+### Is this intended to be a living document or a snapshot in time?
+
+A living document. It's unlikely to ever be complete, especially considering both Rust and C++ continue to change, but since one of the main points of the document is to attract more input and inspire new solution proposals, openness to change is a feature.
+
+### Do you want to be the curator of all content or go for more of a wiki approach?
+
+At least initially (and almost certainly for the lifetime of this goal), I plan to be the sole curator, but I will actively encourage and solicit contributions to ensure the content is as accurate and objective as possible. Over time, additional curators may be added, and at some point it may make sense to transition to a more wiki-like approach if curation becomes a bottle neck, but I can't say for sure.
+
+### How should the problems be prioritized?
+
+At the very beginning, the goal will be breadth: attempt to give a name and basic description to as many of the relevant problems as possible. This will form a sort of skeleton to aid with discoverability and motivate contribution from relevant experts. From there, priority will be given to collecting information that already exists spread across various sources such as meeting notes, conference talks, forum posts and Zulip streams. Problems which are causing people current pain and which have competing solution ideas will be especially prioritized to encourage them to be formalized in response to a common understanding of the problem. Finally, problems which are most likely to have solutions requiring longer-term processes such as RFCs and WG21 papers will be prioritized to get things moving sooner and problems with uncontroversial solutions will be prioritized because we all could use some easy wins.
+
+### If you had unlimited time and resources, wouldn't it be advisable to rewrite all the C++ in Rust?
+
+I don't think it's clear that it is! While the risk of UB goes away if you can rewrite it all in safe Rust, there are lots of other kinds of bugs that can occur, and they're far more likely to occur in new code, so the older and more real-world use code has, the less likely it is to contain bugs, regardless of language.
+
+### I notice you wrote "implementors" above. Why not "implementers"?
+
+This bothered me too, and [this internals thread](https://internals.rust-lang.org/t/spelling-bikeshed-implementor-or-implementer/16926/14) explained why it was so noticeable to me.
