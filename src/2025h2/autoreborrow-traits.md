@@ -4,7 +4,8 @@
 |:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | @aapoalas                                                                        |
 | Teams            | &lt;!-- TEAMS WITH ASKS --&gt;                                                   |
-| Task owners      | &lt;!-- TASK OWNERS --&gt;                                                       |
+| Teams            | <!-- TEAMS WITH ASKS -->                                                         |
+| Task owners      | <!-- TASK OWNERS -->                                                             |
 | Status           | Proposed                                                                         |
 | Tracking issue   |                                                                                  |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
