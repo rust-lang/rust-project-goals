@@ -40,7 +40,7 @@ In the meantime we work towards at least supporting [Tier 1](https://doc.rust-la
 | ---------------------------- | -------------------------------------------------------------------------------- | ------------- |
 | Discussion and moral support | ![Team][] [compiler], [infra]                                                    |               |
 | Implementation               | [@jakos-sec](https://github.com/jakos-sec), [@1c3t3a](https://github.com/1c3t3a) |               |
-| Stabilization                | ![Team][] [compiler]                                                             |               |
+| Stabilization decision       | ![Team][] [compiler]                                                             |               |
 | Standard reviews             | ![Team][] [compiler]                                                             |               |
 | Dedicated reviewer           | ![Team][] [infra], [project-exploit-mitigations]                                 |               |
 
