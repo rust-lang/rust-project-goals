@@ -4,9 +4,9 @@
 |:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | @frank-king                                                                      |
 | Teams            | &lt;!-- TEAMS WITH ASKS --&gt;                                                   |
-| Task owners      | &lt;!-- TASK OWNERS --&gt;                                                       |
+| Teams            | <!-- TEAMS WITH ASKS -->                                                         |
 | Status           | Proposed                                                                         |
-| Tracking issue   | *if this is a continuing goal, add the old tracking issue, else leave blank*     |
+| Tracking issue   |      |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
 
 ## Summary
@@ -56,7 +56,7 @@ We have an experiment for improving the ergonomics around pinning and some initi
 | Author RFC           | *Goal point of contact, typically* |                                                                     |
 | Lang-team champion   | ![Team][] [lang]                   | Username here |
 | RFC decision         | ![Team][] [lang]                   |                                                                     |
-| Secondary RFC review | ![Team][] [types]                  | request bandwidth from a second team, most features don't need this |
+| RFC secondary review | ![Team][] [types]                  | request bandwidth from a second team, most features don't need this |
 
 ### Implement language feature X
 
