@@ -70,9 +70,9 @@ Problem statements should…
 
 Fundamentally, this goal is about organizing knowledge in a useful way. I will be primarily responsible for collecting and structuring it, but do not intend to do original analysis since there are greater experts to defer to. The most valuable participation from Rust teams will be in reviewing the accuracy of the collected information. I do not expect the burden to be great since the individual problems are intended to be narrowly scoped and reviewers will be experts in the domain. Specific demands will depend on the specific problems documented and the teams that are deemed relevant
 
-| Task                         | Owner(s) or team(s)                             | Notes |
-|------------------------------|-------------------------------------------------|-------|
-| Author problem statments     | @baumanj                                        | External contributions welcome and anticipated |
+| Task                         | Owner(s) or team(s)                             | Notes                                          |
+|------------------------------|-------------------------------------------------|------------------------------------------------|
+| Author problem statements    | @baumanj                                        | External contributions welcome and anticipated |
 | Problem statement review     | ![Team][] [lang], [compiler], [libs], [opsem]   |                                                |
 
 ## Frequently asked questions
