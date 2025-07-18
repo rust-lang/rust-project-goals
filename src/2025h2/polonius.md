@@ -35,6 +35,28 @@ The key achievements from our past work are:
 [pc3]: https://blog.rust-lang.org/inside-rust/2023/10/06/polonius-update.html#background-on-polonius
 [#92985]: https://github.com/rust-lang/rust/issues/92985
 
+The design for the polonius $\alpha$ analysis (modulo SCCs) can be summarized as:
+
+* with the CFG $\mathcal{C}$, and the subset graph
+* compute a "unified graph" $\mathcal{U}$ where 
+    * nodes are "region $r$ at point $p$"
+    * add outlives edges from type-checking: subset edges between regions $r_0 \subseteq r_1$, at the point $p$ where the constraint occurs
+    * add liveness edges: if there is an edge $p\rightarrow q \in \mathcal{C}$ and the region $r_1$ is live at $q$
+        * make an edge $r_1$ at $p$ to $r_1$ at $q$
+        * respecting variance (forward, backward, or bidirectional)
+* "liveness" of a variable is from standard compiler analysis
+    * with subtleties about "use" liveness and "drop" liveness
+* "liveness" of a region $r$ at point $p$ is:
+    * $r$ is in the type of a variable $v$ live at $p$
+* "liveness" of a loan $l$ at point $p$ is:
+    * there exists a live region $r$ where the loan $l$ can reach $r$ in the "unified graph" $\mathcal{U}$ from its introduction region/point node.
+* then we do the usual loans-in-scope computation where a 
+    * GEN is the loan being introduced
+    * KILL is the loan stops being live and/or the place is overwritten
+* and using these loans in scope when checking for place invalidations
+
+The alpha version of the analysis uses reachability within the subset+cfg graph to approximate liveness, and uses the same loan-in-scope computation to handle kills as NLLs.
+
 ### The next six months
 
 * Complete the remaining features we need to support, like member constraints, and fix the last couple diagnostics differences with NLLs
@@ -58,27 +80,7 @@ Stable support for the polonius alpha analysis, before gradually improving expre
 
 ## Design axioms
 
-The alpha version of the analysis uses reachability within the subset+cfg graph to approximate liveness, and uses the same loan-in-scope computation to handle kills as NLLs.
-
-The design axioms for polonius $\alpha$ analysis (modulo SCCs) can be summarized as:
-
-* with the CFG $\mathcal{C}$, and the subset graph
-* compute a "unified graph" $\mathcal{U}$ where 
-    * nodes are "region $r$ at point $p$"
-    * add outlives edges from type-checking: subset edges between regions $r_0 \subseteq r_1$, at the point $p$ where the constraint occurs
-    * add liveness edges: if there is an edge $p\rightarrow q \in \mathcal{C}$ and the region $r_1$ is live at $q$
-        * make an edge $r_1$ at $p$ to $r_1$ at $q$
-        * respecting variance (forward, backward, or bidirectional)
-* "liveness" of a variable is from standard compiler analysis
-    * with subtleties about "use" liveness and "drop" liveness
-* "liveness" of a region $r$ at point $p$ is:
-    * $r$ is in the type of a variable $v$ live at $p$
-* "liveness" of a loan $l$ at point $p$ is:
-    * there exists a live region $r$ where the loan $l$ can reach $r$ in the "unified graph" $\mathcal{U}$ from its introduction region/point node.
-* then we do the usual loans-in-scope computation where a 
-    * GEN is the loan being introduced
-    * KILL is the loan stops being live and/or the place is overwritten
-* and using these loans in scope when checking for place invalidations
+The older datalog implementation can accept more exotic borrowing patterns, as it (slowly) elaborates all the data needed to handle full flow-sensitivity, but it also doesn't scale, has no path to stabilization and suffers from other shortcomings. In order to not let "perfect be the enemy of good", we've chosen to reduce the scope to a manageable subset that we can ship sooner rather than later. NLL problem case 3 is a common issue encountered by users, and we believe handling these kinds of patterns is worthwhile, without needing to wait for a solution to handle even more cases.
 
 ## Ownership and team asks
 
