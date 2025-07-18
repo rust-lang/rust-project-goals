@@ -537,10 +537,20 @@ fn goal_plan(
                 plan_items,
             }))
         }
-        _ => anyhow::bail!(
-            "multiple goal tables found in section `{}`",
-            section.title.render()
-        ),
+        thats_too_many => {
+            let mut table_error = Vec::new();
+            for (idx, table) in section.tables.iter().enumerate() {
+                let header: Vec<_> = table.header.iter().map(|h| h.to_string()).collect();
+                table_error.push(format!("{}: {:?}", idx + 1, header.join(", ")));
+            }
+
+            anyhow::bail!(
+                "markdown parsing unexpectedly encountered multiple ({}) goal tables in section `{}`:\n{}",
+                thats_too_many,
+                section.title.render(),
+                table_error.join("\n"),
+            )
+        }
     }
 }
 
