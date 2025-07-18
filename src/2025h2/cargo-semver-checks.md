@@ -3,7 +3,7 @@
 | Metadata         |                                    |
 |:-----------------|------------------------------------|
 | Point of contact | @obi1kenobi                        |
-| Teams            | rustdoc                            |
+| Teams            | <!-- TEAMS WITH ASKS -->           |
 | Task owners      | <!-- TASK OWNERS -->               |
 | Status           |                                    |
 | Tracking issue   | [rust-lang/rust-project-goals#104] |
