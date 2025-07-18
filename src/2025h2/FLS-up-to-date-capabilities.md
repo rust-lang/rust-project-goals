@@ -2,10 +2,10 @@
 
 | Metadata         |                                                                                  |
 |:-----------------|----------------------------------------------------------------------------------|
-| Point of contact | @JoelMarcey                                                                    |
-| Teams            | &lt;!-- #t-spec, #t-lang, #t-opsem --&gt;                                                  |
-| Task owners      | &lt;!-- @JoelMarcey --&gt;                                                       |
-| Status           | Proposed                                                                         |
+| Point of contact | @JoelMarcey                                                                      |
+| Teams            | <!-- TEAMS WITH ASKS -->                                                         |
+| Task owners      | <!-- TASK OWNERS -->                                                             |
+| Status           | Proposed                                                                         |     
 | Tracking issue   |                                                                                  |
 | Zulip channel    | #t-spec                                                                          |
 
