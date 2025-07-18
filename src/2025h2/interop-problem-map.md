@@ -74,7 +74,7 @@ Fundamentally, this goal is about organizing knowledge in a useful way. I will b
 | Task                         | Owner(s) or team(s)                             | Notes                                          |
 |------------------------------|-------------------------------------------------|------------------------------------------------|
 | Author problem statements    | @baumanj                                        | External contributions welcome and anticipated |
-| Problem statement review     | ![Team][] [lang], [compiler], [libs], [opsem]   |                                                |
+| Standard reviews             | ![Team][] [lang], [compiler], [libs], [opsem]   | Problem statement review                       |
 
 ## Frequently asked questions
 
