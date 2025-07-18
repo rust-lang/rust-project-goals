@@ -44,7 +44,7 @@ But the same issue pops up again for any user-defined exclusive reference types,
 user can define this type as having exclusive semantics by not making the type `Copy`, but they cannot opt
 into automatic reborrowing. The best they can hope is to implement a custom `.reborrow_mut()` method similar
 to the `Option::as_deref_mut` from above. Here again they run into the issue that the lifetime of a
-`Mut<'_, T>` always gets constrained to the closes `.reborrow_mut()` call, making it impossible to return
+`Mut<'_, T>` always gets constrained to the `.reborrow_mut()` call, making it impossible to return
 values derived from a `Mut<'_, T>` from the function that called `.reborrow_mut()`.
 
 An improvement is needed.
