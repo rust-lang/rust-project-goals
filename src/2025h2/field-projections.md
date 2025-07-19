@@ -67,6 +67,16 @@ Note that the projections listed above are also very important to Rust for Linux
 types are pinned in the kernel, so `Pin<&mut T>` comes up a lot in drivers. We're also handling raw
 pointers very often where we could use `NonNull<T>` instead if they had better field access.
 
+#### Current proposals
+
+In addition to [Field Projections RFC v2] already mentioned above, there is a [newer
+proposal](https://hackmd.io/@BennoLossin/HkMBy6Hzlx) that improves upon it.
+
+For historical context, there also is the [Field Projections RFC v1].
+
+[Field Projections RFC v1]: https://github.com/rust-lang/rfcs/pull/3318
+[Field Projections RFC v2]: https://github.com/rust-lang/rfcs/pull/3735
+
 ### The next 6 months
 
 Have design meetings with the relevant parties & update the existing or write a new RFC.
