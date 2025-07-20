@@ -72,7 +72,7 @@ Other items, which are out of the scope of this project goal:
 - The behavior of the borrow checker. This is extensive work that has been the
   subject of PhD theses. There have been multiple attempts to document and
   bound the behavior of the borrow checker, the latest of which is Tree Borrows
-  ( https://www.ralfj.de/blog/2023/06/02/tree-borrows.html ) by Ralf Jung, a
+  ( <https://www.ralfj.de/blog/2023/06/02/tree-borrows.html> ) by Ralf Jung, a
   successor to the previous Stacked Borrows model. Specifying this will also
   carefully distinguish between description of the current behavior and
   bounds on future behavior, as the borrow checker likely will improve further
