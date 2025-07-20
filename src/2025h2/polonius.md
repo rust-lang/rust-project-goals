@@ -38,7 +38,7 @@ The key achievements from our past work are:
 The design for the polonius $\alpha$ analysis (modulo SCCs) can be summarized as:
 
 * with the CFG $\mathcal{C}$, and the subset graph
-* compute a "unified graph" $\mathcal{U}$ where 
+* compute a "unified graph" $\mathcal{U}$ where
     * nodes are "region $r$ at point $p$"
     * add outlives edges from type-checking: subset edges between regions $r_0 \subseteq r_1$, at the point $p$ where the constraint occurs
     * add liveness edges: if there is an edge $p\rightarrow q \in \mathcal{C}$ and the region $r_1$ is live at $q$
@@ -50,7 +50,7 @@ The design for the polonius $\alpha$ analysis (modulo SCCs) can be summarized as
     * $r$ is in the type of a variable $v$ live at $p$
 * "liveness" of a loan $l$ at point $p$ is:
     * there exists a live region $r$ where the loan $l$ can reach $r$ in the "unified graph" $\mathcal{U}$ from its introduction region/point node.
-* then we do the usual loans-in-scope computation where a 
+* then we do the usual loans-in-scope computation where a
     * GEN is the loan being introduced
     * KILL is the loan stops being live and/or the place is overwritten
 * and using these loans in scope when checking for place invalidations
@@ -61,7 +61,7 @@ The alpha version of the analysis uses reachability within the subset+cfg graph 
 
 The majority of open issues marked NLL-deferred, and fixed-by-polonius, would be fixed: their MCVEs are now being accepted by the alpha analysis.
 
-The most impactful example is the "NLL problem case 3" and variations of it, that were deferred from the NLL implementation. 
+The most impactful example is the "NLL problem case 3" and variations of it, that were deferred from the NLL implementation.
 
 ```rust
 use std::collections::HashMap;
@@ -282,7 +282,7 @@ We expect most support to be needed from the types team, for design, reviews, in
 
 Nightly implementation of polonius that passes [NLL problem case #3][pc3] and accepts lending iterators ([#92985]).
 
-This implementation should be good enough to be stabilizable, both in features and performance, should pass the full test suite, do crater runs, and test it on CI. 
+This implementation should be good enough to be stabilizable, both in features and performance, should pass the full test suite, do crater runs, and test it on CI.
 
 As our model is a superset of NLLs, we expect little to no diagnostics regressions, but improvements would probably still be needed for the new errors.
 
@@ -293,8 +293,8 @@ Note: some of these are currently being worked on and close to being done, and c
 | Milestone                                                                          | Owner          | Notes       |
 | ---------------------------------------------------------------------------------- | -------------- | ----------- |
 | Factoring out higher-ranked concerns from the main path                            | @amandasystems |             |
-| ↳ [x] rewrite invalid universe constraints with outlives `'static` constraints     |                |             | 
-| ↳ [ ] completely remove placeholders                                               |                | in progress, PR [#130227](https://github.com/rust-lang/rust/pull/130227) | 
+| ↳ [x] rewrite invalid universe constraints with outlives `'static` constraints     |                |             |
+| ↳ [ ] completely remove placeholders                                               |                | in progress, PR [#130227](https://github.com/rust-lang/rust/pull/130227) |
 | Location-sensitive prototype on nightly                                            | @lqd           |             |
 | ↳ [x] create structures for location-dependent outlives constraints                |                |             |
 | ↳ [x] build new constraint graph from typeck constraints and liveness constraints  |                |             |
