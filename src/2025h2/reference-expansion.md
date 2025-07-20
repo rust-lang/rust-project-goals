@@ -79,7 +79,7 @@ Other items, which are out of the scope of this project goal:
   in the future. 
 - The operational semantics of the Rust language, which includes the work
   formerly described as "unsafe code guidelines". This has been the focus of
-  the opsem team (https://github.com/rust-lang/opsem-team).
+  the opsem team (<https://github.com/rust-lang/opsem-team>).
 
 Both of these have substantial efforts already working on them. In some cases,
 this work is as much about determining and negotiating the correct semantics as
