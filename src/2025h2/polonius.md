@@ -57,6 +57,182 @@ The design for the polonius $\alpha$ analysis (modulo SCCs) can be summarized as
 
 The alpha version of the analysis uses reachability within the subset+cfg graph to approximate liveness, and uses the same loan-in-scope computation to handle kills as NLLs.
 
+#### Examples that the alpha analysis accepts
+
+The majority of open issues marked NLL-deferred, and fixed-by-polonius, would be fixed: their MCVEs are now being accepted by the alpha analysis.
+
+The most impactful example is the "NLL problem case 3" and variations of it, that were deferred from the NLL implementation. 
+
+```rust
+use std::collections::HashMap;
+use std::hash::Hash;
+
+fn from_the_nll_rfc<'r, K: Hash + Eq + Copy, V: Default>(
+    map: &'r mut HashMap<K, V>,
+    key: K,
+) -> &'r mut V {
+    match map.get_mut(&key) {
+        Some(value) => value,
+        None => {
+            map.insert(key, V::default());
+            map.get_mut(&key).unwrap()
+        }
+    }
+}
+```
+
+A similar variation is the filtering lending iterator.
+
+```rust
+trait LendingIterator {
+    type Item<'a>
+    where
+        Self: 'a;
+    fn next(&mut self) -> Option<Self::Item<'_>>;
+
+    fn filter<P>(self, predicate: P) -> Filter<Self, P>
+    where
+        Self: Sized,
+        P: FnMut(&Self::Item<'_>) -> bool,
+    {
+        Filter { iter: self, predicate }
+    }
+}
+
+pub struct Filter<I, P> {
+    iter: I,
+    predicate: P,
+}
+impl<I: LendingIterator, P> LendingIterator for Filter<I, P>
+where
+    P: FnMut(&I::Item<'_>) -> bool,
+{
+    type Item<'a>
+        = I::Item<'a>
+    where
+        Self: 'a;
+
+    // This is now accepted
+    fn next(&mut self) -> Option<I::Item<'_>> {
+        while let Some(item) = self.iter.next() {
+            if (self.predicate)(&item) {
+                return Some(item);
+            }
+        }
+        return None;
+    }
+}
+```
+
+(Note that this doesn't make lending iterators themselves easier to use, due to the unrelated limitations in GATs themselves.)
+
+#### Examples that the alpha analysis does not accept
+
+Some cases that require full flow-sensitivity are left for future improvements, and show the same imprecision as NLLs today. For example, some patterns of linked-list traversals with a cursor. There are a handful of open issues like these.
+
+```rust
+struct X {
+    next: Option<Box<X>>,
+}
+```
+
+This is showing the same imprecision as NLLs discussed above:
+
+```rust
+fn conditional() {
+    let mut b = Some(Box::new(X { next: None }));
+    let mut p = &mut b;
+    while let Some(now) = p {
+        // ^ ERROR: cannot use `*p` because it was mutably borrowed
+        if true {
+            p = &mut now.next;
+        }
+    }
+}
+```
+
+While this is still accepted:
+
+```rust
+fn no_control_flow() {
+    let mut b = Some(Box::new(X { next: None }));
+    let mut p = &mut b;
+    while let Some(now) = p {
+        p = &mut now.next;
+    }
+}
+
+fn conditional_with_indirection() {
+    let mut b = Some(Box::new(X { next: None }));
+    let mut p = &mut b;
+    while let Some(now) = p {
+        if true {
+            p = &mut p.as_mut().unwrap().next;
+        }
+    }
+}
+```
+
+Similarly,
+
+```rust
+struct Node<T> {
+    value: T,
+    next: Option<Box<Self>>,
+}
+
+type List<T> = Option<Box<Node<T>>>;
+
+fn remove_last_node_recursive<T>(node_ref: &mut List<T>) {
+    let next_ref = &mut node_ref.as_mut().unwrap().next;
+
+    if next_ref.is_some() {
+        remove_last_node_recursive(next_ref);
+    } else {
+        *node_ref = None;
+    }
+}
+
+fn remove_last_node_iterative<T>(mut node_ref: &mut List<T>) {
+    loop {
+        let next_ref = &mut node_ref.as_mut().unwrap().next;
+
+        if next_ref.is_some() {
+            node_ref = next_ref;
+        } else {
+            break;
+        }
+    }
+
+    *node_ref = None;
+    // ^ ERROR cannot assign to `*node_ref` because it is borrowed
+}
+```
+
+Or another pattern requiring full flow-sensitivity like the following
+
+```rust
+use std::cell::Cell;
+
+struct Invariant<'l>(Cell<&'l ()>);
+
+fn create_invariant<'l>() -> Invariant<'l> {
+    Invariant(Cell::new(&()))
+}
+
+// Fails
+fn use_it<'a, 'b>(choice: bool) -> Result<Invariant<'a>, Invariant<'b>> {
+    let returned_value = create_invariant();
+    if choice { Ok(returned_value) } else { Err(returned_value) }
+}
+
+// OK
+fn use_it2<'a: 'b, 'b: 'a>(choice: bool) -> Result<Invariant<'a>, Invariant<'b>> {
+    let returned_value = create_invariant();
+    if choice { Ok(returned_value) } else { Err(returned_value) }
+}
+```
+
 ### The next six months
 
 * Complete the remaining features we need to support, like member constraints, and fix the last couple diagnostics differences with NLLs
@@ -80,7 +256,9 @@ Stable support for the polonius alpha analysis, before gradually improving expre
 
 ## Design axioms
 
-The older datalog implementation can accept more exotic borrowing patterns, as it (slowly) elaborates all the data needed to handle full flow-sensitivity, but it also doesn't scale, has no path to stabilization and suffers from other shortcomings. In order to not let "perfect be the enemy of good", we've chosen to reduce the scope to a manageable subset that we can ship sooner rather than later. NLL problem case 3 is a common issue encountered by users, and we believe handling these kinds of patterns is worthwhile, without needing to wait for a solution to handle even more cases.
+The older datalog implementation can accept more exotic borrowing patterns, as it (slowly) elaborates all the data needed to handle full flow-sensitivity, but it also doesn't scale, has no path to stabilization and suffers from other shortcomings. In order to not let "perfect be the enemy of good", we've chosen to reduce the scope to a manageable subset that we can ship sooner rather than later.
+
+NLL problem case 3, and the like, are a common issue encountered by users, and we believe handling these kinds of patterns is worthwhile, without needing to wait for a solution to handle even more cases. Especially as we think these cases are encountered more rarely than the new cases we'll accept.
 
 ## Ownership and team asks
 
