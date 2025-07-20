@@ -13,7 +13,7 @@
 
 ## Summary
 
-The Rust Reference (https://doc.rust-lang.org/nightly/reference/) describes and
+The Rust Reference (<https://doc.rust-lang.org/nightly/reference/>) describes and
 documents the Rust language. The Reference has coverage of many areas of Rust
 already, and it has been integrated into language evolution processes, so that
 new changes to the language get corresponding updates to the Reference.
