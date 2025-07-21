@@ -7,7 +7,7 @@
 | Task owners        | <!-- TASK OWNERS -->               |
 | Status             | Proposed                           |
 | Zulip channel      | [#t-spec][channel]                 |
-| Tracking issue     | [rust-lang/rust-project-goals#NNN] |
+| Tracking issue     |                                    |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/399173-t-spec
 
