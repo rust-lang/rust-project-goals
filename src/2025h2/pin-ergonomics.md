@@ -3,7 +3,7 @@
 | Metadata         |                                                                                  |
 |:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | @frank-king                                                                      |
-| Teams            | &lt;!-- TEAMS WITH ASKS --&gt;                                                   |
+| Task owners      | <!-- TASK OWNERS -->       |
 | Teams            | <!-- TEAMS WITH ASKS -->                                                         |
 | Status           | Proposed                                                                         |
 | Tracking issue   |      |
