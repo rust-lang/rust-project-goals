@@ -87,9 +87,9 @@ Eventually we would like to check (sanitize) most items listed as
 
 | Task                         | Owner(s) or team(s)                                                                | Notes                                    |
 |------------------------------|------------------------------------------------------------------------------------|------------------------------------------|
-| Discussion and moral support | ![Team][], [compiler], [opsem]                                                     |                                          |
-| Implementation               | [@1c3t3a](https://github.com/1c3t3a), [@jakos-sec](https://github.com/jakos-sec)   |                                          |
-| MCP decision                 | ![Team][], [compiler]                                                              | Where to insert the check / checked load |
+| Discussion and moral support | ![Team][] [compiler], [opsem]                                                     |                                          |
+| Implementation               | @1c3t3a], @jakos-sec  |                                          |
+| MCP decision                 | ![Team][] [compiler]                                                              | Where to insert the check / checked load |
 | Dedicated reviewer           | ![Team][] [compiler], [opsem]                                                      | @saethlin                                |
 
 ### Definitions
