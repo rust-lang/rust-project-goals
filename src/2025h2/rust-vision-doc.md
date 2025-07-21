@@ -3,7 +3,7 @@
 | Metadata           |                                    |
 | :--                | :--                                |
 | Point of contact   | @nikomatsakis                      |
-| Teams              | ![Team][] [leadership-council]     |
+| Teams              | <!-- TEAMS WITH ASKS -->           |
 | Task owners        | <!-- TASK OWNERS -->               |
 | Status             | Proposed                           |
 | Zulip channel      | [#vision-doc-2025][channel]        |
