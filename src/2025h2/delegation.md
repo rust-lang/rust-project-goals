@@ -7,7 +7,7 @@
 | Task owners        | <!-- TASK OWNERS -->               |
 | Status             | Proposed                           |
 | Zulip channel      | N/A                                |
-| Tracking issue     | [tracking issue]                   |
+| Tracking issue     | [rust-lang/rust#118212]            |
 
 ## Summary
 
@@ -86,7 +86,7 @@ doesn't extend the syntactic budget.
 | Lang-team champion             | ![Team][] [lang]     | @traviscross                   |
 | RFC decision                   | ![Team][] [lang]     |                                |
 
-[RFC 3530]: https://github.com/rust-lang/rust/issues/118212
+[RFC 3530]: https://github.com/rust-lang/rfcs/pull/3530
 [tracking issue]: https://github.com/rust-lang/rust/issues/118212
 
 ### Definitions
