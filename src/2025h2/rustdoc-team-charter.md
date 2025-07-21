@@ -6,9 +6,8 @@
 | Teams            | <!-- TEAMS WITH ASKS -->                       |
 | Task owners      | <!-- TASK OWNERS -->                           |
 | Status           | Proposed                                       |
-| Zulip channel    | [#t-rustdoc][t-rustdoc]                        |
+| Zulip channel    | [#t-rustdoc](https://rust-lang.zulipchat.com/#narrow/channel/266220-t-rustdoc)                        |
 
-[t-rustdoc]: https://rust-lang.zulipchat.com/#narrow/channel/266220-t-rustdoc
 
 ## Summary
 
@@ -40,7 +39,7 @@ Writing the team charter.
 
 | Task                          | Owner(s) or team(s) | Notes |
 |-------------------------------|---------------------|-------|
-| Org decision                  | ![Team][] rustdoc   | Write team charter |
+| Org decision                  | ![Team][] [rustdoc]   | Write team charter |
 
 ### Definitions
 
