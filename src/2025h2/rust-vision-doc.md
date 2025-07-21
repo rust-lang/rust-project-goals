@@ -6,8 +6,8 @@
 | Teams              | ![Team][] [leadership-council]     |
 | Task owners        | <!-- TASK OWNERS -->               |
 | Status             | Proposed                           |
-| Zulip channel      | N/A                                |
-| Tracking issue     | [rust-lang/rust-project-goals#TBD] |
+| Zulip channel      | [#vision-doc-2025][channel]        |
+| Tracking issue     | [rust-lang/rust-project-goals#269] |
 
 ## Summary
 
