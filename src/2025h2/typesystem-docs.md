@@ -21,7 +21,7 @@ The lack of documentation makes onboarding difficult for new contributors and re
 
 ### The next 6 months
 
-- Compile a list of type system concepts then compare that against the in-compiler documentation and the rustc-dev-guide's type system chapter to find weak points in our documentation.
+- Compile and publish a list of type system concepts then compare that against the in-compiler documentation and the rustc-dev-guide's type system chapter to find weak points in our documentation.
 - Document existing known weak points:
     - How const generic arguments are type checked
     - The design of the new solver and how/why it differs from the old solver
