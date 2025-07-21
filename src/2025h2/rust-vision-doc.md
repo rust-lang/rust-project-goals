@@ -5,7 +5,7 @@
 | Point of contact   | @nikomatsakis                      |
 | Teams              | ![Team][] [leadership-council]     |
 | Task owners        | <!-- TASK OWNERS -->               |
-| Status             | Draft                              |
+| Status             | Proposed                           |
 | Zulip channel      | N/A                                |
 | Tracking issue     | [rust-lang/rust-project-goals#TBD] |
 
