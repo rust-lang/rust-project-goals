@@ -149,7 +149,7 @@ The design axioms for this alternative RFC are as follows:
 | Complete seamless implementation  | @spastorino                        | Make `x` equivalent to `x.use` with optional linting |
 | Standard reviews                  | ![Team][] [compiler]               |       |
 | Lang-team champion                | @nikomatsakis                      |       |
-| Design meetings                   | ![Team][] [lang]                   | Two meetings to evaluate both approaches |
+| Design meeting                   | ![Team][] [lang]                   | Two meetings to evaluate both approaches |
 | RFC decision                      | ![Team][] [lang]                   | Choose between maximally additive vs seamlessly integrated |
 
 ### Definitions
