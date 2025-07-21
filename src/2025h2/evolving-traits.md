@@ -3,8 +3,8 @@
 | Metadata         |                                                                                  |
 |:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | @cramertj                                                                        |
-| Teams            | compiler, lang design                                                            |
-| Task owners      | [@cramertj](https://github.com/cramertj)                                         |
+| Teams            | <!-- TEAMS WITH ASKS -->                                                         |
+| Task owners      | <!-- TASK OWNERS -->                                                             |
 | Status           | Proposed                                                                         |
 | Tracking issue   |                                                                                  |
 | Zulip channel    |                                                                                  |
@@ -243,8 +243,8 @@ implementations.
 | Discussion and moral support             | ![Team][] [types]    |                                  |
 | Author RFC                               | @cramertj            |                                  |
 | Implementation                           | @cramertj & others   |                                  |
-| Stabilize `Receiver`                     | ![Team][] [libs-api] | Unblocked by implementation.     |
-| Stabilize `arbitrary_self_types`         | ![Team][] [lang]     | Unblocked by new `Receiver` API. |
+| Stabilization decision                   | ![Team][] [libs-api] | Stabilizing `Receiver`. Unblocked by implementation. |
+| Stabilization decision                   | ![Team][] [lang]     | Stabilizing `arbitrary_self_types`. Unblocked by new `Receiver` API. |
 
 ### Definitions
 
