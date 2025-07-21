@@ -38,59 +38,17 @@ We have an experiment for improving the ergonomics around pinning and some initi
 ## Design axioms
 
 
-## Ownership and team asks
-
-
-| Task                         | Owner(s) or team(s) | Notes |
-|------------------------------|---------------------|-------|
-| Discussion and moral support | ![Team][] [lang]    |       |
-| Do the work                  | @frank-king         |       |
-
-### Design language feature to solve problem X
-
-> *Some goals propose to design a feature to solve a problem. Typically the outcome from this goal is an draft or accepted RFC. If you would like to work on an experimental implementation in-tree before an RFC is accepted, you can create a [lang team experiment](https://lang-team.rust-lang.org/how_to/experiment.html), but note that a trusted contributor is required.*
-
-| Task                 | Owner(s) or team(s)                | Notes                                                               |
-|----------------------|------------------------------------|---------------------------------------------------------------------|
-| Lang-team experiment | ![Team][] [lang]                   | allows coding pre-RFC; only for trusted contributors                |
-| Author RFC           | *Goal point of contact, typically* |                                                                     |
-| Lang-team champion   | ![Team][] [lang]                   | Username here |
-| RFC decision         | ![Team][] [lang]                   |                                                                     |
-| RFC secondary review | ![Team][] [types]                  | request bandwidth from a second team, most features don't need this |
-
 ### Implement language feature X
 
 > *If there is an accepted RFC, or you are doing a [lang-team experiment](https://lang-team.rust-lang.org/how_to/experiment.html), you commonly need someone to write the code, support from the compiler to review your PRs, and possibly lang-team design meetings to review interesting design questions. Once implementation completes we recommend a call for testing blog post.*
 
 | Task                              | Owner(s) or team(s)                | Notes |
 |-----------------------------------|------------------------------------|-------|
-| Implementation                    | *Goal point of contact, typically* |       |
+| Implementation                    | @frank-king  |       |
 | Standard reviews                  | ![Team][] [compiler]               |       |
 | Lang-team champion                | ![Team][] [lang]                   |       |
 | Design meeting                    | ![Team][] [lang]                   |       |
-| Author call for testing blog post | *Goal point of contact, typically* |       |
-
-### Stabilize language feature X
-
-> *If the feature has been RFC'd and implemented and experiences are positive, [stabilization](https://rustc-dev-guide.rust-lang.org/stabilization_guide.html) may be the right next step. In this case, you will need to author a first draft of text for the Rust reference and make a Team Ask to request someone from the the spec team to adapt that text for final inclusion. You will also need to author a stabilization report.
-
-| Task                           | Owner(s) or team(s)                | Notes |
-|--------------------------------|------------------------------------|-------|
-| Author specification 1st draft | *Goal point of contact, typically* |       |
-| Finalize specification text    | ![Team][] [spec]                   |       |
-| Lang-team champion             | ![Team][] [lang]                   |       |
-| Author stabilization report    | *Goal point of contact, typically* |       |
-| Author stabilization PR        | *Goal point of contact, typically* |       |
-| Stabilization decision         | ![Team][] [lang]                   |       |
-
-### Stabilize library feature
-
-> *Standard library features follow the [libs-api stabilization process](https://rustc-dev-guide.rust-lang.org/stability.html#stabilizing-a-library-feature). 
-
-| Task                           | Owner(s) or team(s)                | Notes |
-|--------------------------------|------------------------------------|-------|
-| Author stabilization PR        | *Goal point of contact, typically* |       |
-| Stabilization decision         | ![Team][] [libs-api]               |       |
+| Author call for testing blog post | @frank-king |       |
 
 ### Definitions
 
