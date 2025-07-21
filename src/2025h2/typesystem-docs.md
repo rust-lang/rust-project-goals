@@ -4,7 +4,7 @@
 |:-----------------|----------|
 | Point of contact | @BoxyUwU |
 | Teams            | <!-- TEAMS WITH ASKS --> |
-| Task owners      | @BoxyUwU |
+| Task owners      | <!-- TASK OWNERS --> |
 | Status           | Proposed |
 | Tracking issue   |          |
 | Zulip channel    | N/A      |
