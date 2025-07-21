@@ -3,7 +3,7 @@ use std::{
     path::PathBuf,
 };
 
-use spanned::Spanned;
+use spanned::{Result, Spanned};
 
 use crate::{
     config::Configuration,
@@ -24,7 +24,7 @@ use crate::{
 ///
 /// \*1: ... longer notes that would not fit ...
 /// ```
-pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> anyhow::Result<String> {
+pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> Result<String> {
     use std::fmt::Write;
 
     const CHECK: &str = "✅";
@@ -156,7 +156,7 @@ struct GoalData<'g> {
 }
 
 impl<'g> GoalData<'g> {
-    fn new(ask: &'g TeamAsk) -> anyhow::Result<Self> {
+    fn new(ask: &'g TeamAsk) -> Result<Self> {
         match &ask.goal_titles[..] {
             [goal_title] => Ok(Self {
                 goal_title,
@@ -168,9 +168,10 @@ impl<'g> GoalData<'g> {
                 subgoal_title: Some(subgoal_title),
                 link: &ask.link_path,
             }),
-            _ => anyhow::bail!(
-                "expected either 1 or 2 goal titles, not {:?}",
-                ask.goal_titles
+            _ => spanned::bail!(
+                ask.goal_titles[3],
+                "expected either 1 or 2 goal titles, not {}",
+                ask.goal_titles.len(),
             ),
         }
     }

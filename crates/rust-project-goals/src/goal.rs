@@ -2,9 +2,8 @@ use std::path::Path;
 use std::sync::Arc;
 use std::{collections::BTreeSet, path::PathBuf};
 
-use anyhow::{bail, Context};
 use regex::Regex;
-use spanned::Spanned;
+use spanned::{Error, Result, Spanned};
 
 use crate::config::{Configuration, TeamAskDetails};
 use crate::gh::issue_id::{IssueId, Repository};
@@ -46,7 +45,7 @@ pub struct Metadata {
     pub title: String,
     pub short_title: Spanned<String>,
     pub pocs: String,
-    pub status: Status,
+    pub status: Spanned<Status>,
     pub tracking_issue: Option<IssueId>,
     pub table: Spanned<Table>,
 }
@@ -66,7 +65,7 @@ pub struct GoalPlan {
 /// Identifies a particular ask for a set of Rust teams
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub struct PlanItem {
-    pub text: String,
+    pub text: Spanned<String>,
     pub owners: String,
     pub notes: String,
 }
@@ -104,12 +103,10 @@ pub struct TeamAsk {
 }
 
 /// Load all the goals from a given directory
-pub fn goals_in_dir(directory_path: &Path) -> anyhow::Result<Vec<GoalDocument>> {
+pub fn goals_in_dir(directory_path: &Path) -> Result<Vec<GoalDocument>> {
     let mut goal_documents = vec![];
     for (path, link_path) in markdown_files(&directory_path)? {
-        if let Some(goal_document) = GoalDocument::load(&path, &link_path)
-            .with_context(|| format!("loading goal from `{}`", path.display()))?
-        {
+        if let Some(goal_document) = GoalDocument::load(&path, &link_path)? {
             goal_documents.push(goal_document);
         }
     }
@@ -117,7 +114,7 @@ pub fn goals_in_dir(directory_path: &Path) -> anyhow::Result<Vec<GoalDocument>> 
 }
 
 impl GoalDocument {
-    fn load(path: &Path, link_path: &Path) -> anyhow::Result<Option<Self>> {
+    fn load(path: &Path, link_path: &Path) -> Result<Option<Self>> {
         let sections = markwaydown::parse(path)?;
 
         let Some(metadata) = extract_metadata(&sections)? else {
@@ -147,7 +144,7 @@ impl GoalDocument {
 
         // Enforce that every goal has some team asks (unless it is not accepted)
         if metadata.status.is_not_not_accepted() && team_asks.is_empty() {
-            anyhow::bail!("no team asks in goal; did you include `![Team]` in the table?");
+            spanned::bail_here!("no team asks in goal; did you include `![Team]` in the table?");
         }
 
         let task_owners = goal_plans
@@ -181,7 +178,7 @@ impl GoalDocument {
     }
 
     /// Modify the goal document on disk to link to the given issue number in the metadata.
-    pub fn link_issue(&self, number: IssueId) -> anyhow::Result<()> {
+    pub fn link_issue(&self, number: IssueId) -> Result<()> {
         let mut metadata_table = self.metadata.table.clone();
         metadata_table
             .content
@@ -202,7 +199,7 @@ impl GoalDocument {
     }
 }
 
-pub fn format_goal_table(goals: &[&GoalDocument]) -> anyhow::Result<String> {
+pub fn format_goal_table(goals: &[&GoalDocument]) -> Result<String> {
     // If any of the goals have tracking issues, include those in the table.
     let goals_are_proposed = goals
         .iter()
@@ -292,12 +289,8 @@ impl Status {
     pub fn is_not_not_accepted(&self) -> bool {
         self.acceptance != AcceptanceStatus::NotAccepted
     }
-}
 
-impl TryFrom<&str> for Status {
-    type Error = anyhow::Error;
-
-    fn try_from(value: &str) -> anyhow::Result<Self> {
+    pub fn try_from(value: Spanned<&str>) -> Result<Spanned<Self>> {
         let value = value.trim();
 
         let valid_values = [
@@ -361,13 +354,13 @@ impl TryFrom<&str> for Status {
 
         for (valid_value, status) in valid_values {
             if value == valid_value {
-                return Ok(status);
+                return Ok(value.map(|_| status));
             }
         }
 
-        anyhow::bail!(
-            "unrecognized status `{}`, expected one of {:?}",
+        spanned::bail!(
             value,
+            "unrecognized status, expected one of {:?}",
             valid_values.iter().map(|(s, _)| s).collect::<Vec<_>>(),
         )
     }
@@ -380,13 +373,13 @@ pub enum AcceptanceStatus {
     NotAccepted,
 }
 
-fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata>> {
+fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
     let Some(first_section) = sections.first() else {
-        anyhow::bail!("no markdown sections found in input")
+        spanned::bail_here!("no markdown sections found in input")
     };
 
     if first_section.title.is_empty() {
-        anyhow::bail!("first section has no title");
+        spanned::bail!(first_section.title, "first section has no title");
     }
 
     let title = &first_section.title;
@@ -404,21 +397,24 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata>> {
         .iter()
         .find(|row| row[0] == "Point of contact")
     else {
-        anyhow::bail!("metadata table has no `Point of contact` row")
+        spanned::bail!(
+            first_table.rows[0][0],
+            "metadata table has no `Point of contact` row"
+        )
     };
 
     if !re::is_just(&re::USERNAME, poc_row[1].trim()) {
-        anyhow::bail!(
-            "point of contact must be a single github username (found {})",
-            poc_row[1].render()
+        spanned::bail!(
+            poc_row[1],
+            "point of contact must be a single github username",
         )
     }
 
     let Some(status_row) = first_table.rows.iter().find(|row| row[0] == "Status") else {
-        anyhow::bail!("metadata table has no `Status` row")
+        spanned::bail!(first_table.rows[0][0], "metadata table has no `Status` row")
     };
 
-    let status = Status::try_from(status_row[1].as_str())?;
+    let status = Status::try_from(status_row[1].as_deref())?;
 
     let issue = if let Some(r) = first_table
         .rows
@@ -427,16 +423,13 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata>> {
     {
         // Accepted goals must have a tracking issue.
         let has_tracking_issue = !r[1].is_empty();
-        if status.acceptance == AcceptanceStatus::Accepted {
-            anyhow::ensure!(
-                has_tracking_issue,
-                "accepted goals cannot have an empty tracking issue"
-            );
+        if status.acceptance == AcceptanceStatus::Accepted && !has_tracking_issue {
+            spanned::bail!(r[1], "accepted goals cannot have an empty tracking issue");
         }
 
         // For the others, it's of course optional.
         if has_tracking_issue {
-            Some(r[1].parse().transpose()?.content)
+            Some(r[1].parse()?.content)
         } else {
             None
         }
@@ -461,13 +454,14 @@ fn extract_metadata(sections: &[Section]) -> anyhow::Result<Option<Metadata>> {
     }))
 }
 
-fn verify_row(rows: &[Vec<Spanned<String>>], key: &str, value: &str) -> anyhow::Result<()> {
+fn verify_row(rows: &[Vec<Spanned<String>>], key: &str, value: &str) -> Result<()> {
     let Some(row) = rows.iter().find(|row| row[0] == key) else {
-        anyhow::bail!("metadata table has no `{}` row", key)
+        spanned::bail!(rows[0][0], "metadata table has no `{}` row", key)
     };
 
     if row[1] != value {
-        anyhow::bail!(
+        spanned::bail!(
+            row[1],
             "metadata table has incorrect `{}` row, expected `{}`",
             key,
             value
@@ -477,7 +471,7 @@ fn verify_row(rows: &[Vec<Spanned<String>>], key: &str, value: &str) -> anyhow::
     Ok(())
 }
 
-fn extract_summary(sections: &[Section]) -> anyhow::Result<Option<String>> {
+fn extract_summary(sections: &[Section]) -> Result<Option<String>> {
     let Some(ownership_section) = sections.iter().find(|section| section.title == "Summary") else {
         return Ok(None);
     };
@@ -485,12 +479,12 @@ fn extract_summary(sections: &[Section]) -> anyhow::Result<Option<String>> {
     Ok(Some(ownership_section.text.trim().to_string()))
 }
 
-fn extract_plan_items<'i>(sections: &[Section]) -> anyhow::Result<Vec<GoalPlan>> {
+fn extract_plan_items<'i>(sections: &[Section]) -> Result<Vec<GoalPlan>> {
     let Some(ownership_index) = sections
         .iter()
         .position(|section| section.title == "Ownership and team asks")
     else {
-        anyhow::bail!("no `Ownership and team asks` section found")
+        spanned::bail_here!("no `Ownership and team asks` section found")
     };
 
     // Extract the plan items from the main section (if any)
@@ -508,7 +502,8 @@ fn extract_plan_items<'i>(sections: &[Section]) -> anyhow::Result<Vec<GoalPlan>>
     }
 
     if goal_plans.is_empty() {
-        anyhow::bail!(
+        spanned::bail!(
+            sections[ownership_index].title,
             "no goal table items found in the `Ownership and team asks` section or subsections"
         )
     }
@@ -516,10 +511,7 @@ fn extract_plan_items<'i>(sections: &[Section]) -> anyhow::Result<Vec<GoalPlan>>
     Ok(goal_plans)
 }
 
-fn goal_plan(
-    subgoal: Option<Spanned<String>>,
-    section: &Section,
-) -> anyhow::Result<Option<GoalPlan>> {
+fn goal_plan(subgoal: Option<Spanned<String>>, section: &Section) -> Result<Option<GoalPlan>> {
     match section.tables.len() {
         0 => Ok(None),
         1 => {
@@ -544,10 +536,11 @@ fn goal_plan(
                 table_error.push(format!("{}: {:?}", idx + 1, header.join(", ")));
             }
 
-            anyhow::bail!(
+            spanned::bail!(
+                section.title,
                 "markdown parsing unexpectedly encountered multiple ({}) goal tables in section `{}`:\n{}",
                 thats_too_many,
-                section.title.render(),
+                section.title.content,
                 table_error.join("\n"),
             )
         }
@@ -556,13 +549,13 @@ fn goal_plan(
 
 fn extract_plan_item(
     rows: &mut std::iter::Peekable<std::slice::Iter<Vec<Spanned<String>>>>,
-) -> anyhow::Result<PlanItem> {
+) -> Result<PlanItem> {
     let Some(row) = rows.next() else {
-        anyhow::bail!("unexpected end of table");
+        spanned::bail_here!("unexpected end of table");
     };
 
     Ok(PlanItem {
-        text: row[0].to_string(),
+        text: row[0].clone(),
         owners: row[1].to_string(),
         notes: row[2].to_string(),
     })
@@ -570,7 +563,7 @@ fn extract_plan_item(
 
 impl PlanItem {
     /// Parses the owners of this plan item.
-    pub fn parse_owners(&self) -> anyhow::Result<Option<ParsedOwners>> {
+    pub fn parse_owners(&self) -> Result<Option<ParsedOwners>> {
         if self.owners.is_empty() {
             Ok(None)
         } else if self.is_team_ask() {
@@ -597,7 +590,7 @@ impl PlanItem {
     }
 
     /// Return the set of teams being asked to do things by this item, or empty vector if this is not a team ask.
-    pub fn teams_being_asked(&self) -> anyhow::Result<Vec<&'static TeamName>> {
+    pub fn teams_being_asked(&self) -> Result<Vec<&'static TeamName>> {
         if !self.is_team_ask() {
             return Ok(vec![]);
         }
@@ -605,10 +598,12 @@ impl PlanItem {
         let mut teams = vec![];
         for team_name in extract_team_names(&self.owners) {
             let Some(team) = team::get_team_name(&team_name)? else {
-                anyhow::bail!(
+                let names = team::get_team_names()?;
+                spanned::bail!(
+                    self.text,
                     "no Rust team named `{}` found (valid names are {})",
                     team_name,
-                    commas(team::get_team_names()?),
+                    commas(names),
                 );
             };
 
@@ -616,7 +611,11 @@ impl PlanItem {
         }
 
         if teams.is_empty() {
-            anyhow::bail!("team ask for \"{}\" does not list any teams", self.text);
+            spanned::bail!(
+                self.text,
+                "team ask for \"{}\" does not list any teams",
+                self.text.content
+            );
         }
 
         Ok(teams)
@@ -649,30 +648,33 @@ impl PlanItem {
         link_path: &Arc<PathBuf>,
         goal_titles: &Vec<Spanned<String>>,
         goal_owners: &str,
-    ) -> anyhow::Result<Vec<TeamAsk>> {
+    ) -> Result<Vec<TeamAsk>> {
         let mut asks = vec![];
 
         let teams = self.teams_being_asked()?;
         if !teams.is_empty() {
             let config = Configuration::get();
-            if !config.team_asks.contains_key(&self.text) {
-                bail!(
-                    "unrecognized team ask {:?}, team asks must be one of the following:\n{}",
-                    self.text,
-                    config
-                        .team_asks
-                        .iter()
-                        .map(|(ask, TeamAskDetails { about, .. })| {
-                            format!("* {ask:?}, meaning team should {about}")
-                        })
-                        .collect::<Vec<_>>()
-                        .join("\n"),
+            if !config.team_asks.contains_key(&*self.text) {
+                return Err(
+                    Error::new_str(self.text.as_ref().map(|_| "unrecognized team ask")).wrap_str(
+                        Spanned::here(format!(
+                            "team asks must be one of the following:\n{}",
+                            config
+                                .team_asks
+                                .iter()
+                                .map(|(ask, TeamAskDetails { about, .. })| {
+                                    format!("* {ask:?}, meaning team should {about}")
+                                })
+                                .collect::<Vec<_>>()
+                                .join("\n")
+                        )),
+                    ),
                 );
             }
 
             asks.push(TeamAsk {
                 link_path: link_path.clone(),
-                ask_description: self.text.clone(),
+                ask_description: self.text.content.clone(),
                 goal_titles: goal_titles.clone(),
                 teams,
                 owners: goal_owners.to_string(),
@@ -684,14 +686,17 @@ impl PlanItem {
     }
 }
 
-fn expect_headers(table: &Table, expected: &[&str]) -> anyhow::Result<()> {
+fn expect_headers(table: &Table, expected: &[&str]) -> Result<()> {
     if table.header != expected {
         // FIXME: do a diff so we see which headers are missing or extraneous
-        anyhow::bail!(
-            "{}: unexpected table header, expected `{:?}`, found `{:?}`",
-            table.header[0].render(),
-            expected,
-            table.header.iter().map(|h| &h.content),
+
+        return Err(
+            Error::new_str(table.header[0].as_ref().map(|_| "unexpected table header")).wrap_str(
+                Spanned::here(format!(
+                    "expected `{expected:?}`, found `{:?}`",
+                    table.header.iter().map(|h| &h.content),
+                )),
+            ),
         );
     }
 

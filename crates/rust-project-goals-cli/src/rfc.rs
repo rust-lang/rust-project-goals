@@ -6,7 +6,6 @@ use std::{
     time::Duration,
 };
 
-use anyhow::Context;
 use regex::Regex;
 
 use rust_project_goals::{
@@ -20,18 +19,17 @@ use rust_project_goals::{
         labels::GhLabel,
     },
     goal::{self, GoalDocument, GoalPlan, ParsedOwners},
+    spanned::{self, Context, Error, Result},
     team::{get_person_data, TeamName},
 };
 
-fn validate_path(path: &Path) -> anyhow::Result<String> {
+fn validate_path(path: &Path) -> Result<String> {
     if !path.is_dir() {
-        return Err(anyhow::anyhow!(
-            "RFC path should be a directory like src/2024h2"
-        ));
+        spanned::bail_here!("RFC path should be a directory like src/2024h2");
     };
 
     if path.is_absolute() {
-        return Err(anyhow::anyhow!("RFC path should be relative"));
+        spanned::bail_here!("RFC path should be relative");
     }
 
     let timeframe = path
@@ -40,12 +38,12 @@ fn validate_path(path: &Path) -> anyhow::Result<String> {
         .unwrap()
         .as_os_str()
         .to_str()
-        .ok_or_else(|| anyhow::anyhow!("invalid path `{}`", path.display()))?;
+        .ok_or_else(|| Error::str(format!("invalid path `{}`", path.display())))?;
 
     Ok(timeframe.to_string())
 }
 
-pub fn generate_comment(path: &Path) -> anyhow::Result<()> {
+pub fn generate_comment(path: &Path) -> Result<()> {
     let _ = validate_path(path)?;
     let goal_documents = goal::goals_in_dir(path)?;
     let teams_with_asks = teams_with_asks(&goal_documents);
@@ -69,7 +67,7 @@ pub fn generate_comment(path: &Path) -> anyhow::Result<()> {
     Ok(())
 }
 
-pub fn generate_rfc(path: &Path) -> anyhow::Result<()> {
+pub fn generate_rfc(path: &Path) -> Result<()> {
     let timeframe = &validate_path(path)?;
 
     // run mdbook build
@@ -80,18 +78,11 @@ pub fn generate_rfc(path: &Path) -> anyhow::Result<()> {
         .join(timeframe)
         .join("index.md");
     if !generated_path.exists() {
-        return Err(anyhow::anyhow!(
-            "no markdown generated at {}",
-            generated_path.display()
-        ));
+        spanned::bail_here!("no markdown generated at {}", generated_path.display());
     }
 
-    let generated_text = std::fs::read_to_string(&generated_path).with_context(|| {
-        format!(
-            "reading generated markdown from `{}`",
-            generated_path.display()
-        )
-    })?;
+    let generated_text = std::fs::read_to_string(&generated_path)
+        .with_path_context(&generated_path, "reading generated markdown")?;
 
     let regex = Regex::new(r"\]\(([^(]*)\.md(#[^)]*)?\)").unwrap();
 
@@ -110,13 +101,13 @@ pub fn generate_issues(
     path: &Path,
     commit: bool,
     sleep: u64,
-) -> anyhow::Result<()> {
+) -> Result<()> {
     // Verify the `gh` client is installed to compute which actions need to be taken in the repo.
     let sanity_check = Command::new("gh").arg("--version").output();
     if sanity_check.is_err() {
-        return Err(anyhow::anyhow!(
+        spanned::bail_here!(
             "The github `gh` client is missing and needs to be installed and configured with a token."
-        ));
+        );
     }
 
     // Hacky but works: we loop because after creating the issue, we sometimes have additional sync to do,
@@ -166,7 +157,7 @@ pub fn generate_issues(
             }
             progress_bar::finalize_progress_bar();
             if success == 0 {
-                anyhow::bail!("all actions failed, aborting")
+                spanned::bail_here!("all actions failed, aborting")
             }
         } else {
             eprintln!("Actions to be executed:");
@@ -242,7 +233,7 @@ enum GithubAction<'doc> {
 fn initialize_labels(
     repository: &Repository,
     teams_with_asks: &BTreeSet<&TeamName>,
-) -> anyhow::Result<BTreeSet<GithubAction<'static>>> {
+) -> Result<BTreeSet<GithubAction<'static>>> {
     const TEAM_LABEL_COLOR: &str = "bfd4f2";
 
     let mut desired_labels: BTreeSet<_> = teams_with_asks
@@ -283,12 +274,12 @@ fn initialize_issues<'doc>(
     repository: &Repository,
     timeframe: &str,
     goal_documents: &'doc [GoalDocument],
-) -> anyhow::Result<BTreeSet<GithubAction<'doc>>> {
+) -> Result<BTreeSet<GithubAction<'doc>>> {
     // the set of issues we want to exist
     let desired_issues: BTreeSet<GithubIssue> = goal_documents
         .iter()
         .map(|goal_document| issue(timeframe, goal_document))
-        .collect::<anyhow::Result<_>>()?;
+        .collect::<Result<_>>()?;
 
     // the list of existing issues in the target milestone
     let milestone_issues = list_issues_in_milestone(repository, timeframe)?;
@@ -412,7 +403,7 @@ fn initialize_issues<'doc>(
     Ok(actions)
 }
 
-fn issue<'doc>(timeframe: &str, document: &'doc GoalDocument) -> anyhow::Result<GithubIssue<'doc>> {
+fn issue<'doc>(timeframe: &str, document: &'doc GoalDocument) -> Result<GithubIssue<'doc>> {
     let mut assignees = BTreeSet::default();
     for username in document.metadata.owner_usernames() {
         if let Some(data) = get_person_data(username)? {
@@ -443,7 +434,7 @@ fn goal_document_link(timeframe: &str, document: &GoalDocument) -> String {
     format!("[{timeframe}/{goal_file}](https://rust-lang.github.io/rust-project-goals/{timeframe}/{goal_file}.html)")
 }
 
-fn issue_text(timeframe: &str, document: &GoalDocument) -> anyhow::Result<String> {
+fn issue_text(timeframe: &str, document: &GoalDocument) -> Result<String> {
     let mut tasks = vec![];
     for goal_plan in &document.goal_plans {
         tasks.extend(task_items(goal_plan)?);
@@ -481,7 +472,7 @@ fn issue_text(timeframe: &str, document: &GoalDocument) -> anyhow::Result<String
     ))
 }
 
-fn task_items(goal_plan: &GoalPlan) -> anyhow::Result<Vec<String>> {
+fn task_items(goal_plan: &GoalPlan) -> Result<Vec<String>> {
     use std::fmt::Write;
 
     let mut tasks = vec![];
@@ -494,7 +485,7 @@ fn task_items(goal_plan: &GoalPlan) -> anyhow::Result<Vec<String>> {
         let mut description = format!(
             "* {box} {text}",
             box = if plan_item.is_complete() { "[x]" } else { "[ ]" },
-            text = plan_item.text
+            text = plan_item.text.content
         );
 
         if let Some(parsed_owners) = plan_item.parse_owners()? {
@@ -584,7 +575,7 @@ impl Display for GithubAction<'_> {
 }
 
 impl GithubAction<'_> {
-    pub fn execute(self, repository: &Repository, timeframe: &str) -> anyhow::Result<()> {
+    pub fn execute(self, repository: &Repository, timeframe: &str) -> Result<()> {
         match self {
             GithubAction::CreateLabel { label } => {
                 label.create(repository)?;

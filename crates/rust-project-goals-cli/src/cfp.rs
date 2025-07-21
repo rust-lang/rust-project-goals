@@ -1,5 +1,6 @@
-use anyhow::{Context, Result};
 use regex::Regex;
+use rust_project_goals::spanned::{Error, Spanned};
+use rust_project_goals::{spanned::Context as _, spanned::Result};
 use std::fs::{self, File};
 use std::io::Write;
 use std::path::{Path, PathBuf};
@@ -288,8 +289,9 @@ pub fn create_cfp(timeframe: &str, force: bool, dry_run: bool) -> Result<()> {
             println!("Would create/overwrite directory: {}", dir_path.display());
         }
     } else if !dry_run {
-        fs::create_dir_all(&dir_path)
-            .with_context(|| format!("Failed to create directory {}", dir_path.display()))?;
+        fs::create_dir_all(&dir_path).with_context(|| {
+            Spanned::here(format!("Failed to create directory {}", dir_path.display()))
+        })?;
         println!("Created directory: {}", dir_path.display());
     } else {
         println!("Would create directory: {}", dir_path.display());
@@ -342,7 +344,7 @@ pub fn create_cfp(timeframe: &str, force: bool, dry_run: bool) -> Result<()> {
 fn validate_timeframe(timeframe: &str) -> Result<()> {
     let re = Regex::new(r"^\d{4}[hH][12]$").unwrap();
     if !re.is_match(timeframe) {
-        anyhow::bail!("Invalid timeframe format. Expected format: YYYYhN or YYYYHN (e.g., 2025h1, 2025H1, 2025h2, or 2025H2)");
+        return Err(Error::str("Invalid timeframe format. Expected format: YYYYhN or YYYYHN (e.g., 2025h1, 2025H1, 2025h2, or 2025H2"));
     }
     Ok(())
 }
@@ -356,8 +358,7 @@ fn copy_and_process_template(
     dry_run: bool,
 ) -> Result<()> {
     // Read the template file
-    let template_content = fs::read_to_string(template_path)
-        .with_context(|| format!("Failed to read template file: {}", template_path))?;
+    let template_content = Spanned::read_str_from_file(template_path).transpose()?;
 
     // Use the pure function to process the content
     let processed_content = text_processing::process_template_content(
@@ -369,9 +370,9 @@ fn copy_and_process_template(
     // Write to destination file
     if !dry_run {
         File::create(dest_path)
-            .with_context(|| format!("Failed to create file: {}", dest_path.display()))?
+            .with_path_context(dest_path, "Failed to create file")?
             .write_all(processed_content.as_bytes())
-            .with_context(|| format!("Failed to write to file: {}", dest_path.display()))?;
+            .with_path_context(dest_path, "Failed to write to file")?;
 
         println!("Created file: {}", dest_path.display());
     } else {
@@ -383,8 +384,7 @@ fn copy_and_process_template(
 /// Updates the SUMMARY.md file to include the new timeframe section
 fn update_summary_md(timeframe: &str, lowercase_timeframe: &str, dry_run: bool) -> Result<()> {
     let summary_path = "src/SUMMARY.md";
-    let content =
-        fs::read_to_string(summary_path).with_context(|| format!("Failed to read SUMMARY.md"))?;
+    let content = fs::read_to_string(summary_path).with_str_context("Failed to read SUMMARY.md")?;
 
     // Use the pure function to process the content
     let new_content =
@@ -408,8 +408,7 @@ fn update_summary_md(timeframe: &str, lowercase_timeframe: &str, dry_run: bool) 
 
     // Write the updated content back to SUMMARY.md
     if !dry_run {
-        fs::write(summary_path, new_content)
-            .with_context(|| format!("Failed to write to SUMMARY.md"))?;
+        fs::write(summary_path, new_content).with_str_context("Failed to write to SUMMARY.md")?;
 
         println!("Updated SUMMARY.md with {} section", timeframe);
     } else {
@@ -422,8 +421,7 @@ fn update_summary_md(timeframe: &str, lowercase_timeframe: &str, dry_run: bool) 
 /// Updates the src/README.md with information about the new timeframe
 fn update_main_readme(timeframe: &str, lowercase_timeframe: &str, dry_run: bool) -> Result<()> {
     let readme_path = "src/README.md";
-    let content =
-        fs::read_to_string(readme_path).with_context(|| format!("Failed to read README.md"))?;
+    let content = fs::read_to_string(readme_path).with_str_context("Failed to read README.md")?;
 
     // Use the pure function to process the content
     let new_content =
@@ -495,8 +493,7 @@ fn update_main_readme(timeframe: &str, lowercase_timeframe: &str, dry_run: bool)
 
     // Write the updated content back to README.md
     if !dry_run {
-        fs::write(readme_path, new_content)
-            .with_context(|| format!("Failed to write to src/README.md"))?;
+        fs::write(readme_path, new_content).with_str_context("Failed to write to src/README.md")?;
     }
 
     Ok(())

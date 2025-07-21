@@ -12,11 +12,11 @@ use rust_project_goals::config::Configuration;
 use rust_project_goals::format_team_ask::format_team_asks;
 use rust_project_goals::util::{self, GithubUserInfo};
 
+use rust_project_goals::spanned::Spanned;
 use rust_project_goals::{
     goal::{self, GoalDocument, Status, TeamAsk},
     re, team,
 };
-use spanned::Spanned;
 
 const LINKS: &str = "links";
 const LINKIFIERS: &str = "linkifiers";
@@ -233,13 +233,16 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
             // Extract out the list of goals with the given status.
             let goals = self.goal_documents(chapter_path)?;
-            let mut goals_with_status: Vec<&GoalDocument> =
-                goals.iter().filter(|g| filter(g.metadata.status)).collect();
+            let mut goals_with_status: Vec<&GoalDocument> = goals
+                .iter()
+                .filter(|g| filter(g.metadata.status.content))
+                .collect();
 
             goals_with_status.sort_by_key(|g| &g.metadata.title);
 
             // Format the list of goals and replace the `<!-- -->` comment with that.
-            let output = goal::format_goal_table(&goals_with_status)?;
+            let output =
+                goal::format_goal_table(&goals_with_status).map_err(|e| anyhow::anyhow!("{e}"))?;
             chapter.content.replace_range(range, &output);
 
             // Populate with children if this is not README
@@ -281,7 +284,8 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             .filter(|g| g.metadata.status.is_not_not_accepted())
             .flat_map(|g| &g.team_asks)
             .collect();
-        let format_team_asks = format_team_asks(&asks_of_any_team)?;
+        let format_team_asks =
+            format_team_asks(&asks_of_any_team).map_err(|e| anyhow::anyhow!("{e}"))?;
         chapter.content.replace_range(range, &format_team_asks);
 
         Ok(())
@@ -323,7 +327,8 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             return Ok(goals.clone());
         }
 
-        let goal_documents = goal::goals_in_dir(&self.ctx.config.book.src.join(milestone_path))?;
+        let goal_documents = goal::goals_in_dir(&self.ctx.config.book.src.join(milestone_path))
+            .map_err(|e| anyhow::anyhow!("{e}"))?;
         let goals = Arc::new(goal_documents);
         self.goal_document_map
             .insert(milestone_path.to_path_buf(), goals.clone());
@@ -380,19 +385,21 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             return Ok(n.clone());
         }
 
-        let display_name = match team::get_person_data(username)? {
-            Some(person) => person.data.name.clone(),
-            None => match GithubUserInfo::load(username)
-                .with_context(|| format!("loading user info for {}", username))
-            {
-                Ok(GithubUserInfo { name: Some(n), .. }) => n,
-                Ok(GithubUserInfo { name: None, .. }) => username.to_string(),
-                Err(e) => {
-                    eprintln!("{:?}", e);
-                    username.to_string()
-                }
-            },
-        };
+        let display_name =
+            match team::get_person_data(username).map_err(|e| anyhow::anyhow!("{e}"))? {
+                Some(person) => person.data.name.clone(),
+                None => match GithubUserInfo::load(username)
+                    .map_err(|e| anyhow::anyhow!("{e}"))
+                    .with_context(|| format!("loading user info for {}", username))
+                {
+                    Ok(GithubUserInfo { name: Some(n), .. }) => n,
+                    Ok(GithubUserInfo { name: None, .. }) => username.to_string(),
+                    Err(e) => {
+                        eprintln!("{:?}", e);
+                        username.to_string()
+                    }
+                },
+            };
         let display_name = Rc::new(display_name);
         self.display_names
             .insert(username.to_string(), display_name.clone());
@@ -421,7 +428,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
     fn link_teams(&self, chapter: &mut Chapter) -> anyhow::Result<()> {
         chapter.content.push_str("\n\n");
-        for team in team::get_team_names()? {
+        for team in team::get_team_names().map_err(|e| anyhow::anyhow!("{e}"))? {
             chapter
                 .content
                 .push_str(&format!("{team}: {}\n", team.url()));

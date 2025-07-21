@@ -4,7 +4,7 @@ use std::{
     path::{Path, PathBuf},
 };
 
-use spanned::Spanned;
+use spanned::{Result, Spanned};
 use walkdir::WalkDir;
 
 pub const ARROW: &str = "↳";
@@ -64,12 +64,12 @@ pub struct GithubUserInfo {
 }
 
 impl GithubUserInfo {
-    pub fn load(login: &str) -> anyhow::Result<Self> {
+    pub fn load(login: &str) -> Result<Self> {
         Self::github_request(login)
     }
 
-    fn github_request(login: &str) -> anyhow::Result<Self> {
-        in_thread(|| {
+    fn github_request(login: &str) -> Result<Self> {
+        in_thread(|| -> Result<_> {
             // FIXME: cache this in the target directory or something
             use reqwest::header::USER_AGENT;
             let url = format!("https://api.github.com/users/{}", &login[1..]);
@@ -96,9 +96,9 @@ pub fn commas(iter: impl IntoIterator<Item: Display>) -> String {
 
 /// Returns all markdown files in `directory_path` as `(absolute, relative)` pairs,
 /// where `relative` is relative to `directory_path`.
-pub fn markdown_files(directory_path: &Path) -> anyhow::Result<Vec<(PathBuf, PathBuf)>> {
+pub fn markdown_files(directory_path: &Path) -> Result<Vec<(PathBuf, PathBuf)>> {
     if !directory_path.is_dir() {
-        anyhow::bail!("`{}` is not a directory", directory_path.display());
+        spanned::bail_here!("`{}` is not a directory", directory_path.display());
     }
 
     let mut files = vec![];

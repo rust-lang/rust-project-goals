@@ -1,11 +1,10 @@
-use anyhow::Context;
 use chrono::{Datelike, NaiveDate};
 use regex::Regex;
-use rust_project_goals::markwaydown;
 use rust_project_goals::re::{HELP_WANTED, TLDR};
+use rust_project_goals::spanned::{Context as _, Result, Span, Spanned};
 use rust_project_goals::util::comma;
+use rust_project_goals::{markwaydown, spanned};
 use rust_project_goals_json::GithubIssueState;
-use spanned::{Span, Spanned};
 use std::io::Write;
 use std::path::Path;
 use std::process::{Command, Stdio};
@@ -25,14 +24,14 @@ pub(crate) fn generate_updates(
     start_date: &Option<NaiveDate>,
     end_date: &Option<NaiveDate>,
     vscode: bool,
-) -> anyhow::Result<()> {
+) -> Result<()> {
     if output_file.is_none() && !vscode {
-        anyhow::bail!("either `--output-file` or `--vscode` must be specified");
+        spanned::bail_here!("either `--output-file` or `--vscode` must be specified");
     }
 
     let milestone_re = Regex::new(r"^\d{4}[hH][12]$").unwrap();
     if !milestone_re.is_match(milestone) {
-        anyhow::bail!(
+        spanned::bail_here!(
             "the milestone `{}` does not follow the `$year$semester` format, where $semester is `h1` or `h2`",
             milestone,
         );
@@ -65,24 +64,23 @@ pub(crate) fn generate_updates(
     let output = updates.render()?;
 
     if let Some(output_file) = output_file {
-        std::fs::write(&output_file, output)
-            .with_context(|| format!("failed to write to `{}`", output_file.display()))?;
+        std::fs::write(&output_file, output).with_path_context(output_file, "failed to write")?;
     } else if vscode {
         let mut child = Command::new("code")
             .arg("-")
             .stdin(Stdio::piped())
             .spawn()
-            .with_context(|| "failed to spawn `code` process")?;
+            .with_str_context("failed to spawn `code` process")?;
 
         if let Some(stdin) = child.stdin.as_mut() {
             stdin
                 .write_all(output.as_bytes())
-                .with_context(|| "failed to write to `code` stdin")?;
+                .with_str_context("failed to write to `code` stdin")?;
         }
 
         child
             .wait()
-            .with_context(|| "failed to wait on `code` process")?;
+            .with_str_context("failed to wait on `code` process")?;
     } else {
         println!("{output}");
     }
@@ -95,7 +93,7 @@ fn prepare_goals(
     issues: &[ExistingGithubIssue],
     filter: &Filter<'_>,
     flagship: bool,
-) -> anyhow::Result<Vec<UpdatesGoal>> {
+) -> Result<Vec<UpdatesGoal>> {
     let mut result = vec![];
     // We process flagship and regular goals in two passes, and capture comments differently for flagship goals.
     for issue in issues {
@@ -169,10 +167,7 @@ fn prepare_goals(
 }
 
 /// Search for a TL;DR comment. If one is found, remove it and return the text.
-fn tldr(
-    _issue_id: &IssueId,
-    comments: &mut Vec<ExistingGithubComment>,
-) -> anyhow::Result<Option<String>> {
+fn tldr(_issue_id: &IssueId, comments: &mut Vec<ExistingGithubComment>) -> Result<Option<String>> {
     // `comments` are sorted by creation date in an ascending order, so we look for the most recent
     // TL;DR comment from the end.
     let Some(index) = comments.iter().rposition(|c| c.body.starts_with(TLDR)) else {
@@ -188,7 +183,7 @@ fn help_wanted(
     _issue_id: &IssueId,
     tldr: &Option<String>,
     comments: &[ExistingGithubComment],
-) -> anyhow::Result<(bool, Vec<HelpWanted>)> {
+) -> Result<(bool, Vec<HelpWanted>)> {
     use std::fmt::Write;
 
     let mut help_wanted = vec![];
@@ -229,7 +224,7 @@ fn help_wanted(
     Ok((tldr_has_help_wanted || !help_wanted.is_empty(), help_wanted))
 }
 
-fn why_this_goal(issue_id: &IssueId, issue: &ExistingGithubIssue) -> anyhow::Result<String> {
+fn why_this_goal(issue_id: &IssueId, issue: &ExistingGithubIssue) -> Result<String> {
     let span = Span {
         file: issue_id.url().into(),
         bytes: 0..issue.body.len(),
