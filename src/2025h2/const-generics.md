@@ -3,8 +3,8 @@
 | Metadata         |             |
 |:-----------------|-------------|
 | Point of contact | @BoxyUwU    |
-| Teams            | lang        |
-| Task owners      | @BoxyUwU    |
+| Teams            | <!-- TEAMS WITH ASKS -->        |
+| Task owners      | <!-- TASK OWNERS -->    |
 | Status           | Proposed    |
 | Tracking issue   |             |
 | Zulip channel    | N/A         |
@@ -36,6 +36,6 @@ suddenly stops working as well as type generics, forcing code to be rewritten to
 
 | Task                              | Owner(s) or team(s) | Notes |
 |-----------------------------------|---------------------|-------|
-| `adt_const_params` design meeting | [lang]              |       |
+| Design meeting | ![Team][] [lang]              | topic: `adt_const_params` design  |
 | `adt_const_params` RFC draft      | @BoxyUwU            |       |
 | Finish `mgca` prototype           | @BoxyUwU @camelid   |       |
