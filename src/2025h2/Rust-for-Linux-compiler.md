@@ -2,7 +2,7 @@
 
 | Metadata         |                                                                                  |
 |:-----------------|----------------------------------------------------------------------------------|
-| Point of contact | @ojeda                                                                           |
+| Point of contact | @tomassedovic                                                                    |
 | Teams            | <!-- TEAMS WITH ASKS -->                                                         |
 | Task owners      | <!-- TASK OWNERS -->                                                             |
 | Status           | Proposed                                                                         |
