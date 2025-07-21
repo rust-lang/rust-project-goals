@@ -537,9 +537,10 @@ fn goal_plan(subgoal: Option<Spanned<String>>, section: &Section) -> Result<Opti
             }
 
             spanned::bail!(
+                section.title,
                 "markdown parsing unexpectedly encountered multiple ({}) goal tables in section `{}`:\n{}",
                 thats_too_many,
-                section.title.render(),
+                section.title.content,
                 table_error.join("\n"),
             )
         }
