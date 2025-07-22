@@ -37,10 +37,7 @@ We have an experiment for improving the ergonomics around pinning and some initi
 
 ## Design axioms
 
-
-### Implement language feature X
-
-> *If there is an accepted RFC, or you are doing a [lang-team experiment](https://lang-team.rust-lang.org/how_to/experiment.html), you commonly need someone to write the code, support from the compiler to review your PRs, and possibly lang-team design meetings to review interesting design questions. Once implementation completes we recommend a call for testing blog post.*
+## Ownership and team asks
 
 | Task                              | Owner(s) or team(s)                | Notes |
 |-----------------------------------|------------------------------------|-------|
