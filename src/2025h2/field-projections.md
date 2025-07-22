@@ -69,11 +69,12 @@ pointers very often where we could use `NonNull<T>` instead if they had better f
 
 #### Current proposals
 
-In addition to [Field Projections RFC v2] already mentioned above, there is a [newer
-proposal](https://hackmd.io/@BennoLossin/HkMBy6Hzlx) that improves upon it.
+In addition to [Field Projections RFC v2] already mentioned above, there is a [newer proposal]
+that improves upon it.
 
 For historical context, there also is the [Field Projections RFC v1].
 
+[newer proposal]: https://hackmd.io/@BennoLossin/HkMBy6Hzlx
 [Field Projections RFC v1]: https://github.com/rust-lang/rfcs/pull/3318
 [Field Projections RFC v2]: https://github.com/rust-lang/rfcs/pull/3735
 
