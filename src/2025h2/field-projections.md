@@ -74,7 +74,7 @@ that improves upon it.
 
 For historical context, there also is the [Field Projections RFC v1].
 
-[newer proposal]: https://hackmd.io/@BennoLossin/HkMBy6Hzlx
+[newer proposal]: https://hackmd.io/%40BennoLossin/HkMBy6Hzlx
 [Field Projections RFC v1]: https://github.com/rust-lang/rfcs/pull/3318
 [Field Projections RFC v2]: https://github.com/rust-lang/rfcs/pull/3735
 
