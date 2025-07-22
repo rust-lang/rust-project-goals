@@ -7,7 +7,7 @@
 | Task owners           | <!-- TASK OWNERS -->                             |
 | Status                | Proposed                                         |
 | Tracking issue        | [rust-lang/rust-project-goals#109]               |
-| Other tracking issues | [rust-lang/rust#124509], [rust-lang/rust#124509] |
+| Other tracking issues | [rust-lang/rust#124509]                          |
 | Zulip channel         | [#wg-autodiff][channel]                          |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/390790-wg-autodiff
