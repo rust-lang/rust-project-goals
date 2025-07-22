@@ -34,7 +34,7 @@ fn example1() {
     let a = Foo([0; 100]);
     observe(&a);
     let b = a;
-    observe(&bar);
+    observe(&b);
 }
 
 fn example2() {
