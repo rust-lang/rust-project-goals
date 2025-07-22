@@ -1,13 +1,13 @@
 # Production-ready cranelift backend
 
-| Metadata         |                      |
-| :--------------- | -------------------- |
-| Point of contact | @folkertdev          |
-| Teams            | T-compiler, T-perf   |
-| Task owners      | @bjorn3, @folkertdev |
-| Status           | Proposed             |
-| Tracking issue   |                      |
-| Zulip channel    |                      |
+| Metadata         |                          |
+| :--------------- | ------------------------ |
+| Point of contact | @folkertdev              |
+| Teams            | <!-- TEAMS WITH ASKS --> |
+| Task owners      | <!-- TASK OWNERS -->     |
+| Status           | Proposed                 |
+| Tracking issue   |                          |
+| Zulip channel    |                          |
 
 ## Summary
 
