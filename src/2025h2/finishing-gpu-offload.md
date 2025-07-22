@@ -3,7 +3,6 @@
 | Metadata              |                                                  |
 | :-------------------- | -------------------------------------------------|
 | Point of contact      | @ZuseZ4                                          |
-| Teams                 | T-compiler                                       |
 | Teams                 | <!-- TEAMS WITH ASKS -->                         |
 | Task owners           | <!-- TASK OWNERS -->                             |
 | Status                | Proposed                                         |
