@@ -212,7 +212,7 @@ impl Subtrait for MyType {
 trait Supertrait {
     fn supertrait_item();
 }
-trait Subtrait: Supertrait {
+trait Subtrait: auto Supertrait {
     fn subtrait_item();
 }
 // User code is unchanged from above, no separate `Supertrait`
