@@ -17,7 +17,7 @@
 "Org decision" = { short="Org", about="reach a decision on an organizational or policy matter" }
 "MCP decision" = { short="MCP", about="accept a [Major Change Proposal](https://forge.rust-lang.org/compiler/mcp.html)" }
 "ACP decision" = { short="ACP", about="accept an [API Change Proposal](https://std-dev-guide.rust-lang.org/development/feature-lifecycle.html)" }
-"Finalize specification text" = { short="Spec text", about="assign a spec team liaison to finalize edits to Rust reference/specification" }
+"Review/revise Reference PR" = { short="Reference text", about="assign a lang-docs team liaison to finalize edits to Rust Reference" }
 "Stabilization decision" = { short="Stabilize.", about="reach a decision on a stabilization proposal" }
 "Policy decision" = { short="Policy", about="make a decision related to team policy" }
 "FCP decision(s)" = { short="FCP", about="make formal decision(s) that require 'checkboxes' and a FCP (Final Comment Period)" }

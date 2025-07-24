@@ -43,16 +43,16 @@ high level, but are not the focus of this project goal.
 
 **Owner:** @jhpratt
 
-| Task                                    | Owner(s) or team(s)  | Notes                                      |
-|-----------------------------------------|----------------------|--------------------------------------------|
-| Discussion and moral support            | ![Team][] [lang]     |                                            |
-| Implementation                          | @jhpratt             | [old PR][pr] is plausibly workable         |
-| Standard reviews                        | ![Team][] [compiler] |                                            |
-| Author stabilization report             | @jhpratt             |                                            |
-| Author specification 1st draft          | @jhpratt             |                                            |
-| Finalize specification text             | ![Team][] [spec]     | @joelmarcey                               |
-| Stabilization decision                  | ![Team][] [lang]     |                                            |
-| Inside Rust blog post inviting feedback | @jhpratt             | feedback on syntax if no team consensus    |
+| Task                                    | Owner(s) or team(s)   | Notes                                   |
+|-----------------------------------------|-----------------------|-----------------------------------------|
+| Discussion and moral support            | ![Team][] [lang]      |                                         |
+| Implementation                          | @jhpratt              | [old PR][pr] is plausibly workable      |
+| Standard reviews                        | ![Team][] [compiler]  |                                         |
+| Author stabilization report             | @jhpratt              |                                         |
+| Author Reference PR                     | @jhpratt              |                                         |
+| Review/revise Reference PR              | ![Team][] [lang-docs] | @joelmarcey                             |
+| Stabilization decision                  | ![Team][] [lang]      |                                         |
+| Inside Rust blog post inviting feedback | @jhpratt              | feedback on syntax if no team consensus |
 
 ### Definitions
 

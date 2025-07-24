@@ -98,18 +98,18 @@
 
 > *If the feature has been RFC'd and implemented and experiences are positive, [stabilization](https://rustc-dev-guide.rust-lang.org/stabilization_guide.html) may be the right next step. In this case, you will need to author a first draft of text for the Rust reference and make a Team Ask to request someone from the the spec team to adapt that text for final inclusion. You will also need to author a stabilization report.
 
-| Task                           | Owner(s) or team(s)                | Notes |
-|--------------------------------|------------------------------------|-------|
-| Author specification 1st draft | *Goal point of contact, typically* |       |
-| Finalize specification text    | ![Team][] [spec]                   |       |
-| Lang-team champion             | ![Team][] [lang]                   |       |
-| Author stabilization report    | *Goal point of contact, typically* |       |
-| Author stabilization PR        | *Goal point of contact, typically* |       |
-| Stabilization decision         | ![Team][] [lang]                   |       |
+| Task                        | Owner(s) or team(s)                | Notes |
+|-----------------------------|------------------------------------|-------|
+| Author Reference PR         | *Goal point of contact, typically* |       |
+| Review/revise Reference PR  | ![Team][] [lang-docs]              |       |
+| Lang-team champion          | ![Team][] [lang]                   |       |
+| Author stabilization report | *Goal point of contact, typically* |       |
+| Author stabilization PR     | *Goal point of contact, typically* |       |
+| Stabilization decision      | ![Team][] [lang]                   |       |
 
 ### Stabilize library feature
 
-> *Standard library features follow the [libs-api stabilization process](https://rustc-dev-guide.rust-lang.org/stability.html#stabilizing-a-library-feature). 
+> *Standard library features follow the [libs-api stabilization process](https://rustc-dev-guide.rust-lang.org/stability.html#stabilizing-a-library-feature).
 
 | Task                           | Owner(s) or team(s)                | Notes |
 |--------------------------------|------------------------------------|-------|
