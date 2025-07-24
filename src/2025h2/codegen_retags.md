@@ -40,7 +40,7 @@ However, beyond BorrowSanitizer, we believe that the these changes will be neces
 
 ### Avoid targeting any particular aliasing model
 
-Rust's aliasing model is still evolving, and both Stacked and Tree Borrows require different types of retags in different places (e.g. Stacked Borrows retags raw pointers after they are cast from references, but Tree Borrows does not). Ralf Jung (@ralfj) [has indicated](https://www.reddit.com/r/rust/comments/1lv9y96/comment/n253qdu/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+Rust's aliasing model is still evolving, and both Stacked and Tree Borrows require different types of retags in different places (e.g. Stacked Borrows retags raw pointers after they are cast from references, but Tree Borrows does not). @RalfJung [has indicated](https://www.reddit.com/r/rust/comments/1lv9y96/comment/n253qdu/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 ) that there will still be significant changes coming—potentially as a part of a third aliasing model. In anticipation of these changes, we need make these backend retags configurable to support all of the features of Stacked and Tree Borrows. To make this easy to maintain, we should allow third-party compiler plugins to override the behavior of a retag at this level, so that tools can adapt quickly to changes in Rust's aliasing model while it remains unstable.
 
 ### Make changes as minimal as possible
