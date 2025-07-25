@@ -98,6 +98,8 @@ The developers working on this project goal have expert-level knowledge of
 multiple areas of Rust, and in several cases, directly worked on the portions
 of Rust that need documenting.
 
+@joshtriplett and @jackh726 will coordinate these contributions.
+
 We're expecting to coordinate contributions of new reference material from
 @lcnr, @jackh726, @Amanieu, @GuillaumeGomez, and @yaahc.
 
@@ -137,7 +139,7 @@ The following [design axioms][da] apply:
 ## Ownership and team asks
 
 **Owner:** @joshtriplett, in his capacity as `t-lang` and `t-spec` team member,
-will lead this project goal.
+will lead this project goal. @jackh726 will co-lead this goal.
 
 | Task                               | Owner(s) or team(s)            | Notes                           |
 |------------------------------------|--------------------------------|---------------------------------|
