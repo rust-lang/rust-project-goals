@@ -61,9 +61,12 @@ More long-term we see the cranelift backend as an extremely promising approach f
 
 | Task                 | Owner(s) or team(s)                              | Notes                                                                                                                                |
 | -------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
-| Acquire funding      | Trifecta Tech Foundation @trifectatechfoundation | We will only be able to work on this project if it is funded                                                                         |
+| Acquire funding      | [Trifecta Tech Foundation] | We will only be able to work on this project if it is funded                                                                                               |
 | Standard reviews     | ![Team][] [compiler]                             | Casual improvements to `rustc_codegen_ssa` and other parts of the backend                                                            |
 | Dedicated reviewer   | ![Team][] [compiler]                             | Larger changes to `rustc_codegen_ssa`. While not strictly required, we think having a dedicated reviewer will speed up our progress. |
 | Deploy to production | ![Team][] [wg-compiler-performance]                                 | track and show `rustc_codegen_cranelift` performance                                                                                 |
-| Do the work          | bjorn3, folkertdev                               |                                                                                                                                      |
+| Do the work          | @bjorn3, @folkertdev                             |                                                                                                                                      |
+
+[Trifecta Tech Foundation]: https://github.com/trifectatechfoundation
+
 ## Frequently asked questions
