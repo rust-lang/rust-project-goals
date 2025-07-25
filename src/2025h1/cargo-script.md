@@ -75,14 +75,14 @@ Tracking issue [#136889](https://github.com/rust-lang/rust/issues/136889):
 
 ### Stabilize language feature `frontmatter`
 
-| Task                           | Owner(s) or team(s)                | Notes |
-|--------------------------------|------------------------------------|-------|
-| Author specification 1st draft | @epage |       |
-| Finalize specification text    | ![Team][] [spec]                   |  @ehuss |
-| Lang-team champion             | ![Team][] [lang]                   | @joshtriplett       |
-| Author stabilization report    | @epage |       |
-| Author stabilization PR        | @epage |       |
-| Stabilization decision         | ![Team][] [lang]                   |       |
+| Task                        | Owner(s) or team(s)   | Notes         |
+|-----------------------------|-----------------------|---------------|
+| Author Reference PR         | @epage                |               |
+| Review/revise Reference PR  | ![Team][] [lang-docs] | @ehuss        |
+| Lang-team champion          | ![Team][] [lang]      | @joshtriplett |
+| Author stabilization report | @epage                |               |
+| Author stabilization PR     | @epage                |               |
+| Stabilization decision      | ![Team][] [lang]      |               |
 
 ### Definitions
 

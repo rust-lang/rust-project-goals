@@ -73,15 +73,15 @@ Which features get finished and stabilized depends on bandwidth and other constr
 
 ### Finish and stabilize `arbitrary_self_types` and `derive_coerce_pointee`
 
-| Task                           | Owner(s) or team(s) | Notes |
-|--------------------------------|---------------------|-------|
-| Discussion and moral support   | ![Team][] [lang]    |       |
-| Finalize remaining work        | @dingxiangfei2009   |       |
-| Author specification 1st draft | @dingxiangfei2009   |       |
-| Finalize specification text    | ![Team][] [spec]    |       |
-| Lang-team champion             | ![Team][] [lang]    |       |
-| Author stabilization report    | @dingxiangfei2009   |       |
-| Author stabilization PR        | @dingxiangfei2009   |       |
-| Stabilization decision         | ![Team][] [lang]    |       |
+| Task                         | Owner(s) or team(s)   | Notes |
+|------------------------------|-----------------------|-------|
+| Discussion and moral support | ![Team][] [lang]      |       |
+| Finalize remaining work      | @dingxiangfei2009     |       |
+| Author Reference PR          | @dingxiangfei2009     |       |
+| Review/revise Reference PR   | ![Team][] [lang-docs] |       |
+| Lang-team champion           | ![Team][] [lang]      |       |
+| Author stabilization report  | @dingxiangfei2009     |       |
+| Author stabilization PR      | @dingxiangfei2009     |       |
+| Stabilization decision       | ![Team][] [lang]      |       |
 
 ## Frequently asked questions

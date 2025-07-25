@@ -100,18 +100,18 @@ This section defines the specific work items that are planned and who is expecte
 
 ### Return type notation
 
-| Task                           | Owner(s) or team(s)                                | Notes         |
-|--------------------------------|----------------------------------------------------|---------------|
-| Initial implementation         | @compiler-errors                                   | ![Complete][] |
-| Author RFC                     | @nikomatsakis                                      | ![Complete][] |
-| RFC decision                   | ![Team][] [lang]                                   | ![Complete][] |
-| Finished implementation        | @compiler-errors                                   | ![Complete][] |
-| Lang-team champion             | ![Team][] [lang]                                   | @nikomatsakis |
-| Standard reviews               | ![Team][] [types], [compiler]                      |               |
-| Author stabilization report    | @compiler-errors                                   |               |
-| Author specification 1st draft | TBD (@compiler-errors, @tmandry, or @nikomatsakis) |               |
-| Finalize specification text    | ![Team][] [spec]                                   | @nikomatsakis |
-| Stabilization decision         | ![Team][] [lang], [types]                          |               |
+| Task                        | Owner(s) or team(s)                                | Notes         |
+|-----------------------------|----------------------------------------------------|---------------|
+| Initial implementation      | @compiler-errors                                   | ![Complete][] |
+| Author RFC                  | @nikomatsakis                                      | ![Complete][] |
+| RFC decision                | ![Team][] [lang]                                   | ![Complete][] |
+| Finished implementation     | @compiler-errors                                   | ![Complete][] |
+| Lang-team champion          | ![Team][] [lang]                                   | @nikomatsakis |
+| Standard reviews            | ![Team][] [types], [compiler]                      |               |
+| Author stabilization report | @compiler-errors                                   |               |
+| Author Reference PR         | TBD (@compiler-errors, @tmandry, or @nikomatsakis) |               |
+| Review/revise Reference PR  | ![Team][] [lang-docs]                              | @nikomatsakis |
+| Stabilization decision      | ![Team][] [lang], [types]                          |               |
 
 ### Unsafe binders
 
