@@ -2,3 +2,6 @@ book
 target
 .cache
 src/api
+
+# copied into the repo by `mdbook-mermaid` install:
+/mermaid*.js

@@ -242,10 +242,13 @@ More concretely: the `grep` crate is only sensitive to the parts of `globset` ac
 `grep_cli` – if a change is made to `globset` that doesn't affect this subset, we'd expect to
 see `grep_cli` being rebuilt but the existing `grep` outputs being reused (no `grep` rebuild).
 
-> [!NOTE]
-> ["Early cutoff" (ECO)][bsac] refers to a build system optimization where we are able to detect
-> that a freshly-built artifact is identical to a prior one and to then reuse existing
-> artifacts of dependent crates from then on (instead of continuing to rebuild them).
+<div class="warning">
+
+["Early cutoff" (ECO)][bsac] refers to a build system optimization where we are able to detect
+that a freshly-built artifact is identical to a prior one and to then reuse existing
+artifacts of dependent crates from then on (instead of continuing to rebuild them).
+
+</div>
 
 [bsac]: https://www.microsoft.com/en-us/research/wp-content/uploads/2020/04/build-systems-jfp.pdf
 
