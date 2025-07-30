@@ -1,3 +1,4 @@
+use std::collections::BTreeMap;
 use std::path::Path;
 use std::sync::Arc;
 use std::{collections::BTreeSet, path::PathBuf};
@@ -8,7 +9,7 @@ use spanned::{Error, Result, Spanned};
 use crate::config::{Configuration, TeamAskDetails};
 use crate::gh::issue_id::{IssueId, Repository};
 use crate::markwaydown::{self, Section, Table};
-use crate::re::{self, TASK_OWNERS_STR, TEAMS_WITH_ASKS_STR};
+use crate::re::{self, CHAMPION_METADATA, TASK_OWNERS_STR, TEAMS_WITH_ASKS_STR};
 use crate::team::{self, TeamName};
 use crate::util::{self, commas, markdown_files};
 
@@ -48,6 +49,9 @@ pub struct Metadata {
     pub status: Spanned<Status>,
     pub tracking_issue: Option<IssueId>,
     pub table: Spanned<Table>,
+
+    /// For each table entry like `[T-lang] champion`, we create an entry in this map
+    pub champions: BTreeMap<&'static TeamName, Spanned<String>>,
 }
 
 pub const TRACKING_ISSUE_ROW: &str = "Tracking issue";
@@ -440,6 +444,39 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
     verify_row(&first_table.rows, "Teams", TEAMS_WITH_ASKS_STR)?;
     verify_row(&first_table.rows, "Task owners", TASK_OWNERS_STR)?;
 
+    let mut champions = BTreeMap::default();
+    for row in &first_table.rows {
+        let row_name = &row[0];
+        let row_value = &row[1];
+
+        if !row_name.to_lowercase().contains("champion") {
+            continue;
+        }
+
+        if let Some(m) = CHAMPION_METADATA.captures(row_name) {
+            let team_name = m.name("team").unwrap().as_str().to_string();
+
+            let Some(team) = team::get_team_name(&team_name)? else {
+                spanned::bail!(row_name, "team `{team_name}` is not recognized")
+            };
+
+            if champions.contains_key(team) {
+                spanned::bail!(
+                    row_name,
+                    "multiple rows naming champions for team `{team_name}`"
+                )
+            } else {
+                champions.insert(team, row_value.clone());
+            }
+        } else {
+            spanned::bail!(
+                row_name,
+                "metadata row `{}` talks about champions but is not of the form `[team-name] champion`",
+                &**row_name
+            )
+        }
+    }
+
     Ok(Some(Metadata {
         title: title.to_string(),
         short_title: if let Some(row) = short_title_row {
@@ -451,6 +488,7 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
         status,
         tracking_issue: issue,
         table: first_table.clone(),
+        champions,
     }))
 }
 
