@@ -45,7 +45,7 @@ ergonomic than what is possible in an external crate.
   expressions and supporting async fn in dyn trait, which is being implemented
   by [Michael Goulet] and [Ding Xiang Fei].
 
-[Init expressions]: https://hackmd.io/@aliceryhl/BJutRcPblx
+[Init expressions]: https://hackmd.io/%40aliceryhl/BJutRcPblx
 [Initialization via out-ptrs]: https://hackmd.io/awB-GOYJRlua9Cuc0a3G-Q
 [Placing functions]: https://blog.yoshuawuyts.com/placing-functions/
 [Placement by return]: https://github.com/rust-lang/rfcs/pull/2884
