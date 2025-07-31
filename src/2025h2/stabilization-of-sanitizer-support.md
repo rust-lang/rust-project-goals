@@ -42,7 +42,7 @@ In the meantime we work towards at least supporting [Tier 1](https://doc.rust-la
 | Implementation               | [@jakos-sec](https://github.com/jakos-sec), [@1c3t3a](https://github.com/1c3t3a) |               |
 | Stabilization decision       | ![Team][] [compiler]                                                             |               |
 | Standard reviews             | ![Team][] [compiler]                                                             |               |
-| Dedicated reviewer           | ![Team][] [infra], [project-exploit-mitigations]                                 |               |
+| Dedicated reviewer           | ![Team][] [bootstrap], [project-exploit-mitigations]                                 |               |
 
 ### Definitions
 
