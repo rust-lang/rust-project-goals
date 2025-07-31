@@ -29,3 +29,39 @@ Note that after running this command, you'll still need to manually:
 2. Send an email to the `all@rust-lang.org` mailing list
 
 For more details, see the [Call for proposals](./cfp.md) documentation.
+
+### `cargo rpg csv`
+
+Generates CSV reports for analysis and tracking purposes. Currently supports generating champion tracking reports.
+
+```bash
+# Generate champions report for a milestone
+cargo rpg csv champions <milestone>
+```
+
+Example:
+```bash
+cargo rpg csv champions 2025h2
+```
+
+#### `champions` subcommand
+
+The `champions` subcommand generates a CSV report showing the champion assignments for each goal in a milestone. The output includes:
+
+- **Title**: The goal title
+- **POC(s)**: Point of contact for the goal
+- **Team columns**: One column per team that has asks across all goals in the milestone
+  - Shows champion name if assigned
+  - Shows `!` if team has an ask but no champion assigned
+  - Shows `-` if team has no ask for this goal
+- **URL**: Link to the goal document on GitHub
+
+This report is useful for:
+- Tracking champion coverage across teams
+- Identifying goals that need champion assignments
+- Understanding team involvement across the milestone
+
+The CSV output can be redirected to a file or piped to other tools for further analysis:
+```bash
+cargo rpg csv champions 2025h2 > champions.csv
+```
