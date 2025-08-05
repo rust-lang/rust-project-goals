@@ -8,6 +8,7 @@ use std::path::PathBuf;
 use walkdir::WalkDir;
 
 mod cfp;
+mod csv_reports;
 mod generate_json;
 mod rfc;
 mod team_repo;
@@ -109,6 +110,21 @@ enum Command {
         /// If not given, no end date.
         end_date: Option<chrono::NaiveDate>,
     },
+
+    /// Generate various CSV reports
+    CSV {
+        #[command(subcommand)]
+        cmd: CSVReports,
+    },
+}
+
+#[derive(clap::Subcommand, Debug)]
+#[allow(dead_code)]
+enum CSVReports {
+    Champions {
+        /// Milestone for which we generate tracking issue data (e.g., `2024h2`).
+        milestone: String,
+    },
 }
 
 fn main() -> Result<()> {
@@ -160,6 +176,7 @@ fn main() -> Result<()> {
         } => {
             generate_json::generate_json(&opt.repository, &milestone, json_path)?;
         }
+
         Command::Updates {
             milestone,
             vscode,
@@ -174,6 +191,8 @@ fn main() -> Result<()> {
             end_date,
             *vscode,
         )?,
+
+        Command::CSV { cmd } => csv_reports::csv(&opt.repository, cmd)?,
     }
 
     Ok(())

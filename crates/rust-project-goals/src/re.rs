@@ -110,3 +110,10 @@ lazy_static! {
 
 /// If a comment begins with this text, it will be considered a summary.
 pub const TLDR: &str = "TL;DR:";
+
+lazy_static! {
+    /// Metadata table rows like `[lang] champion` indicate the champion for the lang team
+    pub static ref CHAMPION_METADATA: Regex =
+        Regex::new(r"^\s*(?P<team>\[.*\]) champion)\s*$")
+            .unwrap();
+}
