@@ -3,13 +3,9 @@
 | Metadata         |                                    |
 |:-----------------|------------------------------------|
 | Point of contact | @obi1kenobi                        |
-| Teams            | <!-- TEAMS WITH ASKS -->           |
-| Task owners      | <!-- TASK OWNERS -->               |
 | Status           | Proposed                           |
 | Tracking issue   | [rust-lang/rust-project-goals#104] |
 | Zulip channel    | N/A                                |
-
-
 ## Summary
 
 Design and implement `cargo-semver-checks` functionality that lies on the critical path for merging the tool into cargo itself. Continues the work of [the 2025h1 goal][2025h1-goal].

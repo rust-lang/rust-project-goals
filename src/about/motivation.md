@@ -14,4 +14,3 @@ It should answer the following questions
 The **next few steps** can explain how you plan to change that and why these are the right next steps to take.
 
 Finally, the **shiny future** section can put the goal into a longer term context. It's ok if the goal doesn't have a shiny future beyond the next few steps.
-

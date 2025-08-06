@@ -3,8 +3,6 @@
 | Metadata           |                                                          |
 | :--                | :--                                                      |
 | Point of contact   | @Jamesbarford                                            |
-| Teams              | <!-- TEAMS WITH ASKS -->                                 |
-| Task owners        | <!-- TASK OWNERS -->                                     |
 | Status             | Proposed                                                 |
 | Zulip channel      | [#project-goals/2025h1/rustc-perf-improvements][channel] |
 | Tracking issue     | [rust-lang/rust-project-goals#275]                       |

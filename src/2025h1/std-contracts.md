@@ -3,13 +3,9 @@
 | Metadata         |                                    |
 |:-----------------|------------------------------------|
 | Point of contact | @celinval                          |
-| Teams            | <!-- TEAMS WITH ASKS -->           |
-| Task owners      | <!-- TASK OWNERS -->               |
 | Status           | Accepted                           |
 | Tracking issue   | [rust-lang/rust-project-goals#126] |
 | Zulip channel    | N/A                                |
-
-
 ## Summary
 
 Finish the implementation of the contract attributes proposed in the compiler [MCP-759],
@@ -90,8 +86,6 @@ unless users opt-in for contract runtime checks.
 | Standard Library Contracts | @celinval, @tautschnig |       |
 | Writing new contracts      | ![Help wanted][]       |       |
 | Standard reviews           | ![Team][] [libs]       |       |
-
-
 ### Definitions
 
 Definitions for terms used above:

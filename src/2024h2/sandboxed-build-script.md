@@ -3,13 +3,9 @@
 | Metadata       |                                    |
 | ---            | ---                                |
 | Point of contact | @weihanglo                         |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#108] |
 | Zulip channel  | N/A                                |
-
-
 ## Summary
 
 Explore different strategies for sandboxing build script executions in Cargo.

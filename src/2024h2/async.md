@@ -4,8 +4,6 @@
 |------------------|------------------------------------|
 | Short title      | Async                              |
 | Point of contact | @tmandry                           |
-| Teams            | <!-- TEAMS WITH ASKS -->           |
-| Task owners      | <!-- TASK OWNERS -->               |
 | Status           | Flagship                           |
 | Tracking issue   | [rust-lang/rust-project-goals#105] |
 | Zulip channel    | [#wg-async][channel]               |
@@ -237,8 +235,6 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 | Implementation work |                      | ![Not funded][] (*) |
 | Design meeting      | ![Team][] [lang]     | 2 meetings expected |
 | Standard reviews    | ![Team][] [compiler] |                     |
-
-
 (*) Implementation work on async drop experiments is currently unfunded. We are trying to figure out next steps.
 
 [Approved]: https://img.shields.io/badge/Approved-green

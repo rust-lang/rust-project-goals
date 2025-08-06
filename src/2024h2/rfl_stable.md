@@ -4,8 +4,6 @@
 |------------------|------------------------------------|
 | Short title      | Rust-for-Linux                     |
 | Point of contact | @nikomatsakis                      |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
 | Status           | Flagship                           |
 | Tracking issue   | [rust-lang/rust-project-goals#116] |
 | Zulip channel    | [#rust-for-linux][channel]         |
@@ -190,8 +188,6 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 |------------------------|---------------------|-------|
 | Stabilization report   |                     |       |
 | Stabilization decision | ![Team][] [lang]    |       |
-
-
 ### Support needed from the project
 
 * Lang team:
@@ -210,5 +206,3 @@ Here is a detailed list of the work to be done and who is expected to do it. Thi
 ## Frequently asked questions
 
 None yet.
-
-

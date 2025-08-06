@@ -1,6 +1,4 @@
 # Rust project goals 2025h2
-
-
 ## Summary
 
 *![Status: Accepting goal proposals](https://img.shields.io/badge/Status-Accepting%20goal%20proposals-yellow) We are in the process of assembling the goal slate.*

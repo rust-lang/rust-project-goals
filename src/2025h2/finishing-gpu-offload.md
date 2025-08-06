@@ -3,8 +3,6 @@
 | Metadata              |                                                  |
 | :-------------------- | -------------------------------------------------|
 | Point of contact      | @ZuseZ4                                          |
-| Teams                 | <!-- TEAMS WITH ASKS -->                         |
-| Task owners           | <!-- TASK OWNERS -->                             |
 | Status                | Proposed                                         |
 | Tracking issue        | [rust-lang/rust-project-goals#109]               |
 | Other tracking issues | [rust-lang/rust#124509]                          |
@@ -50,8 +48,6 @@ to clean up autodiff docs and finish the upstreaming of `std::batching`, which i
 
 In the future, developers will be able to write a single Rust function and use `std::batching` to get a SIMD/fused version of it, use `std::autodiff` to differentiate it, and `std::offload` to run the resulting code on their GPUs.
 Authors of Machine Learning or Linear Algebra libraries will further be able to optimize their libraries performance by opting into a new MLIR based compiler backend, which automatically rewrites their compute heavy operations for better performance.
-
-
 ## Ownership and team asks
 
 | Task                 | Owner(s) or team(s)                              | Notes                                                                                                                                |
@@ -62,4 +58,3 @@ Authors of Machine Learning or Linear Algebra libraries will further be able to 
 | LLVM reviews         | LLVM offload/GPU contributors                    | Individual contributors at AMD/NVIDIA/LLNL agreed to review my code from the LLVM or GPU side                                        |
 | Do the work          | @ZuseZ4                                          |                                                                                                                                      |
 ## Frequently asked questions
-

@@ -17,8 +17,6 @@ Propose a slate of <!-- #GOALS --> project goals for 2025H1, including 3 flagshi
 * Address the biggest concerns raised by Rust maintainers, lack of face-to-face interaction, by [**organizing the Rust All-Hands 2025**](./all-hands.md). In 2025H1 we plan to:
     * convene Rust maintainers to celebrate Rust's tenth birthday at [RustWeek 2025](https://2025.rustweek.org) (co-organized with [RustNL](https://2025.rustweek.org/about/));
     * author a first draft for a [Rust vision doc](./rust-vision-doc.md) and gather feedback.
-
-
 ## Motivation
 
 The 2025H1 goal slate consists of <!-- #GOALS --> project goals, of which we have selected 3 as **flagship goals**. Flagship goals represent the goals expected to have the broadest overall impact.

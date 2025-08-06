@@ -3,8 +3,6 @@
 | Metadata         |                          |
 | :--------------- | ------------------------ |
 | Point of contact | @folkertdev              |
-| Teams            | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS -->     |
 | Status           | Proposed                 |
 | Tracking issue   |                          |
 | Zulip channel    |                          |

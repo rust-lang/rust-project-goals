@@ -3,12 +3,9 @@
 | Metadata         |                                                |
 |:-----------------|------------------------------------------------|
 | Point of contact | @GuillaumeGomez                                |
-| Teams            | <!-- TEAMS WITH ASKS -->                       |
-| Task owners      | <!-- TASK OWNERS -->                           |
 | Status           | Proposed                                       |
 | Tracking issue   | [rust-lang/compiler-team#891]                  |
 | Zulip channel    | [#rustc-codegen-gcc][rustc-codegen-gcc]        |
-
 [rustc-codegen-gcc]: https://rust-lang.zulipchat.com/#narrow/channel/386786-rustc-codegen-gcc
 [rust-lang/compiler-team#891]: https://github.com/rust-lang/compiler-team/issues/891
 
@@ -87,6 +84,4 @@ For definitions for terms used above, see the [About > Team Asks](https://rust-l
     * Library [API Change Proposal (ACP)](https://std-dev-guide.rust-lang.org/development/feature-lifecycle.html) describes a change to the standard library.
 
 ## Frequently asked questions
-
-
 [extra tests]: https://github.com/rust-lang/rustc_codegen_gcc/tree/master/tests/run

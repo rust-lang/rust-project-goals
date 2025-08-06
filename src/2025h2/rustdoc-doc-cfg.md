@@ -3,12 +3,9 @@
 | Metadata         |                                                |
 |:-----------------|------------------------------------------------|
 | Point of contact | @GuillaumeGomez                                |
-| Teams            | <!-- TEAMS WITH ASKS -->                       |
-| Task owners      | <!-- TASK OWNERS -->                           |
 | Status           | Proposed                                       |
 | Tracking issue   | [rust-lang/rust#43781]                         |
 | Zulip channel    | [#t-rustdoc][t-rustdoc]                        |
-
 [t-rustdoc]: https://rust-lang.zulipchat.com/#narrow/channel/266220-t-rustdoc
 
 ## Summary

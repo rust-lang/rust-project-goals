@@ -3,15 +3,11 @@
 | Metadata           |                                     |
 | :--                | :--                                 |
 | Point of contact   | @veluca93                           |
-| Teams              | <!-- TEAMS WITH ASKS -->            |
-| Task owners        | <!-- TASK OWNERS -->                |
 | Status             | Accepted                            |
 | Zulip channel      | [#project-portable-simd][channel]   |
 | Tracking issue     | [rust-lang/rust-project-goals#261]  |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/257879-project-portable-simd/
-
-
 ## Summary
 
 Figure out the best way for Rust to support generating code for multiple SIMD targets in a safe and ergonomic way.
@@ -23,8 +19,6 @@ Most libraries that are shipped to users in binary form thus tend to contain cod
 Having compiler support for this pattern, i.e. by having the compiler generate multiple versions of code written only once, would significantly help drive Rust's adoption in the world of codecs, where some of the [most subtle](https://blog.isosceles.com/the-webp-0day/) memory vulnerabilities are found, as well as other domains where squeezing out the last bits of performance is fundamental.
 
 [^avx512]: For example, `x86` CPUs currently have about [12](https://en.wikipedia.org/wiki/AVX-512#CPUs_with_AVX-512) (!) different possible configurations with respect to AVX-512 support alone.
-
-
 ### The status quo
 
 Currently, generating efficient code for a specific SIMD ISAs requires annotating the function with appropriate attributes. This is incompatible with generating multiple versions through i.e. generics.
@@ -74,8 +68,6 @@ This significantly increases the adoption of Rust in performance-critical, safet
 | Experimental implementation | @veluca93           |       |
 | Author RFC                  | @veluca93           |       |
 | RFC decision                | ![Team][] [lang]    |       |
-
-
 ### Definitions
 
 Definitions for terms used above:

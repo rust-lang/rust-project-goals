@@ -3,12 +3,9 @@
 | Metadata         |                                    |
 |:-----------------|------------------------------------|
 | Point of contact | @nikomatsakis                      |
-| Teams            | <!-- TEAMS WITH ASKS -->           |
-| Task owners      | <!-- TASK OWNERS -->               |
 | Status           | Proposed                           |
 | Tracking issue   | [rust-lang/rust-project-goals#107] |
 | Zulip channel    | N/A                                |
-
 ## Summary
 
 We propose to write an alternative RFC for ergonomic ref-counting that makes lightweight cloning automatic and hold design meetings so the lang team can compare both approaches. This work builds on RFC #3680, which proposed a new keyword, `use`, that could be used with closures (`use || ...`) and expressions like `x.use` to help address a longstanding problem: working with ref-counted data structures like `Arc<T>` is verbose and confusing.
@@ -209,4 +206,3 @@ Once the lang team chooses a direction, subsequent work can focus on refinement,
 ### What is the relationship to the 2025H1 ergonomic ref-counting goal?
 
 This goal builds on the 2025H1 implementation work and the feedback from the RFC. The current implementation already includes most of the infrastructure needed for both approaches - the remaining technical work is primarily about completing the seamless integration option.
-

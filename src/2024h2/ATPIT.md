@@ -3,8 +3,6 @@
 | Metadata       |                                    |
 |----------------|------------------------------------|
 | Point of contact | @oli-obk                           |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#103] |
 | Zulip channel  | N/A                                |

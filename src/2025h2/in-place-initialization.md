@@ -3,12 +3,9 @@
 | Metadata         |                                                                                  |
 |:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | @Darksonn                                                                        |
-| Teams            | <!-- TEAMS WITH ASKS -->                                                         |
-| Task owners      | <!-- TASK OWNERS -->                                                             |
 | Status           | Proposed                                                                         |
 | Tracking issue   |                                                                                  |
 | Zulip channel    | [#t-lang][channel]                                                               |
-
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/213817-t-lang
 
 ## Summary
@@ -148,4 +145,3 @@ scheduled.
 | Contribute to the RFC        | @cramertj, @yoshuawuyts, @BennoLossin, @nbdd0121 |       |
 | Lang-team liason             | @joshtriplett                         |       |
 | Dedicated reviewer           | @compiler-errors                      | Of lang experiments |
-

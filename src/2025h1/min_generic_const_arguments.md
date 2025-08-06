@@ -3,15 +3,10 @@
 | Metadata         |                                    |
 |:-----------------|------------------------------------|
 | Point of contact | @BoxyUwU                           |
-| Teams            | <!-- TEAMS WITH ASKS -->           |
-| Task owners      | <!-- TASK OWNERS -->               |
 | Status           | Accepted                           |
 | Tracking issue   | [rust-lang/rust-project-goals#100] |
 | Zulip channel    | [#project-const-generics][channel] |
-
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/260443-project-const-generics/
-
-
 ## Summary
 
 Experiment with a new `min_generic_const_args` implementation to address challenges found with the existing approach to supporting generic parameters in const generic arguments.

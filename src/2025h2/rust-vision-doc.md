@@ -3,8 +3,6 @@
 | Metadata           |                                    |
 | :--                | :--                                |
 | Point of contact   | @nikomatsakis                      |
-| Teams              | <!-- TEAMS WITH ASKS -->           |
-| Task owners        | <!-- TASK OWNERS -->               |
 | Status             | Proposed                           |
 | Zulip channel      | [#vision-doc-2025][channel]        |
 | Tracking issue     | [rust-lang/rust-project-goals#269] |

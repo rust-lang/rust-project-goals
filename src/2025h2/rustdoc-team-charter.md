@@ -3,12 +3,8 @@
 | Metadata         |                                                |
 |:-----------------|------------------------------------------------|
 | Point of contact | @GuillaumeGomez                                |
-| Teams            | <!-- TEAMS WITH ASKS -->                       |
-| Task owners      | <!-- TASK OWNERS -->                           |
 | Status           | Proposed                                       |
 | Zulip channel    | [#t-rustdoc](https://rust-lang.zulipchat.com/#narrow/channel/266220-t-rustdoc)                        |
-
-
 ## Summary
 
 Over the next six months, we will do the following:

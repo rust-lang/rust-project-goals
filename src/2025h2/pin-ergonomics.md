@@ -3,12 +3,9 @@
 | Metadata         |                                                                                  |
 |:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | @frank-king                                                                      |
-| Task owners      | <!-- TASK OWNERS -->       |
-| Teams            | <!-- TEAMS WITH ASKS -->                                                         |
 | Status           | Proposed                                                                         |
 | Tracking issue   |      |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
-
 ## Summary
 
 Continue experimenting with and fleshing out the design and semantics for the pin ergonomics experiment.
@@ -33,8 +30,6 @@ We have an experiment for improving the ergonomics around pinning and some initi
 - support auto borrowing of `&pin mut|const place` in method calls with `&pin mut|const self` receivers
 
 ### The "shiny future" we are working towards
-
-
 ## Design axioms
 
 ## Ownership and team asks

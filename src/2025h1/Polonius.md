@@ -3,15 +3,10 @@
 | Metadata         |                                    |
 |:-----------------|------------------------------------|
 | Point of contact | @lqd                               |
-| Teams            | <!-- TEAMS WITH ASKS -->           |
-| Task owners      | <!-- TASK OWNERS -->               |
 | Status           | Accepted                           |
 | Tracking issue   | [rust-lang/rust-project-goals#118] |
 | Zulip channel    | [#t-types/polonius][channel]       |
-
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/186049-t-types.2Fpolonius
-
-
 ## Summary
 
 Keep working on implementing a native rustc version of the [Polonius][pc3] next generation borrow checking algorithm, that would scale better than the previous [datalog] implementation, continuing from the [2024h2 goal](https://rust-lang.github.io/rust-project-goals/2024h2/Polonius.html).

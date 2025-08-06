@@ -27,8 +27,6 @@ Each of the calendars has someoverlap with the previous and next previous.
 | [RFC]     |                           | ███ |                 |                      |
 | [Updates] |                           |     | ███████████████ |                      |
 | [Retro]   |                           |     |                 | ███                  |
-
-
 [CFP]: ./cfp.md
 [RFC]: ./prepare_rfc.md
 [Updates]: ./author_updates.md

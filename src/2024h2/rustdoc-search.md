@@ -3,13 +3,9 @@
 | Metadata       |                                    |
 |----------------|------------------------------------|
 | Point of contact | @notriddle                         |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#112] |
 | Zulip channel  | N/A                                |
-
-
 ## Summary
 
 To make rustdoc's search engine more useful:

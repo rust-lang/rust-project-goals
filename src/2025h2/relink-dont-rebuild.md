@@ -1,11 +1,7 @@
 # Relink don't Rebuild
-
-
 | Metadata         |                        |
 | --------         | ---                    |
 | Point of contact | @yaahc                 |
-| Teams            | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS -->   |
 | Status           | Proposed               |
 | Tracking issue   | |
 | Zulip channel    | |
@@ -96,8 +92,6 @@ such a change was made to `globset`:
 <p align="center">
   <img src="https://raw.githubusercontent.com/wiki/rrbutani/rust/rdr-cargo-timings-output.png" />
 </p>
-
-
 In the above we see `globset` and all transitive "upstream" dependent crates (up to `ripgrep`)
 being rebuilt.
 

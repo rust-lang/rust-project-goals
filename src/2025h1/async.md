@@ -4,15 +4,10 @@
 |:-----------------|------------------------------------|
 | Short title      | Async                              |
 | Point of contact | @tmandry                           |
-| Teams            | <!-- TEAMS WITH ASKS -->           |
-| Task owners      | <!-- TASK OWNERS -->               |
 | Status           | Flagship                           |
 | Tracking issue   | [rust-lang/rust-project-goals#105] |
 | Zulip channel    | [#wg-async][channel]               |
-
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/187312-wg-async/
-
-
 ## Summary
 
 Over the next six months, we will continue bringing Async Rust up to par with "sync Rust" by doing the following:

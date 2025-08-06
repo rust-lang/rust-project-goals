@@ -3,12 +3,9 @@
 | Metadata         |             |
 |:-----------------|-------------|
 | Point of contact | @BoxyUwU    |
-| Teams            | <!-- TEAMS WITH ASKS -->        |
-| Task owners      | <!-- TASK OWNERS -->    |
 | Status           | Proposed    |
 | Tracking issue   |             |
 | Zulip channel    | N/A         |
-
 ## Summary
 
 Work towards stabilizing the remaining const generics functionality that was left out of the original `min_const_generics` feature.

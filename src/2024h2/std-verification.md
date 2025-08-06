@@ -3,13 +3,9 @@
 | Metadata       |                                    |
 | ---            | ---                                |
 | Point of contact | @celinval                          |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#126] |
 | Zulip channel  | N/A                                |
-
-
 ## Summary
 
 Instrument a fork of the standard library (the [verify-rust-std] repository) with safety contracts,

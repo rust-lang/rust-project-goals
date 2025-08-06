@@ -3,12 +3,9 @@
 | Metadata         |                           |
 |:-----------------|---------------------------|
 | Point of contact | @baumanj                  |
-| Teams            | <!-- TEAMS WITH ASKS -->  |
-| Task owners      | <!-- TASK OWNERS -->      |
 | Status           | Proposed                  |
 | Tracking issue   |                           |
 | Zulip channel    | [t-lang/interop](https://rust-lang.zulipchat.com/#narrow/channel/427678-t-lang.2Finterop)            |
-
 ## Summary
 
 Document a set of technical issues related to C++/Rust interoperability with broad community consensus to serve as a starting point for proposed solutions and facilitating cooperation among stakeholders in both language communities.

@@ -3,8 +3,6 @@
 | Metadata           |                                    |
 | :--                | :--                                |
 | Point of contact   | @joshtriplett                      |
-| Teams              | <!-- TEAMS WITH ASKS -->           |
-| Task owners        | <!-- TASK OWNERS -->               |
 | Status             | Proposed                           |
 | Zulip channel      | [#t-spec][channel]                 |
 | Tracking issue     |                                    |

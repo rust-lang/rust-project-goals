@@ -1,6 +1,4 @@
 # Goals
-
-
 This page lists the <!-- #GOALS --> project goals **proposed** for 2025h2.
 
 > Just because a goal is listed on this list does not mean the goal has been accepted.

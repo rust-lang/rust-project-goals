@@ -4,15 +4,10 @@
 |:-----------------|------------------------------------|
 | Short title      | Rust-for-Linux                     |
 | Point of contact | @nikomatsakis                      |
-| Teams            | <!-- TEAMS WITH ASKS -->           |
-| Task owners      | <!-- TASK OWNERS -->               |
 | Status           | Flagship                           |
 | Tracking issue   | [rust-lang/rust-project-goals#116] |
 | Zulip channel    | [#rust-for-linux][channel]         |
-
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/425075-rust-for-linux/
-
-
 ## Summary
 
 Continue working towards Rust for Linux on stable, turning focus to compiler and tooling.

@@ -3,16 +3,12 @@
 | Metadata         |                                                   |
 | :--------------- | ------------------------------------------------- |
 | Point of contact | @SparrowLii                                       |
-| Teams            | <!-- TEAMS WITH ASKS -->                          |
-| Task owners      | <!-- TASK OWNERS -->                              |
 | Status           | Proposed                                          |
 | Tracking issue   | [rust-lang/rust-project-goals#121]                |
 | See also         | [rust-lang/rust#113349]                           |
 | Zulip channel    | [#t-compiler/wg-parallel-rustc][channel]          |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/187679-t-compiler.2Fwg-parallel-rustc/
-
-
 ## Summary
 
 Continue with stabilization and performance improvements to parallel front-end, continuing from the [2025h1 goal](https://rust-lang.github.io/rust-project-goals/2025h1/parallel-front-end.html).
@@ -69,8 +65,6 @@ The parallel front end should be:
 | Discussion and moral support | ![Team][] [compiler] |       |
 
 ## Frequently asked questions
-
-
 [ICE]: https://github.com/rust-lang/rust/issues?q=is%3Aopen+label%3AWG-compiler-parallel+ice
 [deadlock]: https://github.com/rust-lang/rust/issues?q=is%3Aopen+label%3AWG-compiler-parallel+deadlock
 [test]: https://github.com/rust-lang/rust/issues/118698

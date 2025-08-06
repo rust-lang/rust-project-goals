@@ -1,11 +1,7 @@
 # Implement Open API Namespace Support
-
-
 | Metadata           |                                    |
 | :--                | :--                                |
 | Point of contact   | @epage                             |
-| Teams              | <!-- TEAMS WITH ASKS -->           |
-| Task owners        | <!-- TASK OWNERS -->               |
 | Status             | Invited                            |
 | Zulip channel      | N/A                                |
 | Tracking issue     | [rust-lang/rust-project-goals#256] |

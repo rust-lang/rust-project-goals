@@ -3,12 +3,9 @@
 | Metadata         |                                                                                  |
 |:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | @aapoalas                                                                        |
-| Teams            | <!-- TEAMS WITH ASKS -->                                                         |
-| Task owners      | <!-- TASK OWNERS -->                                                             |
 | Status           | Proposed                                                                         |
 | Tracking issue   |                                                                                  |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
-
 ## Summary
 
 Bring up a language RFC for autoreborrow traits and land nightly support for the traits.
@@ -113,8 +110,6 @@ struct X<'a, 'b> {
 To enable this, reborrowing needs to be defined as a recursive operation but what the "bottom-case" is, that
 is the question. One option would be to use `!Copy + Reborrow` fields, another would use core marker types
 like `PhantomExclusive<'a>` and `PhantomShared<'b>` to discern the difference.
-
-
 | Task                 | Owner(s) or team(s)                | Notes                                                               |
 |----------------------|------------------------------------|---------------------------------------------------------------------|
 | Lang-team experiment | ![Team][] [lang]                   | allows coding pre-RFC; only for trusted contributors                |

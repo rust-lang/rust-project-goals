@@ -3,9 +3,7 @@
 | Metadata         |                                                                                  |
 | :--------------- | :------------------------------------------------------------------------------- |
 | Point of contact | @jakos-sec                                                                       |
-| Teams            | <!-- TEAMS WITH ASKS -->                                                         |
 | Status           | Proposed                                                                         |
-| Task owners      | <!-- TASK OWNERS -->                                                             |
 | Tracking issue   |                                                                                  |
 | Zulip channel    | N/A                                                                              |
 

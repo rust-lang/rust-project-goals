@@ -3,12 +3,9 @@
 | Metadata         |                                                                                  |
 |:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | @cramertj                                                                        |
-| Teams            | <!-- TEAMS WITH ASKS -->                                                         |
-| Task owners      | <!-- TASK OWNERS -->                                                             |
 | Status           | Proposed                                                                         |
 | Tracking issue   |                                                                                  |
 | Zulip channel    |                                                                                  |
-
 ## Summary
 
 Unblock the evolution of key trait hierarchies:
@@ -82,8 +79,6 @@ pub trait Iterator {
 #### Missing or misnamed parent trait items
 
 Note that, unlike `Deref` and `Receiver`, the names and signatures of the associated items in `LendingIterator` do not match those in `Iterator`. For existing `Iterator` types to implement `LendingIterator`, some bridge code between the two implementations must exist.
-
-
 ### Conceptual supertrait: relaxed bounds
 
 A common practice in the `async` world is to use [the `trait_variant` crate](https://docs.rs/trait-variant/latest/trait_variant/) to make two versions of a trait, one with `Send` bounds on the futures, and one without:
