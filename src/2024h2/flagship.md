@@ -2,4 +2,4 @@
 
 [Learn about flagship goals.](../about/flagship_goals.md)
 
-<!-- FLAGSHIP GOALS -->
+(((FLAGSHIP GOALS)))

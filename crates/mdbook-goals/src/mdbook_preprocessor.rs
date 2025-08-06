@@ -181,7 +181,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         }
 
         let Some(chapter_path) = &chapter.path else {
-            anyhow::bail!("found `<!-- #GOALS -->` but chapter has no path")
+            anyhow::bail!("found `(((#GOALS)))` but chapter has no path")
         };
 
         let goals = self.goal_documents(chapter_path)?;
@@ -275,7 +275,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         let range = m.range();
 
         let Some(path) = &chapter.path else {
-            anyhow::bail!("found `<!-- TEAM ASKS -->` but chapter has no path")
+            anyhow::bail!("found `(((TEAM ASKS)))` but chapter has no path")
         };
 
         let goals = self.goal_documents(path)?;

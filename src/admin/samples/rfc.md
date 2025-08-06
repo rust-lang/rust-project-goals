@@ -16,7 +16,7 @@ This is a draft for the eventual RFC proposing the YYYYHN goals.
 
 ## Motivation
 
-The YYYYHN goal slate consists of <!-- #GOALS --> project goals, of which we have selected (TBD) as **flagship goals**. Flagship goals represent the goals expected to have the broadest overall impact.
+The YYYYHN goal slate consists of (((#GOALS))) project goals, of which we have selected (TBD) as **flagship goals**. Flagship goals represent the goals expected to have the broadest overall impact.
 
 ### How the goal process works
 
@@ -63,7 +63,7 @@ The full slate of project goals are as follows. These goals all have identified 
 
 **Invited goals.** Some goals of the goals below are "invited goals", meaning that for that goal to happen we need someone to step up and serve as a point of contact. To find the invited goals, look for the ![Help wanted][] badge in the table below. Invited goals have reserved capacity for teams and a mentor, so if you are someone looking to help Rust progress, they are a great way to get involved.
 
-<!-- GOALS -->
+(((GOALS)))
 
 # Reference-level explanation
 [reference-level-explanation]: #reference-level-explanation
@@ -71,7 +71,7 @@ The full slate of project goals are as follows. These goals all have identified 
 The following table highlights the asks from each affected team.
 The "owner" in the column is the person expecting to do the design/implementation work that the team will be approving.
 
-<!-- TEAM ASKS -->
+(((TEAM ASKS)))
 
 ### Definitions
 
