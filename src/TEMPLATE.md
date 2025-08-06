@@ -19,7 +19,6 @@
 | Metadata         |                                                                                  |
 |:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | *must be a single Github username like @ghost*                                   |
-| Teams            | &lt;!-- TEAMS WITH ASKS --&gt;                                                   |
 | Task owners      | &lt;!-- TASK OWNERS --&gt;                                                       |
 | Status           | Proposed                                                                         |
 | Tracking issue   | *if this is a continuing goal, add the old tracking issue, else leave blank*     |

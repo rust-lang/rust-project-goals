@@ -9,7 +9,7 @@ use spanned::{Error, Result, Spanned};
 use crate::config::{Configuration, TeamAskDetails};
 use crate::gh::issue_id::{IssueId, Repository};
 use crate::markwaydown::{self, Section, Table};
-use crate::re::{self, CHAMPION_METADATA, TASK_OWNERS_STR, TEAMS_WITH_ASKS_STR};
+use crate::re::{self, CHAMPION_METADATA, TASK_OWNERS_STR};
 use crate::team::{self, TeamName};
 use crate::util::{self, commas, markdown_files};
 
@@ -110,6 +110,11 @@ pub struct TeamAsk {
 pub fn goals_in_dir(directory_path: &Path) -> Result<Vec<GoalDocument>> {
     let mut goal_documents = vec![];
     for (path, link_path) in markdown_files(&directory_path)? {
+        // Skip template files
+        if path.file_name().unwrap() == "TEMPLATE.md" {
+            continue;
+        }
+        
         if let Some(goal_document) = GoalDocument::load(&path, &link_path)? {
             goal_documents.push(goal_document);
         }
@@ -441,7 +446,8 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
         None
     };
 
-    verify_row(&first_table.rows, "Teams", TEAMS_WITH_ASKS_STR)?;
+    // We no longer require the Teams row to contain a specific placeholder
+    // since we auto-inject team names during preprocessing
     verify_row(&first_table.rows, "Task owners", TASK_OWNERS_STR)?;
 
     let mut champions = BTreeMap::default();

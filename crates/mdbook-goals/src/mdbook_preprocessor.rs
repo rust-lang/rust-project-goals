@@ -444,12 +444,75 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             goal.task_owners.iter().cloned().collect()
         })?;
 
-        self.replace_metadata_placeholder(chapter, &re::TEAMS_WITH_ASKS, |goal| {
-            goal.teams_with_asks()
-                .iter()
-                .map(|team_name| team_name.name())
-                .collect()
-        })?;
+        // Auto-inject teams directly into metadata table instead of using placeholder
+        self.inject_teams_into_metadata_table(chapter)?;
+
+        Ok(())
+    }
+
+    /// Automatically inject team names into the metadata table's Teams row.
+    /// This replaces the need for manual `<!-- TEAMS WITH ASKS -->` placeholders.
+    fn inject_teams_into_metadata_table(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        let Some(chapter_path) = chapter.path.as_ref() else {
+            return Ok(()); // No path, nothing to inject
+        };
+
+        // Skip template files
+        if chapter_path.file_name().and_then(|n| n.to_str()) == Some("TEMPLATE.md") {
+            return Ok(());
+        }
+
+        // Only process files in milestone directories (like 2024h2, 2025h1, etc.)
+        // These directories contain actual goal documents
+        let Some(parent_dir) = chapter_path.parent() else {
+            return Ok(());
+        };
+        
+        let Some(parent_name) = parent_dir.file_name().and_then(|n| n.to_str()) else {
+            return Ok(());
+        };
+        
+        if !parent_name.chars().next().map_or(false, |c| c.is_ascii_digit()) {
+            return Ok(()); // Not a milestone directory, skip
+        }
+
+        // Find the goal document for this chapter
+        let goals = self.goal_documents(&chapter_path)?;
+        let chapter_in_context = self.ctx.config.book.src.join(chapter_path);
+        let Some(goal) = goals.iter().find(|gd| gd.path == chapter_in_context) else {
+            return Ok(()); // No goal document found, nothing to inject
+        };
+
+        // Compute the team names
+        let team_names: Vec<String> = goal.teams_with_asks()
+            .iter()
+            .map(|team_name| team_name.name())
+            .collect();
+        
+        let teams_text = if team_names.is_empty() {
+            "(none)".to_string()
+        } else {
+            team_names.join(", ")
+        };
+
+        // First, check if there's already a Teams row and replace it
+        let teams_row_regex = regex::Regex::new(r"(?m)^\|\s*Teams\s*\|\s*([^|]*)\s*\|").unwrap();
+        
+        if teams_row_regex.is_match(&chapter.content) {
+            // Replace existing Teams row
+            chapter.content = teams_row_regex.replace(&chapter.content, |_caps: &regex::Captures| {
+                format!("| Teams            | {} |", teams_text)
+            }).to_string();
+        } else {
+            // No Teams row exists, add one after Point of contact
+            let metadata_table_regex = regex::Regex::new(r"(?m)^(\| Point of contact \| [^|]+ \|)").unwrap();
+            
+            if metadata_table_regex.is_match(&chapter.content) {
+                chapter.content = metadata_table_regex.replace(&chapter.content, |caps: &regex::Captures| {
+                    format!("{}\n| Teams            | {} |", caps.get(1).unwrap().as_str(), teams_text)
+                }).to_string();
+            }
+        }
 
         Ok(())
     }

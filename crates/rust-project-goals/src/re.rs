@@ -26,11 +26,7 @@ lazy_static! {
         Regex::new(r"<!-- GOALS NOT ACCEPTED -->").unwrap();
 }
 
-// List of teams with asks for this goal
-pub const TEAMS_WITH_ASKS_STR: &str = r"<!-- TEAMS WITH ASKS -->";
-lazy_static! {
-    pub static ref TEAMS_WITH_ASKS: Regex = Regex::new(TEAMS_WITH_ASKS_STR).unwrap();
-}
+
 
 // List of task owners for this goal
 pub const TASK_OWNERS_STR: &str = r"<!-- TASK OWNERS -->";
