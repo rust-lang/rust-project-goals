@@ -14,7 +14,7 @@ use rust_project_goals::util::{self, GithubUserInfo};
 
 use rust_project_goals::spanned::Spanned;
 use rust_project_goals::{
-    goal::{self, GoalDocument, Status, TeamAsk},
+    goal::{self, GoalDocument, TeamAsk},
     re, team,
 };
 
@@ -200,26 +200,43 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     }
 
     fn replace_goal_lists(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        self.replace_goal_lists_helper(chapter, &re::FLAGSHIP_GOAL_LIST, |status| {
-            status.is_flagship && status.is_not_not_accepted()
+        // Handle filtered flagship goals first (more specific pattern)
+        self.replace_flagship_goal_lists_filtered(chapter)?;
+        
+        // Handle unfiltered flagship goals
+        self.replace_goal_lists_helper(chapter, &re::FLAGSHIP_GOAL_LIST, |goal, _capture| {
+            goal.metadata.flagship().is_some() && goal.metadata.status.content.is_not_not_accepted()
         })?;
-        self.replace_goal_lists_helper(chapter, &re::OTHER_GOAL_LIST, |status| {
-            !status.is_flagship && status.is_not_not_accepted()
+        
+        self.replace_goal_lists_helper(chapter, &re::OTHER_GOAL_LIST, |goal, _capture| {
+            goal.metadata.flagship().is_none() && goal.metadata.status.content.is_not_not_accepted()
         })?;
-        self.replace_goal_lists_helper(chapter, &re::GOAL_LIST, |status| {
-            status.is_not_not_accepted()
+        self.replace_goal_lists_helper(chapter, &re::GOAL_LIST, |goal, _capture| {
+            goal.metadata.status.content.is_not_not_accepted()
         })?;
-        self.replace_goal_lists_helper(chapter, &re::GOAL_NOT_ACCEPTED_LIST, |status| {
-            !status.is_not_not_accepted()
+        self.replace_goal_lists_helper(chapter, &re::GOAL_NOT_ACCEPTED_LIST, |goal, _capture| {
+            !goal.metadata.status.content.is_not_not_accepted()
         })?;
         Ok(())
+    }
+
+    fn replace_flagship_goal_lists_filtered(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        self.replace_goal_lists_helper(
+            chapter,
+            &re::FLAGSHIP_GOAL_LIST_FILTERED,
+            |goal, capture| {
+                let filter_value = capture.unwrap().trim(); // Safe because this regex always has a capture
+                goal.metadata.status.content.is_not_not_accepted() &&
+                goal.metadata.flagship().map(|f| f.trim()) == Some(filter_value)
+            }
+        )
     }
 
     fn replace_goal_lists_helper(
         &mut self,
         chapter: &mut Chapter,
         regex: &Regex,
-        filter: impl Fn(Status) -> bool,
+        filter: impl Fn(&GoalDocument, Option<&str>) -> bool,
     ) -> anyhow::Result<()> {
         loop {
             let Some(m) = regex.find(&chapter.content) else {
@@ -231,11 +248,16 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 anyhow::bail!("found `{regex}` but chapter has no path")
             };
 
-            // Extract out the list of goals with the given status.
+            // Extract capture group if present
+            let capture_value = regex.captures(&chapter.content[range.clone()])
+                .and_then(|caps| caps.get(1))
+                .map(|m| m.as_str().trim());
+
+            // Extract out the list of goals with the given filter.
             let goals = self.goal_documents(chapter_path)?;
             let mut goals_with_status: Vec<&GoalDocument> = goals
                 .iter()
-                .filter(|g| filter(g.metadata.status.content))
+                .filter(|g| filter(g, capture_value))
                 .collect();
 
             goals_with_status.sort_by_key(|g| &g.metadata.title);

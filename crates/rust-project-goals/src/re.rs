@@ -15,6 +15,11 @@ lazy_static! {
     pub static ref FLAGSHIP_GOAL_LIST: Regex = Regex::new(r"\(\(\(FLAGSHIP GOALS\)\)\)").unwrap();
 }
 
+// List of flagship goals filtered by category (accepted or pending)
+lazy_static! {
+    pub static ref FLAGSHIP_GOAL_LIST_FILTERED: Regex = Regex::new(r"\(\(\(FLAGSHIP GOALS:\s*([^)]+?)\s*\)\)\)").unwrap();
+}
+
 // List of non-flagship goals (accepted or pending)
 lazy_static! {
     pub static ref OTHER_GOAL_LIST: Regex = Regex::new(r"\(\(\(OTHER GOALS\)\)\)").unwrap();

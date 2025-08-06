@@ -3,7 +3,8 @@
 | Metadata       |                                    |
 | ---            | ---                                |
 | Point of contact | @traviscross                       |
-| Status         | Flagship                           |
+| Status         | Accepted                           |
+| Flagship         | Yes                                |
 | Tracking issue | [rust-lang/rust-project-goals#117] |
 | Zulip channel  | [#edition][channel]                |
 

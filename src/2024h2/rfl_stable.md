@@ -4,7 +4,8 @@
 |------------------|------------------------------------|
 | Short title      | Rust-for-Linux                     |
 | Point of contact | @nikomatsakis                      |
-| Status           | Flagship                           |
+| Status           | Accepted                           |
+| Flagship         | Yes                                |
 | Tracking issue   | [rust-lang/rust-project-goals#116] |
 | Zulip channel    | [#rust-for-linux][channel]         |
 

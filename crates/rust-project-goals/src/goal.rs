@@ -52,6 +52,9 @@ pub struct Metadata {
 
     /// For each table entry like `[T-lang] champion`, we create an entry in this map
     pub champions: BTreeMap<&'static TeamName, Spanned<String>>,
+
+    /// Flagship category, if this is a flagship goal
+    pub flagship: Option<Spanned<String>>,
 }
 
 pub const TRACKING_ISSUE_ROW: &str = "Tracking issue";
@@ -482,6 +485,13 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
         }
     }
 
+    // Parse flagship row if present
+    let flagship = first_table
+        .rows
+        .iter()
+        .find(|row| row[0] == "Flagship")
+        .map(|row| row[1].clone());
+
     Ok(Some(Metadata {
         title: title.to_string(),
         short_title: if let Some(row) = short_title_row {
@@ -494,6 +504,7 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
         tracking_issue: issue,
         table: first_table.clone(),
         champions,
+        flagship,
     }))
 }
 
@@ -745,6 +756,11 @@ fn extract_identifiers(s: &str) -> Vec<&str> {
 }
 
 impl Metadata {
+    /// Returns the flagship category if this is a flagship goal
+    pub fn flagship(&self) -> Option<&str> {
+        self.flagship.as_ref().map(|s| s.content.as_str())
+    }
+
     /// Extracts the `@abc` usernames found in the owner listing.
     pub fn owner_usernames(&self) -> Vec<&str> {
         owner_usernames(&self.pocs)

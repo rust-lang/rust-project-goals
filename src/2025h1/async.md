@@ -4,7 +4,8 @@
 |:-----------------|------------------------------------|
 | Short title      | Async                              |
 | Point of contact | @tmandry                           |
-| Status           | Flagship                           |
+| Status           | Accepted                           |
+| Flagship         | Yes                                |
 | Tracking issue   | [rust-lang/rust-project-goals#105] |
 | Zulip channel    | [#wg-async][channel]               |
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/187312-wg-async/
