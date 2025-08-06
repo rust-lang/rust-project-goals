@@ -28,11 +28,7 @@ lazy_static! {
 
 
 
-// List of task owners for this goal
-pub const TASK_OWNERS_STR: &str = r"<!-- TASK OWNERS -->";
-lazy_static! {
-    pub static ref TASK_OWNERS: Regex = Regex::new(TASK_OWNERS_STR).unwrap();
-}
+
 
 lazy_static! {
     pub static ref GOAL_COUNT: Regex = Regex::new(r"<!-- #GOALS -->").unwrap();

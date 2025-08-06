@@ -9,7 +9,7 @@ use spanned::{Error, Result, Spanned};
 use crate::config::{Configuration, TeamAskDetails};
 use crate::gh::issue_id::{IssueId, Repository};
 use crate::markwaydown::{self, Section, Table};
-use crate::re::{self, CHAMPION_METADATA, TASK_OWNERS_STR};
+use crate::re::{self, CHAMPION_METADATA};
 use crate::team::{self, TeamName};
 use crate::util::{self, commas, markdown_files};
 
@@ -446,9 +446,8 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
         None
     };
 
-    // We no longer require the Teams row to contain a specific placeholder
-    // since we auto-inject team names during preprocessing
-    verify_row(&first_table.rows, "Task owners", TASK_OWNERS_STR)?;
+    // We no longer require the Teams or Task owners rows to contain specific placeholders
+    // since we auto-inject team names and task owners during preprocessing
 
     let mut champions = BTreeMap::default();
     for row in &first_table.rows {
@@ -498,22 +497,7 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
     }))
 }
 
-fn verify_row(rows: &[Vec<Spanned<String>>], key: &str, value: &str) -> Result<()> {
-    let Some(row) = rows.iter().find(|row| row[0] == key) else {
-        spanned::bail!(rows[0][0], "metadata table has no `{}` row", key)
-    };
 
-    if row[1] != value {
-        spanned::bail!(
-            row[1],
-            "metadata table has incorrect `{}` row, expected `{}`",
-            key,
-            value
-        )
-    }
-
-    Ok(())
-}
 
 fn extract_summary(sections: &[Section]) -> Result<Option<String>> {
     let Some(ownership_section) = sections.iter().find(|section| section.title == "Summary") else {

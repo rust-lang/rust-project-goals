@@ -440,12 +440,9 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     /// All goal documents should have this in their metadata table;
     /// that is enforced during goal parsing.
     fn replace_metadata_placeholders(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        self.replace_metadata_placeholder(chapter, &re::TASK_OWNERS, |goal| {
-            goal.task_owners.iter().cloned().collect()
-        })?;
-
-        // Auto-inject teams directly into metadata table instead of using placeholder
+        // Auto-inject teams and task owners directly into metadata table instead of using placeholders
         self.inject_teams_into_metadata_table(chapter)?;
+        self.inject_task_owners_into_metadata_table(chapter)?;
 
         Ok(())
     }
@@ -517,44 +514,76 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         Ok(())
     }
 
-    /// Replace one of the placeholders that occur in the goal document metadata,
-    /// like [`re::TASK_OWNERS`][].
-    fn replace_metadata_placeholder(
-        &mut self,
-        chapter: &mut Chapter,
-        regex: &Regex,
-        op: impl Fn(&GoalDocument) -> Vec<String>,
-    ) -> anyhow::Result<()> {
-        let Some(m) = regex.find(&chapter.content) else {
-            return Ok(());
-        };
-        let range = m.range();
-
+    /// Automatically inject task owner names into the metadata table's Task owners row.
+    /// This replaces the need for manual `<!-- TASK OWNERS -->` placeholders.
+    fn inject_task_owners_into_metadata_table(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
         let Some(chapter_path) = chapter.path.as_ref() else {
-            anyhow::bail!(
-                "goal chapter `{}` matches placeholder regex but has no path",
-                chapter.name
-            );
+            return Ok(()); // No path, nothing to inject
         };
 
-        // Hack: leave this stuff alone in the template
-        if chapter_path.file_name().unwrap() == "TEMPLATE.md" {
+        // Skip template files
+        if chapter_path.file_name().and_then(|n| n.to_str()) == Some("TEMPLATE.md") {
             return Ok(());
         }
 
+        // Only process files in milestone directories (like 2024h2, 2025h1, etc.)
+        // These directories contain actual goal documents
+        let Some(parent_dir) = chapter_path.parent() else {
+            return Ok(());
+        };
+        
+        let Some(parent_name) = parent_dir.file_name().and_then(|n| n.to_str()) else {
+            return Ok(());
+        };
+        
+        if !parent_name.chars().next().map_or(false, |c| c.is_ascii_digit()) {
+            return Ok(()); // Not a milestone directory, skip
+        }
+
+        // Find the goal document for this chapter
         let goals = self.goal_documents(&chapter_path)?;
         let chapter_in_context = self.ctx.config.book.src.join(chapter_path);
         let Some(goal) = goals.iter().find(|gd| gd.path == chapter_in_context) else {
-            anyhow::bail!(
-                "goal chapter `{}` has no goal document at path {:?}",
-                chapter.name,
-                chapter_path,
-            );
+            return Ok(()); // No goal document found, nothing to inject
         };
 
-        let replacement = op(goal).join(", ");
-        chapter.content.replace_range(range, &replacement);
+        // Compute the task owner names
+        let task_owners: Vec<String> = goal.task_owners.iter().cloned().collect();
+        
+        let task_owners_text = if task_owners.is_empty() {
+            "(none)".to_string()
+        } else {
+            task_owners.join(", ")
+        };
+
+        // First, check if there's already a Task owners row and replace it
+        let task_owners_row_regex = regex::Regex::new(r"(?m)^\|\s*Task owners\s*\|\s*([^|]*)\s*\|").unwrap();
+        
+        if task_owners_row_regex.is_match(&chapter.content) {
+            // Replace existing Task owners row
+            chapter.content = task_owners_row_regex.replace(&chapter.content, |_caps: &regex::Captures| {
+                format!("| Task owners      | {} |", task_owners_text)
+            }).to_string();
+        } else {
+            // No Task owners row exists, add one after Teams row (or Point of contact if no Teams row)
+            let after_teams_regex = regex::Regex::new(r"(?m)^(\| Teams\s*\| [^|]+ \|)").unwrap();
+            let after_contact_regex = regex::Regex::new(r"(?m)^(\| Point of contact \| [^|]+ \|)").unwrap();
+            
+            if after_teams_regex.is_match(&chapter.content) {
+                // Add after Teams row
+                chapter.content = after_teams_regex.replace(&chapter.content, |caps: &regex::Captures| {
+                    format!("{}\n| Task owners      | {} |", caps.get(1).unwrap().as_str(), task_owners_text)
+                }).to_string();
+            } else if after_contact_regex.is_match(&chapter.content) {
+                // Add after Point of contact row
+                chapter.content = after_contact_regex.replace(&chapter.content, |caps: &regex::Captures| {
+                    format!("{}\n| Task owners      | {} |", caps.get(1).unwrap().as_str(), task_owners_text)
+                }).to_string();
+            }
+        }
 
         Ok(())
     }
+
+
 }
