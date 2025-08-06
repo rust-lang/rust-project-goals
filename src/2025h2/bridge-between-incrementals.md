@@ -3,8 +3,8 @@
 | Metadata         |                                                                                  |
 |:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | @blyxyas                                                                         |
-| Teams            | (probably WG-incremental but waiting approval by them)                           |
-| Task owners      | @blyxyas                                                                          |
+| Teams            | <!-- TEAMS WITH ASKS -->                                                         |
+| Task owners      | @blyxyas                                                                         |
 | Status           | Proposed                                                                         |
 | Tracking issue   |                                                                                  |
 | Zulip channel    |                                                                                  |
@@ -17,8 +17,8 @@ such as `cargo clippy`.
 
 ## Motivation
 
-Redoing work between `cargo check`, `cargo build` and other commands such as `cargo clippy` is one of the greatest pain
-points in the realm of compiler performance. Being able to reuse this information would speed up by a lot both
+Redoing work between `cargo check`, `cargo build` and other commands such as `cargo clippy` is one a pain point in
+compiler performance. Being able to reuse this information would speed up by a lot both
 CI/CD pipelines as well as the developer feedback loop. Making Rust a more pleasing experience to work with and
 reducing the inherent "time punishment" when handling large projects.
 
@@ -91,6 +91,16 @@ For definitions for terms used above, see the [About > Team Asks](https://rust-l
 ### Why is the cargo team being mentioned?
 
 Being that Cargo is by far the most popular interface into the Rust compiler, I think that they should be aware of this change in architecture. Maybe they have any requirement they'd like to voice out or concern they'd like to iron out before proceeding with any testing / design.
+
+### How would this model deal with `cargo check` run after partial builds?
+
+> A check and regular build will produce a different crate hash, so if you do `cargo check; cargo build -p some_dep; cargo check` you are now forced to rebuild everything that depends on `some_dep` as the crate hash of `some_dep` changed.
+
+In this model, `cargo build -p some_dep` would have the atomic bits "emit-bin", mark red all emit-exclusive queries, run those, and save them into the "emit-bin" atomic response (along with other emit-exclusive metadata)
+
+Any activity looking for `some_dep`'s "emit-bin" information would request that, but if they do not request it, they'll be met with the information produced by the earlier cargo check.
+
+So for the second cargo check, it would be like if `some_dep` was never built in the first place.
 
 <!--
 ### What do I do with this space?
