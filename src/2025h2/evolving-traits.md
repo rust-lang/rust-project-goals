@@ -1,11 +1,13 @@
 # Evolving trait hierarchies
 
-| Metadata         |                                                                                  |
-|:-----------------|----------------------------------------------------------------------------------|
-| Point of contact | @cramertj                                                                        |
-| Status           | Proposed                                                                         |
-| Tracking issue   |                                                                                  |
-| Zulip channel    |                                                                                  |
+| Metadata         |                           |
+| :--------------- | ------------------------- |
+| Point of contact | @cramertj                 |
+| Status           | Proposed                  |
+| Flagship         | Unblocking dormant traits |
+| Tracking issue   |                           |
+| Zulip channel    |                           |
+
 ## Summary
 
 Unblock the evolution of key trait hierarchies:
@@ -230,16 +232,16 @@ implementations.
 
 ## Ownership and team asks
 
-| Task                                     | Owner(s) or team(s)  | Notes                            |
-|------------------------------------------|----------------------|----------------------------------|
-| Discussion and moral support             | ![Team][] [lang]     |                                  |
-| Lang-team champion                       | @cramertj            |                                  |
-| Discussion and moral support             | ![Team][] [compiler] |                                  |
-| Discussion and moral support             | ![Team][] [types]    |                                  |
-| Author RFC                               | @cramertj            |                                  |
-| Implementation                           | @cramertj & others   |                                  |
-| Stabilization decision                   | ![Team][] [libs-api] | Stabilizing `Receiver`. Unblocked by implementation. |
-| Stabilization decision                   | ![Team][] [lang]     | Stabilizing `arbitrary_self_types`. Unblocked by new `Receiver` API. |
+| Task                         | Owner(s) or team(s)  | Notes                                                                |
+| ---------------------------- | -------------------- | -------------------------------------------------------------------- |
+| Discussion and moral support | ![Team][] [lang]     |                                                                      |
+| Lang-team champion           | @cramertj            |                                                                      |
+| Discussion and moral support | ![Team][] [compiler] |                                                                      |
+| Discussion and moral support | ![Team][] [types]    |                                                                      |
+| Author RFC                   | @cramertj            |                                                                      |
+| Implementation               | @cramertj & others   |                                                                      |
+| Stabilization decision       | ![Team][] [libs-api] | Stabilizing `Receiver`. Unblocked by implementation.                 |
+| Stabilization decision       | ![Team][] [lang]     | Stabilizing `arbitrary_self_types`. Unblocked by new `Receiver` API. |
 
 ### Definitions
 

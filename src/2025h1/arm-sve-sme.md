@@ -1,11 +1,12 @@
 # SVE and SME on AArch64
 
-| Metadata           |                                    |
-| :--                | :--                                |
-| Point of contact   | @davidtwco                         |
-| Status             | Accepted                           |
-| Zulip channel      | N/A                                |
-| Tracking issue     | [rust-lang/rust-project-goals#270] |
+| Metadata         |                                    |
+| :--------------- | :--------------------------------- |
+| Point of contact | @davidtwco                         |
+| Status           | Accepted                           |
+| Flagship         | Unblocking dormant traits          |
+| Zulip channel    | N/A                                |
+| Tracking issue   | [rust-lang/rust-project-goals#270] |
 
 *Arm's Rust team is @davidtwco, @adamgemmell, @jacobbramley, @JamieCunliffe and @Jamesbarford, as
 well as @mrkajetanp and @harmou01 as graduates on rotation. This goal will be primarily worked on
@@ -116,40 +117,40 @@ the work to be done by owners and the work to be done by Rust teams (subject to 
 team in an RFC/FCP).
 
 | Task                         | Owner(s) or team(s)                   | Notes |
-|------------------------------|---------------------------------------|-------|
+| ---------------------------- | ------------------------------------- | ----- |
 | Discussion and moral support | ![Team][] [lang], [types], [compiler] |       |
 
 ### Land nightly experiment for SVE types
 
-| Task                                  | Owner(s) or team(s)       | Notes                                                                         |
-|---------------------------------------|---------------------------|-------------------------------------------------------------------------------|
-| Land nightly experiment for SVE types | @JamieCunliffe            |                                                                               |
-| Author RFC                            |                           | Update [rfcs#3268][rfc_sve], will still rely on exceptions in the type system |
-| RFC decision                          | ![Team][] [types] |                                                                               |
-| Implementation                        |                           | Update [rust#118917][impl_sve]                                                |
-| Standard reviews                      | ![Team][] [compiler]      |                                                                               |
+| Task                                  | Owner(s) or team(s)  | Notes                                                                         |
+| ------------------------------------- | -------------------- | ----------------------------------------------------------------------------- |
+| Land nightly experiment for SVE types | @JamieCunliffe       |                                                                               |
+| Author RFC                            |                      | Update [rfcs#3268][rfc_sve], will still rely on exceptions in the type system |
+| RFC decision                          | ![Team][] [types]    |                                                                               |
+| Implementation                        |                      | Update [rust#118917][impl_sve]                                                |
+| Standard reviews                      | ![Team][] [compiler] |                                                                               |
 
 ### Upstream SVE types and intrinsics
 
 | Task                              | Owner(s) or team(s) | Notes                                                                                |
-|-----------------------------------|---------------------|--------------------------------------------------------------------------------------|
+| --------------------------------- | ------------------- | ------------------------------------------------------------------------------------ |
 | Upstream SVE types and intrinsics | @JamieCunliffe      | Using `repr(scalable)` from previous work, upstream the nightly intrinsics and types |
 
 ### Extending type system to support scalable vectors
 
-| Task                                              | Owner(s) or team(s)       | Notes |
-|---------------------------------------------------|---------------------------|-------|
-| Extending type system to support scalable vectors | @davidtwco                |       |
-| Author RFC                                        |                           |       |
+| Task                                              | Owner(s) or team(s)       | Notes      |
+| ------------------------------------------------- | ------------------------- | ---------- |
+| Extending type system to support scalable vectors | @davidtwco                |            |
+| Author RFC                                        |                           |            |
 | Lang-team champion                                | ![Team][] [lang]          | @davidtwco |
-| RFC decision                                      | ![Team][] [types], [lang] |       |
-| Implementation                                    |                           |       |
-| Standard reviews                                  | ![Team][] [compiler]      |       |
+| RFC decision                                      | ![Team][] [types], [lang] |            |
+| Implementation                                    |                           |            |
+| Standard reviews                                  | ![Team][] [compiler]      |            |
 
 ### Investigate SME support
 
 | Task                         | Owner(s) or team(s)                   | Notes |
-|------------------------------|---------------------------------------|-------|
+| ---------------------------- | ------------------------------------- | ----- |
 | Investigate SME support      | @JamieCunliffe, @davidtwco            |       |
 | Discussion and moral support | ![Team][] [lang], [types], [compiler] |       |
 | Draft next goal              | @davidtwco                            |       |

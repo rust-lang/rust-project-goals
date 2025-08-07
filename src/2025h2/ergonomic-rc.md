@@ -1,9 +1,10 @@
 # Ergonomic ref-counting: RFC decision and preview
 
 | Metadata         |                                    |
-|:-----------------|------------------------------------|
+| :--------------- | ---------------------------------- |
 | Point of contact | @nikomatsakis                      |
 | Status           | Proposed                           |
+| Flagship         | Higher-level Rust                  |
 | Tracking issue   | [rust-lang/rust-project-goals#107] |
 | Zulip channel    | N/A                                |
 ## Summary
@@ -140,14 +141,14 @@ The design axioms for this alternative RFC are as follows:
 
 ## Ownership and team asks
 
-| Task                              | Owner(s) or team(s)                | Notes |
-|-----------------------------------|------------------------------------|-------|
-| Author alternative RFC            | @nikomatsakis                      | Seamlessly integrated approach |
-| Complete seamless implementation  | @spastorino                        | Make `x` equivalent to `x.use` with optional linting |
-| Standard reviews                  | ![Team][] [compiler]               |       |
-| Lang-team champion                | @nikomatsakis                      |       |
-| Design meeting                   | ![Team][] [lang]                   | Two meetings to evaluate both approaches |
-| RFC decision                      | ![Team][] [lang]                   | Choose between maximally additive vs seamlessly integrated |
+| Task                             | Owner(s) or team(s)  | Notes                                                      |
+| -------------------------------- | -------------------- | ---------------------------------------------------------- |
+| Author alternative RFC           | @nikomatsakis        | Seamlessly integrated approach                             |
+| Complete seamless implementation | @spastorino          | Make `x` equivalent to `x.use` with optional linting       |
+| Standard reviews                 | ![Team][] [compiler] |                                                            |
+| Lang-team champion               | @nikomatsakis        |                                                            |
+| Design meeting                   | ![Team][] [lang]     | Two meetings to evaluate both approaches                   |
+| RFC decision                     | ![Team][] [lang]     | Choose between maximally additive vs seamlessly integrated |
 
 ### Definitions
 
