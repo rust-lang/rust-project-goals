@@ -481,15 +481,49 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     /// that is enforced during goal parsing.
     fn replace_metadata_placeholders(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
         // Auto-inject teams and task owners directly into metadata table instead of using placeholders
-        self.inject_teams_into_metadata_table(chapter)?;
-        self.inject_task_owners_into_metadata_table(chapter)?;
+        self.inject_metadata_rows(chapter)?;
 
         Ok(())
     }
 
-    /// Automatically inject team names into the metadata table's Teams row.
-    /// This replaces the need for manual `<!-- TEAMS WITH ASKS -->` placeholders.
-    fn inject_teams_into_metadata_table(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+    /// Find the end of a markdown table (first line that doesn't start with |).
+    /// Returns the byte offset where new rows should be inserted.
+    fn find_markdown_table_end(content: &str) -> Option<usize> {
+        let lines: Vec<&str> = content.lines().collect();
+        
+        // Find first line starting with |
+        let table_start = lines.iter().position(|line| line.trim_start().starts_with('|'))?;
+        
+        // Find first line after table_start that doesn't start with |
+        let table_end = lines[table_start..]
+            .iter()
+            .position(|line| !line.trim_start().starts_with('|'))
+            .map(|pos| table_start + pos)
+            .unwrap_or(lines.len());
+        
+        // Calculate byte offset to the start of the table_end line
+        let mut offset = 0;
+        for i in 0..table_end {
+            
+            if i > 0 {
+                offset += 1; // newline
+            }
+            offset += lines[i].len();
+        }
+        
+        if table_end < lines.len() {
+            // There's a line after the table, insert before it
+            Some(offset + 1) // +1 for the newline after the last table row
+        } else {
+            // Table goes to end of file, append at the end
+            Some(content.len())
+        }
+    }
+
+    /// Automatically inject team names and task owners into the metadata table.
+    /// This replaces the need for manual placeholders and combines the logic
+    /// to avoid duplicate table parsing.
+    fn inject_metadata_rows(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
         let Some(chapter_path) = chapter.path.as_ref() else {
             return Ok(()); // No path, nothing to inject
         };
@@ -500,7 +534,6 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         }
 
         // Only process files in milestone directories (like 2024h2, 2025h1, etc.)
-        // These directories contain actual goal documents
         let Some(parent_dir) = chapter_path.parent() else {
             return Ok(());
         };
@@ -537,77 +570,6 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             team_names.join(", ")
         };
 
-        // First, check if there's already a Teams row and replace it
-        let teams_row_regex = regex::Regex::new(r"(?m)^\|\s*Teams\s*\|\s*([^|]*)\s*\|").unwrap();
-
-        if teams_row_regex.is_match(&chapter.content) {
-            // Replace existing Teams row
-            chapter.content = teams_row_regex
-                .replace(&chapter.content, |_caps: &regex::Captures| {
-                    format!("| Teams            | {} |", teams_text)
-                })
-                .to_string();
-        } else {
-            // No Teams row exists, add one after Point of contact
-            let metadata_table_regex =
-                regex::Regex::new(r"(?m)^(\| Point of contact \| [^|]+ \|)").unwrap();
-
-            if metadata_table_regex.is_match(&chapter.content) {
-                chapter.content = metadata_table_regex
-                    .replace(&chapter.content, |caps: &regex::Captures| {
-                        format!(
-                            "{}\n| Teams            | {} |",
-                            caps.get(1).unwrap().as_str(),
-                            teams_text
-                        )
-                    })
-                    .to_string();
-            }
-        }
-
-        Ok(())
-    }
-
-    /// Automatically inject task owner names into the metadata table's Task owners row.
-    /// This replaces the need for manual `<!-- TASK OWNERS -->` placeholders.
-    fn inject_task_owners_into_metadata_table(
-        &mut self,
-        chapter: &mut Chapter,
-    ) -> anyhow::Result<()> {
-        let Some(chapter_path) = chapter.path.as_ref() else {
-            return Ok(()); // No path, nothing to inject
-        };
-
-        // Skip template files
-        if chapter_path.file_name().and_then(|n| n.to_str()) == Some("TEMPLATE.md") {
-            return Ok(());
-        }
-
-        // Only process files in milestone directories (like 2024h2, 2025h1, etc.)
-        // These directories contain actual goal documents
-        let Some(parent_dir) = chapter_path.parent() else {
-            return Ok(());
-        };
-
-        let Some(parent_name) = parent_dir.file_name().and_then(|n| n.to_str()) else {
-            return Ok(());
-        };
-
-        if !parent_name
-            .chars()
-            .next()
-            .map_or(false, |c| c.is_ascii_digit())
-        {
-            return Ok(()); // Not a milestone directory, skip
-        }
-
-        // Find the goal document for this chapter
-        let goals = self.goal_documents(&chapter_path)?;
-        let chapter_in_context = self.ctx.config.book.src.join(chapter_path);
-        let Some(goal) = goals.iter().find(|gd| gd.path == chapter_in_context) else {
-            return Ok(()); // No goal document found, nothing to inject
-        };
-
         // Compute the task owner names
         let task_owners: Vec<String> = goal.task_owners.iter().cloned().collect();
 
@@ -617,48 +579,40 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             task_owners.join(", ")
         };
 
-        // First, check if there's already a Task owners row and replace it
-        let task_owners_row_regex =
-            regex::Regex::new(r"(?m)^\|\s*Task owners\s*\|\s*([^|]*)\s*\|").unwrap();
-
-        if task_owners_row_regex.is_match(&chapter.content) {
-            // Replace existing Task owners row
-            chapter.content = task_owners_row_regex
-                .replace(&chapter.content, |_caps: &regex::Captures| {
-                    format!("| Task owners      | {} |", task_owners_text)
-                })
-                .to_string();
-        } else {
-            // No Task owners row exists, add one after Teams row (or Point of contact if no Teams row)
-            let after_teams_regex = regex::Regex::new(r"(?m)^(\| Teams\s*\| [^|]+ \|)").unwrap();
-            let after_contact_regex =
-                regex::Regex::new(r"(?m)^(\| Point of contact \| [^|]+ \|)").unwrap();
-
-            if after_teams_regex.is_match(&chapter.content) {
-                // Add after Teams row
-                chapter.content = after_teams_regex
-                    .replace(&chapter.content, |caps: &regex::Captures| {
-                        format!(
-                            "{}\n| Task owners      | {} |",
-                            caps.get(1).unwrap().as_str(),
-                            task_owners_text
-                        )
-                    })
-                    .to_string();
-            } else if after_contact_regex.is_match(&chapter.content) {
-                // Add after Point of contact row
-                chapter.content = after_contact_regex
-                    .replace(&chapter.content, |caps: &regex::Captures| {
-                        format!(
-                            "{}\n| Task owners      | {} |",
-                            caps.get(1).unwrap().as_str(),
-                            task_owners_text
-                        )
-                    })
-                    .to_string();
-            }
+        // Find the table end and insert both rows
+        if let Some(table_end) = Self::find_markdown_table_end(&chapter.content) {
+            let insertion_text = format!(
+                "| Teams            | {} |\n| Task owners      | {} |\n",
+                teams_text, task_owners_text
+            );
+            chapter.content.insert_str(table_end, &insertion_text);
         }
 
         Ok(())
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_find_markdown_table_end() {
+        let content = "Some text before\n\n| Metadata | Value |\n|----------|-------|\n| Point of contact | @nikomatsakis |\n| Teams | (none) |\n\nSome text after";
+        
+        let result = GoalPreprocessorWithContext::find_markdown_table_end(content);
+        assert!(result.is_some());
+        
+        let offset = result.unwrap();
+        let (before, after) = content.split_at(offset);
+        
+        // Should split right before the blank line after the table
+        assert!(before.ends_with("| Teams | (none) |\n"));
+        assert!(after.starts_with("\nSome text after"));
+        
+        // Test that inserting at this offset works correctly
+        let mut test_content = content.to_string();
+        test_content.insert_str(offset, "| New row | value |\n");
+        assert!(test_content.contains("| Teams | (none) |\n| New row | value |\n\nSome text after"));
     }
 }
