@@ -1,9 +1,10 @@
 # Stabilizable Polonius support on nightly
 
 | Metadata         |                                    |
-|:-----------------|------------------------------------|
+| :--------------- | ---------------------------------- |
 | Point of contact | @lqd                               |
 | Status           | Proposed                           |
+| Flagship         | Unblocking dormant traits          |
 | Tracking issue   | [rust-lang/rust-project-goals#118] |
 | Zulip channel    | [#t-types/polonius][channel]       |
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/186049-t-types.2Fpolonius
@@ -285,24 +286,24 @@ As our model is a superset of NLLs, we expect little to no diagnostics regressio
 
 Note: some of these are currently being worked on and close to being done, and could be completed before the 2025h2 period.
 
-| Milestone                                                                          | Owner          | Notes       |
-| ---------------------------------------------------------------------------------- | -------------- | ----------- |
-| Factoring out higher-ranked concerns from the main path                            | @amandasystems |             |
-| ↳ [x] rewrite invalid universe constraints with outlives `'static` constraints     |                |             |
-| ↳ [ ] completely remove placeholders                                               |                | in progress, PR [#130227](https://github.com/rust-lang/rust/pull/130227) |
-| Location-sensitive prototype on nightly                                            | @lqd           |             |
-| ↳ [x] create structures for location-dependent outlives constraints                |                |             |
-| ↳ [x] build new constraint graph from typeck constraints and liveness constraints  |                |             |
-| ↳ [x] update NLLs for required changes to local & region liveness, loan liveness & loan scopes, (possibly unreachable) kills, bidirectional traversal & active loans | | |
-| ↳ [x] limit regressions about diagnostics when using the new constraints on diagnostics tailored to the old constraints  | | |
-| ↳ [x] land on nightly                                                              |                |             |
-| [x] Debugging / dump tool for analysis of location-sensitive analysis              | @lqd           |             |
-| Expand prototype into alpha version                                                | @lqd           |             |
-| ↳ [ ] Handle member constraints, and SCCs                                          |                |             |
-| ↳ [ ] Reduce overhead of the analysis                                              |                |             |
-| ↳ [ ] Make the analysis incremental and/or lazy                                    |                |             |
-| Tests and validation                                                               | @lqd           | in progress |
-| ↳ [ ] make the full test suite pass                                                |                | in progress, PR [#143093] |
-| ↳ [x] do a crater run for assertions and backwards-compatibility                   |                |             |
-| ↳ [ ] expand test suite with tests about the new capabilities                      |                | in progress, PR [#143093](https://github.com/rust-lang/rust/pull/143093) |
-| [ ] Alpha version on nightly, tested on CI                                         | @lqd           |             |
+| Milestone                                                                                                                                                            | Owner          | Notes                                                                    |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- | ------------------------------------------------------------------------ |
+| Factoring out higher-ranked concerns from the main path                                                                                                              | @amandasystems |                                                                          |
+| ↳ [x] rewrite invalid universe constraints with outlives `'static` constraints                                                                                       |                |                                                                          |
+| ↳ [ ] completely remove placeholders                                                                                                                                 |                | in progress, PR [#130227](https://github.com/rust-lang/rust/pull/130227) |
+| Location-sensitive prototype on nightly                                                                                                                              | @lqd           |                                                                          |
+| ↳ [x] create structures for location-dependent outlives constraints                                                                                                  |                |                                                                          |
+| ↳ [x] build new constraint graph from typeck constraints and liveness constraints                                                                                    |                |                                                                          |
+| ↳ [x] update NLLs for required changes to local & region liveness, loan liveness & loan scopes, (possibly unreachable) kills, bidirectional traversal & active loans |                |                                                                          |
+| ↳ [x] limit regressions about diagnostics when using the new constraints on diagnostics tailored to the old constraints                                              |                |                                                                          |
+| ↳ [x] land on nightly                                                                                                                                                |                |                                                                          |
+| [x] Debugging / dump tool for analysis of location-sensitive analysis                                                                                                | @lqd           |                                                                          |
+| Expand prototype into alpha version                                                                                                                                  | @lqd           |                                                                          |
+| ↳ [ ] Handle member constraints, and SCCs                                                                                                                            |                |                                                                          |
+| ↳ [ ] Reduce overhead of the analysis                                                                                                                                |                |                                                                          |
+| ↳ [ ] Make the analysis incremental and/or lazy                                                                                                                      |                |                                                                          |
+| Tests and validation                                                                                                                                                 | @lqd           | in progress                                                              |
+| ↳ [ ] make the full test suite pass                                                                                                                                  |                | in progress, PR [#143093]                                                |
+| ↳ [x] do a crater run for assertions and backwards-compatibility                                                                                                     |                |                                                                          |
+| ↳ [ ] expand test suite with tests about the new capabilities                                                                                                        |                | in progress, PR [#143093](https://github.com/rust-lang/rust/pull/143093) |
+| [ ] Alpha version on nightly, tested on CI                                                                                                                           | @lqd           |                                                                          |

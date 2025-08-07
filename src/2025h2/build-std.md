@@ -4,6 +4,7 @@
 | :--                | :--                                |
 | Point of contact   | @davidtwco                         |
 | Status             | Proposed                           |
+| Flagship           | Flexible, fast(er) Rust builds     |
 | Zulip channel      | N/A                                |
 | Tracking issue     | [rust-lang/rust-project-goals#274] |
 

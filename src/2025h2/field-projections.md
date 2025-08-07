@@ -4,8 +4,10 @@
 |:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | @BennoLossin                                                                     |
 | Status           | Proposed                                                                         |
+| Flagship         | Beyond the `&`                                                                   |
 | Tracking issue   |                                                                                  |
 | Zulip channel    | N/A                                                                              |
+
 ## Summary
 
 Figure out the best design for field projections. Update the existing [Field Projections RFC] or

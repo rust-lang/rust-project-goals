@@ -1,9 +1,10 @@
 # Stabilize cargo-script
 
 | Metadata         |                                                                                  |
-|:-----------------|----------------------------------------------------------------------------------|
+| :--------------- | -------------------------------------------------------------------------------- |
 | Point of contact | @epage                                                                           |
 | Status           | Proposed                                                                         |
+| Flagship         | Higher-level Rust                                                                |
 | Tracking issue   | [rust-lang/rust-project-goals#119]                                               |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
 ## Summary
@@ -54,27 +55,27 @@ At a high-level, this is
 
 Tracking issue [cargo#12207](https://github.com/rust-lang/cargo/issues/12207):
 
-| Task                         | Owner(s) or team(s) | Notes |
-|------------------------------|---------------------|-------|
-| Discussion and moral support | ![Team][] [cargo], [compiler]   |       |
-| Ensure Cargo implementation  | @epage             |       |
+| Task                         | Owner(s) or team(s)           | Notes |
+| ---------------------------- | ----------------------------- | ----- |
+| Discussion and moral support | ![Team][] [cargo], [compiler] |       |
+| Ensure Cargo implementation  | @epage                        |       |
 
 ### Implement language feature `frontmatter`
 
 Tracking issue [#136889](https://github.com/rust-lang/rust/issues/136889):
 
-| Task                              | Owner(s) or team(s)                | Notes |
-|-----------------------------------|------------------------------------|-------|
-| Rust-analyzer implementation      | @epage |       |
-| rustfmt implementation      | @epage |       |
-| Standard reviews                  | ![Team][] [compiler]               |       |
-| Lang-team champion                | ![Team][] [lang]                   | @joshtriplett      |
-| Author call for testing blog post | @epage |       |
+| Task                              | Owner(s) or team(s)  | Notes         |
+| --------------------------------- | -------------------- | ------------- |
+| Rust-analyzer implementation      | @epage               |               |
+| rustfmt implementation            | @epage               |               |
+| Standard reviews                  | ![Team][] [compiler] |               |
+| Lang-team champion                | ![Team][] [lang]     | @joshtriplett |
+| Author call for testing blog post | @epage               |               |
 
 ### Stabilize language feature `frontmatter`
 
 | Task                        | Owner(s) or team(s)   | Notes         |
-|-----------------------------|-----------------------|---------------|
+| --------------------------- | --------------------- | ------------- |
 | Author Reference PR         | @epage                |               |
 | Review/revise Reference PR  | ![Team][] [lang-docs] | @ehuss        |
 | Lang-team champion          | ![Team][] [lang]      | @joshtriplett |

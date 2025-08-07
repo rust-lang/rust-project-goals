@@ -1,9 +1,10 @@
 # Next-generation trait solver
 
 | Metadata         |                                           |
-|:-----------------|-------------------------------------------|
+| :--------------- | ----------------------------------------- |
 | Point of contact | @lcnr                                     |
 | Status           | Proposed                                  |
+| Flagship         | Unblocking dormant traits                 |
 | Tracking issue   | [rust-lang/rust-project-goals#113]        |
 | Zulip channel    | [#t-types/trait-system-refactor][channel] |
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/364551-t-types.2Ftrait-system-refactor
@@ -56,12 +57,12 @@ In order of importance, the next-generation trait solver should be:
 
 Add'l implementation work: @compiler-errors
 
-| Task                         | Owner(s) or team(s)     | Notes                      |
-|------------------------------|-------------------------|----------------------------|
-| Discussion and moral support | ![Team][] [types]       |                            |
-| Implementation               | @lcnr, @compiler-errors, @BoxyUwU |                |
-| Standard reviews             | ![Team][] [types]       |                            |
-| FCP decision(s)              | ![Team][] [types][]     | for necessary refactorings |
+| Task                         | Owner(s) or team(s)               | Notes                      |
+| ---------------------------- | --------------------------------- | -------------------------- |
+| Discussion and moral support | ![Team][] [types]                 |                            |
+| Implementation               | @lcnr, @compiler-errors, @BoxyUwU |                            |
+| Standard reviews             | ![Team][] [types]                 |                            |
+| FCP decision(s)              | ![Team][] [types][]               | for necessary refactorings |
 
 ### Support needed from the project
 

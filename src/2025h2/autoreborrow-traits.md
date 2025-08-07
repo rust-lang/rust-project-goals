@@ -1,11 +1,13 @@
 # Nightly support for Autoreborrow traits
 
 | Metadata         |                                                                                  |
-|:-----------------|----------------------------------------------------------------------------------|
+| :--------------- | -------------------------------------------------------------------------------- |
 | Point of contact | @aapoalas                                                                        |
 | Status           | Proposed                                                                         |
+| Flagship         | Beyond the `&`                                                                   |
 | Tracking issue   |                                                                                  |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
+
 ## Summary
 
 Bring up a language RFC for autoreborrow traits and land nightly support for the traits.
@@ -85,11 +87,11 @@ Users of `reborrow` crate and similar should be enabled to move to core solution
 
 ## Ownership and team asks
 
-| Task                         | Owner(s) or team(s) | Notes |
-|------------------------------|---------------------|-------|
-| Discussion and moral support | ![Team][] [lang]    | Normal RFC process |
-| Standard reviews             | ![Team][] [compiler]| Trait-impl querying in rustc to replace `Pin<&mut T>` special case |
-| Do the work                  | @aapoalas           |       |
+| Task                         | Owner(s) or team(s)  | Notes                                                              |
+| ---------------------------- | -------------------- | ------------------------------------------------------------------ |
+| Discussion and moral support | ![Team][] [lang]     | Normal RFC process                                                 |
+| Standard reviews             | ![Team][] [compiler] | Trait-impl querying in rustc to replace `Pin<&mut T>` special case |
+| Do the work                  | @aapoalas            |                                                                    |
 
 ### Design autoreborrow internals
 
@@ -111,10 +113,10 @@ To enable this, reborrowing needs to be defined as a recursive operation but wha
 is the question. One option would be to use `!Copy + Reborrow` fields, another would use core marker types
 like `PhantomExclusive<'a>` and `PhantomShared<'b>` to discern the difference.
 | Task                 | Owner(s) or team(s)                | Notes                                                               |
-|----------------------|------------------------------------|---------------------------------------------------------------------|
+| -------------------- | ---------------------------------- | ------------------------------------------------------------------- |
 | Lang-team experiment | ![Team][] [lang]                   | allows coding pre-RFC; only for trusted contributors                |
 | Author RFC           | *Goal point of contact, typically* |                                                                     |
-| Lang-team champion   | ![Team][] [lang]                   | Username here |
+| Lang-team champion   | ![Team][] [lang]                   | Username here                                                       |
 | RFC decision         | ![Team][] [lang]                   |                                                                     |
 | RFC secondary review | ![Team][] [types]                  | request bandwidth from a second team, most features don't need this |
 
@@ -124,7 +126,7 @@ A basic autoreborrowing feature should not be too complicated: the `Pin<&mut T>`
 compiler already exists and could probably be reimagined to rely on a `Reborrow` trait.
 
 | Task                              | Owner(s) or team(s)                | Notes |
-|-----------------------------------|------------------------------------|-------|
+| --------------------------------- | ---------------------------------- | ----- |
 | Implementation                    | *Goal point of contact, typically* |       |
 | Standard reviews                  | ![Team][] [compiler]               |       |
 | Lang-team champion                | ![Team][] [lang]                   |       |

@@ -1,11 +1,12 @@
 # In-place initialization
 
-| Metadata         |                                                                                  |
-|:-----------------|----------------------------------------------------------------------------------|
-| Point of contact | @Darksonn                                                                        |
-| Status           | Proposed                                                                         |
-| Tracking issue   |                                                                                  |
-| Zulip channel    | [#t-lang][channel]                                                               |
+| Metadata         |                           |
+| :--------------- | ------------------------- |
+| Point of contact | @Darksonn                 |
+| Status           | Proposed                  |
+| Flagship         | Unblocking dormant traits |
+| Tracking issue   |                           |
+| Zulip channel    | [#t-lang][channel]        |
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/213817-t-lang
 
 ## Summary
@@ -137,11 +138,11 @@ scheduled.
 
 [design-meeting]: https://github.com/rust-lang/lang-team/issues/332
 
-| Task                         | Owner(s) or team(s)                   | Notes |
-|------------------------------|---------------------------------------|-------|
-| Discussion and moral support | ![Team][] [lang]                      |       |
-| Design meeting               | ![Team][] [lang]                      | Two design meetings |
-| Be the main author of an RFC | @Darksonn                             |       |
-| Contribute to the RFC        | @cramertj, @yoshuawuyts, @BennoLossin, @nbdd0121 |       |
-| Lang-team liason             | @joshtriplett                         |       |
-| Dedicated reviewer           | @compiler-errors                      | Of lang experiments |
+| Task                         | Owner(s) or team(s)                              | Notes               |
+| ---------------------------- | ------------------------------------------------ | ------------------- |
+| Discussion and moral support | ![Team][] [lang]                                 |                     |
+| Design meeting               | ![Team][] [lang]                                 | Two design meetings |
+| Be the main author of an RFC | @Darksonn                                        |                     |
+| Contribute to the RFC        | @cramertj, @yoshuawuyts, @BennoLossin, @nbdd0121 |                     |
+| Lang-team liason             | @joshtriplett                                    |                     |
+| Dedicated reviewer           | @compiler-errors                                 | Of lang experiments |

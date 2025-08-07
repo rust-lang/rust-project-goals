@@ -1,10 +1,11 @@
 # Continue Experimentation with Pin Ergonomics
 
 | Metadata         |                                                                                  |
-|:-----------------|----------------------------------------------------------------------------------|
+| :--------------- | -------------------------------------------------------------------------------- |
 | Point of contact | @frank-king                                                                      |
 | Status           | Proposed                                                                         |
-| Tracking issue   |      |
+| Flagship         | Beyond the `&`                                                                   |
+| Tracking issue   |                                                                                  |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
 ## Summary
 
@@ -34,13 +35,13 @@ We have an experiment for improving the ergonomics around pinning and some initi
 
 ## Ownership and team asks
 
-| Task                              | Owner(s) or team(s)                | Notes |
-|-----------------------------------|------------------------------------|-------|
-| Implementation                    | @frank-king  |       |
-| Standard reviews                  | ![Team][] [compiler]               |       |
-| Lang-team champion                | ![Team][] [lang]                   |       |
-| Design meeting                    | ![Team][] [lang]                   |       |
-| Author call for testing blog post | @frank-king |       |
+| Task                              | Owner(s) or team(s)  | Notes |
+| --------------------------------- | -------------------- | ----- |
+| Implementation                    | @frank-king          |       |
+| Standard reviews                  | ![Team][] [compiler] |       |
+| Lang-team champion                | ![Team][] [lang]     |       |
+| Design meeting                    | ![Team][] [lang]     |       |
+| Author call for testing blog post | @frank-king          |       |
 
 ### Definitions
 

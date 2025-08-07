@@ -1,12 +1,13 @@
 # Promoting Parallel Front End
 
-| Metadata         |                                                   |
-| :--------------- | ------------------------------------------------- |
-| Point of contact | @SparrowLii                                       |
-| Status           | Proposed                                          |
-| Tracking issue   | [rust-lang/rust-project-goals#121]                |
-| See also         | [rust-lang/rust#113349]                           |
-| Zulip channel    | [#t-compiler/wg-parallel-rustc][channel]          |
+| Metadata         |                                          |
+| :--------------- | ---------------------------------------- |
+| Point of contact | @SparrowLii                              |
+| Status           | Proposed                                 |
+| Flagship         | Flexible, fast(er) Rust builds           |
+| Tracking issue   | [rust-lang/rust-project-goals#121]       |
+| See also         | [rust-lang/rust#113349]                  |
+| Zulip channel    | [#t-compiler/wg-parallel-rustc][channel] |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/187679-t-compiler.2Fwg-parallel-rustc/
 ## Summary
