@@ -40,9 +40,6 @@ impl Preprocessor for GoalPreprocessor {
 }
 
 pub struct GoalPreprocessorWithContext<'c> {
-    team_asks: &'static Regex,
-    goal_count: &'static Regex,
-    username: &'static Regex,
     ctx: &'c PreprocessorContext,
     links: Vec<(String, String)>,
     linkifiers: Vec<(Regex, String)>,
@@ -138,9 +135,6 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
         Ok(GoalPreprocessorWithContext {
             ctx,
-            team_asks: &re::TEAM_ASKS,
-            goal_count: &re::GOAL_COUNT,
-            username: &re::USERNAME,
             links,
             linkifiers,
             display_names,
@@ -157,6 +151,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 self.replace_valid_team_asks(chapter)?;
                 self.replace_goal_lists(chapter)?;
                 self.replace_goal_count(chapter)?;
+                self.replace_flagship_goal_count(chapter)?;
                 self.link_teams(chapter)?;
                 self.link_users(chapter)?;
                 self.linkify(chapter)?;
@@ -176,7 +171,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     }
 
     fn replace_goal_count(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        if !self.goal_count.is_match(&chapter.content) {
+        if !re::GOAL_COUNT.is_match(&chapter.content) {
             return Ok(());
         }
 
@@ -191,8 +186,30 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             .filter(|g| g.metadata.status.is_not_not_accepted())
             .count();
 
-        chapter.content = self
-            .goal_count
+        chapter.content = re::GOAL_COUNT
+            .replace_all(&chapter.content, &count.to_string())
+            .to_string();
+
+        Ok(())
+    }
+
+    fn replace_flagship_goal_count(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        if !re::FLAGSHIP_GOAL_COUNT.is_match(&chapter.content) {
+            return Ok(());
+        }
+
+        let Some(chapter_path) = &chapter.path else {
+            anyhow::bail!("found `(((#FLAGSHIP_GOALS)))` but chapter has no path")
+        };
+
+        let goals = self.goal_documents(chapter_path)?;
+
+        let count = goals
+            .iter()
+            .filter(|g| g.metadata.flagship().is_some() && g.metadata.status.is_not_not_accepted())
+            .count();
+
+        chapter.content = re::FLAGSHIP_GOAL_COUNT
             .replace_all(&chapter.content, &count.to_string())
             .to_string();
 
@@ -202,12 +219,12 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     fn replace_goal_lists(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
         // Handle filtered flagship goals first (more specific pattern)
         self.replace_flagship_goal_lists_filtered(chapter)?;
-        
+
         // Handle unfiltered flagship goals
         self.replace_goal_lists_helper(chapter, &re::FLAGSHIP_GOAL_LIST, |goal, _capture| {
             goal.metadata.flagship().is_some() && goal.metadata.status.content.is_not_not_accepted()
         })?;
-        
+
         self.replace_goal_lists_helper(chapter, &re::OTHER_GOAL_LIST, |goal, _capture| {
             goal.metadata.flagship().is_none() && goal.metadata.status.content.is_not_not_accepted()
         })?;
@@ -220,15 +237,18 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         Ok(())
     }
 
-    fn replace_flagship_goal_lists_filtered(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+    fn replace_flagship_goal_lists_filtered(
+        &mut self,
+        chapter: &mut Chapter,
+    ) -> anyhow::Result<()> {
         self.replace_goal_lists_helper(
             chapter,
             &re::FLAGSHIP_GOAL_LIST_FILTERED,
             |goal, capture| {
                 let filter_value = capture.unwrap().trim(); // Safe because this regex always has a capture
-                goal.metadata.status.content.is_not_not_accepted() &&
-                goal.metadata.flagship().map(|f| f.trim()) == Some(filter_value)
-            }
+                goal.metadata.status.content.is_not_not_accepted()
+                    && goal.metadata.flagship().map(|f| f.trim()) == Some(filter_value)
+            },
         )
     }
 
@@ -249,16 +269,15 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             };
 
             // Extract capture group if present
-            let capture_value = regex.captures(&chapter.content[range.clone()])
+            let capture_value = regex
+                .captures(&chapter.content[range.clone()])
                 .and_then(|caps| caps.get(1))
                 .map(|m| m.as_str().trim());
 
             // Extract out the list of goals with the given filter.
             let goals = self.goal_documents(chapter_path)?;
-            let mut goals_with_status: Vec<&GoalDocument> = goals
-                .iter()
-                .filter(|g| filter(g, capture_value))
-                .collect();
+            let mut goals_with_status: Vec<&GoalDocument> =
+                goals.iter().filter(|g| filter(g, capture_value)).collect();
 
             goals_with_status.sort_by_key(|g| &g.metadata.title);
 
@@ -291,7 +310,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
     /// Look for `<!-- TEAM ASKS -->` in the chapter content and replace it with the team asks.
     fn replace_team_asks(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        let Some(m) = self.team_asks.find(&chapter.content) else {
+        let Some(m) = re::TEAM_ASKS.find(&chapter.content) else {
             return Ok(());
         };
         let range = m.range();
@@ -358,8 +377,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     }
 
     fn link_users(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        let usernames: BTreeSet<String> = self
-            .username
+        let usernames: BTreeSet<String> = re::USERNAME
             .find_iter(&chapter.content)
             .map(|m| m.as_str().to_string())
             .filter(|username| !self.ignore_users.contains(username))
@@ -486,12 +504,16 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         let Some(parent_dir) = chapter_path.parent() else {
             return Ok(());
         };
-        
+
         let Some(parent_name) = parent_dir.file_name().and_then(|n| n.to_str()) else {
             return Ok(());
         };
-        
-        if !parent_name.chars().next().map_or(false, |c| c.is_ascii_digit()) {
+
+        if !parent_name
+            .chars()
+            .next()
+            .map_or(false, |c| c.is_ascii_digit())
+        {
             return Ok(()); // Not a milestone directory, skip
         }
 
@@ -503,11 +525,12 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         };
 
         // Compute the team names
-        let team_names: Vec<String> = goal.teams_with_asks()
+        let team_names: Vec<String> = goal
+            .teams_with_asks()
             .iter()
             .map(|team_name| team_name.name())
             .collect();
-        
+
         let teams_text = if team_names.is_empty() {
             "(none)".to_string()
         } else {
@@ -516,20 +539,29 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
         // First, check if there's already a Teams row and replace it
         let teams_row_regex = regex::Regex::new(r"(?m)^\|\s*Teams\s*\|\s*([^|]*)\s*\|").unwrap();
-        
+
         if teams_row_regex.is_match(&chapter.content) {
             // Replace existing Teams row
-            chapter.content = teams_row_regex.replace(&chapter.content, |_caps: &regex::Captures| {
-                format!("| Teams            | {} |", teams_text)
-            }).to_string();
+            chapter.content = teams_row_regex
+                .replace(&chapter.content, |_caps: &regex::Captures| {
+                    format!("| Teams            | {} |", teams_text)
+                })
+                .to_string();
         } else {
             // No Teams row exists, add one after Point of contact
-            let metadata_table_regex = regex::Regex::new(r"(?m)^(\| Point of contact \| [^|]+ \|)").unwrap();
-            
+            let metadata_table_regex =
+                regex::Regex::new(r"(?m)^(\| Point of contact \| [^|]+ \|)").unwrap();
+
             if metadata_table_regex.is_match(&chapter.content) {
-                chapter.content = metadata_table_regex.replace(&chapter.content, |caps: &regex::Captures| {
-                    format!("{}\n| Teams            | {} |", caps.get(1).unwrap().as_str(), teams_text)
-                }).to_string();
+                chapter.content = metadata_table_regex
+                    .replace(&chapter.content, |caps: &regex::Captures| {
+                        format!(
+                            "{}\n| Teams            | {} |",
+                            caps.get(1).unwrap().as_str(),
+                            teams_text
+                        )
+                    })
+                    .to_string();
             }
         }
 
@@ -538,7 +570,10 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
     /// Automatically inject task owner names into the metadata table's Task owners row.
     /// This replaces the need for manual `<!-- TASK OWNERS -->` placeholders.
-    fn inject_task_owners_into_metadata_table(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+    fn inject_task_owners_into_metadata_table(
+        &mut self,
+        chapter: &mut Chapter,
+    ) -> anyhow::Result<()> {
         let Some(chapter_path) = chapter.path.as_ref() else {
             return Ok(()); // No path, nothing to inject
         };
@@ -553,12 +588,16 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         let Some(parent_dir) = chapter_path.parent() else {
             return Ok(());
         };
-        
+
         let Some(parent_name) = parent_dir.file_name().and_then(|n| n.to_str()) else {
             return Ok(());
         };
-        
-        if !parent_name.chars().next().map_or(false, |c| c.is_ascii_digit()) {
+
+        if !parent_name
+            .chars()
+            .next()
+            .map_or(false, |c| c.is_ascii_digit())
+        {
             return Ok(()); // Not a milestone directory, skip
         }
 
@@ -571,7 +610,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
         // Compute the task owner names
         let task_owners: Vec<String> = goal.task_owners.iter().cloned().collect();
-        
+
         let task_owners_text = if task_owners.is_empty() {
             "(none)".to_string()
         } else {
@@ -579,33 +618,47 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         };
 
         // First, check if there's already a Task owners row and replace it
-        let task_owners_row_regex = regex::Regex::new(r"(?m)^\|\s*Task owners\s*\|\s*([^|]*)\s*\|").unwrap();
-        
+        let task_owners_row_regex =
+            regex::Regex::new(r"(?m)^\|\s*Task owners\s*\|\s*([^|]*)\s*\|").unwrap();
+
         if task_owners_row_regex.is_match(&chapter.content) {
             // Replace existing Task owners row
-            chapter.content = task_owners_row_regex.replace(&chapter.content, |_caps: &regex::Captures| {
-                format!("| Task owners      | {} |", task_owners_text)
-            }).to_string();
+            chapter.content = task_owners_row_regex
+                .replace(&chapter.content, |_caps: &regex::Captures| {
+                    format!("| Task owners      | {} |", task_owners_text)
+                })
+                .to_string();
         } else {
             // No Task owners row exists, add one after Teams row (or Point of contact if no Teams row)
             let after_teams_regex = regex::Regex::new(r"(?m)^(\| Teams\s*\| [^|]+ \|)").unwrap();
-            let after_contact_regex = regex::Regex::new(r"(?m)^(\| Point of contact \| [^|]+ \|)").unwrap();
-            
+            let after_contact_regex =
+                regex::Regex::new(r"(?m)^(\| Point of contact \| [^|]+ \|)").unwrap();
+
             if after_teams_regex.is_match(&chapter.content) {
                 // Add after Teams row
-                chapter.content = after_teams_regex.replace(&chapter.content, |caps: &regex::Captures| {
-                    format!("{}\n| Task owners      | {} |", caps.get(1).unwrap().as_str(), task_owners_text)
-                }).to_string();
+                chapter.content = after_teams_regex
+                    .replace(&chapter.content, |caps: &regex::Captures| {
+                        format!(
+                            "{}\n| Task owners      | {} |",
+                            caps.get(1).unwrap().as_str(),
+                            task_owners_text
+                        )
+                    })
+                    .to_string();
             } else if after_contact_regex.is_match(&chapter.content) {
                 // Add after Point of contact row
-                chapter.content = after_contact_regex.replace(&chapter.content, |caps: &regex::Captures| {
-                    format!("{}\n| Task owners      | {} |", caps.get(1).unwrap().as_str(), task_owners_text)
-                }).to_string();
+                chapter.content = after_contact_regex
+                    .replace(&chapter.content, |caps: &regex::Captures| {
+                        format!(
+                            "{}\n| Task owners      | {} |",
+                            caps.get(1).unwrap().as_str(),
+                            task_owners_text
+                        )
+                    })
+                    .to_string();
             }
         }
 
         Ok(())
     }
-
-
 }

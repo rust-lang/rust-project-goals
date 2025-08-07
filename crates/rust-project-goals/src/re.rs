@@ -17,7 +17,8 @@ lazy_static! {
 
 // List of flagship goals filtered by category (accepted or pending)
 lazy_static! {
-    pub static ref FLAGSHIP_GOAL_LIST_FILTERED: Regex = Regex::new(r"\(\(\(FLAGSHIP GOALS:\s*([^)]+?)\s*\)\)\)").unwrap();
+    pub static ref FLAGSHIP_GOAL_LIST_FILTERED: Regex =
+        Regex::new(r"\(\(\(FLAGSHIP GOALS:\s*(.+?)\s*\)\)\)").unwrap();
 }
 
 // List of non-flagship goals (accepted or pending)
@@ -31,12 +32,12 @@ lazy_static! {
         Regex::new(r"\(\(\(GOALS NOT ACCEPTED\)\)\)").unwrap();
 }
 
-
-
-
-
 lazy_static! {
     pub static ref GOAL_COUNT: Regex = Regex::new(r"\(\(\(#GOALS\)\)\)").unwrap();
+}
+
+lazy_static! {
+    pub static ref FLAGSHIP_GOAL_COUNT: Regex = Regex::new(r"\(\(\(#FLAGSHIP GOALS\)\)\)").unwrap();
 }
 
 lazy_static! {
