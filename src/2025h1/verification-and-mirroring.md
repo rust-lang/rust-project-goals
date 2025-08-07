@@ -4,8 +4,6 @@
 | :--                | :--                                |
 | Short title        | Crates.io mirroring                |
 | Point of contact   | @walterhpearce                     |
-| Teams              | <!-- TEAMS WITH ASKS -->           |
-| Task owners        | <!-- TASK OWNERS -->               |
 | Status             | Accepted                           |
 | Zulip channel      | N/A                                |
 | Tracking issue     | [rust-lang/rust-project-goals#271] |
@@ -69,8 +67,6 @@ We also wish to implement technical items for this goal.
 - We will have integrated signing into a TUF repository for crates published to crates.io; this may be accomplished in collaboration with crates.io or out-of-band via the new updates RSS feed.
 
 - Finally, we'll provide some method for end users to verify these signatures as an external cargo subcommand & rustup fork for proof-of-concept
-
-
 ### The "shiny future" we are working towards
 
 After this next six months, we will continue working to bring the experimental infrastructure into production.

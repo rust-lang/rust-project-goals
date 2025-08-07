@@ -3,15 +3,10 @@
 | Metadata         |                                           |
 |:-----------------|-------------------------------------------|
 | Point of contact | @lcnr                                     |
-| Teams            | <!-- TEAMS WITH ASKS -->                  |
-| Task owners      | <!-- TASK OWNERS -->                      |
 | Status           | Accepted                                  |
 | Tracking issue   | [rust-lang/rust-project-goals#113]        |
 | Zulip channel    | [#t-types/trait-system-refactor][channel] |
-
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/364551-t-types.2Ftrait-system-refactor
-
-
 ## Summary
 
 Continue work towards the stabilization of `-Znext-solver=globally`, collecting and resolving remaining blockers. Extend its use in lints and rustdoc.
@@ -39,8 +34,6 @@ Fixing these issues in the existing implementation is prohibitively difficult as
 - go through the most popular crates on crates.io and fix any encountered issues
 - move additional lints and rustdoc to use the new solver by default
 - publicly ask for testing of `-Znext-solver=globally` once that's useful
-
-
 ### The "shiny future" we are working towards
 
 - we are able to remove the existing trait solver implementation and significantly cleanup the type system in general, e.g. removing most `normalize` in the caller by handling unnormalized types in the trait system

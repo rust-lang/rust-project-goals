@@ -3,13 +3,9 @@
 | Metadata         |                                    |
 |------------------|------------------------------------|
 | Point of contact | @Muscraft                          |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
 | Status           | Accepted                           |
 | Tracking issue   | [rust-lang/rust-project-goals#123] |
 | Zulip channel    | N/A                                |
-
-
 ## Summary
 
 Switch to annotate-snippets for rendering rustc's output, with no loss of functionality or visual regressions.
@@ -36,12 +32,8 @@ The outputs of rustc and cargo are fully using annotate-snippets, with no regres
 ## Design axioms
 
 *This section is optional, but including [design axioms][da] can help you signal how you intend to balance constraints and tradeoffs (e.g., "prefer ease of use over performance" or vice versa). Teams should review the axioms and make sure they agree. [Read more about design axioms][da].*
-
-
 - **Match rustc's output**: The output of annotate-snipepts should match rustc, modulo reasonable non-significant divergences
 - **Works for Cargo (and other tools)**: annotate-snippets is meant to be used by any project that would like "Rust-style" output, so it should be designed to work with any project, not just rustc.
-
-
 [da]: https://rust-lang.github.io/rust-project-goals/about/design_axioms.html
 
 ## Ownership and team asks

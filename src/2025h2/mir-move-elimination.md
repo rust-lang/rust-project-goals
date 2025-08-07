@@ -3,12 +3,9 @@
 | Metadata         |                                                                                  |
 |:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | @Amanieu                                                                         |
-| Teams            | <!-- TEAMS WITH ASKS -->                                                         |
-| Task owners      | <!-- TASK OWNERS -->                                                             |
 | Status           | Proposed                                                                         |
 | Tracking issue   |                                                             |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
-
 ## Summary
 
 Add a MIR optimization which eliminates move operations. This will require changes to the MIR semantics of `move` to enable the optimization to cases where a value has had its address taken (LLVM already eliminates moves when this is not the case).

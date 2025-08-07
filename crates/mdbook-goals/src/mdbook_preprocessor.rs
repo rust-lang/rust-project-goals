@@ -14,7 +14,7 @@ use rust_project_goals::util::{self, GithubUserInfo};
 
 use rust_project_goals::spanned::Spanned;
 use rust_project_goals::{
-    goal::{self, GoalDocument, Status, TeamAsk},
+    goal::{self, GoalDocument, TeamAsk},
     re, team,
 };
 
@@ -40,9 +40,6 @@ impl Preprocessor for GoalPreprocessor {
 }
 
 pub struct GoalPreprocessorWithContext<'c> {
-    team_asks: &'static Regex,
-    goal_count: &'static Regex,
-    username: &'static Regex,
     ctx: &'c PreprocessorContext,
     links: Vec<(String, String)>,
     linkifiers: Vec<(Regex, String)>,
@@ -138,9 +135,6 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
         Ok(GoalPreprocessorWithContext {
             ctx,
-            team_asks: &re::TEAM_ASKS,
-            goal_count: &re::GOAL_COUNT,
-            username: &re::USERNAME,
             links,
             linkifiers,
             display_names,
@@ -157,6 +151,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 self.replace_valid_team_asks(chapter)?;
                 self.replace_goal_lists(chapter)?;
                 self.replace_goal_count(chapter)?;
+                self.replace_flagship_goal_count(chapter)?;
                 self.link_teams(chapter)?;
                 self.link_users(chapter)?;
                 self.linkify(chapter)?;
@@ -176,12 +171,12 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     }
 
     fn replace_goal_count(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        if !self.goal_count.is_match(&chapter.content) {
+        if !re::GOAL_COUNT.is_match(&chapter.content) {
             return Ok(());
         }
 
         let Some(chapter_path) = &chapter.path else {
-            anyhow::bail!("found `<!-- #GOALS -->` but chapter has no path")
+            anyhow::bail!("found `(((#GOALS)))` but chapter has no path")
         };
 
         let goals = self.goal_documents(chapter_path)?;
@@ -191,8 +186,30 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             .filter(|g| g.metadata.status.is_not_not_accepted())
             .count();
 
-        chapter.content = self
-            .goal_count
+        chapter.content = re::GOAL_COUNT
+            .replace_all(&chapter.content, &count.to_string())
+            .to_string();
+
+        Ok(())
+    }
+
+    fn replace_flagship_goal_count(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        if !re::FLAGSHIP_GOAL_COUNT.is_match(&chapter.content) {
+            return Ok(());
+        }
+
+        let Some(chapter_path) = &chapter.path else {
+            anyhow::bail!("found `(((#FLAGSHIP_GOALS)))` but chapter has no path")
+        };
+
+        let goals = self.goal_documents(chapter_path)?;
+
+        let count = goals
+            .iter()
+            .filter(|g| g.metadata.flagship().is_some() && g.metadata.status.is_not_not_accepted())
+            .count();
+
+        chapter.content = re::FLAGSHIP_GOAL_COUNT
             .replace_all(&chapter.content, &count.to_string())
             .to_string();
 
@@ -200,26 +217,46 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     }
 
     fn replace_goal_lists(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        self.replace_goal_lists_helper(chapter, &re::FLAGSHIP_GOAL_LIST, |status| {
-            status.is_flagship && status.is_not_not_accepted()
+        // Handle filtered flagship goals first (more specific pattern)
+        self.replace_flagship_goal_lists_filtered(chapter)?;
+
+        // Handle unfiltered flagship goals
+        self.replace_goal_lists_helper(chapter, &re::FLAGSHIP_GOAL_LIST, |goal, _capture| {
+            goal.metadata.flagship().is_some() && goal.metadata.status.content.is_not_not_accepted()
         })?;
-        self.replace_goal_lists_helper(chapter, &re::OTHER_GOAL_LIST, |status| {
-            !status.is_flagship && status.is_not_not_accepted()
+
+        self.replace_goal_lists_helper(chapter, &re::OTHER_GOAL_LIST, |goal, _capture| {
+            goal.metadata.flagship().is_none() && goal.metadata.status.content.is_not_not_accepted()
         })?;
-        self.replace_goal_lists_helper(chapter, &re::GOAL_LIST, |status| {
-            status.is_not_not_accepted()
+        self.replace_goal_lists_helper(chapter, &re::GOAL_LIST, |goal, _capture| {
+            goal.metadata.status.content.is_not_not_accepted()
         })?;
-        self.replace_goal_lists_helper(chapter, &re::GOAL_NOT_ACCEPTED_LIST, |status| {
-            !status.is_not_not_accepted()
+        self.replace_goal_lists_helper(chapter, &re::GOAL_NOT_ACCEPTED_LIST, |goal, _capture| {
+            !goal.metadata.status.content.is_not_not_accepted()
         })?;
         Ok(())
+    }
+
+    fn replace_flagship_goal_lists_filtered(
+        &mut self,
+        chapter: &mut Chapter,
+    ) -> anyhow::Result<()> {
+        self.replace_goal_lists_helper(
+            chapter,
+            &re::FLAGSHIP_GOAL_LIST_FILTERED,
+            |goal, capture| {
+                let filter_value = capture.unwrap().trim(); // Safe because this regex always has a capture
+                goal.metadata.status.content.is_not_not_accepted()
+                    && goal.metadata.flagship().map(|f| f.trim()) == Some(filter_value)
+            },
+        )
     }
 
     fn replace_goal_lists_helper(
         &mut self,
         chapter: &mut Chapter,
         regex: &Regex,
-        filter: impl Fn(Status) -> bool,
+        filter: impl Fn(&GoalDocument, Option<&str>) -> bool,
     ) -> anyhow::Result<()> {
         loop {
             let Some(m) = regex.find(&chapter.content) else {
@@ -231,12 +268,16 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 anyhow::bail!("found `{regex}` but chapter has no path")
             };
 
-            // Extract out the list of goals with the given status.
+            // Extract capture group if present
+            let capture_value = regex
+                .captures(&chapter.content[range.clone()])
+                .and_then(|caps| caps.get(1))
+                .map(|m| m.as_str().trim());
+
+            // Extract out the list of goals with the given filter.
             let goals = self.goal_documents(chapter_path)?;
-            let mut goals_with_status: Vec<&GoalDocument> = goals
-                .iter()
-                .filter(|g| filter(g.metadata.status.content))
-                .collect();
+            let mut goals_with_status: Vec<&GoalDocument> =
+                goals.iter().filter(|g| filter(g, capture_value)).collect();
 
             goals_with_status.sort_by_key(|g| &g.metadata.title);
 
@@ -269,13 +310,13 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
     /// Look for `<!-- TEAM ASKS -->` in the chapter content and replace it with the team asks.
     fn replace_team_asks(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        let Some(m) = self.team_asks.find(&chapter.content) else {
+        let Some(m) = re::TEAM_ASKS.find(&chapter.content) else {
             return Ok(());
         };
         let range = m.range();
 
         let Some(path) = &chapter.path else {
-            anyhow::bail!("found `<!-- TEAM ASKS -->` but chapter has no path")
+            anyhow::bail!("found `(((TEAM ASKS)))` but chapter has no path")
         };
 
         let goals = self.goal_documents(path)?;
@@ -336,8 +377,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     }
 
     fn link_users(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        let usernames: BTreeSet<String> = self
-            .username
+        let usernames: BTreeSet<String> = re::USERNAME
             .find_iter(&chapter.content)
             .map(|m| m.as_str().to_string())
             .filter(|username| !self.ignore_users.contains(username))
@@ -440,58 +480,139 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     /// All goal documents should have this in their metadata table;
     /// that is enforced during goal parsing.
     fn replace_metadata_placeholders(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        self.replace_metadata_placeholder(chapter, &re::TASK_OWNERS, |goal| {
-            goal.task_owners.iter().cloned().collect()
-        })?;
-
-        self.replace_metadata_placeholder(chapter, &re::TEAMS_WITH_ASKS, |goal| {
-            goal.teams_with_asks()
-                .iter()
-                .map(|team_name| team_name.name())
-                .collect()
-        })?;
+        // Auto-inject teams and task owners directly into metadata table instead of using placeholders
+        self.inject_metadata_rows(chapter)?;
 
         Ok(())
     }
 
-    /// Replace one of the placeholders that occur in the goal document metadata,
-    /// like [`re::TASK_OWNERS`][].
-    fn replace_metadata_placeholder(
-        &mut self,
-        chapter: &mut Chapter,
-        regex: &Regex,
-        op: impl Fn(&GoalDocument) -> Vec<String>,
-    ) -> anyhow::Result<()> {
-        let Some(m) = regex.find(&chapter.content) else {
-            return Ok(());
-        };
-        let range = m.range();
+    /// Find the end of a markdown table (first line that doesn't start with |).
+    /// Returns the byte offset where new rows should be inserted.
+    fn find_markdown_table_end(content: &str) -> Option<usize> {
+        let lines: Vec<&str> = content.lines().collect();
+        
+        // Find first line starting with |
+        let table_start = lines.iter().position(|line| line.trim_start().starts_with('|'))?;
+        
+        // Find first line after table_start that doesn't start with |
+        let table_end = lines[table_start..]
+            .iter()
+            .position(|line| !line.trim_start().starts_with('|'))
+            .map(|pos| table_start + pos)
+            .unwrap_or(lines.len());
+        
+        // Calculate byte offset to the start of the table_end line
+        let mut offset = 0;
+        for i in 0..table_end {
+            
+            if i > 0 {
+                offset += 1; // newline
+            }
+            offset += lines[i].len();
+        }
+        
+        if table_end < lines.len() {
+            // There's a line after the table, insert before it
+            Some(offset + 1) // +1 for the newline after the last table row
+        } else {
+            // Table goes to end of file, append at the end
+            Some(content.len())
+        }
+    }
 
+    /// Automatically inject team names and task owners into the metadata table.
+    /// This replaces the need for manual placeholders and combines the logic
+    /// to avoid duplicate table parsing.
+    fn inject_metadata_rows(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
         let Some(chapter_path) = chapter.path.as_ref() else {
-            anyhow::bail!(
-                "goal chapter `{}` matches placeholder regex but has no path",
-                chapter.name
-            );
+            return Ok(()); // No path, nothing to inject
         };
 
-        // Hack: leave this stuff alone in the template
-        if chapter_path.file_name().unwrap() == "TEMPLATE.md" {
+        // Skip template files
+        if chapter_path.file_name().and_then(|n| n.to_str()) == Some("TEMPLATE.md") {
             return Ok(());
         }
 
+        // Only process files in milestone directories (like 2024h2, 2025h1, etc.)
+        let Some(parent_dir) = chapter_path.parent() else {
+            return Ok(());
+        };
+
+        let Some(parent_name) = parent_dir.file_name().and_then(|n| n.to_str()) else {
+            return Ok(());
+        };
+
+        if !parent_name
+            .chars()
+            .next()
+            .map_or(false, |c| c.is_ascii_digit())
+        {
+            return Ok(()); // Not a milestone directory, skip
+        }
+
+        // Find the goal document for this chapter
         let goals = self.goal_documents(&chapter_path)?;
         let chapter_in_context = self.ctx.config.book.src.join(chapter_path);
         let Some(goal) = goals.iter().find(|gd| gd.path == chapter_in_context) else {
-            anyhow::bail!(
-                "goal chapter `{}` has no goal document at path {:?}",
-                chapter.name,
-                chapter_path,
-            );
+            return Ok(()); // No goal document found, nothing to inject
         };
 
-        let replacement = op(goal).join(", ");
-        chapter.content.replace_range(range, &replacement);
+        // Compute the team names
+        let team_names: Vec<String> = goal
+            .teams_with_asks()
+            .iter()
+            .map(|team_name| team_name.name())
+            .collect();
+
+        let teams_text = if team_names.is_empty() {
+            "(none)".to_string()
+        } else {
+            team_names.join(", ")
+        };
+
+        // Compute the task owner names
+        let task_owners: Vec<String> = goal.task_owners.iter().cloned().collect();
+
+        let task_owners_text = if task_owners.is_empty() {
+            "(none)".to_string()
+        } else {
+            task_owners.join(", ")
+        };
+
+        // Find the table end and insert both rows
+        if let Some(table_end) = Self::find_markdown_table_end(&chapter.content) {
+            let insertion_text = format!(
+                "| Teams            | {} |\n| Task owners      | {} |\n",
+                teams_text, task_owners_text
+            );
+            chapter.content.insert_str(table_end, &insertion_text);
+        }
 
         Ok(())
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_find_markdown_table_end() {
+        let content = "Some text before\n\n| Metadata | Value |\n|----------|-------|\n| Point of contact | @nikomatsakis |\n| Teams | (none) |\n\nSome text after";
+        
+        let result = GoalPreprocessorWithContext::find_markdown_table_end(content);
+        assert!(result.is_some());
+        
+        let offset = result.unwrap();
+        let (before, after) = content.split_at(offset);
+        
+        // Should split right before the blank line after the table
+        assert!(before.ends_with("| Teams | (none) |\n"));
+        assert!(after.starts_with("\nSome text after"));
+        
+        // Test that inserting at this offset works correctly
+        let mut test_content = content.to_string();
+        test_content.insert_str(offset, "| New row | value |\n");
+        assert!(test_content.contains("| Teams | (none) |\n| New row | value |\n\nSome text after"));
     }
 }

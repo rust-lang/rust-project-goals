@@ -3,12 +3,9 @@
 | Metadata         |                                                                                  |
 |:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | @icmccorm                                                                        |
-| Teams            | <!-- TEAMS WITH ASKS -->                                                         |
-| Task owners      | <!-- TASK OWNERS -->                                                             |
 | Status           | Proposed                                                                         |
 | Tracking issue   |                                                                                  |
 | Zulip channel    | N/A                                                                              |
-
 ## Summary
 Allow codegen backends to implement the MIR [`Retag`](https://doc.rust-lang.org/std/intrinsics/mir/fn.Retag.html) intrinsic, and add a similar intrinsic to the LLVM backend. 
 

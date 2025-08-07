@@ -4,13 +4,9 @@
 | Metadata       |                                    |
 |----------------|------------------------------------|
 | Point of contact | @blyxyas                           |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#114] |
 | Zulip channel  | N/A                                |
-
-
 ## Summary
 
 This is the formalization and documentation of the Clippy Performance Project, a project first talked about on [Zulip, July 2023](https://rust-lang.zulipchat.com/#narrow/stream/257328-clippy/topic/Clippy's.20performance). As the project consists of several points and is ever-changing, this document also has a dynamic structure and the team can add points. 
@@ -30,8 +26,6 @@ The usage for IDEs is not as smooth as one may desire or expect when comparing t
 The other big use-case is as a test before committing or on CI. Optimizing Clippy for performance would fold the cost of these tests.
 
 On GitHub Actions, this excessive time can equal the cost of running `cargo check` on a Linux x64 32-cores machine, instead of a Linux x64 2-cores machine. A 3.3x cost increase.
-
-
 <!-- *Elaborate in more detail about the problem you are trying to solve. This section is making the case for why this particular problem is worth prioritizing with project bandwidth. A strong status quo section will (a) identify the target audience and (b) give specifics about the problems they are facing today. Sometimes it may be useful to start sketching out how you think those problems will be addressed by your change, as well, though it's not necessary.* -->
 
 ### The next 6 months

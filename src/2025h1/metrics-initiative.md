@@ -3,8 +3,6 @@
 | Metadata           |                                    |
 | :--                | :--                                |
 | Point of contact   | @yaahc                             |
-| Teams              | <!-- TEAMS WITH ASKS -->           |
-| Task owners        | <!-- TASK OWNERS -->               |
 | Status             | Accepted                           |
 | Zulip channel      | N/A                                |
 | Tracking issue     | [rust-lang/rust-project-goals#260] |
@@ -81,6 +79,4 @@ We'd like to get to the point where lang and libs can pull up a simple dashboard
 | integration with docs.rs or crates.io to gather metrics from open source rust projects | @yaahc                        |       |
 | proof of concept dashboard visualizing unstable feature usage data                     | ![Help Wanted][]              |       |
 | Standard reviews                                                                       | ![Team][] [compiler]          |       |
-
-
 ## Frequently asked questions

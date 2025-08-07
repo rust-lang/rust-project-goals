@@ -3,8 +3,6 @@
 | Metadata |                            |
 | -------- | -------------------------- |
 | Point of contact | @pnkfelix                  |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
 | Status   | Not accepted               |
 | Zulip channel  | N/A                                |
 
@@ -49,8 +47,6 @@ Third: the Racket language [has demonstrated][findler-felleisen] that when you h
 4. Work with Lang and Libs team on acceptable surface-level syntax for contracts. In particular, we want contracts to be *used* by the Rust standard library. (At the very least, for method pre- and post-conditions; I can readily imagine, however, also attaching contracts to `unsafe { ... }` blocks.)
 
 5. Extend miri to evaluate contract predicates. Add primitives for querying memory model to contract language, to enable contracts that talk about provenance of pointers.
-
-
 ### The "shiny future" we are working towards
 
 My shiny future is that the people "naturally" write Rust crates that can be combined with distinct dynamic-validation and verification tools. Today, if you want to use any verification tool, you usually have to pick one and orient your whole code base around using it. (E.g., the third-party verification tools often have their own (rewrite of a subset of the) Rust standard library, if only so that they can provide the contracts that our standard library is missing.)
@@ -126,8 +122,6 @@ This does not imply that contracts must be useless for arbitrary code. Dynamic c
 Racket development style: add more contracts to the code when debugging (including, but not limited to, contract failures)
 
 A validation mechanism can be bolted-on after the fact.
-
-
 ## Ownership and team asks
 
 **Owner:** pnkfelix
@@ -143,8 +137,6 @@ celinval is also assisting. celinval is part of the Amazon team producing the Ka
 * Libs-impl: We will need libs-impl team engagement to ensure we design a contract language that the standard library implementors are willing to use. To put it simply: If we land support for contracts without uptake within the Rust standard library, then the effort will have failed.
 
 * Lang: We need approval for a lang team experiment to design the contract surface language. However, we do not expect this surface language to be stabilized in 2024, and therefore the language team involvement can be restricted to "whomever is interested in the effort." In addition, it seems likely that at least *some* of the contracts work will dovetail with the [ghost-code initiative](https://github.com/rust-lang/lang-team/issues/161)
-
-
 * WG-formal-methods: We need engagement with the formal-methods community to ensure our contract system is serving their needs.
 
 * Stable-MIR: Contracts and invariants both require evaluation of predicates, and linking those predicates with intermediate states of the Rust abstract machine.
@@ -165,15 +157,11 @@ Rustc has unstable support for embedding dynamic contract-checks into Rust objec
 Some dynamic tool (e.g. miri or valgrind) that can dynamically check contracts whose bodies are *not* embedded into the object code.
 
 Some static verification tool (e.g. Kani) leverages contracts shipped with Rust standard library.
-
-
 ### Milestones
 
 Unstable syntactic support for contracts in Rust programs (at API boundaries at bare minimum, but hopefully also at other natural points in a code base.)
 
 Support for extracting contracts for a given item from an rlib.
-
-
 ## Frequently asked questions
 
 ### Q: How do contracts help static verification tools?
@@ -190,8 +178,6 @@ See next question for an answer to this.
 ### Q: How are you planning to dynamically check arbitrary contracts?
 
 A dynamic check of the construct `forall(|x:T| { … })` sounds problematic for most T of interest
-
-
 pnkfelix's expectation here is that we would *not* actually expect to support `forall(|x:T| ...)` in a dynamic context, not in the general case of arbitrary `T`.
 
 pnkfelix's current favorite solution for cracking this nut: a new form, `forall!(|x:T| suchas: [x_expr1, x_expr2, …] { … })`,
@@ -216,7 +202,3 @@ pnkfelix does not know the complete answer here.
 Some dynamic checks would benefit from access to memory model internals. 
 
 But in general, checking the correctness of an unsafe abstraction needs type-specific ghost state (to model permissions, etc). We are leaving this for future work, it may or may not get resolved this year.
-
-
-
-

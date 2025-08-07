@@ -3,8 +3,6 @@
 | Metadata       |                                    |
 | ---            | ---                                |
 | Point of contact | @epage                           |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#119] |
 | Zulip channel  | N/A                                |

@@ -9,7 +9,7 @@ use spanned::{Error, Result, Spanned};
 use crate::config::{Configuration, TeamAskDetails};
 use crate::gh::issue_id::{IssueId, Repository};
 use crate::markwaydown::{self, Section, Table};
-use crate::re::{self, CHAMPION_METADATA, TASK_OWNERS_STR, TEAMS_WITH_ASKS_STR};
+use crate::re::{self, CHAMPION_METADATA};
 use crate::team::{self, TeamName};
 use crate::util::{self, commas, markdown_files};
 
@@ -52,6 +52,9 @@ pub struct Metadata {
 
     /// For each table entry like `[T-lang] champion`, we create an entry in this map
     pub champions: BTreeMap<&'static TeamName, Spanned<String>>,
+
+    /// Flagship category, if this is a flagship goal
+    pub flagship: Option<Spanned<String>>,
 }
 
 pub const TRACKING_ISSUE_ROW: &str = "Tracking issue";
@@ -110,6 +113,11 @@ pub struct TeamAsk {
 pub fn goals_in_dir(directory_path: &Path) -> Result<Vec<GoalDocument>> {
     let mut goal_documents = vec![];
     for (path, link_path) in markdown_files(&directory_path)? {
+        // Skip template files
+        if path.file_name().unwrap() == "TEMPLATE.md" {
+            continue;
+        }
+        
         if let Some(goal_document) = GoalDocument::load(&path, &link_path)? {
             goal_documents.push(goal_document);
         }
@@ -441,8 +449,8 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
         None
     };
 
-    verify_row(&first_table.rows, "Teams", TEAMS_WITH_ASKS_STR)?;
-    verify_row(&first_table.rows, "Task owners", TASK_OWNERS_STR)?;
+    // We no longer require the Teams or Task owners rows to contain specific placeholders
+    // since we auto-inject team names and task owners during preprocessing
 
     let mut champions = BTreeMap::default();
     for row in &first_table.rows {
@@ -477,6 +485,13 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
         }
     }
 
+    // Parse flagship row if present
+    let flagship = first_table
+        .rows
+        .iter()
+        .find(|row| row[0] == "Flagship")
+        .map(|row| row[1].clone());
+
     Ok(Some(Metadata {
         title: title.to_string(),
         short_title: if let Some(row) = short_title_row {
@@ -489,25 +504,11 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
         tracking_issue: issue,
         table: first_table.clone(),
         champions,
+        flagship,
     }))
 }
 
-fn verify_row(rows: &[Vec<Spanned<String>>], key: &str, value: &str) -> Result<()> {
-    let Some(row) = rows.iter().find(|row| row[0] == key) else {
-        spanned::bail!(rows[0][0], "metadata table has no `{}` row", key)
-    };
 
-    if row[1] != value {
-        spanned::bail!(
-            row[1],
-            "metadata table has incorrect `{}` row, expected `{}`",
-            key,
-            value
-        )
-    }
-
-    Ok(())
-}
 
 fn extract_summary(sections: &[Section]) -> Result<Option<String>> {
     let Some(ownership_section) = sections.iter().find(|section| section.title == "Summary") else {
@@ -755,6 +756,11 @@ fn extract_identifiers(s: &str) -> Vec<&str> {
 }
 
 impl Metadata {
+    /// Returns the flagship category if this is a flagship goal
+    pub fn flagship(&self) -> Option<&str> {
+        self.flagship.as_ref().map(|s| s.content.as_str())
+    }
+
     /// Extracts the `@abc` usernames found in the owner listing.
     pub fn owner_usernames(&self) -> Vec<&str> {
         owner_usernames(&self.pocs)

@@ -17,4 +17,3 @@ The rust-project-goals repository is set up as follows
         * *N* is a threshold number of days; if people have posted an update within the last N days, we won't bother them. Usually I do this as the current date + 7, so that people who posted during the current month or the last week of the previous month don't get any pings.
         * *D* is a word like `Sep-22` that indicates the day
     * the bot monitors for comments on github and forwards them to Zulip
-

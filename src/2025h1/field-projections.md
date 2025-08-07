@@ -3,11 +3,8 @@
 | Metadata         |                            |
 |:-----------------|----------------------------|
 | Point of contact | @y86-dev                   |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
 | Status           | Not accepted                   |
 | Zulip channel    | N/A                        |
-
 ## Summary
 
 Finalize the [Field Projections RFC] and implement it for use in nightly.

@@ -3,13 +3,9 @@
 | Metadata         |                                    |
 |:-----------------|------------------------------------|
 | Point of contact | @oli-obk                           |
-| Teams            | <!-- TEAMS WITH ASKS -->           |
-| Task owners      | <!-- TASK OWNERS -->               |
 | Status           | Accepted                           |
 | Tracking issue   | [rust-lang/rust-project-goals#106] |
 | Zulip channel    | N/A                                |
-
-
 ## Summary
 
 Prepare `const Trait` bounds for stabilization.
@@ -102,4 +98,3 @@ Definitions for terms used above:
 ### Will we be stabilizing the syntax found on libstd today?
 
 Most likely not. The current syntax includes some controversial notation, such as `T: ~Trait`. The point of the RFC is to determine what syntax will be used. What we hope will not change is the *semantics*.
-

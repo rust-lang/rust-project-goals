@@ -8,4 +8,4 @@ The list of recognized asks is shown below:
 * The *aka* column is a shorter name for the ask used in the condensed RFC tables.
 * The *description* column describes what you are asking for.
 
-<!-- VALID TEAM ASKS -->
+(((VALID TEAM ASKS)))

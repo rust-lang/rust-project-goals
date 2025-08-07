@@ -3,8 +3,6 @@
 | Metadata           |                                    |
 | :--                | :--                                |
 | Point of contact   | @joshtriplett                      |
-| Teams              | <!-- TEAMS WITH ASKS -->           |
-| Task owners        | <!-- TASK OWNERS -->               |
 | Status             | Accepted                           |
 | Zulip channel      | N/A                                |
 | Tracking issue     | [rust-lang/rust-project-goals#252] |
@@ -128,8 +126,6 @@ could reserve such syntax in all editions.
 ## Ownership and team asks
 
 **Owner / Responsible Reporting Party:** @joshtriplett
-
-
 | Task                                   | Owner(s) or team(s)          | Notes                                                                                                           |
 |----------------------------------------|------------------------------|-----------------------------------------------------------------------------------------------------------------|
 | Propose discussion session at RustWeek | @joshtriplett                |                                                                                                                 |

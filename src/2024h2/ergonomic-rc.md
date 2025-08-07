@@ -3,13 +3,9 @@
 | Metadata       |                                    |
 | ---            | ---                                |
 | Point of contact | @jkelleyrtp                        |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#107] |
 | Zulip channel  | N/A                                |
-
-
 ## Summary
 
 Deliver nightly support some solution to reduce the ergonomic pain of working with ref-counted and cheaply cloneable types.

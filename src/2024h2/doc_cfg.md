@@ -3,13 +3,9 @@
 | Metadata       |                                    |
 | ---            | ---                                |
 | Point of contact | @GuillaumeGomez                    |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#120] |
 | Zulip channel  | N/A                                |
-
-
 @GuillaumeGomez: https://github.com/GuillaumeGomez
 
 ## Motivation
@@ -35,8 +31,6 @@ N/A
 ## Ownership and team asks
 
 **Owner:** @GuillaumeGomez
-
-
 | Task             | Owner(s) or team(s) | Notes |
 | ---------------- | ------------------- | ----- |
 | Implementation   | @GuillaumeGomez     |       |

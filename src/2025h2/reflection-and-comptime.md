@@ -3,12 +3,9 @@
 | Metadata         |                                                                                  |
 |:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | @oli-obk                                                                         |
-| Teams            | <!-- TEAMS WITH ASKS -->                                                         |
-| Task owners      | <!-- TASK OWNERS -->                                                             |
 | Status           | Proposed                                                                         |
 | Other Tracking issue   | [rust-lang/rust#142577]                                  |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
-
 ## Summary
 
 Design, implement and experimentally land a reflection scheme based on `const fn` that can only be called at compile time.
@@ -124,8 +121,6 @@ an demonstration impl (absolutely not salvageable for anything that could be lan
 ### Why not continue where uwuflection left off?
 
 See https://soasis.org/posts/a-mirror-for-rust-a-plan-for-generic-compile-time-introspection-in-rust/ for details on what uwuflection is
-
-
 #### Structural processing
 
 it makes procedural processing of type information very hard. E.g. to get the 3rd element of a tuple you need to 

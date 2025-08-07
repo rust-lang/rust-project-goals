@@ -3,9 +3,8 @@
 | Metadata           |                                    |
 | :--                | :--                                |
 | Point of contact   | @m-ou-se                           |
-| Teams              | <!-- TEAMS WITH ASKS -->           |
-| Task owners        | <!-- TASK OWNERS -->               |
-| Status             | Flagship                           |
+| Status             | Accepted                           |
+| Flagship         | Yes                                |
 | Zulip channel      | N/A                                |
 | Tracking issue     | [rust-lang/rust-project-goals#263] |
 

@@ -3,12 +3,9 @@
 | Metadata         |                                                                                  |
 |:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | @BennoLossin                                                                     |
-| Teams            | <!-- TEAMS WITH ASKS -->                                                         |
-| Task owners      | <!-- TASK OWNERS -->                                                             |
 | Status           | Proposed                                                                         |
 | Tracking issue   |                                                                                  |
 | Zulip channel    | N/A                                                                              |
-
 ## Summary
 
 Figure out the best design for field projections. Update the existing [Field Projections RFC] or
@@ -103,7 +100,4 @@ Have field projections available in stable Rust.
 | Lang-team champion   | ![Team][] [lang]                    | *Champion Needed*                                                   |
 | RFC secondary review | ![Team][] [types]                   | might be a good idea?                                               |
 | RFC decision         | ![Team][] [lang]                    |                                                                     |
-
-
 ## Frequently asked questions
-

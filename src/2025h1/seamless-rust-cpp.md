@@ -3,8 +3,6 @@
 | Metadata           |                                    |
 | :----------------- | ------------------------------     |
 | Point of contact   | @tmandry                           |
-| Teams              | <!-- TEAMS WITH ASKS -->           |
-| Task owners        | <!-- TASK OWNERS -->               |
 | Status             | Accepted                           |
 | Zulip channel      | N/A                                |
 | Tracking issue     | [rust-lang/rust-project-goals#253] |

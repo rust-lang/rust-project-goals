@@ -3,15 +3,11 @@
 | Metadata       |                                    |
 | ---            | ---                                |
 | Point of contact | @nikomatsakis                      |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#102] |
 | Zulip channel  | [#project-goals][channel]               |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/435869-project-goals
-
-
 *Extracted from [RFC 3614](https://github.com/rust-lang/rfcs/blob/master/text/3614-project-goals.md)*
 
 ## Summary

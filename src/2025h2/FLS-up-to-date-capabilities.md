@@ -3,12 +3,9 @@
 | Metadata         |                                                                                  |
 |:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | @JoelMarcey                                                                      |
-| Teams            | <!-- TEAMS WITH ASKS -->                                                         |
-| Task owners      | <!-- TASK OWNERS -->                                                             |
 | Status           | Proposed                                                                         |
 | Tracking issue   |                                                                                  |
 | Zulip channel    | #t-spec                                                                          |
-
 ## Summary
 
 Develop the capabilities and capacity to keep the FLS up to date with the Rust language.

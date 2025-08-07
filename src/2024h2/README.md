@@ -1,6 +1,6 @@
 # Rust project goals for 2024H2
 
-> ![Status: Accepted](https://img.shields.io/badge/Status-Accepted-green) [RFC #3672] has been **accepted**, establishing [<!-- #GOALS --> total Rust project goals for 2024H2](./goals.md).
+> ![Status: Accepted](https://img.shields.io/badge/Status-Accepted-green) [RFC #3672] has been **accepted**, establishing [(((#GOALS))) total Rust project goals for 2024H2](./goals.md).
 
 ## Want to learn more?
 

@@ -3,8 +3,6 @@
 | Metadata |              |
 | -------- | ------------ |
 | Point of contact | @jkelleyrtp  |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
 | Status   | Not accepted |
 | Zulip channel  | N/A                                |
 
@@ -146,8 +144,6 @@ This is a very frequent papercut for both beginner and experienced Rust programm
 As part of the "higher level Rust" effort, we want to reduce the frequency of this papercut, making it easier for developers to model and iterate on their program architecture.
 
 For example, a syntax-free approach to solving this problem might be simply turning on disjoint capture for *private methods only*. Alternatively, we could implement a syntax or attribute that allows developers to explicitly opt in to the partial borrow system. Again, we don't want to necessarily prescribe a solution here, but the best outcome would be a solution that reduces mental overhead with as little new syntax as possible.
-
-
 ### The "shiny future" we are working towards
 
 A "high level Rust" would be a Rust that has a strong focus on iteration speed. Developers would benefit from Rust's performance, safety, and reliability guarantees without the current status quo of long compile times, verbose code, and program architecture limitations.
@@ -286,11 +282,7 @@ let res = Client::new()!
 	.json::<DogApi>()
 	.await!;
 ```
-
-
 A "higher level Rust" would provide similar affordances to prototype code that it provides to production code. All production code was once prototype code. Today's Rust makes it harder to write prototype code than it does production code. This language-level opinion is seemingly unique to Rust and arguably a major factor in why Rust has seen slower adoption in higher level programming paradigms.
-
-
 #### Named and Optional Arguments or Partial Defaults (Contentious)
 
 Beyond `.clone()` and `.unwrap()`, the next biggest polluter for "high level" Rust code tends to be the lack of a way to properly supply optional arguments to various operations. This has received lots of discussion already and we don't want to belabor the point anymore than it already has.
@@ -344,4 +336,3 @@ We don't want to specify any particular solution:
 - Anonymous structs would be useful outside of replacing builders
 
 Generally though, we feel like this is another core problem that needs to be solved for Rust to see more traction in higher-level programming paradigms.
-

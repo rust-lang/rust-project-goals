@@ -3,8 +3,6 @@
 | Metadata           |                                    |
 | :--                | :--                                |
 | Point of contact   | @celinval                          |
-| Teams              | <!-- TEAMS WITH ASKS -->           |
-| Task owners        | <!-- TASK OWNERS -->               |
 | Status             | Accepted                           |
 | Zulip channel      | [#project-stable-mir][channel]     |
 | Tracking issue     | [rust-lang/rust-project-goals#266] |
@@ -70,8 +68,6 @@ fostering innovation and reducing bottlenecks.
 - Crates should follow semantic versioning.
 
 ## Ownership and team asks
-
-
 | Task                         | Owner(s) or team(s)            | Notes |
 |------------------------------|--------------------------------|-------|
 | Discussion and moral support | ![Team][] [compiler]           |       |

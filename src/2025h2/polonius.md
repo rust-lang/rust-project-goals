@@ -3,15 +3,10 @@
 | Metadata         |                                    |
 |:-----------------|------------------------------------|
 | Point of contact | @lqd                               |
-| Teams            | <!-- TEAMS WITH ASKS -->           |
-| Task owners      | <!-- TASK OWNERS -->               |
 | Status           | Proposed                           |
 | Tracking issue   | [rust-lang/rust-project-goals#118] |
 | Zulip channel    | [#t-types/polonius][channel]       |
-
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/186049-t-types.2Fpolonius
-
-
 ## Summary
 
 Make a stabilizable version of the [polonius][pc3] next generation borrow checking "alpha" algorithm. This [revision of the analysis][alpha], while less powerful than we hoped, currently scales better than the previous [datalog] implementation, and accepts the main problem case we deferred from NLLs: it handles almost all our in-tree tests, passes perf runs (but is still too slow) and crater runs without issues. It's therefore a worthwhile step to ship to users, but needs more work to be properly usable on nightly.

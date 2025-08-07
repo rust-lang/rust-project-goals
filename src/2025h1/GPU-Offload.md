@@ -3,16 +3,11 @@
 | Metadata              |                                                  |
 |:----------------------|--------------------------------------------------|
 | Point of contact      | @ZuseZ4                                          |
-| Teams                 | <!-- TEAMS WITH ASKS -->                         |
-| Task owners           | <!-- TASK OWNERS -->                             |
 | Status                | Accepted                                         |
 | Tracking issue        | [rust-lang/rust-project-goals#109]               |
 | Other tracking issues | [rust-lang/rust#124509], [rust-lang/rust#124509] |
 | Zulip channel         | [#wg-autodiff][channel]                          |
-
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/390790-wg-autodiff
-
-
 ## Summary
 
 Expose experimental LLVM features for GPU offloading and allow combining it with the `std::autodiff` feature.

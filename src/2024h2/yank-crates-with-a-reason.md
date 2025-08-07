@@ -3,13 +3,9 @@
 | Metadata       |                                    |
 |----------------|------------------------------------|
 | Point of contact | @Rustin170506                      |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#101] |
 | Zulip channel  | N/A                                |
-
-
 ## Summary
 
 Over the next 6 months, we will add support to the registry yank API for providing a reason when a crate is yanked. This reason can then be displayed to users. After this feature has been up and running for a while, we'll open it up to Cargo to support filling in the reason for yanking.
@@ -29,8 +25,6 @@ This feature has the following potential use cases:
 3. If a crate is renamed (or perhaps deprecated) to another then the yank message can indicate what to do in that situation.
 
 Additionally, if we can persist this information to the crates.io index, we can make it available as meta-information to other platforms, such as security platforms like RustSec.
-
-
 ### The next 6 months
 
 The primary goal for the next 6 months is to add support to the registry's [yank API].

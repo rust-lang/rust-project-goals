@@ -1,8 +1,8 @@
-> ![Status: Accepted](https://img.shields.io/badge/Status-Accepted-green) [RFC #3764] has been **accepted**, establishing [<!-- #GOALS --> total Rust project goals for 2025H1](./goals.md).
+> ![Status: Accepted](https://img.shields.io/badge/Status-Accepted-green) [RFC #3764] has been **accepted**, establishing [(((#GOALS))) total Rust project goals for 2025H1](./goals.md).
 
 ## Summary
 
-Propose a slate of <!-- #GOALS --> project goals for 2025H1, including 3 flagship goals:
+Propose a slate of (((#GOALS))) project goals for 2025H1, including 3 flagship goals:
 
 * Continue making Rust easier to use for network systems by [**bringing the Async Rust experience closer to parity with sync Rust**](./async.md). In 2025H1 we plan to:
     * tell a complete story for the use of async fn in traits, unblocking wide ecosystem adoption;
@@ -17,11 +17,9 @@ Propose a slate of <!-- #GOALS --> project goals for 2025H1, including 3 flagshi
 * Address the biggest concerns raised by Rust maintainers, lack of face-to-face interaction, by [**organizing the Rust All-Hands 2025**](./all-hands.md). In 2025H1 we plan to:
     * convene Rust maintainers to celebrate Rust's tenth birthday at [RustWeek 2025](https://2025.rustweek.org) (co-organized with [RustNL](https://2025.rustweek.org/about/));
     * author a first draft for a [Rust vision doc](./rust-vision-doc.md) and gather feedback.
-
-
 ## Motivation
 
-The 2025H1 goal slate consists of <!-- #GOALS --> project goals, of which we have selected 3 as **flagship goals**. Flagship goals represent the goals expected to have the broadest overall impact.
+The 2025H1 goal slate consists of (((#GOALS))) project goals, of which we have selected 3 as **flagship goals**. Flagship goals represent the goals expected to have the broadest overall impact.
 
 ### How the goal process works
 
@@ -87,7 +85,7 @@ The full slate of project goals are as follows. These goals all have identified 
 
 **Invited goals.** Some goals of the goals below are "invited goals", meaning that for that goal to happen we need someone to step up and serve as an owner. To find the invited goals, look for the ![Help wanted][] badge in the table below. Invited goals have reserved capacity for teams and a mentor, so if you are someone looking to help Rust progress, they are a great way to get involved.
 
-<!-- GOALS -->
+(((GOALS)))
 
 # Reference-level explanation
 [reference-level-explanation]: #reference-level-explanation
@@ -97,7 +95,7 @@ The rows are goals and columns are [asks being made of the team][valid_team_asks
 The contents of each cell may contain extra notes (or sometimes footnotes) with more details.
 Teams often use these notes to indicate the person on the team signed up to do the work, for example.
 
-<!-- TEAM ASKS -->
+(((TEAM ASKS)))
 
 ### Definitions
 
@@ -139,7 +137,7 @@ Definitions for terms used above:
 
 The following goals were proposed but ultimately not accepted, either for want of resources or consensus. In some cases narrower versions of these goals were prepared.
 
-<!-- GOALS NOT ACCEPTED -->
+(((GOALS NOT ACCEPTED)))
 
 ## What do the column names like "Ded. r?" mean?
 
@@ -147,6 +145,6 @@ The following goals were proposed but ultimately not accepted, either for want o
 
 Those column names refer to specific things that can be asked of teams:
 
-<!-- VALID TEAM ASKS -->
+(((VALID TEAM ASKS)))
 
 <!-- Github usernames -->

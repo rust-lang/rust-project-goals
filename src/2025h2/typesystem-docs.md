@@ -3,12 +3,9 @@
 | Metadata         |          |
 |:-----------------|----------|
 | Point of contact | @BoxyUwU |
-| Teams            | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
 | Status           | Proposed |
 | Tracking issue   |          |
 | Zulip channel    | N/A      |
-
 ## Summary
 
 Improve documentation of type system components to aide in types team onboarding and communication about changes to the type system .

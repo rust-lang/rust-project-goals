@@ -3,8 +3,6 @@
 | Metadata       |                                    |
 | ---            | ---                                |
 | Point of contact | @lqd                               |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
 | Status         | Accepted                           |
 | Tracking issue | [rust-lang/rust-project-goals#118] |
 | Zulip channel  | [#t-types/polonius][channel]       |

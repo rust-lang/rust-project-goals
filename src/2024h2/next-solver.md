@@ -3,15 +3,11 @@
 | Metadata       |                                           |
 |----------------|-------------------------------------------|
 | Point of contact | @lcnr                                   |
-| Teams | <!-- TEAMS WITH ASKS --> |
-| Task owners      | <!-- TASK OWNERS --> |
 | Status         | Accepted                                  |
 | Tracking issue | [rust-lang/rust-project-goals#113]        |
 | Zulip channel  | [#t-types/trait-system-refactor][channel] |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/364551-t-types.2Ftrait-system-refactor
-
-
 ## Summary
 
 In the next 6 months we plan to extend the next-generation trait solver as follows:
@@ -82,8 +78,6 @@ Add'l implementation work: @compiler-errors
 | Implementation (rust-analyzer side) | TBD                       |       |
 | Standard reviews                    | ![Team][] [types]         |       |
 | Standard reviews                    | ![Team][] [rust-analyzer] |       |
-
-
 ### Support needed from the project
 
 * [Types] team

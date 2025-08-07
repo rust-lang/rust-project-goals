@@ -3,17 +3,12 @@
 | Metadata         |                                                                                  |
 |:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | @ranger-ross                                                                     |
-| Teams            | <!-- TEAMS WITH ASKS -->                                                         |
-| Task owners      | <!-- TASK OWNERS -->                                                             |
 | Status           | Proposed                                                                         |
 | Tracking issue   |                                                                                  |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
-
 ## Summary
 
 Rework the Cargo build directory layout to have smaller self contained "units"
-
-
 ## Motivation
 
 Reworking the build directory layout into units will allow us to work to greater Cargo goals.
@@ -62,16 +57,12 @@ A new "user wide" cache is created as a first class solution for sharing build c
 The cache lookup will be extended with plugins to read and/or write to different sources. Open source projects and companies can have their CI read from and write to their cache. Individuals who trust the CI can then configure their plugin to read from the CI cache.
 
 A cooperating CI service could provide their own plugin that, instead of caching everything used in the last job and unpacking it in the next, their plugin could download only the entries that will be needed for the current build (e.g. say a dependency changed) and only upload the cache entries that were freshly built. Fine grain caching like this would save the CI service on bandwidth, storage, and the compute time from copying, decompressing, and compressing the cache. Users would have faster CI time and save money on their CI service, minus any induced demand that faster builds creates.
-
-
 ## Ownership and team asks
 
 | Task                         | Owner(s) or team(s) | Notes |
 |------------------------------|---------------------|-------|
 | Standard reviews             | ![Team][] [cargo]   |       |
 | Implementation               | @ranger-ross        |       |
-
-
 ### Definitions
 
 For definitions for terms used above, see the [About > Team Asks](https://rust-lang.github.io/rust-project-goals/about/team_asks.html) page.

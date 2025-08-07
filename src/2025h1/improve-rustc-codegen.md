@@ -3,8 +3,6 @@
 | Metadata           |                                    |
 | :--                | :--                                |
 | Point of contact   | @folkertdev                        |
-| Teams              | <!-- TEAMS WITH ASKS -->           |
-| Task owners        | <!-- TASK OWNERS -->               |
 | Status             | Accepted                           |
 | Zulip channel      | N/A                                |
 | Tracking issue     | [rust-lang/rust-project-goals#258] |
@@ -79,8 +77,6 @@ The shiny future is to improve rust codegen to encourage wider adoption of rust 
 | Refine RFC 3720              | @folkertdev          |       |
 | Implementation               | @folkertdev, @bjorn3 |       |
 | Standard reviews             | ![Team][] [compiler] |       |
-
-
 ### Definitions
 
 Definitions for terms used above:

@@ -2,48 +2,46 @@ use lazy_static::lazy_static;
 use regex::Regex;
 
 lazy_static! {
-    pub static ref TEAM_ASKS: Regex = Regex::new(r"<!-- TEAM ASKS -->").unwrap();
+    pub static ref TEAM_ASKS: Regex = Regex::new(r"\(\(\(TEAM ASKS\)\)\)").unwrap();
 }
 
 // List of all goals, flagship or otherwise
 lazy_static! {
-    pub static ref GOAL_LIST: Regex = Regex::new(r"<!-- GOALS -->").unwrap();
+    pub static ref GOAL_LIST: Regex = Regex::new(r"\(\(\(GOALS\)\)\)").unwrap();
 }
 
 // List of flagship goals (accepted or pending)
 lazy_static! {
-    pub static ref FLAGSHIP_GOAL_LIST: Regex = Regex::new(r"<!-- FLAGSHIP GOALS -->").unwrap();
+    pub static ref FLAGSHIP_GOAL_LIST: Regex = Regex::new(r"\(\(\(FLAGSHIP GOALS\)\)\)").unwrap();
+}
+
+// List of flagship goals filtered by category (accepted or pending)
+lazy_static! {
+    pub static ref FLAGSHIP_GOAL_LIST_FILTERED: Regex =
+        Regex::new(r"\(\(\(FLAGSHIP GOALS:\s*(.+?)\s*\)\)\)").unwrap();
 }
 
 // List of non-flagship goals (accepted or pending)
 lazy_static! {
-    pub static ref OTHER_GOAL_LIST: Regex = Regex::new(r"<!-- OTHER GOALS -->").unwrap();
+    pub static ref OTHER_GOAL_LIST: Regex = Regex::new(r"\(\(\(OTHER GOALS\)\)\)").unwrap();
 }
 
 // List of not accepted goals
 lazy_static! {
     pub static ref GOAL_NOT_ACCEPTED_LIST: Regex =
-        Regex::new(r"<!-- GOALS NOT ACCEPTED -->").unwrap();
-}
-
-// List of teams with asks for this goal
-pub const TEAMS_WITH_ASKS_STR: &str = r"<!-- TEAMS WITH ASKS -->";
-lazy_static! {
-    pub static ref TEAMS_WITH_ASKS: Regex = Regex::new(TEAMS_WITH_ASKS_STR).unwrap();
-}
-
-// List of task owners for this goal
-pub const TASK_OWNERS_STR: &str = r"<!-- TASK OWNERS -->";
-lazy_static! {
-    pub static ref TASK_OWNERS: Regex = Regex::new(TASK_OWNERS_STR).unwrap();
+        Regex::new(r"\(\(\(GOALS NOT ACCEPTED\)\)\)").unwrap();
 }
 
 lazy_static! {
-    pub static ref GOAL_COUNT: Regex = Regex::new(r"<!-- #GOALS -->").unwrap();
+    pub static ref GOAL_COUNT: Regex = Regex::new(r"\(\(\(#GOALS\)\)\)").unwrap();
 }
 
 lazy_static! {
-    pub static ref VALID_TEAM_ASKS: Regex = Regex::new(r"<!-- VALID TEAM ASKS -->").unwrap();
+    pub static ref FLAGSHIP_GOAL_COUNT: Regex = Regex::new(r"\(\(\(#FLAGSHIP GOALS\)\)\)").unwrap();
+}
+
+lazy_static! {
+    pub static ref VALID_TEAM_ASKS: Regex = Regex::new(r"\(\(\(VALID TEAM ASKS\)\)\)").unwrap();
 }
 
 lazy_static! {

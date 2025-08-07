@@ -162,7 +162,10 @@ fn categorize_line(line: Spanned<&str>) -> CategorizeLine {
         .and_then(|line| line.strip_suffix("|"))
     {
         let columns = line.split('|').map(|s| s.trim());
-        if columns.clone().all(|s| s.chars().all(|c| *c == '-')) {
+        if columns
+            .clone()
+            .all(|s| s.chars().all(|c| *c == '-' || *c == ':'))
+        {
             CategorizeLine::TableDashRow(columns.map(|s| s.map(drop)).collect())
         } else {
             CategorizeLine::TableRow(columns.map(|s| s.to_string()).collect())

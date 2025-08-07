@@ -3,8 +3,6 @@
 | Metadata           |                                    |
 | :--                | :--                                |
 | Point of contact   | @joelmarcey                        |
-| Teams              | <!-- TEAMS WITH ASKS -->           |
-| Task owners        | <!-- TASK OWNERS -->               |
 | Status             | Accepted                           |
 | Zulip channel      | [#t-spec][channel]                 |
 | Tracking issue     | [rust-lang/rust-project-goals#265] |

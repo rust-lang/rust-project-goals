@@ -3,13 +3,9 @@
 | Metadata         |                                    |
 |:-----------------|------------------------------------|
 | Point of contact | @spastorino                        |
-| Teams            | <!-- TEAMS WITH ASKS -->           |
-| Task owners      | <!-- TASK OWNERS -->               |
 | Status           | Accepted                           |
 | Tracking issue   | [rust-lang/rust-project-goals#107] |
 | Zulip channel    | N/A                                |
-
-
 ## Summary
 
 * Deliver a nightly implementation of the experimental `use` syntax for ergonomic ref-counting.
