@@ -26,7 +26,7 @@ The FLS is an enabler document for safety qualifying versions of the Rust compil
 
 Active users of the FLS should be consulted on changes with a "do no harm" approach taken to ensure the capability to use the FLS for safety qualification of the Rust compiler is not disrupted. Active users consulted and contributing to maintenance will ensure the ability to achieve safety qualification from an assessor.
 
-Passive beneficiaries of the FLS becoming involved with maintenance and enrichment of the FLS supports the capability to have safety-qualified Rust compilers. Safety-qualified Rust compilers is a prerequisite for certain levels of safety-criticality in certain industries. These passive beneficiaries contributing back to the ability to ship safety-critical Rust software is a healthy model to ensure continuity of FLS maintenance.
+Passive beneficiaries of the FLS include those entities that themselves do not safety qualify a compiler, but instead because the FLS exists and can be used for that purpose, grows the safety-critical set of users of Rust. Examples of passive beneficiaries include: tool vendors, library vendors, and integrators. Those passive beneficiaries becoming involved with maintenance and enrichment of the FLS supports the capability to have safety-qualified Rust compilers. Safety-qualified Rust compilers is a prerequisite for certain levels of safety-criticality in certain industries. These passive beneficiaries contributing back to the ability to ship safety-critical Rust software is a healthy model to ensure continuity of FLS maintenance.
 
 ### The next 6 months
 
