@@ -22,7 +22,7 @@ Keeping up with documentation is not always the most glamorous role for any proj
 
 ### Solicitation of stakeholder involvement
 
-The FLS is an enabler document for safety-qualifying versions of the Rust compiler. The safety-critical community of Rust users actively and passively benefit from the FLS.
+The FLS is an enabler document for safety qualifying versions of the Rust compiler. The safety-critical community of Rust users actively and passively benefits from the FLS.
 
 Active users of the FLS should be consulted on changes with a "do no harm" approach taken to ensure the capability to use the FLS for safety-qualification of the Rust compiler is not disrupted. Active users consulted and contributing to maintenance will ensure the ability to achieve safety-qualification from an assessor.
 
