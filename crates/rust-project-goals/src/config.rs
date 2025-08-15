@@ -18,6 +18,10 @@ pub struct TeamAskDetails {
 
     /// Longer description
     pub about: String,
+
+    /// If true, do not include in the RFC tables.
+    #[serde(default)]
+    pub elide: bool,
 }
 
 impl Configuration {

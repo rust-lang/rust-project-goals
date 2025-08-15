@@ -9,6 +9,7 @@
 | [compiler] champion | @oli-obk |
 | [lang] champion | @tmandry |
 | [libs] champion | @dtolnay |
+
 ## Summary
 
 Document a set of technical issues related to C++/Rust interoperability with broad community consensus to serve as a starting point for proposed solutions and facilitating cooperation among stakeholders in both language communities.

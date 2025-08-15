@@ -8,6 +8,7 @@
 | Zulip channel    | N/A                                |
 | [cargo] champion | @epage |
 | [rustdoc] champion | @adotinthevoid |
+
 ## Summary
 
 Design and implement `cargo-semver-checks` functionality that lies on the critical path for merging the tool into cargo itself. Continues the work of [the 2025h1 goal][2025h1-goal].

@@ -8,6 +8,7 @@
 | Zulip channel    | [#t-lang][channel-t-lang], [#rust-for-linux][channel-rust-for-linux]             |
 | [lang] champion | @joshtriplett |
 | [lang-docs] champion | @traviscross |
+
 [channel-t-lang]: https://rust-lang.zulipchat.com/#narrow/channel/213817-t-lang
 [channel-rust-for-linux]: https://rust-lang.zulipchat.com/#narrow/channel/425075-rust-for-linux
 
@@ -78,7 +79,6 @@ Which features get finished and stabilized depends on bandwidth and other constr
 | Finalize remaining work      | @dingxiangfei2009     |       |
 | Author Reference PR          | @dingxiangfei2009     |       |
 | Review/revise Reference PR   | ![Team][] [lang-docs] |       |
-| Lang-team champion           | ![Team][] [lang]      |       |
 | Author stabilization report  | @dingxiangfei2009     |       |
 | Author stabilization PR      | @dingxiangfei2009     |       |
 | Stabilization decision       | ![Team][] [lang]      |       |

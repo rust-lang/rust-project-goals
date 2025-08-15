@@ -420,7 +420,7 @@ fn issue<'doc>(timeframe: &str, document: &'doc GoalDocument) -> Result<GithubIs
     }
 
     Ok(GithubIssue {
-        title: document.metadata.title.clone(),
+        title: document.metadata.title.to_string(),
         assignees,
         body: issue_text(timeframe, document)?,
         labels,

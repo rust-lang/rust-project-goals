@@ -43,7 +43,7 @@ pub struct GoalDocument {
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Metadata {
     #[allow(unused)]
-    pub title: String,
+    pub title: Spanned<String>,
     pub short_title: Spanned<String>,
     pub pocs: String,
     pub status: Spanned<Status>,
@@ -156,7 +156,10 @@ impl GoalDocument {
 
         // Enforce that every goal has some team asks (unless it is not accepted)
         if metadata.status.is_not_not_accepted() && team_asks.is_empty() {
-            spanned::bail_here!("no team asks in goal; did you include `![Team]` in the table?");
+            spanned::bail!(
+                metadata.title,
+                "no team asks in goal; did you include `![Team]` in the table?"
+            );
         }
 
         let task_owners = goal_plans
@@ -168,7 +171,7 @@ impl GoalDocument {
         Ok(Some(GoalDocument {
             path: path.to_path_buf(),
             link_path,
-            summary: summary.unwrap_or_else(|| metadata.title.clone()),
+            summary: summary.unwrap_or_else(|| (*metadata.title).clone()),
             metadata,
             team_asks,
             goal_plans,
@@ -249,7 +252,7 @@ pub fn format_goal_table(goals: &[&GoalDocument]) -> Result<String> {
             table.push(vec![
                 Spanned::here(format!(
                     "[{}]({})",
-                    goal.metadata.title,
+                    *goal.metadata.title,
                     goal.link_path.display()
                 )),
                 Spanned::here(goal.point_of_contact_for_goal_list()),
@@ -286,7 +289,7 @@ pub fn format_goal_table(goals: &[&GoalDocument]) -> Result<String> {
             table.push(vec![
                 Spanned::here(format!(
                     "[{}]({})",
-                    goal.metadata.title,
+                    *goal.metadata.title,
                     goal.link_path.display()
                 )),
                 Spanned::here(goal.point_of_contact_for_goal_list()),
@@ -505,7 +508,7 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
         .map(|row| row[1].clone());
 
     Ok(Some(Metadata {
-        title: title.to_string(),
+        title: title.clone(),
         short_title: if let Some(row) = short_title_row {
             row[1].clone()
         } else {

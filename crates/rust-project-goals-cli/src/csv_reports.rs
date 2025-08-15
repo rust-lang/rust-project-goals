@@ -39,7 +39,7 @@ fn champions(repository: &Repository, milestone: &str) -> Result<()> {
     let rows: Vec<ChampionRow> = goal_documents
         .iter()
         .map(|doc| ChampionRow {
-            title: doc.metadata.title.clone(),
+            title: doc.metadata.title.to_string(),
             url: format!(
                 "https://github.com/{org}/{repo}/blob/main/{path}",
                 org = repository.org,

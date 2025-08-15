@@ -7,6 +7,7 @@
 | Tracking issue   |                                                                                  |
 | Zulip channel    | N/A                                                                              |
 | [cargo] champion | @whlo |
+
 ## Summary
 
 Prototype support for build analysis in Cargo by recording build metadata across invocations.

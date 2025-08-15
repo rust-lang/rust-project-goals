@@ -7,6 +7,7 @@
 | Tracking issue   | [rust-lang/rust-project-goals#122]                                               |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
 | [types] champion | @nikomatsakis |
+
 ## Summary
 
 Extend a-mir-formality with the ability to represent function bodies as MiniRust programs; a type checker based on the MIR type checker from the compiler; and a model that covers key parts of the the Polonius Alpha proposal.

@@ -6,9 +6,9 @@
 | Status             | Proposed                           |
 | Zulip channel      | N/A                                |
 | Tracking issue     | [rust-lang/rust-project-goals#273] |
-
 | [compiler] champion | @jackwrenn |
 | [lang] champion | @scottmcm |
+
 ## Summary
 
 Design and implement a mechanism for denoting when fields carry library safety invariants.
@@ -85,7 +85,6 @@ The design of `unsafe` fields is guided by three axioms:
 | Implementation                 | @veluca93, @jswrenn  |                                |
 | Standard reviews               | ![Team][] [compiler] |                                |
 | Design meeting                 | ![Team][] [lang]     |                                |
-| Lang-team champion             | ![Team][] [lang]     | @scottmcm                      |
 | RFC decision                   | ![Team][] [lang]     |                                |
 
 Ongoing discussion on [Zulip].

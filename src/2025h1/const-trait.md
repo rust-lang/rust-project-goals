@@ -59,7 +59,6 @@ Steps towards the primary goal of doing everything towards stabilization apart f
 | Call for testing                   | @oli-obk                       |                                                                 |
 | Standard reviews                   | ![Team][] [compiler]           |                                                                 |
 | Design meeting                     | ![Team][] [lang]               | first meeting scheduled for Jan; second meeting may be required |
-| Lang-team champion                 | ![Team][] [lang]               | @nikomatsakis                                                   |
 | RFC decision                       | ![Team][] [lang]               | (stretch goal)                                                  |
 | RFC secondary review               | ![Team][] [types]              | Types team needs to validate the approach                       |
 | Author specification 1st draft     | @oli-obk                       |                                                                 |

@@ -237,7 +237,6 @@ implementations.
 | Task                         | Owner(s) or team(s)  | Notes                                                                |
 | ---------------------------- | -------------------- | -------------------------------------------------------------------- |
 | Discussion and moral support | ![Team][] [lang]     |                                                                      |
-| Lang-team champion           | @cramertj            |                                                                      |
 | Discussion and moral support | ![Team][] [compiler] |                                                                      |
 | Discussion and moral support | ![Team][] [types]    |                                                                      |
 | Author RFC                   | @cramertj            |                                                                      |

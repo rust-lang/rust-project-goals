@@ -67,7 +67,6 @@ Tracking issue [#136889](https://github.com/rust-lang/rust/issues/136889):
 | Rustc implementation              | @epage |       |
 | Rust-analyzer implementation      | @epage |       |
 | Standard reviews                  | ![Team][] [compiler]               |       |
-| Lang-team champion                | ![Team][] [lang]                   | @joshtriplett      |
 | Author call for testing blog post | @epage |       |
 
 ### Stabilize language feature `frontmatter`
@@ -76,7 +75,6 @@ Tracking issue [#136889](https://github.com/rust-lang/rust/issues/136889):
 |-----------------------------|-----------------------|---------------|
 | Author Reference PR         | @epage                |               |
 | Review/revise Reference PR  | ![Team][] [lang-docs] | @ehuss        |
-| Lang-team champion          | ![Team][] [lang]      | @joshtriplett |
 | Author stabilization report | @epage                |               |
 | Author stabilization PR     | @epage                |               |
 | Stabilization decision      | ![Team][] [lang]      |               |

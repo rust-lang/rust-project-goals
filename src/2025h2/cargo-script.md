@@ -10,6 +10,7 @@
 | [cargo] champion | @epage |
 | [lang] champion | @joshtriplett |
 | [lang-docs] champion | @joshtriplett |
+
 ## Summary
 
 Stabilize support for "cargo script", the ability to have a single file that contains both Rust code and a `Cargo.toml`.
@@ -72,7 +73,6 @@ Tracking issue [#136889](https://github.com/rust-lang/rust/issues/136889):
 | Rust-analyzer implementation      | @epage               |               |
 | rustfmt implementation            | @epage               |               |
 | Standard reviews                  | ![Team][] [compiler] |               |
-| Lang-team champion                | ![Team][] [lang]     | @joshtriplett |
 | Author call for testing blog post | @epage               |               |
 
 ### Stabilize language feature `frontmatter`
@@ -81,7 +81,6 @@ Tracking issue [#136889](https://github.com/rust-lang/rust/issues/136889):
 | --------------------------- | --------------------- | ------------- |
 | Author Reference PR         | @epage                |               |
 | Review/revise Reference PR  | ![Team][] [lang-docs] | @ehuss        |
-| Lang-team champion          | ![Team][] [lang]      | @joshtriplett |
 | Author stabilization report | @epage                |               |
 | Author stabilization PR     | @epage                |               |
 | Stabilization decision      | ![Team][] [lang]      |               |

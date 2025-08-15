@@ -142,7 +142,6 @@ team in an RFC/FCP).
 | ------------------------------------------------- | ------------------------- | ---------- |
 | Extending type system to support scalable vectors | @davidtwco                |            |
 | Author RFC                                        |                           |            |
-| Lang-team champion                                | ![Team][] [lang]          | @davidtwco |
 | RFC decision                                      | ![Team][] [types], [lang] |            |
 | Implementation                                    |                           |            |
 | Standard reviews                                  | ![Team][] [compiler]      |            |

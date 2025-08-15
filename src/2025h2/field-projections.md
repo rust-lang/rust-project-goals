@@ -100,7 +100,6 @@ Have field projections available in stable Rust.
 | Design meeting       | ![Team][] [lang]    | Possibly more than one required as well as discussions on zulip. |
 | Lang-team experiment | ![Team][] [lang]    | @dingxiangfei2009, @BennoLossin                                  |
 | Author RFC           | @BennoLossin        |                                                                  |
-| Lang-team champion   | ![Team][] [lang]    | *Champion Needed*                                                |
 | RFC secondary review | ![Team][] [types]   | might be a good idea?                                            |
 | RFC decision         | ![Team][] [lang]    |                                                                  |
 ## Frequently asked questions

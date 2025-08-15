@@ -114,6 +114,14 @@ No. Accepting a goal is not a promise to accept an RFC, stabilize a feature, or 
 
 Team champions are people who have volunteered to track progress on the goal and to serve as a liaison between the goal owner(s) and the team. They are committing to support the owner to avoid the goal getting stuck in some kind of procedural limbo. For example, the goal champion might make sure the goal gets discussed in a meeting, or help to find a reviewer for a PR that is stuck in the queue. (In cases where the goal owner is also on the team, they can serve as their own champion.)
 
+## What do the column names like "Ded. r?" mean?
+
+[valid_team_asks]: #what-do-the-column-names-like-ded-r-mean
+
+Those column names refer to specific things that can be asked of teams:
+
+(((VALID TEAM ASKS)))
+
 ### Do goals have to have champions to be accepted?
 
 Yes -- to be accepted, a goal needs some champions. They don't necessarily have to have a champion for *every team*, particularly not those with minor asks, but they do need to have enough champions that it seems the goal owner will be adequately supported. Those champions also need to not be too overloaded.

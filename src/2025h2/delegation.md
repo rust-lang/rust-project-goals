@@ -6,8 +6,8 @@
 | Status             | Proposed                           |
 | Zulip channel      | N/A                                |
 | Tracking issue     | [rust-lang/rust#118212]            |
-
 | [compiler] champion | @petrochenkov |
+
 ## Summary
 
 Finish implementation of the delegation language as described in [RFC 3530], and update the RFC
@@ -82,7 +82,6 @@ doesn't extend the syntactic budget.
 | Implementation                 | @bryanskiy, @petrochenkov |                           |
 | Standard reviews               | ![Team][] [compiler] |                                |
 | Design meeting                 | ![Team][] [lang]     |                                |
-| Lang-team champion             | ![Team][] [lang]     | @traviscross                   |
 | RFC decision                   | ![Team][] [lang]     |                                |
 
 [RFC 3530]: https://github.com/rust-lang/rfcs/pull/3530

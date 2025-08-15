@@ -9,6 +9,7 @@
 | [compiler] champion | @RalfJ |
 | [lang] champion | @tmandry |
 | [opsem] champion | @RalfJ |
+
 ## Summary
 Allow codegen backends to implement the MIR [`Retag`](https://doc.rust-lang.org/std/intrinsics/mir/fn.Retag.html) intrinsic, and add a similar intrinsic to the LLVM backend. 
 
@@ -52,7 +53,6 @@ We should avoid making changes that substantially impact any component of the co
 |--------------------------------|---------------------|-----------------------|
 | Implementation                 | @icmccorm           |   [proof-of-concept](https://github.com/Borrowsanitizer/rust)        |
 | Author RFC                     | @icmccorm           |      |
-| Lang-team champion |	![Team][] [lang]	|   @tmandry    |
 | Design meeting                 | ![Team][] [opsem], [compiler]    |  |
 | Standard reviews | ![Team][] [opsem], [compiler] |     |
 | Dedicated reviewer                 | ![Team][]  [opsem], [compiler] | Most of our changes are within `rustc_codegen_ssa`, but it would also be helpful to have feedback from someone familiar with how retags are handled within Miri's [`borrow_tracker`](https://doc.rust-lang.org/nightly/nightly-rustc/miri/borrow_tracker/index.html) module. |

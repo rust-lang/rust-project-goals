@@ -102,7 +102,6 @@ This section defines the specific work items that are planned and who is expecte
 | Author RFC                  | @nikomatsakis                                      | ![Complete][] |
 | RFC decision                | ![Team][] [lang]                                   | ![Complete][] |
 | Finished implementation     | @compiler-errors                                   | ![Complete][] |
-| Lang-team champion          | ![Team][] [lang]                                   | @nikomatsakis |
 | Standard reviews            | ![Team][] [types], [compiler]                      |               |
 | Author stabilization report | @compiler-errors                                   |               |
 | Author Reference PR         | TBD (@compiler-errors, @tmandry, or @nikomatsakis) |               |
@@ -115,7 +114,6 @@ This section defines the specific work items that are planned and who is expecte
 |------------------------|---------------------------|-------------------------|
 | Initial implementation | @compiler-errors          | Stretch goal            |
 | Author RFC             | @nikomatsakis             | Stretch goal            |
-| Lang-team champion     | ![Team][] [lang]          | @nikomatsakis (stretch) |
 | RFC decision           | ![Team][] [lang], [types] | Stretch goal            |
 
 ### Implementable trait aliases
@@ -124,7 +122,6 @@ This section defines the specific work items that are planned and who is expecte
 |--------------------|-------------------------------|----------|
 | Author RFC         | @tmandry                      |          |
 | Implementation     | @compiler-errors              |          |
-| Lang-team champion | ![Team][] [lang]              | @tmandry |
 | Standard reviews   | ![Team][] [types], [compiler] |          |
 | RFC decision       | ![Team][] [lang], [types]     |          |
 
@@ -133,7 +130,6 @@ This section defines the specific work items that are planned and who is expecte
 | Task                 | Owner(s) or team(s) | Notes         |
 |----------------------|---------------------|---------------|
 | Lang-team experiment | @nikomatsakis       | (Approved)    |
-| Lang-team champion   | ![Team][] [lang]    | @nikomatsakis |
 | Implementation       | @compiler-errors    | Stretch goal  |
 
 ### Pin ergonomics
@@ -143,7 +139,6 @@ This section defines the specific work items that are planned and who is expecte
 | Implementation       | @eholk              |               |
 | Author RFC           | @eholk              |               |
 | Lang-team experiment | ![Team][] [lang]    | ![Complete][] |
-| Lang-team champion   | ![Team][] [lang]    | @tmandry      |
 
 ### Trait for generators (sync)
 
@@ -153,7 +148,6 @@ This section defines the specific work items that are planned and who is expecte
 | Author RFC         |                              |                     |
 | RFC decision       | ![Team][] [libs-api], [lang] |                     |
 | Design meeting     | ![Team][] [lang]             | 2 meetings expected |
-| Lang-team champion | ![Team][] [lang]             | @tmandry            |
 
 ### Dynosaur 1.0
 
