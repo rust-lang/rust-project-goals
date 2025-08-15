@@ -8,6 +8,8 @@
 | Other tracking issues | [rust-lang/rust#124509]                          |
 | Zulip channel         | [#wg-autodiff][channel]                          |
 
+| [compiler] champion | @ZuseZ4 |
+| [lang] champion | @TC |
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/390790-wg-autodiff
 
 ## Summary

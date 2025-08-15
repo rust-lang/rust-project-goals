@@ -7,6 +7,8 @@
 | Tracking issue     | [rust-lang/rust-project-goals#262]                                                                                                                                   |
 | Zulip channel      | https://rust-lang.zulipchat.com/#narrow/channel/435869-project-goals/topic/Null.20and.20enum-discriminant.20runtime.20checks.20in.20.28goals.23262.29/with/508256920 |
 
+| [compiler] champion | @saethlin |
+| [opsem] champion | @saethlin |
 ## Summary
 
 Add runtime checks to rustc that check for valid niche values. This is an

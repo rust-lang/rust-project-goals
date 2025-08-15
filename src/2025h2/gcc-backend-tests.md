@@ -6,6 +6,8 @@
 | Status           | Proposed                                       |
 | Tracking issue   | [rust-lang/compiler-team#891]                  |
 | Zulip channel    | [#rustc-codegen-gcc][rustc-codegen-gcc]        |
+| [compiler] champion | @WesleyWiser |
+| [infra] champion | @marcoieni |
 [rustc-codegen-gcc]: https://rust-lang.zulipchat.com/#narrow/channel/386786-rustc-codegen-gcc
 [rust-lang/compiler-team#891]: https://github.com/rust-lang/compiler-team/issues/891
 

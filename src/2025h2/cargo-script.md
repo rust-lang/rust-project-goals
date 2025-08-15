@@ -7,6 +7,9 @@
 | Flagship         | Higher-level Rust                                                                |
 | Tracking issue   | [rust-lang/rust-project-goals#119]                                               |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
+| [cargo] champion | @epage |
+| [lang] champion | @joshtriplett |
+| [lang-docs] champion | @joshtriplett |
 ## Summary
 
 Stabilize support for "cargo script", the ability to have a single file that contains both Rust code and a `Cargo.toml`.

@@ -7,6 +7,8 @@
 | Flagship         | Unblocking dormant traits |
 | Tracking issue   |                           |
 | Zulip channel    |                           |
+| [lang] champion  | @cramertj                 |
+| [types] champion | @oli-obk                  |
 
 ## Summary
 

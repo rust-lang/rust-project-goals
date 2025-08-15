@@ -6,6 +6,9 @@
 | Status           | Proposed                                                                         |
 | Other Tracking issue   | [rust-lang/rust#142577]                                  |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
+| [compiler] champion | @oli-obk |
+| [lang] champion | @scottmcm |
+| [libs] champion | @joshtriplett |
 ## Summary
 
 Design, implement and experimentally land a reflection scheme based on `const fn` that can only be called at compile time.

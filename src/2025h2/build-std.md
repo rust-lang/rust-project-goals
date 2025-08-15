@@ -8,6 +8,9 @@
 | Zulip channel      | N/A                                |
 | Tracking issue     | [rust-lang/rust-project-goals#274] |
 
+| [cargo] champion | @ehuss |
+| [compiler] champion | @davidtwco |
+| [libs] champion | @Amanieu |
 ## Summary
 
 Over the next six months, we will continue our efforts to write an RFC for a

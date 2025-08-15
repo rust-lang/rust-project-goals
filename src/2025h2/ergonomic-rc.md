@@ -7,6 +7,8 @@
 | Flagship         | Higher-level Rust                  |
 | Tracking issue   | [rust-lang/rust-project-goals#107] |
 | Zulip channel    | N/A                                |
+| [compiler] champion | @spastorino |
+| [lang] champion | @nikomatsakis |
 ## Summary
 
 We propose to write an alternative RFC for ergonomic ref-counting that makes lightweight cloning automatic and hold design meetings so the lang team can compare both approaches. This work builds on RFC #3680, which proposed a new keyword, `use`, that could be used with closures (`use || ...`) and expressions like `x.use` to help address a longstanding problem: working with ref-counted data structures like `Arc<T>` is verbose and confusing.

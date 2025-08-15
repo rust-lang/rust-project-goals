@@ -7,6 +7,8 @@
 | Zulip channel      | N/A                                |
 | Tracking issue     | [rust-lang/rust-project-goals#273] |
 
+| [compiler] champion | @jackwrenn |
+| [lang] champion | @scottmcm |
 ## Summary
 
 Design and implement a mechanism for denoting when fields carry library safety invariants.

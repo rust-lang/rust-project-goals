@@ -7,6 +7,7 @@
 | Zulip channel      | N/A                                |
 | Tracking issue     | [rust-lang/rust#118212]            |
 
+| [compiler] champion | @petrochenkov |
 ## Summary
 
 Finish implementation of the delegation language as described in [RFC 3530], and update the RFC

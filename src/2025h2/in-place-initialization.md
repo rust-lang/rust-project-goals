@@ -7,6 +7,8 @@
 | Flagship         | Unblocking dormant traits |
 | Tracking issue   |                           |
 | Zulip channel    | [#t-lang][channel]        |
+| [lang] champion  | @cramertj                 |
+
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/213817-t-lang
 
 ## Summary

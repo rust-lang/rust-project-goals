@@ -7,6 +7,7 @@
 | Zulip channel      | N/A                                |
 | Tracking issue     | [rust-lang/rust-project-goals#255] |
 
+| [cargo] champion | @epage |
 ## Summary
 
 Finish the [libtest json experiment](https://rust-lang.github.io/rfcs/3558-libtest-json.html).

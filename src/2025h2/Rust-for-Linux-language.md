@@ -6,6 +6,8 @@
 | Status           | Proposed                                                                         |
 | Tracking issue   | [rust-lang/rust-project-goals#116]                                               |
 | Zulip channel    | [#t-lang][channel-t-lang], [#rust-for-linux][channel-rust-for-linux]             |
+| [lang] champion | @joshtriplett |
+| [lang-docs] champion | @TC |
 [channel-t-lang]: https://rust-lang.zulipchat.com/#narrow/channel/213817-t-lang
 [channel-rust-for-linux]: https://rust-lang.zulipchat.com/#narrow/channel/425075-rust-for-linux
 

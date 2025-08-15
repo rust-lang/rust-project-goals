@@ -7,6 +7,7 @@
 | Flagship         | Unblocking dormant traits          |
 | Tracking issue   | [rust-lang/rust-project-goals#118] |
 | Zulip channel    | [#t-types/polonius][channel]       |
+| [types] champion | @jackh726 |
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/186049-t-types.2Fpolonius
 ## Summary
 

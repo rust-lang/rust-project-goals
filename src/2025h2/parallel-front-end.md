@@ -9,6 +9,7 @@
 | See also         | [rust-lang/rust#113349]                  |
 | Zulip channel    | [#t-compiler/wg-parallel-rustc][channel] |
 
+| [compiler] champion | @SparrowLi |
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/187679-t-compiler.2Fwg-parallel-rustc/
 ## Summary
 

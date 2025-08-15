@@ -7,6 +7,8 @@
 | Flagship         | Beyond the `&`                                                                   |
 | Tracking issue   |                                                                                  |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
+| [compiler] champion | @oli-obk |
+| [lang] champion | @TC |
 ## Summary
 
 Continue experimenting with and fleshing out the design and semantics for the pin ergonomics experiment.

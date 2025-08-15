@@ -7,6 +7,9 @@
 | Zulip channel      | N/A                                |
 | Tracking issue     | [rust-lang/rust-project-goals#270] |
 
+| [compiler] champion | @davidtwco |
+| [lang] champion | @nikomatsakis |
+| [libs] champion | @Amanieu |
 ## Summary
 
 Over the next six months, we will continue our efforts from the 2025H1 goal to
