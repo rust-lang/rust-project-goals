@@ -1,12 +1,12 @@
 # Delegation
 
-| Metadata           |                                    |
-| :--                | :--                                |
-| Point of contact   | @petrochenkov                      |
-| Status             | Proposed                           |
-| Zulip channel      | N/A                                |
-| Tracking issue     | [rust-lang/rust#118212]            |
-| [compiler] champion | @petrochenkov |
+| Metadata            |                         |
+| :------------------ | :---------------------- |
+| Point of contact    | @petrochenkov           |
+| Status              | Not accepted            |
+| Zulip channel       | N/A                     |
+| Tracking issue      | [rust-lang/rust#118212] |
+| [compiler] champion | @petrochenkov           |
 
 ## Summary
 
@@ -75,14 +75,14 @@ doesn't extend the syntactic budget.
 
 **Owner:** @petrochenkov
 
-| Task                           | Owner(s) or team(s)  | Notes                          |
-|--------------------------------|----------------------|--------------------------------|
-| Discussion and moral support   | ![Team][] [lang]     |                                |
-| Author RFC                     | @petrochenkov        | [RFC 3530]                     |
-| Implementation                 | @bryanskiy, @petrochenkov |                           |
-| Standard reviews               | ![Team][] [compiler] |                                |
-| Design meeting                 | ![Team][] [lang]     |                                |
-| RFC decision                   | ![Team][] [lang]     |                                |
+| Task                         | Owner(s) or team(s)       | Notes      |
+| ---------------------------- | ------------------------- | ---------- |
+| Discussion and moral support | ![Team][] [lang]          |            |
+| Author RFC                   | @petrochenkov             | [RFC 3530] |
+| Implementation               | @bryanskiy, @petrochenkov |            |
+| Standard reviews             | ![Team][] [compiler]      |            |
+| Design meeting               | ![Team][] [lang]          |            |
+| RFC decision                 | ![Team][] [lang]          |            |
 
 [RFC 3530]: https://github.com/rust-lang/rfcs/pull/3530
 [tracking issue]: https://github.com/rust-lang/rust/issues/118212

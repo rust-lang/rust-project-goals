@@ -106,6 +106,12 @@ Definitions for terms used above:
 
 **Project goals** are proposed bottom-up by a **point of contact**, somebody who is willing to commit resources (time, money, leadership) to seeing the work get done. The point of contact identifies the problem they want to address and sketches the solution of how they want to do so. They also identify the support they will need from the Rust teams (typically things like review bandwidth or feedback on RFCs). Teams then read the goals and provide feedback. If the goal is approved, teams are committing to support the point of contact in their work.
 
+### What goals were not accepted?
+
+The following goals were not accepted as nobody stepped up to champion them. This should not be taken as a rejection of the underlying idea but likely indicates bandwidth constraints or concerns about scope.
+
+(((GOALS NOT ACCEPTED)))
+
 ### Does accepting a goal mean that the work is going to happen for sure?
 
 No. Accepting a goal is not a promise to accept an RFC, stabilize a feature, or take any other binding action. Rather, it means that the team wants the goal to make progress and is committing to commit time to complete the Team Asks described in the goal. To give some concrete examples, when the compiler team accepts a goal, they are committing to make sure reviews get done, but they are not committing to give an `r+` if the code doesn't pass muster. Similarly, the lang team is agreeing to discuss an RFC and provide actionable feedback, but not necessarily to accept it.
