@@ -83,7 +83,6 @@ The design of `unsafe` fields is guided by three axioms:
 | Implementation                 | @veluca93            |                                |
 | Standard reviews               | ![Team][] [compiler] |                                |
 | Design meeting                 | ![Team][] [lang]     |                                |
-| Lang-team champion             | ![Team][] [lang]     | @scottmcm                      |
 | RFC decision                   | ![Team][] [lang]     |                                |
 
 Ongoing discussion on [Zulip][].

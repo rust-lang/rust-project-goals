@@ -7,6 +7,8 @@
 | Tracking issue        | [rust-lang/rust-project-goals#109]               |
 | Other tracking issues | [rust-lang/rust#124509]                          |
 | Zulip channel         | [#wg-autodiff][channel]                          |
+| [compiler] champion | @ZuseZ4 |
+| [lang] champion | @traviscross |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/390790-wg-autodiff
 
@@ -53,7 +55,6 @@ Authors of Machine Learning or Linear Algebra libraries will further be able to 
 | Task                 | Owner(s) or team(s)                              | Notes                                                                                                                                |
 | -------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
 | Lang-team experiment | ![Team][] [lang][]                               | ![Complete][]                                                                                                                        |
-| Lang-team champion   | ![Team][] [lang][]                               | @traviscross                                                                                                                         |
 | Standard reviews     | ![Team][] [compiler]                             | Review contributions to `rustc_codegen_llvm` and other parts of the backend                                                          |
 | LLVM reviews         | LLVM offload/GPU contributors                    | Individual contributors at AMD/NVIDIA/LLNL agreed to review my code from the LLVM or GPU side                                        |
 | Do the work          | @ZuseZ4                                          |                                                                                                                                      |

@@ -59,12 +59,14 @@ pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> Result<String> {
         // the configuration. We prune out the ones that do not appear in the asks for a particular team.
         let ask_headings = config
             .team_asks
-            .keys()
-            .filter(|&ask_kind| {
-                asks_of_this_team
-                    .iter()
-                    .any(|a| &a.ask_description == ask_kind)
+            .iter()
+            .filter(|&(ask_kind, ask_details)| {
+                !ask_details.elide
+                    && asks_of_this_team
+                        .iter()
+                        .any(|a| &a.ask_description == ask_kind)
             })
+            .map(|(ask_kind, _)| ask_kind)
             .collect::<Vec<_>>();
         let empty_row = || {
             (0..ask_headings.len())
@@ -79,10 +81,15 @@ pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> Result<String> {
 
             let row = goal_rows.entry(goal_data).or_insert_with(empty_row);
 
-            let index = ask_headings
-                .iter()
-                .position(|&h| h == &ask.ask_description)
-                .unwrap();
+            let Some(index) = ask_headings.iter().position(|&h| h == &ask.ask_description) else {
+                // Some asks are not included in the table
+                assert!(
+                    config.team_asks[&ask.ask_description].elide,
+                    "ask {} has no index but is not elided",
+                    ask.ask_description
+                );
+                continue;
+            };
 
             let text = if !ask.notes.is_empty() {
                 &ask.notes

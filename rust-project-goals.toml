@@ -5,11 +5,10 @@
 
 [team_asks]
 "Allocate funds" = { short="Alloc funds", about="allocate funding" }
-"Discussion and moral support" = { short="Good vibes", about="approve of this direction and be prepared for light discussion on Zulip or elsewhere" }
+"Discussion and moral support" = { short="Good vibes", about="approve of this direction and be prepared for light discussion on Zulip or elsewhere", elide = true }
 "Deploy to production" = { short="Deploy", about="deploy code to production (e.g., on crates.io" }
-"Standard reviews" = { short="r?", about="review PRs (PRs are not expected to be unduly large or complicated)" }
+"Standard reviews" = { short="r?", about="review PRs (PRs are not expected to be unduly large or complicated)", elide = true }
 "Dedicated reviewer" = { short="Ded. r?", about="assign a specific person (or people) to review a series of PRs, appropriate for large or complex asks" }
-"Lang-team champion" = { short="Champion", about="member of lang team or advisors who will champion the design within team" }
 "Lang-team experiment" = { short="Experiment", about="begin a [lang-team experiment](https://lang-team.rust-lang.org/how_to/experiment.html) authorizing experimental impl of lang changes before an RFC is written; limited to trusted contributors" }
 "Design meeting" = { short="Design mtg.", about="hold a synchronous meeting to review a proposal and provide feedback (no decision expected)" }
 "RFC decision" = { short="RFC", about="review an RFC and deciding whether to accept" }

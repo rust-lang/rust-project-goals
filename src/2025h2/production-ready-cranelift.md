@@ -8,6 +8,7 @@
 | Tracking issue   |                                |
 | Zulip channel    |                                |
 
+| [compiler] champion | @bjorn3 |
 ## Summary
 
 This project aims to get the rust cranelift codegen backend to a production-ready state. Specifically, with this work completed, we'd be confident to recommend it as the default for local development, e.g. with `cargo test` or `cargo run`. 

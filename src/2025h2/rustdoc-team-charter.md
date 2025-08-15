@@ -5,6 +5,7 @@
 | Point of contact | @GuillaumeGomez                                |
 | Status           | Proposed                                       |
 | Zulip channel    | [#t-rustdoc](https://rust-lang.zulipchat.com/#narrow/channel/266220-t-rustdoc)                        |
+| [rustdoc] champion | @imperio |
 ## Summary
 
 Over the next six months, we will do the following:

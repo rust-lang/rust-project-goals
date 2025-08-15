@@ -106,7 +106,6 @@ The experimental feature we implement should:
 |----------------------------------|----------------------|------------------------------|
 | Discussion and moral support     | [compiler], [lang]   |                              |
 | Lang-team experiment             | ![Team][] [lang]     | ![Complete][]             |
-| Lang-team champion               | ![Team][] [lang]     | @nikomatsakis    |
 | Design experiment (syntax, etc.) | *Jana and Mara*      | Done                         |
 | Refactor attributes in rustc     | *Jana*               | In progress, refactor merged |
 | Implement experiment             | *Jana and Mara*      |                              |

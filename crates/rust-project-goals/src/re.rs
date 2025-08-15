@@ -5,6 +5,10 @@ lazy_static! {
     pub static ref TEAM_ASKS: Regex = Regex::new(r"\(\(\(TEAM ASKS\)\)\)").unwrap();
 }
 
+lazy_static! {
+    pub static ref CHAMPIONS: Regex = Regex::new(r"\(\(\(CHAMPIONS\)\)\)").unwrap();
+}
+
 // List of all goals, flagship or otherwise
 lazy_static! {
     pub static ref GOAL_LIST: Regex = Regex::new(r"\(\(\(GOALS\)\)\)").unwrap();
@@ -112,6 +116,6 @@ pub const TLDR: &str = "TL;DR:";
 lazy_static! {
     /// Metadata table rows like `[lang] champion` indicate the champion for the lang team
     pub static ref CHAMPION_METADATA: Regex =
-        Regex::new(r"^\s*(?P<team>\[.*\]) champion)\s*$")
+        Regex::new(r"^\s*\[(?P<team>.*)\] champion\s*$")
             .unwrap();
 }

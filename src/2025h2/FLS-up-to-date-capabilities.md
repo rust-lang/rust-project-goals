@@ -6,6 +6,10 @@
 | Status           | Proposed                                                                         |
 | Tracking issue   |                                                                                  |
 | Zulip channel    | #t-spec                                                                          |
+| [bootstrap] champion | @kobzol |
+| [lang] champion | @nikomatsakis |
+| [spec] champion | @PLeVasseur |
+
 ## Summary
 
 Develop the capabilities and capacity to keep the FLS up to date with the Rust language.

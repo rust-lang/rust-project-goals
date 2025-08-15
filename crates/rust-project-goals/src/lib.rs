@@ -1,5 +1,6 @@
 pub mod config;
 pub mod format_team_ask;
+pub mod format_champions;
 pub mod gh;
 pub mod goal;
 pub mod markwaydown;

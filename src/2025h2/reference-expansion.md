@@ -6,6 +6,8 @@
 | Status             | Proposed                           |
 | Zulip channel      | [#t-spec][channel]                 |
 | Tracking issue     |                                    |
+| [lang-docs] champion | @joshtriplett |
+| [spec] champion | @joshtriplett |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/399173-t-spec
 

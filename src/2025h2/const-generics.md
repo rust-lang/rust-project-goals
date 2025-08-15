@@ -6,6 +6,7 @@
 | Status           | Proposed    |
 | Tracking issue   |             |
 | Zulip channel    | N/A         |
+| [lang] champion | @nikomatsakis |
 ## Summary
 
 Work towards stabilizing the remaining const generics functionality that was left out of the original `min_const_generics` feature.

@@ -43,7 +43,7 @@ pub struct GoalDocument {
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Metadata {
     #[allow(unused)]
-    pub title: String,
+    pub title: Spanned<String>,
     pub short_title: Spanned<String>,
     pub pocs: String,
     pub status: Spanned<Status>,
@@ -117,7 +117,7 @@ pub fn goals_in_dir(directory_path: &Path) -> Result<Vec<GoalDocument>> {
         if path.file_name().unwrap() == "TEMPLATE.md" {
             continue;
         }
-        
+
         if let Some(goal_document) = GoalDocument::load(&path, &link_path)? {
             goal_documents.push(goal_document);
         }
@@ -137,11 +137,7 @@ impl GoalDocument {
 
         let link_path = Arc::new(link_path.to_path_buf());
 
-        let goal_plans = if metadata.status.is_not_not_accepted() {
-            extract_plan_items(&sections)?
-        } else {
-            vec![]
-        };
+        let goal_plans = extract_plan_items(&sections)?;
 
         let mut team_asks = vec![];
         for goal_plan in &goal_plans {
@@ -156,7 +152,10 @@ impl GoalDocument {
 
         // Enforce that every goal has some team asks (unless it is not accepted)
         if metadata.status.is_not_not_accepted() && team_asks.is_empty() {
-            spanned::bail_here!("no team asks in goal; did you include `![Team]` in the table?");
+            spanned::bail!(
+                metadata.title,
+                "no team asks in goal; did you include `![Team]` in the table?"
+            );
         }
 
         let task_owners = goal_plans
@@ -168,7 +167,7 @@ impl GoalDocument {
         Ok(Some(GoalDocument {
             path: path.to_path_buf(),
             link_path,
-            summary: summary.unwrap_or_else(|| metadata.title.clone()),
+            summary: summary.unwrap_or_else(|| (*metadata.title).clone()),
             metadata,
             team_asks,
             goal_plans,
@@ -213,13 +212,14 @@ impl GoalDocument {
 
 pub fn format_goal_table(goals: &[&GoalDocument]) -> Result<String> {
     // If any of the goals have tracking issues, include those in the table.
-    let goals_are_proposed = goals
-        .iter()
-        .any(|g| g.metadata.status.acceptance == AcceptanceStatus::Proposed);
+    let show_champions = goals.iter().any(|g| {
+        g.metadata.status.acceptance == AcceptanceStatus::Proposed
+            || g.metadata.status.acceptance == AcceptanceStatus::NotAccepted
+    });
 
     let mut table;
 
-    if !goals_are_proposed {
+    if !show_champions {
         table = vec![vec![
             Spanned::here("Goal".to_string()),
             Spanned::here("Point of contact".to_string()),
@@ -249,7 +249,7 @@ pub fn format_goal_table(goals: &[&GoalDocument]) -> Result<String> {
             table.push(vec![
                 Spanned::here(format!(
                     "[{}]({})",
-                    goal.metadata.title,
+                    *goal.metadata.title,
                     goal.link_path.display()
                 )),
                 Spanned::here(goal.point_of_contact_for_goal_list()),
@@ -260,7 +260,7 @@ pub fn format_goal_table(goals: &[&GoalDocument]) -> Result<String> {
         table = vec![vec![
             Spanned::here("Goal".to_string()),
             Spanned::here("Point of contact".to_string()),
-            Spanned::here("Team".to_string()),
+            Spanned::here("Team(s) and Champion(s)".to_string()),
         ]];
 
         for goal in goals {
@@ -270,15 +270,27 @@ pub fn format_goal_table(goals: &[&GoalDocument]) -> Result<String> {
                 .flat_map(|ask| &ask.teams)
                 .copied()
                 .collect();
-            let teams: Vec<&TeamName> = teams.into_iter().collect();
+
+            // Format teams with champions in parentheses
+            let teams_with_champions: Vec<String> = teams
+                .into_iter()
+                .map(|team| {
+                    if let Some(champion) = goal.metadata.champions.get(team) {
+                        format!("{} ({})", team, champion.content)
+                    } else {
+                        team.to_string()
+                    }
+                })
+                .collect();
+
             table.push(vec![
                 Spanned::here(format!(
                     "[{}]({})",
-                    goal.metadata.title,
+                    *goal.metadata.title,
                     goal.link_path.display()
                 )),
                 Spanned::here(goal.point_of_contact_for_goal_list()),
-                Spanned::here(commas(&teams)),
+                Spanned::here(teams_with_champions.join(", ")),
             ]);
         }
     }
@@ -493,7 +505,7 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
         .map(|row| row[1].clone());
 
     Ok(Some(Metadata {
-        title: title.to_string(),
+        title: title.clone(),
         short_title: if let Some(row) = short_title_row {
             row[1].clone()
         } else {
@@ -507,8 +519,6 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
         flagship,
     }))
 }
-
-
 
 fn extract_summary(sections: &[Section]) -> Result<Option<String>> {
     let Some(ownership_section) = sections.iter().find(|section| section.title == "Summary") else {
@@ -538,13 +548,6 @@ fn extract_plan_items<'i>(sections: &[Section]) -> Result<Vec<GoalPlan>> {
         .take_while(|s| s.level > level)
     {
         goal_plans.extend(goal_plan(Some(subsection.title.clone()), subsection)?);
-    }
-
-    if goal_plans.is_empty() {
-        spanned::bail!(
-            sections[ownership_index].title,
-            "no goal table items found in the `Ownership and team asks` section or subsections"
-        )
     }
 
     Ok(goal_plans)

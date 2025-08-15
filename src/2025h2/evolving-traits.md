@@ -7,6 +7,8 @@
 | Flagship         | Unblocking dormant traits |
 | Tracking issue   |                           |
 | Zulip channel    |                           |
+| [lang] champion  | @cramertj                 |
+| [types] champion | @oli-obk                  |
 
 ## Summary
 
@@ -235,7 +237,6 @@ implementations.
 | Task                         | Owner(s) or team(s)  | Notes                                                                |
 | ---------------------------- | -------------------- | -------------------------------------------------------------------- |
 | Discussion and moral support | ![Team][] [lang]     |                                                                      |
-| Lang-team champion           | @cramertj            |                                                                      |
 | Discussion and moral support | ![Team][] [compiler] |                                                                      |
 | Discussion and moral support | ![Team][] [types]    |                                                                      |
 | Author RFC                   | @cramertj            |                                                                      |

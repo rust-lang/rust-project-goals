@@ -7,6 +7,9 @@
 | Flagship         | Higher-level Rust                  |
 | Tracking issue   | [rust-lang/rust-project-goals#107] |
 | Zulip channel    | N/A                                |
+| [compiler] champion | @spastorino |
+| [lang] champion | @nikomatsakis |
+
 ## Summary
 
 We propose to write an alternative RFC for ergonomic ref-counting that makes lightweight cloning automatic and hold design meetings so the lang team can compare both approaches. This work builds on RFC #3680, which proposed a new keyword, `use`, that could be used with closures (`use || ...`) and expressions like `x.use` to help address a longstanding problem: working with ref-counted data structures like `Arc<T>` is verbose and confusing.
@@ -146,7 +149,6 @@ The design axioms for this alternative RFC are as follows:
 | Author alternative RFC           | @nikomatsakis        | Seamlessly integrated approach                             |
 | Complete seamless implementation | @spastorino          | Make `x` equivalent to `x.use` with optional linting       |
 | Standard reviews                 | ![Team][] [compiler] |                                                            |
-| Lang-team champion               | @nikomatsakis        |                                                            |
 | Design meeting                   | ![Team][] [lang]     | Two meetings to evaluate both approaches                   |
 | RFC decision                     | ![Team][] [lang]     | Choose between maximally additive vs seamlessly integrated |
 

@@ -6,6 +6,10 @@
 | Status           | Proposed                                                                         |
 | Other Tracking issue   | [rust-lang/rust#142577]                                  |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
+| [compiler] champion | @oli-obk |
+| [lang] champion | @scottmcm |
+| [libs] champion | @joshtriplett |
+
 ## Summary
 
 Design, implement and experimentally land a reflection scheme based on `const fn` that can only be called at compile time.
@@ -81,7 +85,6 @@ Create basic building blocks that allow `facet`, `bevy-reflect` and `reflect` to
 | Task                 | Owner(s) or team(s)                | Notes                                                               |
 |----------------------|------------------------------------|---------------------------------------------------------------------|
 | Lang-team experiment | ![Team][] [lang], [libs]           | Needs libstd data structures (lang items) to make the specialization data available |
-| Lang-team champion   | ![Team][] [lang]                   | TBD |
 
 ### Implement language feature
 
@@ -91,7 +94,6 @@ Create basic building blocks that allow `facet`, `bevy-reflect` and `reflect` to
 |-----------------------------------|------------------------------------|-------|
 | Implementation                    | oli-obk |       |
 | Standard reviews                  | ![Team][] [compiler]               |       |
-| Lang-team champion                | ![Team][] [lang]                   |       |
 | Design meeting                    | ![Team][] [lang]                   |       |
 | Author call for testing blog post |  | Likely will just experiment with bevy or facet, no general call for testing |
 

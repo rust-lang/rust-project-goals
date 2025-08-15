@@ -1,12 +1,15 @@
 # build-std
 
-| Metadata           |                                    |
-| :--                | :--                                |
-| Point of contact   | @davidtwco                         |
-| Status             | Proposed                           |
-| Flagship           | Flexible, fast(er) Rust builds     |
-| Zulip channel      | N/A                                |
-| Tracking issue     | [rust-lang/rust-project-goals#274] |
+| Metadata            |                                    |
+| :------------------ | :--------------------------------- |
+| Point of contact    | @davidtwco                         |
+| Status              | Proposed                           |
+| Flagship            | Flexible, fast(er) Rust builds     |
+| Zulip channel       | N/A                                |
+| Tracking issue      | [rust-lang/rust-project-goals#274] |
+| [cargo] champion    | @ehuss                             |
+| [compiler] champion | @davidtwco                         |
+| [libs] champion     | @Amanieu                           |
 
 ## Summary
 
@@ -117,7 +120,7 @@ build-std feature.
 | Discussion and moral support | ![Team][] [cargo], [libs], [compiler] | @ehuss, @joshtriplett and @wesleywiser already regularly contribute |
 | Author RFC                   | @davidtwco, @adamgemmell              | Continue draft produced in 2025H1                                   |
 | Design meeting               | ![Team][] [cargo], [libs], [compiler] | Review initial RFC draft                                            |
-| RFC decision                 | ![Team][] [cargo], [libs], [compiler] | Decide to approve RFC.                                              |
+| RFC decision                 | ![Team][] [cargo], [libs], [compiler] |                                                                     |
 | Implementation               | @davidtwco, @adamgemmell              |                                                                     |
 | Standard reviews             | ![Team][] [cargo], [libs], [compiler] |                                                                     |
 

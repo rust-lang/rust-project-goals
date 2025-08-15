@@ -6,6 +6,9 @@
 | Status             | Proposed                           |
 | Zulip channel      | N/A                                |
 | Tracking issue     | [rust-lang/rust-project-goals#270] |
+| [compiler] champion | @davidtwco |
+| [lang] champion | @nikomatsakis |
+| [libs] champion | @Amanieu |
 
 ## Summary
 

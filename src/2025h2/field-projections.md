@@ -1,12 +1,13 @@
 # Design a language feature to solve Field Projections
 
-| Metadata         |                                                                                  |
-|:-----------------|----------------------------------------------------------------------------------|
-| Point of contact | @BennoLossin                                                                     |
-| Status           | Proposed                                                                         |
-| Flagship         | Beyond the `&`                                                                   |
-| Tracking issue   |                                                                                  |
-| Zulip channel    | N/A                                                                              |
+| Metadata         |                |
+| :--------------- | -------------- |
+| Point of contact | @BennoLossin   |
+| Status           | Proposed       |
+| Flagship         | Beyond the `&` |
+| Tracking issue   |                |
+| Zulip channel    | N/A            |
+| [lang] champion  | @tmandry       |
 
 ## Summary
 
@@ -94,12 +95,11 @@ Have field projections available in stable Rust.
 
 ## Ownership and team asks
 
-| Task                 | Owner(s) or team(s)                 | Notes                                                               |
-|----------------------|-------------------------------------|---------------------------------------------------------------------|
-| Design meeting       | ![Team][] [lang]                    | Possibly more than one required as well as discussions on zulip.    |
-| Lang-team experiment | ![Team][] [lang]                    | @dingxiangfei2009, @BennoLossin                                     |
-| Author RFC           | @BennoLossin                        |                                                                     |
-| Lang-team champion   | ![Team][] [lang]                    | *Champion Needed*                                                   |
-| RFC secondary review | ![Team][] [types]                   | might be a good idea?                                               |
-| RFC decision         | ![Team][] [lang]                    |                                                                     |
+| Task                 | Owner(s) or team(s) | Notes                                                            |
+| -------------------- | ------------------- | ---------------------------------------------------------------- |
+| Design meeting       | ![Team][] [lang]    | Possibly more than one required as well as discussions on zulip. |
+| Lang-team experiment | ![Team][] [lang]    | @dingxiangfei2009, @BennoLossin                                  |
+| Author RFC           | @BennoLossin        |                                                                  |
+| RFC secondary review | ![Team][] [types]   | might be a good idea?                                            |
+| RFC decision         | ![Team][] [lang]    |                                                                  |
 ## Frequently asked questions

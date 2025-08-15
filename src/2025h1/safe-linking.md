@@ -112,7 +112,6 @@ safe cross-language linking.
 | Blog post (author, review)                  | MSc student, @Jdonszelmann, @m-ou-se         |                                |
 | Experimental implementation                 | Msc student                                  |                                |
 | Lang-team experiment                        | ![Team][] [lang]                             | @nikomatsakis                  |
-| Lang-team champion                          | ![Team][] [lang]                             | @nikomatsakis                  |
 | Standard reviews                            | ![Team][] [compiler]                         |                                |
 | Thesis / Paper                              | Research team (MSc student, professor, etc.) |                                |
 

@@ -1,7 +1,7 @@
 # Experiment with ergonomic ref-counting
 
 | Metadata         |                                    |
-|:-----------------|------------------------------------|
+| :--------------- | ---------------------------------- |
 | Point of contact | @spastorino                        |
 | Status           | Accepted                           |
 | Tracking issue   | [rust-lang/rust-project-goals#107] |
@@ -80,12 +80,12 @@ We don't have consensus around a full set of "design axioms" for this design, bu
 
 ## Ownership and team asks
 
-| Task           | Owner(s) or team(s) | Notes         |
-|----------------|---------------------|---------------|
-| Implementation | @spastorino         |               |
-| Reviews        | @nikomatsakis       |               |
-| Lang-team champion | ![Team][] [lang] | @nikomatsakis |
-| Author RFC     | @joshtriplett       | ![Complete][] |
+| Task                         | Owner(s) or team(s) | Notes         |
+| ---------------------------- | ------------------- | ------------- |
+| Implementation               | @spastorino         |               |
+| Reviews                      | @nikomatsakis       |               |
+| Discussion and moral support | ![Team][] [lang]    |               |
+| Author RFC                   | @joshtriplett       | ![Complete][] |
 
 ### Definitions
 

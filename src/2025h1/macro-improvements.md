@@ -137,7 +137,6 @@ could reserve such syntax in all editions.
 |-------------------------------------------|--------------------------|---------------|
 | Author/revise/iterate RFCs                | @joshtriplett            |               |
 | RFC decision                              | ![Team][] [lang]         |               |
-| Lang-team champion                        | ![Team][] [lang]         | @joshtriplett |
 | Implementation of RFC                     | @eholk, @vincenzopalazzo |               |
 | Iterate on design as needed               | @joshtriplett            |               |
 | Inside Rust blog post on attribute macros | @joshtriplett            |               |
@@ -149,7 +148,6 @@ could reserve such syntax in all editions.
 |----------------------------------------|--------------------------|------------------------|
 | Author/revise/iterate RFCs             | @joshtriplett            |                        |
 | RFC decision                           | ![Team][] [lang]         |                        |
-| Lang-team champion                     | ![Team][] [lang]         | @joshtriplett          |
 | Implementation of RFC                  | @eholk, @vincenzopalazzo |                        |
 | Iterate on design as needed            | @joshtriplett            |                        |
 | Inside Rust blog post on derive macros | @joshtriplett            |                        |
@@ -162,7 +160,6 @@ could reserve such syntax in all editions.
 | Author initial RFC                               | @joshtriplett            |                        |
 | Design meeting                                   | ![Team][] [lang]         |                        |
 | RFC decision                                     | ![Team][] [lang]         |                        |
-| Lang-team champion                               | ![Team][] [lang]         | @joshtriplett          |
 | Implementation of RFC                            | @eholk, @vincenzopalazzo |                        |
 | Iterate on design as needed                      | @joshtriplett            |                        |
 | Inside Rust blog post on additional capabilities | @joshtriplett            |                        |

@@ -70,7 +70,6 @@
 |----------------------|------------------------------------|---------------------------------------------------------------------|
 | Lang-team experiment | ![Team][] [lang]                   | allows coding pre-RFC; only for trusted contributors                |
 | Author RFC           | *Goal point of contact, typically* |                                                                     |
-| Lang-team champion   | ![Team][] [lang]                   | Username here |
 | RFC decision         | ![Team][] [lang]                   |                                                                     |
 | RFC secondary review | ![Team][] [types]                  | request bandwidth from a second team, most features don't need this |
 
@@ -82,7 +81,6 @@
 |-----------------------------------|------------------------------------|-------|
 | Implementation                    | *Goal point of contact, typically* |       |
 | Standard reviews                  | ![Team][] [compiler]               |       |
-| Lang-team champion                | ![Team][] [lang]                   |       |
 | Design meeting                    | ![Team][] [lang]                   |       |
 | Author call for testing blog post | *Goal point of contact, typically* |       |
 
@@ -94,7 +92,6 @@
 |-----------------------------|------------------------------------|-------|
 | Author Reference PR         | *Goal point of contact, typically* |       |
 | Review/revise Reference PR  | ![Team][] [lang-docs]              |       |
-| Lang-team champion          | ![Team][] [lang]                   |       |
 | Author stabilization report | *Goal point of contact, typically* |       |
 | Author stabilization PR     | *Goal point of contact, typically* |       |
 | Stabilization decision      | ![Team][] [lang]                   |       |

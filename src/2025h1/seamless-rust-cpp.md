@@ -121,7 +121,6 @@ In addition, it proposes the following axioms:
 |------------------------------|----------------------------------------|-----------------------------------------|
 | Discussion and moral support | ![Team][] [lang], [compiler], [libs-api] |                                         |
 | Design meeting               | ![Team][] [lang], [compiler], [libs-api] | 2-3 meetings expected; all involve lang |
-| Lang-team champion           | ![Team][] [lang]                       | @tmandry                                |
 | Author design doc            | @tmandry                               |                                         |
 | Author design doc            | ![Help wanted][]                       |                                         |
 | Author design doc            | ![Help wanted][]                       |                                         |

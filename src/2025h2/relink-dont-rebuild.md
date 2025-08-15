@@ -6,6 +6,8 @@
 | Tracking issue   | |
 | Zulip channel    | |
 
+| [cargo] champion | @whlo |
+| [compiler] champion | @oli-obk |
 ## Summary
 
 Work towards avoiding rebuilds of a crate's dependents for changes that don't affect the crate's

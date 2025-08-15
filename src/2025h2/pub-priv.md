@@ -6,6 +6,7 @@
 | Status             | Proposed for mentorship            |
 | Zulip channel      | N/A                                |
 | Tracking issue     | [rust-lang/rust-project-goals#272] |
+| [cargo] champion | @epage |
 
 ## Summary
 

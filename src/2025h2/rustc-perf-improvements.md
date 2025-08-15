@@ -7,6 +7,8 @@
 | Zulip channel      | [#project-goals/2025h1/rustc-perf-improvements][channel] |
 | Tracking issue     | [rust-lang/rust-project-goals#275]                       |
 
+| [compiler] champion | @davidtwco |
+| [infra] champion | @kobzol |
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/478771-project-goals.2F2025h1.2Frustc-perf-improvements
 
 *This goal will be primarily worked on by @Jamesbarford, but @davidtwco or
