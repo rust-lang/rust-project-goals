@@ -117,7 +117,7 @@ pub fn goals_in_dir(directory_path: &Path) -> Result<Vec<GoalDocument>> {
         if path.file_name().unwrap() == "TEMPLATE.md" {
             continue;
         }
-        
+
         if let Some(goal_document) = GoalDocument::load(&path, &link_path)? {
             goal_documents.push(goal_document);
         }
@@ -260,7 +260,7 @@ pub fn format_goal_table(goals: &[&GoalDocument]) -> Result<String> {
         table = vec![vec![
             Spanned::here("Goal".to_string()),
             Spanned::here("Point of contact".to_string()),
-            Spanned::here("Team".to_string()),
+            Spanned::here("Team(s) and Champion(s)".to_string()),
         ]];
 
         for goal in goals {
@@ -270,7 +270,19 @@ pub fn format_goal_table(goals: &[&GoalDocument]) -> Result<String> {
                 .flat_map(|ask| &ask.teams)
                 .copied()
                 .collect();
-            let teams: Vec<&TeamName> = teams.into_iter().collect();
+
+            // Format teams with champions in parentheses
+            let teams_with_champions: Vec<String> = teams
+                .into_iter()
+                .map(|team| {
+                    if let Some(champion) = goal.metadata.champions.get(team) {
+                        format!("{} ({})", team, champion.content)
+                    } else {
+                        team.to_string()
+                    }
+                })
+                .collect();
+
             table.push(vec![
                 Spanned::here(format!(
                     "[{}]({})",
@@ -278,7 +290,7 @@ pub fn format_goal_table(goals: &[&GoalDocument]) -> Result<String> {
                     goal.link_path.display()
                 )),
                 Spanned::here(goal.point_of_contact_for_goal_list()),
-                Spanned::here(commas(&teams)),
+                Spanned::here(teams_with_champions.join(", ")),
             ]);
         }
     }
@@ -507,8 +519,6 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
         flagship,
     }))
 }
-
-
 
 fn extract_summary(sections: &[Section]) -> Result<Option<String>> {
     let Some(ownership_section) = sections.iter().find(|section| section.title == "Summary") else {

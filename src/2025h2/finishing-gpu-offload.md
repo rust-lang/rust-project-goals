@@ -9,7 +9,7 @@
 | Zulip channel         | [#wg-autodiff][channel]                          |
 
 | [compiler] champion | @ZuseZ4 |
-| [lang] champion | @TC |
+| [lang] champion | @traviscross |
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/390790-wg-autodiff
 
 ## Summary
