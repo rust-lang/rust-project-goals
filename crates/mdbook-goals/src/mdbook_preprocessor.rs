@@ -10,6 +10,7 @@ use mdbook::BookItem;
 use regex::{Captures, Regex};
 use rust_project_goals::config::Configuration;
 use rust_project_goals::format_team_ask::format_team_asks;
+use rust_project_goals::format_champions::format_champions;
 use rust_project_goals::util::{self, GithubUserInfo};
 
 use rust_project_goals::spanned::Spanned;
@@ -147,6 +148,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         match book_item {
             BookItem::Chapter(chapter) => {
                 self.replace_metadata_placeholders(chapter)?;
+                self.replace_champions(chapter)?;
                 self.replace_team_asks(chapter)?;
                 self.replace_valid_team_asks(chapter)?;
                 self.replace_goal_lists(chapter)?;
@@ -306,6 +308,26 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 }
             }
         }
+    }
+
+    /// Look for `(((CHAMPIONS)))` in the chapter content and replace it with the champions table.
+    fn replace_champions(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        let Some(m) = re::CHAMPIONS.find(&chapter.content) else {
+            return Ok(());
+        };
+        let range = m.range();
+
+        let Some(path) = &chapter.path else {
+            anyhow::bail!("found `(((CHAMPIONS)))` but chapter has no path")
+        };
+
+        let goals = self.goal_documents(path)?;
+        let goal_refs: Vec<&GoalDocument> = goals.iter().collect();
+        let format_champions =
+            format_champions(&goal_refs).map_err(|e| anyhow::anyhow!("{e}"))?;
+        chapter.content.replace_range(range, &format_champions);
+
+        Ok(())
     }
 
     /// Look for `<!-- TEAM ASKS -->` in the chapter content and replace it with the team asks.

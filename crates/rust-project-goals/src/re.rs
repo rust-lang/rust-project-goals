@@ -5,6 +5,10 @@ lazy_static! {
     pub static ref TEAM_ASKS: Regex = Regex::new(r"\(\(\(TEAM ASKS\)\)\)").unwrap();
 }
 
+lazy_static! {
+    pub static ref CHAMPIONS: Regex = Regex::new(r"\(\(\(CHAMPIONS\)\)\)").unwrap();
+}
+
 // List of all goals, flagship or otherwise
 lazy_static! {
     pub static ref GOAL_LIST: Regex = Regex::new(r"\(\(\(GOALS\)\)\)").unwrap();

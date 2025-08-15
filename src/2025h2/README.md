@@ -76,8 +76,16 @@ The full slate of project goals are as follows. These goals all have identified 
 
 (((GOALS)))
 
-# Reference-level explanation
+## Reference-level explanation
 [reference-level-explanation]: #reference-level-explanation
+
+### Goals broken out by champion
+
+Who is championing which goals?
+
+(((CHAMPIONS)))
+
+### Team asks
 
 The following table highlights the asks from each affected team.
 The "owner" in the column is the person expecting to do the design/implementation work that the team will be approving.
