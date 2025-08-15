@@ -1,7 +1,7 @@
 # Rust project goals 2025h2
 ## Summary
 
-*![Status: Accepting goal proposals](https://img.shields.io/badge/Status-Accepting%20goal%20proposals-yellow) We are in the process of assembling the goal slate.*
+*![Status: Preparing RFCs](https://img.shields.io/badge/Status-Accepting%20goal%20proposals-red) We are in the process of opening the RFC.*
 
 This is a draft for the eventual RFC proposing the 2025h2 goals.
 
