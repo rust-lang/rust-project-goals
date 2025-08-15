@@ -137,11 +137,7 @@ impl GoalDocument {
 
         let link_path = Arc::new(link_path.to_path_buf());
 
-        let goal_plans = if metadata.status.is_not_not_accepted() {
-            extract_plan_items(&sections)?
-        } else {
-            vec![]
-        };
+        let goal_plans = extract_plan_items(&sections)?;
 
         let mut team_asks = vec![];
         for goal_plan in &goal_plans {
@@ -216,13 +212,14 @@ impl GoalDocument {
 
 pub fn format_goal_table(goals: &[&GoalDocument]) -> Result<String> {
     // If any of the goals have tracking issues, include those in the table.
-    let goals_are_proposed = goals
-        .iter()
-        .any(|g| g.metadata.status.acceptance == AcceptanceStatus::Proposed);
+    let show_champions = goals.iter().any(|g| {
+        g.metadata.status.acceptance == AcceptanceStatus::Proposed
+            || g.metadata.status.acceptance == AcceptanceStatus::NotAccepted
+    });
 
     let mut table;
 
-    if !goals_are_proposed {
+    if !show_champions {
         table = vec![vec![
             Spanned::here("Goal".to_string()),
             Spanned::here("Point of contact".to_string()),
@@ -551,13 +548,6 @@ fn extract_plan_items<'i>(sections: &[Section]) -> Result<Vec<GoalPlan>> {
         .take_while(|s| s.level > level)
     {
         goal_plans.extend(goal_plan(Some(subsection.title.clone()), subsection)?);
-    }
-
-    if goal_plans.is_empty() {
-        spanned::bail!(
-            sections[ownership_index].title,
-            "no goal table items found in the `Ownership and team asks` section or subsections"
-        )
     }
 
     Ok(goal_plans)
