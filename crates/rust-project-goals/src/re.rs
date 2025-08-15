@@ -112,6 +112,6 @@ pub const TLDR: &str = "TL;DR:";
 lazy_static! {
     /// Metadata table rows like `[lang] champion` indicate the champion for the lang team
     pub static ref CHAMPION_METADATA: Regex =
-        Regex::new(r"^\s*(?P<team>\[.*\]) champion)\s*$")
+        Regex::new(r"^\s*(?P<team>\[.*\]) champion\s*$")
             .unwrap();
 }
