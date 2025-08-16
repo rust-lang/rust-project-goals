@@ -6,7 +6,7 @@
 | Tracking issue   | |
 | Zulip channel    | |
 
-| [cargo] champion | @whlo |
+| [cargo] champion | @weihanglo |
 | [compiler] champion | @oli-obk |
 ## Summary
 

@@ -6,7 +6,7 @@
 | Status           | Proposed                                                                         |
 | Tracking issue   |                                                                                  |
 | Zulip channel    | N/A                                                                              |
-| [cargo] champion | @whlo |
+| [cargo] champion | @weihanglo |
 
 ## Summary
 
