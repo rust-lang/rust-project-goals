@@ -6,7 +6,7 @@
 | Status           | Proposed                                                                         |
 | Tracking issue   |                                                                                  |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
-| [cargo] champion | @whlo |
+| [cargo] champion | @weihanglo |
 ## Summary
 
 Rework the Cargo build directory layout to have smaller self contained "units"
