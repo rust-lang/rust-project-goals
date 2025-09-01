@@ -101,11 +101,12 @@ of Rust that need documenting.
 @joshtriplett and @jackh726 will coordinate these contributions.
 
 We're expecting to coordinate contributions of new reference material from
-@lcnr, @jackh726, @Amanieu, @GuillaumeGomez, and @yaahc.
+@lcnr, @jackh726, @Amanieu, @GuillaumeGomez, @yaahc, and @epage.
 
 Additional people, who may provide review, mentoring, support, and drafting,
 include @joshtriplett, @lcnr, @jackh726, @Amanieu, @GuillaumeGomez, @m-ou-se,
-@petrochenkov, @yaahc, @lucarlig, @midiareshadi, @borsakv, and @SparrowLii.
+@petrochenkov, @yaahc, @lucarlig, @midiareshadi, @borsakv, @SparrowLii, and
+@epage.
 
 ### The "shiny future" we are working towards
 
