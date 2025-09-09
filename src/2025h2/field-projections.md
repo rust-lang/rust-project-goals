@@ -100,6 +100,9 @@ Have field projections available in stable Rust.
 | Design meeting       | ![Team][] [lang]    | Possibly more than one required as well as discussions on zulip. |
 | Lang-team experiment | ![Team][] [lang]    | @dingxiangfei2009, @BennoLossin                                  |
 | Author RFC           | @BennoLossin        |                                                                  |
-| RFC secondary review | ![Team][] [types]   | might be a good idea?                                            |
-| RFC decision         | ![Team][] [lang]    |                                                                  |
+
 ## Frequently asked questions
+
+### Why not push for RFC decision?
+
+[The design is still too early to expect a final decision on the RFC.](https://github.com/rust-lang/rfcs/pull/3849#discussion_r2311807884)
