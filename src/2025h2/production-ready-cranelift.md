@@ -59,14 +59,20 @@ More long-term we see the cranelift backend as an extremely promising approach f
 
 ## Ownership and team asks
 
-| Task                 | Owner(s) or team(s)                 | Notes                                                                                                                                |
-| -------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| Acquire funding      | [Trifecta Tech Foundation]          | We will only be able to work on this project if it is funded                                                                         |
-| Standard reviews     | ![Team][] [compiler]                | Casual improvements to `rustc_codegen_ssa` and other parts of the backend                                                            |
+| Task                 | Owner(s) or team(s)                 | Notes  |
+| -------------------- | ----------------------------------- | --------------------------------------------------------------- |
+| Acquire funding      | [Trifecta Tech Foundation]          | We will only be able to work on this project if it is funded |
+| Standard reviews     | ![Team][] [compiler]                | Casual improvements to `rustc_codegen_ssa` and other parts of the backend |
 | Dedicated reviewer   | ![Team][] [compiler]                | Larger changes to `rustc_codegen_ssa`. While not strictly required, we think having a dedicated reviewer will speed up our progress. |
-| Deploy to production | ![Team][] [wg-compiler-performance] | track and show `rustc_codegen_cranelift` performance                                                                                 |
-| Do the work          | @bjorn3, @folkertdev                |                                                                                                                                      |
+| Deploy to production | ![Team][] [wg-compiler-performance] | If possible, track and show `rustc_codegen_cranelift` performance. See note below for more details. |
+| Do the work          | @bjorn3, @folkertdev                |  |
+
+Note: the `wg-compiler-performance` ask is a nice to have, and it is clear to both the goal owners and the working group that:
+- it depends on [another goal][rustc-perf infra] for the technical ability to exist in the first place, with its own requirements and timeline
+- and when it's possible to handle `rustc_codegen_cranelift` in `rustc-perf`, deployment and availability could *also* have practical requirements like funding
+- and that `wg-compiler-performance` can accept the ask conditionally on the above external requirements it doesn't control
 
 [Trifecta Tech Foundation]: https://github.com/trifectatechfoundation
+[rustc-perf infra]: https://rust-lang.github.io/rust-project-goals/2025h2/rustc-perf-improvements.html
 
 ## Frequently asked questions
