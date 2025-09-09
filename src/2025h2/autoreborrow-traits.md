@@ -61,6 +61,26 @@ An improvement is needed.
 - Gather feedback from users, especially `reborrow` crate users.
 - Implement nightly support for recursive reborrowing.
 
+
+The basic idea of autoreborrowing is simple enough: when a reborrowable type is encountered at a coercion
+site, attempt a reborrow operation. The `Pin<&mut T>` special-case in the
+compiler already exists and could probably be reimagined to rely on a `Reborrow` trait.
+
+Complications arise when reborrowing becomes recursive: if a `struct X { a: A, b: B }` contains two
+reborrowable types `A` and `B`, then we'd want the reborrow of `X` to be performed "piecewise". As an
+example, the following type should, upon reborrow, only invalidate any values that depend on the `'a` lifetime while any values dependent on the `'b` lifetime should still be usable as normal.
+
+```rust
+struct X<'a, 'b> {
+    a: &'a mut A,
+    b: &'b B,
+}
+```
+
+To enable this, reborrowing needs to be defined as a recursive operation but what the "bottom-case" is, that
+is the question. One option would be to use `!Copy + Reborrow` fields, another would use core marker types
+like `PhantomExclusive<'a>` and `PhantomShared<'b>` to discern the difference.
+
 ### The "shiny future" we are working towards
 
 `Pin` ergonomics group should be able to get rid of special-casing of `Pin` reborrowing in rustc.
@@ -90,48 +110,12 @@ Users of `reborrow` crate and similar should be enabled to move to core solution
 
 ## Ownership and team asks
 
+
 | Task                         | Owner(s) or team(s)  | Notes                                                              |
 | ---------------------------- | -------------------- | ------------------------------------------------------------------ |
 | Discussion and moral support | ![Team][] [lang]     | Normal RFC process                                                 |
 | Standard reviews             | ![Team][] [compiler] | Trait-impl querying in rustc to replace `Pin<&mut T>` special case |
+| Lang-team experiment         | ![Team][] [lang]     | allows coding pre-RFC; only for trusted contributors               |
 | Do the work                  | @aapoalas            |                                                                    |
-
-### Experiment with Reborrow trait design
-
-The basic idea of autoreborrowing is simple enough: when a reborrowable type is encountered at a coercion
-site, attempt a reborrow operation.
-
-Complications arise when reborrowing becomes recursive: if a `struct X { a: A, b: B }` contains two
-reborrowable types `A` and `B`, then we'd want the reborrow of `X` to be performed "piecewise". As an
-example, the following type should, upon reborrow, only invalidate any values that depend on the `'a` lifetime while any values dependent on the `'b` lifetime should still be usable as normal.
-
-```rust
-struct X<'a, 'b> {
-    a: &'a mut A,
-    b: &'b B,
-}
-```
-
-To enable this, reborrowing needs to be defined as a recursive operation but what the "bottom-case" is, that
-is the question. One option would be to use `!Copy + Reborrow` fields, another would use core marker types
-like `PhantomExclusive<'a>` and `PhantomShared<'b>` to discern the difference.
-| Task                 | Owner(s) or team(s)                | Notes                                                               |
-| -------------------- | ---------------------------------- | ------------------------------------------------------------------- |
-| Lang-team experiment | ![Team][] [lang]                   | allows coding pre-RFC; only for trusted contributors                |
-| Author RFC           | *Goal point of contact, typically* |                                                                     |
-| RFC decision         | ![Team][] [lang]                   |                                                                     |
-| RFC secondary review | ![Team][] [types]                  | request bandwidth from a second team, most features don't need this |
-
-### Seek feedback for an RFC based on experiment
-
-A basic autoreborrowing feature should not be too complicated: the `Pin<&mut T>` special-case in the
-compiler already exists and could probably be reimagined to rely on a `Reborrow` trait.
-
-| Task                              | Owner(s) or team(s)                | Notes |
-| --------------------------------- | ---------------------------------- | ----- |
-| Implementation                    | *Goal point of contact, typically* |       |
-| Standard reviews                  | ![Team][] [compiler]               |       |
-| Design meeting                    | ![Team][] [lang]                   |       |
-| Author call for testing blog post | *Goal point of contact, typically* |       |
 
 ## Frequently asked questions
