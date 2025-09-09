@@ -7,7 +7,7 @@
 | Zulip channel      | N/A                                |
 | Tracking issue     | [rust-lang/rust-project-goals#256] |
 | [cargo] champion | @epage |
-| [compiler] champion | @BN |
+| [compiler] champion | @b-naber |
 | [crates-io] champion | @carols10cents |
 
 ## Summary

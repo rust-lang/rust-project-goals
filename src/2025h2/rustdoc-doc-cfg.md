@@ -6,7 +6,7 @@
 | Status           | Proposed                                       |
 | Tracking issue   | [rust-lang/rust#43781]                         |
 | Zulip channel    | [#t-rustdoc][t-rustdoc]                        |
-| [rustdoc] champion | @imperio |
+| [rustdoc] champion | @GuillaumeGomez |
 [t-rustdoc]: https://rust-lang.zulipchat.com/#narrow/channel/266220-t-rustdoc
 
 ## Summary
