@@ -4,7 +4,7 @@
 | :--------------- | ------------------------------ |
 | Point of contact | @folkertdev                    |
 | Status           | Proposed                       |
-| Flagship         | Flexible, fast(er) Rust builds |
+| Flagship         | Flexible, fast(er) compilation |
 | Tracking issue   |                                |
 | Zulip channel    |                                |
 

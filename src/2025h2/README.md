@@ -30,7 +30,7 @@ This period we have (((#FLAGSHIP GOALS))) flagship goals, broken out into four t
 
 * [Beyond the `&`](#beyond-the-), making it possible to create user-defined smart pointers that are as ergonomic as Rust's built-in references `&`.
 * [Unblocking dormant traits](#unblocking-dormant-traits), extending the core capabilities of Rust's trait system to unblock long-desired features for language interop, lending iteration, and more.
-* [Flexible, fast(er) Rust builds](#flexible-faster-rust-builds), making Rust's builds fasterand improving support for specialized build scenarios like embedded usage and sanitizers.
+* [Flexible, fast(er) compilation](#flexible-faster-rust-compilation), making it faster to build Rust programs and improving support for specialized build scenarios like embedded usage and sanitizers.
 * [Higher-level Rust](#higher-level-rust), making higher-level usage patterns in Rust easier.
 
 ### "Beyond the `&`"
@@ -53,11 +53,11 @@ Rust's trait system is one of its most powerful features, but it has a number of
 * The work to [expand Rust's `Sized` hierarchy](./scalable-vectors.md) will permit us to express types that are neither `Sized` nor `?Sized`, such as extern types (which have no size) or Arm's Scalable Vector Extension (which have a size that is known at runtime, but not compilation time). This goal builds on [RFC #3729][] and [RFC #3838][], authored in previous project goal periods.
 * [In-place initialization](./in-place-initialization.md) allows creating structs and values that are tied to a particular place in memory. While useful directly for projects doing advanced C interop, it also unblocks expanding `dyn Trait` to support for `async fn` and `-> impl Trait` methods, as compiling such methods requires the ability for the callee to return a future whose size is not known to the caller.
 
-### "Flexible, fast(er) Rust builds"
+### "Flexible, fast(er) compilation"
 
-(((FLAGSHIP GOALS: Flexible, fast(er) Rust builds)))
+(((FLAGSHIP GOALS: Flexible, fast(er) compilation)))
 
-The "Flexible, fast(er) Rust builds" initiative focuses on improving Rust's build system to better serve both specialized use cases and everyday development workflows:
+The "Flexible, fast(er) compilation" initiative focuses on improving Rust's build system to better serve both specialized use cases and everyday development workflows:
 
 * We are improving compilation performance through (1) [parallel compilation in the compiler front-end](./parallel-front-end.md), which delivers 20-30% faster builds, and (2) [making the Cranelift backend production-ready for development use](./production-ready-cranelift.md), offering roughly 20% faster code generation compared to LLVM for debug builds.
 * We are working to [stabilize a core MVP of the `-Zbuild-std` feature](./build-std.md), which allows developers to rebuild the standard library from source with custom compiler flags. This unblocks critical use cases for embedded developers and low-level projects like Rust for Linux, while also enabling improvements like using sanitizers with the standard library or building `std` with debug information.
