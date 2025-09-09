@@ -1,4 +1,4 @@
-# Nightly support for Autoreborrow traits
+# Reborrow traits
 
 | Metadata            |                                                                                  |
 | :------------------ | -------------------------------------------------------------------------------- |
@@ -96,7 +96,7 @@ Users of `reborrow` crate and similar should be enabled to move to core solution
 | Standard reviews             | ![Team][] [compiler] | Trait-impl querying in rustc to replace `Pin<&mut T>` special case |
 | Do the work                  | @aapoalas            |                                                                    |
 
-### Design autoreborrow internals
+### Experiment with Reborrow trait design
 
 The basic idea of autoreborrowing is simple enough: when a reborrowable type is encountered at a coercion
 site, attempt a reborrow operation.
@@ -122,7 +122,7 @@ like `PhantomExclusive<'a>` and `PhantomShared<'b>` to discern the difference.
 | RFC decision         | ![Team][] [lang]                   |                                                                     |
 | RFC secondary review | ![Team][] [types]                  | request bandwidth from a second team, most features don't need this |
 
-### Implement non-recursive autoreborrowing
+### Seek feedback for an RFC based on experiment
 
 A basic autoreborrowing feature should not be too complicated: the `Pin<&mut T>` special-case in the
 compiler already exists and could probably be reimagined to rely on a `Reborrow` trait.
