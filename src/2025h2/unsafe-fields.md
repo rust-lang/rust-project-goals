@@ -6,7 +6,7 @@
 | Status             | Proposed                           |
 | Zulip channel      | N/A                                |
 | Tracking issue     | [rust-lang/rust-project-goals#273] |
-| [compiler] champion | @jackwrenn |
+| [compiler] champion | @jswrenn |
 | [lang] champion | @scottmcm |
 
 ## Summary
