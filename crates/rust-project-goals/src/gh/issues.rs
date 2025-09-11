@@ -112,6 +112,15 @@ pub fn fetch_issue(repository: &Repository, issue: u64) -> Result<ExistingGithub
         .arg("title,assignees,number,comments,body,state,labels,milestone")
         .output()?;
 
+    if !output.status.success() {
+        spanned::bail_here!(
+            "fetching `{}` issue {} failed: {}",
+            repository.to_string(),
+            issue,
+            String::from_utf8_lossy(&output.stderr)
+        );
+    }
+
     let e_i: ExistingGithubIssueJson = serde_json::from_slice(&output.stdout)?;
 
     Ok(ExistingGithubIssue::from(e_i))
