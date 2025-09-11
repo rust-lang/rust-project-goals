@@ -1,12 +1,12 @@
 # Delegation
 
-| Metadata            |                         |
-| :------------------ | :---------------------- |
-| Point of contact    | @petrochenkov           |
-| Status              | Not accepted            |
-| Zulip channel       | N/A                     |
-| Tracking issue      | [rust-lang/rust#118212] |
-| [compiler] champion | @petrochenkov           |
+| Metadata              |                         |
+| :-------------------- | :---------------------- |
+| Point of contact      | @petrochenkov           |
+| Status                | Not accepted            |
+| Zulip channel         | N/A                     |
+| Other tracking issues | [rust-lang/rust#118212] |
+| [compiler] champion   | @petrochenkov           |
 
 ## Summary
 
