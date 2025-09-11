@@ -19,7 +19,7 @@ use rust_project_goals::{
         labels::GhLabel,
     },
     goal::{self, GoalDocument, GoalPlan, ParsedOwners},
-    spanned::{self, Context, Error, Result},
+    spanned::{self, Context, Error, Result, Spanned},
     team::{get_person_data, TeamName},
 };
 
@@ -301,7 +301,15 @@ fn initialize_issues<'doc>(
                 Some(issue.clone())
             } else {
                 // If not, load its information from the repository by number.
-                Some(fetch_issue(repository, tracking_issue.number)?)
+                let existing_issue =
+                    fetch_issue(repository, tracking_issue.number).map_err(|e| {
+                        e.wrap_str(Spanned::here(format!(
+                            "error while fetching declared tracking issue {} for goal {}",
+                            tracking_issue.number,
+                            desired_issue.goal_document.path.display(),
+                        )))
+                    })?;
+                Some(existing_issue)
             }
         } else {
             // b. If the markdown does not have a declared tracking issue, then we can search through
