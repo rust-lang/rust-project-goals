@@ -4,7 +4,7 @@
 |:-----------------|------------------------------------------------|
 | Point of contact | @GuillaumeGomez                                |
 | Status           | Proposed                                       |
-| Tracking issue   | [rust-lang/compiler-team#891]                  |
+| Other tracking issues | [rust-lang/compiler-team#891]             |
 | Zulip channel    | [#rustc-codegen-gcc][rustc-codegen-gcc]        |
 | [compiler] champion | @WesleyWiser |
 | [infra] champion | @marcoieni |
