@@ -1,6 +1,6 @@
 # Owners
 
-To be fully accepted each goal needs a set of **owners** -- the people who will do the work.
+To be fully accepted, each goal needs a set of **owners** -- the people who will do the work.
 This is often a single person or a small group.
 
 Each goal has an associated list of tasks to be completed over the next six months.
