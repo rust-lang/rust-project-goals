@@ -13,18 +13,30 @@ pub struct GhLabel {
 
 impl GhLabel {
     pub fn list(repository: &Repository) -> Result<Vec<GhLabel>> {
-        let output = Command::new("gh")
-            .arg("-R")
-            .arg(&repository.to_string())
-            .arg("label")
-            .arg("list")
-            .arg("--json")
-            .arg("name,color")
-            .output()?;
+        let mut limit = 128;
 
-        let labels: Vec<GhLabel> = serde_json::from_slice(&output.stdout)?;
+        loop {
+            let output = Command::new("gh")
+                .arg("-R")
+                .arg(&repository.to_string())
+                .arg("label")
+                .arg("list")
+                .arg("--json")
+                .arg("name,color")
+                .arg("-L")
+                .arg(format!("{limit}"))
+                .output()?;
 
-        Ok(labels)
+            let labels: Vec<GhLabel> = serde_json::from_slice(&output.stdout)?;
+            if labels.len() >= limit {
+                // If we got exactly as many as we asked for,
+                // we might be missing some.
+                limit = limit * 2;
+                continue;
+            }
+
+            return Ok(labels);
+        }
     }
 
     pub fn create(&self, repository: &Repository) -> Result<()> {
