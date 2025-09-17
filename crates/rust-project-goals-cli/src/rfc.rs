@@ -114,7 +114,7 @@ pub fn generate_issues(
     // and it's easier this way.
     let mut iteration_count = 0;
     const MAX_ITERATIONS: usize = 10;
-    
+
     loop {
         iteration_count += 1;
         if iteration_count > MAX_ITERATIONS {
@@ -179,6 +179,9 @@ pub fn generate_issues(
             eprintln!("Use `--commit` to execute the actions.");
             return Ok(());
         }
+
+        eprintln!("Waiting for github commands to propagate.");
+        std::thread::sleep(Duration::from_millis(1000));
     }
 }
 
@@ -231,11 +234,6 @@ enum GithubAction<'doc> {
 
     LockIssue {
         number: u64,
-    },
-
-    LinkToTrackingIssue {
-        goal_document: &'doc GoalDocument,
-        issue_id: IssueId,
     },
 }
 
@@ -296,11 +294,13 @@ fn initialize_issues<'doc>(
     let mut tracking_issue_counts = std::collections::HashMap::new();
     for issue in &desired_issues {
         if let Some(tracking_issue) = issue.tracking_issue {
-            let count = tracking_issue_counts.entry(tracking_issue.number).or_insert(0);
+            let count = tracking_issue_counts
+                .entry(tracking_issue.number)
+                .or_insert(0);
             *count += 1;
         }
     }
-    
+
     for (issue_number, count) in tracking_issue_counts {
         if count > 1 {
             let goals_with_issue: Vec<_> = desired_issues
@@ -308,7 +308,7 @@ fn initialize_issues<'doc>(
                 .filter(|issue| issue.tracking_issue.map(|ti| ti.number) == Some(issue_number))
                 .map(|issue| issue.goal_document.path.display().to_string())
                 .collect();
-            
+
             spanned::bail_here!(
                 "Tracking issue #{} is assigned to {} goals: {}. \
                  Each tracking issue can only be assigned to one goal.",
@@ -426,14 +426,6 @@ fn initialize_issues<'doc>(
                     actions.insert(GithubAction::UpdateIssueBody {
                         number: existing_issue.number,
                         body,
-                    });
-                }
-
-                let issue_id = IssueId::new(repository.clone(), existing_issue.number);
-                if desired_issue.tracking_issue != Some(&issue_id) {
-                    actions.insert(GithubAction::LinkToTrackingIssue {
-                        goal_document: desired_issue.goal_document,
-                        issue_id,
                     });
                 }
             }
@@ -572,7 +564,7 @@ impl Display for GithubAction<'_> {
                 write!(f, "create label `{}` with color `{}`", name, color)
             }
             GithubAction::CreateIssue { issue } => {
-                write!(f, "create issue \"{}\"", issue.title)
+                write!(f, "create issue \"{}\"", issue.title,)
             }
             GithubAction::ChangeMilestone { number, milestone } => {
                 write!(f, "update issue #{} milestone to \"{}\"", number, milestone)
@@ -606,16 +598,6 @@ impl Display for GithubAction<'_> {
             GithubAction::LockIssue { number } => {
                 write!(f, "lock issue #{}", number)
             }
-            GithubAction::LinkToTrackingIssue {
-                goal_document,
-                issue_id,
-            } => {
-                write!(
-                    f,
-                    "link issue {issue_id:?} to the markdown document at {}",
-                    goal_document.path.display()
-                )
-            }
         }
     }
 }
@@ -636,12 +618,13 @@ impl GithubAction<'_> {
                         body,
                         labels,
                         tracking_issue: _,
-                        goal_document: _,
+                        goal_document,
                     },
             } => {
-                create_issue(repository, &body, &title, &labels, &assignees, timeframe)?;
+                let issue_id =
+                    create_issue(repository, &body, &title, &labels, &assignees, timeframe)?;
 
-                // Note: the issue is not locked, but we will reloop around later.
+                goal_document.link_issue(issue_id)?;
 
                 Ok(())
             }
@@ -678,11 +661,6 @@ impl GithubAction<'_> {
             }
 
             GithubAction::LockIssue { number } => lock_issue(repository, number),
-
-            GithubAction::LinkToTrackingIssue {
-                goal_document,
-                issue_id: number,
-            } => goal_document.link_issue(number),
         }
     }
 }
