@@ -112,7 +112,18 @@ pub fn generate_issues(
 
     // Hacky but works: we loop because after creating the issue, we sometimes have additional sync to do,
     // and it's easier this way.
+    let mut iteration_count = 0;
+    const MAX_ITERATIONS: usize = 10;
+    
     loop {
+        iteration_count += 1;
+        if iteration_count > MAX_ITERATIONS {
+            spanned::bail_here!(
+                "Fixed point iteration failed to converge after {} iterations. \
+                 This may indicate duplicate tracking issues assigned to multiple goals.",
+                MAX_ITERATIONS
+            );
+        }
         let timeframe = validate_path(path)?;
 
         let mut goal_documents = goal::goals_in_dir(path)?;
@@ -280,6 +291,33 @@ fn initialize_issues<'doc>(
         .iter()
         .map(|goal_document| issue(timeframe, goal_document))
         .collect::<Result<_>>()?;
+
+    // Check for duplicate tracking issues
+    let mut tracking_issue_counts = std::collections::HashMap::new();
+    for issue in &desired_issues {
+        if let Some(tracking_issue) = issue.tracking_issue {
+            let count = tracking_issue_counts.entry(tracking_issue.number).or_insert(0);
+            *count += 1;
+        }
+    }
+    
+    for (issue_number, count) in tracking_issue_counts {
+        if count > 1 {
+            let goals_with_issue: Vec<_> = desired_issues
+                .iter()
+                .filter(|issue| issue.tracking_issue.map(|ti| ti.number) == Some(issue_number))
+                .map(|issue| issue.goal_document.path.display().to_string())
+                .collect();
+            
+            spanned::bail_here!(
+                "Tracking issue #{} is assigned to {} goals: {}. \
+                 Each tracking issue can only be assigned to one goal.",
+                issue_number,
+                count,
+                goals_with_issue.join(", ")
+            );
+        }
+    }
 
     // the list of existing issues in the target milestone
     let milestone_issues = list_issues_in_milestone(repository, timeframe)?;
