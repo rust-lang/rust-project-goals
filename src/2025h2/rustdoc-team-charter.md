@@ -1,11 +1,13 @@
 # Add a team charter for rustdoc team
 
-| Metadata         |                                                |
-|:-----------------|------------------------------------------------|
-| Point of contact | @GuillaumeGomez                                |
-| Status           | Proposed                                       |
-| Zulip channel    | [#t-rustdoc](https://rust-lang.zulipchat.com/#narrow/channel/266220-t-rustdoc)                        |
-| [rustdoc] champion | @GuillaumeGomez |
+| Metadata           |                                                                                |
+| :--                | :--                                                                            |
+| Point of contact   | @GuillaumeGomez                                                                |
+| Status             | Proposed                                                                       |
+| Zulip channel      | [#t-rustdoc](https://rust-lang.zulipchat.com/#narrow/channel/266220-t-rustdoc) |
+| [rustdoc] champion | @GuillaumeGomez                                                                |
+| Tracking issue     | [rust-lang/rust-project-goals#387]                                             |
+
 ## Summary
 
 Over the next six months, we will do the following:

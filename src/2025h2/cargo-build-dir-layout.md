@@ -1,12 +1,13 @@
 # Rework Cargo Build Dir Layout
 
 | Metadata         |                                                                                  |
-|:-----------------|----------------------------------------------------------------------------------|
+| :--              | :--                                                                              |
 | Point of contact | @ranger-ross                                                                     |
 | Status           | Proposed                                                                         |
-| Tracking issue   |                                                                                  |
+| Tracking issue   | [rust-lang/rust-project-goals#401]                                               |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
-| [cargo] champion | @weihanglo |
+| [cargo] champion | @weihanglo                                                                       |
+
 ## Summary
 
 Rework the Cargo build directory layout to have smaller self contained "units"

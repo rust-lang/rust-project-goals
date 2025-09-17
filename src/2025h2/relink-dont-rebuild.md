@@ -1,10 +1,11 @@
 # Relink don't Rebuild
-| Metadata         |                        |
-| --------         | ---                    |
-| Point of contact | @yaahc                 |
-| Status           | Proposed               |
-| Tracking issue   | |
-| Zulip channel    | |
+| Metadata         |                                    |
+| :--              | :--                                |
+| Point of contact | @yaahc                             |
+| Status           | Proposed                           |
+| Tracking issue   | [rust-lang/rust-project-goals#400] |
+| Zulip channel    |                                    |
+
 
 | [cargo] champion | @weihanglo |
 | [compiler] champion | @oli-obk |

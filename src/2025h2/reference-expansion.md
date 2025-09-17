@@ -1,13 +1,14 @@
 # Expand the Rust Reference to specify more aspects of the Rust language
 
-| Metadata           |                                    |
-| :--                | :--                                |
-| Point of contact   | @joshtriplett                      |
-| Status             | Proposed                           |
-| Zulip channel      | [#t-spec][channel]                 |
-| Tracking issue     |                                    |
-| [lang-docs] champion | @joshtriplett |
-| [spec] champion | @joshtriplett |
+| Metadata             |                                    |
+| :--                  | :--                                |
+| Point of contact     | @joshtriplett                      |
+| Status               | Proposed                           |
+| Zulip channel        | [#t-spec][channel]                 |
+| Tracking issue       | [rust-lang/rust-project-goals#394] |
+| [lang-docs] champion | @joshtriplett                      |
+| [spec] champion      | @joshtriplett                      |
+
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/399173-t-spec
 

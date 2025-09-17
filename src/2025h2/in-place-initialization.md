@@ -1,13 +1,14 @@
 # In-place initialization
 
-| Metadata         |                           |
-| :--------------- | ------------------------- |
-| Point of contact | @Darksonn                 |
-| Status           | Proposed                  |
-| Flagship         | Unblocking dormant traits |
-| Tracking issue   |                           |
-| Zulip channel    | [#t-lang][channel]        |
-| [lang] champion  | @cramertj                 |
+| Metadata         |                                    |
+| :--              | :--                                |
+| Point of contact | @Darksonn                          |
+| Status           | Proposed                           |
+| Flagship         | Unblocking dormant traits          |
+| Tracking issue   | [rust-lang/rust-project-goals#395] |
+| Zulip channel    | [#t-lang][channel]                 |
+| [lang] champion  | @cramertj                          |
+
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/213817-t-lang
 

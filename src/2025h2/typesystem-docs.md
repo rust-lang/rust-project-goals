@@ -1,12 +1,13 @@
 # Type System Documentation
 
-| Metadata         |          |
-|:-----------------|----------|
-| Point of contact | @BoxyUwU |
-| Status           | Proposed |
-| Tracking issue   |          |
-| Zulip channel    | N/A      |
-| [types] champion | @boxyuwu |
+| Metadata         |                                    |
+| :--              | :--                                |
+| Point of contact | @BoxyUwU                           |
+| Status           | Proposed                           |
+| Tracking issue   | [rust-lang/rust-project-goals#405] |
+| Zulip channel    | N/A                                |
+| [types] champion | @boxyuwu                           |
+
 ## Summary
 
 Improve documentation of type system components to aide in types team onboarding and communication about changes to the type system .

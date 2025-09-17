@@ -1,12 +1,13 @@
 # Rust Stabilization of MemorySanitizer and ThreadSanitizer Support
 
-| Metadata         |                           |
-| :--------------- | :------------------------ |
-| Point of contact | @jakos-sec                |
-| Status           | Proposed                  |
-| flagship         | Flexible, fast(er) builds |
-| Tracking issue   |                           |
-| Zulip channel    | N/A                       |
+| Metadata         |                                    |
+| :--              | :--                                |
+| Point of contact | @jakos-sec                         |
+| Status           | Proposed                           |
+| flagship         | Flexible, fast(er) builds          |
+| Tracking issue   | [rust-lang/rust-project-goals#403] |
+| Zulip channel    | N/A                                |
+
 
 ## Summary
 

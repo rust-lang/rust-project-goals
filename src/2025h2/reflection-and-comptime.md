@@ -1,14 +1,16 @@
 # reflection and comptime
 
-| Metadata         |                                                                                  |
-|:-----------------|----------------------------------------------------------------------------------|
-| Point of contact | @oli-obk                                                                         |
-| Status           | Proposed                                                                         |
-| Other Tracking issue   | [rust-lang/rust#142577]                                  |
-| Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
-| [compiler] champion | @oli-obk |
-| [lang] champion | @scottmcm |
-| [libs] champion | @joshtriplett |
+| Metadata             |                                                                                  |
+| :--                  | :--                                                                              |
+| Point of contact     | @oli-obk                                                                         |
+| Status               | Proposed                                                                         |
+| Other Tracking issue | [rust-lang/rust#142577]                                                          |
+| Zulip channel        | N/A (an existing stream can be re-used or new streams can be created on request) |
+| [compiler] champion  | @oli-obk                                                                         |
+| [lang] champion      | @scottmcm                                                                        |
+| [libs] champion      | @joshtriplett                                                                    |
+| Tracking issue       | [rust-lang/rust-project-goals#406]                                               |
+
 
 ## Summary
 

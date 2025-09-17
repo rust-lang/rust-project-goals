@@ -1,12 +1,13 @@
 # MIR move elimination
 
 | Metadata         |                                                                                  |
-|:-----------------|----------------------------------------------------------------------------------|
+| :--              | :--                                                                              |
 | Point of contact | @Amanieu                                                                         |
 | Status           | Proposed                                                                         |
-| Tracking issue   |                                                             |
+| Tracking issue   | [rust-lang/rust-project-goals#396]                                               |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
-| [lang] champion | @Amanieu |
+| [lang] champion  | @Amanieu                                                                         |
+
 
 ## Summary
 
