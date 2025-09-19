@@ -1,12 +1,12 @@
 # Prototype Cargo build analysis
 
-| Metadata         |                                                                                  |
-|:-----------------|----------------------------------------------------------------------------------|
-| Point of contact | @weihanglo                                                                            |
-| Status           | Proposed                                                                         |
-| Tracking issue   |                                                                                  |
-| Zulip channel    | N/A                                                                              |
-| [cargo] champion | @weihanglo |
+| Metadata         |                                    |
+| :--              | :--                                |
+| Point of contact | @weihanglo                         |
+| Status           | Proposed                           |
+| Tracking issue   | [rust-lang/rust-project-goals#398] |
+| Zulip channel    | N/A                                |
+| [cargo] champion | @weihanglo                         |
 
 ## Summary
 

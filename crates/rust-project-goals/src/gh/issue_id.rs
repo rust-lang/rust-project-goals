@@ -1,4 +1,4 @@
-use crate::re::{REPOSITORY, TRACKING_ISSUE};
+use crate::re::{GITHUB_ISSUE_URL, REPOSITORY, TRACKING_ISSUE};
 use std::fmt::Display;
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Clone, Debug)]
@@ -57,6 +57,17 @@ impl IssueId {
             number,
         } = self;
         format!("https://github.com/{org}/{repo}/issues/{number}")
+    }
+
+    pub fn from_url(url: &str) -> Option<Self> {
+        let Some(c) = GITHUB_ISSUE_URL.captures(url) else {
+            return None;
+        };
+
+        let repository = Repository::new(&c[1], &c[2]);
+        let number = c[3].parse().unwrap();
+
+        Some(IssueId::new(repository, number))
     }
 }
 

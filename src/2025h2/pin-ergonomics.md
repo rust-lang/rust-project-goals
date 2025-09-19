@@ -1,14 +1,15 @@
 # Continue Experimentation with Pin Ergonomics
 
-| Metadata         |                                                                                  |
-| :--------------- | -------------------------------------------------------------------------------- |
-| Point of contact | @frank-king                                                                      |
-| Status           | Proposed                                                                         |
-| Flagship         | Beyond the `&`                                                                   |
-| Tracking issue   |                                                                                  |
-| Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
-| [compiler] champion | @oli-obk |
-| [lang] champion | @traviscross |
+| Metadata            |                                                                                  |
+| :--                 | :--                                                                              |
+| Point of contact    | @frank-king                                                                      |
+| Status              | Proposed                                                                         |
+| Flagship            | Beyond the `&`                                                                   |
+| Tracking issue      | [rust-lang/rust-project-goals#389]                                               |
+| Zulip channel       | N/A (an existing stream can be re-used or new streams can be created on request) |
+| [compiler] champion | @oli-obk                                                                         |
+| [lang] champion     | @traviscross                                                                     |
+
 
 ## Summary
 

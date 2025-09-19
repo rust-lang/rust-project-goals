@@ -5,7 +5,7 @@ use rust_project_goals_json::{GithubIssueState, Progress};
 use serde::{Deserialize, Serialize};
 use spanned::{Context, Error, Result};
 
-use crate::{re, util::comma};
+use crate::{gh::issue_id::IssueId, re, util::comma};
 
 use super::{issue_id::Repository, labels::GhLabel, milestone::GhMilestone};
 
@@ -174,7 +174,7 @@ pub fn create_issue(
     labels: &[String],
     assignees: &BTreeSet<String>,
     milestone: &str,
-) -> Result<()> {
+) -> Result<IssueId> {
     let output = Command::new("gh")
         .arg("-R")
         .arg(&repository.to_string())
@@ -193,14 +193,24 @@ pub fn create_issue(
         .output()?;
 
     if !output.status.success() {
-        Err(Error::str(format!(
+        return Err(Error::str(format!(
             "failed to create issue `{}`: {}",
             title,
             String::from_utf8_lossy(&output.stderr)
-        )))
-    } else {
-        Ok(())
+        )));
     }
+
+    // Output in stdout looks like
+    //
+    // https://github.com/rust-lang/rust-project-goals/issues/413}
+
+    for line in str::from_utf8(&output.stdout)?.lines() {
+        if let Some(issue_id) = IssueId::from_url(line.trim()) {
+            return Ok(issue_id);
+        }
+    }
+
+    Err(Error::str(format!("creating issue did not return a URL")))
 }
 
 pub fn change_title(repository: &Repository, number: u64, title: &str) -> Result<()> {

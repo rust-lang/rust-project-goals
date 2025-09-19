@@ -1,12 +1,12 @@
 # Const Generics
 
-| Metadata         |             |
-|:-----------------|-------------|
-| Point of contact | @BoxyUwU    |
-| Status           | Proposed    |
-| Tracking issue   |             |
-| Zulip channel    | N/A         |
-| [lang] champion | @nikomatsakis |
+| Metadata         |                                    |
+| :--------------- | ---------------------------------- |
+| Point of contact | @BoxyUwU                           |
+| Status           | Proposed                           |
+| Tracking issue   | [rust-lang/rust-project-goals#100] |
+| Zulip channel    | N/A                                |
+| [lang] champion  | @nikomatsakis                      |
 ## Summary
 
 Work towards stabilizing the remaining const generics functionality that was left out of the original `min_const_generics` feature.
@@ -32,8 +32,8 @@ suddenly stops working as well as type generics, forcing code to be rewritten to
 
 ## Ownership and team asks
 
-| Task                              | Owner(s) or team(s) | Notes |
-|-----------------------------------|---------------------|-------|
-| Design meeting | ![Team][] [lang]              | topic: `adt_const_params` design  |
-| `adt_const_params` RFC draft      | @BoxyUwU            |       |
-| Finish `mgca` prototype           | @BoxyUwU @camelid   |       |
+| Task                         | Owner(s) or team(s) | Notes                            |
+| ---------------------------- | ------------------- | -------------------------------- |
+| Design meeting               | ![Team][] [lang]    | topic: `adt_const_params` design |
+| `adt_const_params` RFC draft | @BoxyUwU            |                                  |
+| Finish `mgca` prototype      | @BoxyUwU @camelid   |                                  |

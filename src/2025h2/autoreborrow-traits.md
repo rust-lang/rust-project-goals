@@ -1,15 +1,15 @@
 # Reborrow traits
 
 | Metadata            |                                                                                  |
-| :------------------ | -------------------------------------------------------------------------------- |
-| :---------------    | -------------------------------------------------------------------------------- |
+| :--                 | :--                                                                              |
 | Point of contact    | @aapoalas                                                                        |
 | Status              | Proposed                                                                         |
 | Flagship            | Beyond the `&`                                                                   |
-| Tracking issue      |                                                                                  |
+| Tracking issue      | [rust-lang/rust-project-goals#399]                                               |
 | Zulip channel       | N/A (an existing stream can be re-used or new streams can be created on request) |
 | [compiler] champion | @oli-obk                                                                         |
 | [lang] champion     | @tmandry                                                                         |
+
 
 ## Summary
 

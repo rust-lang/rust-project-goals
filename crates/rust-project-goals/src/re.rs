@@ -68,6 +68,11 @@ lazy_static! {
 }
 
 lazy_static! {
+    pub static ref GITHUB_ISSUE_URL: Regex =
+        Regex::new(r"https://github.com/([^#/]*)/([^#/]*)/issues/([0-9]+)").unwrap();
+}
+
+lazy_static! {
     pub static ref CHECKBOX: Regex = Regex::new(r"\s*[-*] \[[ x]\] ").unwrap();
 }
 

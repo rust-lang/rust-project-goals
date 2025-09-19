@@ -1,14 +1,15 @@
 # Evolving trait hierarchies
 
-| Metadata         |                           |
-| :--------------- | ------------------------- |
-| Point of contact | @cramertj                 |
-| Status           | Proposed                  |
-| Flagship         | Unblocking dormant traits |
-| Tracking issue   |                           |
-| Zulip channel    |                           |
-| [lang] champion  | @cramertj                 |
-| [types] champion | @oli-obk                  |
+| Metadata         |                                    |
+| :--              | :--                                |
+| Point of contact | @cramertj                          |
+| Status           | Proposed                           |
+| Flagship         | Unblocking dormant traits          |
+| Tracking issue   | [rust-lang/rust-project-goals#393] |
+| Zulip channel    |                                    |
+| [lang] champion  | @cramertj                          |
+| [types] champion | @oli-obk                           |
+
 
 ## Summary
 

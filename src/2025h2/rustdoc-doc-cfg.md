@@ -1,12 +1,14 @@
 # Stabilize rustdoc `doc_cfg` feature
 
-| Metadata         |                                                |
-|:-----------------|------------------------------------------------|
-| Point of contact | @GuillaumeGomez                                |
-| Status           | Proposed                                       |
-| Other tracking issues | [rust-lang/rust#43781]                    |
-| Zulip channel    | [#t-rustdoc][t-rustdoc]                        |
-| [rustdoc] champion | @GuillaumeGomez |
+| Metadata              |                                    |
+| :--                   | :--                                |
+| Point of contact      | @GuillaumeGomez                    |
+| Status                | Proposed                           |
+| Other tracking issues | [rust-lang/rust#43781]             |
+| Zulip channel         | [#t-rustdoc][t-rustdoc]            |
+| [rustdoc] champion    | @GuillaumeGomez                    |
+| Tracking issue        | [rust-lang/rust-project-goals#404] |
+
 [t-rustdoc]: https://rust-lang.zulipchat.com/#narrow/channel/266220-t-rustdoc
 
 ## Summary

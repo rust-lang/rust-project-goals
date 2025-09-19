@@ -1,13 +1,15 @@
 # Run more tests for GCC backend in the Rust's CI
 
-| Metadata         |                                                |
-|:-----------------|------------------------------------------------|
-| Point of contact | @GuillaumeGomez                                |
-| Status           | Proposed                                       |
-| Other tracking issues | [rust-lang/compiler-team#891]             |
-| Zulip channel    | [#rustc-codegen-gcc][rustc-codegen-gcc]        |
-| [compiler] champion | @WesleyWiser |
-| [infra] champion | @marcoieni |
+| Metadata              |                                         |
+| --------------------- | --------------------------------------- |
+| Point of contact      | @GuillaumeGomez                         |
+| Status                | Proposed                                |
+| Other tracking issues | [rust-lang/compiler-team#891]           |
+| Zulip channel         | [#rustc-codegen-gcc][rustc-codegen-gcc] |
+| [compiler] champion   | @WesleyWiser                            |
+| [infra] champion      | @marcoieni                              |
+| Tracking issue        | [rust-lang/rust-project-goals#402]      |
+ 
 
 [rustc-codegen-gcc]: https://rust-lang.zulipchat.com/#narrow/channel/386786-rustc-codegen-gcc
 [rust-lang/compiler-team#891]: https://github.com/rust-lang/compiler-team/issues/891
@@ -61,11 +63,11 @@ It is important for rust developers to be able to test how changes impact the GC
 >
 > *For items asked of teams, list ![Team][] and the name of the team, e.g. `![Team][] [compiler]` or `![Team][] [compiler], [lang]` (note the trailing `[]` in `![Team][]`, that is needed for markdown to parse correctly). For team asks, the "task" must be one of the tasks defined in [rust-project-goals.toml](../rust-project-goals.toml) or `cargo rpg check` will error.*
 
-| Task                          | Owner(s) or team(s) | Notes |
-|-------------------------------|---------------------|-------|
-| Adding new ui annotations | @GuillaumeGomez | |
-| Running more GCC backend tests | @GuillaumeGomez | |
-| Standard reviews | ![Team][] [infra], [compiler] | with the help of t-infra and t-compiler for reviews and ensuring is done as they want |
+| Task                           | Owner(s) or team(s)           | Notes                                                                                 |
+| ------------------------------ | ----------------------------- | ------------------------------------------------------------------------------------- |
+| Adding new ui annotations      | @GuillaumeGomez               |                                                                                       |
+| Running more GCC backend tests | @GuillaumeGomez               |                                                                                       |
+| Standard reviews               | ![Team][] [infra], [compiler] | with the help of t-infra and t-compiler for reviews and ensuring is done as they want |
 
 ### Definitions
 

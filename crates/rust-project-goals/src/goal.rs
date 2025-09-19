@@ -194,9 +194,9 @@ impl GoalDocument {
         metadata_table
             .content
             .add_key_value_row(TRACKING_ISSUE_ROW, &number);
-        self.metadata
-            .table
-            .overwrite_in_path(&self.path, &metadata_table)?;
+
+        Table::overwrite_in_path(&self.metadata.table, &self.path, &metadata_table)?;
+
         Ok(())
     }
 

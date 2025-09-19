@@ -1,12 +1,13 @@
 # Getting Rust for Linux into stable Rust: compiler features
 
-| Metadata         |                                                                                  |
-|:-----------------|----------------------------------------------------------------------------------|
-| Point of contact | @tomassedovic                                                                    |
-| Status           | Proposed                                                                         |
-| Tracking issue   | [rust-lang/rust-project-goals#116]                                               |
-| Zulip channel    | [#t-compiler][channel-t-compiler], [#rust-for-linux][channel-rust-for-linux]     |
-| [compiler] champion | @WesleyWiser |
+| Metadata            |                                                                              |
+| :--                 | :--                                                                          |
+| Point of contact    | @tomassedovic                                                                |
+| Status              | Proposed                                                                     |
+| Tracking issue      | [rust-lang/rust-project-goals#407]                                           |
+| Zulip channel       | [#t-compiler][channel-t-compiler], [#rust-for-linux][channel-rust-for-linux] |
+| [compiler] champion | @WesleyWiser                                                                 |
+
 [channel-t-compiler]: https://rust-lang.zulipchat.com/#narrow/channel/131828-t-compiler
 [channel-rust-for-linux]: https://rust-lang.zulipchat.com/#narrow/channel/425075-rust-for-linux
 
@@ -78,7 +79,7 @@ An important design axiom that still applies from previous iterations is "**Don'
 ## Ownership and team asks
 
 | Task                         | Owner(s) or team(s)  | Notes                                      |
-|------------------------------|----------------------|--------------------------------------------|
+| ---------------------------- | -------------------- | ------------------------------------------ |
 | Discussion and moral support | ![Team][] [compiler] | Continue the Rust for Linux <-> Rust calls |
 
 Which flags get finished and stabilized depends on bandwidth and other constraints on both the Rust and the Rust for Linux sides, but generally we expect they will follow the usual pattern as we have done before.
@@ -86,7 +87,7 @@ Which flags get finished and stabilized depends on bandwidth and other constrain
 ### Finish and stabilize a given `-Z...` flag
 
 | Task                         | Owner(s) or team(s)     | Notes |
-|------------------------------|-------------------------|-------|
+| ---------------------------- | ----------------------- | ----- |
 | Discussion and moral support | ![Team][] [compiler]    |       |
 | Finalize remaining work      | (depending on the flag) |       |
 | Author stabilization report  | (depending on the flag) |       |

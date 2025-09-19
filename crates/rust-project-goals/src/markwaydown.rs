@@ -79,6 +79,7 @@ pub fn parse_text(text: Spanned<&str>) -> Result<Vec<Section>> {
                         row.push(Spanned::here(String::new()));
                     }
 
+                    table.span.bytes.end = line.span.bytes.end;
                     table.content.rows.push(row);
                 } else {
                     open_table = Some(Spanned::new(
@@ -86,12 +87,12 @@ pub fn parse_text(text: Spanned<&str>) -> Result<Vec<Section>> {
                             header: row,
                             rows: vec![],
                         },
-                        line.span.clone().shrink_to_start(),
+                        line.span.clone(),
                     ));
                 }
             }
             CategorizeLine::TableDashRow(dashes) => {
-                if let Some(table) = &open_table {
+                if let Some(table) = &mut open_table {
                     if table.header.len() != dashes.len() {
                         spanned::bail!(
                             dashes.last().unwrap(),
@@ -108,6 +109,8 @@ pub fn parse_text(text: Spanned<&str>) -> Result<Vec<Section>> {
                         )
                         .wrap_str(first[0].as_ref().map(|_| "already saw table row here")));
                     }
+
+                    table.span.bytes.end = line.span.bytes.end;
                 } else {
                     spanned::bail!(dashes[0], "did not expect table header here",);
                 }
@@ -198,10 +201,17 @@ impl Table {
     }
 
     /// Modify `path` to replace the lines containing this table with `new_table`.
-    pub fn overwrite_in_path(&self, path: &Path, new_table: &Table) -> Result<()> {
+    pub fn overwrite_in_path(this: &Spanned<Self>, path: &Path, new_table: &Table) -> Result<()> {
         let full_text = std::fs::read_to_string(path)?;
+        let table_span = &this.span.bytes;
 
-        let mut new_text = full_text[..self.header[0].span.bytes.start].to_string();
+        let table_text = &full_text[table_span.start..table_span.end];
+        assert!(
+            table_text.starts_with("|") && table_text.ends_with("|"),
+            "table_text doesn't appear to be a table: {table_text:?}"
+        );
+
+        let mut new_text = full_text[..table_span.start].to_string();
 
         let table_text = {
             let mut new_rows = vec![new_table.header.clone()];
@@ -209,7 +219,7 @@ impl Table {
             util::format_table(&new_rows)
         };
         new_text.push_str(&table_text);
-        new_text.push_str(&full_text[self.rows.last().unwrap().last().unwrap().span.bytes.end..]);
+        new_text.push_str(&full_text[table_span.end..]);
 
         std::fs::write(path, new_text)?;
 

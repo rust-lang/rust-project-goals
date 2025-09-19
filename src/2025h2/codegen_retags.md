@@ -1,14 +1,15 @@
 # Emit Retags in Codegen
 
-| Metadata         |                                                                                  |
-|:-----------------|----------------------------------------------------------------------------------|
-| Point of contact | @icmccorm                                                                        |
-| Status           | Proposed                                                                         |
-| Tracking issue   |                                                                                  |
-| Zulip channel    | N/A                                                                              |
-| [compiler] champion | @RalfJung |
-| [lang] champion | @tmandry |
-| [opsem] champion | @RalfJung |
+| Metadata            |                                    |
+| :--                 | :--                                |
+| Point of contact    | @icmccorm                          |
+| Status              | Proposed                           |
+| Tracking issue      | [rust-lang/rust-project-goals#392] |
+| Zulip channel       | N/A                                |
+| [compiler] champion | @RalfJung                          |
+| [lang] champion     | @tmandry                           |
+| [opsem] champion    | @RalfJung                          |
+
 
 ## Summary
 Allow codegen backends to implement the MIR [`Retag`](https://doc.rust-lang.org/std/intrinsics/mir/fn.Retag.html) intrinsic, and add a similar intrinsic to the LLVM backend. 

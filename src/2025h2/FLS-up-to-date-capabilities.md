@@ -1,14 +1,15 @@
 # Develop the capabilities to keep the FLS up to date
 
-| Metadata         |                                                                                  |
-|:-----------------|----------------------------------------------------------------------------------|
-| Point of contact | @PLeVasseur                                                                      |
-| Status           | Proposed                                                                         |
-| Tracking issue   |                                                                                  |
-| Zulip channel    | #t-spec                                                                          |
-| [bootstrap] champion | @kobzol |
-| [lang] champion | @nikomatsakis |
-| [spec] champion | @PLeVasseur |
+| Metadata             |                                    |
+| :--                  | :--                                |
+| Point of contact     | @PLeVasseur                        |
+| Status               | Proposed                           |
+| Tracking issue       | [rust-lang/rust-project-goals#391] |
+| Zulip channel        | #t-spec                            |
+| [bootstrap] champion | @kobzol                            |
+| [lang] champion      | @nikomatsakis                      |
+| [spec] champion      | @PLeVasseur                        |
+
 
 ## Summary
 
