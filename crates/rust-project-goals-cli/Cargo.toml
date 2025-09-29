@@ -3,6 +3,14 @@ name = "rust-project-goals-cli"
 version = "0.1.0"
 edition = "2021"
 
+[[bin]]
+name = "rust-project-goals-cli"
+path = "src/main.rs"
+
+[lib]
+name = "rust_project_goals_cli"
+path = "src/lib.rs"
+
 [dependencies]
 anyhow = "1.0.94"
 regex = "1.11.1"

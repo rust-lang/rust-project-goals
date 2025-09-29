@@ -16,7 +16,12 @@ pub fn format_champions(goals: &[&GoalDocument]) -> Result<String> {
     for goal in goals {
         for champion in goal.metadata.champions.values() {
             let champion_name = champion.content.clone();
-            let goal_link = format!("° [{}]({})", goal.metadata.title.content, goal.link_path.display());
+            let goal_link = format!(
+                "° [{}]({})",
+                goal.metadata.title.content,
+                goal.link_path.display()
+            );
+
             
             champion_goals
                 .entry(champion_name)
