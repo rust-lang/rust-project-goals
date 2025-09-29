@@ -3,5 +3,11 @@ target
 .cache
 src/api
 
+# Issue cache files
+.issues-*.json
+
+# Claude Code settings
+.claude/
+
 # copied into the repo by `mdbook-mermaid` install:
 /mermaid*.js
