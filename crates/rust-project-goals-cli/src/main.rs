@@ -11,7 +11,6 @@ use walkdir::WalkDir;
 
 mod cfp;
 mod csv_reports;
-mod generate_json;
 mod rfc;
 mod team_repo;
 mod updates;
@@ -77,18 +76,6 @@ enum Command {
 
     /// Checks that the goal documents are well-formed, intended for use within CI
     Check {},
-
-    /// Generate json file with status from tracking issues.
-    /// This is intended for storing alongside the book for consumption by external tools.
-    Json {
-        /// Milestone for which we generate tracking issue data (e.g., `2024h2`).
-        milestone: String,
-
-        /// Path to write the json (e.g., `book/html/api/milestone.json`).
-        /// If not provided, writes to stdout.
-        #[arg(long)]
-        json_path: Option<PathBuf>,
-    },
 
     /// Generate markdown with the list of updates for each tracking issue.
     /// Collects goal updates.
@@ -174,13 +161,6 @@ fn main() -> Result<()> {
             team_repo_path,
         } => {
             team_repo::generate_team_repo(&path, team_repo_path)?;
-        }
-
-        Command::Json {
-            milestone,
-            json_path,
-        } => {
-            generate_json::generate_json(&opt.repository, &milestone, json_path)?;
         }
 
         Command::Updates {

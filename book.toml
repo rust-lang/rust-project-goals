@@ -33,7 +33,7 @@ ignore_users = [
 git-repository-url = "https://github.com/rust-lang/rust-project-goals"
 edit-url-template = "https://github.com/rust-lang/rust-project-goals/edit/main/{path}"
 site-url = "/rust-project-goals/"
-additional-js = ["src/update-progress-bars.js", "mermaid.min.js", "mermaid-init.js"]
+additional-js = ["mermaid.min.js", "mermaid-init.js"]
 
 [output.html.fold]
 enable = true
