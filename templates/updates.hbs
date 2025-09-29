@@ -2,45 +2,21 @@ The Rust project is currently working towards a [slate of {{goal_count}} project
 
 ## Flagship goals
 
-{{#each flagship_goals}}
-{{>introduce_goal}}
+{{#each flagship_goals_by_theme}}
 
-<!-- markdown separator --> 
+### "{{theme_name}}"
 
-**Why this goal?** {{{why_this_goal}}}
+{{#each goals}}
+{{>goal_card}}
+{{/each}}
 
-**What has happened?** {{{tldr}}}
-
-<!-- markdown separator --> 
-
-{{>goal_comments}}
-
-{{#if needs_separator}}
-<br>
-{{/if}}
 {{/each}}
 
 ## Goals looking for help
 
 {{#each other_goals}}
 {{#if has_help_wanted}}
-{{>introduce_goal}}
-
-<!-- markdown separator --> 
-{{{tldr}}}
-<!-- markdown separator --> 
-
-{{#each help_wanted}}
-
-<!-- markdown separator --> 
-*Help wanted:* {{{text}}}
-<!-- markdown separator --> 
-
-{{/each}}
-
-<!-- markdown separator --> 
-
-{{>goal_comments}}
+{{>goal_card}}
 {{#if needs_separator}}
 <br>
 {{/if}}
@@ -52,14 +28,6 @@ The Rust project is currently working towards a [slate of {{goal_count}} project
 {{#each other_goals}}
 {{#if has_help_wanted}}
 {{else}}
-{{>introduce_goal}}
-
-<!-- markdown separator --> 
-
-{{{tldr}}}
-
-<!-- markdown separator --> 
-
-{{>goal_comments}}
+{{>goal_card}}
 {{/if}}
 {{/each}}
