@@ -22,7 +22,6 @@ pub fn format_champions(goals: &[&GoalDocument]) -> Result<String> {
                 goal.link_path.display()
             );
 
-            
             champion_goals
                 .entry(champion_name)
                 .or_default()

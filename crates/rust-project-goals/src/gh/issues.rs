@@ -381,7 +381,7 @@ pub fn sync_assignees(
     let output = command.output()?;
     if !output.status.success() {
         Err(Error::str(format!(
-            "failed to sync issue `{}`: {}",
+            "failed to sync issue assignees `{}`: {}",
             number,
             String::from_utf8_lossy(&output.stderr)
         )))
