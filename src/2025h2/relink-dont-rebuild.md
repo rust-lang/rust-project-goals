@@ -1,14 +1,15 @@
 # Relink don't Rebuild
+
 | Metadata         |                                    |
 | :--              | :--                                |
 | Point of contact | @yaahc                             |
 | Status           | Proposed                           |
 | Tracking issue   | [rust-lang/rust-project-goals#400] |
 | Zulip channel    |                                    |
-
-
+| Flagship         | Flexible, fast(er) compilation    |
 | [cargo] champion | @weihanglo |
 | [compiler] champion | @oli-obk |
+
 ## Summary
 
 Work towards avoiding rebuilds of a crate's dependents for changes that don't affect the crate's
