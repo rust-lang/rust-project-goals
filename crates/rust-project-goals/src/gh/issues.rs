@@ -1,4 +1,4 @@
-use std::{collections::BTreeSet, process::Command, str::FromStr};
+use std::{collections::BTreeSet, fs, process::Command, str::FromStr, time::SystemTime};
 
 use chrono::NaiveDate;
 use rust_project_goals_json::{GithubIssueState, Progress};
@@ -130,7 +130,60 @@ pub fn list_issues_in_milestone(
     repository: &Repository,
     timeframe: &str,
 ) -> Result<Vec<ExistingGithubIssue>> {
-    list_issues(repository, &[("-m", timeframe)])
+    list_issues_cached(
+        repository,
+        &[("-m", timeframe)],
+        Some(format!(".issues-{}.json", timeframe)),
+    )
+}
+
+/// Clear the cached issues for a given milestone/timeframe
+pub fn clear_milestone_issues_cache(timeframe: &str) -> Result<()> {
+    let cache_file = format!(".issues-{}.json", timeframe);
+    if std::path::Path::new(&cache_file).exists() {
+        std::fs::remove_file(&cache_file)
+            .with_str_context(format!("Failed to remove cache file {cache_file}"))?;
+    }
+    Ok(())
+}
+
+pub fn list_issues_cached(
+    repository: &Repository,
+    filter: &[(&str, &str)],
+    cache_file: Option<String>,
+) -> Result<Vec<ExistingGithubIssue>> {
+    if let Some(ref cache_path) = cache_file {
+        // Check if cache file exists and is less than 5 minutes old
+        if let Ok(metadata) = fs::metadata(cache_path) {
+            if let Ok(modified) = metadata.modified() {
+                if let Ok(elapsed) = SystemTime::now().duration_since(modified) {
+                    if elapsed.as_secs() < 300 {
+                        // 5 minutes = 300 seconds
+                        // Try to read from cache
+                        if let Ok(cached_data) = fs::read_to_string(cache_path) {
+                            if let Ok(cached_issues) =
+                                serde_json::from_str::<Vec<ExistingGithubIssue>>(&cached_data)
+                            {
+                                return Ok(cached_issues);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Cache miss or expired - fetch from GitHub
+    let issues = list_issues(repository, filter)?;
+
+    // Save to cache if cache_file is specified
+    if let Some(ref cache_path) = cache_file {
+        if let Ok(serialized) = serde_json::to_string_pretty(&issues) {
+            let _ = fs::write(cache_path, serialized); // Ignore write errors
+        }
+    }
+
+    Ok(issues)
 }
 
 pub fn list_issues(
@@ -328,7 +381,41 @@ pub fn sync_assignees(
     let output = command.output()?;
     if !output.status.success() {
         Err(Error::str(format!(
-            "failed to sync issue `{}`: {}",
+            "failed to sync issue assignees `{}`: {}",
+            number,
+            String::from_utf8_lossy(&output.stderr)
+        )))
+    } else {
+        Ok(())
+    }
+}
+
+pub fn sync_labels(
+    repository: &Repository,
+    number: u64,
+    remove_labels: &BTreeSet<String>,
+    add_labels: &BTreeSet<String>,
+) -> Result<()> {
+    let mut command = Command::new("gh");
+    command
+        .arg("-R")
+        .arg(&repository.to_string())
+        .arg("issue")
+        .arg("edit")
+        .arg(number.to_string());
+
+    if !remove_labels.is_empty() {
+        command.arg("--remove-label").arg(comma(&remove_labels));
+    }
+
+    if !add_labels.is_empty() {
+        command.arg("--add-label").arg(comma(&add_labels));
+    }
+
+    let output = command.output()?;
+    if !output.status.success() {
+        Err(Error::str(format!(
+            "failed to sync issue labels `{}`: {}",
             number,
             String::from_utf8_lossy(&output.stderr)
         )))

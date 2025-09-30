@@ -8,10 +8,12 @@ use spanned::{Error, Result, Spanned};
 
 use crate::config::{Configuration, TeamAskDetails};
 use crate::gh::issue_id::{IssueId, Repository};
+use crate::gh::issues::{checkboxes, ExistingGithubIssue};
 use crate::markwaydown::{self, Section, Table};
 use crate::re::{self, CHAMPION_METADATA};
 use crate::team::{self, TeamName};
 use crate::util::{self, commas, markdown_files};
+use rust_project_goals_json::{GithubIssueState, Progress};
 
 /// Data parsed from a goal file in the expected format
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
@@ -210,7 +212,34 @@ impl GoalDocument {
     }
 }
 
-pub fn format_goal_table(goals: &[&GoalDocument]) -> Result<String> {
+/// Generate progress HTML based on issue progress and state
+fn generate_progress_html(progress: &Progress, state: &GithubIssueState) -> String {
+    match (progress, state) {
+        (Progress::Tracked { completed, total }, GithubIssueState::Closed) if completed == total => {
+            r#"<img src="https://img.shields.io/badge/Completed!%20%3D%29-green" alt="Completed">"#.to_string()
+        },
+        (Progress::Tracked { completed: _, total: _ }, GithubIssueState::Closed) => {
+            r#"<img src="https://img.shields.io/badge/Will%20not%20complete%20%3A%28-yellow" alt="Incomplete">"#.to_string()
+        },
+        (Progress::Tracked { completed, total }, _) => {
+            format!(r#"<progress value="{}" max="{}">{}/{}</progress>"#, completed, total, completed, total)
+        },
+        (Progress::Binary { is_closed: true }, _) => {
+            r#"<img src="https://img.shields.io/badge/Completed!%20%3D%29-green" alt="Completed">"#.to_string()
+        },
+        (Progress::Binary { is_closed: false }, _) => {
+            r#"<progress value="0" max="1">0/1</progress>"#.to_string()
+        },
+        (Progress::Error { message }, _) => {
+            format!(r#"<span title="{}">⚠️</span>"#, message)
+        }
+    }
+}
+
+pub fn format_goal_table(
+    goals: &[&GoalDocument],
+    milestone_issues: Option<&[ExistingGithubIssue]>,
+) -> Result<String> {
     // If any of the goals have tracking issues, include those in the table.
     let show_champions = goals.iter().any(|g| {
         g.metadata.status.acceptance == AcceptanceStatus::Proposed
@@ -239,11 +268,33 @@ pub fn format_goal_table(goals: &[&GoalDocument]) -> Result<String> {
                 .unwrap();
 
             let progress_bar = match &goal.metadata.tracking_issue {
-                Some(issue_id @ IssueId { repository: Repository { org, repo }, number }) => format!(
-                    "<a href='{url}' alt='Tracking issue'><div class='tracking-issue-progress' id='{milestone}:{org}:{repo}:{number}'></div></a>",
-                    url = issue_id.url(),
-                ),
-                None => format!("(no tracking issue)"),
+                Some(
+                    issue_id @ IssueId {
+                        repository: Repository { org, repo },
+                        number,
+                    },
+                ) => {
+                    // Find the matching issue in milestone_issues and generate progress HTML
+                    let progress_html = if let Some(issues) = milestone_issues {
+                        if let Some(issue) = issues.iter().find(|issue| issue.number == *number) {
+                            let progress = checkboxes(&issue);
+                            generate_progress_html(&progress, &issue.state)
+                        } else {
+                            // Issue not found - might be in different milestone or not exist
+                            r#"<span title="Issue not found in milestone">⚠️</span>"#.to_string()
+                        }
+                    } else {
+                        // No milestone issues provided - fall back to empty div for now
+                        format!("<div class='tracking-issue-progress' id='{milestone}:{org}:{repo}:{number}'></div>")
+                    };
+
+                    format!(
+                        "<a href='{url}' alt='Tracking issue'>{progress_html}</a>",
+                        url = issue_id.url(),
+                        progress_html = progress_html
+                    )
+                }
+                None => "(no tracking issue)".to_string(),
             };
 
             table.push(vec![
@@ -299,9 +350,6 @@ pub fn format_goal_table(goals: &[&GoalDocument]) -> Result<String> {
 
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Copy, Clone)]
 pub struct Status {
-    /// If true, this is a flagship goal (or a flagship candidate)
-    pub is_flagship: bool,
-
     pub acceptance: AcceptanceStatus,
 
     /// If true, this is an INVITED goal, meaning that it lacks a primary owner
@@ -319,17 +367,8 @@ impl Status {
 
         let valid_values = [
             (
-                "Flagship",
-                Status {
-                    is_flagship: true,
-                    acceptance: AcceptanceStatus::Accepted,
-                    is_invited: false,
-                },
-            ),
-            (
                 "Accepted",
                 Status {
-                    is_flagship: false,
                     acceptance: AcceptanceStatus::Accepted,
                     is_invited: false,
                 },
@@ -337,7 +376,6 @@ impl Status {
             (
                 "Invited",
                 Status {
-                    is_flagship: false,
                     acceptance: AcceptanceStatus::Accepted,
                     is_invited: true,
                 },
@@ -345,15 +383,6 @@ impl Status {
             (
                 "Proposed",
                 Status {
-                    is_flagship: false,
-                    acceptance: AcceptanceStatus::Proposed,
-                    is_invited: false,
-                },
-            ),
-            (
-                "Proposed for flagship",
-                Status {
-                    is_flagship: true,
                     acceptance: AcceptanceStatus::Proposed,
                     is_invited: false,
                 },
@@ -361,7 +390,6 @@ impl Status {
             (
                 "Proposed for mentorship",
                 Status {
-                    is_flagship: false,
                     acceptance: AcceptanceStatus::Proposed,
                     is_invited: true,
                 },
@@ -369,7 +397,6 @@ impl Status {
             (
                 "Not accepted",
                 Status {
-                    is_flagship: false,
                     acceptance: AcceptanceStatus::NotAccepted,
                     is_invited: false,
                 },
@@ -399,7 +426,7 @@ pub enum AcceptanceStatus {
 
 fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
     let Some(first_section) = sections.first() else {
-        spanned::bail_here!("no markdown sections found in input")
+        return Ok(None);
     };
 
     if first_section.title.is_empty() {

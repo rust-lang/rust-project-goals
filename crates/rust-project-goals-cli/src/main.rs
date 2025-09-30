@@ -2,14 +2,15 @@ use clap::Parser;
 use regex::Regex;
 use rust_project_goals::{
     gh::issue_id::Repository,
-    spanned::{Result, Spanned},
+    spanned::{Context as _, Result, Spanned},
 };
-use std::path::PathBuf;
+use std::io::Write;
+use std::path::{Path, PathBuf};
+use std::process::{Command as ProcessCommand, Stdio};
 use walkdir::WalkDir;
 
 mod cfp;
 mod csv_reports;
-mod generate_json;
 mod rfc;
 mod team_repo;
 mod updates;
@@ -76,18 +77,6 @@ enum Command {
     /// Checks that the goal documents are well-formed, intended for use within CI
     Check {},
 
-    /// Generate json file with status from tracking issues.
-    /// This is intended for storing alongside the book for consumption by external tools.
-    Json {
-        /// Milestone for which we generate tracking issue data (e.g., `2024h2`).
-        milestone: String,
-
-        /// Path to write the json (e.g., `book/html/api/milestone.json`).
-        /// If not provided, writes to stdout.
-        #[arg(long)]
-        json_path: Option<PathBuf>,
-    },
-
     /// Generate markdown with the list of updates for each tracking issue.
     /// Collects goal updates.
     Updates {
@@ -109,6 +98,10 @@ enum Command {
         /// End date for comments.
         /// If not given, no end date.
         end_date: Option<chrono::NaiveDate>,
+
+        /// Filter to only include goals that have a champion from the specified team.
+        #[arg(long)]
+        with_champion_from: Option<String>,
     },
 
     /// Generate various CSV reports
@@ -170,26 +163,21 @@ fn main() -> Result<()> {
             team_repo::generate_team_repo(&path, team_repo_path)?;
         }
 
-        Command::Json {
-            milestone,
-            json_path,
-        } => {
-            generate_json::generate_json(&opt.repository, &milestone, json_path)?;
-        }
-
         Command::Updates {
             milestone,
             vscode,
             output_file,
             start_date,
             end_date,
-        } => updates::generate_updates(
+            with_champion_from,
+        } => generate_updates(
             &opt.repository,
             milestone,
             output_file.as_deref(),
             start_date,
             end_date,
             *vscode,
+            with_champion_from.as_deref(),
         )?,
 
         Command::CSV { cmd } => csv_reports::csv(&opt.repository, cmd)?,
@@ -218,6 +206,60 @@ fn check() -> Result<()> {
         }
 
         let _goals = rust_project_goals::goal::goals_in_dir(entry.path())?;
+    }
+
+    Ok(())
+}
+
+fn generate_updates(
+    repository: &Repository,
+    milestone: &str,
+    output_file: Option<&Path>,
+    start_date: &Option<chrono::NaiveDate>,
+    end_date: &Option<chrono::NaiveDate>,
+    vscode: bool,
+    with_champion_from: Option<&str>,
+) -> Result<()> {
+    if output_file.is_none() && !vscode {
+        rust_project_goals::spanned::bail_here!(
+            "either `--output-file` or `--vscode` must be specified"
+        );
+    }
+
+    // Load milestone issues first (Step 2: Update CLI to use new API)
+    let issues = rust_project_goals::gh::issues::list_issues_in_milestone(repository, milestone)?;
+
+    // Generate the updates content using the library function with progress bar
+    let output = updates::render_updates(
+        &issues,
+        repository,
+        milestone,
+        start_date,
+        end_date,
+        with_champion_from,
+        true,
+    )?;
+
+    if let Some(output_file) = output_file {
+        std::fs::write(&output_file, output).with_path_context(output_file, "failed to write")?;
+    } else if vscode {
+        let mut child = ProcessCommand::new("code")
+            .arg("-")
+            .stdin(Stdio::piped())
+            .spawn()
+            .with_str_context("failed to spawn `code` process")?;
+
+        if let Some(stdin) = child.stdin.as_mut() {
+            stdin
+                .write_all(output.as_bytes())
+                .with_str_context("failed to write to `code` stdin")?;
+        }
+
+        child
+            .wait()
+            .with_str_context("failed to wait on `code` process")?;
+    } else {
+        println!("{output}");
     }
 
     Ok(())

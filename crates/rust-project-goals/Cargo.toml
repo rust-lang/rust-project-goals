@@ -17,3 +17,6 @@ rust-project-goals-json = { version = "0.1.0", path = "../rust-project-goals-jso
 toml = "0.8.19"
 indexmap = "2.7.1"
 spanned = "0.6.1"
+
+[dev-dependencies]
+tempfile = "3.8.1"

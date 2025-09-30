@@ -2,17 +2,12 @@
 
 [👋 Introduction](./README.md)
 
-# ⚙️ 2025H1 goal process
-
-- [Overview](./2025h1/README.md)
-- [Goals](./2025h1/goals.md)
-- [Goals not accepted](./2025h1/not_accepted.md)
-
-# ⏳ 2025H2 goal process
+# ⚙️ 2025H2 goal process
 
 - [Overview](./2025h2/README.md)
 - [Proposed goals](./2025h2/goals.md)
 - [Goals not accepted](./2025h2/not_accepted.md)
+- [Reports](./2025h2/reports.md)
 
 # 📖 Learn about
 
@@ -25,6 +20,9 @@
 - [Design axioms](./about/design_axioms.md)
 - [RFC](./rfc.md)
 * [Archived goal lists]()
+    * [2025H1](./2025h1/README.md)
+        * [Goals](./2025h1/goals.md)
+        * [Goals not accepted](./2025h1/not_accepted.md)
     * [2024H2](./2024h2/README.md)
         * [Goals](./2024h2/goals.md)
         * [Goals not accepted](./2024h2/not_accepted.md)

@@ -36,4 +36,4 @@ All type system components should be thoroughly documented. Contributors should 
 | Discussion and moral support | ![Team][] [types]   |       |
 | Triage Analysis Chapter      | @BoxyUwU            |       |
 | Const Generics Documentation | @BoxyUwU            |       |
-| New Solver Documentation     | @BoxyUwU @lcnr      |       |
+| New Solver Documentation     | @BoxyUwU, @lcnr     |       |

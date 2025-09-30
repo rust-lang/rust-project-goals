@@ -124,3 +124,26 @@ lazy_static! {
         Regex::new(r"^\s*\[(?P<team>.*)\] champion\s*$")
             .unwrap();
 }
+
+lazy_static! {
+    /// Reports placeholder with optional date range
+    pub static ref REPORTS: Regex =
+        Regex::new(r"\(\(\(REPORTS(?::\s*([^)]+))?\)\)\)")
+            .unwrap();
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_reports_regex() {
+        assert!(REPORTS.is_match("(((REPORTS)))"));
+        assert!(REPORTS.is_match("(((REPORTS: 2025-09-01 to 2025-12-31)))"));
+
+        let caps = REPORTS
+            .captures("(((REPORTS: 2025-09-01 to 2025-12-31)))")
+            .unwrap();
+        assert_eq!(caps.get(1).unwrap().as_str(), "2025-09-01 to 2025-12-31");
+    }
+}

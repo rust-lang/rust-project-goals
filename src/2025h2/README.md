@@ -1,7 +1,4 @@
-- Feature Name: N/A
-- Start Date: (fill me in with today's date, YYYY-MM-DD)
-- RFC PR: [rust-lang/rfcs#3849]
-- Rust Issue: N/A
+> ![Status: Accepted](https://img.shields.io/badge/Status-Accepted-green) [RFC #3849] has been **accepted**, establishing [(((#GOALS))) total Rust project goals for 2025H2](./goals.md). To see the latest updates go to the [Reports page](./reports.md).
 
 # Summary
 [summary]: #summary

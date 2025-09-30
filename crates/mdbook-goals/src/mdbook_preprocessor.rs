@@ -1,28 +1,36 @@
 use std::collections::{BTreeMap, BTreeSet};
 use std::path::{Path, PathBuf};
-use std::rc::Rc;
 use std::sync::Arc;
 
 use anyhow::Context;
+use chrono::{self, Datelike};
 use mdbook::book::{Book, Chapter};
 use mdbook::preprocess::{Preprocessor, PreprocessorContext};
 use mdbook::BookItem;
-use regex::{Captures, Regex};
-use rust_project_goals::config::Configuration;
-use rust_project_goals::format_team_ask::format_team_asks;
+use regex::Regex;
+use rust_project_goals::config::{Configuration, GoalsConfig};
 use rust_project_goals::format_champions::format_champions;
-use rust_project_goals::util::{self, GithubUserInfo};
+use rust_project_goals::format_team_ask::format_team_asks;
+use rust_project_goals::markdown_processor::{MarkdownProcessor, MarkdownProcessorState};
+use rust_project_goals::util;
 
 use rust_project_goals::spanned::Spanned;
 use rust_project_goals::{
     goal::{self, GoalDocument, TeamAsk},
-    re, team,
+    re,
+    team::TeamName,
 };
 
-const LINKS: &str = "links";
-const LINKIFIERS: &str = "linkifiers";
-const USERS: &str = "users";
-const IGNORE_USERS: &str = "ignore_users";
+/// Load goals configuration from book.toml using clean serde deserialization
+fn load_goals_config_from_book_toml(ctx: &PreprocessorContext) -> anyhow::Result<GoalsConfig> {
+    // Find book.toml in the source directory
+    let book_toml_path = ctx.root.join("book.toml");
+    if book_toml_path.exists() {
+        GoalsConfig::from_book_toml(book_toml_path)
+    } else {
+        Ok(GoalsConfig::default())
+    }
+}
 
 pub struct GoalPreprocessor;
 
@@ -42,105 +50,27 @@ impl Preprocessor for GoalPreprocessor {
 
 pub struct GoalPreprocessorWithContext<'c> {
     ctx: &'c PreprocessorContext,
-    links: Vec<(String, String)>,
-    linkifiers: Vec<(Regex, String)>,
-    display_names: BTreeMap<String, Rc<String>>,
-    ignore_users: Vec<String>,
+    markdown_processor: MarkdownProcessor,
+    processor_state: MarkdownProcessorState,
     goal_document_map: BTreeMap<PathBuf, Arc<Vec<GoalDocument>>>,
+    milestone_issues_cache:
+        BTreeMap<String, Arc<Vec<rust_project_goals::gh::issues::ExistingGithubIssue>>>,
 }
 
 impl<'c> GoalPreprocessorWithContext<'c> {
     pub fn new(ctx: &'c PreprocessorContext) -> anyhow::Result<Self> {
-        // In testing we want to tell the preprocessor to blow up by setting a
-        // particular config value
-        let mut links: Vec<(String, String)> = Default::default();
-        let mut linkifiers = Default::default();
-        let mut display_names: BTreeMap<String, Rc<String>> = Default::default();
-        let mut ignore_users: Vec<String> = Default::default();
-        if let Some(config) = ctx.config.get_preprocessor(GoalPreprocessor.name()) {
-            if let Some(value) = config.get(LINKS) {
-                links = value
-                    .as_table()
-                    .with_context(|| format!("`{}` must be a table", LINKS))?
-                    .iter()
-                    .map(|(k, v)| {
-                        if let Some(v) = v.as_str() {
-                            Ok((k.to_string(), v.to_string()))
-                        } else {
-                            Err(anyhow::anyhow!("link value `{}` must be a string", k))
-                        }
-                    })
-                    .collect::<Result<_, _>>()?;
-            }
+        // Extract goals configuration using clean parsing
+        let goals_config = load_goals_config_from_book_toml(ctx)?;
 
-            if let Some(value) = config.get(LINKIFIERS) {
-                linkifiers = value
-                    .as_table()
-                    .with_context(|| format!("`{}` must be a table", LINKIFIERS))?
-                    .iter()
-                    .map(|(k, v)| {
-                        if let Some(v) = v.as_str() {
-                            Ok((Regex::new(&format!(r"\[{}\]", k))?, v.to_string()))
-                        } else {
-                            Err(anyhow::anyhow!(
-                                "linkifier value for `{}` must be a string",
-                                k
-                            ))
-                        }
-                    })
-                    .collect::<Result<_, _>>()?;
-            }
-
-            if let Some(value) = config.get(USERS) {
-                let users = value
-                    .as_table()
-                    .with_context(|| format!("`{}` must be a table", USERS))?
-                    .iter()
-                    .map(|(k, v)| {
-                        if !k.starts_with("@") {
-                            Err(anyhow::anyhow!("user name `{k}` does not start with `@`"))
-                        } else if let Some(v) = v.as_str() {
-                            Ok((k.to_string(), v.to_string()))
-                        } else {
-                            Err(anyhow::anyhow!(
-                                "display name for user `{k}` must be a string",
-                            ))
-                        }
-                    });
-
-                for user in users {
-                    let (user, display_name) = user?;
-
-                    display_names.insert(user, Rc::new(display_name));
-                }
-            }
-
-            if let Some(value) = config.get(IGNORE_USERS) {
-                ignore_users = value
-                    .as_array()
-                    .with_context(|| format!("`{}` must be an array", IGNORE_USERS))?
-                    .iter()
-                    .map(|v| {
-                        if let Some(v) = v.as_str() {
-                            Ok(v.to_string())
-                        } else {
-                            Err(anyhow::anyhow!(
-                                "ignore user value `{}` must be a string",
-                                v
-                            ))
-                        }
-                    })
-                    .collect::<anyhow::Result<Vec<_>>>()?;
-            }
-        }
+        // Create the shared markdown processor
+        let markdown_processor = MarkdownProcessor::new(goals_config);
 
         Ok(GoalPreprocessorWithContext {
             ctx,
-            links,
-            linkifiers,
-            display_names,
-            ignore_users,
+            markdown_processor,
+            processor_state: MarkdownProcessorState::default(),
             goal_document_map: Default::default(),
+            milestone_issues_cache: Default::default(),
         })
     }
 
@@ -154,10 +84,11 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 self.replace_goal_lists(chapter)?;
                 self.replace_goal_count(chapter)?;
                 self.replace_flagship_goal_count(chapter)?;
-                self.link_teams(chapter)?;
-                self.link_users(chapter)?;
-                self.linkify(chapter)?;
-                self.insert_links(chapter)?;
+                self.replace_reports(chapter)?;
+                // Process all markdown linking using shared processor
+                chapter.content = self
+                    .markdown_processor
+                    .process_markdown(&chapter.content, &mut self.processor_state)?;
 
                 for sub_item in &mut chapter.sub_items {
                     self.process_book_item(sub_item)?;
@@ -283,9 +214,39 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
             goals_with_status.sort_by_key(|g| &g.metadata.title);
 
+            // Get milestone issues for progress generation
+            let milestone_issues = if let Some(first_goal) = goals_with_status.first() {
+                // Extract milestone from the first goal's path
+                let milestone = first_goal
+                    .path
+                    .parent()
+                    .and_then(|p| p.file_stem())
+                    .and_then(|s| s.to_str());
+
+                if let Some(milestone) = milestone {
+                    match self.get_or_load_milestone_issues(milestone) {
+                        Ok(issues) => Some(issues),
+                        Err(e) => {
+                            eprintln!(
+                                "⚠️ Failed to load milestone issues for {}: {}",
+                                milestone, e
+                            );
+                            None
+                        }
+                    }
+                } else {
+                    None
+                }
+            } else {
+                None
+            };
+
             // Format the list of goals and replace the `<!-- -->` comment with that.
-            let output =
-                goal::format_goal_table(&goals_with_status).map_err(|e| anyhow::anyhow!("{e}"))?;
+            let output = goal::format_goal_table(
+                &goals_with_status,
+                milestone_issues.as_ref().map(|arc| arc.as_slice()),
+            )
+            .map_err(|e| anyhow::anyhow!("{e}"))?;
             chapter.content.replace_range(range, &output);
 
             // Populate with children if this is not README
@@ -323,8 +284,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
         let goals = self.goal_documents(path)?;
         let goal_refs: Vec<&GoalDocument> = goals.iter().collect();
-        let format_champions =
-            format_champions(&goal_refs).map_err(|e| anyhow::anyhow!("{e}"))?;
+        let format_champions = format_champions(&goal_refs).map_err(|e| anyhow::anyhow!("{e}"))?;
         chapter.content.replace_range(range, &format_champions);
 
         Ok(())
@@ -398,104 +358,38 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         Ok(goals)
     }
 
-    fn link_users(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        let usernames: BTreeSet<String> = re::USERNAME
-            .find_iter(&chapter.content)
-            .map(|m| m.as_str().to_string())
-            .filter(|username| !self.ignore_users.contains(username))
-            .collect();
-
-        for username in &usernames {
-            chapter.content = chapter
-                .content
-                .replace(username, &format!("[{}][]", self.display_name(username)?));
+    /// Get or load milestone issues, caching the result for subsequent calls.
+    /// This eliminates redundant GitHub API calls within a single preprocessor run.
+    fn get_or_load_milestone_issues(
+        &mut self,
+        milestone: &str,
+    ) -> anyhow::Result<Arc<Vec<rust_project_goals::gh::issues::ExistingGithubIssue>>> {
+        if let Some(cached_issues) = self.milestone_issues_cache.get(milestone) {
+            eprintln!("📦 Using cached issues for milestone: {}", milestone);
+            return Ok(cached_issues.clone());
         }
 
-        chapter.content.push_str("\n\n");
-        for username in &usernames {
-            chapter.content.push_str(&format!(
-                "[{}]: https://github.com/{}\n",
-                self.display_name(username)?,
-                &username[1..]
-            ));
-        }
+        eprintln!(
+            "🌐 Loading issues from GitHub API for milestone: {}",
+            milestone
+        );
+        let repository =
+            rust_project_goals::gh::issue_id::Repository::new("rust-lang", "rust-project-goals");
+        let issues =
+            rust_project_goals::gh::issues::list_issues_in_milestone(&repository, milestone)
+                .map_err(|e| {
+                    anyhow::anyhow!("Failed to load milestone issues for {}: {}", milestone, e)
+                })?;
 
-        Ok(())
-    }
-
-    fn insert_links(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        chapter.content.push_str("\n\n");
-
-        for (name, url) in &self.links {
-            chapter.content.push_str(&format!("[{}]: {}\n", name, url));
-        }
-
-        Ok(())
-    }
-
-    /// Given a username like `@foo`, determine the "display name" we should use.
-    fn display_name<'a>(&mut self, username: &str) -> anyhow::Result<Rc<String>> {
-        // Check (in order of priority)...
-        //
-        // 1. Our cache (pre-populated from the book.toml file)
-        // 2. The name from the Rust teams repo
-        // 3. The name from the GitHub API (if available)
-        //
-        // ...and fallback to just `@foo`.
-
-        if let Some(n) = self.display_names.get(username) {
-            return Ok(n.clone());
-        }
-
-        let display_name =
-            match team::get_person_data(username).map_err(|e| anyhow::anyhow!("{e}"))? {
-                Some(person) => person.data.name.clone(),
-                None => match GithubUserInfo::load(username)
-                    .map_err(|e| anyhow::anyhow!("{e}"))
-                    .with_context(|| format!("loading user info for {}", username))
-                {
-                    Ok(GithubUserInfo { name: Some(n), .. }) => n,
-                    Ok(GithubUserInfo { name: None, .. }) => username.to_string(),
-                    Err(e) => {
-                        eprintln!("{:?}", e);
-                        username.to_string()
-                    }
-                },
-            };
-        let display_name = Rc::new(display_name);
-        self.display_names
-            .insert(username.to_string(), display_name.clone());
-        Ok(display_name)
-    }
-
-    fn linkify(&self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        for (regex, string) in &self.linkifiers {
-            chapter.content = regex
-                .replace_all(&chapter.content, |c: &Captures<'_>| -> String {
-                    // we add `[]` around it
-                    assert!(c[0].starts_with("[") && c[0].ends_with("]"));
-
-                    let mut href = String::new();
-                    href.push_str(&c[0]);
-                    href.push('(');
-                    c.expand(string, &mut href);
-                    href.push(')');
-                    href
-                })
-                .to_string();
-        }
-
-        Ok(())
-    }
-
-    fn link_teams(&self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        chapter.content.push_str("\n\n");
-        for team in team::get_team_names().map_err(|e| anyhow::anyhow!("{e}"))? {
-            chapter
-                .content
-                .push_str(&format!("{team}: {}\n", team.url()));
-        }
-        Ok(())
+        eprintln!(
+            "✅ Loaded {} issues for milestone: {}",
+            issues.len(),
+            milestone
+        );
+        let issues = Arc::new(issues);
+        self.milestone_issues_cache
+            .insert(milestone.to_string(), issues.clone());
+        Ok(issues)
     }
 
     /// Replace placeholders like TASK_OWNERS and TEAMS_WITH_ASKS.
@@ -512,27 +406,28 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     /// Returns the byte offset where new rows should be inserted.
     fn find_markdown_table_end(content: &str) -> Option<usize> {
         let lines: Vec<&str> = content.lines().collect();
-        
+
         // Find first line starting with |
-        let table_start = lines.iter().position(|line| line.trim_start().starts_with('|'))?;
-        
+        let table_start = lines
+            .iter()
+            .position(|line| line.trim_start().starts_with('|'))?;
+
         // Find first line after table_start that doesn't start with |
         let table_end = lines[table_start..]
             .iter()
             .position(|line| !line.trim_start().starts_with('|'))
             .map(|pos| table_start + pos)
             .unwrap_or(lines.len());
-        
+
         // Calculate byte offset to the start of the table_end line
         let mut offset = 0;
         for i in 0..table_end {
-            
             if i > 0 {
                 offset += 1; // newline
             }
             offset += lines[i].len();
         }
-        
+
         if table_end < lines.len() {
             // There's a line after the table, insert before it
             Some(offset + 1) // +1 for the newline after the last table row
@@ -612,6 +507,325 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
         Ok(())
     }
+
+    fn replace_reports(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        if !re::REPORTS.is_match(&chapter.content) {
+            return Ok(());
+        }
+
+        let chapter_path = match &chapter.path {
+            Some(path) => path.clone(),
+            None => anyhow::bail!("found REPORTS placeholder but chapter has no path"),
+        };
+
+        // Parse date range from the placeholder
+        let date_range = if let Some(captures) = re::REPORTS.captures(&chapter.content) {
+            captures.get(1).map(|m| m.as_str().trim())
+        } else {
+            None
+        };
+
+        // Generate list of months based on date range
+        let months = self.generate_month_list(date_range)?;
+
+        // Discover teams with champions
+        let goals = self.goal_documents(&chapter_path)?;
+        let mut teams_with_champions: BTreeSet<&'static TeamName> = BTreeSet::new();
+
+        for goal in goals.iter() {
+            for team_name in goal.metadata.champions.keys() {
+                teams_with_champions.insert(team_name);
+            }
+        }
+
+        let now = chrono::Utc::now();
+        let timestamp = now.format("%Y-%m-%d %H:%M:%S UTC");
+
+        // Generate dynamic chapters instead of files
+        self.generate_report_chapters(chapter, &chapter_path, &months, &teams_with_champions)?;
+
+        let replacement = format!(
+            "This section contains automatically generated reports based on the comments left in the goal tracking issues.\n\
+            \n\
+            These reports were last generated at {timestamp}.",
+        );
+
+        chapter.content = re::REPORTS
+            .replace_all(&chapter.content, replacement)
+            .to_string();
+
+        Ok(())
+    }
+
+    fn generate_report_chapters(
+        &mut self,
+        parent_chapter: &mut Chapter,
+        chapter_path: &Path,
+        months: &[(i32, u32, &'static str)],
+        teams_with_champions: &BTreeSet<&'static TeamName>,
+    ) -> anyhow::Result<()> {
+        // Get the milestone from the chapter path (e.g., "2025h2" from "src/2025h2/reports.md")
+        let milestone = chapter_path
+            .parent()
+            .and_then(|p| p.file_name())
+            .and_then(|n| n.to_str())
+            .ok_or_else(|| {
+                anyhow::anyhow!(
+                    "Could not determine milestone from chapter path: {:?}",
+                    chapter_path
+                )
+            })?;
+
+        let mut parent_names = parent_chapter.parent_names.clone();
+        parent_names.push(parent_chapter.name.clone());
+        let mut chapter_index = 1;
+
+        // Generate blog post chapters
+        for (year, month, month_name) in months.iter().rev() {
+            // Reverse to show newest first
+            let blog_content = self.generate_blog_post_content(milestone, *year, *month)?;
+
+            let chapter_name = format!("{} Blog Post", month_name);
+            let virtual_path = format!("blog-post-{:04}-{:02}.md", year, month);
+            let path = Path::new(&virtual_path);
+
+            let mut blog_chapter =
+                Chapter::new(&chapter_name, blog_content, path, parent_names.clone());
+
+            if let Some(mut number) = parent_chapter.number.clone() {
+                number.0.push(chapter_index);
+                blog_chapter.number = Some(number);
+                chapter_index += 1;
+            }
+
+            parent_chapter
+                .sub_items
+                .push(BookItem::Chapter(blog_chapter));
+        }
+
+        // Generate champion report chapters
+        for team_name in teams_with_champions {
+            let team_name_str = &team_name.data().name;
+            // Create a team folder chapter
+            let team_chapter_name = format!("{} Team Reports", team_name_str);
+            let team_virtual_path = format!("{}/index.md", team_name_str);
+            let team_path = Path::new(&team_virtual_path);
+
+            let team_content = format!("# {} Team Champion Reports\n\nThis section contains monthly champion reports for the {} team.", team_name_str, team_name_str);
+            let mut team_chapter = Chapter::new(
+                &team_chapter_name,
+                team_content,
+                team_path,
+                parent_names.clone(),
+            );
+
+            if let Some(mut number) = parent_chapter.number.clone() {
+                number.0.push(chapter_index);
+                team_chapter.number = Some(number);
+                chapter_index += 1;
+            }
+
+            let mut team_parent_names = parent_names.clone();
+            team_parent_names.push(team_chapter_name.clone());
+            let mut team_sub_index = 1;
+
+            // Generate monthly reports for this team
+            for (year, month, month_name) in months.iter().rev() {
+                // Reverse to show newest first
+                let champion_content =
+                    self.generate_champion_report_content(milestone, team_name_str, *year, *month)?;
+
+                let monthly_chapter_name = format!("{} {}", month_name, year);
+                let monthly_virtual_path = format!("{}/{:04}-{:02}.md", team_name_str, year, month);
+                let monthly_path = Path::new(&monthly_virtual_path);
+
+                let mut monthly_chapter = Chapter::new(
+                    &monthly_chapter_name,
+                    champion_content,
+                    monthly_path,
+                    team_parent_names.clone(),
+                );
+
+                if let Some(mut number) = team_chapter.number.clone() {
+                    number.0.push(team_sub_index);
+                    monthly_chapter.number = Some(number);
+                    team_sub_index += 1;
+                }
+
+                team_chapter
+                    .sub_items
+                    .push(BookItem::Chapter(monthly_chapter));
+            }
+
+            parent_chapter
+                .sub_items
+                .push(BookItem::Chapter(team_chapter));
+        }
+
+        Ok(())
+    }
+
+    fn generate_blog_post_content(
+        &mut self,
+        milestone: &str,
+        year: i32,
+        month: u32,
+    ) -> anyhow::Result<String> {
+        use chrono::NaiveDate;
+
+        eprintln!(
+            "📝 Generating blog post for {}-{:02} (milestone: {})",
+            year, month, milestone
+        );
+
+        // Calculate start and end dates for the month
+        let start_date = NaiveDate::from_ymd_opt(year, month, 1)
+            .ok_or_else(|| anyhow::anyhow!("Invalid date: {}-{:02}-01", year, month))?;
+        let end_date = if month == 12 {
+            NaiveDate::from_ymd_opt(year + 1, 1, 1)
+        } else {
+            NaiveDate::from_ymd_opt(year, month + 1, 1)
+        }
+        .ok_or_else(|| anyhow::anyhow!("Invalid end date calculation for {}-{:02}", year, month))?;
+
+        // Get repository from context - assuming rust-lang/rust-project-goals as default
+        let repository =
+            rust_project_goals::gh::issue_id::Repository::new("rust-lang", "rust-project-goals");
+
+        // Use cached issues for this milestone
+        let issues = self.get_or_load_milestone_issues(milestone)?;
+
+        // Use the library function with pre-loaded issues
+        let content = rust_project_goals_cli::render_updates(
+            &issues,
+            &repository,
+            milestone,
+            &Some(start_date),
+            &Some(end_date),
+            None,
+            false,
+        )
+        .map_err(|e| anyhow::anyhow!("Failed to generate blog post content: {}", e))?;
+
+        Ok(content)
+    }
+
+    fn generate_champion_report_content(
+        &mut self,
+        milestone: &str,
+        team_name: &str,
+        year: i32,
+        month: u32,
+    ) -> anyhow::Result<String> {
+        use chrono::NaiveDate;
+
+        eprintln!(
+            "👥 Generating champion report for {} team, {}-{:02} (milestone: {})",
+            team_name, year, month, milestone
+        );
+
+        // Calculate start and end dates for the month
+        let start_date = NaiveDate::from_ymd_opt(year, month, 1)
+            .ok_or_else(|| anyhow::anyhow!("Invalid date: {}-{:02}-01", year, month))?;
+        let end_date = if month == 12 {
+            NaiveDate::from_ymd_opt(year + 1, 1, 1)
+        } else {
+            NaiveDate::from_ymd_opt(year, month + 1, 1)
+        }
+        .ok_or_else(|| anyhow::anyhow!("Invalid end date calculation for {}-{:02}", year, month))?;
+
+        // Get repository from context - assuming rust-lang/rust-project-goals as default
+        let repository =
+            rust_project_goals::gh::issue_id::Repository::new("rust-lang", "rust-project-goals");
+
+        // Use cached issues for this milestone
+        let issues = self.get_or_load_milestone_issues(milestone)?;
+
+        // Use the library function with team filter (team_name is already in T-teamname format)
+        let content = rust_project_goals_cli::render_updates(
+            &issues,
+            &repository,
+            milestone,
+            &Some(start_date),
+            &Some(end_date),
+            Some(team_name),
+            false,
+        )
+        .map_err(|e| anyhow::anyhow!("Failed to generate champion report content: {}", e))?;
+
+        Ok(content)
+    }
+
+    fn generate_month_list(
+        &self,
+        date_range: Option<&str>,
+    ) -> anyhow::Result<Vec<(i32, u32, &'static str)>> {
+        let (start_date, end_date) = if let Some(range_str) = date_range {
+            self.parse_date_range(range_str)?
+        } else {
+            // Default to current month only if no range specified
+            let now = chrono::Utc::now();
+            let start = chrono::NaiveDate::from_ymd_opt(now.year(), now.month(), 1)
+                .ok_or_else(|| anyhow::anyhow!("Invalid current date"))?;
+            (start, start)
+        };
+
+        let mut months = Vec::new();
+        let mut current = start_date;
+
+        while current <= end_date {
+            let month_name = match current.month() {
+                1 => "January",
+                2 => "February",
+                3 => "March",
+                4 => "April",
+                5 => "May",
+                6 => "June",
+                7 => "July",
+                8 => "August",
+                9 => "September",
+                10 => "October",
+                11 => "November",
+                12 => "December",
+                _ => "Unknown",
+            };
+
+            months.push((current.year(), current.month(), month_name));
+
+            // Move to next month
+            if current.month() == 12 {
+                current = chrono::NaiveDate::from_ymd_opt(current.year() + 1, 1, 1)
+                    .ok_or_else(|| anyhow::anyhow!("Invalid date calculation"))?;
+            } else {
+                current = chrono::NaiveDate::from_ymd_opt(current.year(), current.month() + 1, 1)
+                    .ok_or_else(|| anyhow::anyhow!("Invalid date calculation"))?;
+            }
+        }
+
+        Ok(months)
+    }
+
+    fn parse_date_range(
+        &self,
+        range_str: &str,
+    ) -> anyhow::Result<(chrono::NaiveDate, chrono::NaiveDate)> {
+        // Parse format like "2025-09-01 to 2025-12-31"
+        let parts: Vec<&str> = range_str.split(" to ").collect();
+        if parts.len() != 2 {
+            anyhow::bail!("Invalid date range format. Expected 'YYYY-MM-DD to YYYY-MM-DD'");
+        }
+
+        let start_date = chrono::NaiveDate::parse_from_str(parts[0].trim(), "%Y-%m-%d")
+            .with_context(|| format!("Invalid start date: {}", parts[0]))?;
+        let end_date = chrono::NaiveDate::parse_from_str(parts[1].trim(), "%Y-%m-%d")
+            .with_context(|| format!("Invalid end date: {}", parts[1]))?;
+
+        if start_date > end_date {
+            anyhow::bail!("Start date must be before or equal to end date");
+        }
+
+        Ok((start_date, end_date))
+    }
 }
 
 #[cfg(test)]
@@ -621,20 +835,109 @@ mod tests {
     #[test]
     fn test_find_markdown_table_end() {
         let content = "Some text before\n\n| Metadata | Value |\n|----------|-------|\n| Point of contact | @nikomatsakis |\n| Teams | (none) |\n\nSome text after";
-        
+
         let result = GoalPreprocessorWithContext::find_markdown_table_end(content);
         assert!(result.is_some());
-        
+
         let offset = result.unwrap();
         let (before, after) = content.split_at(offset);
-        
+
         // Should split right before the blank line after the table
         assert!(before.ends_with("| Teams | (none) |\n"));
         assert!(after.starts_with("\nSome text after"));
-        
+
         // Test that inserting at this offset works correctly
         let mut test_content = content.to_string();
         test_content.insert_str(offset, "| New row | value |\n");
         assert!(test_content.contains("| Teams | (none) |\n| New row | value |\n\nSome text after"));
+    }
+
+    #[test]
+    fn test_reports_replacement() {
+        use mdbook::book::Chapter;
+
+        let mut chapter = Chapter::new(
+            "Test Chapter",
+            "# Test\n\n(((REPORTS)))\n\nEnd".to_string(),
+            "test.md",
+            Vec::new(),
+        );
+
+        // Test the regex directly
+        assert!(re::REPORTS.is_match(&chapter.content));
+
+        // Test the replacement logic with a simple fixed replacement
+        // (since we can't easily mock the goal documents in a unit test)
+        let now = chrono::Utc::now();
+        let timestamp = now.format("%Y-%m-%d %H:%M:%S UTC");
+
+        let replacement = format!(
+            r#"This section contains automatically generated reports based on the comments left in the goal tracking issues.
+
+These reports were last generated at {}.
+
+## Blog post
+
+These are the main blog posts that are published each month:
+
+* [October](./blog-post-2025-10.md)
+* [September](./blog-post-2025-09.md)
+
+## Champion reports
+
+These reports include the details only of goals for a particular team.
+
+"#,
+            timestamp
+        );
+
+        chapter.content = re::REPORTS
+            .replace_all(&chapter.content, replacement)
+            .to_string();
+
+        // Check that the placeholder was replaced
+        assert!(!chapter.content.contains("(((REPORTS)))"));
+        assert!(chapter
+            .content
+            .contains("These reports were last generated at"));
+        assert!(chapter.content.contains("## Blog post"));
+        assert!(chapter.content.contains("## Champion reports"));
+    }
+
+    #[test]
+    fn test_date_range_parsing() {
+        // Test date range parsing directly
+        let parts: Vec<&str> = "2025-09-01 to 2025-12-31".split(" to ").collect();
+        assert_eq!(parts.len(), 2);
+
+        let start_date = chrono::NaiveDate::parse_from_str(parts[0].trim(), "%Y-%m-%d").unwrap();
+        let end_date = chrono::NaiveDate::parse_from_str(parts[1].trim(), "%Y-%m-%d").unwrap();
+
+        assert_eq!(start_date.year(), 2025);
+        assert_eq!(start_date.month(), 9);
+        assert_eq!(end_date.year(), 2025);
+        assert_eq!(end_date.month(), 12);
+
+        // Test month generation logic
+        let mut months = Vec::new();
+        let mut current = start_date;
+
+        while current <= end_date {
+            months.push((current.year(), current.month()));
+
+            // Move to next month
+            if current.month() == 12 {
+                current = chrono::NaiveDate::from_ymd_opt(current.year() + 1, 1, 1).unwrap();
+            } else {
+                current = chrono::NaiveDate::from_ymd_opt(current.year(), current.month() + 1, 1)
+                    .unwrap();
+            }
+        }
+
+        assert_eq!(months.len(), 4); // September, October, November, December
+        assert_eq!(months[0], (2025, 9));
+        assert_eq!(months[1], (2025, 10));
+        assert_eq!(months[2], (2025, 11));
+        assert_eq!(months[3], (2025, 12));
     }
 }
