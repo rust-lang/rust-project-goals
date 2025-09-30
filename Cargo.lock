@@ -1327,10 +1327,12 @@ name = "mdbook-goals"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "chrono",
  "clap",
  "mdbook",
  "regex",
  "rust-project-goals",
+ "rust-project-goals-cli",
  "semver",
  "serde_json",
 ]
@@ -2031,6 +2033,7 @@ dependencies = [
  "serde",
  "serde_json",
  "spanned",
+ "tempfile",
  "toml 0.8.19",
  "walkdir",
 ]

@@ -13,7 +13,7 @@ use rust_project_goals::{
         issue_id::{IssueId, Repository},
         issues::{
             change_milestone, change_title, create_comment, create_issue, fetch_issue,
-            list_issues_in_milestone, lock_issue, sync_assignees, update_issue_body,
+            list_issues_in_milestone, lock_issue, sync_assignees, sync_labels, update_issue_body,
             CONTINUING_GOAL_PREFIX, FLAGSHIP_LABEL, LOCK_TEXT,
         },
         labels::GhLabel,
@@ -170,6 +170,11 @@ pub fn generate_issues(
             if success == 0 {
                 spanned::bail_here!("all actions failed, aborting")
             }
+            
+            // Clear the cached issues since we just modified them
+            if let Err(e) = rust_project_goals::gh::issues::clear_milestone_issues_cache(&timeframe) {
+                eprintln!("Warning: Failed to clear issues cache: {}", e);
+            }
         } else {
             eprintln!("Actions to be executed:");
             for action in &actions {
@@ -230,6 +235,12 @@ enum GithubAction<'doc> {
         number: u64,
         remove_owners: BTreeSet<String>,
         add_owners: BTreeSet<String>,
+    },
+
+    SyncLabels {
+        number: u64,
+        remove_labels: BTreeSet<String>,
+        add_labels: BTreeSet<String>,
     },
 
     LockIssue {
@@ -383,6 +394,29 @@ fn initialize_issues<'doc>(
                     });
                 }
 
+                // Compare labels - convert existing issue labels to strings for comparison
+                let existing_label_names: BTreeSet<String> = existing_issue
+                    .labels
+                    .iter()
+                    .map(|label| label.name.clone())
+                    .collect();
+                let desired_label_names: BTreeSet<String> =
+                    desired_issue.labels.iter().cloned().collect();
+
+                if existing_label_names != desired_label_names {
+                    actions.insert(GithubAction::SyncLabels {
+                        number: existing_issue.number,
+                        remove_labels: existing_label_names
+                            .difference(&desired_label_names)
+                            .cloned()
+                            .collect(),
+                        add_labels: desired_label_names
+                            .difference(&existing_label_names)
+                            .cloned()
+                            .collect(),
+                    });
+                }
+
                 if existing_issue.title != desired_issue.title {
                     actions.insert(GithubAction::ChangeTitle {
                         number: existing_issue.number,
@@ -450,7 +484,7 @@ fn issue<'doc>(timeframe: &str, document: &'doc GoalDocument) -> Result<GithubIs
     }
 
     let mut labels = vec!["C-tracking-issue".to_string()];
-    if document.metadata.status.is_flagship {
+    if document.metadata.flagship().is_some() {
         labels.push("Flagship Goal".to_string());
     }
     for team in document.teams_with_asks() {
@@ -585,12 +619,29 @@ impl Display for GithubAction<'_> {
             } => {
                 write!(
                     f,
-                    "sync issue #{} ({})",
+                    "sync issue #{} assignees ({})",
                     number,
                     remove_owners
                         .iter()
                         .map(|s| format!("-{}", s))
                         .chain(add_owners.iter().map(|s| format!("+{}", s)))
+                        .collect::<Vec<_>>()
+                        .join(", ")
+                )
+            }
+            GithubAction::SyncLabels {
+                number,
+                remove_labels,
+                add_labels,
+            } => {
+                write!(
+                    f,
+                    "sync issue #{} labels ({})",
+                    number,
+                    remove_labels
+                        .iter()
+                        .map(|s| format!("-{}", s))
+                        .chain(add_labels.iter().map(|s| format!("+{}", s)))
                         .collect::<Vec<_>>()
                         .join(", ")
                 )
@@ -657,6 +708,15 @@ impl GithubAction<'_> {
                 // NOTE: Swallow errors here because sometimes people are not present in the org.
                 // We don't want to stop everything for that.
                 sync_assignees(repository, number, &remove_owners, &add_owners)?;
+                Ok(())
+            }
+
+            GithubAction::SyncLabels {
+                number,
+                remove_labels,
+                add_labels,
+            } => {
+                sync_labels(repository, number, &remove_labels, &add_labels)?;
                 Ok(())
             }
 

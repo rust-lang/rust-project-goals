@@ -1,34 +1,31 @@
 use chrono::{Datelike, NaiveDate};
 use regex::Regex;
 use rust_project_goals::re::{HELP_WANTED, TLDR};
-use rust_project_goals::spanned::{Context as _, Result, Span, Spanned};
+use rust_project_goals::spanned::{Result, Span, Spanned};
 use rust_project_goals::util::comma;
-use rust_project_goals::{markwaydown, spanned};
+use rust_project_goals::{goal, markwaydown, spanned, team};
 use rust_project_goals_json::GithubIssueState;
-use std::io::Write;
-use std::path::Path;
-use std::process::{Command, Stdio};
+use std::path::PathBuf;
 
 mod templates;
 use rust_project_goals::gh::issues::ExistingGithubIssue;
 use rust_project_goals::gh::{
     issue_id::{IssueId, Repository},
-    issues::{checkboxes, list_issues_in_milestone, ExistingGithubComment},
+    issues::{checkboxes, ExistingGithubComment},
 };
 use templates::{HelpWanted, UpdatesGoal};
 
-pub(crate) fn generate_updates(
+/// Library function that renders updates as a string without side effects.
+/// This is suitable for use from the mdbook preprocessor.
+pub fn render_updates(
+    cached_issues: &[ExistingGithubIssue],
     repository: &Repository,
     milestone: &str,
-    output_file: Option<&Path>,
     start_date: &Option<NaiveDate>,
     end_date: &Option<NaiveDate>,
-    vscode: bool,
-) -> Result<()> {
-    if output_file.is_none() && !vscode {
-        spanned::bail_here!("either `--output-file` or `--vscode` must be specified");
-    }
-
+    with_champion_from: Option<&str>,
+    use_progress_bar: bool,
+) -> Result<String> {
     let milestone_re = Regex::new(r"^\d{4}[hH][12]$").unwrap();
     if !milestone_re.is_match(milestone) {
         spanned::bail_here!(
@@ -37,7 +34,115 @@ pub(crate) fn generate_updates(
         );
     }
 
-    let issues = list_issues_in_milestone(repository, milestone)?;
+    let issues = cached_issues;
+
+    // Load goal documents to extract theme information and optionally filter by team
+    let mut milestone_path = PathBuf::from("src");
+    milestone_path.push(milestone);
+    let goal_documents = goal::goals_in_dir(&milestone_path)?;
+
+    // Create a mapping from issue numbers to themes for flagship goals
+    let issue_themes: std::collections::HashMap<u64, String> = goal_documents
+        .iter()
+        .filter_map(|doc| {
+            if let (Some(flagship_theme), Some(tracking_issue)) = (
+                doc.metadata.flagship(),
+                doc.metadata.tracking_issue.as_ref(),
+            ) {
+                Some((tracking_issue.number, flagship_theme.trim().to_string()))
+            } else {
+                None
+            }
+        })
+        .collect();
+
+    // Create mappings for ownership information
+    let issue_point_of_contact: std::collections::HashMap<u64, String> = goal_documents
+        .iter()
+        .filter_map(|doc| {
+            doc.metadata
+                .tracking_issue
+                .as_ref()
+                .map(|issue| (issue.number, doc.point_of_contact_for_goal_list()))
+        })
+        .collect();
+
+    let issue_team_champions: std::collections::HashMap<u64, String> = goal_documents
+        .iter()
+        .filter_map(|doc| {
+            doc.metadata.tracking_issue.as_ref().map(|issue| {
+                let teams: std::collections::BTreeSet<&rust_project_goals::team::TeamName> = doc
+                    .team_asks
+                    .iter()
+                    .flat_map(|ask| &ask.teams)
+                    .copied()
+                    .collect();
+
+                let team_champions: Vec<String> = teams
+                    .into_iter()
+                    .filter_map(|team| {
+                        doc.metadata
+                            .champions
+                            .get(team)
+                            .map(|champion| format!("{} ({})", team, champion.content))
+                    })
+                    .collect();
+
+                let team_champions_str = if team_champions.is_empty() {
+                    "(none)".to_string()
+                } else {
+                    team_champions.join(", ")
+                };
+
+                (issue.number, team_champions_str)
+            })
+        })
+        .collect();
+
+    let issue_task_owners: std::collections::HashMap<u64, String> = goal_documents
+        .iter()
+        .filter_map(|doc| {
+            doc.metadata.tracking_issue.as_ref().map(|issue| {
+                let task_owners_str = if doc.task_owners.is_empty() {
+                    "(none)".to_string()
+                } else {
+                    doc.task_owners
+                        .iter()
+                        .cloned()
+                        .collect::<Vec<_>>()
+                        .join(", ")
+                };
+
+                (issue.number, task_owners_str)
+            })
+        })
+        .collect();
+
+    // Filter issues by champion team if specified
+    let filtered_issues: Vec<ExistingGithubIssue> = if let Some(team_name) = with_champion_from {
+        let team_name = team::get_team_name(team_name)?
+            .ok_or_else(|| spanned::Error::str(format!("unknown team: {}", team_name)))?;
+
+        // Create a set of issue numbers for goals that have a champion from the specified team
+        let champion_issue_numbers: std::collections::HashSet<u64> = goal_documents
+            .iter()
+            .filter(|doc| doc.metadata.champions.contains_key(team_name))
+            .filter_map(|doc| {
+                doc.metadata
+                    .tracking_issue
+                    .as_ref()
+                    .map(|issue| issue.number)
+            })
+            .collect();
+
+        issues
+            .iter()
+            .filter(|issue| champion_issue_numbers.contains(&issue.number))
+            .cloned()
+            .collect()
+    } else {
+        issues.to_vec()
+    };
 
     let filter = Filter {
         start_date: match start_date {
@@ -47,45 +152,45 @@ pub(crate) fn generate_updates(
         end_date,
     };
 
-    progress_bar::init_progress_bar(issues.len());
-    progress_bar::set_progress_bar_action(
-        "Executing",
-        progress_bar::Color::Blue,
-        progress_bar::Style::Bold,
-    );
-
-    let flagship_goals = prepare_goals(repository, &issues, &filter, true)?;
-    let other_goals = prepare_goals(repository, &issues, &filter, false)?;
-    let updates = templates::Updates::new(milestone.to_string(), flagship_goals, other_goals);
-
-    progress_bar::finalize_progress_bar();
-
-    // Render the output using handlebars and write it to the file.
-    let output = updates.render()?;
-
-    if let Some(output_file) = output_file {
-        std::fs::write(&output_file, output).with_path_context(output_file, "failed to write")?;
-    } else if vscode {
-        let mut child = Command::new("code")
-            .arg("-")
-            .stdin(Stdio::piped())
-            .spawn()
-            .with_str_context("failed to spawn `code` process")?;
-
-        if let Some(stdin) = child.stdin.as_mut() {
-            stdin
-                .write_all(output.as_bytes())
-                .with_str_context("failed to write to `code` stdin")?;
-        }
-
-        child
-            .wait()
-            .with_str_context("failed to wait on `code` process")?;
-    } else {
-        println!("{output}");
+    if use_progress_bar {
+        progress_bar::init_progress_bar(filtered_issues.len());
+        progress_bar::set_progress_bar_action(
+            "Executing",
+            progress_bar::Color::Blue,
+            progress_bar::Style::Bold,
+        );
     }
 
-    Ok(())
+    let flagship_goals = prepare_goals(
+        repository,
+        &filtered_issues,
+        &filter,
+        true,
+        use_progress_bar,
+        &issue_themes,
+        &issue_point_of_contact,
+        &issue_team_champions,
+        &issue_task_owners,
+    )?;
+    let other_goals = prepare_goals(
+        repository,
+        &filtered_issues,
+        &filter,
+        false,
+        use_progress_bar,
+        &issue_themes,
+        &issue_point_of_contact,
+        &issue_team_champions,
+        &issue_task_owners,
+    )?;
+    let updates = templates::Updates::new(milestone.to_string(), flagship_goals, other_goals);
+
+    if use_progress_bar {
+        progress_bar::finalize_progress_bar();
+    }
+
+    // Render the output using handlebars and return it
+    updates.render()
 }
 
 fn prepare_goals(
@@ -93,6 +198,11 @@ fn prepare_goals(
     issues: &[ExistingGithubIssue],
     filter: &Filter<'_>,
     flagship: bool,
+    use_progress_bar: bool,
+    issue_themes: &std::collections::HashMap<u64, String>,
+    issue_point_of_contact: &std::collections::HashMap<u64, String>,
+    issue_team_champions: &std::collections::HashMap<u64, String>,
+    issue_task_owners: &std::collections::HashMap<u64, String>,
 ) -> Result<Vec<UpdatesGoal>> {
     let mut result = vec![];
     // We process flagship and regular goals in two passes, and capture comments differently for flagship goals.
@@ -108,12 +218,14 @@ fn prepare_goals(
 
         let title = &issue.title;
 
-        progress_bar::print_progress_bar_info(
-            &format!("Issue #{number}", number = issue.number),
-            title,
-            progress_bar::Color::Green,
-            progress_bar::Style::Bold,
-        );
+        if use_progress_bar {
+            progress_bar::print_progress_bar_info(
+                &format!("Issue #{number}", number = issue.number),
+                title,
+                progress_bar::Color::Green,
+                progress_bar::Style::Bold,
+            );
+        }
 
         let progress = checkboxes(&issue);
 
@@ -141,6 +253,7 @@ fn prepare_goals(
             issue_number: issue.number,
             issue_assignees: comma(&issue.assignees),
             issue_url: issue_id.url(),
+            issue_link_text: format!("rust-lang/rust-project-goals#{}", issue.number),
             progress,
             has_help_wanted,
             help_wanted,
@@ -150,9 +263,24 @@ fn prepare_goals(
             tldr,
             why_this_goal,
             needs_separator: true, // updated after sorting
+            theme: issue_themes.get(&issue.number).cloned(),
+            point_of_contact: issue_point_of_contact
+                .get(&issue.number)
+                .cloned()
+                .unwrap_or_else(|| "(unknown)".to_string()),
+            team_champions: issue_team_champions
+                .get(&issue.number)
+                .cloned()
+                .unwrap_or_else(|| "(none)".to_string()),
+            task_owners: issue_task_owners
+                .get(&issue.number)
+                .cloned()
+                .unwrap_or_else(|| "(none)".to_string()),
         });
 
-        progress_bar::inc_progress_bar();
+        if use_progress_bar {
+            progress_bar::inc_progress_bar();
+        }
     }
 
     // Updates are in a random order, sort them.

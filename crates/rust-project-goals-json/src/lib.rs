@@ -53,7 +53,7 @@ impl std::fmt::Display for GithubIssueState {
     }
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub enum Progress {
     /// We could not find any checkboxes or other details on the tracking issue.
     /// So all we have is "open" or "closed".

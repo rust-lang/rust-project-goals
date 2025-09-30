@@ -1,7 +1,13 @@
 use std::path::{Path, PathBuf};
+use std::sync::Arc;
 
-use handlebars::{DirectorySourceOptions, Handlebars};
+use handlebars::{
+    Context, DirectorySourceOptions, Handlebars, Helper, HelperDef, HelperResult, Output,
+    RenderContext, RenderErrorReason,
+};
+use rust_project_goals::config::GoalsConfig;
 use rust_project_goals::gh::issues::ExistingGithubComment;
+use rust_project_goals::markdown_processor::{MarkdownProcessor, MarkdownProcessorState};
 use serde::Serialize;
 
 use rust_project_goals::spanned::Result;
@@ -14,10 +20,27 @@ pub struct Templates<'h> {
 impl<'h> Templates<'h> {
     pub fn new() -> Result<Self> {
         let templates = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../templates");
-        Self::from_templates_dir(&templates)
+
+        // Load config from book.toml using clean approach
+        let book_toml_path = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../book.toml");
+        let goals_config = if book_toml_path.exists() {
+            GoalsConfig::from_book_toml(book_toml_path).map_err(|e| {
+                rust_project_goals::spanned::Error::str(format!(
+                    "Failed to load goals config: {}",
+                    e
+                ))
+            })?
+        } else {
+            GoalsConfig::default()
+        };
+
+        Self::from_templates_dir(&templates, goals_config)
     }
 
-    pub fn from_templates_dir(dir_path: impl AsRef<Path>) -> Result<Self> {
+    pub fn from_templates_dir(
+        dir_path: impl AsRef<Path>,
+        goals_config: GoalsConfig,
+    ) -> Result<Self> {
         let dir_path = dir_path.as_ref();
         let mut reg = Handlebars::new();
 
@@ -26,14 +49,58 @@ impl<'h> Templates<'h> {
         reg.register_templates_directory(dir_path, DirectorySourceOptions::default())?;
         assert!(reg.get_template("updates").is_some());
 
-        reg.register_helper("markdown_to_html", Box::new(markdown_to_html));
+        // Create the shared markdown processor
+        let markdown_processor = MarkdownProcessor::new(goals_config);
+        let processor_arc = Arc::new(markdown_processor);
+
+        // Register custom helper with processor
+        let markdown_helper = MarkdownToHtmlHelper::new(processor_arc);
+        reg.register_helper("markdown_to_html", Box::new(markdown_helper));
         reg.register_helper("is_complete", Box::new(is_complete));
 
         Ok(Templates { reg })
     }
 }
 
-handlebars::handlebars_helper!(markdown_to_html: |md: String| comrak::markdown_to_html(&md, &Default::default()));
+/// Custom handlebars helper that processes markdown with linking
+pub struct MarkdownToHtmlHelper {
+    processor: Arc<MarkdownProcessor>,
+}
+
+impl MarkdownToHtmlHelper {
+    pub fn new(processor: Arc<MarkdownProcessor>) -> Self {
+        Self { processor }
+    }
+}
+
+impl HelperDef for MarkdownToHtmlHelper {
+    fn call<'reg: 'rc, 'rc>(
+        &self,
+        h: &Helper<'rc>,
+        _: &'reg Handlebars<'reg>,
+        _: &'rc Context,
+        _: &mut RenderContext<'reg, 'rc>,
+        out: &mut dyn Output,
+    ) -> HelperResult {
+        if let Some(md) = h.param(0).and_then(|v| v.value().as_str()) {
+            // Create fresh state for this template invocation
+            let mut local_state = MarkdownProcessorState::default();
+
+            // Process markdown with linking
+            let processed = self
+                .processor
+                .process_markdown(md, &mut local_state)
+                .map_err(|e| {
+                    RenderErrorReason::Other(format!("Markdown processing failed: {}", e))
+                })?;
+
+            // Convert to HTML
+            let html = comrak::markdown_to_html(&processed, &comrak::ComrakOptions::default());
+            out.write(&html)?;
+        }
+        Ok(())
+    }
+}
 
 handlebars::handlebars_helper!(is_complete: |p: Progress| match p {
     Progress::Binary { is_closed } => is_closed,
@@ -45,10 +112,16 @@ handlebars::handlebars_helper!(is_complete: |p: Progress| match p {
 #[derive(Serialize, Debug)]
 pub struct Updates {
     pub milestone: String,
-    pub flagship_goals: Vec<UpdatesGoal>,
+    pub flagship_goals_by_theme: Vec<ThemeSection>,
     pub other_goals: Vec<UpdatesGoal>,
     pub goal_count: usize,
     pub flagship_goal_count: usize,
+}
+
+#[derive(Serialize, Debug)]
+pub struct ThemeSection {
+    pub theme_name: String,
+    pub goals: Vec<UpdatesGoal>,
 }
 
 impl Updates {
@@ -57,11 +130,28 @@ impl Updates {
         flagship_goals: Vec<UpdatesGoal>,
         other_goals: Vec<UpdatesGoal>,
     ) -> Self {
+        // Group flagship goals by theme
+        let mut themes_map: std::collections::BTreeMap<String, Vec<UpdatesGoal>> =
+            std::collections::BTreeMap::new();
+
+        for goal in flagship_goals.iter() {
+            let theme = goal.theme.as_ref().unwrap_or(&"Other".to_string()).clone();
+            themes_map
+                .entry(theme)
+                .or_insert_with(Vec::new)
+                .push(goal.clone());
+        }
+
+        let flagship_goals_by_theme: Vec<ThemeSection> = themes_map
+            .into_iter()
+            .map(|(theme_name, goals)| ThemeSection { theme_name, goals })
+            .collect();
+
         Updates {
             milestone,
             flagship_goal_count: flagship_goals.len(),
             goal_count: flagship_goals.len() + other_goals.len(),
-            flagship_goals,
+            flagship_goals_by_theme,
             other_goals,
         }
     }
@@ -72,7 +162,7 @@ impl Updates {
 }
 
 /// Part of the parameters expected by the `updates.md` template.
-#[derive(Serialize, Debug)]
+#[derive(Serialize, Debug, Clone)]
 pub struct UpdatesGoal {
     /// Title of the tracking issue
     pub title: String,
@@ -85,6 +175,9 @@ pub struct UpdatesGoal {
 
     /// URL of the tracking issue
     pub issue_url: String,
+
+    /// Link text for the issue (e.g., "rust-lang/rust-project-goals#123")
+    pub issue_link_text: String,
 
     /// True if the issue is closed.
     pub is_closed: bool,
@@ -113,9 +206,22 @@ pub struct UpdatesGoal {
 
     /// If this goal needs to be separated from its following sibling by an empty line.
     pub needs_separator: bool,
+
+    /// Theme for flagship goals (e.g., "Beyond the `&`", "Unblocking dormant traits", etc.)
+    /// None for non-flagship goals
+    pub theme: Option<String>,
+
+    /// Point of contact for the goal
+    pub point_of_contact: String,
+
+    /// Team champions for this goal (e.g., "T-lang (nikomatsakis), T-compiler (jackh726)")
+    pub team_champions: String,
+
+    /// Task owners for this goal (individual contributors)
+    pub task_owners: String,
 }
 
-#[derive(Serialize, Debug)]
+#[derive(Serialize, Debug, Clone)]
 pub struct HelpWanted {
     pub text: String,
 }

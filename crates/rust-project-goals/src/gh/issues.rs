@@ -390,6 +390,40 @@ pub fn sync_assignees(
     }
 }
 
+pub fn sync_labels(
+    repository: &Repository,
+    number: u64,
+    remove_labels: &BTreeSet<String>,
+    add_labels: &BTreeSet<String>,
+) -> Result<()> {
+    let mut command = Command::new("gh");
+    command
+        .arg("-R")
+        .arg(&repository.to_string())
+        .arg("issue")
+        .arg("edit")
+        .arg(number.to_string());
+
+    if !remove_labels.is_empty() {
+        command.arg("--remove-label").arg(comma(&remove_labels));
+    }
+
+    if !add_labels.is_empty() {
+        command.arg("--add-label").arg(comma(&add_labels));
+    }
+
+    let output = command.output()?;
+    if !output.status.success() {
+        Err(Error::str(format!(
+            "failed to sync issue labels `{}`: {}",
+            number,
+            String::from_utf8_lossy(&output.stderr)
+        )))
+    } else {
+        Ok(())
+    }
+}
+
 pub const FLAGSHIP_LABEL: &str = "Flagship Goal";
 
 pub const LOCK_TEXT: &str = "This issue is intended for status updates only.\n\nFor general questions or comments, please contact the owner(s) directly.";
