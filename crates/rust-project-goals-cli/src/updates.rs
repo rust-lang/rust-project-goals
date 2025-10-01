@@ -231,7 +231,8 @@ fn prepare_goals(
 
         let mut comments = issue.comments.clone();
         comments.sort_by_key(|c| c.created_at.clone());
-        comments.retain(|c| !c.is_automated_comment() && filter.matches(c));
+        comments.retain(|c| !c.should_hide_from_reports() && filter.matches(c));
+
         // Prettify the comments' timestamp after using it for sorting.
         for comment in comments.iter_mut() {
             comment.created_at = format!("{}", comment.created_at_date());
