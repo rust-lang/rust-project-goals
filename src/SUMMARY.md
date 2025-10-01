@@ -5,9 +5,12 @@
 # ⚙️ 2025H2 goal process
 
 - [Overview](./2025h2/README.md)
-- [Proposed goals](./2025h2/goals.md)
+- [Goals](./2025h2/goals.md)
 - [Goals not accepted](./2025h2/not_accepted.md)
 - [Reports](./2025h2/reports.md)
+
+# ⏳ 2026H1 goal process
+- [Not yet started]()
 
 # 📖 Learn about
 
