@@ -1,14 +1,14 @@
 # SVE and SME on AArch64
 
-| Metadata           |                                    |
-| :--                | :--                                |
-| Point of contact   | @davidtwco                         |
-| Status             | Proposed                           |
-| Zulip channel      | N/A                                |
-| Tracking issue     | [rust-lang/rust-project-goals#270] |
-| [compiler] champion | @davidtwco |
-| [lang] champion | @nikomatsakis |
-| [libs] champion | @Amanieu |
+| Metadata            |                                    |
+| :--                 | :--                                |
+| Point of contact    | @davidtwco                         |
+| Status              | Proposed                           |
+| Zulip channel       | N/A                                |
+| Tracking issue      | [rust-lang/rust-project-goals#270] |
+| [compiler] champion | @davidtwco                         |
+| [lang] champion     | @nikomatsakis                      |
+| [libs] champion     | @Amanieu                           |
 
 ## Summary
 
@@ -73,39 +73,12 @@ capabilities.
 
 ### The status quo
 
-SVE is currently entirely unsupported by Rust, but progress is being made:
+SVE is currently entirely unsupported by Rust, but progress is being made - see the tracking
+issues for the Sized Hierarchy prerequisite ([rust#144404]) and for Scalable Vectors
+themselves ([rust#145052]).
 
-- [rfcs#3838] is open and proposes adding support for scalable vector types to
-  the language. It has historically been blocked on requiring exceptions in the
-  type system for these types to be considered `Sized` and act as value types.
-  [rfcs#3729] addresses these blockers, so this RFC should be able to be
-  advanced once [rfcs#3729] is ready
-    - [rust#143924] has an proposed implementation for this relying on
-      exceptions in the type system until an implementation of [rfcs#3729] is
-      ready
-    - It may be possible to land an implementation of this experimentally given
-      that there is a realistic approach to resolving its implementation
-      blockers
-    - [stdarch#1509] is ready to add SVE types and intrinsics once
-      [rust#143924] has added the infrastructure to support these types
-- [rfcs#3729] proposes extending Rust's notion of sizedness to introduce a
-  hierarchy of sizedness traits and a notion of const and non-const sizedness
-  which unblocks `extern type`s and scalable vectors being treated as value
-  types.
-  - This RFC has had lots of discussion and two design meetings with the
-    language team. There appears to be some consensus that it's approximately
-    the right approach to the problem and has been approved for experimentation
-    in the compiler.
-  - [rust#137944] was merged implementing the first half of the RFC unstably. It
-    introduced a hierarchy of sizedness traits, sufficient to unblock
-    `extern type`s. It will be followed-up with a patch with the const and
-    non-const sizedness, unblocking scalable vectors.
-
-[rust#143924]: https://github.com/rust-lang/rust/pull/143924
-[rust#137944]: https://github.com/rust-lang/rust/pull/137944
-[rfcs#3838]: https://github.com/rust-lang/rfcs/pull/3838
-[rfcs#3729]: https://github.com/rust-lang/rfcs/pull/3729
-[stdarch#1509]: https://github.com/rust-lang/stdarch/pull/1509
+[rust#144404]: https://github.com/rust-lang/rust/issues/144404
+[rust#145052]: https://github.com/rust-lang/rust/issues/145052
 
 ### The next 6 months
 
@@ -120,6 +93,12 @@ SVE, have both RFCs accepted and establish a path towards stabilisation:
    it to be merged experimentally
 5. Merge [stdarch#1509] adding SVE types and intrinsics
 6. Identify and start addressing remaining stabilisation blockers
+
+[rust#143924]: https://github.com/rust-lang/rust/pull/143924
+[rust#137944]: https://github.com/rust-lang/rust/pull/137944
+[rfcs#3838]: https://github.com/rust-lang/rfcs/pull/3838
+[rfcs#3729]: https://github.com/rust-lang/rfcs/pull/3729
+[stdarch#1509]: https://github.com/rust-lang/stdarch/pull/1509
 
 ### The "shiny future" we are working towards
 
