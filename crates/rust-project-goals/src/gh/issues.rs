@@ -29,6 +29,7 @@ pub struct ExistingGithubComment {
     pub body: String,
     pub created_at: String,
     pub url: String,
+    hidden: bool,
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
@@ -56,6 +57,9 @@ struct ExistingGithubCommentJson {
     #[serde(rename = "createdAt")]
     created_at: String,
     url: String,
+    /// Whether a comment was marked "hidden" on the GH UI.
+    #[serde(rename = "isMinimized")]
+    is_minimized: bool,
 }
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
@@ -471,8 +475,17 @@ pub fn lock_issue(repository: &Repository, number: u64) -> Result<()> {
 }
 
 impl ExistingGithubComment {
+    /// Some comments are not actually updates we want to use in progress reports. For example,
+    /// automated comments when rotating goal periods, or random comments on the tracking issues.
+    /// The former are kinda possible to detect (this tool generates them in the first place) and to
+    /// support filtering out the other cases, we'll just ignore comments that were marked as hidden
+    /// on github.
+    pub fn should_hide_from_reports(&self) -> bool {
+        self.is_automated_comment() || self.hidden
+    }
+
     /// True if this is one of the special comments that we put on issues.
-    pub fn is_automated_comment(&self) -> bool {
+    fn is_automated_comment(&self) -> bool {
         let trimmed_body = self.body.trim();
         trimmed_body == LOCK_TEXT || trimmed_body.starts_with(CONTINUING_GOAL_PREFIX)
     }
@@ -497,6 +510,7 @@ impl From<ExistingGithubIssueJson> for ExistingGithubIssue {
                     body: c.body,
                     url: c.url,
                     created_at: c.created_at,
+                    hidden: c.is_minimized,
                 })
                 .collect(),
             body: e_i.body,
