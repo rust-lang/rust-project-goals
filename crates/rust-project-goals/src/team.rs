@@ -125,12 +125,9 @@ where
         let json_response = reqwest::blocking::get(&url)?.json().map_err(|e| {
             use std::error::Error;
 
-            // Expose the source error if available:
-            let source_message = e
-                .source()
-                .map(|source| format!(": {source}"))
-                .unwrap_or_default();
-            spanned::Error::str(format!("{e}{source_message}"))
+            e.source()
+                .map(|json_error| spanned::Error::str(format!("{json_error}")))
+                .unwrap_or(e.into())
         });
 
         Ok(json_response?)
