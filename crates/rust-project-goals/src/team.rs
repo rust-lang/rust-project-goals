@@ -126,7 +126,7 @@ where
             use std::error::Error;
 
             e.source()
-                .map(|json_error| spanned::Error::str(format!("{json_error}")))
+                .map(|json_error| spanned::Error::str(json_error.to_string()))
                 .unwrap_or(e.into())
         });
 
