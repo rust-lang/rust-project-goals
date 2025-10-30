@@ -128,8 +128,8 @@ where
             e.source()
                 .map(|json_error| spanned::Error::str(json_error.to_string()))
                 .unwrap_or(e.into())
-        });
+        })?;
 
-        Ok(json_response?)
+        Ok(json_response)
     })
 }
