@@ -122,6 +122,14 @@ where
     // dropped.
     in_thread(|| {
         let url = format!("{}/{}", v1::BASE_URL, path);
-        Ok(reqwest::blocking::get(&url)?.json()?)
+        let json_response = reqwest::blocking::get(&url)?.json().map_err(|e| {
+            use std::error::Error;
+
+            e.source()
+                .map(|json_error| spanned::Error::str(json_error.to_string()))
+                .unwrap_or(e.into())
+        })?;
+
+        Ok(json_response)
     })
 }
