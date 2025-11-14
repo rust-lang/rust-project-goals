@@ -13,6 +13,7 @@ use rust_project_goals::format_champions::format_champions;
 use rust_project_goals::format_team_ask::format_team_asks;
 use rust_project_goals::markdown_processor::{MarkdownProcessor, MarkdownProcessorState};
 use rust_project_goals::util;
+use rust_project_goals_cli::Order;
 
 use rust_project_goals::spanned::Spanned;
 use rust_project_goals::{
@@ -704,6 +705,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             &Some(end_date),
             None,
             false,
+	    Order::OldestFirst,
         )
         .map_err(|e| anyhow::anyhow!("Failed to generate blog post content: {}", e))?;
 
@@ -750,6 +752,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             &Some(end_date),
             Some(team_name),
             false,
+	    Order::NewestFirst,
         )
         .map_err(|e| anyhow::anyhow!("Failed to generate champion report content: {}", e))?;
 

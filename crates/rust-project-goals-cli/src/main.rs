@@ -238,6 +238,7 @@ fn generate_updates(
         end_date,
         with_champion_from,
         true,
+	updates::Order::default(),
     )?;
 
     if let Some(output_file) = output_file {

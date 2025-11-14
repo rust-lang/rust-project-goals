@@ -1,3 +1,3 @@
 pub mod updates;
 
-pub use updates::render_updates;
+pub use updates::{Order, render_updates};
