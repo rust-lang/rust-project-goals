@@ -13,6 +13,7 @@ use rust_project_goals::format_champions::format_champions;
 use rust_project_goals::format_team_ask::format_team_asks;
 use rust_project_goals::markdown_processor::{MarkdownProcessor, MarkdownProcessorState};
 use rust_project_goals::util;
+use rust_project_goals_cli::Order;
 
 use rust_project_goals::spanned::Spanned;
 use rust_project_goals::{
@@ -611,7 +612,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             let team_virtual_path = format!("{}/index.md", team_name_str);
             let team_path = Path::new(&team_virtual_path);
 
-            let team_content = format!("# {} Team Champion Reports\n\nThis section contains monthly champion reports for the {} team.", team_name_str, team_name_str);
+            let team_content = format!("# {} Team Champion Reports\n\nThis section contains champion reports for the {} team.", team_name_str, team_name_str);
             let mut team_chapter = Chapter::new(
                 &team_chapter_name,
                 team_content,
@@ -627,35 +628,33 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
             let mut team_parent_names = parent_names.clone();
             team_parent_names.push(team_chapter_name.clone());
-            let mut team_sub_index = 1;
+            let team_sub_index = 1;
 
-            // Generate monthly reports for this team
-            for (year, month, month_name) in months.iter().rev() {
-                // Reverse to show newest first
-                let champion_content =
-                    self.generate_champion_report_content(milestone, team_name_str, *year, *month)?;
+            // Generate the "recent updates" report for this team
 
-                let monthly_chapter_name = format!("{} {}", month_name, year);
-                let monthly_virtual_path = format!("{}/{:04}-{:02}.md", team_name_str, year, month);
-                let monthly_path = Path::new(&monthly_virtual_path);
+            // Reverse to show newest first
+            let champion_content =
+                self.generate_champion_report_content(milestone, team_name_str)?;
 
-                let mut monthly_chapter = Chapter::new(
-                    &monthly_chapter_name,
-                    champion_content,
-                    monthly_path,
-                    team_parent_names.clone(),
-                );
+            let report_name = format!("Recent updates");
+            let report_virtual_path = format!("{team_name_str}/recent-updates.md");
+            let report_path = Path::new(&report_virtual_path);
 
-                if let Some(mut number) = team_chapter.number.clone() {
-                    number.0.push(team_sub_index);
-                    monthly_chapter.number = Some(number);
-                    team_sub_index += 1;
-                }
+            let mut report_chapter = Chapter::new(
+                &report_name,
+                champion_content,
+                report_path,
+                team_parent_names.clone(),
+            );
 
-                team_chapter
-                    .sub_items
-                    .push(BookItem::Chapter(monthly_chapter));
+            if let Some(mut number) = team_chapter.number.clone() {
+                number.0.push(team_sub_index);
+                report_chapter.number = Some(number);
             }
+
+            team_chapter
+                .sub_items
+                .push(BookItem::Chapter(report_chapter));
 
             parent_chapter
                 .sub_items
@@ -704,6 +703,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             &Some(end_date),
             None,
             false,
+	    Order::OldestFirst,
         )
         .map_err(|e| anyhow::anyhow!("Failed to generate blog post content: {}", e))?;
 
@@ -714,25 +714,15 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         &mut self,
         milestone: &str,
         team_name: &str,
-        year: i32,
-        month: u32,
     ) -> anyhow::Result<String> {
-        use chrono::NaiveDate;
+	// Look at the updates for the last ~three months
+	let end_date = chrono::Utc::now().date_naive();
+	let start_date = end_date - chrono::TimeDelta::days(90);
 
         eprintln!(
-            "👥 Generating champion report for {} team, {}-{:02} (milestone: {})",
-            team_name, year, month, milestone
+            "👥 Generating champion report for {} team, {start_date} - {end_date} (milestone: {})",
+            team_name, milestone
         );
-
-        // Calculate start and end dates for the month
-        let start_date = NaiveDate::from_ymd_opt(year, month, 1)
-            .ok_or_else(|| anyhow::anyhow!("Invalid date: {}-{:02}-01", year, month))?;
-        let end_date = if month == 12 {
-            NaiveDate::from_ymd_opt(year + 1, 1, 1)
-        } else {
-            NaiveDate::from_ymd_opt(year, month + 1, 1)
-        }
-        .ok_or_else(|| anyhow::anyhow!("Invalid end date calculation for {}-{:02}", year, month))?;
 
         // Get repository from context - assuming rust-lang/rust-project-goals as default
         let repository =
@@ -750,6 +740,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             &Some(end_date),
             Some(team_name),
             false,
+	    Order::NewestFirst,
         )
         .map_err(|e| anyhow::anyhow!("Failed to generate champion report content: {}", e))?;
 

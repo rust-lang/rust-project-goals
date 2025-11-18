@@ -15,6 +15,18 @@ use rust_project_goals::gh::{
 };
 use templates::{HelpWanted, UpdatesGoal};
 
+#[derive(Copy, Clone, Default)]
+/// Order in which GitHub comments for each goal are displayed.
+pub enum Order {
+    #[default]
+    /// Chronological order: the oldest comments show up first.
+    /// Mirrors the order on the corresponding GitHub issue.
+    OldestFirst,
+
+    /// Reverse chronological order: the most recent comments will show up first.
+    NewestFirst,
+}
+
 /// Library function that renders updates as a string without side effects.
 /// This is suitable for use from the mdbook preprocessor.
 pub fn render_updates(
@@ -25,6 +37,7 @@ pub fn render_updates(
     end_date: &Option<NaiveDate>,
     with_champion_from: Option<&str>,
     use_progress_bar: bool,
+    comment_order: Order,
 ) -> Result<String> {
     let milestone_re = Regex::new(r"^\d{4}[hH][12]$").unwrap();
     if !milestone_re.is_match(milestone) {
@@ -167,6 +180,7 @@ pub fn render_updates(
         &filter,
         true,
         use_progress_bar,
+	comment_order,
         &issue_themes,
         &issue_point_of_contact,
         &issue_team_champions,
@@ -178,6 +192,7 @@ pub fn render_updates(
         &filter,
         false,
         use_progress_bar,
+	comment_order,
         &issue_themes,
         &issue_point_of_contact,
         &issue_team_champions,
@@ -199,6 +214,7 @@ fn prepare_goals(
     filter: &Filter<'_>,
     flagship: bool,
     use_progress_bar: bool,
+    comment_order: Order,
     issue_themes: &std::collections::HashMap<u64, String>,
     issue_point_of_contact: &std::collections::HashMap<u64, String>,
     issue_team_champions: &std::collections::HashMap<u64, String>,
@@ -232,6 +248,11 @@ fn prepare_goals(
         let mut comments = issue.comments.clone();
         comments.sort_by_key(|c| c.created_at.clone());
         comments.retain(|c| !c.should_hide_from_reports() && filter.matches(c));
+
+	// We got the comments in the chronological order. Reverse it if desired.
+	if matches!(comment_order, Order::NewestFirst) {
+            comments.reverse();
+	}
 
         // Prettify the comments' timestamp after using it for sorting.
         for comment in comments.iter_mut() {
