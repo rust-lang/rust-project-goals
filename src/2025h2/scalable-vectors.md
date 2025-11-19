@@ -46,9 +46,9 @@ and intrinsics, but instead will work on newer processors with different vector
 register lengths and performance characteristics.
 
 SVE has interesting and challenging implications for Rust, introducing value
-types with sizes that can only be known at compilation time, requiring
-significant work on the language and compiler. Arm has since introduced Scalable
-Matrix Extensions (SME), building on SVE to add new capabilities to efficiently
+types with sizes that can only be known at runtime, requiring significant work
+on the language and compiler. Arm has since introduced Scalable Matrix
+Extensions (SME), building on SVE to add new capabilities to efficiently
 process matrices, with even more interesting implications for Rust.
 
 Hardware is generally available with SVE, and key Rust stakeholders want to be
