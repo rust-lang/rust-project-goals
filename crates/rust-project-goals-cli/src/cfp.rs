@@ -9,6 +9,8 @@ use std::path::{Path, PathBuf};
 pub mod text_processing {
     use regex::Regex;
 
+    use crate::cfp::normalize_timeframe;
+
     /// Process template content by replacing placeholders and removing notes
     pub fn process_template_content(
         content: &str,
@@ -71,7 +73,12 @@ pub mod text_processing {
         let mut new_content = content.to_string();
 
         // Create the new section content with capitalized H
-        let capitalized_timeframe = format!("{}H{}", &timeframe[0..4], &timeframe[5..]);
+        let capitalized_timeframe = if timeframe.len() > 4 {
+            format!("{}H{}", &timeframe[0..4], &timeframe[5..])
+        } else {
+            timeframe.to_string()
+        };
+
         let new_section_content = format!(
             "# ⏳ {} goal process\n\n\
              - [Overview](./{}/README.md)\n\
@@ -175,7 +182,7 @@ pub mod text_processing {
         };
 
         // Create the new section to add with capitalized H
-        let capitalized_timeframe = format!("{}H{}", &timeframe[0..4], &timeframe[5..]);
+        let capitalized_timeframe = normalize_timeframe(timeframe);
         let new_section = format!(
             "\n## Next goal period ({})\n\n\
              The next goal period will be {}, running from the start of {} to the end of {}. \
@@ -340,13 +347,21 @@ pub fn create_cfp(timeframe: &str, force: bool, dry_run: bool) -> Result<()> {
     Ok(())
 }
 
-/// Validates that the timeframe is in the correct format (e.g., "2025h1" or "2025H1")
+/// Validates that the timeframe is in the correct format (e.g., "2025h1" or "2025H1" or '2026')
 fn validate_timeframe(timeframe: &str) -> Result<()> {
-    let re = Regex::new(r"^\d{4}[hH][12]$").unwrap();
+    let re = Regex::new(r"^\d{4}([hH][12])?$").unwrap();
     if !re.is_match(timeframe) {
         return Err(Error::str("Invalid timeframe format. Expected format: YYYYhN or YYYYHN (e.g., 2025h1, 2025H1, 2025h2, or 2025H2"));
     }
     Ok(())
+}
+
+fn normalize_timeframe(timeframe: &str) -> String {
+    if timeframe.len() == 4 {
+        timeframe.to_string()
+    } else {
+        format!("{}H{}", &timeframe[0..4], &timeframe[5..])
+    }
 }
 
 /// Copies a template file to the destination and replaces placeholders
@@ -444,7 +459,7 @@ fn update_main_readme(timeframe: &str, lowercase_timeframe: &str, dry_run: bool)
     }
 
     // Determine what kind of update was made for better logging
-    let capitalized_timeframe = format!("{}H{}", &timeframe[0..4], &timeframe[5..]);
+    let capitalized_timeframe = normalize_timeframe(timeframe);
     let specific_timeframe_pattern = format!(
         r"## Next goal period(?:\s*\({}\))",
         regex::escape(&capitalized_timeframe)
