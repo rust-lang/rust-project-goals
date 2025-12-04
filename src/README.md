@@ -2,6 +2,10 @@
 
 This repo tracks the effort to set and track goals for the Rust project.
 
+## Next goal period (2026)
+
+The next goal period will be 2026. We are currently creating a rough draft for the goal set and seeking goal "pre-proposals" -- early stage proposals that we can help you turn into a concrete goal. If you'd like to propose something, [instructions can be found here](./how_to/propose_a_goal.md).
+
 ## Current goal period (2025H2)
 
 The 2025H2 goal period runs from Sept 1 to Dec 31. We have identified 12 flagship goals, broken out into four themes:
@@ -141,10 +145,6 @@ People generally start using Rust for foundational use cases, where the requirem
 [TC]: https://github.com/traviscross
 [Weihang Lo]: https://github.com/weihanglo
 [Jane Lusby]: https://github.com/yaahc
-
-## Next goal period (2026H1)
-
-The next goal period will be 2026H1. We will start the process of assembling goals soon. If you'd like to propose a goal, [instructions can be found here](./how_to/propose_a_goal.md).
 
 ## About the process
 

@@ -11,13 +11,14 @@ use regex::Regex;
 use rust_project_goals::config::{Configuration, GoalsConfig};
 use rust_project_goals::format_champions::format_champions;
 use rust_project_goals::format_team_ask::format_team_asks;
+use rust_project_goals::format_team_support::format_team_support;
 use rust_project_goals::markdown_processor::{MarkdownProcessor, MarkdownProcessorState};
 use rust_project_goals::util;
 use rust_project_goals_cli::Order;
 
 use rust_project_goals::spanned::Spanned;
 use rust_project_goals::{
-    goal::{self, GoalDocument, TeamAsk},
+    goal::{self, GoalDocument, TeamAsk, TeamInvolvement},
     re,
     team::TeamName,
 };
@@ -303,14 +304,41 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         };
 
         let goals = self.goal_documents(path)?;
-        let asks_of_any_team: Vec<&TeamAsk> = goals
-            .iter()
-            .filter(|g| g.metadata.status.is_not_not_accepted())
-            .flat_map(|g| &g.team_asks)
-            .collect();
-        let format_team_asks =
-            format_team_asks(&asks_of_any_team).map_err(|e| anyhow::anyhow!("{e}"))?;
-        chapter.content.replace_range(range, &format_team_asks);
+
+        // Separate goals by format
+        let mut old_format_asks: Vec<&TeamAsk> = vec![];
+        let mut new_format_goals: Vec<&GoalDocument> = vec![];
+
+        for goal in goals.iter().filter(|g| g.metadata.status.is_not_not_accepted()) {
+            match &goal.team_involvement {
+                TeamInvolvement::Asks(asks) => {
+                    old_format_asks.extend(asks.iter());
+                }
+                TeamInvolvement::Support(_) => {
+                    new_format_goals.push(goal);
+                }
+            }
+        }
+
+        // Format both old and new format goals
+        let mut formatted = String::new();
+
+        if !old_format_asks.is_empty() {
+            formatted.push_str(
+                &format_team_asks(&old_format_asks).map_err(|e| anyhow::anyhow!("{e}"))?,
+            );
+        }
+
+        if !new_format_goals.is_empty() {
+            if !formatted.is_empty() {
+                formatted.push_str("\n\n");
+            }
+            formatted.push_str(
+                &format_team_support(&new_format_goals).map_err(|e| anyhow::anyhow!("{e}"))?,
+            );
+        }
+
+        chapter.content.replace_range(range, &formatted);
 
         Ok(())
     }
