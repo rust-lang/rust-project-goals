@@ -1,10 +1,10 @@
-# Rust project goals YYYYHN
+# Rust project goals YYYY
 
 > **NOTE:** This is a sample RFC you can use as a starting point.
-> To begin a new goal season (e.g., 2222H1), do the following:
+> To begin a new goal season (e.g., 2222), do the following:
 >
-> * Copy this file to `src/2222H1/README.md`.
-> * Search and replace `YYYYHN` with `2222H1` and delete this section.
+> * Copy this file to `src/2222/README.md`.
+> * Search and replace `YYYY` with `2222` and delete this section.
 > * Look for other "TBD" sections, you'll want to replace those eventually.
 > * Customize anything else that seems relevant.
 
@@ -12,11 +12,11 @@
 
 *![Status: Accepting goal proposals](https://img.shields.io/badge/Status-Accepting%20goal%20proposals-yellow) We are in the process of assembling the goal slate.*
 
-This is a draft for the eventual RFC proposing the YYYYHN goals.
+This is a draft for the eventual RFC proposing the YYYY goals.
 
 ## Motivation
 
-The YYYYHN goal slate consists of (((#GOALS))) project goals, of which we have selected (TBD) as **flagship goals**. Flagship goals represent the goals expected to have the broadest overall impact.
+The YYYY goal slate consists of (((#GOALS))) project goals, of which we have selected (TBD) as **flagship goals**. Flagship goals represent the goals expected to have the broadest overall impact.
 
 ### How the goal process works
 
@@ -59,7 +59,7 @@ The flagship goals proposed for this roadmap are as follows:
 
 ### Project goals
 
-The full slate of project goals are as follows. These goals all have identified points of contact who will drive the work forward as well as a viable work plan. The goals include asks from the listed Rust teams, which are cataloged in the [reference-level explanation](#reference-level-explanation) section below.
+The full slate of project goals are as follows. These goals all have identified points of contact who will drive the work forward as well as a viable work plan. The goals specify the level of support needed from the listed Rust teams, which is cataloged in the [reference-level explanation](#reference-level-explanation) section below.
 
 **Invited goals.** Some goals of the goals below are "invited goals", meaning that for that goal to happen we need someone to step up and serve as a point of contact. To find the invited goals, look for the ![Help wanted][] badge in the table below. Invited goals have reserved capacity for teams and a mentor, so if you are someone looking to help Rust progress, they are a great way to get involved.
 
@@ -68,26 +68,16 @@ The full slate of project goals are as follows. These goals all have identified 
 # Reference-level explanation
 [reference-level-explanation]: #reference-level-explanation
 
-The following table highlights the asks from each affected team.
-The "owner" in the column is the person expecting to do the design/implementation work that the team will be approving.
+The following table highlights the support level requested from each affected team. Each goal specifies the level of involvement needed:
+
+* **Vibes**: The team doesn't need to do anything, but the goal author wants to know they support the idea.
+* **Small**: The team only needs to do routine activities (e.g., reviewing a few small PRs).
+* **Medium**: Dedicated support from one team member, but the rest of the team doesn't need to be heavily involved.
+* **Large**: Deeper review and involvement from the entire team (e.g., design meetings, complex RFCs).
+
+"Vibes" and "Small" asks require someone on the team to "second" the goal. "Medium" and "Large" asks require a dedicated champion from the team.
 
 (((TEAM ASKS)))
-
-### Definitions
-
-Definitions for terms used above:
-
-* *Author RFC* and *Implementation* means actually writing the code, document, whatever.
-* *Design meeting* means holding a synchronous meeting to review a proposal and provide feedback (no decision expected).
-* *RFC decisions* means reviewing an RFC and deciding whether to accept.
-* *Org decisions* means reaching a decision on an organizational or policy matter.
-* *Secondary review* of an RFC means that the team is "tangentially" involved in the RFC and should be expected to briefly review.
-* *Stabilizations* means reviewing a stabilization and report and deciding whether to stabilize.
-* *Standard reviews* refers to reviews for PRs against the repository; these PRs are not expected to be unduly large or complicated.
-* Other kinds of decisions:
-    * [Lang team experiments](https://lang-team.rust-lang.org/how_to/experiment.html) are used to add nightly features that do not yet have an RFC. They are limited to trusted contributors and are used to resolve design details such that an RFC can be written.
-    * Compiler [Major Change Proposal (MCP)](https://forge.rust-lang.org/compiler/mcp.html) is used to propose a 'larger than average' change and get feedback from the compiler team.
-    * Library [API Change Proposal (ACP)](https://std-dev-guide.rust-lang.org/development/feature-lifecycle.html) describes a change to the standard library.
 
 [AGS]: ./Project-goal-slate.md
 [AMF]: ./a-mir-formality.md
