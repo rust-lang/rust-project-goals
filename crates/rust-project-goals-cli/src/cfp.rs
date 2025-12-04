@@ -141,9 +141,9 @@ pub mod text_processing {
         let new_section = format!("\n{}", new_section_content);
 
         // Find a good place to insert the new section
-        // Look for the last timeframe section or insert at the beginning
-        // Match both lowercase and uppercase H
-        let re = Regex::new(r"# ⏳ \d{4}[hH][12] goal process").unwrap();
+        // Look for the last timeframe section or insert after # Summary
+        // Match both year-only (2027) and half-year (2026H1) formats
+        let re = Regex::new(r"# ⏳ \d{4}([hH][12])? goal process").unwrap();
 
         if let Some(last_match) = re.find_iter(&content).last() {
             // Find the end of this section (next section or end of file)
@@ -155,8 +155,20 @@ pub mod text_processing {
                 new_content.push_str(&new_section);
             }
         } else {
-            // No existing timeframe sections, insert at the beginning
-            new_content = new_section + &content;
+            // No existing ⏳ timeframe sections, find the first dated section (⏳ or ⚙️) and insert before it
+            let dated_section_re = Regex::new(r"\n# (⏳|⚙️) \d{4}").unwrap();
+            if let Some(first_dated) = dated_section_re.find(&content) {
+                new_content.insert_str(first_dated.start(), &new_section);
+            } else {
+                // No dated sections at all, insert after "# Summary\n\n"
+                if let Some(summary_pos) = content.find("# Summary") {
+                    let insert_pos = summary_pos + "# Summary\n\n".len();
+                    new_content.insert_str(insert_pos, &new_section);
+                } else {
+                    // No # Summary found, prepend
+                    new_content = new_section + &content;
+                }
+            }
         }
 
         new_content
@@ -170,27 +182,37 @@ pub mod text_processing {
     ) -> String {
         let mut new_content = content.to_string();
 
-        // Extract year and half from timeframe
-        let _year = &timeframe[0..4];
-        let half = &timeframe[4..].to_lowercase();
-
-        // Determine the months based on the half
-        let (start_month, end_month) = if half == "h1" {
-            ("January", "June")
-        } else {
-            ("July", "December")
-        };
-
         // Create the new section to add with capitalized H
         let capitalized_timeframe = normalize_timeframe(timeframe);
-        let new_section = format!(
-            "\n## Next goal period ({})\n\n\
-             The next goal period will be {}, running from the start of {} to the end of {}. \
-             We are currently in the process of assembling goals. \
-             [Click here](./{}/goals.md) to see the current list. \
-             If you'd like to propose a goal, [instructions can be found here](./how_to/propose_a_goal.md).\n",
-            capitalized_timeframe, capitalized_timeframe, start_month, end_month, lowercase_timeframe
-        );
+
+        // Check if this is a year-only timeframe (no H1/H2)
+        let new_section = if timeframe.len() == 4 {
+            // Year-only format - no date range
+            format!(
+                "\n## Next goal period ({})\n\n\
+                 The next goal period will be {}. \
+                 We are currently in the process of assembling goals. \
+                 [Click here](./{}/goals.md) to see the current list. \
+                 If you'd like to propose a goal, [instructions can be found here](./how_to/propose_a_goal.md).\n",
+                capitalized_timeframe, capitalized_timeframe, lowercase_timeframe
+            )
+        } else {
+            // Half-year format - include date range
+            let half = &timeframe[4..].to_lowercase();
+            let (start_month, end_month) = if half == "h1" {
+                ("January", "June")
+            } else {
+                ("July", "December")
+            };
+            format!(
+                "\n## Next goal period ({})\n\n\
+                 The next goal period will be {}, running from the start of {} to the end of {}. \
+                 We are currently in the process of assembling goals. \
+                 [Click here](./{}/goals.md) to see the current list. \
+                 If you'd like to propose a goal, [instructions can be found here](./how_to/propose_a_goal.md).\n",
+                capitalized_timeframe, capitalized_timeframe, start_month, end_month, lowercase_timeframe
+            )
+        };
 
         // First check for an existing entry for this specific timeframe
         let this_period_pattern = Regex::new(&format!(
@@ -537,15 +559,39 @@ mod tests {
     }
 
     #[test]
-    fn test_process_summary_content_no_existing_section() {
-        // Test adding a new section when no timeframe sections exist
-        let content = "# Summary\n\n[Introduction](./README.md)\n";
+    fn test_process_summary_content_new_section() {
+        // Test adding a new section before an existing dated section
+        let content = "# Summary\n\n[👋 Introduction](./README.md)\n\n# ⚙️ 2025H2 goal process\n\n- [Overview](./2025h2/README.md)\n";
         let result = process_summary_content(content, "2026h1", "2026h1");
 
         assert!(result.contains("# ⏳ 2026H1 goal process"));
         assert!(result.contains("- [Overview](./2026h1/README.md)"));
         assert!(result.contains("- [Proposed goals](./2026h1/goals.md)"));
         assert!(result.contains("- [Goals not accepted](./2026h1/not_accepted.md)"));
+        // Verify the section is inserted after Introduction, before the existing dated section
+        let intro_pos = result.find("[👋 Introduction]").unwrap();
+        let goal_process_pos = result.find("# ⏳ 2026H1 goal process").unwrap();
+        let existing_section_pos = result.find("# ⚙️ 2025H2").unwrap();
+        assert!(intro_pos < goal_process_pos, "Goal process section should come after Introduction");
+        assert!(goal_process_pos < existing_section_pos, "New section should come before existing dated section");
+    }
+
+    #[test]
+    fn test_process_summary_content_year_only_timeframe() {
+        // Test adding a new section with year-only timeframe (no H1/H2)
+        let content = "# Summary\n\n[👋 Introduction](./README.md)\n\n# ⚙️ 2025H2 goal process\n\n- [Overview](./2025h2/README.md)\n";
+        let result = process_summary_content(content, "2027", "2027");
+
+        assert!(result.contains("# ⏳ 2027 goal process"));
+        assert!(result.contains("- [Overview](./2027/README.md)"));
+        assert!(result.contains("- [Proposed goals](./2027/goals.md)"));
+        assert!(result.contains("- [Goals not accepted](./2027/not_accepted.md)"));
+        // Verify the section is inserted after Introduction, before the existing dated section
+        let intro_pos = result.find("[👋 Introduction]").unwrap();
+        let goal_process_pos = result.find("# ⏳ 2027 goal process").unwrap();
+        let existing_section_pos = result.find("# ⚙️ 2025H2").unwrap();
+        assert!(intro_pos < goal_process_pos, "Goal process section should come after Introduction");
+        assert!(goal_process_pos < existing_section_pos, "New section should come before existing dated section");
     }
 
     #[test]
@@ -644,5 +690,17 @@ mod tests {
 
         assert!(result.contains("## Next goal period (2026H1)"));
         assert!(result.contains("running from the start of January to the end of June"));
+    }
+
+    #[test]
+    fn test_process_readme_content_year_only() {
+        // Test that year-only timeframes don't include date ranges
+        let content = "# Project goals\n\n## Current goal period (2026)\n\nThe 2026 goal period.";
+        let result = process_readme_content(content, "2027", "2027");
+
+        assert!(result.contains("## Next goal period (2027)"));
+        assert!(result.contains("The next goal period will be 2027."));
+        assert!(!result.contains("running from"));
+        assert!(result.contains("[Click here](./2027/goals.md)"));
     }
 }
