@@ -9,6 +9,8 @@ use walkdir::WalkDir;
 
 pub const ARROW: &str = "↳";
 
+pub const MILESTONE_REGEX: &'static str = r"^\d{4}([hH][12])?$";
+
 /// Formats a table as markdown. The input should be a series of rows
 /// where each row has the same number of columns.
 /// The first row is the headers.
