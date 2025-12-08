@@ -18,6 +18,10 @@ Opening a goal is an indication that you (or your company, etc) is willing to pu
 
 Note though that controversial goals are likely to not be accepted. If you have an idea that you think people won't like, then you should find ways to lower the ask of the teams. For example, maybe the goal should be to perform experiments to help make the case for the idea, rather than jumping straight to implementation.
 
+## Help! I have no idea what Rust teams to ask for help from.
+
+Don't stress. The most important thing is to write-up the motivation. It's fine to open a PR that is semi-completed, the goals team will help you figure things out! That's what we are here for.
+
 ## Can I still do X, even if I don't submit a goal for it?
 
 Yes. Goals are not mandatory for work to proceed. They are a tracking mechanism to help stay on course.

@@ -583,9 +583,7 @@ fn task_items(goal_plan: &GoalPlan) -> Result<Vec<String>> {
 fn teams_with_asks(goal_documents: &[GoalDocument]) -> BTreeSet<&'static TeamName> {
     goal_documents
         .iter()
-        .flat_map(|g| &g.team_asks)
-        .flat_map(|ask| &ask.teams)
-        .copied()
+        .flat_map(|g| g.team_involvement.teams())
         .collect()
 }
 

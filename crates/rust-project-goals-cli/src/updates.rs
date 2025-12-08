@@ -84,12 +84,7 @@ pub fn render_updates(
         .iter()
         .filter_map(|doc| {
             doc.metadata.tracking_issue.as_ref().map(|issue| {
-                let teams: std::collections::BTreeSet<&rust_project_goals::team::TeamName> = doc
-                    .team_asks
-                    .iter()
-                    .flat_map(|ask| &ask.teams)
-                    .copied()
-                    .collect();
+                let teams = doc.team_involvement.teams();
 
                 let team_champions: Vec<String> = teams
                     .into_iter()

@@ -31,14 +31,17 @@ pub struct GoalDocument {
     /// Text from the summary section
     pub summary: String,
 
-    /// The "plan" for completing the goal (includes things owners will do as well as team asks)
+    /// The "plan" for completing the goal (includes things owners will do as well as team asks).
+    /// Only present for old format goals (pre-2026).
     pub goal_plans: Vec<GoalPlan>,
 
     /// Owners of any task that are not team asks.
+    /// Only present for old format goals (pre-2026).
     pub task_owners: BTreeSet<String>,
 
-    /// List of team asks extracted from the goal
-    pub team_asks: Vec<TeamAsk>,
+    /// How teams are involved with this goal - either through specific asks (old format)
+    /// or support levels (new format).
+    pub team_involvement: TeamInvolvement,
 }
 
 /// Metadata loaded from the goal header
@@ -89,7 +92,11 @@ pub enum ParsedOwners {
     Usernames(Vec<String>),
 }
 
-/// Identifies a particular ask for a set of Rust teams
+/// Identifies a particular ask for a set of Rust teams.
+///
+/// This is the **old format** used before 2026. Each row in the "Ownership and team asks"
+/// table specifies a task (like "RFC decision" or "Standard reviews") along with which
+/// team(s) are being asked to do it, indicated by `![Team][]` in the owners column.
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub struct TeamAsk {
     /// Path to the markdown file containing this ask (appropriate for a link)
@@ -109,6 +116,99 @@ pub struct TeamAsk {
 
     /// Any notes
     pub notes: String,
+}
+
+/// The level of support needed from a team.
+///
+/// This is part of the **new format** introduced in 2026. Instead of listing specific
+/// asks (like "RFC decision"), goals now specify a support level that indicates how
+/// much involvement is needed from each team.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
+pub enum SupportLevel {
+    /// Team doesn't need to do anything, but goal author wants to know they like the idea.
+    /// Example: Prototyping a new feature on crates.io that you hope to eventually upstream.
+    Vibes,
+
+    /// Team only needs to do routine activities.
+    /// Example: A compiler change that will require a few small PRs to be reviewed.
+    Small,
+
+    /// Dedicated support from one person, but the rest of the team doesn't have to do much.
+    /// Example: Implementing a small, noncontroversial language feature.
+    Medium,
+
+    /// Deeper review from the entire team.
+    /// Example: Rearchitecting part of the compiler or implementing a complex language feature.
+    Large,
+}
+
+/// Represents the support needed from a single team for a goal.
+///
+/// This is the **new format** introduced in 2026. The "Team asks" section contains a table
+/// with Team/Support level/Notes columns, rather than the old Task/Owner(s)/Notes format.
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
+pub struct TeamSupport {
+    /// Path to the markdown file containing this (appropriate for a link)
+    pub link_path: Arc<PathBuf>,
+
+    /// The team being asked for support
+    pub team: &'static TeamName,
+
+    /// Level of support needed (Vibes, Small, Medium, Large)
+    pub support_level: SupportLevel,
+
+    /// Any notes about what's needed
+    pub notes: String,
+
+    /// If this came from a `###` subsection, the subgoal title
+    pub subgoal: Option<Spanned<String>>,
+}
+
+/// How teams are involved with a goal - either through specific asks (old format)
+/// or support levels (new format).
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
+pub enum TeamInvolvement {
+    /// Old format (pre-2026): specific asks like "RFC decision", "Standard reviews"
+    /// Parsed from "Ownership and team asks" section with Task/Owner(s)/Notes columns.
+    Asks(Vec<TeamAsk>),
+
+    /// New format (2026+): support levels (Vibes, Small, Medium, Large)
+    /// Parsed from "Team asks" section with Team/Support level/Notes columns.
+    Support(Vec<TeamSupport>),
+}
+
+impl TeamInvolvement {
+    /// Returns all teams involved with this goal, regardless of format.
+    pub fn teams(&self) -> BTreeSet<&'static TeamName> {
+        match self {
+            TeamInvolvement::Asks(asks) => asks.iter().flat_map(|a| &a.teams).copied().collect(),
+            TeamInvolvement::Support(supports) => supports.iter().map(|s| s.team).collect(),
+        }
+    }
+
+    /// Returns true if there is no team involvement.
+    pub fn is_empty(&self) -> bool {
+        match self {
+            TeamInvolvement::Asks(asks) => asks.is_empty(),
+            TeamInvolvement::Support(supports) => supports.is_empty(),
+        }
+    }
+
+    /// Returns the team asks if this uses the old format, None otherwise.
+    pub fn as_asks(&self) -> Option<&Vec<TeamAsk>> {
+        match self {
+            TeamInvolvement::Asks(asks) => Some(asks),
+            TeamInvolvement::Support(_) => None,
+        }
+    }
+
+    /// Returns the team support entries if this uses the new format, None otherwise.
+    pub fn as_support(&self) -> Option<&Vec<TeamSupport>> {
+        match self {
+            TeamInvolvement::Asks(_) => None,
+            TeamInvolvement::Support(supports) => Some(supports),
+        }
+    }
 }
 
 /// Load all the goals from a given directory
@@ -139,50 +239,32 @@ impl GoalDocument {
 
         let link_path = Arc::new(link_path.to_path_buf());
 
-        let goal_plans = extract_plan_items(&sections)?;
+        // Try to extract team involvement - could be old format or new format
+        let (team_involvement, goal_plans, task_owners) =
+            extract_team_involvement(&sections, &link_path, &metadata)?;
 
-        let mut team_asks = vec![];
-        for goal_plan in &goal_plans {
-            let mut goal_titles = vec![metadata.short_title.clone()];
-            if let Some(subgoal) = &goal_plan.subgoal {
-                goal_titles.push(subgoal.clone());
-            }
-            for plan_item in &goal_plan.plan_items {
-                team_asks.extend(plan_item.team_asks(&link_path, &goal_titles, &metadata.pocs)?);
-            }
-        }
-
-        // Enforce that every goal has some team asks (unless it is not accepted)
-        if metadata.status.is_not_not_accepted() && team_asks.is_empty() {
+        // Enforce that every goal has some team involvement (unless it is not accepted)
+        if metadata.status.is_not_not_accepted() && team_involvement.is_empty() {
             spanned::bail!(
                 metadata.title,
-                "no team asks in goal; did you include `![Team]` in the table?"
+                "no team involvement in goal; did you include a `Team asks` or `Ownership and team asks` section?"
             );
         }
-
-        let task_owners = goal_plans
-            .iter()
-            .flat_map(|goal_plan| &goal_plan.plan_items)
-            .flat_map(|plan_item| plan_item.task_owners())
-            .collect();
 
         Ok(Some(GoalDocument {
             path: path.to_path_buf(),
             link_path,
             summary: summary.unwrap_or_else(|| (*metadata.title).clone()),
             metadata,
-            team_asks,
+            team_involvement,
             goal_plans,
             task_owners,
         }))
     }
 
+    /// Returns all teams involved with this goal.
     pub fn teams_with_asks(&self) -> BTreeSet<&'static TeamName> {
-        self.team_asks
-            .iter()
-            .flat_map(|ask| &ask.teams)
-            .copied()
-            .collect()
+        self.team_involvement.teams()
     }
 
     /// True if this goal is a candidate (may yet be accepted)
@@ -315,17 +397,12 @@ pub fn format_goal_table(
         ]];
 
         for goal in goals {
-            let teams: BTreeSet<&TeamName> = goal
-                .team_asks
-                .iter()
-                .flat_map(|ask| &ask.teams)
-                .copied()
-                .collect();
+            let teams: BTreeSet<&TeamName> = goal.team_involvement.teams();
 
             // Format teams with champions in parentheses
             let teams_with_champions: Vec<String> = teams
                 .into_iter()
-                .map(|team| {
+                .map(|team: &'static TeamName| {
                     if let Some(champion) = goal.metadata.champions.get(team) {
                         format!("{} ({})", team, champion.content)
                     } else {
@@ -564,14 +641,193 @@ fn extract_summary(sections: &[Section]) -> Result<Option<String>> {
     Ok(Some(ownership_section.text.trim().to_string()))
 }
 
-fn extract_plan_items<'i>(sections: &[Section]) -> Result<Vec<GoalPlan>> {
-    let Some(ownership_index) = sections
+/// Extract team involvement from a goal document.
+///
+/// This function detects whether the goal uses the old format ("Ownership and team asks")
+/// or the new format ("Team asks") and parses accordingly.
+fn extract_team_involvement(
+    sections: &[Section],
+    link_path: &Arc<PathBuf>,
+    metadata: &Metadata,
+) -> Result<(TeamInvolvement, Vec<GoalPlan>, BTreeSet<String>)> {
+    // Check for new format first (2026+): "Team asks" section
+    if let Some(team_asks_index) = sections
+        .iter()
+        .position(|section| section.title == "Team asks")
+    {
+        let team_support = extract_team_support(sections, team_asks_index, link_path)?;
+        // New format doesn't have goal_plans or task_owners in the same way
+        return Ok((
+            TeamInvolvement::Support(team_support),
+            vec![],
+            BTreeSet::new(),
+        ));
+    }
+
+    // Fall back to old format (pre-2026): "Ownership and team asks" section
+    if let Some(ownership_index) = sections
         .iter()
         .position(|section| section.title == "Ownership and team asks")
-    else {
-        spanned::bail_here!("no `Ownership and team asks` section found")
-    };
+    {
+        let goal_plans = extract_plan_items_from_index(sections, ownership_index)?;
 
+        let mut team_asks = vec![];
+        for goal_plan in &goal_plans {
+            let mut goal_titles = vec![metadata.short_title.clone()];
+            if let Some(subgoal) = &goal_plan.subgoal {
+                goal_titles.push(subgoal.clone());
+            }
+            for plan_item in &goal_plan.plan_items {
+                team_asks.extend(plan_item.team_asks(link_path, &goal_titles, &metadata.pocs)?);
+            }
+        }
+
+        let task_owners = goal_plans
+            .iter()
+            .flat_map(|goal_plan| &goal_plan.plan_items)
+            .flat_map(|plan_item| plan_item.task_owners())
+            .collect();
+
+        return Ok((TeamInvolvement::Asks(team_asks), goal_plans, task_owners));
+    }
+
+    spanned::bail_here!(
+        "no `Team asks` or `Ownership and team asks` section found"
+    )
+}
+
+/// Extract team support entries from the new format (2026+).
+fn extract_team_support(
+    sections: &[Section],
+    team_asks_index: usize,
+    link_path: &Arc<PathBuf>,
+) -> Result<Vec<TeamSupport>> {
+    let section = &sections[team_asks_index];
+    let level = section.level;
+
+    let mut supports = vec![];
+
+    // Extract from main section
+    supports.extend(extract_team_support_from_section(None, section, link_path)?);
+
+    // Extract from subsections (for subgoals)
+    for subsection in sections
+        .iter()
+        .skip(team_asks_index + 1)
+        .take_while(|s| s.level > level)
+    {
+        supports.extend(extract_team_support_from_section(
+            Some(subsection.title.clone()),
+            subsection,
+            link_path,
+        )?);
+    }
+
+    Ok(supports)
+}
+
+/// Extract team support entries from a single section's table.
+fn extract_team_support_from_section(
+    subgoal: Option<Spanned<String>>,
+    section: &Section,
+    link_path: &Arc<PathBuf>,
+) -> Result<Vec<TeamSupport>> {
+    if section.tables.is_empty() {
+        return Ok(vec![]);
+    }
+
+    if section.tables.len() > 1 {
+        spanned::bail!(
+            section.title,
+            "expected at most one table in Team asks section, found {}",
+            section.tables.len()
+        );
+    }
+
+    let table = &section.tables[0];
+    expect_headers(table, &["Team", "Support level", "Notes"])?;
+
+    let mut supports = vec![];
+    for row in &table.rows {
+        let team_str = row[0].trim();
+
+        // Skip empty rows or placeholder rows
+        if team_str.is_empty() || team_str == "..." {
+            continue;
+        }
+
+        // Extract team name from markdown link format like [cargo] or [compiler]
+        let team_names = extract_team_names(team_str);
+        if team_names.is_empty() {
+            spanned::bail!(row[0], "could not parse team name from `{}`", team_str);
+        }
+
+        let team_name = &team_names[0];
+        let Some(team) = team::get_team_name(team_name)? else {
+            let names = team::get_team_names()?;
+            spanned::bail!(
+                row[0],
+                "no Rust team named `{}` found (valid names are {})",
+                team_name,
+                commas(names),
+            );
+        };
+
+        let support_level_str = row[1].trim();
+
+        // Skip rows with empty support level (template placeholders)
+        if support_level_str.is_empty() {
+            continue;
+        }
+
+        let support_level = SupportLevel::from_str(&row[1])?;
+
+        supports.push(TeamSupport {
+            link_path: link_path.clone(),
+            team,
+            support_level,
+            notes: row[2].to_string(),
+            subgoal: subgoal.clone(),
+        });
+    }
+
+    Ok(supports)
+}
+
+impl SupportLevel {
+    fn from_str(s: &Spanned<String>) -> Result<Self> {
+        match s.trim().to_lowercase().as_str() {
+            "vibes" => Ok(SupportLevel::Vibes),
+            "small" => Ok(SupportLevel::Small),
+            "medium" => Ok(SupportLevel::Medium),
+            "large" => Ok(SupportLevel::Large),
+            other => spanned::bail!(
+                s,
+                "unrecognized support level `{}`, expected one of: Vibes, Small, Medium, Large",
+                other
+            ),
+        }
+    }
+
+    /// Returns the display name for this support level.
+    pub fn as_str(&self) -> &'static str {
+        match self {
+            SupportLevel::Vibes => "Vibes",
+            SupportLevel::Small => "Small",
+            SupportLevel::Medium => "Medium",
+            SupportLevel::Large => "Large",
+        }
+    }
+}
+
+impl std::fmt::Display for SupportLevel {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}", self.as_str())
+    }
+}
+
+/// Extract plan items from the old format, starting at the given section index.
+fn extract_plan_items_from_index(sections: &[Section], ownership_index: usize) -> Result<Vec<GoalPlan>> {
     // Extract the plan items from the main section (if any)
     let level = sections[ownership_index].level;
 
