@@ -39,7 +39,7 @@ pub fn render_updates(
     use_progress_bar: bool,
     comment_order: Order,
 ) -> Result<String> {
-    let milestone_re = Regex::new(r"^\d{4}[hH][12]$").unwrap();
+    let milestone_re = Regex::new(crate::MILESTONE_REGEX).unwrap();
     if !milestone_re.is_match(milestone) {
         spanned::bail_here!(
             "the milestone `{}` does not follow the `$year$semester` format, where $semester is `h1` or `h2`",
