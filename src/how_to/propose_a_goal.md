@@ -1,13 +1,13 @@
 # Propose a new goal
 
-![Status: Accepting for 2025H1](https://img.shields.io/badge/status-accepting%20proposals%20for%202025H1-green)
+![Status: Accepting for 2026](https://img.shields.io/badge/status-accepting%20proposals%20for%202026-green)
 
 ## What steps do I take to submit a goal?
 
 Goal proposed are submitted as Pull Requests:
 
 * Fork the [GitHub repository](https://github.com/rust-lang/rust-project-goals) and clone it locally
-* Copy the [`src/TEMPLATE.md`](../TEMPLATE.md) to a file like `src/2025h1/your-goal-name.md`. Don't forget to run `git add`.
+* Copy the [`src/TEMPLATE.md`](../TEMPLATE.md) to a file like `src/2026/your-goal-name.md`. Don't forget to run `git add`.
 * Fill out the `your-goal-name.md` file with details, using the template and other goals as an example.
     * **The goal text does not have to be complete. It can be missing details.**
 * Open a PR.
