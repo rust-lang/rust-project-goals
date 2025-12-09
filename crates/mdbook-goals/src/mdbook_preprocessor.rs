@@ -309,7 +309,10 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         let mut old_format_asks: Vec<&TeamAsk> = vec![];
         let mut new_format_goals: Vec<&GoalDocument> = vec![];
 
-        for goal in goals.iter().filter(|g| g.metadata.status.is_not_not_accepted()) {
+        for goal in goals
+            .iter()
+            .filter(|g| g.metadata.status.is_not_not_accepted())
+        {
             match &goal.team_involvement {
                 TeamInvolvement::Asks(asks) => {
                     old_format_asks.extend(asks.iter());
@@ -324,9 +327,8 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         let mut formatted = String::new();
 
         if !old_format_asks.is_empty() {
-            formatted.push_str(
-                &format_team_asks(&old_format_asks).map_err(|e| anyhow::anyhow!("{e}"))?,
-            );
+            formatted
+                .push_str(&format_team_asks(&old_format_asks).map_err(|e| anyhow::anyhow!("{e}"))?);
         }
 
         if !new_format_goals.is_empty() {
@@ -731,7 +733,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             &Some(end_date),
             None,
             false,
-	    Order::OldestFirst,
+            Order::OldestFirst,
         )
         .map_err(|e| anyhow::anyhow!("Failed to generate blog post content: {}", e))?;
 
@@ -743,9 +745,9 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         milestone: &str,
         team_name: &str,
     ) -> anyhow::Result<String> {
-	// Look at the updates for the last ~three months
-	let end_date = chrono::Utc::now().date_naive();
-	let start_date = end_date - chrono::TimeDelta::days(90);
+        // Look at the updates for the last ~three months
+        let end_date = chrono::Utc::now().date_naive();
+        let start_date = end_date - chrono::TimeDelta::days(90);
 
         eprintln!(
             "👥 Generating champion report for {} team, {start_date} - {end_date} (milestone: {})",
@@ -768,7 +770,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             &Some(end_date),
             Some(team_name),
             false,
-	    Order::NewestFirst,
+            Order::NewestFirst,
         )
         .map_err(|e| anyhow::anyhow!("Failed to generate champion report content: {}", e))?;
 

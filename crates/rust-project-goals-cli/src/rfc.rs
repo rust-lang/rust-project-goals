@@ -170,9 +170,10 @@ pub fn generate_issues(
             if success == 0 {
                 spanned::bail_here!("all actions failed, aborting")
             }
-            
+
             // Clear the cached issues since we just modified them
-            if let Err(e) = rust_project_goals::gh::issues::clear_milestone_issues_cache(&timeframe) {
+            if let Err(e) = rust_project_goals::gh::issues::clear_milestone_issues_cache(&timeframe)
+            {
                 eprintln!("Warning: Failed to clear issues cache: {}", e);
             }
         } else {

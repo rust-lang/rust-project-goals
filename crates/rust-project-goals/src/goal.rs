@@ -691,9 +691,7 @@ fn extract_team_involvement(
         return Ok((TeamInvolvement::Asks(team_asks), goal_plans, task_owners));
     }
 
-    spanned::bail_here!(
-        "no `Team asks` or `Ownership and team asks` section found"
-    )
+    spanned::bail_here!("no `Team asks` or `Ownership and team asks` section found")
 }
 
 /// Extract team support entries from the new format (2026+).
@@ -827,7 +825,10 @@ impl std::fmt::Display for SupportLevel {
 }
 
 /// Extract plan items from the old format, starting at the given section index.
-fn extract_plan_items_from_index(sections: &[Section], ownership_index: usize) -> Result<Vec<GoalPlan>> {
+fn extract_plan_items_from_index(
+    sections: &[Section],
+    ownership_index: usize,
+) -> Result<Vec<GoalPlan>> {
     // Extract the plan items from the main section (if any)
     let level = sections[ownership_index].level;
 
