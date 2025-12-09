@@ -1,9 +1,8 @@
-use anyhow::Context;
 use std::collections::{BTreeMap, BTreeSet};
 use std::rc::Rc;
 
 use crate::config::GoalsConfig;
-use crate::{re, team, util::GithubUserInfo};
+use crate::{re, team};
 
 /// Pure, stateless markdown processing logic
 pub struct MarkdownProcessor {
@@ -33,6 +32,14 @@ impl MarkdownProcessor {
         content = self.link_teams(content)?; // stateless
         content = self.linkify(content)?; // stateless
         content = self.insert_links(content)?; // stateless
+
+        // This forces pulldown-cmark to treat it as a HTML code block
+        // instead of Markdown. Without this, it inserts spurious
+        // `<p>` tags in as well as creating nested code blocks
+        // (because it treats an indented section of code as a
+        // markdown code block)
+        let content = content.replace("<pre>", "\n\n<pre>");
+
         Ok(content)
     }
 
@@ -42,6 +49,19 @@ impl MarkdownProcessor {
         content: String,
         state: &mut MarkdownProcessorState,
     ) -> anyhow::Result<String> {
+        // TODO: using a regex to pick out the usernames has risk for false positives.
+        //
+        // E.g. it was picking up the field projection syntax
+        // (`foo.@bar.@baz`) as github usernames and either finding
+        // those and using their names or returning gibberish that
+        // made the underlying comment indistinguishable.
+        //
+        // This is a pretty messy situation, but I think the best
+        // option is to only look for GH usernames in non-code
+        // portions of the Markdown content.
+        //
+        // As a workaround, we're only rendering the Project members'
+        // usernames so far and leaving everything else as-is.
         let usernames: BTreeSet<String> = re::USERNAME
             .find_iter(&content)
             .map(|m| m.as_str().to_string())
@@ -50,19 +70,21 @@ impl MarkdownProcessor {
 
         let mut content = content;
         for username in &usernames {
-            let display_name = self.get_display_name(username, state)?;
-            content = content.replace(username, &format!("[{}][]", display_name));
+            if let Ok(display_name) = self.get_display_name(username, state) {
+                content = content.replace(username, &format!("[{}][]", display_name));
+            }
         }
 
         // Add link definitions
         content.push_str("\n\n");
         for username in &usernames {
-            let display_name = self.get_display_name(username, state)?;
-            content.push_str(&format!(
-                "[{}]: https://github.com/{}\n",
-                display_name,
-                &username[1..] // Remove @ prefix
-            ));
+            if let Ok(display_name) = self.get_display_name(username, state) {
+                content.push_str(&format!(
+                    "[{}]: https://github.com/{}\n",
+                    display_name,
+                    &username[1..] // Remove @ prefix
+                ));
+            }
         }
 
         Ok(content)
@@ -132,23 +154,7 @@ impl MarkdownProcessor {
             match team::get_person_data(username).map_err(|e| anyhow::anyhow!("{e}"))? {
                 Some(person) => person.data.name.clone(),
                 None => {
-                    // Fall back to GitHub API
-                    match GithubUserInfo::load(username)
-                        .map_err(|e| anyhow::anyhow!("{e}"))
-                        .with_context(|| format!("loading user info for {}", username))
-                    {
-                        Ok(GithubUserInfo {
-                            name: Some(name), ..
-                        }) => name,
-                        Ok(GithubUserInfo { name: None, .. }) => username.to_string(),
-                        Err(e) => {
-                            eprintln!(
-                                "Warning: failed to load user info for {}: {:?}",
-                                username, e
-                            );
-                            username.to_string()
-                        }
-                    }
+                    anyhow::bail!("Failed to load user info for {username}");
                 }
             };
 
