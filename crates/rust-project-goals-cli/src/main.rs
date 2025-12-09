@@ -241,6 +241,15 @@ fn generate_updates(
         updates::Order::default(),
     )?;
 
+    // Make sure the `<pre>` code blocks have at least one empty line
+    // before any preceding content. Without that, the blog post (as
+    // rendered in the Rust blog repo) attempts to format the block as
+    // markdown rather than passing it through as HTML.
+    //
+    // See the analogous change in
+    // `MarkdownProcessor::process_markdown`.
+    let output = output.replace("<pre>", "\n\n<pre>");
+
     if let Some(output_file) = output_file {
         std::fs::write(&output_file, output).with_path_context(output_file, "failed to write")?;
     } else if vscode {

@@ -32,6 +32,14 @@ impl MarkdownProcessor {
         content = self.link_teams(content)?; // stateless
         content = self.linkify(content)?; // stateless
         content = self.insert_links(content)?; // stateless
+
+        // This forces pulldown-cmark to treat it as a HTML code block
+        // instead of Markdown. Without this, it inserts spurious
+        // `<p>` tags in as well as creating nested code blocks
+        // (because it treats an indented section of code as a
+        // markdown code block)
+        let content = content.replace("<pre>", "\n\n<pre>");
+
         Ok(content)
     }
 
