@@ -1,7 +1,7 @@
 use regex::Regex;
 use rust_project_goals::spanned::{Error, Spanned};
-use rust_project_goals::{spanned::Context as _, spanned::Result};
 use rust_project_goals::util::MILESTONE_REGEX;
+use rust_project_goals::{spanned::Context as _, spanned::Result};
 use std::fs::{self, File};
 use std::io::Write;
 use std::path::{Path, PathBuf};
@@ -575,8 +575,14 @@ mod tests {
         let intro_pos = result.find("[👋 Introduction]").unwrap();
         let goal_process_pos = result.find("# ⏳ 2026H1 goal process").unwrap();
         let existing_section_pos = result.find("# ⚙️ 2025H2").unwrap();
-        assert!(intro_pos < goal_process_pos, "Goal process section should come after Introduction");
-        assert!(goal_process_pos < existing_section_pos, "New section should come before existing dated section");
+        assert!(
+            intro_pos < goal_process_pos,
+            "Goal process section should come after Introduction"
+        );
+        assert!(
+            goal_process_pos < existing_section_pos,
+            "New section should come before existing dated section"
+        );
     }
 
     #[test]
@@ -593,8 +599,14 @@ mod tests {
         let intro_pos = result.find("[👋 Introduction]").unwrap();
         let goal_process_pos = result.find("# ⏳ 2027 goal process").unwrap();
         let existing_section_pos = result.find("# ⚙️ 2025H2").unwrap();
-        assert!(intro_pos < goal_process_pos, "Goal process section should come after Introduction");
-        assert!(goal_process_pos < existing_section_pos, "New section should come before existing dated section");
+        assert!(
+            intro_pos < goal_process_pos,
+            "Goal process section should come after Introduction"
+        );
+        assert!(
+            goal_process_pos < existing_section_pos,
+            "New section should come before existing dated section"
+        );
     }
 
     #[test]

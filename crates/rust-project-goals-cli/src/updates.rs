@@ -175,7 +175,7 @@ pub fn render_updates(
         &filter,
         true,
         use_progress_bar,
-	comment_order,
+        comment_order,
         &issue_themes,
         &issue_point_of_contact,
         &issue_team_champions,
@@ -187,7 +187,7 @@ pub fn render_updates(
         &filter,
         false,
         use_progress_bar,
-	comment_order,
+        comment_order,
         &issue_themes,
         &issue_point_of_contact,
         &issue_team_champions,
@@ -244,10 +244,10 @@ fn prepare_goals(
         comments.sort_by_key(|c| c.created_at.clone());
         comments.retain(|c| !c.should_hide_from_reports() && filter.matches(c));
 
-	// We got the comments in the chronological order. Reverse it if desired.
-	if matches!(comment_order, Order::NewestFirst) {
+        // We got the comments in the chronological order. Reverse it if desired.
+        if matches!(comment_order, Order::NewestFirst) {
             comments.reverse();
-	}
+        }
 
         // Prettify the comments' timestamp after using it for sorting.
         for comment in comments.iter_mut() {
