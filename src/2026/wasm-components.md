@@ -62,7 +62,7 @@ We would like to bring Rust up to date with async support for Wasm Components.
 This means adding a new WASI target (`wasm32-wasip3`) and bringing it to tier 2.
 But also adding new targets for bare components with optional async support
 (`wasm32-component`) and a variation of that specifically for the web
-(`wasm32-component-web`).
+(`wasm32-web`).
 
 WebAssembly's goal is to provide a general-purpose, lightweight, and sandboxed
 plugin model. Not just on the web, but also for databases, servers, embedded,
