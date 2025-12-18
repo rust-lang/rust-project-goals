@@ -50,7 +50,7 @@ There are a number of things with WebAssembly in Rust that are not ideal:
 | --------------------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------ |
 | Bring `wasm32-wasip3` to tier 2                     | @alexcrichton |                                                                                                        |
 | Introduce `wasm32-component` target as tier 3       | @alexcrichton |                                                                                                        |
-| Introduce `wasm32-web` target as tier 3             | @alexcrichton |                                                                                                        |
+| Introduce `wasm32-web` target as tier 3             | @yoshuawuyts  |                                                                                                        |
 | Implement `std::thread` for WASIp3                  | @tartanllama  |                                                                                                        |
 | Implement `async fn main` for WASIp3                | @yoshuawuyts  |                                                                                                        |
 | Experiment with `#[repr(wasm)]` and `extern "wasm"` | tbd           | This item is more aspirational than the others. It would be good to do this, but we may not get to it. |
