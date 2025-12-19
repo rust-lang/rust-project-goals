@@ -46,14 +46,14 @@ There are a number of things with WebAssembly in Rust that are not ideal:
 
 > *Sketch out the specific things you are trying to achieve in this goal period. This should be short and high-level -- we don't want to see the design!*
 
-| Task                                                | Owner(s)      | Notes                                                                                                  |
-| --------------------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------ |
-| Bring `wasm32-wasip3` to tier 2                     | @alexcrichton |                                                                                                        |
-| Introduce `wasm32-component` target as tier 3       | @alexcrichton |                                                                                                        |
-| Introduce `wasm32-web` target as tier 3             | @yoshuawuyts  |                                                                                                        |
-| Implement `std::thread` for WASIp3                  | @tartanllama  |                                                                                                        |
-| Implement `async fn main` for WASIp3                | @yoshuawuyts  |                                                                                                        |
-| Experiment with `#[repr(wasm)]` and `extern "wasm"` | tbd           | This item is more aspirational than the others. It would be good to do this, but we may not get to it. |
+| Task                                                | Owner(s)      | Notes                                                                                                                                                          |
+| --------------------------------------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Bring `wasm32-wasip3` to tier 2                     | @alexcrichton | This is the WASI 0.3 target, with support for component model async features. It unlocks async-async component composition, as well as cooperative threading.  |
+| Introduce `wasm32-component` target as tier 3       | @alexcrichton | This target is very similar to `wasm32-wasip3`, but does not include the WASI APIs, making it `#[no_std]` + `alloc`.                                           |
+| Introduce `wasm32-component-web` target as tier 3   | @yoshuawuyts  | This target is very similar to `wasm32-component`, but with a different `cfg` that enables an ecosystem to be built specifically targeting the web.            |
+| Implement `std::thread` for WASIp3                  | @tartanllama  | This is a future extension to the component model, which will be part of a WASI 0.3.x release. Enables Wasm Components' "cooperative multi-threading" feature. |
+| Implement `async fn main` for WASIp3                | @yoshuawuyts  |                                                                                                                                                                |
+| Experiment with `#[repr(wasm)]` and `extern "wasm"` | tbd           | This item is more aspirational than the others. It would be good to do this, but we may not get to it.                                                         |
 
 
 ### The "shiny future" we are working towards
@@ -62,7 +62,7 @@ We would like to bring Rust up to date with async support for Wasm Components.
 This means adding a new WASI target (`wasm32-wasip3`) and bringing it to tier 2.
 But also adding new targets for bare components with optional async support
 (`wasm32-component`) and a variation of that specifically for the web
-(`wasm32-web`).
+(`wasm32-component-web`).
 
 WebAssembly's goal is to provide a general-purpose, lightweight, and sandboxed
 plugin model. Not just on the web, but also for databases, servers, embedded,
