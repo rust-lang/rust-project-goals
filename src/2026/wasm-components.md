@@ -16,7 +16,7 @@ experimentation with Wasm-specific language features.
 ## Motivation
 
 Rust has been at the forefront of WebAssembly support since WebAssembly was
-incepted. The WASI 0.3 specification is expected be released in early 2026,
+incepted. The WASI 0.3 specification is expected to be released in early 2026,
 adding native support for async operations to Wasm Components. You can think of
 this as morally equivalent to support for `async fn` and `async gen fn` at the
 ABI level.
