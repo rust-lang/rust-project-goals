@@ -10,7 +10,7 @@
 ## Summary
 
 In 2026 we want to improve the state of Wasm Component support in Rust. This
-means adding and stabilizing three new compiler targets. As well as begin
+means adding and stabilizing three new compiler targets, as well as begin
 experimentation with Wasm-specific language features.
 
 ## Motivation
