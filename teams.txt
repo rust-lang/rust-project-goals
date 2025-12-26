@@ -1,0 +1,61 @@
+a-mir-formality
+ [types]        
+annotate-snippets
+ [compiler]           
+async
+ [lang], [libs], [libs-api] 
+ATPIT
+ [types], [lang] 
+cargo-script
+ [cargo], [lang] 
+cargo-semver-checks
+ [cargo]                                                      
+const-traits
+ [types], [lang] 
+Contracts-and-invariants
+ [lang], [libs], [compiler] 
+doc_cfg
+ [rustdoc]       
+ergonomic-rc
+ [lang], [libs-api] 
+ergonomics-initiative
+ [lang]       
+faster-iterative-builds
+ [lang], [compiler], [cargo] 
+merged-doctests
+ [rustdoc]       
+min_generic_const_arguments
+ [types]  
+next-solver
+ [types]  
+optimize-clippy
+ [clippy] 
+parallel-front-end
+ [compiler]  
+Patterns-of-empty-types
+ [lang]     
+Polonius
+ [types]  
+Project-goal-slate
+ [leadership-council] 
+pubgrub-in-cargo
+ [cargo]  
+Relaxing-the-Orphan-Rule
+ [lang][], [types][] 
+rfl_stable
+ [lang], [libs-api], [compiler] 
+Rust-2024-Edition
+ [lang], [types] 
+rustdoc-search
+ [rustdoc], [rustdoc-frontend] 
+Rust-for-SciComp
+ [lang], [compiler] 
+sandboxed-build-script
+ [cargo]    
+Seamless-C-Support
+std-verification
+ [Libs]    
+user-wide-cache
+ [cargo]          
+yank-crates-with-a-reason
+ [crates-io], [cargo] 
