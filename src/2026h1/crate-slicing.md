@@ -4,7 +4,6 @@
 | --- | --- |
 | Point of contact | @yijunyu |
 | Status | Proposed |
-| Tracking issue | TBD |
 | Zulip channel | TBD |
 
 ## Summary
@@ -212,13 +211,13 @@ The prototype required solving several non-trivial problems:
 
 ## Team asks
 
-| Subgoal | Team | Ask | Size |
-|---------|------|-----|------|
-| Assess approach feasibility and soundness concerns | compiler | Consultation | Medium |
-| Discuss cargo integration options | cargo | Discussion | Medium |
-| Guidance on trait coherence requirements for slicing | types | Consultation | Small |
-| Feedback on rust-analyzer integration potential | rust-analyzer | Discussion | Small |
-| Review of research methodology and findings | lang | Discussion | Small |
+| Team | Support level | Notes |
+|------|---------------|-------|
+| compiler | Medium | Consultation on approach feasibility and soundness concerns |
+| cargo | Medium | Discussion on cargo integration options |
+| types | Small | Consultation on trait coherence requirements for slicing |
+| rust-analyzer | Small | Discussion on rust-analyzer integration potential |
+| lang | Small | Discussion on review of research methodology and findings |
 
 ## Frequently asked questions
 
