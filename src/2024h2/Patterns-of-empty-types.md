@@ -1,11 +1,11 @@
 # Patterns of empty types
 
-| Metadata |            |
-| -------- | ---------- |
-| Owner(s) | @Nadrieril |
-| Teams    | [lang]     |
-| Status   | Accepted   |
-
+| Metadata       |                                    |
+| ---            | ---                                |
+| Point of contact | @Nadrieril                         |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#115] |
+| Zulip channel  | N/A                                |
 ## Summary
 
 Introduce an RFC for never patterns or other solutions for patterns involving uninhabited types.
@@ -91,9 +91,7 @@ already for several months.
     * The feature may require one design meeting.
 * Implementation work is 80% done, which leaves about 80% more to do. This will require reviews from
   the compiler team, but not more than the ordinary.
-
-
-| Subgoal                      | Owner(s) or team(s)  | Notes |
+| Task                         | Owner(s) or team(s)  | Notes |
 | ---------------------------- | -------------------- | ----- |
 | Author RFC                   | @Nadrieril           |       |
 | Implementation               | @Nadrieril           |       |

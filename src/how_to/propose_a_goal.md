@@ -1,7 +1,27 @@
 # Propose a new goal
 
-* Clone the [GitHub repository](https://github.com/rust-lang/rust-project-goals) and copy the [`TEMPLATE.md`](../TEMPLATE.md) to a file like `2024h2/your-goal-name.md`.
+![Status: Accepting for 2026](https://img.shields.io/badge/status-accepting%20proposals%20for%202026-green)
+
+## What steps do I take to submit a goal?
+
+Goal proposed are submitted as Pull Requests:
+
+* Fork the [GitHub repository](https://github.com/rust-lang/rust-project-goals) and clone it locally
+* Copy the [`src/TEMPLATE.md`](../TEMPLATE.md) to a file like `src/2026/your-goal-name.md`. Don't forget to run `git add`.
 * Fill out the `your-goal-name.md` file with details, using the template and other goals as an example.
-    * Don't worry about adding to the list of goals, I will do that to minimize merge conflicts.
-* Open a PR. Assuming everything looks good, it will be merged into the list:
     * **The goal text does not have to be complete. It can be missing details.**
+* Open a PR.
+
+## Who should propose a goal?
+
+Opening a goal is an indication that you (or your company, etc) is willing to put up the resources needed to make it happen, at least if you get the indicated support from the teams. These resources are typically development time and effort, but they could be funding (in that case, we'd want to identify someone to take up the goal). If you pass that bar, then by all means, yes, open a goal. 
+
+Note though that controversial goals are likely to not be accepted. If you have an idea that you think people won't like, then you should find ways to lower the ask of the teams. For example, maybe the goal should be to perform experiments to help make the case for the idea, rather than jumping straight to implementation.
+
+## Help! I have no idea what Rust teams to ask for help from.
+
+Don't stress. The most important thing is to write-up the motivation. It's fine to open a PR that is semi-completed, the goals team will help you figure things out! That's what we are here for.
+
+## Can I still do X, even if I don't submit a goal for it?
+
+Yes. Goals are not mandatory for work to proceed. They are a tracking mechanism to help stay on course.

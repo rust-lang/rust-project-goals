@@ -1,0 +1,3 @@
+# Invited goals
+
+**Invited goals** are goals accepted whose main implementation tasks have no assigned [owner](./owners.md). Teams accept invited goals to represent work that they feel is important but where nobody is available to do the work. These goals are a great place to get started in contributing to Rust. If you see an invited goal you think you could help with, reach out to the [point of contact](./poc.md) listed on the goal: they are volunteering to mentor.

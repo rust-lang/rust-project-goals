@@ -1,11 +1,11 @@
 # Survey tools suitability for Std safety verification
 
-| Metadata |           |
-| -------- |-----------|
-| Owner(s) | @celinval |
-| Teams    | [Libs]    |
-| Status   | Accepted  |
-
+| Metadata       |                                    |
+| ---            | ---                                |
+| Point of contact | @celinval                          |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#126] |
+| Zulip channel  | N/A                                |
 ## Summary
 
 Instrument a fork of the standard library (the [verify-rust-std] repository) with safety contracts,
@@ -119,10 +119,10 @@ semantics will lower the barrier for users to understand and be able to write th
 
 **Owner:** @celinval
 
-| Subgoal                            | Owner(s) or team(s)  | Notes                                                                 |
+| Task                               | Owner(s) or team(s)  | Notes                                                                 |
 |------------------------------------|----------------------|-----------------------------------------------------------------------|
 | Discussion and moral support       | ![Team][] [libs][]   |                                                                       |
-| Standard review                    | ![Team][] [libs][]   | We would like to contribute upstream the contracts added to the fork. |
+| Standard reviews                    | ![Team][] [libs][]   | We would like to contribute upstream the contracts added to the fork. |
 | Problem proposals                  | Help Wanted          |                                                                       |
 | Fork maintenance                   | @celinval, @jaisnan  |                                                                       |
 | Fork PR Reviews                    | [Own Committee]      | We are gathering a few contributors with expertise knowledge.         |
@@ -144,4 +144,3 @@ Besides contracts, these changes may include extra harnesses, lemmas, ghost-code
 the standard library.
 
 ## Frequently asked questions
-

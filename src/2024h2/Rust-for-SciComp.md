@@ -1,11 +1,12 @@
 # Expose experimental LLVM features for automatic differentiation and GPU offloading
 
-| Metadata |                    |
-| -------- | ------------------ |
-| Owner(s) | @ZuseZ4            |
-| Teams    | [lang], [compiler] |
-| Status   | Accepted           |
-
+| Metadata       |                                    |
+| ---            | ---                                |
+| Point of contact | @ZuseZ4                            |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#109] |
+| Other tracking issues | [rust-lang/rust#124509], [rust-lang/rust#124509] |
+| Zulip channel  | N/A                                |
 ## Summary
 
 Expose experimental LLVM features for automatic differentiation and GPU offloading.
@@ -84,7 +85,7 @@ Resources: Domain and CI for the autodiff work is being provided by MIT. This mi
 
 Minimal "smoke test" reviews will be needed from the compiler-team. The Rust language changes at this stage are expected to be a minimal wrapper around the underlying LLVM functionality and the compiler team need only vet that the feature will not hinder usability for ordinary Rust users or cause undue burden on the compiler architecture itself. There is no requirement to vet the quality or usability of the design.
 
-| Subgoal              | Owner(s) or team(s)    | Notes      |
+| Task                 | Owner(s) or team(s)    | Notes      |
 | -------------------- | ---------------------- | ---------- |
 | Development          | @ZuseZ4                |            |
 | Lang-team experiment | ![Team][] [lang][]     | (approved) |
@@ -97,10 +98,16 @@ Minimal "smoke test" reviews will be needed from the compiler-team. The Rust lan
 ### Outputs
 
 - An `#[offload]` rustc-builtin-macro which makes a function definition known to the LLVM offloading backend.
+  - [x] Made a PR to enable LLVM's offloading runtime backend.
+  - [ ] Merge the offload macro frontend
+  - [ ] Merge the offload Middle-end
 
 - An `offload!([GPU1, GPU2, TPU1], foo(x, y,z));` macro (placeholder name) which will execute function `foo` on the specified devices.
 
 - An `#[autodiff]` rustc-builtin-macro which differentiates a given function.
+  - [x] Merge the Autodiff macro frontend
+  - [x] Merge the Autodiff Enzyme backend
+  - [ ] Merge the Autodiff Middle-end
 
 - A `#[batching]` rustc-builtin-macro which fuses N function calls into one call, enabling better vectorization.
 

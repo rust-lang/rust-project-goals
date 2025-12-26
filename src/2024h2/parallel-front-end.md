@@ -1,14 +1,16 @@
 # Stabilize parallel front end
 
-| Metadata |             |
-| -------- | ----------- |
-| Owner(s) | @SparrowLii |
-| Teams    | [compiler]  |
-| Status   | Accepted    |
+| Metadata       |                                          |
+| ---            | ---                                      |
+| Point of contact | @SparrowLii                            |
+| Status         | Accepted                                 |
+| Tracking issue | [rust-lang/rust-project-goals#121]       |
+| Zulip channel  | [#t-compiler/wg-parallel-rustc][channel] |
 
+[channel]: https://rust-lang.zulipchat.com/#narrow/channel/187679-t-compiler.2Fwg-parallel-rustc/
 ## Summary
 
-We will move rustc's support for parallel front end closer to stability by resolving [ICE] and [deadlock] issues, completing the [test] suit for multithreaded scenario and integrating parallel front end into bootstrap. This fits into our larger goal of improving rustc build times by 20% by leveraging multiple cores and enhance its robustness.
+We will move rustc's support for parallel front end closer to stability by resolving [ICE] and [deadlock] issues, completing the [test] suite for multithreaded scenario and integrating parallel front end into bootstrap. This fits into our larger goal of improving rustc build times by 20% by leveraging multiple cores and enhance its robustness.
 
 ## Motivation
 
@@ -53,15 +55,13 @@ The parallel front end should be:
 
 **Owner:** @SparrowLii and Parallel Rustc WG own this goal
 
-| Subgoal                      | Owner(s) or team(s)  | Notes |
+| Task                         | Owner(s) or team(s)  | Notes |
 | ---------------------------- | -------------------- | ----- |
 | Implementation               | @SparrowLii          |       |
 | Author tests                 | @SparrowLii          |       |
 | Discussion and moral support | ![Team][] [compiler] |       |
 
 ## Frequently asked questions
-
-
 [ICE]: https://github.com/rust-lang/rust/issues?q=is%3Aopen+label%3AWG-compiler-parallel+ice
 [deadlock]: https://github.com/rust-lang/rust/issues?q=is%3Aopen+label%3AWG-compiler-parallel+deadlock
 [test]: https://github.com/rust-lang/rust/issues/118698

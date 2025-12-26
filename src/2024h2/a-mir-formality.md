@@ -1,10 +1,13 @@
 # Testing infra + contributors for a-mir-formality
 
-| Metadata |                |
-| -------- | -------------- |
-| Owner(s) | @nikomatsakis |
-| Teams    | [types]        |
-| Status   | Accepted       |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Point of contact | @nikomatsakis                      |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#122] |
+| Zulip channel  | [#t-types/formality][channel]      |
+
+[channel]: https://rust-lang.zulipchat.com/#narrow/channel/402470-t-types.2Fformality
 
 ## Summary
 
@@ -46,7 +49,7 @@ We also envision it being tested both through fuzzing and by comparing its resul
 
 We will require participation from at least 2 other members of T-types. Current candidates are lcnr + compiler-errors.
 
-| Subgoal          | Owner(s) or team(s)            | Notes |
+| Task             | Owner(s) or team(s)            | Notes |
 | ---------------- | ------------------------------ | ----- |
 | Implementation   | @nikomatsakis, lcnr, and others |       |
 | Standard reviews | ![Team][] [types]              |       |

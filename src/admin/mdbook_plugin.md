@@ -4,10 +4,10 @@ The mdbook is controlled by the `mdbook-goals` plugin in this repo.
 This plugin makes various edits to the source:
 
 * Linking usernames like <code>&#x40;foo</code> to their github page and replacing them with their display name.
-* Linking GH references lke rust-lang/rust#123.
+* Linking GH references like rust-lang/rust#123.
 * Collating goals, creating tables, etc.
 
-The plugin can also be used [from the commmand line](./commands.md).
+The plugin can also be used [from the command line](./commands.md).
 
 ## Expected book structure
 
@@ -33,4 +33,4 @@ The placeholder <code>&lt;-- #GOALS --&gt;</code> will be replaced with the tota
 
 ### Goal listing
 
-The placeholder <code>&lt;-- GOALS '$Status' --&gt;</code> will insert a goal table listing goals of the given status `$Status`, e.g., <code>&lt;-- GOALS 'Flagship' --&gt;</code>. You can also list multiple status items, e.g., <code>&lt;-- GOALS 'Accepted,Orphaned' --&gt;</code>
+The placeholder <code>&lt;-- GOALS '$Status' --&gt;</code> will insert a goal table listing goals of the given status `$Status`, e.g., <code>&lt;-- GOALS 'Flagship' --&gt;</code>. You can also list multiple status items, e.g., <code>&lt;-- GOALS 'Accepted,Proposed' --&gt;</code>

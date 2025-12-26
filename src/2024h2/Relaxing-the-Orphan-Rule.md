@@ -2,9 +2,9 @@
 
 | Metadata |                     |
 | -------- | ------------------- |
-| Owner(s) | ![Help wanted][]    |
-| Teams    | [lang][], [types][] |
+| Point of contact | @nikomatsakis    |
 | Status   | Not accepted        |
+| Zulip channel  | N/A                                |
 
 ## Summary
 
@@ -119,7 +119,7 @@ This section defines the specific work items that are planned and who is expecte
     * List ![Help wanted][] if there is an owner but they need support, for example funding.
     * Other needs (e.g., complete, in FCP, etc) are also fine.
 
-| Subgoal                       | Owner(s) or team(s)      | Notes                      |
+| Task                          | Owner(s) or team(s)      | Notes                      |
 | ----------------------------- | ------------------------ | -------------------------- |
 | Ownership and implementation  | ![Help wanted][]         |                            |
 | RFC authoring                 | ![Help wanted][]         |                            |

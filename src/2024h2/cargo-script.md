@@ -1,10 +1,11 @@
 # Stabilize cargo-script
 
-| Metadata |                 |
-| -------- | --------------- |
-| Owner(s) | @epage          |
-| Teams    | [cargo], [lang] |
-| Status   | Accepted        |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Point of contact | @epage                           |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#119] |
+| Zulip channel  | N/A                                |
 
 ## Summary
 
@@ -66,7 +67,7 @@ This section defines the specific work items that are planned and who is expecte
     * List ![Help wanted][] if there is an owner but they need support, for example funding.
     * Other needs (e.g., complete, in FCP, etc) are also fine.
 
-| Subgoal                | Owner(s) or team(s)      | Notes |
+| Task                   | Owner(s) or team(s)      | Notes |
 | ---------------------- | ------------------------ | ----- |
 | Implementation         | @epage                   |       |
 | Stabilization decision | ![Team][] [lang] [cargo] |       |

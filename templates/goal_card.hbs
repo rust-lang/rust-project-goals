@@ -1,0 +1,74 @@
+<div class="goal-card" style="border: 1px solid #ddd; border-radius: 8px; margin: 16px 0; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+
+<!-- Goal Title Header -->
+<div style="background: #4A90E2; color: white; padding: 12px 16px; font-weight: bold; font-size: 1.1em;">
+{{title}} <a href='{{{issue_url}}}' style="color: #cce7ff; text-decoration: underline; font-size: 0.9em;">({{issue_link_text}})</a>
+</div>
+
+<!-- Goal Information Table -->
+
+<table style="width: 100%; border-collapse: collapse; background: var(--body-background-color);">
+<tr style="border-bottom: 1px solid #eee;">
+<td style="padding: 8px 16px; font-weight: bold; width: 80px; color: #666;">Progress</td>
+<td style="padding: 8px 16px;">{{>progress is_closed=is_closed progress=progress}}</td>
+</tr>
+<tr style="border-bottom: 1px solid #eee;">
+<td style="padding: 8px 16px; font-weight: bold; color: #666;">Point of contact</td>
+<td style="padding: 8px 16px;">{{{markdown_to_html point_of_contact}}}</td>
+</tr>
+{{#unless (eq team_champions "(none)")}}
+<tr style="border-bottom: 1px solid #eee;">
+<td style="padding: 8px 16px; font-weight: bold; color: #666;">Champions</td>
+<td style="padding: 8px 16px;">{{{markdown_to_html team_champions}}}</td>
+</tr>
+{{/unless}}
+{{#unless (eq task_owners "(none)")}}
+<tr style="border-bottom: 1px solid #eee;">
+<td style="padding: 8px 16px; font-weight: bold; color: #666;">Task owners</td>
+<td style="padding: 8px 16px;">{{{markdown_to_html task_owners}}}</td>
+</tr>
+{{/unless}}
+</table>
+
+<!-- TL;DR Section -->
+{{#if tldr}}
+<div style="padding: 12px 16px; background: var(--blockquote-bg-color); border-bottom: 1px solid #eee;">
+<strong>TL;DR.</strong> {{{markdown_to_html tldr}}}
+</div>
+{{/if}}
+
+<!-- Help Wanted Section -->
+{{#if has_help_wanted}}
+{{#each help_wanted}}
+<div style="padding: 12px 16px; background: #fff3cd; border-bottom: 1px solid #eee; border-left: 4px solid #ffc107; color: black;">
+<strong>Help wanted:</strong> {{{markdown_to_html text}}}
+</div>
+{{/each}}
+{{/if}}
+
+<!-- Updates Section -->
+{{#if comments}}
+<details style="border-top: 1px solid #eee;">
+<summary style="padding: 10px 16px; background: var(--blockquote-bg-color); cursor: pointer; list-style: none; outline: none;">
+<span style="font-weight: bold;">{{{markdown_to_html details_summary}}}</span>
+</summary>
+<div style="padding: 12px 16px; background: var(--body-background-color);">
+{{#each comments}}
+<div style="margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #f0f0f0;">
+<a href="{{url}}" style="color: #0366d6; font-weight: 500; text-decoration: none;">Comment by {{author}} posted on {{created_at}}:</a>
+<div style="margin-top: 8px; padding: 12px; background: var(--blockquote-bg-color); border-left: 4px solid #e1e4e8; border-radius: 0 6px 6px 0;">
+{{{markdown_to_html body}}}
+</div>
+</div>
+{{/each}}
+</div>
+</details>
+{{else}}
+<details style="border-top: 1px solid #eee;">
+<summary style="padding: 10px 16px; background: var(--blockquote-bg-color); cursor: pointer; list-style: none; outline: none;">
+<span style="font-weight: bold;">{{details_summary}}</span>
+</summary>
+</details>
+{{/if}}
+
+</div>

@@ -1,11 +1,13 @@
 # Assemble project goal slate
 
-| Metadata |                      |
-| -------- | -------------------- |
-| Owner(s) | @nikomatsakis        |
-| Teams    | [leadership-council] |
-| Status   | Accepted             |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Point of contact | @nikomatsakis                      |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#102] |
+| Zulip channel  | [#project-goals][channel]               |
 
+[channel]: https://rust-lang.zulipchat.com/#narrow/channel/435869-project-goals
 *Extracted from [RFC 3614](https://github.com/rust-lang/rfcs/blob/master/text/3614-project-goals.md)*
 
 ## Summary
@@ -75,7 +77,7 @@ More concretely, assuming this goal program is successful, we would like to begi
 
 * @nikomatsakis can commit 20% time (avg of 1 days per week) to pursue this task, which he estimates to be sufficient.
 
-| Subgoal                                    | Owner(s) or team(s)            | Notes                                                                                     |
+| Task                                       | Owner(s) or team(s)            | Notes                                                                                     |
 | ------------------------------------------ | ------------------------------ | ----------------------------------------------------------------------------------------- |
 | RFC decision                               | ![Team][] [leadership-council] | ![Complete][]                                                                             |
 | Inside Rust blog post inviting feedback    |                                | [Posted](https://blog.rust-lang.org/inside-rust/2024/05/07/announcing-project-goals.html) |

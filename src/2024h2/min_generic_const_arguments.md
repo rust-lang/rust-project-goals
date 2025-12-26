@@ -1,10 +1,13 @@
 # "Stabilizable" prototype for expanded const generics
 
-| Metadata |          |
-| -------- | -------- |
-| Owner(s) | @BoxyUwU |
-| Teams    | [types]  |
-| Status   | Accepted |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Point of contact | @BoxyUwU                           |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#100] |
+| Zulip channel  | [#project-const-generics][channel] |
+
+[channel]: https://rust-lang.zulipchat.com/#narrow/channel/260443-project-const-generics/
 
 ## Summary
 
@@ -40,11 +43,7 @@ The larger goal here is to lift most of the restrictions that const generics cur
     - implemented under `feature(generic_const_items)`, needs a bit of work to finish it. Becomes significantly more important *after* implementing `min_generic_const_args`
 - Introduce associated const equality bounds, e.g. `T: Trait<ASSOC = N>` to bring feature parity with associated types
     - implemented under `feature(associated_const_equality)`, blocked on allowing generic parameters in const generic arguments
-
-
 Allowing generic parameters to be used in const generic arguments is the only part of const generics that requires significant amounts of work while also having significant benefit. Everything else is already relatively close to the point of stabilization. I chose to specify this goal to be for implementing `min_generic_const_args` over "stabilize the easy stuff" as I would like to know whether the implementation of `min_generic_const_args` will surface constraints on the other features that may not be possible to easily fix in a backwards compatible manner. Regardless I expect these features will still progress while `min_generic_const_args` is being implemented.
-
-
 ## Design axioms
 
 - Do not block future extensions to const generics
@@ -67,7 +66,7 @@ This section defines the specific work items that are planned and who is expecte
     * List ![Help wanted][] if there is an owner but they need support, for example funding.
     * Other needs (e.g., complete, in FCP, etc) are also fine.
 
-| Subgoal                      | Owner(s) or team(s)      | Notes |
+| Task                         | Owner(s) or team(s)      | Notes |
 | ---------------------------- | ------------------------ | ----- |
 | Discussion and moral support | ![Team][] [lang] [types] |       |
 | Implementation and mentoring | @BoxyUwu                 |       |

@@ -1,11 +1,11 @@
 # Explore sandboxed build scripts
 
-| Metadata |            |
-| -------- | ---------- |
-| Owner(s) | @weihanglo |
-| Teams    | [cargo]    |
-| Status   | Accepted   |
-
+| Metadata       |                                    |
+| ---            | ---                                |
+| Point of contact | @weihanglo                         |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#108] |
+| Zulip channel  | N/A                                |
 ## Summary
 
 Explore different strategies for sandboxing build script executions in Cargo.
@@ -132,13 +132,13 @@ Currently out of scope:
 **Owner:** @weihanglo, though I also welcome someone else to take ownership of it.
 I would be happy to support them as a Cargo maintainer.
 
-| Subgoal                                    | Owner(s) or team(s)  | Notes       |
+| Task                                       | Owner(s) or team(s)  | Notes       |
 | ------------------------------------------ | -------------------- | ----------- |
 | Design                                     | @weihanglo           | (or mentee) |
 | Discussion and moral support               | ![Team][] [cargo]    |             |
 | Security reviews                           | ![Help wanted][]     |             |
 | Standard reviews                           | ![Team][] [cargo]    |             |
-| Collaboration with GSoC proc-macro project | ![Team][] [compiler] |             |
+| Miscellaneous | ![Team][] [compiler] | Collaboration with GSoC proc-macro project |
 | Summary of experiments or RFC              | @weihanglo           | (or mentee) |
 
 > For security reviews,

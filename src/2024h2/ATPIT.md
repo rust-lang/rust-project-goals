@@ -1,10 +1,11 @@
 # Associated type position impl trait
 
-| Metadata |                 |
-| -------- | --------------- |
-| Owner(s) | @oli-obk        |
-| Teams    | [types], [lang] |
-| Status   | Accepted        |
+| Metadata       |                                    |
+|----------------|------------------------------------|
+| Point of contact | @oli-obk                           |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#103] |
+| Zulip channel  | N/A                                |
 
 ## Summary
 
@@ -58,10 +59,10 @@ None.
 
 **Owner:** oli-obk owns this goal.
 
-| Subgoal                | Owner(s) or team(s)      | Notes |
-| ---------------------- | ------------------------ | ----- |
+| Task                   | Owner(s) or team(s)      | Notes |
+|------------------------|--------------------------|-------|
 | Implementation         | @oli-obk                 |       |
-| FCP decisions          | ![Team][] [types]        |       |
+| FCP decision(s)           | ![Team][] [types]        |       |
 | Stabilization decision | ![Team][] [types] [lang] |       |
 
 ## Frequently asked questions

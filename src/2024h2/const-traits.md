@@ -1,10 +1,13 @@
 # Const traits
 
-| Metadata |                 |
-| -------- | --------------- |
-| Owner(s) | @fee1-dead      |
-| Teams    | [types], [lang] |
-| Status   | Accepted        |
+| Metadata       |                                             |
+| ---            | ---                                         |
+| Point of contact | @fee1-dead                                |
+| Status         | Accepted                                    |
+| Tracking issue | [rust-lang/rust-project-goals#106]          |
+| Zulip channel  | [#t-compiler/project-const-traits][channel] |
+
+[channel]: https://rust-lang.zulipchat.com/#narrow/channel/419616-t-compiler.2Fproject-const-traits
 
 ## Summary
 
@@ -57,7 +60,7 @@ This section defines the specific work items that are planned and who is expecte
     * List ![Help wanted][] if there is an owner but they need support, for example funding.
     * Other needs (e.g., complete, in FCP, etc) are also fine.
 
-| Subgoal                      | Owner(s) or team(s)                 | Notes |
+| Task                         | Owner(s) or team(s)                 | Notes |
 | ---------------------------- | ----------------------------------- | ----- |
 | Implementation               | @fee1-dead and project-const-traits |       |
 | Discussion and moral support | ![Team][] [types] [lang]            |       |

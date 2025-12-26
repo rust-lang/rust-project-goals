@@ -1,11 +1,11 @@
 # Stabilize doc_cfg
 
-| Metadata |                 |
-| -------- | --------------- |
-| Owner(s) | @GuillaumeGomez |
-| Teams    | [rustdoc]       |
-| Status   | Accepted        |
-
+| Metadata       |                                    |
+| ---            | ---                                |
+| Point of contact | @GuillaumeGomez                    |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#120] |
+| Zulip channel  | N/A                                |
 @GuillaumeGomez: https://github.com/GuillaumeGomez
 
 ## Motivation
@@ -31,9 +31,7 @@ N/A
 ## Ownership and team asks
 
 **Owner:** @GuillaumeGomez
-
-
-| Subgoal          | Owner(s) or team(s) | Notes |
+| Task             | Owner(s) or team(s) | Notes |
 | ---------------- | ------------------- | ----- |
 | Implementation   | @GuillaumeGomez     |       |
 | RFC decision     | ![Team][] [rustdoc] |       |

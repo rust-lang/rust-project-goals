@@ -1,11 +1,11 @@
 # Begin resolving `cargo-semver-checks` blockers for merging into cargo
 
-| Metadata |                                                              |
-| -------- | ------------------------------------------------------------ |
-| Owner(s) | @obi1kenobi                                                  |
-| Teams    | [cargo]                                                      |
-| Status   | Accepted                                                     |
-
+| Metadata       |                                    |
+| ---            | ---                                |
+| Point of contact | @obi1kenobi                        |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#104] |
+| Zulip channel  | N/A                                |
 ## Summary
 
 Design and implement `cargo-semver-checks` functionality that lies on the critical path for merging the tool into cargo itself.
@@ -130,7 +130,7 @@ To accomplish this, `cargo-semver-checks` needs the ability to express more kind
 
 I (@obi1kenobi) will be working on this effort. The only other resource request would be occasional discussions and moral support from the [cargo] team, of which I already have the privilege as maintainer of a popular cargo plugin.
 
-| Subgoal                                          | Owner(s) or team(s)     | Notes |
+| Task                                             | Owner(s) or team(s)     | Notes |
 | ------------------------------------------------ | ----------------------- | ----- |
 | Implementation of cargo manifest linting + CLI   | @obi1kenobi             |       |
 | Initial design for cross-crate checking          | @obi1kenobi             |       |

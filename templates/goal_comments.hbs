@@ -1,0 +1,36 @@
+{{#if comments}}
+
+<details>
+<summary>{{details_summary}}</summary>
+
+<!-- this comment helps to convince the markdown parser to do the right thing -->
+
+{{#each comments}}
+
+<!-- this comment helps to convince the markdown parser to do the right thing -->
+
+<a href="{{url}}">Comment by {{author}} posted on {{created_at}}:</a><br>
+
+<blockquote>
+
+<!-- this comment helps to convince the markdown parser to do the right thing -->
+
+{{{body}}}
+
+<!-- this comment helps to convince the markdown parser to do the right thing -->
+
+</blockquote>
+
+{{/each}}
+</details>
+
+{{else}}
+
+<!-- this comment helps to convince the markdown parser to do the right thing -->
+
+<details>
+<summary>{{details_summary}}</summary>
+</details>
+
+{{/if}}
+

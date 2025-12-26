@@ -1,11 +1,14 @@
 # Rust 2024 Edition
 
-| Metadata |                 |
-| -------- | --------------- |
-| Owner(s) | @traviscross    |
-| Teams    | [lang], [types] |
-| Status   | Flagship        |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Point of contact | @traviscross                       |
+| Status         | Accepted                           |
+| Flagship         | Yes                                |
+| Tracking issue | [rust-lang/rust-project-goals#117] |
+| Zulip channel  | [#edition][channel]                |
 
+[channel]: https://rust-lang.zulipchat.com/#narrow/channel/268952-edition
 ## Summary
 
 Feature complete status for Rust 2024, with final release to occur in early 2025.
@@ -49,7 +52,7 @@ The "Edition Axioms" were [laid out in RFC #3085](https://rust-lang.github.io/rf
 
 **Owner:** @traviscross
 
-| Subgoal                  | Owner(s) or team(s)            | Notes                       |
+| Task                     | Owner(s) or team(s)            | Notes                       |
 | ------------------------ | ------------------------------ | --------------------------- |
 | RFC decision             | ![Team][] [leadership-council] | ![Complete][] ([RFC #3501]) |
 | Stabilization decision   | ![Team][] [lang] [types]       |                             |

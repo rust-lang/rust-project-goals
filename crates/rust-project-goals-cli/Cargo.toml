@@ -1,0 +1,26 @@
+[package]
+name = "rust-project-goals-cli"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "rust-project-goals-cli"
+path = "src/main.rs"
+
+[lib]
+name = "rust_project_goals_cli"
+path = "src/lib.rs"
+
+[dependencies]
+anyhow = "1.0.94"
+regex = "1.11.1"
+rust-project-goals = { version = "0.1.0", path = "../rust-project-goals" }
+serde = "1.0.216"
+walkdir = "2.5.0"
+serde_json = "1.0.133"
+chrono = "0.4.39"
+progress_bar = "1.0.6"
+clap = { version = "4.5.23", features = ["derive"] }
+rust-project-goals-json = { version = "0.1.0", path = "../rust-project-goals-json" }
+handlebars = { version = "6.2.0", features = ["dir_source"] }
+comrak = "0.31.0"

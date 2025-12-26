@@ -1,10 +1,13 @@
 # Scalable Polonius support on nightly
 
-| Metadata |          |
-| -------- | -------- |
-| Owner(s) | @lqd     |
-| Teams    | [types]  |
-| Status   | Accepted |
+| Metadata       |                                    |
+| ---            | ---                                |
+| Point of contact | @lqd                               |
+| Status         | Accepted                           |
+| Tracking issue | [rust-lang/rust-project-goals#118] |
+| Zulip channel  | [#t-types/polonius][channel]       |
+
+[channel]: https://rust-lang.zulipchat.com/#narrow/channel/186049-t-types.2Fpolonius
 
 ## Summary
 
@@ -42,7 +45,7 @@ Other support provided by @amandasystems as part of her PhD.
 
 [amanda]: https://github.com/amandasystems
 
-| Subgoal          | Owner(s) or team(s)  | Notes          |
+| Task             | Owner(s) or team(s)  | Notes          |
 | ---------------- | -------------------- | -------------- |
 | Design review    | @nikomatsakis        |                |
 | Implementation   | @lqd, @amandasystems |                |
