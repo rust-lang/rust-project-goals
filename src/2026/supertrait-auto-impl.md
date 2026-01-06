@@ -84,7 +84,7 @@ We would like to establish a mechanism in the language to automatically derive t
 | [cargo]    |               |                                         |
 | [compiler] |               |                                         |
 | [infra]    |               |                                         |
-| [lang]     |               |                                         |
+| [lang]     |  Medium | Team aligned already on the shape of the feature |
 | [libs]     |               |                                         |
 | [opsem]    |               |                                         |
 | [types]    |               |                                         |
