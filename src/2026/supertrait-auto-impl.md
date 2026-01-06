@@ -18,7 +18,7 @@ Within the 2026 goal period we strive for completion of the following items.
 
 ## Motivation
 
-Trait evolution and trait hierarchy refactoring has been. As crates evolve and grow, needs to restructure trait hierarchy to accommodate richer functionality often arises, both in the standard library and the broader Rust ecosystem.
+Trait evolution and trait hierarchy refactoring is a long-time pain point for Rust crates and especially the standard library. As crates evolve and grow, needs to restructure trait hierarchy to accommodate richer functionality often arises, both in the standard library and the broader Rust ecosystem.
 
 Supertrait `auto impl` has been viewed as a potential solution and a promising language feature to the trait evolution problem, such that we can avoid major and elaborate rewrites in downstream crates. In essence, the feature would avoid rewrites when associate items are moved into a new supertrait, which is a common scenario that this problem concerns about.
 
