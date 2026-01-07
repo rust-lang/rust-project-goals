@@ -46,13 +46,19 @@ point discovered in the performance survey.
 
 ### The next 6 months
 
-> *Sketch out the specific things you are trying to achieve in this goal period. This should be short and high-level -- we don't want to see the design!*
+Over the next 6 months the plan is to address all review comments and concerns on [aforementioned RFC][on-going RFC] and
+via working with the compiler team, merge an unstable initial implementation on the compiler. This implementation would
+introduce a working base system where a `cargo build` -> `cargo check` workflow does not recompile.
 
-| Task            | Owner(s) | Notes |
-| --------------- | -------- | ----- |
-| Design, propose | @blyxyas |       |
-| Implementation  | @blyxyas |       |
-| ...             |          |       |
+After those 6 months, we'll focus on less systematic improvements. We'll work on starting the stabilization process
+and hopefully get it close to the finish line. In the stabilization process, we'll try to make the API
+as expandable as possible to allow for granularity in the recompilation tracking.
+
+| Task                    | Owner(s)           | Notes |
+| ----------------------- | ------------------ | ----- |
+| Design, propose         | @blyxyas @jackh726 |       |
+| Implementation          | @blyxyas           |       |
+| Champion                | @jackh726          |       |
 
 ### The "shiny future" we are working towards
 
@@ -69,9 +75,9 @@ The first step is completing the RFC and implementing it in an unstable stage.
 
 ## Team asks
 
-| Team       | Support level | Notes                                                        |
-| ---------- | ------------- | ------------------------------------------------------------ |
-| [compiler] | Medium        | I'd need to find a champion, but I don't know where to start |
+| Team       | Support level | Notes                                                                 |
+| ---------- | ------------- | --------------------------------------------------------------------- |
+| [compiler] | Medium        | Champion: @jackh726                                                   |
 
 ## Frequently asked questions
 
