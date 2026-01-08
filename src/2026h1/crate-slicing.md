@@ -312,6 +312,9 @@ These are documented and handled gracefully (fall back to full crate).
 ## References
 
 [1] Y. Yu, H. Dayani-Fard, J. Mylopoulos, P. Andritsos. "Reducing Build Time through Precompilations for Evolving Large Software." ICSM 2005.
+
 [2] Y. Yu. "Precompilation: Splitting C/C++ Source Files for Faster Incremental Builds." Open University TR2012/01.
+
 [3] demo-precc: https://github.com/yijunyu/demo-precc (binaries for C/C++ precompilation)
+
 [4] cargo-slicer: https://github.com/yijunyu/cargo-slicer (proof-of-concept implementation of the proposed prototype)
