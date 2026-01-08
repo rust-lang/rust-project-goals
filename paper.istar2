@@ -1,9 +1,0 @@
-0 agent {Yijun Yu} {2024/9/1 12:04:26}
-  3 goal {align the goals with requirements from Huawei as a company} ~> 6
-1 agent {Waqas} {}
-  11 goal {extract more goal requirements from the markdown docs}
-     111 task {revise the shell/awk scritps}
-     112 task {fix the merge.js for combining separate istar models into the holistic one}
-2 agent {Zhi Li} {}
-  5 goal {publish a research paper about the novel approach for scalable i* modeling}
-6 task {fix the merge.js for combining separate istar models into the holistic one} ~>1
