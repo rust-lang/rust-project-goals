@@ -24,11 +24,13 @@ serde = { version = "1", features = ["derive"] }
 sqlx = { version = "0.8", features = ["postgres", "runtime-tokio"] }
 ```
 
-This dependency graph expands to 200+ crates. The `tokio` crate alone contains 315 module files totaling ~90,000 lines of Rust source. Yet a typical application uses perhaps 5-10% of tokio's public API surface (e.g., `tokio::spawn`, `TcpListener::bind`, `select!`).
+This dependency graph expands to 161 crates. The `tokio` crate alone contains 315 module files totaling 92,790 lines of Rust source. Yet an application may only use 
+a fraction of tokio's public API surface (e.g., `tokio::spawn`)， and some may depend only on a subcrate e.g., `tokio-macros` rather than on the main crate (as did by
+the `cargo-slicer tool`).
 
-The Rust compiler must:
-1. **Parse** all 90,000 lines through `syn`/rustc's parser
-2. **Resolve** names and expand macros across all modules
+The Rust compiler is designed to find and diagnose errors first and generate good code quickly second, hence it needs to do the following steps:
+1. **Parse** all the ~90,000 lines
+2. **Resolve** names and expand macros across all modules and submodules
 3. **Type-check** all items, including unused ones
 4. **Monomorphize** generic code (though only used instantiations)
 
@@ -37,8 +39,9 @@ Only step 4 naturally excludes unused code. Steps 1-3 process everything.
 Current mitigations:
 - **Incremental compilation**: Caches type-checking results but requires prior builds
 - **sccache**: Caches compilation artifacts but requires cache hits
-- **Cranelift**: Accelerates codegen (step 5) but not frontend (steps 1-3)
+- **Cranelift**: Accelerates codegen but not frontend (steps 1-3)
 - **Parallel frontend**: Parallelizes work but doesn't reduce total work
+- **Hint mostly unused**: Avoid codegen from unused dependencies by hinting on LLVM linker
 
 None of these reduce the fundamental quantity of source code processed during fresh builds.
 
@@ -48,11 +51,11 @@ We propose to research crate slicing: statically analyzing which items a project
 
 **Technical approach:**
 
-1. **Usage extraction**: Parse project source using `syn` to identify:
-   - Direct type references: `tokio::net::TcpListener`
-   - Use statements: `use axum::{Router, routing::get}`
-   - Method calls via variable type tracking: `listener.accept()` → `TcpListener::accept`
-   - Trait bounds: `impl<T: Serialize>` → `serde::Serialize`
+1. **Usage extraction**: Parse project source using a customized `rust-analyzer` with its `SCIP` crate to identify:
+   - Direct type references, e.g., `tokio::net::TcpListener`
+   - Use statements, e.g., `use axum::{Router, routing::get}`
+   - Method calls via variable type tracking, e.g., `listener.accept()` → `TcpListener::accept`
+   - Trait bounds, e.g., `impl<T: Serialize>` → `serde::Serialize`
 
 2. **Crate indexing**: Build a dependency graph of all items in the target crate:
    - Map each `pub` item to its defining module
@@ -61,19 +64,23 @@ We propose to research crate slicing: statically analyzing which items a project
    - Handle `#[path = "..."]` module redirections
 
 3. **Transitive closure**: Compute minimal item set:
-   - Include all trait impls for used types (coherence requirement)
+   - Include all trait impls for used types
    - Follow type definitions for struct fields and enum variants
    - Expand `pub use crate::*` glob re-exports
    - Preserve visibility modifiers for cross-module access
+   - Include document cooments and attributes related to the preserved items
 
 4. **Sliced crate generation**: Emit minimal source:
    - Copy only needed module files
    - Filter items within each module
    - Generate `Cargo.toml` with subset of features/dependencies
+  
+5. **Rustc verification**: For the soundness and correctness with respect to type inferencing on trait bounds, e.g., simply slicing away everything unused may lead to errors unless we have considered the corner cases. To make sure
+   it generates correct results, we will use Rust compiler to double check the decisions made at the testing phase, before release the solution as replacement of the Rust compiler.
 
 **Prototype results (December 2025):**
 
-We have a working implementation (`slice_crate`) demonstrating feasibility on major ecosystem crates:
+We have an early implementation (`cargo-slicer`) just demonstrates feasibility on major ecosystem crates:
 
 | Crate | Version | Original Modules | Original LOC | Slice Time | Status |
 |-------|---------|------------------|--------------|------------|--------|
@@ -88,14 +95,14 @@ We have a working implementation (`slice_crate`) demonstrating feasibility on ma
 
 Measured slice times for smaller utility crates:
 
-| Crate | Slice Time | Items Needed | Module Files | Lines Generated |
-|-------|------------|--------------|--------------|-----------------|
-| regex | 0.147s | 309 | 20 | 10,671 |
-| memchr | 0.198s | 8 | 35 | 14,475 |
-| anyhow | 0.058s | 147 | 11 | 4,412 |
-| futures | 0.1s | 3 | 0 | 91 |
-| once_cell | 0.025s | 2 | 0 | 29 |
-| thiserror | 0.010s | 2 | 0 | 28 |
+| Crate | Items Needed | Module Files | Lines Generated |
+|-------|--------------|--------------|-----------------|
+| regex |309 | 20 | 10,671 |
+| memchr | 8 | 35 | 14,475 |
+| anyhow | 147 | 11 | 4,412 |
+| futures | 3 | 0 | 91 |
+| once_cell | 2 | 0 | 29 |
+| thiserror | 2 | 0 | 28 |
 
 The prototype handles complex patterns:
 - **Feature flag evaluation**: Parses `#[cfg(all(feature = "std", not(feature = "parking_lot")))]` expressions and evaluates against cargo metadata
@@ -131,14 +138,14 @@ The prototype handles complex patterns:
 The end state: `cargo build` automatically slices dependencies based on static usage analysis, achieving:
 
 - **30-50% reduction in fresh build time** for dependency-heavy projects
-- **Faster CI pipelines**: Cold builds complete in seconds, not minutes
-- **Improved rust-analyzer responsiveness**: Less code to index and analyze
+- **Faster CI pipelines**: Cold builds complete much faster
 - **No ecosystem changes required**: Works with existing crates.io crates
+- **Slicing on transitive dependencies**: cache the SCIP dump of frequently used (stably dependent) crates by large project such as Zed
 
 This complements ongoing efforts:
 - **Parallel frontend** reduces wall-clock time; slicing reduces total work
 - **Cranelift** accelerates codegen; slicing reduces frontend overhead
-- **build-std** optimizes std; slicing optimizes third-party deps
+
 
 ## Design notes
 
@@ -169,7 +176,7 @@ Key insight: Preprocessing overhead must be < 10% of compilation time for fresh 
 | Generics | Templates (header-only) | Monomorphization | Only used instantiations codegen'd |
 | Trait impls | N/A | Coherence rules | Must include all impls for used types |
 | Conditional compilation | `#ifdef` | `#[cfg]` + features | Must evaluate feature expressions |
-| Macros | Preprocessor (textual) | Proc-macros (semantic) | Proc-macro crates kept as-is |
+| Macros | Preprocessor (textual) | Proc-macros (semantic) + `macro_rules!` | Proc-macro crates kept as-is |
 
 ### Technical challenges solved
 
@@ -185,11 +192,11 @@ The prototype required solving several non-trivial problems:
 
 5. **Trait coherence**: Conservative inclusion of all trait impls where the implementing type or trait is used
 
-6. **Macro handling**: Skip `macro_rules!` bodies during re-export extraction; preserve proc-macro crate references
+6. **Macro handling**: Skip `macro_rules!` bodies during re-export extraction; preserve proc-macro crate references by utilizing a function similar to `cargo-expand`
 
 ### Open research questions
 
-1. **Monomorphization interaction**: Does slicing reduce monomorphization work (fewer generic items) or increase it (more crate boundaries)?
+1. **Monomorphization interaction**: Does slicing reduce monomorphization work (fewer generic items) ?
 
 2. **Incremental compilation interaction**: Do sliced crates have smaller/faster incremental compilation fingerprints?
 
@@ -258,7 +265,7 @@ Feature flags require crate authors to manually partition their API:
 [features]
 http1 = []
 http2 = ["h2"]
-full = ["http1", "http2", "websocket", ...]
+full = ["http1", "http2", "websocket" ] # ... and so forth
 ```
 
 This is labor-intensive, imperfect, and doesn't capture per-project usage patterns. Slicing is automatic and usage-based.
@@ -305,6 +312,9 @@ These are documented and handled gracefully (fall back to full crate).
 ## References
 
 [1] Y. Yu, H. Dayani-Fard, J. Mylopoulos, P. Andritsos. "Reducing Build Time through Precompilations for Evolving Large Software." ICSM 2005.
+
 [2] Y. Yu. "Precompilation: Splitting C/C++ Source Files for Faster Incremental Builds." Open University TR2012/01.
+
 [3] demo-precc: https://github.com/yijunyu/demo-precc (binaries for C/C++ precompilation)
+
 [4] cargo-slicer: https://github.com/yijunyu/cargo-slicer (proof-of-concept implementation of the proposed prototype)
