@@ -1,11 +1,11 @@
 # Redesigning `super let`: Flexible Temporary Lifetime Extension
 
 | Metadata         |                                                                                  |
-| :--------------- | -------------------------------------------------------------------------------- |
-| Point of contact | @dianne                                                                          |
-| Status           | Proposed                                                                         |
-| Tracking issue   | *if this is a continuing goal, add the old tracking issue, else leave blank*     |
-| Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
+| :--------------- |--------- |
+| Point of contact | @dianne  |
+| Status           | Proposed |
+| Tracking issue   |          |
+| Zulip channel    | N/A      |
 
 ## Summary
 
@@ -42,6 +42,6 @@ Making it easier to extend the lifetimes of temporaries opens up the possibility
 | ---------- | -------------    | --------------------------------------- |
 | [compiler] | small  | May escalate to medium depending on how the feature design turns out. |
 | [lang]     | large            | Would need a design meeting and RFC review. |
-| [libs]     | vibes or small   | Since `super let` affects the standard library, the library team should be on-board with any new directions it takes. Additionally, library team review may be required for changes to `pin!`'s implementation. Could be "medium" if the library team decides a champion is necessary. |
+| [libs]     | small   | Since `super let` affects the standard library, the library team should be on-board with any new directions it takes. Additionally, library team review may be required for changes to `pin!`'s implementation. Could be "medium" if the library team decides a champion is necessary. |
 
 ## Frequently asked questions

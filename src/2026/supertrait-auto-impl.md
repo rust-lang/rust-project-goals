@@ -1,11 +1,12 @@
 # Implement Supertrait `auto impl`
 
-| Metadata           |                         |
-|:-------------------|-------------------------|
-| Point of contact   | @tmandry                |
-| ------------------ | ----------------------- |
-| Tracking issue     | rust-lang/rust#149556   |
-| Zulip channel      | N/A                     |
+| Metadata              |                         |
+|:----------------------|-------------------------|
+| Point of contact      | @tmandry                |
+| Status                | Proposed                |
+| Tracking issue        |                         |
+| Other tracking issues | rust-lang/rust#149556   |
+| Zulip channel         | N/A                     |
 
 ## Summary
 
