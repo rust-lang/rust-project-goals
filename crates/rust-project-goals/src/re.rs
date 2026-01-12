@@ -137,7 +137,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_reports_regex() {
+    fn test_reports_regex_start_and_end_date() {
         assert!(REPORTS.is_match("(((REPORTS)))"));
         assert!(REPORTS.is_match("(((REPORTS: 2025-09-01 to 2025-12-31)))"));
 
@@ -145,5 +145,14 @@ mod tests {
             .captures("(((REPORTS: 2025-09-01 to 2025-12-31)))")
             .unwrap();
         assert_eq!(caps.get(1).unwrap().as_str(), "2025-09-01 to 2025-12-31");
+    }
+
+    #[test]
+    fn test_reports_regex_no_end_date() {
+        assert!(REPORTS.is_match("(((REPORTS)))"));
+        assert!(REPORTS.is_match("(((REPORTS: 2025-09-01)))"));
+
+        let caps = REPORTS.captures("(((REPORTS: 2025-09-01)))").unwrap();
+        assert_eq!(caps.get(1).unwrap().as_str(), "2025-09-01");
     }
 }

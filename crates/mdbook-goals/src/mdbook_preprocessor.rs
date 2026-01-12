@@ -830,16 +830,23 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         &self,
         range_str: &str,
     ) -> anyhow::Result<(chrono::NaiveDate, chrono::NaiveDate)> {
-        // Parse format like "2025-09-01 to 2025-12-31"
+        // Parse format like "2025-09-01 to 2025-12-31" or "2025-09-01" (with no end date)
         let parts: Vec<&str> = range_str.split(" to ").collect();
-        if parts.len() != 2 {
-            anyhow::bail!("Invalid date range format. Expected 'YYYY-MM-DD to YYYY-MM-DD'");
+        if parts.len() > 2 {
+            anyhow::bail!("Invalid date range format: `{range_str}`. Expected: `YYYY-MM-DD to YYYY-MM-DD` or just: `YYYY-MM-DD`");
         }
 
-        let start_date = chrono::NaiveDate::parse_from_str(parts[0].trim(), "%Y-%m-%d")
-            .with_context(|| format!("Invalid start date: {}", parts[0]))?;
-        let end_date = chrono::NaiveDate::parse_from_str(parts[1].trim(), "%Y-%m-%d")
-            .with_context(|| format!("Invalid end date: {}", parts[1]))?;
+        let start_date = parts[0].trim();
+        let end_date = parts.get(1).map(|s| str::trim(s));
+
+        let start_date = chrono::NaiveDate::parse_from_str(start_date, "%Y-%m-%d")
+            .with_context(|| format!("Invalid start date: `{}`", parts[0]))?;
+        let end_date = if let Some(end_date) = end_date {
+            chrono::NaiveDate::parse_from_str(end_date, "%Y-%m-%d")
+                .with_context(|| format!("Invalid end date: `{}`", parts[1]))?
+        } else {
+            chrono::Utc::now().date_naive()
+        };
 
         if start_date > end_date {
             anyhow::bail!("Start date must be before or equal to end date");
