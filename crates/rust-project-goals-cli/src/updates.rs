@@ -394,7 +394,7 @@ impl Filter<'_> {
 
         date >= self.start_date
             && match self.end_date {
-                Some(end_date) => date <= *end_date,
+                Some(end_date) => date < *end_date,
                 None => true,
             }
     }

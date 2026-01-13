@@ -710,6 +710,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         // Calculate start and end dates for the month
         let start_date = NaiveDate::from_ymd_opt(year, month, 1)
             .ok_or_else(|| anyhow::anyhow!("Invalid date: {}-{:02}-01", year, month))?;
+        // The `end_date` is an exclusive range, so this will match comments within the given `month`
         let end_date = if month == 12 {
             NaiveDate::from_ymd_opt(year + 1, 1, 1)
         } else {

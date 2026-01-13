@@ -79,6 +79,10 @@ enum Command {
 
     /// Generate markdown with the list of updates for each tracking issue.
     /// Collects goal updates.
+    ///
+    /// The start date is inclusive and the end date is exclusive.
+    /// E.g. to generate the blog for the month of July, you'd specify: `2025-07-01 2025-08-01`.
+    /// This would not include the August date.
     Updates {
         /// Milestone for which we generate tracking issue data (e.g., `2024h2`).
         milestone: String,
@@ -92,10 +96,12 @@ enum Command {
         output_file: Option<PathBuf>,
 
         /// Start date for comments.
+        /// This is the first date from which comments will be picked up.
         /// If not given, defaults to 1 week before the start of this month.
         start_date: Option<chrono::NaiveDate>,
 
         /// End date for comments.
+        /// Comments from this day onward will NOT be picked up.
         /// If not given, no end date.
         end_date: Option<chrono::NaiveDate>,
 

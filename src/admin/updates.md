@@ -15,8 +15,8 @@ The template will also include the detailed list of updates in a `<details>` sec
 The update template itself is maintained with handlebars, you will find it [here](https://github.com/rust-lang/rust-project-goals/blob/main/templates/updates.hbs).
 This command can also take optional dates to control which comments and updates in the given date range are included in the blog post. This is usually needed to correctly set the starting date right after the previous month's blog post.
 
-For example,
+The updates on the Rust blog typically cover a single calendar month. Since the start date is inclusive and the end date is exclusive, to generate an update for e.g. March 2025 you'd type:
 
 ```
-> cargo rpg updates 2025h1 2025-03-01
+> cargo rpg updates 2025h1 2025-03-01 2025-04-01
 ```
