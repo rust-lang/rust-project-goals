@@ -20,31 +20,25 @@
 
 ## Summary
 
-*Short description of what you will do over the next 6 months.*
+*Short description of what you will do over the next year.*
 
 ## Motivation
-
-*Begin with a few sentences summarizing the problem you are attacking and why it is important.*
 
 ### The status quo
 
 > *Elaborate in more detail about the problem you are trying to solve. This section is making the case for why this particular problem is worth prioritizing with project bandwidth. A strong status quo section will (a) identify the target audience and (b) give specifics about the problems they are facing today. Sometimes it may be useful to start sketching out how you think those problems will be addressed by your change, as well, though it's not necessary.*
 
-### The next 6 months
+### What we propose to do about it
+
+> *Explain your overall approach to solving the problem. Explain your design philosophy (including design axioms). Focus your discussion on what you aim to get done this year, but it is good to also give a sense for the "overall goal" you are working towards, if it extends beyond the work for this year. Team(s) should give you feedback on whether they are aligned both with your short-term and longer-term goals.*
+
+### Work items over the next year
 
 > *Sketch out the specific things you are trying to achieve in this goal period. This should be short and high-level -- we don't want to see the design!*
 
 | Task        | Owner(s) | Notes |
 | ----------- | -------- | ----- |
 | Do the work | *owner*  |       |
-
-### The "shiny future" we are working towards
-
-> *If this goal is part of a larger plan that will extend beyond this goal period, sketch out the goal you are working towards. It may be worth adding some text about why these particular goals were chosen as the next logical step to focus on.*
->
-> *This text is NORMATIVE, in the sense that teams should review this and make sure they are aligned. If not, then the shiny future should be moved to frequently asked questions with a title like "what might we do next".*
-
-*However, for most proposals, alignment on exact syntax should not be required to start a goal, only alignment on the problem and the general sketch of the solution. This may vary for goals that are specifically about syntax, such as ergonomic improvements.*
 
 ## Team asks
 
