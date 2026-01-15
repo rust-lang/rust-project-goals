@@ -1,0 +1,189 @@
+# Ergonomic ref-counting: Share trait and move expressions
+
+| Metadata          |                                    |
+| :---------------- | ---------------------------------- |
+| Point of contact  | @nikomatsakis                      |
+| Status            | Proposed                           |
+| Tracking issue    | [rust-lang/rust-project-goals#107] |
+| Zulip channel     | N/A                                |
+| [T-lang] champion | @nikomatsakis                      |
+
+## Summary
+
+Implement and prototype two foundational improvements for ergonomic ref-counting: (1) a `Share` trait that semantically identifies types where cloning creates an alias to the same underlying value, and (2) move expressions (`move($expr)`) that allow precise control over what closures capture and when. These changes lay groundwork for future ergonomic improvements while delivering immediate value, with prototypes targeted for summer 2026.
+
+## Motivation
+
+### The status quo
+
+Working with ref-counted data in Rust is a well-documented pain point. The problem affects high-level GUI applications (Dioxus, Sycamore), async network services (tokio), language interop (PyO3), and even the Rust compiler itself. Projects have gone to great lengths to work around it, from arena-based designs to custom preprocessors.
+
+This goal represents the culmination of extensive design exploration. After RFC #3680 proposed `.use` syntax and received mixed feedback, we spent 2025H2 deeply exploring the design space through [a series of blog posts][blog-series] and community discussions. Those discussions led to reframing the goal, focusing first on solutions **"low-level enough for a kernel, usable enough for a GUI"**.
+
+[blog-series]: https://smallcultfollowing.com/babysteps/series/ergonomic-rc/
+
+### What we propose to do about it
+
+We are proposing to move forward with two features
+
+1. a `Share` trait that semantically identifies types where cloning creates an alias to the same underlying value;
+2. move expressions (`move($expr)`) that allow precise control over what closures capture and when.
+
+These two features make working with ref-counted data more ergonomic while still retaining Rust's traditional guarantee that all ref counts are visible. Merging these two features is not meant to imply that we will not make other improvements targeting ref-counted data in the future, rather the idea is that these features are a solid step forward, so we should take that, and then assess what else may be needed.
+
+### Design axioms
+
+* **Low-level enough for a kernel, usable enough for a GUI.** Solutions should make low-level details visible for those who need them while being ergonomic enough for high-level applications.
+
+* **Semantic over operational.** Traits should be defined by what they *mean*, not just what they *cost*. `Share` means "creates an alias," not "is cheap to clone."
+
+#### The `Share` trait
+
+A new trait that identifies types where cloning creates an alias to the same underlying value:
+
+```rust
+trait Share: Clone {
+    fn share(&self) -> Self {
+        self.clone()
+    }
+}
+
+impl<T: ?Sized> Share for Arc<T> {}
+impl<T: ?Sized> Share for Rc<T> {}
+impl<T: ?Sized> Share for &T {}
+impl<T> Share for mpsc::Sender<T> {}
+```
+
+The `share()` method is semantically equivalent to `clone()` but signals to readers that this creates an alias, not an independent copy. Types like `Arc`, `Rc`, channel senders, and shared references would implement `Share`. Types like `Vec` or `String` would not—cloning those creates independent values.
+
+This addresses a real confusion today: when you see `map.clone()`, you can't tell if you're creating a second handle to the same map or a deep copy. With `Share`, you'd write `map.share()` for the former, making the code's intent clear.
+
+#### Move expressions
+
+Within closures and async blocks, `move($expr)` evaluates the expression at closure creation time and captures the result:
+
+```rust
+// Today: awkward temporary variables
+let tx_clone = tx.clone();
+tokio::spawn(async move {
+    send_data(tx_clone).await;
+});
+
+// With move expressions: inline and clear
+tokio::spawn(async move {
+    send_data(move(tx.clone())).await;
+});
+```
+
+This generalizes Rust's existing closure model. Rather than having separate "ref closures" and "move closures," you have closures where some captures use `move()`. The `move ||` syntax becomes shorthand for "use `move()` everywhere."
+
+Combined with `Share`:
+
+```rust
+tokio::spawn(async move {
+    do_something(move(self.some_a.share()), move(self.some_b.share()));
+});
+```
+
+### Work items over the next year
+
+| Task                                            | Owner(s)      | Notes                          |
+| ----------------------------------------------- | ------------- | ------------------------------ |
+| RFC for `Share` trait                           | @nikomatsakis | Define semantics, stdlib impls |
+| RFC for move expressions                        | @nikomatsakis | Closure desugaring semantics   |
+| Implement `Share` trait                         | @spastorino   |                                |
+| Implement move expressions                      | @spastorino   |                                |
+| Prepare reference changes                       | @nikomatsakis |                                |
+| Prepare stabilization PR for `Share` trait      | @spastorino   |                                |
+| Prepare stabilization PR for `move` expressions | @spastorino   |                                |
+
+**Target:** Working prototypes on nightly by summer 2026.
+
+## Team asks
+
+> This section outlines what support you need from the Rust teams. For each team, identify the level of support you need:
+>
+> * Vibes: You don't need the team to do anything at all, but you do want to know they like your idea.
+>     * *Example:* Prototyping a new feature on crates.io that you hope to eventually upstream.
+>     * *Example:* Conducting research that might eventually become a language feature.
+> * Small: You only need the team to do its routine activities.
+>     * *Example:* A compiler change that will require a few small PRs to be reviewed.
+>     * *Example:* Asking the lang team to approve a lint.
+> * Medium: You need dedicated support from one person, but the rest of the team doesn't have to do much.
+>     * *Example:* A compiler change that doesn't require any rearchitecting but 
+>     * *Example:* Implementing a small, noncontroversial language feature.
+> * Large: You need deeper review from the entire team.
+>     * *Example:* Rearchitecting part of the compiler.
+>     * *Example:* Implementing a complex language feature that will require design meetings.
+>
+> If you're not sure, leave it blank, the project goals team can help.
+>
+> "Vibes" and "Small" asks require someone on the team to "second" your goal; "Medium" and "Large" asks require a dedicated champion from the team. If you don't have a second or a champion, the project goals team will help you find them, don't worry about it.
+
+| Team        | Support level | Notes   |
+| ----------- | ------------- | ------- |
+| [compiler]  | Small         | Reviews |
+| [lang]      | Medium        |         |
+| [lang-docs] | Small         |         |
+| [libs]      | Small         |         |
+
+## Frequently asked questions
+
+### This goal looks very different than I remembered. What has changed?
+
+The goal has taken a long journey:
+
+**2024H2:** Jonathan Kelley from Dioxus wrote a [blog post about high-level Rust][dioxus-post] that sparked the ergonomic ref-counting effort as a project goal.
+
+**2025H1:** RFC #3680 proposed `.use` syntax and `use ||` closures. Santiago Pastorino implemented experimental support on nightly. Community feedback was positive about addressing the problem but raised concerns about whether adding more required syntax actually improves ergonomics.
+
+**2025H2:** Through design meetings, the RustConf Unconf, and extensive blogging, we explored the design space more deeply. Key realizations emerged:
+
+* **Semantic over operational:** Rather than defining a trait by "what is cheap to clone" (operational), we should focus on "what does cloning mean" (semantic). When you clone an `Arc`, you get a second *handle to the same value*—this "entanglement" is the key property.
+
+* **Explicit can be ergonomic:** After conversations with Josh Triplett, we concluded that some applications genuinely need to track where aliases are created. The goal should be making explicit code ergonomic, not making everything implicit.
+
+* **Move expressions generalize nicely:** The `move($expr)` syntax elegantly extends Rust's existing closure model rather than adding a parallel system.
+
+[dioxus-post]: https://dioxus.notion.site/Dioxus-Labs-High-level-Rust-5fe1f1c9c8334815ad488410d948f05e
+
+### Can you give me an example of how these features will help?
+
+The "Cloudflare example" from the Dioxus blog post illustrates the current pain:
+
+```rust
+let _some_a = self.some_a.clone();
+let _some_b = self.some_b.clone();
+let _some_c = self.some_c.clone();
+tokio::task::spawn(async move {
+    do_something(_some_a, _some_b, _some_c)
+});
+```
+
+With `Share` and move expressions:
+
+```rust
+tokio::task::spawn(async {
+    do_something(
+        move(self.some_a.share()),
+        move(self.some_b.share()),
+        move(self.some_c.share()),
+    )
+});
+```
+
+This is more concise, keeps the cloning visible, and eliminates the awkward temporary variables.
+
+### Why `Share` instead of `Alias` or `Handle`?
+
+We considered several names. `Handle` is a good noun but awkward as a verb ("handle this value?"). `Alias` works as both noun and verb but feels slightly technical. `Share` is common, intuitive, and already used in Rust (`&T` is a "shared reference"). The `share()` method reads naturally: "share this value with the closure."
+
+### Why not just make cloning automatic?
+
+Some applications genuinely need to track where aliases are created—for performance debugging, memory leak investigation, or APIs like `Arc::make_mut`. Making everything automatic would serve high-level apps well but fail the "low-level enough for a kernel" test. Our approach keeps aliases visible while reducing boilerplate. Once this is done, we will evaluate whether to continue with further changes.
+
+### How does this relate to RFC #3680?
+
+RFC #3680 proposed `.use` syntax and a `Use` trait. That work remains available on nightly and informed our thinking. This goal represents a refined direction based on community feedback and deeper exploration. The `Share` trait is similar in spirit to `Use` but with clearer semantics; move expressions address similar problems to `use ||` closures but generalize more naturally.
+
+[rust-lang/rust-project-goals#107]: https://github.com/rust-lang/rust-project-goals/issues/107
