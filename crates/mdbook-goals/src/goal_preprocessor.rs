@@ -4,9 +4,8 @@ use std::sync::Arc;
 
 use anyhow::Context;
 use chrono::{self, Datelike};
-use mdbook::book::{Book, Chapter};
-use mdbook::preprocess::{Preprocessor, PreprocessorContext};
-use mdbook::BookItem;
+use mdbook_preprocessor::book::{Book, BookItem, Chapter};
+use mdbook_preprocessor::{Preprocessor, PreprocessorContext};
 use regex::Regex;
 use rust_project_goals::config::{Configuration, GoalsConfig};
 use rust_project_goals::format_champions::format_champions;
@@ -43,8 +42,8 @@ impl Preprocessor for GoalPreprocessor {
 
     fn run(&self, ctx: &PreprocessorContext, mut book: Book) -> anyhow::Result<Book> {
         let mut this = GoalPreprocessorWithContext::new(ctx)?;
-        for section in &mut book.sections {
-            this.process_book_item(section)?;
+        for item in &mut book.items {
+            this.process_book_item(item)?;
         }
         Ok(book)
     }
@@ -263,7 +262,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                         Chapter::new(&goal.metadata.title, content, path, parent_names.clone());
 
                     if let Some(mut number) = chapter.number.clone() {
-                        number.0.push(index + 1);
+                        number.push(index + 1);
                         new_chapter.number = Some(number);
                     }
 
@@ -624,7 +623,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 Chapter::new(&chapter_name, blog_content, path, parent_names.clone());
 
             if let Some(mut number) = parent_chapter.number.clone() {
-                number.0.push(chapter_index);
+                number.push(chapter_index);
                 blog_chapter.number = Some(number);
                 chapter_index += 1;
             }
@@ -651,7 +650,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             );
 
             if let Some(mut number) = parent_chapter.number.clone() {
-                number.0.push(chapter_index);
+                number.push(chapter_index);
                 team_chapter.number = Some(number);
                 chapter_index += 1;
             }
@@ -678,7 +677,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             );
 
             if let Some(mut number) = team_chapter.number.clone() {
-                number.0.push(team_sub_index);
+                number.push(team_sub_index);
                 report_chapter.number = Some(number);
             }
 
