@@ -33,8 +33,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      MDBOOK_VERSION: 0.4.52
-      MDBOOK_MERMAID_VERSION: 0.15.0
+      MDBOOK_VERSION: 0.5.2
+      MDBOOK_MERMAID_VERSION: 0.17.0
     steps:
       - uses: actions/checkout@v4
       - name: Install mdBook + preprocessors
