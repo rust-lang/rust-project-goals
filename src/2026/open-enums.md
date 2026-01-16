@@ -144,7 +144,7 @@ enum, it becomes an *open enum* and can now be safely used with C and
 | Team       | Support level | Notes                                   |
 | ---------- | ------------- | --------------------------------------- |
 | [compiler] | Medium        | Implementation reviews                  |
-| [lang]     | Medium        | @tmandry championing, lang meeting      |
+| [lang]     | Medium        | Champion and (ideally) a lang meeting   |
 | [libs]     | Small         | Changes to `derive`                     |
 | [opsem]    | Small         | Doc changes if necessary                |
 | [types]    | Vibes         |                                         |
