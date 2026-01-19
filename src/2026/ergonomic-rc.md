@@ -6,7 +6,7 @@
 | Status            | Proposed                           |
 | Tracking issue    | [rust-lang/rust-project-goals#107] |
 | Zulip channel     | N/A                                |
-| [T-lang] champion | @nikomatsakis                      |
+| [lang] champion   | @nikomatsakis                      |
 
 ## Summary
 
