@@ -9,7 +9,7 @@
 > The **point of contact** is the person responsible for providing updates.
 >
 > The **status** should be either **Proposed** (if you have owners)
-> or **Proposed, Invited** (if you do not yet).
+> or **Proposed for mentorship** (if you do not yet).
 
 | Metadata         |                                                                                  |
 | :--------------- | -------------------------------------------------------------------------------- |
