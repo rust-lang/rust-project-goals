@@ -9,6 +9,10 @@ on:
   push:
     branches: ["main"]
 
+  # Runs on every pull request targeting the default branch
+  pull_request:
+    branches: [ "main" ]
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -55,6 +59,10 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./book/html
+        # Don't upload if this is a pull request against the default
+        # branch (as opposed to a merge or scheduled job). We're just
+        # checking the mdbook build for errors in that case.
+        if: ${{ github.ref == 'refs/heads/main' }}
 
   # Deployment job
   deploy:
@@ -63,6 +71,8 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
+    # Don't deploy if this is a pull request against the default branch
+    if: ${{ github.ref == 'refs/heads/main' }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
