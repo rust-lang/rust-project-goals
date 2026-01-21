@@ -147,4 +147,4 @@ Those column names refer to specific things that can be asked of teams:
 
 (((VALID TEAM ASKS)))
 
-<!-- Github usernames -->
+<!-- GitHub usernames -->

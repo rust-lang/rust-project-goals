@@ -44,7 +44,7 @@ The "Beyond the `&`" initiative aims to share `&`'s special capabilities, allowi
 
 Rust's trait system is one of its most powerful features, but it has a number of longstanding limitations that are preventing us from adopting new patterns. The goals in this category unblock a number of new capabilities:
 
-* [Polonius](./polonius.md) will enable new borrowing patterns, and in particular [unblock "lending iterators"](https://github.com/rust-lang/rust/issues/92985). Over the last few goal periods we have identified an "alpha" vesion of polonius that addresses the most important cases while being relatively simple and optimizable. Our goal for 2025H2 is to implement this algorithm in a form that is ready for stabilization in 2026.
+* [Polonius](./polonius.md) will enable new borrowing patterns, and in particular [unblock "lending iterators"](https://github.com/rust-lang/rust/issues/92985). Over the last few goal periods we have identified an "alpha" version of polonius that addresses the most important cases while being relatively simple and optimizable. Our goal for 2025H2 is to implement this algorithm in a form that is ready for stabilization in 2026.
 * The [next gen trait solver](./next-solver.md) is a refactored trait solver that unblocks better support for numerous language features (implied bounds, negative impls, the list goes on) in addition to closing a number of existing bugs and unsoundnesses. Over the last few goal periods, the trait solver went from early prototype to being production use in coherence. The goal for 2025H2 is to prepare it for stabilization.
 * The work on [evolving trait hierarchies](./evolving-traits.md) will make it possible to refactor some parts of an existing trait out into a new supertrait so they can be used on their own. This unblocks a number of features where the existing trait is insufficiently general, in particular stabilizing support for custom receiver types, a prior project goal that wound up blocking on this refactoring. This will also make it safer to provide stable traits in the standard library, while preserving the ability to evolve them in the future.
 * The work to [expand Rust's `Sized` hierarchy](./scalable-vectors.md) will permit us to express types that are neither `Sized` nor `?Sized`, such as extern types (which have no size) or Arm's Scalable Vector Extension (which have a size that is known at runtime, but not compilation time). This goal builds on [RFC #3729] and [RFC #3838], authored in previous project goal periods.
@@ -162,4 +162,4 @@ That's a tough one. Part of the reason to have champions is to help us filter ou
 [SC]: ./Rust-for-SciComp.md
 [OC]: ./optimize-clippy.md
 
-<!-- Github usernames -->
+<!-- GitHub usernames -->
