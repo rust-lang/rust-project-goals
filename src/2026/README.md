@@ -89,4 +89,4 @@ The following table highlights the support level requested from each affected te
 [SC]: ./Rust-for-SciComp.md
 [OC]: ./optimize-clippy.md
 
-<!-- Github usernames -->
+<!-- GitHub usernames -->

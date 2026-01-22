@@ -52,7 +52,7 @@ Specifically:
 There have often been requests for a "stable Rust abi" which usually refers to a _calling convention_ and _memory layout_ that is
 as unrestrictive as `extern "Rust" fn` and `#[repr(Rust)]`, but as stable as `extern "C" fn` and `#[repr(C)]`.
 
-It seems unlikely that `extern "Rust" fn` and `#[repr(Rust)]` would ever come with stablity guarantees, as allowing for changes when stability is not necessary has its benefits.
+It seems unlikely that `extern "Rust" fn` and `#[repr(Rust)]` would ever come with stability guarantees, as allowing for changes when stability is not necessary has its benefits.
 It seems most likely that a "stable Rust ABI" will arrive in the form of a _new_ ABI,
 by adding some kind of `extern "Rust-stable-v1"` (and `repr`) or similar
 (such as `extern "crabi" fn` and `#[repr(crabi)]` [proposed here](https://github.com/rust-lang/rust/pull/105586)),
@@ -63,7 +63,7 @@ as linking/loading a symbol (possibly at runtime) with a different signature (or
 
 ### Research question and scope
 
-This research project focusses entirely on point 3 above: symbols and linking.
+This research project focuses entirely on point 3 above: symbols and linking.
 
 The main research question is:
 

@@ -76,7 +76,7 @@ difficult to make progress on.
 Some of the work required for this exists in the current perma-unstable
 `-Zbuild-std` implementation, which may be re-used if appropriate.
 
-In 2025H1, the goal owners established a regular sync meeting with liasons from
+In 2025H1, the goal owners established a regular sync meeting with liaisons from
 the library, compiler and Cargo teams which have been successful in creating a
 draft RFC that continues to be iterated on and refined before being shared with
 the broader project.

@@ -23,7 +23,7 @@ Scientific computing, high performance computing (HPC), and machine learning (ML
 ## Status quo
 
 The `std::autodiff` module is fully upstreamed, but not shipped on nightly yet to open CI questions. 
-"Batched" autodiff, which supports array-of-struct or struct-of-array style code generation is also mostly upstreamed, but not yet publically advertised due to some open design questions and requested changes.
+"Batched" autodiff, which supports array-of-struct or struct-of-array style code generation is also mostly upstreamed, but not yet publicly advertised due to some open design questions and requested changes.
 The standalone `std::batching` feature is mostly implemented in a PR, but not yet upstreamed due to requested changes, to better interact with Rust's SIMD types. I hope to train a contributor to implement the requested changes to increase the bus factor.
 The `std::offload` feature is partly upstreamed. The "host" side, which handles the CPU code is ready. For the "device" side, a first PR exists, but is not yet reviewed or sufficiently tested. We also expect further follow-up PRs to expose more GPU features.
 

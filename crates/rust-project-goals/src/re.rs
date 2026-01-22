@@ -49,7 +49,7 @@ lazy_static! {
 }
 
 lazy_static! {
-    /// Github username.
+    /// GitHub username.
     ///
     /// According to [this random page I found with a google search](https://github.com/GrantBirki/github-username-regex-js):
     /// * GitHub usernames may only contain alphanumeric characters or hyphens

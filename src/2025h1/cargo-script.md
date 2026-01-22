@@ -24,7 +24,7 @@ To share this in a bug report, people resort to
 - Creating a repo and sharing it
 - A shell script that cats out to multiple files
 - Manually specifying each file
-- Under-specifying the reproduction case (likely the most common due to being the eaisest)
+- Under-specifying the reproduction case (likely the most common due to being the easiest)
 
 To create a utility, a developer will need to run `cargo new`, update the
 `Cargo.toml` and `main.rs`, and decide on a strategy to run this (e.g. a shell

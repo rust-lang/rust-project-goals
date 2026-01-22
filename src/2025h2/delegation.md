@@ -56,7 +56,7 @@ supported.
 
 ### The next 6 months
 
-We plan to complete implmentation of the sub-features as described in the
+We plan to complete implementation of the sub-features as described in the
 [tracking issue](https://github.com/rust-lang/rust/issues/118212) and update the RFC with the more
 detailed design based on the implementation experience.
 

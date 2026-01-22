@@ -59,7 +59,7 @@ This significantly increases the adoption of Rust in performance-critical, safet
 
 ## Ownership and team asks
 
-**Owner:** *Identify a specific person or small group of people if possible, else the group that will provide the owner. Github user names are commonly used to remove ambiguity.*
+**Owner:** *Identify a specific person or small group of people if possible, else the group that will provide the owner. GitHub user names are commonly used to remove ambiguity.*
 
 | Task                        | Owner(s) or team(s) | Notes |
 |-----------------------------|---------------------|-------|

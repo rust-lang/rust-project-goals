@@ -40,7 +40,7 @@ The goal is designed to move forward the Rust Specification, in a way that is sa
 
 The following [design axioms][da] apply:
 * Making Decisions Effectively, but Efficiently: When the goal asks the Team to make a decision, the Team should be prepared in advance with the necessary background, and come to consensus based on as much information as is possible, but at the same time, acting with efficiency and alacrity, not spending more time than is necessary on a decision. In particular, the team should not delay discussing a decision more than is necessary.
-    * Elaborating on the last part, decisions the team are well aware of needing to make should not be deferred once all of the requesite information is available, unless a higher priority decision needs to supplant it.
+    * Elaborating on the last part, decisions the team are well aware of needing to make should not be deferred once all of the requisite information is available, unless a higher priority decision needs to supplant it.
 * Iterative changes are better: When it comes to making modifications, particularly to the FLS, slow and gradual ones should be preferred to sharp, major ones.
 
 [da]: ../about/design_axioms.md
@@ -49,7 +49,7 @@ The following [design axioms][da] apply:
 
 **Owner:** @JoelMarcey, in his capacity of `t-spec` team member and Rust Foundation representative, will lead this project goal.
 
-Some subgoals list an expected due/completion date. If one is omitted, compeletion by the end of 2025h1 is implied.
+Some subgoals list an expected due/completion date. If one is omitted, completion by the end of 2025h1 is implied.
 
 | Task                               | Owner(s) or team(s)            | Notes                           |
 |------------------------------------|--------------------------------|---------------------------------|

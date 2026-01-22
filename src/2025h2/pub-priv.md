@@ -16,7 +16,7 @@ Find a MVP for stabilization and move it forward.
 
 This will allow users to tell Rustc and Cargo what dependencies are private
 - Help users catch ways they unexpectedly expose their implementation details
-- Help tooling better identify what all consistutes an API
+- Help tooling better identify what all constitutes an API
 
 ### The status quo
 

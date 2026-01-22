@@ -38,7 +38,7 @@ We want to make the GCC backend a first-class option for Rust developers. Many t
 
 ### Adding new ui tests annotations
 
-The new ui tests annotations (`//@ ignore-backend` and `//@ needs-backend`) will allow to run directly the ui tests without all the current filtering processes we put in place in the `rustc_codegen_gcc` repository. They are needed because a lot of tests are simply not possible to pass since they're tied to LLVM (like generated assemly code). It will also make it easier for Rust's developers to check if their changes work with GCC.
+The new ui tests annotations (`//@ ignore-backend` and `//@ needs-backend`) will allow to run directly the ui tests without all the current filtering processes we put in place in the `rustc_codegen_gcc` repository. They are needed because a lot of tests are simply not possible to pass since they're tied to LLVM (like generated assembly code). It will also make it easier for Rust's developers to check if their changes work with GCC.
 
 As a reminder, this goal will only target linux x86_64.
 
