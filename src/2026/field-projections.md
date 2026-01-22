@@ -4,7 +4,7 @@
 | :--------------- | -------------------------------------------------------------------------------- |
 | Point of contact | @BennoLossin                                                                     |
 | Status           | Proposed                                                                         |
-| Tracking issue   | github.com/rust-lang/rust-project-goals/issues/390                               |
+| Tracking issue   | https://github.com/rust-lang/rust-project-goals/issues/390                       |
 | Zulip channel    | https://rust-lang.zulipchat.com/#narrow/channel/522311-t-lang.2Fcustom-refs      |
 
 ## Summary
@@ -45,7 +45,7 @@ We also want to note that another contributor separately (without being aware of
 The design axioms from last period still apply and are fulfilled by the virtual places approach: 
 
 - **Effortless Syntax.** Using field projections in a non-generic context should look very similar to normal field accesses.
-- **Broad Solution.** Field projections should be very general and solve complex projection problems such as pin-projections and `RcuMutex<T>`.
+- **Broad Solution.** Field projections should be very general and solve complex projection problems such as pin-projections and [`RcuMutex<T>`](https://hackmd.io/@rust-lang-team/S1I1aEc_lx#RCU-Read-Copy-Update).
 
 ### The next 6 months
 
@@ -54,7 +54,7 @@ The design axioms from last period still apply and are fulfilled by the virtual 
 | Establish a working group for field projections | @tmandry | The group should start out with the members: @BennoLossin, @Nadrieril, @tmandry, @dingxiangfei2009. Any contributor is welcome to join if they intend to develop and design field projections. |
 | Explore and map the solution space | field projection working group | |
 | Document the design in the wiki | field projection working group | |
-| Implement a compiler experiment | field projection working group | | 
+| Implement a compiler experiment | field projection working group | |
 | Draft RFCs | field projection working group | |
 
 TODO:
@@ -66,16 +66,14 @@ Field projections is part of a larger idea called *beyond references*. There sho
 
 ## Team asks
 
-
 | Team       | Support level | Notes                                   |
 | ---------- | ------------- | --------------------------------------- |
-| [lang]     | Large         | Aiming for two design meetings; very large language feature |
+| [lang]     | Large         | Aiming for two design meetings; large language feature [^lang] |
 | [compiler] | Medium        | Reviews of big changes needed; also looking for implementation help |
-| [libs]     | Small         | Reviews for implementing field projection for core & std types |
-| [types]    | Small         | Review field representing types                |
-| [opsem]    |               |                                         |
+| [libs]     | Small         | Small reviews of RFC and/or lirary PRs (implementing FP for core & std types) |
+| [types]    | Small         | Small reviews of RFC and/or compiler PRs |
+| [opsem]    | Small         | Small reviews of RFC and/or compiler PRs |
 
-
-Not expecting any other teams to show up, but might need reviews from opsem?
+[^lang]: Maybe this should be Medium, since the feature direction is pretty set and doesn't need too much lang-guidance. However, we could end up with an RFC review at the end of the year.
 
 ## Frequently asked questions
