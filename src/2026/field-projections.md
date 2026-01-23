@@ -4,7 +4,7 @@
 | :--------------- | -------------------------------------------------------------------------------- |
 | Point of contact | @BennoLossin                                                                     |
 | Status           | Proposed                                                                         |
-| Tracking issue   | https://github.com/rust-lang/rust-project-goals/issues/390                       |
+| Tracking issue   | [rust-project-goals#390]                                                         |
 | Zulip channel    | https://rust-lang.zulipchat.com/#narrow/channel/522311-t-lang.2Fcustom-refs      |
 
 ## Summary
