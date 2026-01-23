@@ -48,6 +48,7 @@ Stabilize `-Znext-solver=globally` and rip out the old implementation
 
 | Team    | Support level | Notes                                       |
 | ------- | ------------- | ------------------------------------------- |
+| [lang]  | Medium        | Stabilization decision for user facing changes |
 | [types] | Large         | Stabilization decision, ongoing review work |
 
 ## Frequently asked questions
