@@ -8,7 +8,7 @@
 
 ## Summary
 
-Research and prototype "crate slicing" — a static analysis technique that computes the transitive closure of items actually used from dependency crates and generates minimal sliced versions, reducing frontend parsing and type-checking overhead during fresh builds.
+Prototype "crate slicing" — a static analysis technique that computes the transitive closure of items actually used from dependency crates and generates minimal sliced versions, reducing frontend parsing and type-checking overhead during fresh builds.
 
 ## Motivation
 
@@ -24,11 +24,14 @@ serde = { version = "1", features = ["derive"] }
 sqlx = { version = "0.8", features = ["postgres", "runtime-tokio"] }
 ```
 
-This dependency graph expands to 161 crates. The `tokio` crate alone contains 315 module files totaling 92,790 lines of Rust source. Yet an application may only use 
-a fraction of tokio's public API surface (e.g., `tokio::spawn`)， and some may depend only on a subcrate e.g., `tokio-macros` rather than on the main crate (as did by
-the `cargo-slicer tool`).
+This dependency graph expands to 161 crates. The `tokio` crate alone contains
+315 module files totaling 92,790 lines of Rust source. Yet an application may
+only use a fraction of tokio's public API surface (e.g., `tokio::spawn`)， and
+some may depend only on a subcrate e.g., `tokio-macros` rather than on the main
+crate (as did by the `cargo-slicer tool`).
 
-The Rust compiler is designed to find and diagnose errors first and generate good code quickly second, hence it needs to do the following steps:
+The Rust compiler is designed to find and diagnose errors first and generate
+good code quickly second, hence it needs to do the following steps:
 1. **Parse** all the ~90,000 lines
 2. **Resolve** names and expand macros across all modules and submodules
 3. **Type-check** all items, including unused ones
@@ -47,11 +50,13 @@ None of these reduce the fundamental quantity of source code processed during fr
 
 ### The next 6 months
 
-We propose to research crate slicing: statically analyzing which items a project uses from each dependency and generating minimal crate versions containing only those items plus their transitive dependencies.
+We propose to slice crates: statically analyzing which items a project uses
+from each dependency and generating minimal crate versions containing only
+those items plus their transitive dependencies.
 
 **Technical approach:**
 
-1. **Usage extraction**: Parse project source using a customized `rust-analyzer` with its `SCIP` crate to identify:
+1. **Usage extraction**: Parse project source using a customized parser or `rust-analyzer` to identify:
    - Direct type references, e.g., `tokio::net::TcpListener`
    - Use statements, e.g., `use axum::{Router, routing::get}`
    - Method calls via variable type tracking, e.g., `listener.accept()` → `TcpListener::accept`
@@ -75,8 +80,12 @@ We propose to research crate slicing: statically analyzing which items a project
    - Filter items within each module
    - Generate `Cargo.toml` with subset of features/dependencies
   
-5. **Rustc verification**: For the soundness and correctness with respect to type inferencing on trait bounds, e.g., simply slicing away everything unused may lead to errors unless we have considered the corner cases. To make sure
-   it generates correct results, we will use Rust compiler to double check the decisions made at the testing phase, before release the solution as replacement of the Rust compiler.
+5. **Rustc verification**: For the soundness and correctness with respect to
+   type inferencing on trait bounds, e.g., simply slicing away everything
+   unused may lead to errors unless we have considered the corner cases. To make
+   sure it generates correct results, we will use Rust compiler to double check
+   the decisions made at the testing phase, before release the solution as
+   replacement of the Rust compiler.
 
 **Prototype results (December 2025):**
 
@@ -111,7 +120,7 @@ The prototype handles complex patterns:
 - **Proc-macro crates**: Preserves as external dependencies (not sliced)
 - **Re-export chains**: Traces `pub use self::module::Item` through module hierarchy
 
-**Research goals for 2026H1:**
+**Research goals for 2026:**
 
 1. **Quantify compilation time reduction**: Benchmark `cargo build` with sliced vs. original dependencies across diverse projects (CLI tools, web services, embedded)
 
@@ -140,12 +149,11 @@ The end state: `cargo build` automatically slices dependencies based on static u
 - **30-50% reduction in fresh build time** for dependency-heavy projects
 - **Faster CI pipelines**: Cold builds complete much faster
 - **No ecosystem changes required**: Works with existing crates.io crates
-- **Slicing on transitive dependencies**: cache the SCIP dump of frequently used (stably dependent) crates by large project such as Zed
+- **Slicing on transitive dependencies**: cache frequently used (stably dependent) crates by large project such as Zed
 
 This complements ongoing efforts:
 - **Parallel frontend** reduces wall-clock time; slicing reduces total work
 - **Cranelift** accelerates codegen; slicing reduces frontend overhead
-
 
 ## Design notes
 
@@ -208,11 +216,11 @@ The prototype required solving several non-trivial problems:
 
 | Task | Owner | Status |
 |------|-------|--------|
-| Benchmark sliced crate compilation (10 diverse projects) | @yijunyu | In progress |
+| Benchmark sliced crate compilation (10 diverse crates) | @yijunyu | Done |
+| Prototype cargo integration | @yijunyu | Done |
+| Measure compilation time with sliced deps | @yijunyu | Done |
+| Document cfg expression evaluation algorithm | @yijunyu | Partially Done |
 | Formalize soundness requirements (trait coherence, visibility) | @yijunyu | Not started |
-| Prototype cargo integration (plugin or build script) | @yijunyu | Not started |
-| Document cfg expression evaluation algorithm | @yijunyu | Partial |
-| Measure rust-analyzer indexing time with sliced deps | TBD | Not started |
 | Present research findings to cargo team | TBD | Not started |
 | Write technical paper on crate slicing | @yijunyu | Not started |
 
@@ -223,8 +231,8 @@ The prototype required solving several non-trivial problems:
 | compiler | Medium | Consultation on approach feasibility and soundness concerns |
 | cargo | Medium | Discussion on cargo integration options |
 | types | Small | Consultation on trait coherence requirements for slicing |
-| rust-analyzer | Small | Discussion on rust-analyzer integration potential |
 | lang | Small | Discussion on review of research methodology and findings |
+| rust-analyzer | Small | Discussion on rust-analyzer integration potential |
 
 ## Frequently asked questions
 
