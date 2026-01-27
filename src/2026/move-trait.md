@@ -4,7 +4,7 @@
 | :-------------------- | ------------------------------------------------------------------------------------------------ |
 | Point of contact      | @jackh726                                                                                        |
 | Status                | Proposed                                                                                         |
-| Tracking issue        | *if this is a continuing goal, add the old tracking issue, else leave blank*                     |
+| Tracking issue        |                                                                                                  |
 | Other tracking issues | https://github.com/rust-lang/rust/issues/149607                                                  |
 | Zulip channel         | [#t-lang/move-trait](https://rust-lang.zulipchat.com/#narrow/channel/549962-t-lang.2Fmove-trait) |
 
