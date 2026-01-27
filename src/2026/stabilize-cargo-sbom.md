@@ -48,11 +48,15 @@ I am in the process of applying for funding for this work, together with collabo
 
 ## Team asks
 
-We will need a handful of 30-minute design meetings with someone on the Cargo team, plus guidance on the stabilization process. Not sure if that qualifies as "small" or "medium".
+We will need:
+
+ - Guidance to get the RFC finalized and accepted
+ - A handful of 30-minute design meetings with someone on the Cargo team to guide fixing the implementation issues
+ - Guidance on the stabilization process
 
 | Team       | Support level | Notes                                   |
 | ---------- | ------------- | --------------------------------------- |
-| [cargo]    | small/medium? |                                         |
+| [cargo]    | Medium |                                         |
 
 ## Frequently asked questions
 
