@@ -27,15 +27,17 @@ Inaccurate SBOMs lead to false positives on vulnerability scans and/or complianc
 
 ### What we propose to do about it
 
+1. Complete [the RFC](https://github.com/rust-lang/rfcs/pull/3553) for this feature and get it accepted
 1. Resolve the already known issue(s) in the Cargo SBOM precursor feature
-2. Modify [cargo-cyclonedx](https://crates.io/crates/cargo-cyclonedx) to use the Cargo SBOM precursor as a data source, to prove that it can be used to generate a complete and accurate SBOM in an industry standard format
-3. Address any issues that point 2 uncovers in the Cargo SBOM precursor feature
-4. Stabilize the MVP that is sufficient to power [cargo-cyclonedx](https://crates.io/crates/cargo-cyclonedx) and [cargo-auditable](https://github.com/rust-secure-code/cargo-auditable)
+1. Modify [cargo-cyclonedx](https://crates.io/crates/cargo-cyclonedx) to use the Cargo SBOM precursor as a data source, to prove that it can be used to generate a complete and accurate SBOM in an industry standard format
+1. Address any issues that point 2 uncovers in the Cargo SBOM precursor feature
+1. Stabilize the MVP that is sufficient to power [cargo-cyclonedx](https://crates.io/crates/cargo-cyclonedx) and [cargo-auditable](https://github.com/rust-secure-code/cargo-auditable)
 
 ### Work items over the next year
 
 | Task        | Owner(s) | Notes |
 | ----------- | -------- | ----- |
+| Complete the RFC | @Shnatsel et al. |    |
 | Resolve known issues | @Shnatsel et al. |       |
 | convert cargo-cyclonedx to use the SBOM precursor | @Shnatsel et al. | outside the Rust Project repositories, no Rust Project mentorship needed |
 | Resolve newly uncovered issues | @Shnatsel et al. |       |
