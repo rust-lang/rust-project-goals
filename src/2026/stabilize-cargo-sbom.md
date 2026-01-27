@@ -4,7 +4,7 @@
 | :--------------- | -------------------------------------------------------------------------------- |
 | Point of contact | @Shnatsel                                                                        |
 | Status           | Proposed for mentorship                                                          |
-| Tracking issue   |[ N/A   ](https://github.com/rust-lang/cargo/issues/16565)                        |
+| Tracking issue   | https://github.com/rust-lang/cargo/issues/16565                                  |
 | Zulip channel    | N/A                                                                              |
 
 ## Summary
