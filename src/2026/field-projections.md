@@ -4,8 +4,11 @@
 | :--------------- | -------------------------------------------------------------------------------- |
 | Point of contact | @BennoLossin                                                                     |
 | Status           | Proposed                                                                         |
+| Flagship         | Beyond the `&`                                                                   |
 | Tracking issue   | [rust-lang/rust-project-goals#390]                                               |
 | Zulip channel    | https://rust-lang.zulipchat.com/#narrow/channel/522311-t-lang.2Fcustom-refs      |
+| [lang] champion  | @tmandry                                                                         |
+| [compiler] champion  | NEEDED                                                                       |
 
 ## Summary
 
