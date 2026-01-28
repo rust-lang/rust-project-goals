@@ -68,12 +68,12 @@ Field projections is part of a larger idea called *beyond references*. There sho
 
 | Team       | Support level | Notes                                   |
 | ---------- | ------------- | --------------------------------------- |
-| [lang]     | Large         | Aiming for two design meetings; large language feature [^lang] |
+| [lang]     | Large         | Aiming for two design meetings; large language feature |
 | [compiler] | Medium        | Reviews of big changes needed; also looking for implementation help |
 | [libs]     | Small         | Small reviews of RFC and/or library PRs (implementing FP for core & std types) |
 | [types]    | Small         | Small reviews of RFC and/or compiler PRs |
 | [opsem]    | Small         | Small reviews of RFC and/or compiler PRs |
 
-[^lang]: Maybe this should be Medium, since the feature direction is pretty set and doesn't need too much lang-guidance. However, we could end up with an RFC review at the end of the year.
+The lang team support level is Large, since we could end up with an RFC review and decision at the end of the year. If not, then the input from t-lang is much more manageable and more in-line with Medium: the design meetings and the champion suffice as support.
 
 ## Frequently asked questions
