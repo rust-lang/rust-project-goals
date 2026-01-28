@@ -4,7 +4,7 @@
 | :--------------- | -------------------------------------------------------------------------------- |
 | Point of contact | @BennoLossin                                                                     |
 | Status           | Proposed                                                                         |
-| Tracking issue   | [rust-lang/rust-project-goals#390]                                                         |
+| Tracking issue   | [rust-lang/rust-project-goals#390]                                               |
 | Zulip channel    | https://rust-lang.zulipchat.com/#narrow/channel/522311-t-lang.2Fcustom-refs      |
 
 ## Summary
@@ -70,7 +70,7 @@ Field projections is part of a larger idea called *beyond references*. There sho
 | ---------- | ------------- | --------------------------------------- |
 | [lang]     | Large         | Aiming for two design meetings; large language feature [^lang] |
 | [compiler] | Medium        | Reviews of big changes needed; also looking for implementation help |
-| [libs]     | Small         | Small reviews of RFC and/or lirary PRs (implementing FP for core & std types) |
+| [libs]     | Small         | Small reviews of RFC and/or library PRs (implementing FP for core & std types) |
 | [types]    | Small         | Small reviews of RFC and/or compiler PRs |
 | [opsem]    | Small         | Small reviews of RFC and/or compiler PRs |
 
