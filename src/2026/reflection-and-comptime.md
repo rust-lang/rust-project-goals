@@ -14,7 +14,9 @@
 
 ## Summary
 
-Design, implement and experimentally land a reflection scheme based on `const fn` that can only be called at compile time.
+Finish the implemented reflection scheme based on `const fn` that can only be called at compile time.
+Valdiate it against existing reflection libraries by giving them a nightly feature that obsoletes having derives and makes the derives no-ops.
+Obtain T-lang and T-libs buy-in for the scheme and write an RFC.
 This proposal is solely for producing const eval values, not for putting types back into the type system.
 That will be a follow-up once this proposal has a merged MVP.
 
@@ -60,7 +62,7 @@ Create basic building blocks that allow `facet`, `bevy-reflect` and `reflect` to
 
 The [Reflection MVP](https://github.com/rust-lang/rust/pull/146923) landed. It implements a `TypeId::info` method that returns a `Type` struct. `Type` has fields that contain information about the type, including `kind` which tells you whether it's e.g. a tuple, struct etc.
 
-Currently, only tuples are supported.
+A new type kind is supported every week, with open PRs for hard ones like Adts and dyn trait
 
 Open PRs:
 
