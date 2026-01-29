@@ -65,8 +65,8 @@ When we begin having 12-week lookback to Beta, it's possible we'll have multiple
 | ------------------------------- | ----------- | ----- |
 | Overall coordination            | @PLeVasseur |       |
 | FLS authoring and review        | ![Team][] [fls] |       |
-| Ship FLS 1.93 through 1.101     | @PLeVasseur, @tshepang | Each within 6 weeks of corresponding Rust stable |
-| Investigate work of Beta release issues lookback | @PLeVasseur, @tshepang | Learn how Reference writers approach, apply best practices |
+| Ship FLS 1.93 through 1.101     | [Team][] [fls] | Each within 6 weeks of corresponding Rust stable |
+| Investigate work of Beta release issues lookback | @PLeVasseur | Learn how Reference writers approach, apply best practices |
 
 ## Team asks
 
