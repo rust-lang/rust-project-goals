@@ -26,8 +26,6 @@ This feature will reduce verbosity and increase ergonomics when working with cus
 
 There are many examples for types that can take advantage of field projections. In its current form the design is a generalization of `Deref` that provides an umbrella abstraction for *pointers to virtual places*. As the name suggests, these places do not really need to exist, so `struct MyStruct<T>(PhantomData<T>)` is supported by our approach. Naturally any type that implements `Deref` is supported; but also types that cannot implement it, such as raw pointers, `NonNull<T>` and many more are covered.
 
-The approach of *field projection via virtual places* puts places at the center. It adds a lot of operator traits for *place operations* such as `PlaceRead`, `PlaceWrite`, `PlaceMove`, and most importantly `PlaceBorrow`. We are missing some interactions, concrete details and a comprehensive document on this design, but the overall idea is solid.
-
 In the previous goal period, we held a [design meeting](https://hackmd.io/@rust-lang-team/S1I1aEc_lx) about the general approach to designing a solution. In it we also extensively covered many use-cases. Here is a non-exhaustive list of types that would benefit from this feature:
 - `&mut MaybeUninit<T>`,
 - `cell::Ref[Mut]<'a, T>`
@@ -45,12 +43,16 @@ In the previous goal period, we held a [design meeting](https://hackmd.io/@rust-
 
 We also want to note that another contributor separately (without being aware of the field projection effort) created an [ACP for `ArcRef<T>`](https://github.com/rust-lang/libs-team/issues/700). Another [wanted to introduce swift's keypath feature](https://rust-lang.zulipchat.com/#narrow/channel/213817-t-lang/topic/Fields.20projection.20with.20Keypaths/with/567490323) to Rust, which is very similar to a part of field projection.
 
-The design axioms from last period still apply and are fulfilled by the virtual places approach: 
+### What we propose to do about it
+
+In the last goal period produced a new approach for field projections called *virtual places*. It allows customizing *place operations* via traits: `PlaceRead`, `PlaceWrite`, `PlaceMove`, and most importantly `PlaceBorrow`. We are missing some interactions, concrete details and a comprehensive document on this design, but the overall idea is solid. It is also much too complicated for a project goal. As part of the goal, we are writing a [wiki](https://rust-lang.github.io/beyond-refs/) to better explain all of the interactions with other Rust features.
+
+The design axioms from the last period still apply and are fulfilled by the virtual places approach: 
 
 - **Effortless Syntax.** Using field projections in a non-generic context should look very similar to normal field accesses.
 - **Broad Solution.** Field projections should be very general and solve complex projection problems such as pin-projections and [`RcuMutex<T>`](https://hackmd.io/@rust-lang-team/S1I1aEc_lx#RCU-Read-Copy-Update).
 
-### The next 6 months
+### Work items over the next year
 
 | Task        | Owner(s) | Notes |
 | ----------- | -------- | ----- |
