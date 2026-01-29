@@ -39,7 +39,11 @@ To accomplish this, `cargo-semver-checks` needs the ability to express more kind
 
 ### The status quo
 
-TODO
+`cargo-semver-checks` currently ships with 245 lints, and is effective at catching many forms of breakage — both in [crate manifests](https://predr.ag/blog/breakage-in-the-cargo-toml-how-rust-package-features-work/) and also inside crates' source code.
+
+However, many more lints remain to be written, and they will require additional infrastructure in both rustdoc JSON and in `cargo-semver-checks` itself, as we describe below.
+
+For a detailed look at the status quo, we recommend checking out [the most recent `cargo-semver-checks` annual summary](https://predr.ag/blog/cargo-semver-checks-2025-year-in-review/)
 
 
 ### What we propose to do about it
@@ -54,11 +58,17 @@ This lets us catch changes like: `pub fn example(x: i64) {}` becoming `pub fn ex
 
 This is our most commonly requested feature today, and will resolve the largest remaining class of false-negative (lint should fire, but doesn't) outcomes!
 
+We plan to accomplish this in two steps:
+- Expose additional information in rustdoc JSON to make it possible to reliably observe that something about a type has changed. This will enable some lints by itself, but is not sufficient in all cases: for example, changing `impl Display` to `String` or vice versa isn't always breaking.
+- Build out infrastructure in `cargo-semver-checks` to make it possible to generate "witness" programs: ones on which `cargo check` can be executed in order to determine whether a changed type caused breakage or not. This will allow us to rely on `rustc` to be the arbiter of breakage, instead of requiring us to reimplement the Rust type checker, trait solver, borrow checker, etc. Some of the infrastructure here was already built [as part of GSoC 2025](https://blog.rust-lang.org/2025/11/18/gsoc-2025-results/#enable-witness-generation-in-cargo-semver-checks), and we expect to continue building on top of that foundation.
+
 #### Linting across crate boundaries
 
 <https://github.com/obi1kenobi/cargo-semver-checks/issues/638>
 
 Linting across crate boundaries with high reliability and acceptable performance, so that for example, we can correctly handle cross-crate item re-exports. This will resolve the largest remaining class of false-positive bugs (a lint fires where it shouldn't) in our linting system.
+
+Completing this will require close cooperation with T-rustdoc, to enable rustdoc JSON files to be reliably connected to each other. This work already began in 2025 with @adotinthevoid leading it from the rustdoc side.
 
 #### Participate Google Summer of Code (GSoC)
 
