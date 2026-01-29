@@ -63,6 +63,8 @@ The design axioms from the last period still apply and are fulfilled by the virt
 | Implement a compiler experiment | field projection working group | |
 | Draft RFCs | field projection working group | |
 
+**Success metric:** this project goal will be successful if it can significantly advance the design and knowledge on how to implement field projections in Rust. If we are able to reach accept the required RFCs, then we have over achieved our goal. A major setback would be if we discover the current approach untenable or find other blockers that prevent making meaningful progress in the design.
+
 ### The "shiny future" we are working towards
 
 Field projections is part of a larger idea called *beyond references*. There should be no built-in types in the Rust language that a library could not recreate. For example, a user should be able to implement a `MyBox<T>` that allows moving in and out, supports unsizing, coercions and borrowing the contents using references. Field projections enable that last feature as well as the moving out support. Ultimately, using any library declared type should feel as if it was built into the language itself. In this future, no significant compiler magic exists for references and they can be fully implemented in `core`.
