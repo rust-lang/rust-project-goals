@@ -25,7 +25,7 @@ In the meantime we work towards at least supporting [Tier 1](https://doc.rust-la
 
 ### The status quo
 
-Currently, there is unstable support for several sanitizers (address, hwaddress, memtag, memory, thread, leak, cfi, kcfi, safestack, shadow-call-stack). The AddressSanitizer and LeakSanitizer (that do not require rebuilding an instrumented standard library) are close to being stabilized (https://github.com/rust-lang/rust/pull/123617). The others require more work in order to become stabilized.
+Currently, there is unstable support for several sanitizers (address, hwaddress, memtag, memory, thread, leak, cfi, kcfi, safestack, shadow-call-stack). The AddressSanitizer and LeakSanitizer (that do not require rebuilding an instrumented standard library) are close to being stabilized (https://github.com/rust-lang/rust/pull/123617). We've just merged a new Tier 2 target (https://github.com/rust-lang/rust/pull/149644) for AddressSanitizer to allow using it with a stable compiler and are planning to repeat same process now for MemorySanitizer and ThreadSanitizer.
 
 ### What we propose to do about it
 
