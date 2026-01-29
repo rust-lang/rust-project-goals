@@ -9,6 +9,7 @@
 | Zulip channel    | https://rust-lang.zulipchat.com/#narrow/channel/522311-t-lang.2Fcustom-refs      |
 | [lang] champion  | @tmandry                                                                         |
 | [compiler] champion  | NEEDED                                                                       |
+| [types] champion  | @lqd                                                                        |
 
 ## Summary
 
