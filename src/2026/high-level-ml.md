@@ -6,6 +6,8 @@ Project goal - High-Level ML optimizations
 | Status           | Proposed                                                                         |
 | Tracking issue   |                                                                                  |
 | Zulip channel    | N/A                                                                              |
+| [lang] champion    | @traviscross                                                                               |
+| [compiler] champion    | @oli-obk |
 
 # Motivation:
 
@@ -56,9 +58,9 @@ There is a chance that we need to compromise on target 3), but I believe it's in
 
 | Team       | Support level | Notes                                   |
 | ---------- | ------------- | --------------------------------------- |
-| [compiler] | Medium @oli-obk, @ZuseZ4 | My changes should be contained to few places in the compiler. Potentially one frontend macro/intrinsic, and otherwise almost exclusively in the backend. |
-| [infra]    |  Small @kobzol  | I will push more bootstrap options to build and configure MLIR (an LLVM subproject)                                         |
-| [lang]     | Medium @TC | Discussions to understand which parts of gpu programming and `std::offload` are problematic wrt. stabilization, from a lang perspective. Non-blocking, since we are not rushing stabilization.         |
+| [compiler] | Medium | My changes should be contained to few places in the compiler. Potentially one frontend macro/intrinsic, and otherwise almost exclusively in the backend. |
+| [infra]    |  Small | I will work with @Kobzol to add more bootstrap options to build and configure MLIR (an LLVM subproject)                                         |
+| [lang]     | Medium  | Discussions to understand which parts of gpu programming and `std::offload` are problematic wrt. stabilization, from a lang perspective. Non-blocking, since we are not rushing stabilization.         |
 
 ## Shiny future:
 
