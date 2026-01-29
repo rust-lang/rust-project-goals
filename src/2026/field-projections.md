@@ -59,11 +59,9 @@ The design axioms from the last period still apply and are fulfilled by the virt
 | Establish a working group for field projections | @tmandry | The group should start out with the members: @BennoLossin, @Nadrieril, @tmandry, @dingxiangfei2009. Any contributor is welcome to join if they intend to develop and design field projections. |
 | Explore and map the solution space | field projection working group | |
 | Document the design in the wiki | field projection working group | |
+| Formalize the borrow checker integration in a-mir-formality | @BennoLossin, @nikomatsakis | |
 | Implement a compiler experiment | field projection working group | |
 | Draft RFCs | field projection working group | |
-
-TODO:
-- a-mir-formality?
 
 ### The "shiny future" we are working towards
 
@@ -75,8 +73,8 @@ Field projections is part of a larger idea called *beyond references*. There sho
 | ---------- | ------------- | --------------------------------------- |
 | [lang]     | Large         | Aiming for two design meetings; large language feature |
 | [compiler] | Medium        | Reviews of big changes needed; also looking for implementation help |
+| [types]    | Medium        | Collaborating on a-mir-formality on the borrow checker integration; small reviews of RFC and/or compiler PRs |
 | [libs]     | Small         | Small reviews of RFC and/or library PRs (implementing FP for core & std types) |
-| [types]    | Small         | Small reviews of RFC and/or compiler PRs |
 | [opsem]    | Small         | Small reviews of RFC and/or compiler PRs |
 
 The lang team support level is Large, since we could end up with an RFC review and decision at the end of the year. If not, then the input from t-lang is much more manageable and more in-line with Medium: the design meetings and the champion suffice as support.
