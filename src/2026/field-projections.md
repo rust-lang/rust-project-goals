@@ -6,7 +6,7 @@
 | Status           | Proposed                                                                         |
 | Flagship         | Beyond the `&`                                                                   |
 | Tracking issue   | [rust-lang/rust-project-goals#390]                                               |
-| Zulip channel    | https://rust-lang.zulipchat.com/#narrow/channel/522311-t-lang.2Fcustom-refs      |
+| Zulip channel    | [t-lang/custom-refs](https://rust-lang.zulipchat.com/#narrow/channel/522311-t-lang.2Fcustom-refs) |
 | [lang] champion  | @tmandry                                                                         |
 | [compiler] champion  | NEEDED                                                                       |
 | [types] champion  | @lqd                                                                        |
@@ -48,6 +48,27 @@ We also want to note that another contributor separately (without being aware of
 
 The last goal period resulted in a new approach for field projections called *virtual places*. It allows customizing *place operations* via traits: `PlaceRead`, `PlaceWrite`, `PlaceMove`, and most importantly `PlaceBorrow`. We are missing some interactions, concrete details and a comprehensive document on this design, but the overall idea is solid. It is also much too complicated for a project goal. As part of the goal, we are writing a [wiki](https://rust-lang.github.io/beyond-refs/) to better explain all of the interactions with other Rust features.
 
+Here is an example on how the current approach could look like. We use the `ArcRef<T>` type, it is like an `Arc<T>`, but with separate pointers to the data and the refcount. This allows us to offset the data pointer and produce `ArcRef<Field>` from `ArcRef<Struct>`.
+
+```rust
+struct Struct {
+    field: Field,
+}
+
+struct Field {
+    accesses: Cell<usize>,
+}
+
+impl Struct {
+    fn access_field(self: ArcRef<Self>) -> ArcRef<Field> {
+        // This uses the `PlaceWrite` and `PlaceRead` impls of `Cell<T>`.
+        *self.field.accesses = 1 + *self.field.accesses;
+        // This uses the `PlaceBorrow` impl of `ArcRef`
+        @self.field
+    }
+}
+```
+
 The design axioms from the last period still apply and are fulfilled by the virtual places approach: 
 
 - **Effortless Syntax.** Using field projections in a non-generic context should look very similar to normal field accesses.
@@ -58,13 +79,13 @@ The design axioms from the last period still apply and are fulfilled by the virt
 | Task        | Owner(s) | Notes |
 | ----------- | -------- | ----- |
 | Establish a working group for field projections | @tmandry | The group should start out with the members: @BennoLossin, @Nadrieril, @tmandry, @dingxiangfei2009. Any contributor is welcome to join if they intend to develop and design field projections. |
-| Explore and map the solution space | field projection working group | |
-| Document the design in the wiki | field projection working group | |
-| Formalize the borrow checker integration in a-mir-formality | @BennoLossin, @nikomatsakis | |
-| Implement a compiler experiment | field projection working group | |
-| Draft RFCs | field projection working group | |
+| Explore and map the solution space | field projection working group | Discussions in [t-lang/custom-refs](https://rust-lang.zulipchat.com/#narrow/channel/522311-t-lang.2Fcustom-refs) & meetings with members of the working group  |
+| Document the design in the wiki | @BennoLossin | Write it down in RFC-style, to easily extract RFCs or design meeting documents from the wiki. |
+| Formalize the borrow checker integration in a-mir-formality | @BennoLossin, @lqd, @nikomatsakis | Verify our work formally and explore the algorithms needed for implementing it in the compiler |
+| Implement a compiler experiment | @BennoLossin, @dingxiangfei2009 | Evaluate our current approach by creating an experiment to try out in real code. |
+| Draft RFCs | @tmandry, @BennoLossin | Extract the knowledge from the wiki & provide historical context as well as rationale and a contiguous & comprehensive story. |
 
-**Success metric:** this project goal will be successful if it can significantly advance the design and knowledge on how to implement field projections in Rust. If we are able to reach accept the required RFCs, then we have over achieved our goal. A major setback would be if we discover the current approach untenable or find other blockers that prevent making meaningful progress in the design.
+**Success metric:** This project goal will be successful if it can significantly advance the design and knowledge on how to implement field projections in Rust; part of that is creating a compiler experiment in nightly. If we are able to accept the required RFCs, then we have over-achieved our goal. A major setback would be if we discover the current approach untenable or find other blockers that prevent making meaningful progress in the design and experiment.
 
 ### The "shiny future" we are working towards
 
