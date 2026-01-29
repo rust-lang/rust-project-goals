@@ -73,7 +73,7 @@ When we begin having 12-week lookback to Beta, it's possible we'll have multiple
 | Team   | Support level | Notes |
 | ------ | ------------- | ----- |
 | [spec] | Small         | Alignment on release cadence goal |
-| [fls]  | Medium        | Core work of authoring and releasing FLS versions on schedule |
+| [fls]  | Large        | Core work of authoring and releasing FLS versions on schedule |
 
 ## Frequently asked questions
 
