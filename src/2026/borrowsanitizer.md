@@ -8,6 +8,7 @@
 | Zulip channel    | N/A                                                                              |
 | [compiler] champion    | @RalfJung                                                                               |
 | [opsem] champion    | @RalfJung                                                                              |
+| [lang] champion    | @tmandry                                                                              |
 
 ## Summary
 
