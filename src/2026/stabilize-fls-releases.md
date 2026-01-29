@@ -41,7 +41,7 @@ A predictable FLS release cadence is foundational infrastructure for broader goa
 
 - **Safety-critical adoption**: Organizations pursuing certification (ISO 26262, IEC 61508, DO-178C) require specification documents that track the language version they are certifying against. Predictable FLS releases make it feasible to plan certification timelines around known specification availability.
 - **Tighter integration with Rust releases**: Once the six-week cadence is proven, we can explore starting specification work earlier by tracking Beta release note issues, giving a 12-week window. This may eventually enable same-week or same-day FLS releases aligned with Rust stable.
-- **Tooling and automation**: A consistent cadence creates opportunities for automated checks, diff generation, and integration with other Rust documentation infrastructure.
+- **Tooling and automation**: A consistent cadence creates opportunities for automated checks, diff generation, and integration with other Rust documentation infrastructure. One advantage of such automation could be generation of the FLS changelog, which at the moment is a manual process.
 
 #### Phased approach
 
