@@ -49,7 +49,7 @@ pub trait Receiver {
 }
 ```
 
-Ideally, `Reciever` would be a supertrait of `Deref`:
+Ideally, `Receiver` would be a supertrait of `Deref`:
 
 ```rust
 pub trait Receiver {

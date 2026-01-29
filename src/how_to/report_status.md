@@ -35,7 +35,7 @@ For larger project goals, it can be more convenient to track progress via github
 | Tracked issues | [rust-lang/rust label:A-edition-2024 label:C-tracking-issue -label:t-libs](...) |
 ```
 
-The first 3 lines should already exist. The last line is the one you have to add. The "value" column should have a markdown link, the contents of which begin with a repo name and then search parameters in Github's format. The tool will conduct the search and count the number of open vs closed issues. The `(...)` part of the link should be to github so that users can click to do the search on their own.
+The first 3 lines should already exist. The last line is the one you have to add. The "value" column should have a markdown link, the contents of which begin with a repo name and then search parameters in GitHub's format. The tool will conduct the search and count the number of open vs closed issues. The `(...)` part of the link should be to github so that users can click to do the search on their own.
 
 You can find an example on the [Rust 2024 Edition tracking issue](https://github.com/rust-lang/rust-project-goals/issues/117).
 
@@ -60,7 +60,7 @@ If we don't find any of the above, we will consider your issue either 0% done if
 
 ## Status update comments and summaries
 
-We encourage you to post regular detailed updates about your progress as comments on the Github tracking issue. There is no strict format for these updates but we recommend including the following information:
+We encourage you to post regular detailed updates about your progress as comments on the GitHub tracking issue. There is no strict format for these updates but we recommend including the following information:
 
 * What happened since the last update? Were any key decisions made or milestones achieved?
 * What is the next step to get done?
