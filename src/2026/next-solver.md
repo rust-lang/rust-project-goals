@@ -6,6 +6,8 @@ Metadata         |                                                              
 | Status           | Proposed                                                                         |
 | Tracking issue   | https://github.com/rust-lang/rust-project-goals/issues/113  |
 | Zulip channel    | https://rust-lang.zulipchat.com/#narrow/channel/364551-t-types.2Ftrait-system-refactor |
+| [types] champion    | @lcnr |
+| [lang] champion | @nikomatsakis |
 
 ## Summary
 
