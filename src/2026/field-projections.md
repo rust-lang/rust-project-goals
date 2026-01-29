@@ -45,7 +45,7 @@ We also want to note that another contributor separately (without being aware of
 
 ### What we propose to do about it
 
-In the last goal period produced a new approach for field projections called *virtual places*. It allows customizing *place operations* via traits: `PlaceRead`, `PlaceWrite`, `PlaceMove`, and most importantly `PlaceBorrow`. We are missing some interactions, concrete details and a comprehensive document on this design, but the overall idea is solid. It is also much too complicated for a project goal. As part of the goal, we are writing a [wiki](https://rust-lang.github.io/beyond-refs/) to better explain all of the interactions with other Rust features.
+The last goal period produced a new approach for field projections called *virtual places*. It allows customizing *place operations* via traits: `PlaceRead`, `PlaceWrite`, `PlaceMove`, and most importantly `PlaceBorrow`. We are missing some interactions, concrete details and a comprehensive document on this design, but the overall idea is solid. It is also much too complicated for a project goal. As part of the goal, we are writing a [wiki](https://rust-lang.github.io/beyond-refs/) to better explain all of the interactions with other Rust features.
 
 The design axioms from the last period still apply and are fulfilled by the virtual places approach: 
 
