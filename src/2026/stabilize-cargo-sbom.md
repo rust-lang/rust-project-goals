@@ -11,7 +11,7 @@
 
 ## Summary
 
-Progress towarrds an MVP version of Cargo SBOM support by resolving known issues in Cargo's [SBOM precursor feature](https://doc.rust-lang.org/nightly/cargo/reference/unstable.html#sbom) and finalizing the RFC.
+Progress towards an MVP version of Cargo SBOM support by resolving known issues in Cargo's [SBOM precursor feature](https://doc.rust-lang.org/nightly/cargo/reference/unstable.html#sbom) and finalizing the RFC.
 
 ## Motivation
 
