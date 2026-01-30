@@ -120,7 +120,7 @@ fn main() {
 }
 ```
 
-There is a lot more to be said about `Move`, but we plan to expand to that in an RFC.
+There is a lot more to be said about `Move`, but we plan to expand on that in an RFC.
 
 ### Work items over the next year
 
