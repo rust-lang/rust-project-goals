@@ -17,6 +17,7 @@
 | Status           | Proposed                                                                         |
 | Tracking issue   |                                                                                  |
 | Zulip channel    | N/A                                                                              |
+| [Compiler] champion    | TBD                                                                             |
 
 ## Summary
 
@@ -98,14 +99,7 @@ The proposed work also includes two further experiments as stretch goals.
 > "Vibes" and "Small" asks require someone on the team to "second" your goal; "Medium" and "Large" asks require a dedicated champion from the team. If you don't have a second or a champion, the project goals team will help you find them, don't worry about it.
 
 | Team       | Support level | Notes                                   |
-| ---------- | ------------- | --------------------------------------- |
-| [cargo]    |               |                                         |
-| [compiler] |               |                                         |
-| [infra]    |               |                                         |
-| [lang]     |               |                                         |
-| [libs]     |               |                                         |
-| [opsem]    |               |                                         |
-| [types]    |               |                                         |
-| ...        | ...           | _Feel free to add rows for other teams_ |
+| ---------- | ------------- | --------------------------------------- 
+| [compiler] | Medium   | Is this Small or Medium? Does it need a champion?                                    |
 
 ## Frequently asked questions
