@@ -51,7 +51,7 @@ BorrowSanitizer is open source and available on [GitHub](https://github.com/borr
 | ---------- | ------------- | --------------------------------------- |
 | [compiler] |    Medium     | Champion: @RalfJung. Design discussions, PR review, and upstream integration. |
 | [opsem]    |    Medium     | Champion: @RalfJung.                                |
-| [lang]     |    Medium     | Champion: @tmandry. General support and guidance.   |
+| [lang]     |    Vibes      | Champion: @tmandry. General support and guidance.   |
 | [infra]    |    Small      | Upstream integration.                               |
 
 ## Frequently asked questions
