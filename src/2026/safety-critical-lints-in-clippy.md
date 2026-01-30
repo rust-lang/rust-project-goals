@@ -113,7 +113,7 @@ The original goal proposal focused on investigating stable APIs for custom lints
 
 | Team       | Support level | Notes                                           |
 | ---------- | ------------- | ----------------------------------------------- |
-| [clippy]   | Mentorship    | Initial onboarding support for SCRC contributors; guidance on lint design |
+| [clippy]   | Small         | Initial onboarding support for SCRC contributors; guidance on lint design |
 
 **Resources committed:** The Consortium will commit engineering time for lint development, with the goal of becoming self-sufficient in review capacity over time.
 **Members committment:** Consortium members are willing to bring staff with experience in mentoring.
