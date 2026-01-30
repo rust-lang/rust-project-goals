@@ -10,43 +10,41 @@
 
 ## Summary
 
-Continue iterating on the `Reborrow` and `CoerceShared` traits, moving from initial prototypes toward a complete nightly implementation with proper coherence checking and safety validation.
+Bring the `Reborrow` and `CoerceShared` trait to nightly Rust, enabling iteration based on user feedback. Begin work on nontrivial cases where more than one lifetime is being reborrowed or coerced into shared
 
 ## Motivation
-
-### The status quo
 
 Reborrowing is fundamental to Rust's ergonomics with references. When you pass a `&mut T` to a function, Rust automatically reborrows it so you can use it again after the call. But this doesn't work for user-defined types that wrap references, like `Option<&mut T>`, `Pin<&mut T>`, or custom smart pointers.
 
 Today, users work around this with `.as_deref_mut()` or `.reborrow()` methods, but these have a critical limitation: values derived from a reborrow cannot be returned from the function that called `.reborrow()`. The lifetime gets constrained to the reborrow call site. True reborrowing doesn't have this constraint.
 
-The 2025H2 period made significant progress:
-- The `Reborrow` trait is working for types with exclusive reference semantics (though currently requires `let mut` binding - a known bug)
-- `CoerceShared` trait design has evolved: changed from associated type to `trait CoerceShared<Target: Copy> {}` to allow multiple coercion targets
-- Coherence checking approach has been refined: only the first lifetime participates in reborrowing as a simplification
-- Field mapping storage for `CoerceShared` remains an open problem
+### The status quo
+
+The 2025H2 period produced a working implementation of the `Reborrow` and `CoerceShared` traits for types with a single lifetime parameter and trivial memory layouts. The exact mechanism for expanding the implementation from trivial cases to non-trivial memory layouts and sets of reborrowed lifetimes remains an open problem.
 
 ### What we propose to do about it
 
-This year we continue experimental iteration on the traits, focusing on:
+This year we continue iteration on the traits based on user feedback, focusing on:
 
-1. **Fix known issues with `Reborrow`** - Remove the spurious `let mut` requirement
-2. **Complete `CoerceShared` implementation** - Solve the field mapping storage problem and get basic functionality working
-3. **Add safety and validity checks** - Currently absent, these are required before broader experimentation
-4. **Gather feedback from users** - Especially from `reborrow` crate users and the Rust for Linux project
-5. **Prepare for RFC** - A [draft RFC](https://github.com/aapoalas/rfcs/blob/autoreborrow-traits/text/0000-autoreborrow-traits.md) exists; refine based on implementation experience
+1. **Gather feedback from users** - Especially from `reborrow` crate users and the Rust for Linux project
+1. **Overcome known limitations** - Support types with multiple lifetime parameters where one or more of them gets reborrowed.
+1. **Support non-trivial `CoerceShared`** - Support `CoerceShared` operations that reorder or drop fields.
+1. **Expand safety and validity checks** - `CoerceShared` performs an implicit type transmute and must be extensively tested and validated.
+1. **Prepare for RFC** - Refine the [draft RFC](https://github.com/aapoalas/rfcs/blob/autoreborrow-traits/text/0000-autoreborrow-traits.md) based on implementation experience.
 
 The fundamental design philosophy remains:
-- Reborrowing is "a memory copy with added lifetime analysis" - no user code runs
-- Must achieve *true* reborrowing where derived values can be returned past the reborrow point
-- Performance must be trivial since reborrow is checked at every coercion site
-- Prevent abuse as a general type coercion mechanism
+- Reborrowing is "a memory copy with added lifetime analysis" - no user code is run.
+- The traits must achieve *true* reborrowing where derived values can be returned from the function.
+- Performance cost must be trivial as reborrowing is performed at every coercion site.
+- Prevent abuse - `CoerceShared` must not slide into the realm of a generic `Coerce` trait.
 
 ### Work items over the next year
 
 | Task                                          | Owner(s)  | Notes |
 | --------------------------------------------- | --------- | ----- |
-| Implementation and experimentation on nightly | @aapoalas |       |
+| Land first implementation PR to nightly       | @aapoalas |       |
+| Solicit wide feedback on the feature          | @aapoalas |       |
+| Continue experiment based on experience       | @aapoalas |       |
 
 ## Team asks
 
