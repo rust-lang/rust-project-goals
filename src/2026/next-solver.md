@@ -60,4 +60,3 @@ Stabilize `-Znext-solver=globally` and rip out the old implementation
 
 ### What do I do with this space?
 
-[rust-lang/rust#107374]: https://github.com/rust-lang/rust/issues/107374
