@@ -6,6 +6,7 @@
 | Status           | Proposed                                                     |
 | Tracking issue   |                                                              |
 | Zulip channel    | N/A                                                          |
+| [Opsem] champion    | @RalfJung                                                          |
 
 ## Summary
 
