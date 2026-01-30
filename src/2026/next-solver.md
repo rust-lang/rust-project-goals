@@ -1,13 +1,15 @@
 # Stabilize the next-generation trait solver
 
-Metadata         |                                                                                  |
-| :--------------- | -------------------------------------------------------------------------------- |
-| Point of contact | @lcnr                                  |
-| Status           | Proposed                                                                         |
-| Tracking issue   | https://github.com/rust-lang/rust-project-goals/issues/113  |
-| Zulip channel    | https://rust-lang.zulipchat.com/#narrow/channel/364551-t-types.2Ftrait-system-refactor |
-| [types] champion    | @lcnr |
-| [lang] champion | @nikomatsakis |
+| Metadata         |                                           |
+| :--------------- | ----------------------------------------- |
+| Point of contact | @lcnr                                     |
+| Status           | Proposed                                  |
+| Tracking issue   | [rust-lang/rust-project-goals#113]        |
+| Zulip channel    | [#t-types/trait-system-refactor][channel] |
+| [types] champion | @lcnr                                     |
+| [lang] champion  | @nikomatsakis                             |
+
+[channel]: https://rust-lang.zulipchat.com/#narrow/channel/364551-t-types.2Ftrait-system-refactor
 
 ## Summary
 
@@ -56,3 +58,7 @@ Stabilize `-Znext-solver=globally` and rip out the old implementation
 ## Frequently asked questions
 
 ### What do I do with this space?
+
+[lang]: https://github.com/rust-lang/lang-team
+[types]: https://github.com/rust-lang/types-team
+[rust-lang/rust-project-goals#113]: https://github.com/rust-lang/rust-project-goals/issues/113
