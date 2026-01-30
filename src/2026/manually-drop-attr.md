@@ -1,7 +1,7 @@
 # Experiment and RFC for `#[manually_drop]`
 
 | Metadata         |                         | 
-|:---------------- |:----------------------- |
+| :--------------- | ----------------------- |
 | Point of contact | @tmandry                |
 | Status           | Proposed for mentorship |
 | Tracking issue   |                         |
@@ -86,7 +86,7 @@ impl Drop for UringState {
 ### Work items over the next year
 
 | Task                        | Owner(s) | Notes                     |
-|:--------------------------- |:-------- |:------------------------- |
+| --------------------------- | -------- | ------------------------- |
 | Implement a lang experiment |          | @tmandry to find an owner |
 | Write an RFC                |          | @tmandry to find an owner |
 
