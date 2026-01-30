@@ -18,7 +18,7 @@ Stabilize `-Znext-solver=globally`, replacing the existing trait solver implemen
 
 ## Motivation
 
-The next-generation trait solver is intended to fully replace the existing type system components responsible for proving trait bounds, normalizing associated types, and much more. This should fix many long-standing (soundness) bugs, enable future type system improvements, and improve compile-times. Its tracking issue is [#107374][rust-lang/rust#107374].
+The next-generation trait solver is intended to fully replace the existing type system components responsible for proving trait bounds, normalizing associated types, and much more. This should fix many long-standing (soundness) bugs, enable future type system improvements, and improve compile-times.
 
 ### The status quo
 
@@ -59,4 +59,3 @@ Stabilize `-Znext-solver=globally` and rip out the old implementation
 ## Frequently asked questions
 
 ### What do I do with this space?
-
