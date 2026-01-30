@@ -17,7 +17,7 @@
 | Status           | Proposed                                                                         |
 | Tracking issue   |                                                                                  |
 | Zulip channel    | N/A                                                                              |
-| [Compiler] champion    | TBD                                                                             |
+| [compiler] champion    | TBD                                                                             |
 
 ## Summary
 
@@ -79,27 +79,8 @@ The proposed work also includes two further experiments as stretch goals.
 
 ## Team asks
 
-> This section outlines what support you need from the Rust teams. For each team, identify the level of support you need:
->
-> - Vibes: You don't need the team to do anything at all, but you do want to know they like your idea.
->   - _Example:_ Prototyping a new feature on crates.io that you hope to eventually upstream.
->   - _Example:_ Conducting research that might eventually become a language feature.
-> - Small: You only need the team to do its routine activities.
->   - _Example:_ A compiler change that will require a few small PRs to be reviewed.
->   - _Example:_ Asking the lang team to approve a lint.
-> - Medium: You need dedicated support from one person, but the rest of the team doesn't have to do much.
->   - _Example:_ A compiler change that doesn't require any rearchitecting but
->   - _Example:_ Implementing a small, noncontroversial language feature.
-> - Large: You need deeper review from the entire team.
->   - _Example:_ Rearchitecting part of the compiler.
->   - _Example:_ Implementing a complex language feature that will require design meetings.
->
-> If you're not sure, leave it blank, the project goals team can help.
->
-> "Vibes" and "Small" asks require someone on the team to "second" your goal; "Medium" and "Large" asks require a dedicated champion from the team. If you don't have a second or a champion, the project goals team will help you find them, don't worry about it.
-
 | Team       | Support level | Notes                                   |
-| ---------- | ------------- | --------------------------------------- 
-| [compiler] | Medium   | Is this Small or Medium? Does it need a champion?                                    |
+| ---------- | ------------- | --------------------------------------- |
+| [compiler] | Medium   | Is this Small or Medium? Does it need a champion? |
 
 ## Frequently asked questions
