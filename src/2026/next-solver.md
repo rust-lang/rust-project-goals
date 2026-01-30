@@ -11,7 +11,6 @@
 | [lang] champion  | @nikomatsakis                             |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/364551-t-types.2Ftrait-system-refactor
-[rust-lang/rust-project-goals#113]: https://github.com/rust-lang/rust-project-goals/issues/113
 
 ## Summary
 
