@@ -11,7 +11,8 @@
 
 ## Summary
 
-Continue evaluating approaches for in-place initialization.
+Evaluate the different approaches to in-place initialization and, together with
+the lang team, align on a recommended approach.
 
 ## Motivation
 
@@ -40,7 +41,13 @@ For this purpose, we have created [a section on the beyond-refs wiki][wiki]
 that can hold proposals in one place. We are also planning a workshop at the
 All-Hands.
 
+At the end of the goal period, we would like to pick and recommend one of the
+approaches to in-place initialization. Under [the stages of development
+framework][stages], one could say that we want to move from the "we are
+exploring" phase to the "we have a plan" phase.
+
 [wiki]: https://rust-lang.github.io/beyond-refs/in-place-init.html
+[stages]: https://rust-lang.zulipchat.com/#narrow/channel/x/topic/x/near/570861907
 
 ### Work items over the next year
 
@@ -52,10 +59,9 @@ All-Hands.
 
 ## Team asks
 
-There are multiple incompatible proposals with pretty different design
-philisophies, and we need input from the language team on how to reconcile
-these differences.
+To recommend a single approach to in-place initialization, we will need the
+lang team's input and buy-in on the selected approach.
 
 | Team       | Support level | Notes                                   |
 | ---------- | ------------- | --------------------------------------- |
-| [lang]     | Large         |                                         |
+| [lang]     | Medium        |                                         |
