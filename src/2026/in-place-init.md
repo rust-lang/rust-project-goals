@@ -6,6 +6,7 @@
 | Status           | Proposed                             |
 | Tracking issue   | [rust-lang/rust-project-goals#395]   |
 | Zulip channel    | [#t-lang/in-place-init][channel]     |
+| [lang] champion    | TBD |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/528918-t-lang.2Fin-place-init
 
