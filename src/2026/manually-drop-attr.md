@@ -2,7 +2,7 @@
 
 | Metadata         |                         |
 | :--------------- | ----------------------- |
-| Point of contact | @tmandry                |
+| Point of contact | @thunderseethe          |
 | Status           | Proposed for mentorship |
 | Tracking issue   |                         |
 | Zulip channel    | N/A                     |
@@ -87,8 +87,8 @@ impl Drop for UringState {
 
 | Task                        | Owner(s) | Notes                     |
 | --------------------------- | -------- | ------------------------- |
-| Implement a lang experiment |          | @tmandry to find an owner |
-| Write an RFC                |          | @tmandry to find an owner |
+| Implement a lang experiment |          | @thunderseethe to find an owner. @tmandry can act as champion |
+| Write an RFC                |          | @thunderseethe to find an owner |
 
 ## Team asks
 
