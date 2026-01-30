@@ -5,11 +5,13 @@
 | Point of contact | @lcnr                                     |
 | Status           | Proposed                                  |
 | Tracking issue   | [rust-lang/rust-project-goals#113]        |
+| Other tracking issues | [rust-lang/rust#107374], [rust-lang/rust#124509] |
 | Zulip channel    | [#t-types/trait-system-refactor][channel] |
 | [types] champion | @lcnr                                     |
 | [lang] champion  | @nikomatsakis                             |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/364551-t-types.2Ftrait-system-refactor
+[rust-lang/rust-project-goals#113]: https://github.com/rust-lang/rust-project-goals/issues/113
 
 ## Summary
 
@@ -17,7 +19,7 @@ Stabilize `-Znext-solver=globally`, replacing the existing trait solver implemen
 
 ## Motivation
 
-The next-generation trait solver is intended to fully replace the existing type system components responsible for proving trait bounds, normalizing associated types, and much more. This should fix many long-standing (soundness) bugs, enable future type system improvements, and improve compile-times. It’s tracking issue is [#107374](https://github.com/rust-lang/rust/issues/107374).
+The next-generation trait solver is intended to fully replace the existing type system components responsible for proving trait bounds, normalizing associated types, and much more. This should fix many long-standing (soundness) bugs, enable future type system improvements, and improve compile-times. Its tracking issue is [#107374][rust-lang/rust#107374].
 
 ### The status quo
 
@@ -59,6 +61,4 @@ Stabilize `-Znext-solver=globally` and rip out the old implementation
 
 ### What do I do with this space?
 
-[lang]: https://github.com/rust-lang/lang-team
-[types]: https://github.com/rust-lang/types-team
-[rust-lang/rust-project-goals#113]: https://github.com/rust-lang/rust-project-goals/issues/113
+[rust-lang/rust#107374]: https://github.com/rust-lang/rust/issues/107374
