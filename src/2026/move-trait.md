@@ -27,7 +27,7 @@ lot of beginners, making asynchronous networked programming in Rust harder than
 it needs to be.
 
 There a lot of low-level systems like the Linux kernel, or code interacting with
-C++ wants to be able to encode immovable types as well and which would benefit
+C++ that wants to encode immovable types and which would benefit
 from better primitives. For example, in [The Safe Pinned Initialization Problem](https://rust-for-linux.com/the-safe-pinned-initialization-problem) the Rust for Linux problem describes the problem of `Pin` not being able to safely encode self-referential types which must be valid for the entirety of the program’s lifetime.
 
 ### What we propose to do about it
