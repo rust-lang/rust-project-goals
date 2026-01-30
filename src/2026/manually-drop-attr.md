@@ -1,6 +1,6 @@
 # Experiment and RFC for `#[manually_drop]`
 
-| Metadata         |                         | 
+| Metadata         |                         |
 | :--------------- | ----------------------- |
 | Point of contact | @tmandry                |
 | Status           | Proposed for mentorship |
@@ -92,12 +92,12 @@ impl Drop for UringState {
 
 ## Team asks
 
-| Team       | Support level | Notes                     |     |
-| ---------- | ------------- | ------------------------- | --- |
-| [compiler] | Small         | Implementation reviews    |     |
-| [lang]     | Medium        | Vibe check and RFC review |     |
-| [opsem]    | Vibes         |                           |     |
-| [types]    | Vibes         |                           |     |
+| Team       | Support level | Notes                     |
+| ---------- | ------------- | ------------------------- |
+| [compiler] | Small         | Implementation reviews    |
+| [lang]     | Medium        | Vibe check and RFC review |
+| [opsem]    | Vibes         |                           |
+| [types]    | Vibes         |                           |
 
 ## Frequently asked questions
 
