@@ -1,13 +1,16 @@
 # Stabilize the next-generation trait solver
 
-Metadata         |                                                                                  |
-| :--------------- | -------------------------------------------------------------------------------- |
-| Point of contact | @lcnr                                  |
-| Status           | Proposed                                                                         |
-| Tracking issue   | https://github.com/rust-lang/rust-project-goals/issues/113  |
-| Zulip channel    | https://rust-lang.zulipchat.com/#narrow/channel/364551-t-types.2Ftrait-system-refactor |
-| [types] champion    | @lcnr |
-| [lang] champion | @nikomatsakis |
+| Metadata         |                                           |
+| :--------------- | ----------------------------------------- |
+| Point of contact | @lcnr                                     |
+| Status           | Proposed                                  |
+| Tracking issue   | [rust-lang/rust-project-goals#113]        |
+| Other tracking issues | [rust-lang/rust#107374]              |
+| Zulip channel    | [#t-types/trait-system-refactor][channel] |
+| [types] champion | @lcnr                                     |
+| [lang] champion  | @nikomatsakis                             |
+
+[channel]: https://rust-lang.zulipchat.com/#narrow/channel/364551-t-types.2Ftrait-system-refactor
 
 ## Summary
 
@@ -15,7 +18,7 @@ Stabilize `-Znext-solver=globally`, replacing the existing trait solver implemen
 
 ## Motivation
 
-The next-generation trait solver is intended to fully replace the existing type system components responsible for proving trait bounds, normalizing associated types, and much more. This should fix many long-standing (soundness) bugs, enable future type system improvements, and improve compile-times. It’s tracking issue is [#107374](https://github.com/rust-lang/rust/issues/107374).
+The next-generation trait solver is intended to fully replace the existing type system components responsible for proving trait bounds, normalizing associated types, and much more. This should fix many long-standing (soundness) bugs, enable future type system improvements, and improve compile-times.
 
 ### The status quo
 
