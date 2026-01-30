@@ -5,7 +5,7 @@
 | Point of contact | @lcnr                                     |
 | Status           | Proposed                                  |
 | Tracking issue   | [rust-lang/rust-project-goals#113]        |
-| Other tracking issues | [rust-lang/rust#107374], [rust-lang/rust#124509] |
+| Other tracking issues | [rust-lang/rust#107374]              |
 | Zulip channel    | [#t-types/trait-system-refactor][channel] |
 | [types] champion | @lcnr                                     |
 | [lang] champion  | @nikomatsakis                             |
