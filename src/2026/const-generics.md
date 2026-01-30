@@ -10,43 +10,67 @@
 
 ## Summary
 
-Work towards stabilizing the remaining const generics functionality that was left out of the original `min_const_generics` feature.
+Extend const generics in two independent directions, both aiming for stabilization:
+
+* **`adt_const_params`**: Allow structs and enums as const generic arguments, not just integers.
+* **`min_generic_const_args`**: Allow associated constants as const generic arguments (e.g., `Foo<T::ASSOC_CONST>`).
+
+We will also model const generics in `a-mir-formality` and experiment with upstreaming those changes into the Rust specification.
+This work also serves as a forcing function for advancing a-mir-formality and its integration into the Rust specification.
 
 ## Motivation
 
 ### The status quo
 
-The `min_const_generics` feature is stable, but with a number of limitations.
+The `min_const_generics` feature is stable, but with significant limitations on what can be used as a const generic argument:
+
+* **Only integers**: Const generic parameters are limited to integer types. You cannot use structs or enums, even simple ones like `struct Dimensions { width: u32, height: u32 }`.
+* **Only literals or generic parameters**: You can write `Foo<5>` or `Foo<N>` (where `N` is a const generic parameter), but you cannot write `Foo<T::ASSOC_CONST>` to use an associated constant.
 
 When using const generics it is common to run into these limitations and be unable to move forwards, having to rewrite your code to use workarounds or not use const generics at all. This is a poor user experience and makes the language feel incomplete.
 
-Our ultimate goal is to stabilize all parts of the const generics feature that were left out of the minimum stabilization. For the users to not encounter "functionality cliffs" where const generics
-suddenly stops working as well as type generics, forcing code to be rewritten to work around language limitations.
+### The next few steps
 
+We are extending const generics in two independent directions:
 
-### What we propose to do about it
+**`adt_const_params`**: Extending const generic arguments to include structs and enums. The implementation is largely complete, but we need to:
 
-`feature(min_generic_const_args)` has been merged and is now in a "full prototype" state, with a lot of work still left to do before it can be stabilized.
+* Publish an RFC defining which ADTs are permitted. Some structs may be excluded due to concerns about privacy and unsafe invariants when the compiler infers const values. The RFC will nail down the precise rules.
+* Model the feature in a-mir-formality to ensure we have a solid specification.
 
-We have a Zulip channel for `feature(adt_const_params)` (Const parameters with arbitrary user-defined types): [#project-const-generics/adt_const_params-rfc](https://rust-lang.zulipchat.com/#narrow/channel/551659-project-const-generics.2Fadt_const_params-rfc). We need to open the RFC.
+**`min_generic_const_args` (MGCA)**: Extending const generic arguments to include associated constants. This is currently in a "full prototype" state (`feature(min_generic_const_args)` has been merged) with more work needed before stabilization.
 
-We still need to do: `feature(generic_arg_infer)` and `feature(associated_const_equality)` as well.
+### The "shiny future" we are working towards
 
+Our ultimate goal is to stabilize all parts of the const generics feature that were left out of the minimum stabilization. Users should not encounter "functionality cliffs" where const generics suddenly stops working as well as type generics, forcing code to be rewritten to work around language limitations.
+
+### Design axioms
+
+*TBD*
 
 ### Work items over the next year
 
 | Task                                              | Owner(s) | Notes |
 |---------------------------------------------------|----------|-------|
-| Finish up `feature(min_generic_const_args)`       |          |       |
-| Publish and merge `feature(adt_const_params)` RFC |          |       |
-| Implement `feature(generic_arg_infer)`            |          |       |
-| Implement `feature(associated_const_equality)`    |          |       |
-| Stabilization?                                    |          |       |
-
+| Publish and merge `adt_const_params` RFC          | @BoxyUwU |       |
+| Model `adt_const_params` in a-mir-formality       | @BoxyUwU | @nikomatsakis to help |
+| Stabilize `adt_const_params`                      |          |       |
+| Finish `min_generic_const_args` implementation    | @BoxyUwU | Currently in "full prototype" state |
+| Model `min_generic_const_args` in a-mir-formality | @BoxyUwU | @nikomatsakis to help |
+| Stabilize `min_generic_const_args`                |          |       |
 
 ## Team asks
 
-| Team       | Support level | Notes                    |
-|------------|---------------|--------------------------|
-| [lang]     | Medium        | Code reviews, RFC review |
-| [compiler] | Medium        | Reviews                  |
+| Team       | Support level | Notes                                      |
+|------------|---------------|--------------------------------------------|
+| [lang]     | Large         | Stabilization decisions, directional alignment             |
+| [compiler] | Small         | Code reviews                               |
+| [types]    | Medium        | a-mir-formality modeling, design alignment |
+
+## Frequently asked questions
+
+### What is the role of lang vs types team in the stabilizations?
+
+The question of what equality means and what kinds of ADTs (structs, enums) can be used as const values, intersects both lang and types (`adt_const_params`).
+
+Design and stabilization of `min_generic_const_args` is purely a types team affair.
