@@ -5,8 +5,10 @@
 | Point of contact | @aapoalas                          |
 | Status           | Proposed                           |
 | Tracking issue   | [rust-lang/rust-project-goals#399] |
-| Zulip channel    | N/A                                |
+| Zulip channel    | [#t-lang/custom-refs][channel]     |
 | [lang] champion  | @tmandry                           |
+
+[channel]: https://rust-lang.zulipchat.com/#narrow/channel/522311-t-lang.2Fcustom-refs
 
 ## Summary
 
