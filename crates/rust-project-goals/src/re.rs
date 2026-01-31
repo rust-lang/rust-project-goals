@@ -36,6 +36,21 @@ lazy_static! {
         Regex::new(r"\(\(\(GOALS NOT ACCEPTED\)\)\)").unwrap();
 }
 
+// List of large goals (goals with at least one Large team ask)
+lazy_static! {
+    pub static ref LARGE_GOAL_LIST: Regex = Regex::new(r"\(\(\(LARGE GOALS\)\)\)").unwrap();
+}
+
+// List of medium goals (goals with at least one Medium ask, no Large asks)
+lazy_static! {
+    pub static ref MEDIUM_GOAL_LIST: Regex = Regex::new(r"\(\(\(MEDIUM GOALS\)\)\)").unwrap();
+}
+
+// List of small goals (goals with only Small or Vibes asks)
+lazy_static! {
+    pub static ref SMALL_GOAL_LIST: Regex = Regex::new(r"\(\(\(SMALL GOALS\)\)\)").unwrap();
+}
+
 lazy_static! {
     pub static ref GOAL_COUNT: Regex = Regex::new(r"\(\(\(#GOALS\)\)\)").unwrap();
 }

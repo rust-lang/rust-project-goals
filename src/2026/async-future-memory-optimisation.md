@@ -17,7 +17,6 @@
 | Status           | Proposed                                                                         |
 | Tracking issue   |                                                                                  |
 | Zulip channel    | N/A                                                                              |
-| [compiler] champion    | TBD                                                                             |
 
 ## Summary
 
