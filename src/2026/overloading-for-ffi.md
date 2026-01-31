@@ -90,7 +90,7 @@ It is **not** a goal to match C++'s resolution rules exactly. Many languages imp
 
 | Team    | Support level | Notes                                                                                                                                  |
 | ------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| [lang]  | Large         | Design meeting Experiment                                                                                                              |
+| [lang]  | Medium         | Design meeting Experiment                                                                                                              |
 | [libs]  | Vibes         | Would like to know if they have use cases for overloading in standard Rust, or if there are certain approaches they would like better. |
 | [types] | Medium        |                                                                                                                                        |
 
