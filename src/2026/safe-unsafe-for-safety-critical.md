@@ -6,7 +6,7 @@
 | Status           | Proposed                                                     |
 | Tracking issue   |                                                              |
 | Zulip channel    | N/A                                                          |
-| [Opsem] champion    | @RalfJung                                                          |
+| [opsem] champion    | @RalfJung                                                          |
 
 ## Summary
 
@@ -39,12 +39,12 @@ Developers writing `unsafe` code can cite authoritative documentation for safety
 
 ## Team asks
 
-| Team | Support | Notes |
-| ---- | ------- | ----- |
-| [t-opsem] | Large | Review unsafe patterns, establish safety contracts, guide documentation |
-| [t-libs-api] | Small | Standard PR reviews for core/std documentation |
-| [t-lang] | Small | Feedback on language semantics questions as needed |
-| [t-langdocs] | Small | Standard PR reviews for Rust Reference |
+| Team        | Support level | Notes                                                                   |
+|-------------|---------------|-------------------------------------------------------------------------|
+| [opsem]     | Large         | Review unsafe patterns, establish safety contracts, guide documentation |
+| [libs-api]  | Small         | Standard PR reviews for core/std documentation                          |
+| [lang]      | Small         | Feedback on language semantics questions as needed                      |
+| [lang-docs] | Small         | Standard PR reviews for Rust Reference                                  |
 
 ## FAQ
 

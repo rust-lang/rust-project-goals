@@ -691,7 +691,11 @@ fn extract_team_involvement(
         return Ok((TeamInvolvement::Asks(team_asks), goal_plans, task_owners));
     }
 
-    spanned::bail_here!("no `Team asks` or `Ownership and team asks` section found")
+    if let Some(section) = sections.first() {
+        spanned::bail!(&section.title, "no `Team asks` or `Ownership and team asks` section found")
+    } else {
+        spanned::bail_here!("no `Team asks` or `Ownership and team asks` section found in {}", link_path.display())
+    }
 }
 
 /// Extract team support entries from the new format (2026+).
