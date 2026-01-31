@@ -17,7 +17,7 @@ use rust_project_goals_cli::Order;
 
 use rust_project_goals::spanned::Spanned;
 use rust_project_goals::{
-    goal::{self, GoalDocument, TeamAsk, TeamInvolvement},
+    goal::{self, GoalDocument, GoalSize, TeamAsk, TeamInvolvement},
     re,
     team::TeamName,
 };
@@ -168,6 +168,12 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         self.replace_goal_lists_helper(chapter, &re::GOAL_NOT_ACCEPTED_LIST, |goal, _capture| {
             !goal.metadata.status.content.is_not_not_accepted()
         })?;
+
+        // Handle sized goal lists (Large, Medium, Small)
+        self.replace_sized_goal_list(chapter, &re::LARGE_GOAL_LIST, GoalSize::Large)?;
+        self.replace_sized_goal_list(chapter, &re::MEDIUM_GOAL_LIST, GoalSize::Medium)?;
+        self.replace_sized_goal_list(chapter, &re::SMALL_GOAL_LIST, GoalSize::Small)?;
+
         Ok(())
     }
 
@@ -184,6 +190,36 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                     && goal.metadata.flagship().map(|f| f.trim()) == Some(filter_value)
             },
         )
+    }
+
+    /// Replace sized goal list markers (LARGE GOALS, MEDIUM GOALS, SMALL GOALS)
+    /// with tables grouped by primary team.
+    fn replace_sized_goal_list(
+        &mut self,
+        chapter: &mut Chapter,
+        regex: &Regex,
+        size: GoalSize,
+    ) -> anyhow::Result<()> {
+        let Some(m) = regex.find(&chapter.content) else {
+            return Ok(());
+        };
+        let range = m.range();
+
+        let Some(chapter_path) = &chapter.path else {
+            anyhow::bail!("found `{regex}` but chapter has no path")
+        };
+
+        let goals = self.goal_documents(chapter_path)?;
+        let goals_with_status: Vec<&GoalDocument> = goals
+            .iter()
+            .filter(|g| g.metadata.status.content.is_not_not_accepted())
+            .collect();
+
+        let output =
+            goal::format_sized_goal_table(&goals_with_status, size).map_err(|e| anyhow::anyhow!("{e}"))?;
+        chapter.content.replace_range(range, &output);
+
+        Ok(())
     }
 
     fn replace_goal_lists_helper(

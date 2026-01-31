@@ -828,6 +828,164 @@ impl std::fmt::Display for SupportLevel {
     }
 }
 
+/// Represents a goal's categorization by its maximum team ask level.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum GoalSize {
+    /// At least one team has a Large ask
+    Large,
+    /// At least one team has a Medium ask, no Large asks
+    Medium,
+    /// Only Small or Vibes asks
+    Small,
+}
+
+impl GoalDocument {
+    /// Returns the maximum support level across all team asks for this goal.
+    /// Returns None if this goal uses the old format or has no team support entries.
+    pub fn max_support_level(&self) -> Option<SupportLevel> {
+        match &self.team_involvement {
+            TeamInvolvement::Support(supports) => {
+                supports.iter().map(|s| s.support_level).max()
+            }
+            TeamInvolvement::Asks(_) => None,
+        }
+    }
+
+    /// Categorizes the goal by its maximum team ask level.
+    /// Returns None if this goal uses the old format.
+    pub fn goal_size(&self) -> Option<GoalSize> {
+        self.max_support_level().map(|level| match level {
+            SupportLevel::Large => GoalSize::Large,
+            SupportLevel::Medium => GoalSize::Medium,
+            SupportLevel::Small | SupportLevel::Vibes => GoalSize::Small,
+        })
+    }
+}
+
+/// Format goals into tables with one row per team ask.
+///
+/// Output looks like:
+///
+/// ```markdown
+/// | Goal | PoC | Team | Champion |
+/// | :--- | :--- | :--- | :--- |
+/// | [build-std](./build-std.md) | @davidtwco | **cargo** | TBD |
+/// |  |  | compiler | *not needed* |
+/// |  |  | libs | *not needed* |
+/// ```
+///
+/// - Goal and PoC only appear on the first row for each goal
+/// - Team name is **bold** for Large asks
+/// - Champion shows `@username`, `TBD` (for Large/Medium), or `*not needed*` (for Small/Vibes)
+pub fn format_sized_goal_table(goals: &[&GoalDocument], size: GoalSize) -> Result<String> {
+    use std::fmt::Write;
+
+    // Filter to goals of the requested size
+    let mut filtered_goals: Vec<_> = goals
+        .iter()
+        .filter(|g| g.goal_size() == Some(size))
+        .collect();
+
+    if filtered_goals.is_empty() {
+        return Ok("*No goals in this category.*\n".to_string());
+    }
+
+    // Sort goals by title
+    filtered_goals.sort_by(|a, b| a.metadata.title.cmp(&b.metadata.title));
+
+    // Build the table
+    let mut table: Vec<Vec<Spanned<String>>> = vec![vec![
+        Spanned::here("Goal".to_string()),
+        Spanned::here("PoC".to_string()),
+        Spanned::here("Team".to_string()),
+        Spanned::here("Champion".to_string()),
+    ]];
+
+    for goal in filtered_goals {
+        // Get all team supports, sorted by level (Large first) then alphabetically
+        let team_rows = goal_team_rows(goal);
+
+        for (i, (team, level)) in team_rows.iter().enumerate() {
+            let is_first_row = i == 0;
+
+            // Goal and PoC only on first row
+            let goal_cell = if is_first_row {
+                format!(
+                    "[{}]({})",
+                    goal.metadata.short_title.content,
+                    goal.link_path.display()
+                )
+            } else {
+                String::new()
+            };
+
+            let poc_cell = if is_first_row {
+                goal.point_of_contact_for_goal_list()
+            } else {
+                String::new()
+            };
+
+            // Team name: bold for Large, normal for Medium/Small/Vibes
+            let team_cell = if *level == SupportLevel::Large {
+                format!("**{}**", team.name().to_lowercase())
+            } else {
+                team.name().to_lowercase()
+            };
+
+            // Champion: @username, ![TBD][], or *not needed*
+            let champion_cell = match level {
+                SupportLevel::Large | SupportLevel::Medium => {
+                    if let Some(champion) = goal.metadata.champions.get(team) {
+                        champion.content.clone()
+                    } else {
+                        "![TBD][]".to_string()
+                    }
+                }
+                SupportLevel::Small | SupportLevel::Vibes => "*n/a*".to_string(),
+            };
+
+            table.push(vec![
+                Spanned::here(goal_cell),
+                Spanned::here(poc_cell),
+                Spanned::here(team_cell),
+                Spanned::here(champion_cell),
+            ]);
+        }
+    }
+
+    let mut output = String::new();
+    write!(output, "{}", util::format_table(&table))?;
+    Ok(output)
+}
+
+/// Get all team supports for a goal, sorted by level (Large first) then alphabetically.
+fn goal_team_rows(goal: &GoalDocument) -> Vec<(&'static TeamName, SupportLevel)> {
+    let Some(supports) = goal.team_involvement.as_support() else {
+        return vec![];
+    };
+
+    // Collect unique teams with their max support level
+    let mut team_levels: BTreeMap<&'static TeamName, SupportLevel> = BTreeMap::new();
+    for support in supports {
+        team_levels
+            .entry(support.team)
+            .and_modify(|existing| {
+                if support.support_level > *existing {
+                    *existing = support.support_level;
+                }
+            })
+            .or_insert(support.support_level);
+    }
+
+    // Sort by level (Large > Medium > Small > Vibes) then by team name
+    let mut sorted: Vec<_> = team_levels.into_iter().collect();
+    sorted.sort_by(|a, b| {
+        b.1.cmp(&a.1).then_with(|| a.0.name().cmp(&b.0.name()))
+    });
+
+    sorted
+}
+
 /// Extract plan items from the old format, starting at the given section index.
 fn extract_plan_items_from_index(
     sections: &[Section],

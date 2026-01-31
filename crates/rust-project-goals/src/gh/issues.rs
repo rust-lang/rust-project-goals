@@ -134,9 +134,12 @@ pub fn list_issues_in_milestone(
     repository: &Repository,
     timeframe: &str,
 ) -> Result<Vec<ExistingGithubIssue>> {
+    // Github gets upset if a milestone name is just a number
+    let milestone_name = format!("{timeframe}-goals");
+
     list_issues_cached(
         repository,
-        &[("-m", timeframe)],
+        &[("-m", &milestone_name)],
         Some(format!(".issues-{}.json", timeframe)),
     )
 }
