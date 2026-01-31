@@ -74,14 +74,14 @@ There are two primary objectives of this goal in this next goal cycle:
 | Continue to advance build-std RFCs                | *davidtwco*   |       |
 | Implement build-std                               | *adamgemmell* | See <https://hackmd.io/BcimnLUdQ0W3kv9dd9rMUw> for a detailed breakdown of implementation required |
 
-## Ownership and team asks
+## Team asks
 
 | Team        | Support level | Notes                                                                                      |
-| ----------- | ------------- | ------------------------------------------------------------------------------------------ |
+|-------------|---------------|--------------------------------------------------------------------------------------------|
 | [cargo]     | Large         | Reviews of [rust-lang/rfcs#3874] and [rust-lang/rfcs#3875] and many implementation patches |
 | [compiler]  | Small         | Reviews of [rust-lang/rfcs#3874] and [rust-lang/rfcs#3875] and any implementation patches  |
 | [libs]      | Small         | Reviews of [rust-lang/rfcs#3874] and [rust-lang/rfcs#3875] and any implementation patches  |
-| [crates.io] | Small         | Reviews of [rust-lang/rfcs#3874] and [rust-lang/rfcs#3875] and any implementation patches  |
+| [crates-io] | Small         | Reviews of [rust-lang/rfcs#3874] and [rust-lang/rfcs#3875] and any implementation patches  |
 
 ## Frequently asked questions
 
