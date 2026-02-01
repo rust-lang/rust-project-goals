@@ -113,6 +113,6 @@ Specifically, stabilize specializing impls that follow the "[always applicable]"
 | [lang]     | Medium        |       | 
 | [libs]     | Vibes         |       |
 | [opsem]    | Vibes         |       |
-| [types]    | Medium        |       |
+| [types]    | Large         |       |
 
 ## Frequently asked questions
