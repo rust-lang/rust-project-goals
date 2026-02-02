@@ -175,6 +175,9 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         self.replace_sized_goal_list(chapter, &re::MEDIUM_GOAL_LIST, GoalSize::Medium)?;
         self.replace_sized_goal_list(chapter, &re::SMALL_GOAL_LIST, GoalSize::Small)?;
 
+        // Handle stabilization summaries
+        self.replace_stabilization_summaries(chapter)?;
+
         Ok(())
     }
 
@@ -218,6 +221,43 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
         let output =
             goal::format_sized_goal_table(&goals_with_status, size).map_err(|e| anyhow::anyhow!("{e}"))?;
+        chapter.content.replace_range(range, &output);
+
+        Ok(())
+    }
+
+    /// Replace `(((STABILIZATION SUMMARIES)))` marker with a list of goal titles and summaries
+    /// for all goals that have `stabilization: true` in their metadata.
+    fn replace_stabilization_summaries(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        let Some(m) = re::STABILIZATION_SUMMARIES.find(&chapter.content) else {
+            return Ok(());
+        };
+        let range = m.range();
+
+        let Some(chapter_path) = &chapter.path else {
+            anyhow::bail!("found `(((STABILIZATION SUMMARIES)))` but chapter has no path")
+        };
+
+        let goals = self.goal_documents(chapter_path)?;
+        let mut stabilization_goals: Vec<&GoalDocument> = goals
+            .iter()
+            .filter(|g| g.metadata.stabilization && g.metadata.status.content.is_not_not_accepted())
+            .collect();
+
+        // Sort by title
+        stabilization_goals.sort_by_key(|g| &g.metadata.title);
+
+        // Generate output: ### Title\n\nSummary\n\n for each goal
+        let mut output = String::new();
+        for goal in stabilization_goals {
+            output.push_str(&format!(
+                "### [{}]({})\n\n{}\n\n",
+                goal.metadata.title.content,
+                goal.link_path.display(),
+                goal.summary
+            ));
+        }
+
         chapter.content.replace_range(range, &output);
 
         Ok(())
@@ -269,43 +309,6 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
         // Remove the marker from the content
         chapter.content.replace_range(range, "");
-
-        Ok(())
-    }
-
-    /// Replace `(((STABILIZATION SUMMARIES)))` marker with a list of goal titles and summaries
-    /// for all goals that have `stabilization: true` in their metadata.
-    fn replace_stabilization_summaries(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        let Some(m) = re::STABILIZATION_SUMMARIES.find(&chapter.content) else {
-            return Ok(());
-        };
-        let range = m.range();
-
-        let Some(chapter_path) = &chapter.path else {
-            anyhow::bail!("found `(((STABILIZATION SUMMARIES)))` but chapter has no path")
-        };
-
-        let goals = self.goal_documents(chapter_path)?;
-        let mut stabilization_goals: Vec<&GoalDocument> = goals
-            .iter()
-            .filter(|g| g.metadata.stabilization && g.metadata.status.content.is_not_not_accepted())
-            .collect();
-
-        // Sort by title
-        stabilization_goals.sort_by_key(|g| &g.metadata.title);
-
-        // Generate output: ### Title\n\nSummary\n\n for each goal
-        let mut output = String::new();
-        for goal in stabilization_goals {
-            output.push_str(&format!(
-                "### [{}]({})\n\n{}\n\n",
-                goal.metadata.title.content,
-                goal.link_path.display(),
-                goal.summary
-            ));
-        }
-
-        chapter.content.replace_range(range, &output);
 
         Ok(())
     }
@@ -986,7 +989,7 @@ mod tests {
 
     #[test]
     fn test_reports_replacement() {
-        use mdbook_preprocessor::book::Chapter;
+        use mdbook::book::Chapter;
 
         let mut chapter = Chapter::new(
             "Test Chapter",

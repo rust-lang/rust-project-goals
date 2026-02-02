@@ -56,6 +56,12 @@ lazy_static! {
     pub static ref GOAL_CHAPTERS: Regex = Regex::new(r"\(\(\(GOAL CHAPTERS\)\)\)").unwrap();
 }
 
+// Summaries of stabilization goals (goals with stabilization: true)
+lazy_static! {
+    pub static ref STABILIZATION_SUMMARIES: Regex =
+        Regex::new(r"\(\(\(STABILIZATION SUMMARIES\)\)\)").unwrap();
+}
+
 lazy_static! {
     pub static ref GOAL_COUNT: Regex = Regex::new(r"\(\(\(#GOALS\)\)\)").unwrap();
 }

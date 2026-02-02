@@ -60,6 +60,9 @@ pub struct Metadata {
 
     /// Flagship category, if this is a flagship goal
     pub flagship: Option<Spanned<String>>,
+
+    /// True if this goal is about stabilization (something reaching completion and becoming available to users)
+    pub stabilization: bool,
 }
 
 pub const TRACKING_ISSUE_ROW: &str = "Tracking issue";
@@ -617,6 +620,25 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
         .find(|row| row[0] == "Flagship")
         .map(|row| row[1].clone());
 
+    // Parse stabilization row if present (value must be "true")
+    let stabilization = if let Some(row) = first_table
+        .rows
+        .iter()
+        .find(|row| row[0].to_lowercase() == "stabilization")
+    {
+        let value = row[1].trim().to_lowercase();
+        if value != "true" {
+            spanned::bail!(
+                row[1],
+                "stabilization metadata must be `true`, found `{}`",
+                row[1].trim()
+            );
+        }
+        true
+    } else {
+        false
+    };
+
     Ok(Some(Metadata {
         title: title.clone(),
         short_title: if let Some(row) = short_title_row {
@@ -630,6 +652,7 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
         table: first_table.clone(),
         champions,
         flagship,
+        stabilization,
     }))
 }
 
@@ -1217,6 +1240,11 @@ impl Metadata {
     /// Returns the flagship category if this is a flagship goal
     pub fn flagship(&self) -> Option<&str> {
         self.flagship.as_ref().map(|s| s.content.as_str())
+    }
+
+    /// Returns true if this goal is about stabilization
+    pub fn is_stabilization(&self) -> bool {
+        self.stabilization
     }
 
     /// Extracts the `@abc` usernames found in the owner listing.
