@@ -6,6 +6,7 @@
 | Status           | Proposed                           |
 | Tracking issue   | [rust-lang/rust-project-goals#403] |
 | Zulip channel    | N/A                                |
+| Stabilization    | true                               |
 
 
 ## Summary

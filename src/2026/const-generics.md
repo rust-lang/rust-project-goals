@@ -4,8 +4,10 @@
 | :--------------- | ---------------------------------- |
 | Point of contact | @BoxyUwU                           |
 | Status           | Proposed                           |
+| Flagship         | Constify all the things            |
 | Tracking issue   | [rust-lang/rust-project-goals#100] |
 | Zulip channel    | N/A                                |
+| Stabilization    | true                               |
 | [lang] champion  | @nikomatsakis                      |
 
 ## Summary

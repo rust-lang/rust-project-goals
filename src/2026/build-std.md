@@ -4,6 +4,7 @@
 |:-----------------|:-----------------------------------|
 | Point of contact | @davidtwco                         |
 | Status           | Proposed                           |
+| Flagship         | Building blocks                    |
 | Zulip channel    | [#project-goals/build-std][zulip]  |
 | Tracking issue   | [rust-lang/rust-project-goals#274] |
 

@@ -4,6 +4,7 @@
 | :---------------- | ---------------------------------- |
 | Point of contact  | @nikomatsakis                      |
 | Status            | Proposed                           |
+| Flagship          | Higher-level Rust                  |
 | Tracking issue    | [rust-lang/rust-project-goals#107] |
 | Zulip channel     | N/A                                |
 | [lang] champion   | @nikomatsakis                      |

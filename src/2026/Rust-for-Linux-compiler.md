@@ -6,6 +6,7 @@
 | Status              | Proposed                           |
 | Tracking issue      | [rust-lang/rust-project-goals#407] |
 | Zulip channel       | [#rust-for-linux][channel-rfl]     |
+| Stabilization       | true                               |
 | [compiler] champion | @WesleyWiser                       |
 
 [channel-t-compiler]: https://rust-lang.zulipchat.com/#narrow/channel/131828-t-compiler

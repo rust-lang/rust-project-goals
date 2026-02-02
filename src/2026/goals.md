@@ -6,16 +6,59 @@ This page lists the (((#GOALS))) project goals **proposed** for 2026.
 > The owner of the goal process makes the final decisions on which goals to include
 > and prepares an RFC to ask approval from the teams.
 
-## Flagship goals
+## Goals by work required
 
-Flagship goals represent the goals expected to have the broadest overall impact. 
+### Large goals
 
-(((FLAGSHIP GOALS)))
+Large goals require the engagement of entire team(s). The teams that need to engage with the goal are highlighted in bold.
 
-## Other goals
+(((LARGE GOALS)))
 
-These are the other proposed goals. 
+### Medium goals
 
-**Invited goals.** Some goals of the goals below are "invited goals", meaning that for that goal to happen we need someone to step up and serve as a point of contact. To find the invited goals, look for the ![Help wanted][] badge in the table below. Invited goals have reserved capacity for teams and a mentor, so if you are someone looking to help Rust progress, they are a great way to get involved.
+Medium goals require support from an individual, the team champion.
 
-(((OTHER GOALS)))
+(((MEDIUM GOALS)))
+
+### Smaller/vibes goals
+
+Smaller or vibes goals are covered by standard team processes and do not require dedicated support from anyone.
+
+(((SMALL GOALS)))
+
+## Goals by champion
+
+(((CHAMPIONS)))
+
+## Goals by team
+
+The following table highlights the support level requested from each affected team. Each goal specifies the level of involvement needed:
+
+* **Vibes**: The team doesn't need to do anything, but the goal author wants to know they support the idea.
+* **Small**: The team only needs to do routine activities (e.g., reviewing a few small PRs).
+* **Medium**: Dedicated support from one team member, but the rest of the team doesn't need to be heavily involved.
+* **Large**: Deeper review and involvement from the entire team (e.g., design meetings, complex RFCs).
+
+"Vibes" and "Small" asks require someone on the team to "second" the goal. "Medium" and "Large" asks require a dedicated champion from the team.
+
+(((TEAM ASKS)))
+
+(((GOAL CHAPTERS)))
+
+[AGS]: ./Project-goal-slate.md
+[AMF]: ./a-mir-formality.md
+[Async]: ./async.md
+[ATPIT]: ./ATPIT.md
+[CS]: ./cargo-script.md
+[CT]: ./const-traits.md
+[ERC]: ./ergonomic-rc.md
+[MGCA]: ./min_generic_const_arguments.md
+[NBNLB]: ./Polonius.md
+[NGS]: ./next-solver.md
+[PET]: ./Patterns-of-empty-types.md
+[PGC]: ./pubgrub-in-cargo.md
+[RFL]: ./rfl_stable.md
+[SBS]: ./sandboxed-build-script.md
+[YKR]: ./yank-crates-with-a-reason.md
+[SC]: ./Rust-for-SciComp.md
+[OC]: ./optimize-clippy.md

@@ -6,6 +6,7 @@
 | Status               | Proposed                           |
 | Tracking issue       | [rust-lang/rust-project-goals#116] |
 | Zulip channel        | [#rust-for-linux][channel-rfl]     |
+| Stabilization        | true                               |
 | [lang] champion      | @joshtriplett                      |
 | [lang-docs] champion | @traviscross                       |
 

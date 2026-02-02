@@ -4,7 +4,9 @@
 | :--                 | :--                                |
 | Point of contact    | @davidtwco                         |
 | Status              | Proposed                           |
+| Flagship            | Unblocking dormant traits          |
 | Tracking issue      | [rust-lang/rust-project-goals#270] |
+| Stabilization       | true                               |
 | [compiler] champion | @davidtwco                         |
 | [lang] champion     | @nikomatsakis                      |
 | [libs] champion     | @Amanieu                           |
