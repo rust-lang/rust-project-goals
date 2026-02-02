@@ -3,7 +3,7 @@
 | Metadata         |                         |
 |:---------------- | ----------------------- |
 | Point of contact | @tmandry                |
-| Status           | Proposed for mentorship |
+| Status           | Proposed  |
 | Tracking issue   | #84277                  |
 | Zulip channel    | N/A                     | 
 
