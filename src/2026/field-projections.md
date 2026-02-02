@@ -47,7 +47,7 @@ We also want to note that another contributor separately (without being aware of
 
 The last goal period resulted in a new approach for field projections called *virtual places*. It allows customizing *place operations* via traits: `PlaceRead`, `PlaceWrite`, `PlaceMove`, and most importantly `PlaceBorrow`. We are missing some interactions, concrete details and a comprehensive document on this design, but the overall idea is solid. It is also much too complicated for a project goal. As part of the goal, we are writing a [wiki](https://rust-lang.github.io/beyond-refs/) to better explain all of the interactions with other Rust features.
 
-Here is an example on how the current approach could look like. We use the `ArcRef<T>` type, it is like an `Arc<T>`, but with separate pointers to the data and the refcount. This allows us to offset the data pointer and produce `ArcRef<Field>` from `ArcRef<Struct>`.
+Here is an example on how the current approach could look like for improving the ergonomics of `NonNull`:
 
 ```rust
 struct Struct {
@@ -55,15 +55,36 @@ struct Struct {
 }
 
 struct Field {
-    accesses: Cell<usize>,
+    accesses: usize,
 }
 
 impl Struct {
-    fn access_field(self: ArcRef<Self>) -> ArcRef<Field> {
-        // This uses the `PlaceWrite` and `PlaceRead` impls of `Cell<T>`.
-        *self.field.accesses = 1 + *self.field.accesses;
-        // This uses the `PlaceBorrow` impl of `ArcRef`
-        @self.field
+    unsafe fn reset(this: NonNull<Self>) {
+        // We can borrow using `NonNull` directly:
+        let field: NonNull<Field> = unsafe { @NonNull (*this).field };
+        // Note that we can omit the dereference.
+        // We can also use the canonical borrow, which fills `NonNull` for us:
+        let field: NonNull<Field> = unsafe { @this.field };
+
+        // We can also borrow using a totally different pointer if that is
+        // supported by the underlying type:
+        unsafe { std::ptr::write(@raw mut (*field).accesses, 0) };
+
+        // Alternatively, we could also just have written to the field directly:
+        field.accesses = 0;
+        // Note that this drops the previous value, which does nothing for `usize`.
+    }
+}
+```
+
+Field projections is not limited to low-level constructs like raw pointers. It can also help with smart pointers like `ArcRef<T>`: `ArcRef<T>` is like an `Arc<T>`, but with separate pointers to the data and the refcount. This allows us to offset the data pointer and produce `ArcRef<Field>` from `ArcRef<Struct>`.
+
+```rust
+impl Struct {
+    fn get_accesses(self: ArcRef<Self>) -> ArcRef<usize> {
+        // Again, we use the canonical borrow. Also note that we can
+        // go through any number of fields in one borrow operation.
+        @self.field.accesses
     }
 }
 ```
