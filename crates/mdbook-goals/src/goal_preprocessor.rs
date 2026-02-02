@@ -83,6 +83,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 self.replace_team_asks(chapter)?;
                 self.replace_valid_team_asks(chapter)?;
                 self.replace_goal_lists(chapter)?;
+                self.replace_goal_chapters(chapter)?;
                 self.replace_goal_count(chapter)?;
                 self.replace_flagship_goal_count(chapter)?;
                 self.replace_reports(chapter)?;
@@ -222,6 +223,93 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         Ok(())
     }
 
+    /// Replace `(((GOAL CHAPTERS)))` marker by creating subchapters for each goal,
+    /// without rendering a table. The marker itself is removed from the content.
+    fn replace_goal_chapters(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        let Some(m) = re::GOAL_CHAPTERS.find(&chapter.content) else {
+            return Ok(());
+        };
+        let range = m.range();
+
+        let Some(chapter_path) = &chapter.path else {
+            anyhow::bail!("found `(((GOAL CHAPTERS)))` but chapter has no path")
+        };
+
+        // Don't create subchapters for README files
+        if chapter_path.file_stem() == Some("README".as_ref()) {
+            chapter.content.replace_range(range, "");
+            return Ok(());
+        }
+
+        let goals = self.goal_documents(chapter_path)?;
+        let mut goals_with_status: Vec<&GoalDocument> = goals
+            .iter()
+            .filter(|g| g.metadata.status.content.is_not_not_accepted())
+            .collect();
+
+        goals_with_status.sort_by_key(|g| &g.metadata.title);
+
+        // Create subchapters for each goal
+        let mut parent_names = chapter.parent_names.clone();
+        parent_names.push(chapter.name.clone());
+        for (goal, index) in goals_with_status.iter().zip(0..) {
+            let content = std::fs::read_to_string(&goal.path)
+                .with_context(|| format!("reading `{}`", goal.path.display()))?;
+            let path = goal.path.strip_prefix(&self.ctx.config.book.src).unwrap();
+            let mut new_chapter =
+                Chapter::new(&goal.metadata.title, content, path, parent_names.clone());
+
+            if let Some(mut number) = chapter.number.clone() {
+                number.push(index + 1);
+                new_chapter.number = Some(number);
+            }
+
+            chapter.sub_items.push(BookItem::Chapter(new_chapter));
+        }
+
+        // Remove the marker from the content
+        chapter.content.replace_range(range, "");
+
+        Ok(())
+    }
+
+    /// Replace `(((STABILIZATION SUMMARIES)))` marker with a list of goal titles and summaries
+    /// for all goals that have `stabilization: true` in their metadata.
+    fn replace_stabilization_summaries(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        let Some(m) = re::STABILIZATION_SUMMARIES.find(&chapter.content) else {
+            return Ok(());
+        };
+        let range = m.range();
+
+        let Some(chapter_path) = &chapter.path else {
+            anyhow::bail!("found `(((STABILIZATION SUMMARIES)))` but chapter has no path")
+        };
+
+        let goals = self.goal_documents(chapter_path)?;
+        let mut stabilization_goals: Vec<&GoalDocument> = goals
+            .iter()
+            .filter(|g| g.metadata.stabilization && g.metadata.status.content.is_not_not_accepted())
+            .collect();
+
+        // Sort by title
+        stabilization_goals.sort_by_key(|g| &g.metadata.title);
+
+        // Generate output: ### Title\n\nSummary\n\n for each goal
+        let mut output = String::new();
+        for goal in stabilization_goals {
+            output.push_str(&format!(
+                "### [{}]({})\n\n{}\n\n",
+                goal.metadata.title.content,
+                goal.link_path.display(),
+                goal.summary
+            ));
+        }
+
+        chapter.content.replace_range(range, &output);
+
+        Ok(())
+    }
+
     fn replace_goal_lists_helper(
         &mut self,
         chapter: &mut Chapter,
@@ -285,26 +373,6 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             )
             .map_err(|e| anyhow::anyhow!("{e}"))?;
             chapter.content.replace_range(range, &output);
-
-            // Populate with children if this is not README
-            if chapter_path.file_stem() != Some("README".as_ref()) {
-                let mut parent_names = chapter.parent_names.clone();
-                parent_names.push(chapter.name.clone());
-                for (goal, index) in goals_with_status.iter().zip(0..) {
-                    let content = std::fs::read_to_string(&goal.path)
-                        .with_context(|| format!("reading `{}`", goal.path.display()))?;
-                    let path = goal.path.strip_prefix(&self.ctx.config.book.src).unwrap();
-                    let mut new_chapter =
-                        Chapter::new(&goal.metadata.title, content, path, parent_names.clone());
-
-                    if let Some(mut number) = chapter.number.clone() {
-                        number.push(index + 1);
-                        new_chapter.number = Some(number);
-                    }
-
-                    chapter.sub_items.push(BookItem::Chapter(new_chapter));
-                }
-            }
         }
     }
 
@@ -918,7 +986,7 @@ mod tests {
 
     #[test]
     fn test_reports_replacement() {
-        use mdbook::book::Chapter;
+        use mdbook_preprocessor::book::Chapter;
 
         let mut chapter = Chapter::new(
             "Test Chapter",

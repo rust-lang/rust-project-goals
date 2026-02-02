@@ -51,6 +51,11 @@ lazy_static! {
     pub static ref SMALL_GOAL_LIST: Regex = Regex::new(r"\(\(\(SMALL GOALS\)\)\)").unwrap();
 }
 
+// Marker to create goal subchapters without rendering a table
+lazy_static! {
+    pub static ref GOAL_CHAPTERS: Regex = Regex::new(r"\(\(\(GOAL CHAPTERS\)\)\)").unwrap();
+}
+
 lazy_static! {
     pub static ref GOAL_COUNT: Regex = Regex::new(r"\(\(\(#GOALS\)\)\)").unwrap();
 }
