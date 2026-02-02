@@ -8,104 +8,35 @@ This is a draft for the eventual RFC proposing the 2026 goals.
 
 ## Motivation
 
-The 2026 goal slate consists of (((#GOALS))) project goals, of which we have selected (TBD) as **flagship goals**. Flagship goals represent the goals expected to have the broadest overall impact.
+The 2026 goal slate consists of (((#GOALS))) project goals. In comparison to prior rounds, we have changed to *annual* goals rather than six-month goal periods. Annuals goals give us more time to discuss and organize.
 
-### How the goal process works
+### Why we set goals
 
-**Project goals** are proposed bottom-up by a **point of contact**, somebody who is willing to commit resources (time, money, leadership) to seeing the work get done. The point of contact identifies the problem they want to address and sketches the solution of how they want to do so. They also identify the support they will need from the Rust teams (typically things like review bandwidth or feedback on RFCs). Teams then read the goals and provide feedback. If the goal is approved, teams are committing to support the point of contact in their work.
+Goals serve multiple purposes.
 
-Project goals can vary in scope from an internal refactoring that affects only one team to a larger cross-cutting initiative. No matter its scope, accepting a goal should never be interpreted as a promise that the team will make any future decision (e.g., accepting an RFC that has yet to be written). Rather, it is a promise that the team are aligned on the contents of the goal thus far (including the design axioms and other notes) and will prioritize giving feedback and support as needed.
+For would-be contributors, goals are Rust's front door. If you want to improve Rust - whether that's a new language feature, better tooling, or fixing a long-standing pain point - the goal process is how you turn that idea into reality. When you propose a goal and teams accept it, you get more than approval. You get a *champion* from the relevant team who will mentor you, help you navigate the project, and ensure your work gets the review attention it needs. Goals are a contract: you commit to doing the work, the project commits to supporting you.
 
-Of the proposed goals, a small subset are selected by the roadmap owner as **flagship goals**. Flagship goals are chosen for their high impact (many Rust users will be impacted) and their shovel-ready nature (the org is well-aligned around a concrete plan). Flagship goals are the ones that will feature most prominently in our public messaging and which should be prioritized by Rust teams where needed.
+For users, goals serve as a roadmap, giving you an early picture of what work we expect to get done this year.
 
-### Rust’s mission
+For Rust maintainers, goals help to surface interactions across teams. They aid in coordination because people know what work others are aiming to do and where they may need to offer support.
 
-Our goals are selected to further Rust's mission of **empowering everyone to build reliable and efficient software**. Rust targets programs that prioritize
+### Goals are *proposed* by contributors and *accepted* by teams
 
-* reliability and robustness;
-* performance, memory usage, and resource consumption; and
-* long-term maintenance and extensibility.
+As an open-source project, Rust's goal process works differently than a company's. In a company, leadership sets goals and assigns employees to execute them. Rust doesn't have employees - we have contributors who volunteer their time and energy. So in our process, goals begin with the *contributor*: the person (or company) that wants to do the work.
 
-We consider "any two out of the three" as the right heuristic for projects where Rust is a strong contender or possibly the best option.
+Contributors *propose* goals; Rust teams *accept* them. When you propose a goal, you're saying you're prepared to invest the time to make it happen. When a team accepts, they're committing to support that work - doing reviews, engaging in RFC discussions, and providing the guidance needed to land it in Rust.
 
-### Axioms for selecting goals
+### How these goals were selected
 
-We believe that...
+Goal proposals were accepted during the month of January. Many of the goals are continuing goals that are carried over from the previous year, but others goal are new.
 
-* **Rust must deliver on its promise of peak performance and high reliability.** Rust’s maximum advantage is in applications that require peak performance or low-level systems capabilities. We must continue to innovate and support those areas above all.
-* **Rust's goals require high productivity and ergonomics.** Being attentive to ergonomics broadens Rust impact by making it more appealing for projects that value reliability and maintenance but which don't have strict performance requirements.
-* **Slow and steady wins the race.** For this first round of goals, we want a small set that can be completed without undue stress. As the Rust open source org continues to grow, the set of goals can grow in size.
+In February, an *alpha* version of this RFC is reviewed with teams. Teams vet the goals to determine if they are realistic and to make sure that goal have champions from the team. A *champion* is a Rust team member that can will mentor and guide the contributor as they do their work. Champions keep up with progress on the goal, help the champion figure out technical challenges, and also help the contributor to navigate the Rust team(s). Champions also field questions from others in the project who want to understand the goal.
 
-## Guide-level explanation
-[guide-level-explanation]: #guide-level-explanation
+### How to follow along with a goal's progress
 
-### Flagship goals
+Once the Goals RFC is accepted, you can follow along with the progress on a goal in a few different ways:
 
-The flagship goals proposed for this roadmap are as follows:
-
-(TBD)
-
-#### Why these particular flagship goals?
-
-(TBD--typically one paragraph per goal)
-
-
-# Reference-level explanation
-[reference-level-explanation]: #reference-level-explanation
-
-## Goals by work required
-
-### Large goals
-
-Large goals require the engagement of entire team(s). The teams that need to engage with the goal are highlighted in bold.
-
-(((LARGE GOALS)))
-
-### Medium goals
-
-Medium goals require support from an individual, the team champion.
-
-(((MEDIUM GOALS)))
-
-### Smaller/vibes goals
-
-Smaller or vibes goals are covered by standard team processes and do not require dedicated support from anyone.
-
-(((SMALL GOALS)))
-
-## Goals by champion
-
-(((CHAMPIONS)))
-
-## Goals by team
-
-The following table highlights the support level requested from each affected team. Each goal specifies the level of involvement needed:
-
-* **Vibes**: The team doesn't need to do anything, but the goal author wants to know they support the idea.
-* **Small**: The team only needs to do routine activities (e.g., reviewing a few small PRs).
-* **Medium**: Dedicated support from one team member, but the rest of the team doesn't need to be heavily involved.
-* **Large**: Deeper review and involvement from the entire team (e.g., design meetings, complex RFCs).
-
-"Vibes" and "Small" asks require someone on the team to "second" the goal. "Medium" and "Large" asks require a dedicated champion from the team.
-
-(((TEAM ASKS)))
-
-[AGS]: ./Project-goal-slate.md
-[AMF]: ./a-mir-formality.md
-[Async]: ./async.md
-[ATPIT]: ./ATPIT.md
-[CS]: ./cargo-script.md
-[CT]: ./const-traits.md
-[ERC]: ./ergonomic-rc.md
-[MGCA]: ./min_generic_const_arguments.md
-[NBNLB]: ./Polonius.md
-[NGS]: ./next-solver.md
-[PET]: ./Patterns-of-empty-types.md
-[PGC]: ./pubgrub-in-cargo.md
-[RFL]: ./rfl_stable.md
-[SBS]: ./sandboxed-build-script.md
-[YKR]: ./yank-crates-with-a-reason.md
-[SC]: ./Rust-for-SciComp.md
-[OC]: ./optimize-clippy.md
+* Each goal has a tracking issue. Goal contributors and champions are expected to post regular updates. These updates are also posted to Zulip in the `#project-goals` channel.
+* Regular blog posts cover major happenings in goals.
 
 <!-- GitHub usernames -->

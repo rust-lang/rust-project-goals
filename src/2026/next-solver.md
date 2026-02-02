@@ -1,14 +1,16 @@
 # Stabilize the next-generation trait solver
 
-| Metadata         |                                           |
-| :--------------- | ----------------------------------------- |
-| Point of contact | @lcnr                                     |
-| Status           | Proposed                                  |
-| Tracking issue   | [rust-lang/rust-project-goals#113]        |
-| Other tracking issues | [rust-lang/rust#107374]              |
-| Zulip channel    | [#t-types/trait-system-refactor][channel] |
-| [types] champion | @lcnr                                     |
-| [lang] champion  | @nikomatsakis                             |
+| Metadata              |                                           |
+| :-------------------- | ----------------------------------------- |
+| Point of contact      | @lcnr                                     |
+| Status                | Proposed                                  |
+| Flagship              | Unblocking dormant traits                 |
+| Tracking issue        | [rust-lang/rust-project-goals#113]        |
+| Other tracking issues | [rust-lang/rust#107374]                   |
+| Zulip channel         | [#t-types/trait-system-refactor][channel] |
+| Stabilization         | true                                      |
+| [types] champion      | @lcnr                                     |
+| [lang] champion       | @nikomatsakis                             |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/364551-t-types.2Ftrait-system-refactor
 

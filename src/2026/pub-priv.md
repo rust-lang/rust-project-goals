@@ -2,10 +2,12 @@
 
 | Metadata         |                                                                                  |
 | :--------------- | -------------------------------------------------------------------------------- |
-| Point of contact | @epage                                   |
-| Status           | Proposed for mentorship                                                                         |
-| Tracking issue   | [rust-lang/rust-project-goals#272] |
+| Point of contact | @epage                                                                           |
+| Status           | Proposed for mentorship                                                          |
+| Flagship         | Secure your supply chain                                                         |
+| Tracking issue   | [rust-lang/rust-project-goals#272]                                               |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
+| Stabilization    | true                                                                             |
 
 ## Summary
 

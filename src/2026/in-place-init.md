@@ -4,6 +4,7 @@
 | :--------------- | ------------------------------------ |
 | Point of contact | @Darksonn                            |
 | Status           | Proposed                             |
+| Flagship         | Beyond the `&`                       |
 | Tracking issue   | [rust-lang/rust-project-goals#395]   |
 | Zulip channel    | [#t-lang/in-place-init][channel]     |
 

@@ -4,6 +4,7 @@
 |:---------------------|:-----------------------------------|
 | Point of contact     | @oli-obk                           |
 | Status               | Proposed                           |
+| Flagship             | Constify all the things            |
 | Tracking issue       | [rust-lang/rust-project-goals#406] |
 | Other Tracking issue | [rust-lang/rust#142577]            |
 | Zulip channel        | N/A                                |

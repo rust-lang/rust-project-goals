@@ -4,6 +4,7 @@
 | :--------------- | ---------------------------------- |
 | Point of contact | @aapoalas                          |
 | Status           | Proposed                           |
+| Flagship         | Beyond the `&`                     |
 | Tracking issue   | [rust-lang/rust-project-goals#399] |
 | Zulip channel    | [#t-lang/custom-refs][channel]     |
 | [lang] champion  | @tmandry                           |

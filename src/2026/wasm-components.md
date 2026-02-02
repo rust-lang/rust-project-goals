@@ -1,11 +1,12 @@
 # Wasm Components
 
-| Metadata         |             |
-| :--------------- | ----------- |
-| Point of contact | @yoshuawuyts|
-| Status           | Proposed    |
-| Tracking issue   |             |
-| Zulip channel    | N/A         |
+| Metadata         |              |
+| :--------------- | ------------ |
+| Point of contact | @yoshuawuyts |
+| Status           | Proposed     |
+| Tracking issue   |              |
+| Zulip channel    | N/A          |
+| Stabilization    | true         |
 
 ## Summary
 

@@ -4,7 +4,6 @@
 |:--------------------|:-----------------------------------|
 | Point of contact    | @frank-king                        |
 | Status              | Proposed                           |
-| Flagship            | Beyond the `&`                     |
 | Tracking issue      | [rust-lang/rust-project-goals#389] |
 | Zulip channel       | N/A                                |
 | [compiler] champion | @oli-obk                           |

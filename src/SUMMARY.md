@@ -5,8 +5,15 @@
 # ⏳ 2026 goal process
 
 - [Overview](./2026/README.md)
-- [Proposed goals](./2026/goals.md)
-- [Goals not accepted](./2026/not_accepted.md)
+- [Rust in 2026](./2026/flagships.md)
+    - [Beyond the `&`](./2026/flagship-beyond-the-ampersand.md)
+    - [Unblocking dormant traits](./2026/flagship-unblocking-dormant-traits.md)
+    - [Constify all the things](./2026/flagship-constify-all-the-things.md)
+    - [Higher-level Rust](./2026/flagship-higher-level-rust.md)
+    - [Secure your supply chain](./2026/flagship-secure-your-supply-chain.md)
+    - [Building blocks](./2026/flagship-building-blocks.md)
+- [Goal details](./2026/goals.md)
+- [Frequently asked questions](./2026/faq.md)
 
 # ⚙️ 2025H2 goal process
 
