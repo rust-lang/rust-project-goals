@@ -24,6 +24,7 @@ pub enum Order {
     OldestFirst,
 
     /// Reverse chronological order: the most recent comments will show up first.
+    #[allow(unused)]
     NewestFirst,
 }
 
