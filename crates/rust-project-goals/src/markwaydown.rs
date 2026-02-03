@@ -43,7 +43,7 @@ pub fn parse_text(text: Spanned<&str>) -> Result<Vec<Section>> {
     for line in text.lines() {
         let line = line.to_str().unwrap();
         let categorized = categorize_line(line.clone());
-        // eprintln!("line = {:?}", line);
+        // eprintln!("line = {:?}", line.content);
         // eprintln!("categorized = {:?}", categorized);
         match categorized {
             CategorizeLine::Title(level, title) => {
@@ -157,10 +157,13 @@ enum CategorizeLine {
 }
 
 fn categorize_line(line: Spanned<&str>) -> CategorizeLine {
+    // Trimming _may_ slightly mess up spans sometimes, but it's preferable to e.g. failing to parse
+    // tables due to unexpected spaces.
     if line.starts_with("#") {
         let level = line.chars().take_while(|ch| **ch == '#').count();
         CategorizeLine::Title(level, line.trim_start_matches('#').trim().to_string())
     } else if let Some(line) = line
+        .trim()
         .strip_prefix("|")
         .and_then(|line| line.strip_suffix("|"))
     {
