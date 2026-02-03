@@ -111,7 +111,7 @@ Specifically, stabilize specializing impls that follow the "[always applicable]"
 | Team       | Support level | Notes |
 | ---------- | ------------- | ----- |
 | [compiler] | Small         |       |
-| [lang]     | Medium        |       | 
+| [lang]     | Medium        |       |
 | [libs]     | Vibes         |       |
 | [opsem]    | Vibes         |       |
 | [types]    | Large         |       |
