@@ -126,7 +126,7 @@ tokio::spawn(async move {
 | [compiler]  | Small         | Reviews |
 | [lang]      | Medium        |         |
 | [lang-docs] | Small         |         |
-| [libs]      | Small         |         |
+| [libs-api]  | Small         | Reviews of RFC and API surface area |
 
 ## Frequently asked questions
 

@@ -9,7 +9,7 @@
 | Stabilization       | true                               |
 | [compiler] champion | @davidtwco                         |
 | [lang] champion     | @nikomatsakis                      |
-| [libs] champion     | @Amanieu                           |
+| [libs-api] champion | @Amanieu                           |
 
 ## Summary
 
@@ -125,7 +125,7 @@ the next logical step, enabling efficient matrix processing in Rust.
 | ---------- | ------------- | ------------------------------------------------------- |
 | [compiler] | Small         | Standard reviews for stabilization and SVE work         |
 | [lang]     | Medium        | RFC decision for [rfcs#3838], stabilization sign-off    |
-| [libs]     | Small         | Review and approve stdarch SVE PR                       |
+| [libs-api] | Medium        | Review RFC; review and approve stdarch SVE APIs         |
 | [types]    | Small         | Consultation on stabilization                           |
 
 ## Frequently asked questions
@@ -158,5 +158,5 @@ these cases, which is the key blocker for extern types.
 [Team]: /about/badges.md
 [compiler]: /about/badges.md#compiler
 [lang]: /about/badges.md#lang
-[libs]: /about/badges.md#libs
+[libs-api]: /about/badges.md#libs
 [types]: /about/badges.md#types

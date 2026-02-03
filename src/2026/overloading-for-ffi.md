@@ -91,7 +91,7 @@ It is **not** a goal to match C++'s resolution rules exactly. Many languages imp
 | Team    | Support level | Notes                                                                                                                                  |
 | ------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | [lang]  | Medium         | Design meeting Experiment                                                                                                              |
-| [libs]  | Vibes         | Would like to know if they have use cases for overloading in standard Rust, or if there are certain approaches they would like better. |
+| [libs-api]  | Vibes         | Would like to know if they have use cases for overloading in standard Rust, or if there are certain approaches they would like better. May be involved if experiment involves library surface area (e.g. `Fn` traits) |
 | [types] | Medium        |                                                                                                                                        |
 
 ## Frequently asked questions

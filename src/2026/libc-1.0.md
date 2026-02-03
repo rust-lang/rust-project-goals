@@ -41,9 +41,9 @@ We also have to triage the [polls on Zulip](https://rust-lang.zulipchat.com/#nar
 
 ## Team asks
 
-| Team       | Support level | Notes |
-| ---------- | ------------- | ----- |
-| [libs]     | Small         |       |
+| Team                | Support level | Notes |
+| ------------------- | ------------- | ----- |
+| [crate-maintainers] | Small         |       |
 
 ## Frequently asked questions
 
