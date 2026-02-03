@@ -87,7 +87,7 @@ We would like to establish a mechanism in the language to automatically derive t
 | [compiler] |               |                                         |
 | [infra]    |               |                                         |
 | [lang]     |  Medium | Team aligned already on the shape of the feature |
-| [libs]     |               |                                         |
+| [libs-api]     |               |                                         |
 | [opsem]    |               |                                         |
 | [types]    |               |                                         |
 | ...        | ...           | *Feel free to add rows for other teams* |
