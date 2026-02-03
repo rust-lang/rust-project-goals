@@ -3,7 +3,7 @@
 | Metadata         |                         |
 |:---------------- | ----------------------- |
 | Point of contact | @tmandry                |
-| Status           | Proposed | 
+| Status           | Proposed |
 | Tracking issue   |                         |
 | Zulip channel    | N/A                     |
 | Help wanted    | N/A                     |
