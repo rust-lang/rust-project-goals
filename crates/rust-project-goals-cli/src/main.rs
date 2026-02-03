@@ -3,6 +3,7 @@ use regex::Regex;
 use rust_project_goals::{
     gh::issue_id::Repository,
     spanned::{Context as _, Result, Spanned},
+    util::MILESTONE_REGEX,
 };
 use std::io::Write;
 use std::path::{Path, PathBuf};
@@ -195,7 +196,7 @@ fn main() -> Result<()> {
 fn check() -> Result<()> {
     // Let's find directories named like goal periods (`2024h2` or `2026`), and load goals from
     // them.
-    let regex = Regex::new(r"\d\d\d\d(h[12])?")?;
+    let regex = Regex::new(MILESTONE_REGEX)?;
 
     for entry in WalkDir::new("src") {
         let entry = entry?;
