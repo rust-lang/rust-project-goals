@@ -193,8 +193,9 @@ fn main() -> Result<()> {
 }
 
 fn check() -> Result<()> {
-    // Look for all directories like `2024h2` or `2025h1` and load goals from those directories.
-    let regex = Regex::new(r"\d\d\d\dh[12]")?;
+    // Let's find directories named like goal periods (`2024h2` or `2026`), and load goals from
+    // them.
+    let regex = Regex::new(r"\d\d\d\d(h[12])?")?;
 
     for entry in WalkDir::new("src") {
         let entry = entry?;
