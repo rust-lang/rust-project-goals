@@ -72,6 +72,6 @@ This would allow for major changes in the standard library API while still allow
 | ---------- | ------------- | ---------------------------------------  |
 | [compiler] | Medium        | Design discussions and implementation review. |
 | [lang]     | Small         | Review of the feature and lang implications. |
-| [libs]     | Large         | Determine what API changes should be made across editions. |
+| [libs-api] | Large         | Determine what API changes should be made across editions. |
 | [edition]  | Large         | Review the feasibility of this proposal as well as the specific API changes. |
 | [rustdoc]  | Medium        | Figure out how such API changes should be presented in the API docs. |
