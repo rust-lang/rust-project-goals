@@ -42,7 +42,7 @@ Developers writing `unsafe` code can cite authoritative documentation for safety
 | Team        | Support level | Notes                                                                   |
 |-------------|---------------|-------------------------------------------------------------------------|
 | [opsem]     | Large         | Review unsafe patterns, establish safety contracts, guide documentation |
-| [libs-api]  | Small         | Standard PR reviews for core/std documentation                          |
+| [libs-api]  | Small         | PR reviews for core/std public documentation; feedback on approach.     |
 | [lang]      | Small         | Feedback on language semantics questions as needed                      |
 | [lang-docs] | Small         | Standard PR reviews for Rust Reference                                  |
 
