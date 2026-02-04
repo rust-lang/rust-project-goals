@@ -89,7 +89,7 @@ impl Drop for UringState {
 
 Add a `drop_in_place` method to the `Drop` trait, which is called by the compiler when a type is dropped.
 
-1. If the type has implemented `drop_in_place`, it is called instead of the default destructor. This does not recurse into the fields.
+1. If the type has implemented `drop_in_place`, it is called instead of the normal drop glue. No other code is run on drop, in particular this does not recurse into the fields.
 
 ```rust
 struct UringState {
