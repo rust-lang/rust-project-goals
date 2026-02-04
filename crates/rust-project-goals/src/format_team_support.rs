@@ -91,9 +91,9 @@ pub fn format_team_support(goals: &[&GoalDocument]) -> Result<String> {
             }
         }
 
-        // Sort by support level (Vibes first, then Small, Medium, Large)
+        // Sort by support level (Large first, then Medium, Small, Vibes)
         // Within same level, maintain original order (by goal title implicitly)
-        entries.sort_by_key(|e| e.support_level);
+        entries.sort_by_key(|e| std::cmp::Reverse(e.support_level));
 
         // Build the table
         let mut table: Vec<Vec<Spanned<String>>> = vec![vec![

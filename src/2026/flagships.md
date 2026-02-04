@@ -1,6 +1,14 @@
 # Rust in 2026
 
-Flagship themes are long-running efforts that span multiple goal periods. Each theme represents a vision for where Rust is headed, with concrete milestones for this year.
+## Stabilizations in 2026
+
+The following project goals involve new features or changes that will be stabilized (made available on the stable Rust channel) in 2026. You can click on each goal to learn more about it.
+
+(((STABILIZATION SUMMARIES)))
+
+## Flagship themes: looking to the future
+
+Looking past 2026, we have a number of ongoing *flagship themes*. These themes capture the active work that is going on to evolve Rust and better meet the needs of our users.
 
 * [Just Add Async](./flagship-just-add-async.md): Patterns that work in sync Rust should work in async Rust. Key 2026 milestones include:
     * stabilize [return type notation](./rtn.md),

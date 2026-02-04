@@ -11,7 +11,7 @@
 
 ## Summary
 
-Find a MVP for stabilization and move it forward.
+Implement and stabilize the MVP of public dependencies described in [RFC #3516]. Public dependencies allow crates to declare dependencies whose types are *meant* to be exposed in the public API.
 
 ## Motivation
 
