@@ -1,4 +1,4 @@
-# Experiment and RFC for `#[manually_drop]`
+# Control over Drop semantics
 
 | Metadata         |                         |
 | :--------------- | ----------------------- |
@@ -9,10 +9,10 @@
 
 ## Summary
 
-Add a `#[manually_drop]` attribute to
+Allow users to easily control the drop semantics of struct fields, letting them change drop order, and disable recursive destructors to make working with cross-language bindings easier.
 
-* Allow cross-language bindings to expose struct fields without compatibility hazards, and  
-* Make all code that disables default destructor behavior more convenient to use in Rust.
+- Allow cross-language bindings to expose struct fields without compatibility hazards, and
+- Make all code that disables default destructor behavior more convenient to use in Rust.
 
 ## Motivation
 
@@ -63,6 +63,8 @@ One approach to easing this pain is to only use ManuallyDrop when binding fields
 
 ### What we propose to do about it
 
+#### Proposal 1: Add a `#[manually_drop]` attribute
+
 Add an attribute `#[manually_drop]` to the language that disables drop glue on a struct's fields.
 
 This allows us to correctly bind the `UringState` struct while exposing its fields safely:
@@ -83,12 +85,37 @@ impl Drop for UringState {
 }
 ```
 
+#### Proposal 2: Add a `drop_in_place` method to the `Drop` trait
+
+Add a `drop_in_place` method to the `Drop` trait, which is called by the compiler when a type is dropped.
+
+1. If the type has implemented `drop_in_place`, it is called instead of the default destructor. This does not recurse into the fields.
+
+```rust
+struct UringState {
+    ring: Uring,
+    buffers: [UringBuf; 16],
+}
+
+impl Drop for UringState {
+    /// Does the full dropping of the value.
+    /// If not overridden by the user, this is compiler-
+    /// generated; the default wil call `Self::drop` then drop the fields.
+    /// Use this to control the drop order of the fields, or emulate `ManuallyDrop`.
+    unsafe fn drop_in_place(&mut self) {
+        // call C++ destructor
+    }
+}
+```
+
+2. If the type does not have its own implementation of `drop_in_place`, we call `Drop::drop` on the type, and then recursively drop the fields.
+
 ### Work items over the next year
 
-| Task                        | Owner(s) | Notes                     |
-| --------------------------- | -------- | ------------------------- |
+| Task                        | Owner(s) | Notes                                                         |
+| --------------------------- | -------- | ------------------------------------------------------------- |
 | Implement a lang experiment |          | @thunderseethe to find an owner. @tmandry can act as champion |
-| Write an RFC                |          | @thunderseethe to find an owner |
+| Write an RFC                |          | @thunderseethe to find an owner                               |
 
 ## Team asks
 
