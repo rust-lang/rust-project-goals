@@ -15,8 +15,6 @@ In recent years we've seen increasing hardware support for the `f16` and `f128` 
 
 With LLVM 22, the remaining blockers in the backends have been cleared for `f16`, and therefore stabilizing this type in 2026 is realistic. 
 
-tracking issue: https://github.com/rust-lang/rust/issues/116909
-
 ## Motivation
 
 ### The status quo
