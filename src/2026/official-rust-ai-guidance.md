@@ -9,7 +9,7 @@
 
 ## Summary
 
-The lang team will publish and maintain official guidance for AI coding assistants, teaching current idioms, correcting common mistakes, and updating agents on new features as they stabilize. This guidance will be made available in multiple formats for broad consumability.
+The lang team will delegate an interested team of experts to publish and maintain guidance for AI coding assistants, teaching current idioms, correcting common mistakes, and updating agents on new features as they stabilize. This guidance will be made available in multiple formats for broad consumability.
 
 ## Motivation
 
