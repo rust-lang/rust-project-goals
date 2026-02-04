@@ -50,7 +50,6 @@ Microsoft) have expressed urgent desire for SVE support in Rust.
    level, this will necessitate some ability to require the relevant target
    features be present when scalable vectors are used, which is especially
    tricky with trait implementations and generic functions.
-   the a function has the appropriate target feature, which limits usability with 
 3. At the compiler level, we need new infrastructure to generate code for
    scalable vector types and their intrinsics.
 
