@@ -12,6 +12,7 @@ use walkdir::WalkDir;
 
 mod cfp;
 mod csv_reports;
+mod review;
 mod rfc;
 mod team_repo;
 mod updates;
@@ -116,6 +117,16 @@ enum Command {
         #[command(subcommand)]
         cmd: CSVReports,
     },
+
+    /// Generate a markdown summary for a team to review their goals
+    Review {
+        /// The team name (e.g., "lang", "compiler", "cargo")
+        team: String,
+
+        /// Milestone to review (e.g., "2026"). Defaults to finding the latest.
+        #[arg(long)]
+        milestone: Option<String>,
+    },
 }
 
 #[derive(clap::Subcommand, Debug)]
@@ -188,6 +199,8 @@ fn main() -> Result<()> {
         )?,
 
         Command::CSV { cmd } => csv_reports::csv(&opt.repository, cmd)?,
+
+        Command::Review { team, milestone } => review::review(team, milestone.as_deref())?,
     }
 
     Ok(())
