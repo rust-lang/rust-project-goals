@@ -108,7 +108,7 @@ impl Drop for UringState {
 }
 ```
 
-2. If the type does not have its own implementation of `drop_in_place`, we call `Drop::drop` on the type, and then recursively drop the fields.
+2. If the type does not override `drop_in_place`, we emit the drop glue as usual, which calls `Drop::drop` on the type (if implemented) then recursively drops the fields.
 
 ### Work items over the next year
 
