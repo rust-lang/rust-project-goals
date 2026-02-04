@@ -34,7 +34,7 @@ Figure out a different impl strategy than `-Zhigher-ranked-assumptions`'s curren
 
 | Team       | Support level | Notes                                   |
 | ---------- | ------------- | --------------------------------------- |
-| [types]    | Medium/Large? | implementation/reviews/deciding on a design |
+| [types]    | Medium | implementation/reviews/deciding on a design |
 
 ## Frequently asked questions
 
