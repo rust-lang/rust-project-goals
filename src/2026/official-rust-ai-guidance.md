@@ -49,7 +49,7 @@ AI agents learn from training data, which means they learn from the past. Common
 
 ### Official guidance, published for broad consumability
 
-The lang team will publish and maintain official guidance to help AI agents use Rust most effectively. This guidance will be made available in multiple ways to help Rust users take advantage of it, regardless of what agent they are using:
+The lang team will delegate an interested team of experts to publish and maintain guidance to help AI agents use Rust most effectively. This guidance will be made available in multiple ways to help Rust users take advantage of it, regardless of what agent they are using:
 
 * **Skills file**: can be consumed as plain markdown by any agent that supports skills or custom instructions
 * **Claude Code plugin**: for Claude Code users specifically
