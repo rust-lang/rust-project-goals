@@ -31,7 +31,7 @@ We will stabilize `f16`, and push `f128` as far as we can. There is not much to 
 | ----------- | -------- | ----- |
 | complete support in const-eval/miri | @folkertdev  |       |
 | improve support in `rustc_codegen_gcc` | @folkertdev  |       |
-| remove `cfg(target_has_reliable_f16)` | @folkertdev | | 
+| remove `cfg(target_has_reliable_f16)` | @folkertdev, @tgross35 | | 
 | write the stabilization report | @folkertdev, @tgross35  |       |
 
 ## Team asks
