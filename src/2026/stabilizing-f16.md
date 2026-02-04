@@ -5,7 +5,9 @@
 | Point of contact | @folkertdev                                   |
 | Status           | Proposed                                                                         |
 | Tracking issue   |    |
+| Other tracking issues | https://github.com/rust-lang/rust/issues/116909 |
 | Zulip channel    | N/A  |
+| Stabilization | true |
 
 ## Summary
 
@@ -23,7 +25,7 @@ The `f16` and `f128` are unstable. Their implementations are mostly complete, wi
 
 ### What we propose to do about it
 
-We will stabilize `f16`, and push `f128` as far as we can. There is mot much to design at this point.
+We will stabilize `f16`, and push `f128` as far as we can. There is not much to design at this point.
 
 ### Work items over the next year
 
