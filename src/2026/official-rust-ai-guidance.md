@@ -96,6 +96,10 @@ No. This work will provide assistance for users who are already choosing to use 
 
 As features stabilize, the guidance will be updated to reflect what's newly available. The goal is for the guidance to track Rust's release cadence, so agents learn about new features shortly after they're available, not months or years later when training data catches up.
 
+### What about guidance for the standard library, compiler, Cargo, or other tools?
+
+This experiment primarily focuses on language-specific guidance, but may touch on recommendations for the standard library, compiler, Cargo, or other tools. To the extent it does so, the team delegated to write AI guidance will coordinate with those Rust teams, seek similar delegation arrangements, and include interested parties from those teams as appropriate.
+
 ### What about crate-specific guidance?
 
 This goal focuses on Rust language guidance. Crate authors can publish their own guidance for their libraries through the same mechanisms. If this proves valuable, future work might explore conventions for crates to ship guidance alongside their code.
