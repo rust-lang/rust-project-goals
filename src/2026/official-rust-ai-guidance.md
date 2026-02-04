@@ -44,7 +44,6 @@ AI agents learn from training data, which means they learn from the past. Common
 * **Version guessing**: Agents hallucinate dependency versions instead of using `cargo add`
 * **Missing new features**: Agents don't know about recently stabilized features like `let chains` or `async closures`
 
-These aren't model failures; they're knowledge gaps. The models can't know what they haven't been trained on, and retraining lags behind Rust's release cadence.
 
 ## The goal
 
