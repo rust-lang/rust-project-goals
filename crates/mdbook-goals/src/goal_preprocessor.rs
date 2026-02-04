@@ -247,15 +247,39 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         // Sort by title
         stabilization_goals.sort_by_key(|g| &g.metadata.title);
 
-        // Generate output: ### Title\n\nSummary\n\n for each goal
+        // Generate output for each goal
         let mut output = String::new();
         for goal in stabilization_goals {
+            // Add Help Wanted marker if this is an invited goal
+            let help_wanted = if goal.metadata.status.is_invited {
+                " ![Help Wanted][]"
+            } else {
+                ""
+            };
+
             output.push_str(&format!(
-                "### [{}]({})\n\n{}\n\n",
+                "### [{}]({}){}\n\n",
                 goal.metadata.title.content,
                 goal.link_path.display(),
-                goal.summary
+                help_wanted,
             ));
+
+            // Point of contact
+            output.push_str(&format!("**Point of contact:** {}\n\n", goal.metadata.pocs));
+
+            // Team champions (if any)
+            if !goal.metadata.champions.is_empty() {
+                let champions: Vec<String> = goal
+                    .metadata
+                    .champions
+                    .iter()
+                    .map(|(team, champion)| format!("{}: {}", team, champion.content))
+                    .collect();
+                output.push_str(&format!("**Team champions:** {}\n\n", champions.join(", ")));
+            }
+
+            // Summary
+            output.push_str(&format!("{}\n\n", goal.summary));
         }
 
         chapter.content.replace_range(range, &output);
