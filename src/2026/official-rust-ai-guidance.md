@@ -88,6 +88,10 @@ This will be a lang team artifact, similar to how lang owns the Reference. @niko
 
 AI assistants are becoming some developers' primary interface through which they experience programming languages. If we don't provide authoritative guidance, developers get whatever the AI's training data happens to contain, often outdated or incorrect. Publishing guidance gives Rust a direct channel to improve this experience without waiting for model retraining.
 
+### Does this constitute a recommendation that Rust developers should use AI?
+
+No. This work will provide assistance for users who are already choosing to use AI, and provide a team to help interested project developers support such users.
+
 ### How will the guidance be kept current?
 
 As features stabilize, the guidance will be updated to reflect what's newly available. The goal is for the guidance to track Rust's release cadence, so agents learn about new features shortly after they're available, not months or years later when training data catches up.
