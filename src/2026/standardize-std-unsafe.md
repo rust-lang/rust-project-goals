@@ -4,7 +4,7 @@
 | :--------------- | -------------------------------------------------------------------------------- |
 | Point of contact | @hxuhack                                   |
 | Status           | Proposed                                                                         |
-| Tracking issue   | TBD                    |
+| Tracking issue   |      |
 | Zulip channel    | N/A  |
 
 ## Summary
