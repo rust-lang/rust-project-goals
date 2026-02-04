@@ -80,7 +80,7 @@ This will be a lang team artifact, similar to how lang owns the Reference. @niko
 
 | Team          | Support level | Notes                                                    |
 | ------------- | ------------- | -------------------------------------------------------- |
-| [lang]        | Medium        | Ownership of guidance content; @nikomatsakis as champion |
+| [lang]        | Medium        | Ownership of guidance content; delegation of team; @nikomatsakis as champion and prospective team member |
 
 ## Frequently asked questions
 
