@@ -86,7 +86,7 @@ This will be a lang team artifact, similar to how lang owns the Reference. @niko
 
 ### Why does the Rust project need to do this?
 
-AI assistants are becoming a primary interface through which developers experience programming languages. If we don't provide authoritative guidance, developers get whatever the AI's training data happens to contain, often outdated or incorrect. Publishing official guidance gives Rust a direct channel to improve this experience without waiting for model retraining.
+AI assistants are becoming some developers' primary interface through which they experience programming languages. If we don't provide authoritative guidance, developers get whatever the AI's training data happens to contain, often outdated or incorrect. Publishing guidance gives Rust a direct channel to improve this experience without waiting for model retraining.
 
 ### How will the guidance be kept current?
 
