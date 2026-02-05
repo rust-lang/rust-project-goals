@@ -12,7 +12,7 @@ Looking past 2026, we have a number of ongoing *flagship themes*. These themes c
 
 * [Just Add Async](./flagship-just-add-async.md): Patterns that work in sync Rust should work in async Rust. Key 2026 milestones include:
     * stabilize [return type notation](./rtn.md),
-    * stabilize [async fn in dyn trait](./afidt.md),
+    * stabilize [async fn in dyn trait](./afidt-box.md),
     * prototype [immobile types and guaranteed destructors](./move-trait.md),
     * prototype [ergonomic ref-counting](./ergonomic-rc.md).
 * [Beyond the `&`](./flagship-beyond-the-ampersand.md): Smart pointers that feel as natural as `&` and `&mut`. Key 2026 milestones include:
