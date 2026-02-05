@@ -50,16 +50,16 @@ Microsoft) have expressed urgent desire for SVE support in Rust.
    level, this will necessitate some ability to require the relevant target
    features be present when scalable vectors are used, which is especially
    tricky with trait implementations and generic functions.
-   the a function has the appropriate target feature, which limits usability with 
 3. At the compiler level, we need new infrastructure to generate code for
    scalable vector types and their intrinsics.
 
 **The opportunity:** By extending Rust's type system with a richer `Sized`
-hierarchy and adding support for scalable vectors, we can support SVE in AArch64 as well as support for similar features in other architectures,
-like RISC-V's "V" Vector Extension; we also unblock other long-requested features like extern types.
+hierarchy and adding support for scalable vectors, we can support SVE in AArch64 as well as
+support for similar features in other architectures, like RISC-V's "V" Vector Extension; we also
+unblock other long-requested features like extern types.
 
-Since SVE [requires a change to the C standard][acle_sve], Rust has an opportunity to be the first systems programming
-language with native support for these hardware capabilities.
+Since SVE [requires a change to the C standard][acle_sve], Rust has an opportunity to be the first
+systems programming language with native support for these hardware capabilities.
 
 [acle_sve]: https://github.com/ARM-software/acle/releases/download/r2024Q3/acle-2024Q3.pdf
 
