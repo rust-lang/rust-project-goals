@@ -9,7 +9,7 @@
     - [Beyond the `&`](./2026/flagship-beyond-the-ampersand.md)
     - [Building blocks](./2026/flagship-building-blocks.md)
     - [Constify all the things](./2026/flagship-constify-all-the-things.md)
-    - [Just add `async`](./2026/flagship-just-add-async.md.md)
+    - [Just add `async`](./2026/flagship-just-add-async.md)
     - [Secure your supply chain](./2026/flagship-secure-your-supply-chain.md)
     - [Unblocking dormant traits](./2026/flagship-unblocking-dormant-traits.md)
 - [Goal details](./2026/goals.md)
