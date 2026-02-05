@@ -71,7 +71,7 @@ impl Struct {
         unsafe { std::ptr::write(@raw mut (*field).accesses, 0) };
 
         // Alternatively, we could also just have written to the field directly:
-        field.accesses = 0;
+        unsafe { field.accesses = 0 };
         // Note that this drops the previous value, which does nothing for `usize`.
     }
 }
