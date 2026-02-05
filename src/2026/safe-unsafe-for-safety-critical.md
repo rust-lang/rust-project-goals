@@ -4,6 +4,7 @@
 | :--------------- | ------------------------------------------------------------ |
 | Point of contact | @PLeVasseur                                                  |
 | Status           | Proposed                                                     |
+| Flagship         | Safety-Critical Rust                                         |
 | Tracking issue   |                                                              |
 | Zulip channel    | N/A                                                          |
 | [opsem] champion    | @RalfJung                                                          |

@@ -4,6 +4,7 @@
 | :--------------- | ---------------------------------- |
 | Point of contact | @PLeVasseur                        |
 | Status           | Proposed                           |
+| Flagship         | Safety-Critical Rust               |
 | Tracking issue   |                                    |
 | Zulip channel    | [#t-lang/fls](https://rust-lang.zulipchat.com/#narrow/channel/520710-t-lang.2Ffls) |
 

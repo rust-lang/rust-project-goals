@@ -30,6 +30,11 @@ Looking past 2026, we have a number of ongoing *flagship themes*. These themes c
 * [Secure your supply chain](./flagship-secure-your-supply-chain.md): Control over public API dependencies, breaking change detection, SBOM generation. Key 2026 milestones include:
     * stabilize [public/private dependencies](./pub-priv.md),
     * stabilize [SBOM support](./stabilize-cargo-sbom.md).
+* [Safety-Critical Rust](./flagship-safety-critical-rust.md): Certified tooling, specifications, and evidence for functional safety. Key 2026 milestones include:
+    * implement [MC/DC coverage support](./mcdc-coverage-support.md),
+    * publish [normative unsafe documentation](./safe-unsafe-for-safety-critical.md),
+    * establish [safety-critical lints in Clippy](./safety-critical-lints-in-clippy.md),
+    * stabilize [FLS release cadence](./stabilize-fls-releases.md).
 * [Building blocks](./flagship-building-blocks.md): Rebuild std with custom flags, integrate Cargo into larger build systems, better test tooling. Key 2026 milestones include:
     * design work on [build-std](./build-std.md),
     * prototype [cargo plumbing commands](./cargo-plumbing.md).

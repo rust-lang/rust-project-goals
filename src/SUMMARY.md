@@ -11,6 +11,7 @@
     - [Constify all the things](./2026/flagship-constify-all-the-things.md)
     - [Just add `async`](./2026/flagship-just-add-async.md)
     - [Secure your supply chain](./2026/flagship-secure-your-supply-chain.md)
+    - [Safety-Critical Rust](./2026/flagship-safety-critical-rust.md)
     - [Unblocking dormant traits](./2026/flagship-unblocking-dormant-traits.md)
 - [Goal details](./2026/goals.md)
 - [Frequently asked questions](./2026/faq.md)
