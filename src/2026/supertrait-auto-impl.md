@@ -1,14 +1,15 @@
 # Implement Supertrait `auto impl`
 
-| Metadata              |                         |
-|:----------------------|-------------------------|
-| Point of contact      | @tmandry                |
-| Status                | Proposed                |
+| Metadata              |                           |
+|:----------------------|---------------------------|
+| Point of contact      | @tmandry                  |
+| Status                | Proposed                  |
 | Roadmap               | Unblocking dormant traits |
-| Tracking issue        |                         |
-| Other tracking issues | rust-lang/rust#149556   |
-| Zulip channel         | N/A                     |
-| [types] champion      | @BoxyUwU                |
+| Roadmap               | Rust for Linux            |
+| Tracking issue        |                           |
+| Other tracking issues | rust-lang/rust#149556     |
+| Zulip channel         | N/A                       |
+| [types] champion      | @BoxyUwU                  |
 
 ## Summary
 

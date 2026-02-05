@@ -1,15 +1,16 @@
-# Rust for Linux in stable: compiler features
+# Stabilize Rust for Linux compiler features
 
 | Metadata            |                                    |
 |:--------------------|------------------------------------|
 | Point of contact    | @tomassedovic                      |
 | Status              | Proposed                           |
+| Roadmap             | Rust for Linux                     |
 | Tracking issue      | [rust-lang/rust-project-goals#407] |
 | Zulip channel       | [#rust-for-linux][channel-rfl]     |
 | [compiler] champion | @WesleyWiser                       |
 
 [channel-t-compiler]: https://rust-lang.zulipchat.com/#narrow/channel/131828-t-compiler
-[channel-rust-for-linux]: https://rust-lang.zulipchat.com/#narrow/channel/425075-rust-for-linux
+[channel-rfl]: https://rust-lang.zulipchat.com/#narrow/channel/425075-rust-for-linux
 
 ## Summary
 
