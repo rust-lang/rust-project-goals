@@ -40,7 +40,7 @@ There should be straightforward equivalents for all the "rudiments of Rust":
 * [x] Async closures
 * [x] Static trait dispatch for traits with async functions
 * [ ] Generic functions that make use of those traits ([proposed for 2026](./rtn.md))
-* [ ] Dynamic trait dispatch ([proposed for 2026](./afidt.md))
+* [ ] Dynamic trait dispatch ([proposed for 2026](./afidt-box.md))
 * [ ] Iterators (requires a stream trait design and other details)
 * [ ] Convenient ways to write recursive functions
 * [ ] Scoped parallelism (requires [immobile types and guaranteed destructors](./move-trait.md), proposed for 2026)
