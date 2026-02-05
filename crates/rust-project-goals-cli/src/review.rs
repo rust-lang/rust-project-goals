@@ -188,7 +188,7 @@ fn format_review(
         if let Some(champion) = champion {
             writeln!(output, "**Champion:** {}", champion.content)?;
         } else if needs_champion {
-            writeln!(output, "**Champion:** {}", "TBD".to_string())?;
+            writeln!(output, "**Champion:** {}", "TBD")?;
         };
 
         // Support level for this team
