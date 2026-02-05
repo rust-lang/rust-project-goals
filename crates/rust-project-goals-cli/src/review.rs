@@ -175,22 +175,31 @@ fn format_review(
             help_wanted,
         )?;
 
-        writeln!(output, "**Point of contact:** {}\n", goal.metadata.pocs)?;
+        writeln!(output, "**Point of contact:** {}", goal.metadata.pocs)?;
 
         // Team champion for this team specifically
-        if let Some(champion) = goal.metadata.champions.get(team) {
-            writeln!(output, "**Champion:** {}\n", champion.content)?;
-        }
+        let needs_champion = goal.team_involvement.as_support().map_or(false, |s| {
+            s.iter().any(|s| {
+                s.team == team
+                    && matches!(s.support_level, SupportLevel::Large | SupportLevel::Medium)
+            })
+        });
+        let champion = goal.metadata.champions.get(team);
+        if let Some(champion) = champion {
+            writeln!(output, "**Champion:** {}", champion.content)?;
+        } else if needs_champion {
+            writeln!(output, "**Champion:** {}", "TBD")?;
+        };
 
         // Support level for this team
         if let Some(level) = get_team_support_level(goal, team) {
-            writeln!(output, "**Support level:** {}\n", level)?;
+            writeln!(output, "**Support level:** {}", level)?;
         }
 
         // Notes for this team
         let notes = get_team_notes(goal, team);
         if !notes.is_empty() {
-            writeln!(output, "**Notes:** {}\n", notes)?;
+            writeln!(output, "**Notes:** {}", notes)?;
         }
 
         // Summary as blockquote
