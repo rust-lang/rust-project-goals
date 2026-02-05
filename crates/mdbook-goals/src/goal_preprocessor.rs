@@ -1013,8 +1013,6 @@ mod tests {
 
     #[test]
     fn test_reports_replacement() {
-        use mdbook::book::Chapter;
-
         let mut chapter = Chapter::new(
             "Test Chapter",
             "# Test\n\n(((REPORTS)))\n\nEnd".to_string(),
