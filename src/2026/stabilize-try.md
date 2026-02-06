@@ -82,7 +82,7 @@ Because this functionality is so critical for Rust bindings to the [Abseil Statu
 
 ### What we propose to do about it
 
-Stabilize the `Try` trait, which has been in its current form since 2021. This allows implementing the trait for a custom result type using `#[track_caller]`, which can be used to implement the above example.
+Stabilize the `Try` trait, which has been in its current form since 2021.
 
 Because there are open design questions that haven't yet been resolved, we should either
 
