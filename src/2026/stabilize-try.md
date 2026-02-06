@@ -4,7 +4,7 @@
 |:---------------- | ----------------------- |
 | Point of contact | @tmandry                |
 | Status           | Proposed  |
-| Tracking issue   | #84277                  |
+| Other tracking issues   | #84277                  |
 | Zulip channel    | N/A                     | 
 
 ## Summary
