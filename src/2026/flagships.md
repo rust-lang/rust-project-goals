@@ -24,7 +24,8 @@ Looking past 2026, we have a number of ongoing *flagship themes*. These themes c
     * stabilize the [Sized hierarchy](./scalable-vectors.md).
 * [Constify all the things](./flagship-constify-all-the-things.md): Structs and associated constants in generics, compile-time type introspection. Key 2026 milestones include:
     * stabilize [const generics](./const-generics.md) extensions,
-    * prototype [reflection](./reflection-and-comptime.md).
+    * prototype [reflection](./reflection-and-comptime.md),
+    * prototype [expansion-time evaluation architecture](./expansion-time-evaluation.md).
 * [Higher-level Rust](./flagship-higher-level-rust.md): Single-file scripts with dependencies. Key 2026 milestones include:
     * stabilize [cargo-script](./cargo-script.md).
 * [Secure your supply chain](./flagship-secure-your-supply-chain.md): Control over public API dependencies, breaking change detection, SBOM generation. Key 2026 milestones include:
