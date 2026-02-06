@@ -62,3 +62,4 @@ The following table highlights the support level requested from each affected te
 [YKR]: ./yank-crates-with-a-reason.md
 [SC]: ./Rust-for-SciComp.md
 [OC]: ./optimize-clippy.md
+[ETE]: ./expansion-time-evaluation.md
