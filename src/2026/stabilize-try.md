@@ -3,9 +3,9 @@
 | Metadata         |                         |
 |:---------------- | ----------------------- |
 | Point of contact | @tmandry                |
-| Status           | Proposed  |
-| Other tracking issues   | #84277                  |
-| Zulip channel    | N/A                     | 
+| Status           | Proposed                |
+| Other tracking issues | #84277             |
+| Zulip channel    | N/A                     |
 
 ## Summary
 
@@ -21,27 +21,47 @@ Today the only types that can be used with the `?` are in the standard library. 
 
 A common use case is capturing the context of an error each time it is bubbled up using `?`, without resorting to the use of backtraces.
 
-```rust=
-enum StatusOr<T> {
-    Status(StatusError),
-    StatusOk(T),
+```rust
+enum TracedResult<T, E> {
+    Err(TracedError<E>),
+    Ok(T),
 }
-use StatusOr::StatusOk;
+use TracedResult::Ok;
 
-fn read_list(path: PathBuf) -> StatusOr<Vec<i32>> {
+fn read_list(path: PathBuf) -> TracedResult<Vec<i32>> {
     let file = File::open(path)?;
-    StatusOk(read_number_list(file)?)
+    Ok(read_number_list(file)?)
 }
 
-fn read_number_list(file: File) -> StatusOr<Vec<i32>> {
+fn read_number_list(file: File) -> TracedResult<Vec<i32>> {
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
     ...
 }
 
-fn main() -> StatusOr<()> {
+fn main() -> TracedResult<()> {
     let list = read_list("path/to/file.txt".into())?;
     println!("{list:?}");
+}
+
+impl<T, E> FromResidual<TracedResult<!, E>> for TracedResult<T, E> {
+    #[track_caller]
+    fn from_residual(residual: TracedResult<!, E>) -> Self {
+        let location = Location::caller();
+        match residual {
+            TracedResult::Err(err) => TracedResult::Err(err.with_source_location(location))
+        }
+    }
+}
+
+impl<T, E> FromResidual<Result<!, E>> for Result<T, E> {
+    #[track_caller]
+    fn from_residual(residual: Result<!, E>) -> Self {
+        let location = Location::caller();
+        match residual {
+            Result::Err(err) => TracedResult::Err(TracedError::new(err, location))
+        }
+    }
 }
 ```
 
@@ -58,7 +78,7 @@ While this is not a user-friendly error message, some errors like internal serve
 
 Capturing a backtrace at the time of initial error creation is prohibitively expensive, both because unwinding is slow and because errors are often handled higher up in the stack without being printed. Capturing a single `Location<'static>` pointer for each level of bubbling up can be optimized much better.
 
-Because this functionality is so critical for Rust bindings to the [Abseil Status](https://abseil.io/docs/cpp/guides/status) library, the plan is to use a custom `try_status!()` macro to capture the location information instead of `?`. This imposes a heavy burden on users, much like the `try!()` macro did before it.
+Because this functionality is so critical for Rust bindings to the [Abseil Status](https://abseil.io/docs/cpp/guides/status) library, their plan is to use a custom `try_status!()` macro to capture the location information instead of `?`. This imposes a heavy burden on users, much like the `try!()` macro did before it.
 
 ### What we propose to do about it
 
