@@ -34,7 +34,7 @@ A math library might want to implement an operation that works for any type that
 
 #### Customizing Try for particular error types
 
-Abseil has a feature to track the source location at each step an error is propagated, without relying on a much slower backtrace feature.
+[Abseil][statusor] has a feature to track the source location at each step an error is propagated, without relying on a much slower backtrace feature.
 
 Today the only way to do this is with a custom `try_status!()` macro in place of `?`. When the `Try` trait is stable, it will be possible with a custom `StatusOr<T>` type that takes the place of `Result<T, StatusError>`. Unfortunately, this won't interoperate very well with everyday Rust code that expects a `Result`.
 
@@ -52,9 +52,11 @@ impl<T> FromResidual<Result<!, StatusError>> for Result<T, StatusError> {
 }
 ```
 
+[statusor]: https://abseil.io/docs/cpp/guides/status
+
 #### In-place initialization
 
-Crubit's [ctor crate] implements a trait called Ctor that can be used to construct a value in-place. The intention is that you can write a function signature like this to accept a constructor for some type:
+[Crubit's](https://crubit.rs) ctor crate [implements][ctor] a trait called Ctor that can be used to construct a value in-place. The intention is that you can write a function signature like this to accept a constructor for some type:
 
 ```rust!
 fn takes_foo(ctor: impl Ctor<Output = Foo>) { ... }
@@ -82,7 +84,7 @@ impl <I: Ctor<Output = Foo>> From<I> for MyType {..}
 impl <I: Ctor<Output = Bar>> From<I> for MyType {..}
 ```
 
-[ctor crate]: https://github.com/google/crubit/blob/c3e70a3df06569d2b366dcf4bdbfbe4c84ce9148/support/ctor.rs
+[ctor]: https://github.com/google/crubit/blob/c3e70a3df06569d2b366dcf4bdbfbe4c84ce9148/support/ctor.rs
 [RFC 1672]: https://github.com/rust-lang/rfcs/pull/1672
 
 #### Overriding drop glue
