@@ -22,6 +22,8 @@ In practice, the opsem team and standard library team have developed a shared un
 These conventions are important, but they have not yet been systematically documented.
 As the standard library continues to grow in size and complexity, documenting these conventions becomes increasingly important for guiding contributors in writing and reviewing unsafe code correctly.
 
+In addition, Rust for Linux has a similar requirement and has already drafted a [document](https://lore.kernel.org/rust-for-linux/20240717221133.459589-1-benno.lossin@proton.me/) to guide unsafe code usage in the project.
+
 ### What we propose to do about it
 
 - Document the conventions about unsafe code usage as a Rust Safety Standard in collaboration with the opsem team and the standard library team, and iteratively refine the standard based on feedback and experience (see a draft [here](https://internals.rust-lang.org/t/pre-rfc-rust-safety-standard/23963)). The standard focuses on the following two aspects:
@@ -30,7 +32,7 @@ As the standard library continues to grow in size and complexity, documenting th
   
   * **Safety documentation**: the information that should be provided at unsafe code definition sites, use sites, and struct definition sites where type invariants are required.
 
-- Review unsafe code usage in the Rust standard library and identify and correct inconsistencies with the standard.
+- Review unsafe code usage in the Rust standard library as well as Rust for Linux, and identify and correct inconsistencies with the standard.
 
 
 ### Work items over the next year
@@ -39,6 +41,7 @@ As the standard library continues to grow in size and complexity, documenting th
 | ----------- | -------- | ----- |
 | Draft and refine the safety standard  | @hxuhack |       |
 | Audit standard library | @hxuhack, @DiuDiu777 |       |
+| Audit Rust for Linux | @hxuhack, @yilin0518   |       |
 
 ### The "shiny future"
 
