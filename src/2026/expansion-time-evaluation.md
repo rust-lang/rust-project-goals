@@ -4,6 +4,8 @@
 | :--------------- | -------------------------- |
 | Point of contact | @tmandry                   |
 | Status           | Proposed                   |
+| Flagship         | Constify all the things    |
+| [compiler] champion | @oli-obk                |
 | Tracking issue   |                            |
 | Zulip channel    | N/A                        |
 
