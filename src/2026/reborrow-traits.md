@@ -8,6 +8,7 @@
 | Tracking issue   | [rust-lang/rust-project-goals#399] |
 | Zulip channel    | [#t-lang/custom-refs][channel]     |
 | [lang] champion  | @tmandry                           |
+| [types] champion | @BoxyUwU                           |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/522311-t-lang.2Fcustom-refs
 
@@ -33,7 +34,7 @@ This year we continue iteration on the traits based on user feedback, focusing o
 1. **Overcome known limitations** - Support types with multiple lifetime parameters where one or more of them gets reborrowed.
 1. **Support non-trivial `CoerceShared`** - Support `CoerceShared` operations that reorder or drop fields.
 1. **Expand safety and validity checks** - `CoerceShared` performs an implicit type transmute and must be extensively tested and validated.
-1. **Prepare for RFC** - Refine the [draft RFC](https://github.com/aapoalas/rfcs/blob/autoreborrow-traits/text/0000-autoreborrow-traits.md) based on implementation experience.
+1. **RFC** - The [draft RFC](https://github.com/aapoalas/rfcs/blob/autoreborrow-traits/text/0000-autoreborrow-traits.md) should be refined and rewritten based on implementation experience, and landed within this project goal.
 
 The fundamental design philosophy remains:
 - Reborrowing is "a memory copy with added lifetime analysis" - no user code is run.
@@ -48,6 +49,7 @@ The fundamental design philosophy remains:
 | Land first implementation PR to nightly       | @aapoalas |       |
 | Solicit wide feedback on the feature          | @aapoalas |       |
 | Continue experiment based on experience       | @aapoalas |       |
+| Rewrite the RFC                               | @aapoalas |       |
 
 ## Team asks
 
@@ -55,6 +57,7 @@ The fundamental design philosophy remains:
 | ---------- | ------------- | --------------------------------------------- |
 | [lang]     | Medium        | Continued experiment support, design feedback |
 | [compiler] | Small         | Standard reviews for trait implementation PRs |
+| [types]    | Small         | Standard reviews for trait implementation PRs |
 
 ## Frequently asked questions
 
