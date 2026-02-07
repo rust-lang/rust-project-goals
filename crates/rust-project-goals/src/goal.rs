@@ -564,23 +564,28 @@ pub fn format_goal_table(
         table = vec![vec![
             Spanned::here("Goal".to_string()),
             Spanned::here("Point of contact".to_string()),
-            Spanned::here("Team(s) and Champion(s)".to_string()),
+            Spanned::here("Task Owners and Champions".to_string()),
         ]];
 
         for goal in goals {
-            let teams: BTreeSet<&TeamName> = goal.team_involvement.teams();
-
-            // Format teams with champions in parentheses
-            let teams_with_champions: Vec<String> = teams
-                .into_iter()
-                .map(|team: &'static TeamName| {
-                    if let Some(champion) = goal.metadata.champions.get(team) {
-                        format!("{} ({})", team, champion.content)
-                    } else {
-                        team.to_string()
-                    }
-                })
+            // Collect task owners, excluding those who are already the POC
+            let mut contributors: Vec<String> = goal
+                .task_owners
+                .iter()
+                .filter(|owner| !goal.metadata.pocs.contains(owner.as_str()))
+                .cloned()
                 .collect();
+
+            // Collect champions with team affiliation
+            let mut champions: Vec<String> = goal
+                .metadata
+                .champions
+                .iter()
+                .map(|(team, champion)| format!("{} ({})", champion.content, team))
+                .collect();
+
+            // Combine task owners and champions
+            contributors.append(&mut champions);
 
             table.push(vec![
                 Spanned::here(format!(
@@ -589,7 +594,7 @@ pub fn format_goal_table(
                     goal.link_path.display()
                 )),
                 Spanned::here(goal.point_of_contact_for_goal_list()),
-                Spanned::here(teams_with_champions.join(", ")),
+                Spanned::here(contributors.join(", ")),
             ]);
         }
     }
