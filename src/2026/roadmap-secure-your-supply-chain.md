@@ -1,5 +1,13 @@
 # Secure your supply chain
 
+| Metadata         |                                                                                  |
+|:-----------------|----------------------------------------------------------------------------------|
+| Short title      | Secure your supply chain                                                         |
+| What and why     | Accurate SBOMs, SemVer violation detection, explicit public/private dependencies |
+| Point of contact | TBD                                                                              |
+| Application area | Enterprise integration                                                            |
+| Application area | Safety-critical & regulated                                                       |
+
 ## Summary
 
 Know exactly what code ships in your binaries, catch breaking changes before they break your users, and keep your public API under control.
@@ -50,7 +58,7 @@ By the end of 2026:
 
 ## 2026 goals
 
-(((FLAGSHIP GOALS: Secure your supply chain)))
+(((ROADMAP GOALS: Secure your supply chain)))
 
 ## Frequently asked questions
 

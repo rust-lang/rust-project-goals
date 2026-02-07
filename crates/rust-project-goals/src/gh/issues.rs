@@ -431,7 +431,7 @@ pub fn sync_labels(
     }
 }
 
-pub const FLAGSHIP_LABEL: &str = "Flagship Goal";
+pub const ROADMAP_LABEL: &str = "Roadmap Goal";
 
 pub const LOCK_TEXT: &str = "This issue is intended for status updates only.\n\nFor general questions or comments, please contact the owner(s) directly.";
 
@@ -449,9 +449,9 @@ impl ExistingGithubIssue {
         self.labels.iter().any(|label| label.name == name)
     }
 
-    /// True if the issue has the label for a flagship goal.
-    pub fn has_flagship_label(&self) -> bool {
-        self.has_label(FLAGSHIP_LABEL)
+    /// True if the issue has the label for a roadmap goal.
+    pub fn has_roadmap_label(&self) -> bool {
+        self.has_label(ROADMAP_LABEL)
     }
 }
 

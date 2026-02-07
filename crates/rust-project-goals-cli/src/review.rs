@@ -136,12 +136,12 @@ fn format_review(
     let team_data = team.data();
     writeln!(output, "# Goals review for {} team ({})\n", team_data.name, milestone)?;
 
-    // Section 1: Flagship themes affecting this team
-    let flagship_section = format_flagship_themes(goals, team, milestone)?;
-    if !flagship_section.is_empty() {
-        writeln!(output, "## Flagship themes\n")?;
-        writeln!(output, "The following flagship themes include goals that involve the {} team:\n", team_data.name)?;
-        write!(output, "{}", flagship_section)?;
+    // Section 1: Roadmap themes affecting this team
+    let roadmap_section = format_roadmap_themes(goals, team, milestone)?;
+    if !roadmap_section.is_empty() {
+        writeln!(output, "## Roadmaps\n")?;
+        writeln!(output, "The following roadmaps include goals that involve the {} team:\n", team_data.name)?;
+        write!(output, "{}", roadmap_section)?;
     }
 
     // Section 2: Summary table by support level
@@ -269,66 +269,56 @@ fn format_team_table(
     Ok(output)
 }
 
-/// Normalize a flagship name, handling both plain text and markdown link formats.
-/// Returns (display_name, slug).
-fn normalize_flagship_name(raw: &str) -> (String, String) {
-    // Check if it's a markdown link like "[Just Add Async](./flagship-just-add-async.md)"
-    let link_regex = Regex::new(r"^\[([^\]]+)\]\([^)]+\)$").unwrap();
-
-    if let Some(captures) = link_regex.captures(raw) {
-        let name = captures.get(1).unwrap().as_str().to_string();
-        let slug = name.to_lowercase().replace(' ', "-");
-        (name, slug)
-    } else {
-        // Plain text
-        let slug = raw.to_lowercase().replace(' ', "-");
-        // Also handle backticks in names like "Beyond the `&`"
-        let slug = slug.replace('`', "").replace('&', "ampersand");
-        (raw.to_string(), slug)
-    }
+/// Normalize a roadmap name to (display_name, slug).
+/// Markdown links are already stripped at parse time by `parse_themed_rows`.
+fn normalize_roadmap_name(raw: &str) -> (String, String) {
+    let slug = raw.to_lowercase().replace(' ', "-");
+    // Handle backticks in names like "Beyond the `&`"
+    let slug = slug.replace('`', "").replace('&', "ampersand");
+    (raw.to_string(), slug)
 }
 
-/// Format flagship themes section.
-fn format_flagship_themes(
+/// Format roadmap themes section.
+fn format_roadmap_themes(
     goals: &[&GoalDocument],
     team: &'static TeamName,
     milestone: &str,
 ) -> Result<String> {
     let mut output = String::new();
 
-    // Group goals by flagship theme (normalized name)
-    let mut by_flagship: BTreeMap<(String, String), Vec<&GoalDocument>> = BTreeMap::new();
+    // Group goals by roadmap theme (normalized name)
+    let mut by_roadmap: BTreeMap<(String, String), Vec<&GoalDocument>> = BTreeMap::new();
 
     for goal in goals {
-        if let Some(flagship) = goal.metadata.flagship() {
-            let (name, slug) = normalize_flagship_name(flagship);
-            by_flagship
+        for roadmap in goal.metadata.roadmap.iter() {
+            let (name, slug) = normalize_roadmap_name(roadmap);
+            by_roadmap
                 .entry((name, slug))
                 .or_default()
                 .push(*goal);
         }
     }
 
-    if by_flagship.is_empty() {
+    if by_roadmap.is_empty() {
         return Ok(output);
     }
 
-    // Load flagship summaries from the filesystem
+    // Load roadmap summaries from the filesystem
     let milestone_path = Path::new("src").join(milestone);
 
-    for ((flagship_name, slug), flagship_goals) in &by_flagship {
-        let flagship_file = milestone_path.join(format!("flagship-{}.md", slug));
+    for ((roadmap_name, slug), roadmap_goals) in &by_roadmap {
+        let roadmap_file = milestone_path.join(format!("roadmap-{}.md", slug));
 
-        // Try to read the flagship file and extract its summary
-        let summary = if flagship_file.exists() {
-            extract_summary_from_file(&flagship_file).unwrap_or_default()
+        // Try to read the roadmap file and extract its summary
+        let summary = if roadmap_file.exists() {
+            extract_summary_from_file(&roadmap_file).unwrap_or_default()
         } else {
             String::new()
         };
 
-        let flagship_url = format!("{}/{}/flagship-{}.html", BASE_URL, milestone, slug);
+        let roadmap_url = format!("{}/{}/roadmap-{}.html", BASE_URL, milestone, slug);
 
-        writeln!(output, "### [{}]({})\n", flagship_name.replace('`', ""), flagship_url)?;
+        writeln!(output, "### [{}]({})\n", roadmap_name.replace('`', ""), roadmap_url)?;
 
         if !summary.is_empty() {
             for line in summary.lines() {
@@ -337,9 +327,9 @@ fn format_flagship_themes(
             writeln!(output)?;
         }
 
-        // List goals in this flagship that involve this team
+        // List goals in this roadmap that involve this team
         writeln!(output, "**Goals in this theme:**\n")?;
-        for goal in flagship_goals {
+        for goal in roadmap_goals {
             let level = get_team_support_level(goal, team)
                 .map(|l| format!(" ({})", l))
                 .unwrap_or_default();
@@ -359,39 +349,8 @@ fn format_flagship_themes(
 
 /// Extract the Summary section from a markdown file.
 fn extract_summary_from_file(path: &Path) -> Option<String> {
-    let content = std::fs::read_to_string(path).ok()?;
-
-    let mut in_summary = false;
-    let mut summary_lines = Vec::new();
-
-    for line in content.lines() {
-        if line.starts_with("## Summary") {
-            in_summary = true;
-            continue;
-        }
-
-        if in_summary {
-            // Stop at next heading
-            if line.starts_with("## ") || line.starts_with("# ") {
-                break;
-            }
-            summary_lines.push(line);
-        }
-    }
-
-    // Trim leading/trailing empty lines
-    while summary_lines.first().map_or(false, |l| l.is_empty()) {
-        summary_lines.remove(0);
-    }
-    while summary_lines.last().map_or(false, |l| l.is_empty()) {
-        summary_lines.pop();
-    }
-
-    if summary_lines.is_empty() {
-        None
-    } else {
-        Some(summary_lines.join("\n"))
-    }
+    let sections = rust_project_goals::markwaydown::parse(path).ok()?;
+    rust_project_goals::goal::extract_summary(&sections).ok().flatten()
 }
 
 /// Format a table grouped by champion.

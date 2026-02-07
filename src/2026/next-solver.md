@@ -1,14 +1,15 @@
 # Stabilize the next-generation trait solver
 
 | Metadata              |                                           |
-| :-------------------- | ----------------------------------------- |
+|:----------------------|-------------------------------------------|
 | Point of contact      | @lcnr                                     |
 | Status                | Proposed                                  |
-| Flagship              | Unblocking dormant traits                 |
+| Roadmap               | Unblocking dormant traits                 |
+| Roadmap               | Just add async                            |
 | Tracking issue        | [rust-lang/rust-project-goals#113]        |
 | Other tracking issues | [rust-lang/rust#107374]                   |
 | Zulip channel         | [#t-types/trait-system-refactor][channel] |
-| Stabilization         | true                                      |
+| Highlight             | Language changes                          |
 | [types] champion      | @lcnr                                     |
 | [lang] champion       | @nikomatsakis                             |
 

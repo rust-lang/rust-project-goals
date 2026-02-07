@@ -1,7 +1,7 @@
-# TEMPLATE (replace with the name of your flagship theme)
+# TEMPLATE (replace with the name of your roadmap)
 
 <!--
-WRITING PRINCIPLES FOR FLAGSHIP THEMES
+WRITING PRINCIPLES FOR ROADMAPS
 
 Tone and style:
 - Be direct and informative, not promotional or hyperbolic
@@ -34,14 +34,14 @@ Length guidance:
 - FAQ: 2-3 cross-cutting questions
 -->
 
-> **Instructions:** Copy this template to `src/2026/flagship-your-theme-name.md`.
+> **Instructions:** Copy this template to `src/2026/roadmap-your-theme-name.md`.
 > Give it a title that captures the capability or experience users will gain
 > (e.g., "Beyond the `&`" or "Constify all the things").
 >
-> Flagship themes group related goals under a unifying narrative. They explain
+> Roadmaps group related goals under a unifying narrative. They explain
 > *why* this collection of work matters to users, not just *what* we're building.
 >
-> Unlike individual goal pages, flagship themes don't have metadata tables or
+> Unlike individual goal pages, roadmaps don't have metadata tables or
 > team asks—those live in the individual goal documents.
 
 ## Summary
@@ -87,9 +87,9 @@ Length guidance:
 
 ## 2026 goals
 
-(((FLAGSHIP GOALS: Theme Name)))
+(((ROADMAP GOALS: Theme Name)))
 
-> *Replace "Theme Name" above with the exact name used in the `Flagship` metadata field of your goals. The preprocessor will automatically list all goals tagged with this theme.*
+> *Replace "Theme Name" above with the exact name used in the `Roadmap` metadata field of your goals. The preprocessor will automatically list all goals tagged with this theme.*
 
 ## Frequently asked questions
 

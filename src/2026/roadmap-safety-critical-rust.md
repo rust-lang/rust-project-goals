@@ -1,5 +1,12 @@
 # Safety-Critical Rust
 
+| Metadata         |                                                                                                                              |
+|:-----------------|------------------------------------------------------------------------------------------------------------------------------|
+| Short title      | Safety-Critical Rust                                                                                                         |
+| What and why     | MC/DC coverage, a specification that tracks stable releases, and `unsafe` documentation — the evidence safety assessors need |
+| Point of contact | @PLeVasseur                                                                                                                  |
+| Application area | Safety-critical & regulated                                                                                                  |
+
 ## Summary
 
 Make Rust viable for certified safety-critical systems by delivering coverage, specification, linting, and `unsafe` documentation foundations.
@@ -56,7 +63,7 @@ We are building a capability ladder that unlocks Rust at increasing safety-integ
 
 ## 2026 goals
 
-(((FLAGSHIP GOALS: Safety-Critical Rust)))
+(((ROADMAP GOALS: Safety-Critical Rust)))
 
 ## Frequently asked questions
 

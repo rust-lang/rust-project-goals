@@ -21,8 +21,8 @@ pub struct TrackingIssue {
     /// Title of the tracking issue
     pub title: String,
 
-    /// True if this is a flagship goal
-    pub flagship: bool,
+    /// True if this is a roadmap goal
+    pub roadmap: bool,
 
     /// State of progress
     pub progress: Progress,

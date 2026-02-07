@@ -4,7 +4,7 @@
 | :--------------- | ------------------------------------------------------------ |
 | Point of contact | @plevasseur                                                  |
 | Status           | Proposed                                                     |
-| Flagship         | Safety-Critical Rust                                         |
+| Roadmap          | Safety-Critical Rust                                         |
 | Tracking issue   |                                                              |
 | Zulip channel    | N/A                                                          |
 

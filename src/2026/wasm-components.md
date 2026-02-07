@@ -6,7 +6,7 @@
 | Status           | Proposed     |
 | Tracking issue   |              |
 | Zulip channel    | N/A          |
-| Stabilization    | true         |
+| Highlight        | Other        |
 
 ## Summary
 

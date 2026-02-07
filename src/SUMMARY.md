@@ -5,15 +5,9 @@
 # ⏳ 2026 goal process
 
 - [Overview](./2026/README.md)
-- [Rust in 2026](./2026/flagships.md)
-    - [Beyond the `&`](./2026/flagship-beyond-the-ampersand.md)
-    - [Building blocks](./2026/flagship-building-blocks.md)
-    - [Constify all the things](./2026/flagship-constify-all-the-things.md)
-    - [Just add `async`](./2026/flagship-just-add-async.md)
-    - [Secure your supply chain](./2026/flagship-secure-your-supply-chain.md)
-    - [Safety-Critical Rust](./2026/flagship-safety-critical-rust.md)
-    - [Unblocking dormant traits](./2026/flagship-unblocking-dormant-traits.md)
-- [Goal details](./2026/goals.md)
+- [Highlights](./2026/highlights.md)
+- [Rust roadmaps](./2026/roadmaps.md)
+- [Reference: all goals and roadmaps](./2026/reference.md)
 - [Frequently asked questions](./2026/faq.md)
 
 # ⚙️ 2025H2 goal process
@@ -26,7 +20,7 @@
 # 📖 Learn about
 
 - [Goal motivations](./about/motivation.md)
-- [Flagship goals](./about/flagship_goals.md)
+- [Roadmaps](./about/roadmaps.md)
 - [Invited goals](./about/invited_goals.md)
 - [Point of contact](./about/poc.md)
 - [Team asks](./about/team_asks.md)

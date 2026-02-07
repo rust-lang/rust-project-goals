@@ -4,7 +4,7 @@
 | :--------------- | ------------------------------------------------------------ |
 | Point of contact | @RenjiSann                                                   |
 | Status           | Proposed                                                     |
-| Flagship         | Safety-Critical Rust                                         |
+| Roadmap          | Safety-Critical Rust                                         |
 | Tracking issue   |                                                              |
 | Zulip channel    | [mc/dc-support][mcdc-zulip] |
 

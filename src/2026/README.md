@@ -2,7 +2,7 @@
 
 ## Summary
 
-*![Status: Accepting goal proposals](https://img.shields.io/badge/Status-Accepting%20goal%20proposals-yellow) We are in the process of assembling the goal slate.*
+*![Status: Revising first draft](https://img.shields.io/badge/Status-Revising%20first%20draft-yellow) We are in the process of revising the first draft of the goal slate. New proposals are still accepted but they must already have team consensus and appropriate champions.*
 
 This is a draft for the eventual RFC proposing the 2026 goals.
 

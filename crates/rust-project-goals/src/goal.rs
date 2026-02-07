@@ -3,7 +3,6 @@ use std::path::Path;
 use std::sync::Arc;
 use std::{collections::BTreeSet, path::PathBuf};
 
-use regex::Regex;
 use spanned::{Error, Result, Spanned};
 
 use crate::config::{Configuration, TeamAskDetails};
@@ -44,10 +43,72 @@ pub struct GoalDocument {
     pub team_involvement: TeamInvolvement,
 }
 
+/// Data parsed from a roadmap file (`roadmap-*.md`).
+/// Roadmaps are narrative documents that group goals by theme.
+/// They have simpler metadata than goals (no status, tracking issues, or team asks).
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
+pub struct RoadmapDocument {
+    /// Path relative to the current directory (`book.toml`)
+    pub path: PathBuf,
+
+    /// Path relative to the directory of roadmaps this is a part of,
+    /// and hence suitable for links in other markdown files.
+    pub link_path: Arc<PathBuf>,
+
+    /// The full title from the `#` heading
+    pub title: Spanned<String>,
+
+    /// Short title from metadata table (or title if absent)
+    pub short_title: Spanned<String>,
+
+    /// Text from the "What and why" metadata row
+    pub what_and_why: String,
+
+    /// Application areas this roadmap is relevant to (e.g. "Network services", "Systems & embedded")
+    pub application_areas: Themes,
+
+    /// Point of contact (e.g. `@username` or "TBD")
+    pub point_of_contact: String,
+
+    /// Text from the summary section
+    pub summary: String,
+}
+
+impl RoadmapDocument {
+    /// Load a roadmap document from a markdown file.
+    /// Returns None if the file doesn't have roadmap metadata.
+    fn load(path: &Path, link_path: &Path) -> Result<Option<Self>> {
+        let sections = markwaydown::parse(path)?;
+
+        let Some(RoadmapMetadata {
+            title,
+            short_title,
+            what_and_why,
+            application_areas,
+            point_of_contact,
+        }) = extract_roadmap_metadata(&sections)?
+        else {
+            return Ok(None);
+        };
+
+        let summary = extract_summary(&sections)?.unwrap_or_else(|| title.content.clone());
+
+        Ok(Some(RoadmapDocument {
+            path: path.to_path_buf(),
+            link_path: Arc::new(link_path.to_path_buf()),
+            title,
+            short_title,
+            what_and_why,
+            application_areas,
+            point_of_contact,
+            summary,
+        }))
+    }
+}
+
 /// Metadata loaded from the goal header
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Metadata {
-    #[allow(unused)]
     pub title: Spanned<String>,
     pub short_title: Spanned<String>,
     pub pocs: String,
@@ -58,11 +119,56 @@ pub struct Metadata {
     /// For each table entry like `[T-lang] champion`, we create an entry in this map
     pub champions: BTreeMap<&'static TeamName, Spanned<String>>,
 
-    /// Flagship category, if this is a flagship goal
-    pub flagship: Option<Spanned<String>>,
+    /// Roadmap themes this goal belongs to (zero or more)
+    pub roadmap: Themes,
 
-    /// True if this goal is about stabilization (something reaching completion and becoming available to users)
-    pub stabilization: bool,
+    /// Highlight themes this goal belongs to (zero or more)
+    pub highlight: Themes,
+}
+
+/// A set of theme names parsed from metadata rows.
+/// Used for both roadmap and highlight themes.
+#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Default)]
+pub struct Themes {
+    themes: Vec<Spanned<String>>,
+}
+
+impl Themes {
+    /// Returns true if no themes are present.
+    pub fn is_empty(&self) -> bool {
+        self.themes.is_empty()
+    }
+
+    /// Returns true if any theme is present.
+    pub fn is_some(&self) -> bool {
+        !self.themes.is_empty()
+    }
+
+    /// Returns true if the set contains a theme matching the given value (trimmed comparison).
+    pub fn contains(&self, value: &str) -> bool {
+        self.themes
+            .iter()
+            .any(|t| t.content.trim() == value.trim())
+    }
+
+    /// Iterate over all theme names as &str.
+    pub fn iter(&self) -> impl Iterator<Item = &str> {
+        self.themes.iter().map(|t| t.content.as_str())
+    }
+
+    /// Returns the first theme name, if any.
+    pub fn first(&self) -> Option<&str> {
+        self.themes.first().map(|t| t.content.as_str())
+    }
+
+    /// Iterate over all theme entries with their spans.
+    pub fn iter_spanned(&self) -> impl Iterator<Item = &Spanned<String>> {
+        self.themes.iter()
+    }
+
+    fn push(&mut self, theme: Spanned<String>) {
+        self.themes.push(theme);
+    }
 }
 
 pub const TRACKING_ISSUE_ROW: &str = "Tracking issue";
@@ -214,7 +320,8 @@ impl TeamInvolvement {
     }
 }
 
-/// Load all the goals from a given directory
+/// Load all the goals from a given directory.
+/// Roadmap files (`roadmap-*.md`) are skipped; use `roadmaps_in_dir` for those.
 pub fn goals_in_dir(directory_path: &Path) -> Result<Vec<GoalDocument>> {
     let mut goal_documents = vec![];
     for (path, link_path) in markdown_files(&directory_path)? {
@@ -223,11 +330,72 @@ pub fn goals_in_dir(directory_path: &Path) -> Result<Vec<GoalDocument>> {
             continue;
         }
 
+        // Skip roadmap files (they're loaded separately via roadmaps_in_dir)
+        if let Some(filename) = path.file_name().and_then(|n| n.to_str()) {
+            if filename.starts_with("roadmap-") {
+                continue;
+            }
+        }
+
         if let Some(goal_document) = GoalDocument::load(&path, &link_path)? {
             goal_documents.push(goal_document);
         }
     }
     Ok(goal_documents)
+}
+
+/// Load all the roadmaps from a given directory.
+/// Only processes files matching the `roadmap-*.md` naming convention.
+pub fn roadmaps_in_dir(directory_path: &Path) -> Result<Vec<RoadmapDocument>> {
+    let mut roadmap_documents = vec![];
+    for (path, link_path) in markdown_files(&directory_path)? {
+        let Some(filename) = path.file_name().and_then(|n| n.to_str()) else {
+            continue;
+        };
+
+        if !filename.starts_with("roadmap-") {
+            continue;
+        }
+
+        if let Some(roadmap_document) = RoadmapDocument::load(&path, &link_path)? {
+            roadmap_documents.push(roadmap_document);
+        }
+    }
+    Ok(roadmap_documents)
+}
+
+/// Validate that every `| Roadmap | theme |` declared by a goal has a corresponding
+/// `roadmap-*.md` file whose short title matches. Skipped when no roadmap documents exist
+/// in the directory (e.g. older milestones that used `| Flagship |`).
+pub fn validate_roadmap_references(
+    goals: &[GoalDocument],
+    roadmaps: &[RoadmapDocument],
+) -> Result<()> {
+    if roadmaps.is_empty() {
+        return Ok(());
+    }
+
+    let roadmap_titles: std::collections::BTreeSet<String> = roadmaps
+        .iter()
+        .map(|r| r.short_title.content.trim().to_string())
+        .collect();
+
+    for goal in goals {
+        for theme in goal.metadata.roadmap.iter_spanned() {
+            let theme_name = theme.content.trim();
+            if !roadmap_titles.contains(theme_name) {
+                spanned::bail!(
+                    theme,
+                    "goal declares roadmap `{}` but no `roadmap-*.md` file has that short title; \
+                     available roadmaps: {}",
+                    theme_name,
+                    roadmap_titles.iter().cloned().collect::<Vec<_>>().join(", "),
+                );
+            }
+        }
+    }
+
+    Ok(())
 }
 
 impl GoalDocument {
@@ -396,23 +564,28 @@ pub fn format_goal_table(
         table = vec![vec![
             Spanned::here("Goal".to_string()),
             Spanned::here("Point of contact".to_string()),
-            Spanned::here("Team(s) and Champion(s)".to_string()),
+            Spanned::here("Task Owners and Champions".to_string()),
         ]];
 
         for goal in goals {
-            let teams: BTreeSet<&TeamName> = goal.team_involvement.teams();
-
-            // Format teams with champions in parentheses
-            let teams_with_champions: Vec<String> = teams
-                .into_iter()
-                .map(|team: &'static TeamName| {
-                    if let Some(champion) = goal.metadata.champions.get(team) {
-                        format!("{} ({})", team, champion.content)
-                    } else {
-                        team.to_string()
-                    }
-                })
+            // Collect task owners, excluding those who are already the POC
+            let mut contributors: Vec<String> = goal
+                .task_owners
+                .iter()
+                .filter(|owner| !goal.metadata.pocs.contains(owner.as_str()))
+                .cloned()
                 .collect();
+
+            // Collect champions with team affiliation
+            let mut champions: Vec<String> = goal
+                .metadata
+                .champions
+                .iter()
+                .map(|(team, champion)| format!("{} ({})", champion.content, team))
+                .collect();
+
+            // Combine task owners and champions
+            contributors.append(&mut champions);
 
             table.push(vec![
                 Spanned::here(format!(
@@ -421,10 +594,126 @@ pub fn format_goal_table(
                     goal.link_path.display()
                 )),
                 Spanned::here(goal.point_of_contact_for_goal_list()),
-                Spanned::here(teams_with_champions.join(", ")),
+                Spanned::here(contributors.join(", ")),
             ]);
         }
     }
+    Ok(util::format_table(&table))
+}
+
+/// Format highlight goals as `####` sections with people and summary.
+pub fn format_highlight_goal_sections(goals: &[&GoalDocument]) -> Result<String> {
+    let mut output = String::new();
+
+    for goal in goals {
+        if goal.metadata.status.is_invited {
+            output.push_str(&format!(
+                "#### [{}]({}) ![Help wanted][]\n\n",
+                *goal.metadata.title, goal.link_path.display()
+            ));
+        } else {
+            output.push_str(&format!(
+                "#### [{}]({})\n\n",
+                *goal.metadata.title, goal.link_path.display()
+            ));
+        }
+
+        // Build people list: POC first (with role), then task owners (no role), then champions (with team role)
+        let mut people: Vec<String> = Vec::new();
+
+        if !goal.metadata.status.is_invited {
+            people.push(format!("{} (point of contact)", goal.metadata.pocs));
+        }
+
+        for owner in &goal.task_owners {
+            if !goal.metadata.pocs.contains(owner.as_str()) {
+                people.push(owner.clone());
+            }
+        }
+
+        for (team, champion) in &goal.metadata.champions {
+            people.push(format!("{} ({} champion)", champion.content, team));
+        }
+
+        if !people.is_empty() {
+            output.push_str(&format!("*{}*\n\n", people.join(", ")));
+        }
+        output.push_str(goal.summary.trim());
+        output.push_str("\n\n");
+    }
+
+    Ok(output)
+}
+
+/// Format roadmaps as a table with "Roadmap", "Point of contact", and "What and why" columns.
+/// If `area_filter` is Some, only roadmaps matching that application area are included.
+pub fn format_roadmap_table(
+    roadmaps: &[&RoadmapDocument],
+    area_filter: Option<&str>,
+) -> Result<String> {
+    let mut table = vec![vec![
+        Spanned::here("Roadmap".to_string()),
+        Spanned::here("Point of contact".to_string()),
+        Spanned::here("What and why".to_string()),
+    ]];
+
+    let mut sorted_roadmaps: Vec<&&RoadmapDocument> = roadmaps
+        .iter()
+        .filter(|r| match area_filter {
+            Some(area) => r.application_areas.contains(area),
+            None => true,
+        })
+        .collect();
+    sorted_roadmaps.sort_by_key(|r| &r.short_title);
+
+    for roadmap in sorted_roadmaps {
+        table.push(vec![
+            Spanned::here(format!(
+                "[{}]({})",
+                *roadmap.short_title,
+                roadmap.link_path.display()
+            )),
+            Spanned::here(roadmap.point_of_contact.clone()),
+            Spanned::here(roadmap.what_and_why.clone()),
+        ]);
+    }
+
+    Ok(util::format_table(&table))
+}
+
+/// Format a table of application areas and their associated roadmaps.
+/// Each row lists an application area and the roadmaps that reference it.
+pub fn format_application_areas_table(roadmaps: &[&RoadmapDocument]) -> Result<String> {
+    // Collect area → roadmaps mapping
+    let mut area_to_roadmaps: std::collections::BTreeMap<String, Vec<&RoadmapDocument>> =
+        std::collections::BTreeMap::new();
+
+    for roadmap in roadmaps {
+        for area in roadmap.application_areas.iter() {
+            area_to_roadmaps
+                .entry(area.trim().to_string())
+                .or_default()
+                .push(roadmap);
+        }
+    }
+
+    let mut table = vec![vec![
+        Spanned::here("Application area".to_string()),
+        Spanned::here("Roadmaps".to_string()),
+    ]];
+
+    for (area, mut area_roadmaps) in area_to_roadmaps {
+        area_roadmaps.sort_by_key(|r| &r.short_title);
+        let links: Vec<String> = area_roadmaps
+            .iter()
+            .map(|r| format!("[{}]({})", *r.short_title, r.link_path.display()))
+            .collect();
+        table.push(vec![
+            Spanned::here(area),
+            Spanned::here(links.join(", ")),
+        ]);
+    }
+
     Ok(util::format_table(&table))
 }
 
@@ -502,6 +791,27 @@ pub enum AcceptanceStatus {
     Proposed,
     Accepted,
     NotAccepted,
+}
+
+/// Parse all rows from a metadata table where the first column matches `key_name`
+/// (case-insensitive), collecting column 1 values into a `Themes` set.
+/// Markdown links like `[text](url)` are stripped to just the link text.
+fn parse_themed_rows(table: &Table, key_name: &str) -> Themes {
+    let mut themes = Themes::default();
+    for row in &table.rows {
+        if row[0].content.trim().eq_ignore_ascii_case(key_name) {
+            let mut value = row[1].clone();
+            if !value.content.trim().is_empty() {
+                // Strip markdown links: `[Just add async](./roadmap-just-add-async.md)` → `Just add async`
+                let stripped = crate::re::strip_markdown_link(&value.content);
+                if stripped != value.content {
+                    value.content = stripped.to_string();
+                }
+                themes.push(value);
+            }
+        }
+    }
+    themes
 }
 
 fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
@@ -613,31 +923,13 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
         }
     }
 
-    // Parse flagship row if present
-    let flagship = first_table
-        .rows
-        .iter()
-        .find(|row| row[0] == "Flagship")
-        .map(|row| row[1].clone());
-
-    // Parse stabilization row if present (value must be "true")
-    let stabilization = if let Some(row) = first_table
-        .rows
-        .iter()
-        .find(|row| row[0].to_lowercase() == "stabilization")
-    {
-        let value = row[1].trim().to_lowercase();
-        if value != "true" {
-            spanned::bail!(
-                row[1],
-                "stabilization metadata must be `true`, found `{}`",
-                row[1].trim()
-            );
-        }
-        true
-    } else {
-        false
-    };
+    // Parse roadmap and highlight theme rows
+    // Accept both "Roadmap" (new) and "Flagship" (old) for backward compatibility
+    let mut roadmap = parse_themed_rows(first_table, "Roadmap");
+    for theme in parse_themed_rows(first_table, "Flagship").iter() {
+        roadmap.push(Spanned::here(theme.to_string()));
+    }
+    let highlight = parse_themed_rows(first_table, "Highlight");
 
     Ok(Some(Metadata {
         title: title.clone(),
@@ -651,17 +943,89 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
         tracking_issue: issue,
         table: first_table.clone(),
         champions,
-        flagship,
-        stabilization,
+        roadmap,
+        highlight,
     }))
 }
 
-fn extract_summary(sections: &[Section]) -> Result<Option<String>> {
+pub fn extract_summary(sections: &[Section]) -> Result<Option<String>> {
     let Some(ownership_section) = sections.iter().find(|section| section.title == "Summary") else {
         return Ok(None);
     };
 
     Ok(Some(ownership_section.text.trim().to_string()))
+}
+
+struct RoadmapMetadata {
+    title: Spanned<String>,
+    short_title: Spanned<String>,
+    what_and_why: String,
+    application_areas: Themes,
+    point_of_contact: String,
+}
+
+/// Extract roadmap metadata from the first section of a markdown file.
+/// Returns None if the file doesn't have the expected roadmap metadata structure.
+fn extract_roadmap_metadata(
+    sections: &[Section],
+) -> Result<Option<RoadmapMetadata>> {
+    let Some(first_section) = sections.first() else {
+        return Ok(None);
+    };
+
+    if first_section.title.is_empty() {
+        spanned::bail!(first_section.title, "first section has no title");
+    }
+
+    let title = &first_section.title;
+
+    let Some(first_table) = first_section.tables.first() else {
+        return Ok(None);
+    };
+
+    expect_headers(first_table, &["Metadata", ""])?;
+
+    let short_title = if let Some(row) = first_table
+        .rows
+        .iter()
+        .find(|row| row[0] == "Short title")
+    {
+        row[1].clone()
+    } else {
+        title.clone()
+    };
+
+    let Some(what_row) = first_table
+        .rows
+        .iter()
+        .find(|row| row[0] == "What and why")
+    else {
+        spanned::bail!(
+            first_table.rows[0][0],
+            "roadmap metadata table has no `What and why` row"
+        )
+    };
+
+    let application_areas = parse_themed_rows(first_table, "Application area");
+
+    let Some(poc_row) = first_table
+        .rows
+        .iter()
+        .find(|row| row[0] == "Point of contact")
+    else {
+        spanned::bail!(
+            first_table.rows[0][0],
+            "roadmap metadata table has no `Point of contact` row"
+        )
+    };
+
+    Ok(Some(RoadmapMetadata {
+        title: title.clone(),
+        short_title,
+        what_and_why: what_row[1].to_string(),
+        application_areas,
+        point_of_contact: poc_row[1].to_string(),
+    }))
 }
 
 /// Extract team involvement from a goal document.
@@ -1232,19 +1596,13 @@ fn extract_team_names(s: &str) -> Vec<String> {
 }
 
 fn extract_identifiers(s: &str) -> Vec<&str> {
-    let regex = Regex::new("[-.A-Za-z]+").unwrap();
-    regex.find_iter(s).map(|m| m.as_str()).collect()
+    re::IDENTIFIERS.find_iter(s).map(|m| m.as_str()).collect()
 }
 
 impl Metadata {
-    /// Returns the flagship category if this is a flagship goal
-    pub fn flagship(&self) -> Option<&str> {
-        self.flagship.as_ref().map(|s| s.content.as_str())
-    }
-
-    /// Returns true if this goal is about stabilization
-    pub fn is_stabilization(&self) -> bool {
-        self.stabilization
+    /// Returns true if this goal has any highlight themes.
+    pub fn is_highlight(&self) -> bool {
+        self.highlight.is_some()
     }
 
     /// Extracts the `@abc` usernames found in the owner listing.

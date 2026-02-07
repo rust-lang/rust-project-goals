@@ -112,10 +112,10 @@ handlebars::handlebars_helper!(is_complete: |p: Progress| match p {
 #[derive(Serialize, Debug)]
 pub struct Updates {
     pub milestone: String,
-    pub flagship_goals_by_theme: Vec<ThemeSection>,
+    pub roadmap_goals_by_theme: Vec<ThemeSection>,
     pub other_goals: Vec<UpdatesGoal>,
     pub goal_count: usize,
-    pub flagship_goal_count: usize,
+    pub roadmap_goal_count: usize,
 }
 
 #[derive(Serialize, Debug)]
@@ -127,31 +127,39 @@ pub struct ThemeSection {
 impl Updates {
     pub fn new(
         milestone: String,
-        flagship_goals: Vec<UpdatesGoal>,
+        roadmap_goals: Vec<UpdatesGoal>,
         other_goals: Vec<UpdatesGoal>,
     ) -> Self {
-        // Group flagship goals by theme
+        // Group roadmap goals by theme
         let mut themes_map: std::collections::BTreeMap<String, Vec<UpdatesGoal>> =
             std::collections::BTreeMap::new();
 
-        for goal in flagship_goals.iter() {
-            let theme = goal.theme.as_ref().unwrap_or(&"Other".to_string()).clone();
-            themes_map
-                .entry(theme)
-                .or_insert_with(Vec::new)
-                .push(goal.clone());
+        for goal in roadmap_goals.iter() {
+            if goal.theme.is_empty() {
+                themes_map
+                    .entry("Other".to_string())
+                    .or_default()
+                    .push(goal.clone());
+            } else {
+                for theme in &goal.theme {
+                    themes_map
+                        .entry(theme.clone())
+                        .or_default()
+                        .push(goal.clone());
+                }
+            }
         }
 
-        let flagship_goals_by_theme: Vec<ThemeSection> = themes_map
+        let roadmap_goals_by_theme: Vec<ThemeSection> = themes_map
             .into_iter()
             .map(|(theme_name, goals)| ThemeSection { theme_name, goals })
             .collect();
 
         Updates {
             milestone,
-            flagship_goal_count: flagship_goals.len(),
-            goal_count: flagship_goals.len() + other_goals.len(),
-            flagship_goals_by_theme,
+            roadmap_goal_count: roadmap_goals.len(),
+            goal_count: roadmap_goals.len() + other_goals.len(),
+            roadmap_goals_by_theme,
             other_goals,
         }
     }
@@ -207,9 +215,9 @@ pub struct UpdatesGoal {
     /// If this goal needs to be separated from its following sibling by an empty line.
     pub needs_separator: bool,
 
-    /// Theme for flagship goals (e.g., "Beyond the `&`", "Unblocking dormant traits", etc.)
-    /// None for non-flagship goals
-    pub theme: Option<String>,
+    /// Themes for roadmap goals (e.g., "Beyond the `&`", "Unblocking dormant traits", etc.)
+    /// Empty for non-roadmap goals
+    pub theme: Vec<String>,
 
     /// Point of contact for the goal
     pub point_of_contact: String,

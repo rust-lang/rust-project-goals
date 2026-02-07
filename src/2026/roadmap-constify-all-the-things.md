@@ -1,5 +1,12 @@
 # Constify all the things
 
+| Metadata         |                                                                                                                      |
+|:-----------------|----------------------------------------------------------------------------------------------------------------------|
+| Short title      | Constify all the things                                                                                              |
+| What and why     | Const generics accept structs and enums; compile-time reflection means `serialize(&my_struct)` works without derives |
+| Point of contact | @oli-obk                                                                                                             |
+| Application area | Systems & embedded                                                                                                   |
+
 ## Summary
 
 Richer const generics and compile-time reflection that works without derives.
@@ -40,7 +47,7 @@ Extending const generics and adding compile-time reflection would address all th
 
 ## 2026 goals
 
-(((FLAGSHIP GOALS: Constify all the things)))
+(((ROADMAP GOALS: Constify all the things)))
 
 ## Frequently asked questions
 

@@ -4,7 +4,7 @@
 |:----------------------|-------------------------|
 | Point of contact      | @tmandry                |
 | Status                | Proposed                |
-| Flagship              | Unblocking dormant traits |
+| Roadmap               | Unblocking dormant traits |
 | Tracking issue        |                         |
 | Other tracking issues | rust-lang/rust#149556   |
 | Zulip channel         | N/A                     |

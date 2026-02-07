@@ -1,5 +1,12 @@
 # Building blocks
 
+| Metadata         |                                                                         |
+|:-----------------|-------------------------------------------------------------------------|
+| Short title      | Building blocks                                                         |
+| What and why     | Stable, machine-readable Cargo plumbing commands; rebuild std on stable |
+| Point of contact | @epage                                                                  |
+| Application area | Enterprise integration                                                  |
+
 ## Summary
 
 Expose Cargo and Rust's internal infrastructure as stable, composable building blocks for tooling authors and power users.
@@ -52,7 +59,7 @@ By the end of 2026:
 
 ## 2026 goals
 
-(((FLAGSHIP GOALS: Building blocks)))
+(((ROADMAP GOALS: Building blocks)))
 
 ## Frequently asked questions
 

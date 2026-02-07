@@ -4,11 +4,11 @@
 | :-------------------- | -------------------------------------------------------------------------------- |
 | Point of contact      | @Shnatsel                                                                        |
 | Status                | Proposed for mentorship                                                          |
-| Flagship              | Secure your supply chain                                                         |
+| Roadmap               | Secure your supply chain                                                         |
 | Tracking issue        |                                                                                  |
 | Other tracking issues | https://github.com/rust-lang/cargo/issues/16565                                  |
 | Zulip channel         | N/A                                                                              |
-| Stabilization         | true                                                                             |
+| Highlight             | Other                                                                            |
 
 ## Summary
 

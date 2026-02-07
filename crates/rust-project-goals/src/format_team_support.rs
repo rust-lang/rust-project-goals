@@ -11,7 +11,7 @@ use spanned::{Result, Spanned};
 use crate::{
     goal::{GoalDocument, SupportLevel},
     team::TeamName,
-    util::{self, ARROW},
+    util,
 };
 
 /// Data needed to format a goal's support entry
@@ -26,11 +26,7 @@ struct GoalSupportData<'g> {
 
 impl<'g> GoalSupportData<'g> {
     fn goal_title_cell(&self) -> String {
-        if let Some(subgoal) = self.subgoal_title {
-            format!("{} {}", ARROW, subgoal)
-        } else {
-            format!("[{}]({})", self.goal_title, self.link.display())
-        }
+        util::goal_title_cell(self.goal_title, self.link, self.subgoal_title)
     }
 }
 
@@ -39,7 +35,7 @@ impl<'g> GoalSupportData<'g> {
 /// Output looks like:
 ///
 /// ```ignore
-/// ### Compiler team
+/// #### Compiler team
 ///
 /// | Goal | Level | Champion | Notes |
 /// | :--- | :---- | :------- | :---- |
@@ -60,7 +56,7 @@ pub fn format_team_support(goals: &[&GoalDocument]) -> Result<String> {
 
     for team_name in all_teams {
         let team_data = team_name.data();
-        write!(output, "\n### {} team\n", team_data.name)?;
+        write!(output, "\n#### {} team\n", team_data.name)?;
 
         let table_output = format_team_support_for_team(goals, team_name)?;
         write!(output, "{}", table_output)?;
@@ -78,10 +74,8 @@ pub fn format_team_support_for_team(
 ) -> Result<String> {
     use std::fmt::Write;
 
-    const FOOTNOTE_LEN: usize = 22;
-
     let mut output = String::new();
-    let mut footnotes = vec![];
+    let mut footnotes = util::Footnotes::new();
 
     // Collect support entries for this team from all goals
     let mut entries: Vec<GoalSupportData> = vec![];
@@ -137,18 +131,7 @@ pub fn format_team_support_for_team(
 
         let champion_cell = entry.champion.unwrap_or("").to_string();
 
-        let notes_cell = if entry.notes.len() > FOOTNOTE_LEN {
-            let footnote_index = footnotes.len() + 1;
-            footnotes.push(format!(
-                "\\*{}: {} ([from here]({}))",
-                footnote_index,
-                entry.notes,
-                entry.link.display()
-            ));
-            format!("\\*{}", footnote_index)
-        } else {
-            entry.notes.to_string()
-        };
+        let notes_cell = footnotes.maybe_footnote(entry.notes, entry.link);
 
         table.push(vec![
             Spanned::here(goal_cell),
@@ -160,9 +143,7 @@ pub fn format_team_support_for_team(
 
     write!(output, "{}", util::format_table(&table))?;
 
-    for footnote in footnotes {
-        write!(output, "\n\n{}\n", footnote)?;
-    }
+    footnotes.write_to(&mut output)?;
 
     Ok(output)
 }

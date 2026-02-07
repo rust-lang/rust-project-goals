@@ -17,10 +17,21 @@ use rust_project_goals_cli::Order;
 
 use rust_project_goals::spanned::Spanned;
 use rust_project_goals::{
-    goal::{self, GoalDocument, GoalSize, TeamAsk, TeamInvolvement},
+    goal::{self, GoalDocument, GoalSize, RoadmapDocument, TeamAsk, TeamInvolvement},
     re,
     team::TeamName,
 };
+
+/// Extension trait to convert `spanned::Result<T>` into `anyhow::Result<T>`.
+trait IntoAnyhow<T> {
+    fn into_anyhow(self) -> anyhow::Result<T>;
+}
+
+impl<T> IntoAnyhow<T> for rust_project_goals::spanned::Result<T> {
+    fn into_anyhow(self) -> anyhow::Result<T> {
+        self.map_err(|e| anyhow::anyhow!("{e}"))
+    }
+}
 
 /// Load goals configuration from book.toml using clean serde deserialization
 fn load_goals_config_from_book_toml(ctx: &PreprocessorContext) -> anyhow::Result<GoalsConfig> {
@@ -54,8 +65,17 @@ pub struct GoalPreprocessorWithContext<'c> {
     markdown_processor: MarkdownProcessor,
     processor_state: MarkdownProcessorState,
     goal_document_map: BTreeMap<PathBuf, Arc<Vec<GoalDocument>>>,
+    roadmap_document_map: BTreeMap<PathBuf, Arc<Vec<RoadmapDocument>>>,
     milestone_issues_cache:
         BTreeMap<String, Arc<Vec<rust_project_goals::gh::issues::ExistingGithubIssue>>>,
+}
+
+/// Returns the chapter's path, or an error if it has no path.
+fn chapter_path<'a>(chapter: &'a Chapter, directive: &str) -> anyhow::Result<&'a Path> {
+    chapter
+        .path
+        .as_deref()
+        .ok_or_else(|| anyhow::anyhow!("found `{directive}` but chapter has no path"))
 }
 
 impl<'c> GoalPreprocessorWithContext<'c> {
@@ -71,6 +91,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             markdown_processor,
             processor_state: MarkdownProcessorState::default(),
             goal_document_map: Default::default(),
+            roadmap_document_map: Default::default(),
             milestone_issues_cache: Default::default(),
         })
     }
@@ -78,16 +99,19 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     fn process_book_item(&mut self, book_item: &mut BookItem) -> anyhow::Result<()> {
         match book_item {
             BookItem::Chapter(chapter) => {
-                self.replace_metadata_placeholders(chapter)?;
+                self.inject_metadata_rows(chapter)?;
                 self.replace_champions(chapter)?;
+                self.replace_roadmaps_filtered(chapter)?;
+                self.replace_roadmaps(chapter)?;
+                self.replace_application_areas(chapter)?;
+                self.replace_roadmap_chapters(chapter)?;
                 self.replace_team_asks(chapter)?;
                 self.replace_valid_team_asks(chapter)?;
                 self.replace_goal_lists(chapter)?;
                 self.replace_goal_chapters(chapter)?;
                 self.replace_goal_count(chapter)?;
-                self.replace_flagship_goal_count(chapter)?;
+                self.replace_roadmap_goal_count(chapter)?;
                 self.replace_reports(chapter)?;
-                // Process all markdown linking using shared processor
                 chapter.content = self
                     .markdown_processor
                     .process_markdown(&chapter.content, &mut self.processor_state)?;
@@ -110,9 +134,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             return Ok(());
         }
 
-        let Some(chapter_path) = &chapter.path else {
-            anyhow::bail!("found `(((#GOALS)))` but chapter has no path")
-        };
+        let chapter_path = chapter_path(chapter, "(((#GOALS)))")?;
 
         let goals = self.goal_documents(chapter_path)?;
 
@@ -128,23 +150,21 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         Ok(())
     }
 
-    fn replace_flagship_goal_count(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        if !re::FLAGSHIP_GOAL_COUNT.is_match(&chapter.content) {
+    fn replace_roadmap_goal_count(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        if !re::ROADMAP_GOAL_COUNT.is_match(&chapter.content) {
             return Ok(());
         }
 
-        let Some(chapter_path) = &chapter.path else {
-            anyhow::bail!("found `(((#FLAGSHIP_GOALS)))` but chapter has no path")
-        };
+        let chapter_path = chapter_path(chapter, "(((#ROADMAP_GOALS)))")?;
 
         let goals = self.goal_documents(chapter_path)?;
 
         let count = goals
             .iter()
-            .filter(|g| g.metadata.flagship().is_some() && g.metadata.status.is_not_not_accepted())
+            .filter(|g| g.metadata.roadmap.is_some() && g.metadata.status.is_not_not_accepted())
             .count();
 
-        chapter.content = re::FLAGSHIP_GOAL_COUNT
+        chapter.content = re::ROADMAP_GOAL_COUNT
             .replace_all(&chapter.content, &count.to_string())
             .to_string();
 
@@ -152,16 +172,16 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     }
 
     fn replace_goal_lists(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        // Handle filtered flagship goals first (more specific pattern)
-        self.replace_flagship_goal_lists_filtered(chapter)?;
+        // Handle filtered roadmap goals first (more specific pattern)
+        self.replace_roadmap_goal_lists_filtered(chapter)?;
 
-        // Handle unfiltered flagship goals
-        self.replace_goal_lists_helper(chapter, &re::FLAGSHIP_GOAL_LIST, |goal, _capture| {
-            goal.metadata.flagship().is_some() && goal.metadata.status.content.is_not_not_accepted()
+        // Handle unfiltered roadmap goals
+        self.replace_goal_lists_helper(chapter, &re::ROADMAP_GOAL_LIST, |goal, _capture| {
+            goal.metadata.roadmap.is_some() && goal.metadata.status.content.is_not_not_accepted()
         })?;
 
         self.replace_goal_lists_helper(chapter, &re::OTHER_GOAL_LIST, |goal, _capture| {
-            goal.metadata.flagship().is_none() && goal.metadata.status.content.is_not_not_accepted()
+            goal.metadata.roadmap.is_empty() && goal.metadata.status.content.is_not_not_accepted()
         })?;
         self.replace_goal_lists_helper(chapter, &re::GOAL_LIST, |goal, _capture| {
             goal.metadata.status.content.is_not_not_accepted()
@@ -175,25 +195,61 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         self.replace_sized_goal_list(chapter, &re::MEDIUM_GOAL_LIST, GoalSize::Medium)?;
         self.replace_sized_goal_list(chapter, &re::SMALL_GOAL_LIST, GoalSize::Small)?;
 
-        // Handle stabilization summaries
-        self.replace_stabilization_summaries(chapter)?;
+        // Handle filtered highlight goal lists
+        self.replace_highlight_goal_lists_filtered(chapter)?;
 
         Ok(())
     }
 
-    fn replace_flagship_goal_lists_filtered(
+    fn replace_roadmap_goal_lists_filtered(
         &mut self,
         chapter: &mut Chapter,
     ) -> anyhow::Result<()> {
         self.replace_goal_lists_helper(
             chapter,
-            &re::FLAGSHIP_GOAL_LIST_FILTERED,
+            &re::ROADMAP_GOAL_LIST_FILTERED,
             |goal, capture| {
                 let filter_value = capture.unwrap().trim(); // Safe because this regex always has a capture
                 goal.metadata.status.content.is_not_not_accepted()
-                    && goal.metadata.flagship().map(|f| f.trim()) == Some(filter_value)
+                    && goal.metadata.roadmap.contains(filter_value)
             },
         )
+    }
+
+    fn replace_highlight_goal_lists_filtered(
+        &mut self,
+        chapter: &mut Chapter,
+    ) -> anyhow::Result<()> {
+        loop {
+            let Some(m) = re::HIGHLIGHT_GOAL_LIST_FILTERED.find(&chapter.content) else {
+                return Ok(());
+            };
+            let range = m.range();
+
+            let chapter_path = chapter_path(chapter, "(((HIGHLIGHT GOALS: ...)))")?;
+
+            let capture_value = re::HIGHLIGHT_GOAL_LIST_FILTERED
+                .captures(&chapter.content[range.clone()])
+                .and_then(|caps| caps.get(1))
+                .map(|m| m.as_str().trim())
+                .unwrap(); // Safe: regex always has a capture group
+
+            let goals = self.goal_documents(chapter_path)?;
+            let mut filtered_goals: Vec<&GoalDocument> = goals
+                .iter()
+                .filter(|g| {
+                    g.metadata.status.content.is_not_not_accepted()
+                        && g.metadata.highlight.contains(capture_value)
+                })
+                .collect();
+
+            filtered_goals.sort_by_key(|g| &g.metadata.title);
+
+            let output = goal::format_highlight_goal_sections(&filtered_goals)
+                .into_anyhow()?;
+
+            chapter.content.replace_range(range, &output);
+        }
     }
 
     /// Replace sized goal list markers (LARGE GOALS, MEDIUM GOALS, SMALL GOALS)
@@ -209,9 +265,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         };
         let range = m.range();
 
-        let Some(chapter_path) = &chapter.path else {
-            anyhow::bail!("found `{regex}` but chapter has no path")
-        };
+        let chapter_path = chapter_path(chapter, &format!("{regex}"))?;
 
         let goals = self.goal_documents(chapter_path)?;
         let goals_with_status: Vec<&GoalDocument> = goals
@@ -220,68 +274,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             .collect();
 
         let output =
-            goal::format_sized_goal_table(&goals_with_status, size).map_err(|e| anyhow::anyhow!("{e}"))?;
-        chapter.content.replace_range(range, &output);
-
-        Ok(())
-    }
-
-    /// Replace `(((STABILIZATION SUMMARIES)))` marker with a list of goal titles and summaries
-    /// for all goals that have `stabilization: true` in their metadata.
-    fn replace_stabilization_summaries(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        let Some(m) = re::STABILIZATION_SUMMARIES.find(&chapter.content) else {
-            return Ok(());
-        };
-        let range = m.range();
-
-        let Some(chapter_path) = &chapter.path else {
-            anyhow::bail!("found `(((STABILIZATION SUMMARIES)))` but chapter has no path")
-        };
-
-        let goals = self.goal_documents(chapter_path)?;
-        let mut stabilization_goals: Vec<&GoalDocument> = goals
-            .iter()
-            .filter(|g| g.metadata.stabilization && g.metadata.status.content.is_not_not_accepted())
-            .collect();
-
-        // Sort by title
-        stabilization_goals.sort_by_key(|g| &g.metadata.title);
-
-        // Generate output for each goal
-        let mut output = String::new();
-        for goal in stabilization_goals {
-            // Add Help Wanted marker if this is an invited goal
-            let help_wanted = if goal.metadata.status.is_invited {
-                " ![Help Wanted][]"
-            } else {
-                ""
-            };
-
-            output.push_str(&format!(
-                "### [{}]({}){}\n\n",
-                goal.metadata.title.content,
-                goal.link_path.display(),
-                help_wanted,
-            ));
-
-            // Point of contact
-            output.push_str(&format!("**Point of contact:** {}\n\n", goal.metadata.pocs));
-
-            // Team champions (if any)
-            if !goal.metadata.champions.is_empty() {
-                let champions: Vec<String> = goal
-                    .metadata
-                    .champions
-                    .iter()
-                    .map(|(team, champion)| format!("{}: {}", team, champion.content))
-                    .collect();
-                output.push_str(&format!("**Team champions:** {}\n\n", champions.join(", ")));
-            }
-
-            // Summary
-            output.push_str(&format!("{}\n\n", goal.summary));
-        }
-
+            goal::format_sized_goal_table(&goals_with_status, size).into_anyhow()?;
         chapter.content.replace_range(range, &output);
 
         Ok(())
@@ -295,9 +288,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         };
         let range = m.range();
 
-        let Some(chapter_path) = &chapter.path else {
-            anyhow::bail!("found `(((GOAL CHAPTERS)))` but chapter has no path")
-        };
+        let chapter_path = chapter_path(chapter, "(((GOAL CHAPTERS)))")?;
 
         // Don't create subchapters for README files
         if chapter_path.file_stem() == Some("README".as_ref()) {
@@ -337,6 +328,44 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         Ok(())
     }
 
+    /// Replace `(((ROADMAP CHAPTERS)))` marker by creating subchapters for each roadmap document.
+    /// The marker itself is removed from the content.
+    fn replace_roadmap_chapters(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        let Some(m) = re::ROADMAP_CHAPTERS.find(&chapter.content) else {
+            return Ok(());
+        };
+        let range = m.range();
+
+        let chapter_path = chapter_path(chapter, "(((ROADMAP CHAPTERS)))")?;
+
+        let roadmaps = self.roadmap_documents(chapter_path)?;
+        let mut sorted_roadmaps: Vec<&RoadmapDocument> = roadmaps.iter().collect();
+        sorted_roadmaps.sort_by_key(|r| &r.title);
+
+        // Create subchapters for each roadmap
+        let mut parent_names = chapter.parent_names.clone();
+        parent_names.push(chapter.name.clone());
+        for (roadmap, index) in sorted_roadmaps.iter().zip(0..) {
+            let content = std::fs::read_to_string(&roadmap.path)
+                .with_context(|| format!("reading `{}`", roadmap.path.display()))?;
+            let path = roadmap.path.strip_prefix(&self.ctx.config.book.src).unwrap();
+            let mut new_chapter =
+                Chapter::new(&roadmap.title.content, content, path, parent_names.clone());
+
+            if let Some(mut number) = chapter.number.clone() {
+                number.push(index + 1);
+                new_chapter.number = Some(number);
+            }
+
+            chapter.sub_items.push(BookItem::Chapter(new_chapter));
+        }
+
+        // Remove the marker from the content
+        chapter.content.replace_range(range, "");
+
+        Ok(())
+    }
+
     fn replace_goal_lists_helper(
         &mut self,
         chapter: &mut Chapter,
@@ -349,9 +378,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             };
             let range = m.range();
 
-            let Some(chapter_path) = &chapter.path else {
-                anyhow::bail!("found `{regex}` but chapter has no path")
-            };
+            let chapter_path = chapter_path(chapter, &format!("{regex}"))?;
 
             // Extract capture group if present
             let capture_value = regex
@@ -398,7 +425,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 &goals_with_status,
                 milestone_issues.as_ref().map(|arc| arc.as_slice()),
             )
-            .map_err(|e| anyhow::anyhow!("{e}"))?;
+            .into_anyhow()?;
             chapter.content.replace_range(range, &output);
         }
     }
@@ -410,14 +437,73 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         };
         let range = m.range();
 
-        let Some(path) = &chapter.path else {
-            anyhow::bail!("found `(((CHAMPIONS)))` but chapter has no path")
-        };
+        let path = chapter_path(chapter, "(((CHAMPIONS)))")?;
 
         let goals = self.goal_documents(path)?;
         let goal_refs: Vec<&GoalDocument> = goals.iter().collect();
-        let format_champions = format_champions(&goal_refs).map_err(|e| anyhow::anyhow!("{e}"))?;
+        let format_champions = format_champions(&goal_refs).into_anyhow()?;
         chapter.content.replace_range(range, &format_champions);
+
+        Ok(())
+    }
+
+    /// Look for `(((ROADMAPS: area)))` in the chapter content and replace with filtered roadmaps table.
+    fn replace_roadmaps_filtered(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        loop {
+            let Some(m) = re::ROADMAPS_FILTERED.find(&chapter.content) else {
+                return Ok(());
+            };
+            let range = m.range();
+
+            let capture_value = re::ROADMAPS_FILTERED
+                .captures(&chapter.content[range.clone()])
+                .and_then(|caps| caps.get(1))
+                .map(|m| m.as_str().trim().to_string());
+
+            let path = chapter_path(chapter, "(((ROADMAPS: ...)))")?;
+
+            let roadmaps = self.roadmap_documents(path)?;
+            let roadmap_refs: Vec<&RoadmapDocument> = roadmaps.iter().collect();
+            let formatted =
+                goal::format_roadmap_table(&roadmap_refs, capture_value.as_deref())
+                    .into_anyhow()?;
+            chapter.content.replace_range(range, &formatted);
+        }
+    }
+
+    /// Look for `(((ROADMAPS)))` in the chapter content and replace it with the roadmaps table.
+    fn replace_roadmaps(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        let Some(m) = re::ROADMAPS.find(&chapter.content) else {
+            return Ok(());
+        };
+        let range = m.range();
+
+        let path = chapter_path(chapter, "(((ROADMAPS)))")?;
+
+        let roadmaps = self.roadmap_documents(path)?;
+        let roadmap_refs: Vec<&RoadmapDocument> = roadmaps.iter().collect();
+        let formatted =
+            goal::format_roadmap_table(&roadmap_refs, None).into_anyhow()?;
+        chapter.content.replace_range(range, &formatted);
+
+        Ok(())
+    }
+
+    /// Look for `(((APPLICATION AREAS)))` and replace with a table of application areas
+    /// and their associated roadmaps.
+    fn replace_application_areas(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        let Some(m) = re::APPLICATION_AREAS.find(&chapter.content) else {
+            return Ok(());
+        };
+        let range = m.range();
+
+        let path = chapter_path(chapter, "(((APPLICATION AREAS)))")?;
+
+        let roadmaps = self.roadmap_documents(path)?;
+        let roadmap_refs: Vec<&RoadmapDocument> = roadmaps.iter().collect();
+        let formatted = goal::format_application_areas_table(&roadmap_refs)
+            .into_anyhow()?;
+        chapter.content.replace_range(range, &formatted);
 
         Ok(())
     }
@@ -429,9 +515,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         };
         let range = m.range();
 
-        let Some(path) = &chapter.path else {
-            anyhow::bail!("found `(((TEAM ASKS)))` but chapter has no path")
-        };
+        let path = chapter_path(chapter, "(((TEAM ASKS)))")?;
 
         let goals = self.goal_documents(path)?;
 
@@ -458,7 +542,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
         if !old_format_asks.is_empty() {
             formatted
-                .push_str(&format_team_asks(&old_format_asks).map_err(|e| anyhow::anyhow!("{e}"))?);
+                .push_str(&format_team_asks(&old_format_asks).into_anyhow()?);
         }
 
         if !new_format_goals.is_empty() {
@@ -466,7 +550,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 formatted.push_str("\n\n");
             }
             formatted.push_str(
-                &format_team_support(&new_format_goals).map_err(|e| anyhow::anyhow!("{e}"))?,
+                &format_team_support(&new_format_goals).into_anyhow()?,
             );
         }
 
@@ -512,11 +596,33 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         }
 
         let goal_documents = goal::goals_in_dir(&self.ctx.config.book.src.join(milestone_path))
-            .map_err(|e| anyhow::anyhow!("{e}"))?;
+            .into_anyhow()?;
         let goals = Arc::new(goal_documents);
         self.goal_document_map
             .insert(milestone_path.to_path_buf(), goals.clone());
         Ok(goals)
+    }
+
+    /// Find the roadmap documents for the milestone in which this `chapter_path` resides.
+    fn roadmap_documents(
+        &mut self,
+        chapter_path: &Path,
+    ) -> anyhow::Result<Arc<Vec<RoadmapDocument>>> {
+        let Some(milestone_path) = chapter_path.parent() else {
+            anyhow::bail!("cannot get roadmap documents from `{chapter_path:?}`")
+        };
+
+        if let Some(roadmaps) = self.roadmap_document_map.get(milestone_path) {
+            return Ok(roadmaps.clone());
+        }
+
+        let roadmap_documents =
+            goal::roadmaps_in_dir(&self.ctx.config.book.src.join(milestone_path))
+                .into_anyhow()?;
+        let roadmaps = Arc::new(roadmap_documents);
+        self.roadmap_document_map
+            .insert(milestone_path.to_path_buf(), roadmaps.clone());
+        Ok(roadmaps)
     }
 
     /// Get or load milestone issues, caching the result for subsequent calls.
@@ -551,16 +657,6 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         self.milestone_issues_cache
             .insert(milestone.to_string(), issues.clone());
         Ok(issues)
-    }
-
-    /// Replace placeholders like TASK_OWNERS and TEAMS_WITH_ASKS.
-    /// All goal documents should have this in their metadata table;
-    /// that is enforced during goal parsing.
-    fn replace_metadata_placeholders(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        // Auto-inject teams and task owners directly into metadata table instead of using placeholders
-        self.inject_metadata_rows(chapter)?;
-
-        Ok(())
     }
 
     /// Find the end of a markdown table (first line that doesn't start with |).
@@ -674,10 +770,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             return Ok(());
         }
 
-        let chapter_path = match &chapter.path {
-            Some(path) => path.clone(),
-            None => anyhow::bail!("found REPORTS placeholder but chapter has no path"),
-        };
+        let chapter_path = chapter_path(chapter, "(((REPORTS)))")?.to_path_buf();
 
         // Parse date range from the placeholder
         let date_range = if let Some(captures) = re::REPORTS.captures(&chapter.content) {
@@ -1098,3 +1191,4 @@ These reports include the details only of goals for a particular team.
         assert_eq!(months[3], (2025, 12));
     }
 }
+
