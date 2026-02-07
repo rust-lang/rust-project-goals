@@ -1191,3 +1191,4 @@ These reports include the details only of goals for a particular team.
         assert_eq!(months[3], (2025, 12));
     }
 }
+
