@@ -8,7 +8,7 @@ This page lists the (((#GOALS))) project goals **proposed** for 2025h1.
 
 ## Flagship goals
 
-Flagship goals represent the goals expected to have the broadest overall impact. [Learn about flagship goals.](../about/flagship_goals.md)
+Flagship goals represent the goals expected to have the broadest overall impact. [Learn about flagship goals.](../about/roadmaps.md)
 
 (((FLAGSHIP GOALS)))
 

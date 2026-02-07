@@ -8,7 +8,7 @@ Usage:
 
 Run the `cargo rpg updates` command to create the blog post template. If running from within vscode, the `--vscode` command will open the result in a fresh tab, which is convenient. Otherwise, use `--output-file $file.md` to create a new file.
 
-The template will be filled in with the list of flagship goals. Each flagship goal will have their [Why this goal?](./merge_rfc.md#author-the-why-this-goal-sections-for-the-flagship-goals) section auto-inserted from the corresponding tracking issue.
+The template will be filled in with the list of roadmap goals. Each roadmap goal will have their [Why this goal?](./merge_rfc.md#author-the-why-this-goal-sections-for-the-roadmap-goals) section auto-inserted from the corresponding tracking issue.
 
 The template will also include the detailed list of updates in a `<details>` section as well as any TL;DR comments left by users.
 

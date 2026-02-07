@@ -1,4 +1,11 @@
-# Just Add Async
+# Just add async
+
+| Metadata         |                                                                                                  |
+|:-----------------|--------------------------------------------------------------------------------------------------|
+| Short title      | Just add async                                                                                   |
+| What and why     | Patterns that work in sync Rust should work in async Rust — traits, closures, drop, scoped tasks |
+| Point of contact | @nikomatsakis                                                                                    |
+| Application area | Network services                                                                                 |
 
 ## Summary
 
@@ -32,7 +39,7 @@ Each issue has workarounds. But the workarounds require knowledge that doesn't t
 
 ### What we are shooting for
 
-The goal is **"just add async"**: patterns that work in sync Rust should work in async Rust without requiring workarounds, restructuring, or arcane incantations. When async does require something extra (like explicit boxing for dyn dispatch), the compiler guides you with clear, actionable errors. Not walls of opaque type errors.
+The goal is **"Just add async"**: patterns that work in sync Rust should work in async Rust without requiring workarounds, restructuring, or arcane incantations. When async does require something extra (like explicit boxing for dyn dispatch), the compiler guides you with clear, actionable errors. Not walls of opaque type errors.
 
 There should be straightforward equivalents for all the "rudiments of Rust":
 
@@ -62,16 +69,16 @@ There should be straightforward equivalents for all the "rudiments of Rust":
 
 ## 2026 goals
 
-(((FLAGSHIP GOALS: Just Add Async)))
+(((ROADMAP GOALS: Just add async)))
 
 ## Frequently asked questions
 
 ### What am I agreeing to by accepting this theme?
 
-Accepting this flagship theme means agreeing that:
+Accepting this roadmap means agreeing that:
 
 1. **These problems matter.** The gaps between sync and async Rust are real and worth fixing.
-2. **This direction is right.** Closing these gaps so "just add async" works is the right goal.
+2. **This direction is right.** Closing these gaps so "Just add async" works is the right goal.
 3. **Server-first is the right prioritization.** We ship end-to-end workflows for server/application environments first, with designs that leave space for stricter requirements later.
 
 It does *not* mean agreeing to specific syntax (like `.box`) or implementation details. Those will be decided in individual goal RFCs.

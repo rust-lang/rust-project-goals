@@ -9,11 +9,11 @@ Encourage teams to read over the list of asks assigned to them and answer questi
 * Are there any goals that you are not aligned with? (i.e., work that you do not think should happen, or do not think should happen now)
 * Is there important work not represented here? Should that work have a project goal?
 * Is the team capable of following through on the total asks, or will that exceed team capacity?
-* If [flagship goals](../about/flagship_goals.md) have been decided, are there any concerns with those goals? Any suggestions for changes or alternatives?
+* If [roadmap goals](../about/roadmaps.md) have been decided, are there any concerns with those goals? Any suggestions for changes or alternatives?
 
-## Select flagship goals
+## Select roadmap goals
 
-[Flagship goals](../about/flagship_goals.md) represent the 2-3 items that will be highlighted and will be the focus of external communication. The project goal team is responsible for selecting flagship goals. The criteria for flagship goals is described in the [About page](../about//flagship_goals.md). Because flagship goals generally take longer than 6 months to complete, most flagship goals are continuations from previous sessions, but as those goals get closer to completion, it may be good to shift the messaging towards a fresh focus.
+[Roadmap goals](../about/roadmaps.md) represent the 2-3 items that will be highlighted and will be the focus of external communication. The project goal team is responsible for selecting roadmap goals. The criteria for roadmap goals is described in the [About page](../about/roadmaps.md). Because roadmap goals generally take longer than 6 months to complete, most roadmap goals are continuations from previous sessions, but as those goals get closer to completion, it may be good to shift the messaging towards a fresh focus.
 
 ## Creating the RFC
 

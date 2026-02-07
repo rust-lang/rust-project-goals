@@ -10,11 +10,11 @@ This page lists the (((#GOALS))) project goals **proposed** for YYYYHN.
 > The owner of the goal process makes the final decisions on which goals to include
 > and prepares an RFC to ask approval from the teams.
 
-## Flagship goals
+## Roadmap goals
 
-Flagship goals represent the goals expected to have the broadest overall impact. 
+Roadmap goals represent the goals expected to have the broadest overall impact.
 
-(((FLAGSHIP GOALS)))
+(((ROADMAP GOALS)))
 
 ## Other goals
 

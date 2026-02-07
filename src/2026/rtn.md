@@ -4,7 +4,7 @@
 | :---------------- | -------------------- |
 | Point of contact  | @nikomatsakis        |
 | Status            | Proposed             |
-| Flagship          | Just Add Async       |
+| Roadmap           | Just add async       |
 | Tracking issue    |                      |
 | Zulip channel     | [#wg-async][channel] |
 | [lang] champion   | @nikomatsakis        |
@@ -122,7 +122,7 @@ The [stabilization PR][stab-pr] was closed because RTN allows naming opaque type
 
 The concern was that stabilizing RTN could lock in behaviors that would conflict with how TAIT/ATPIT need to work in the new trait solver. The resolution path is to complete the relevant trait solver work first.
 
-### How does this relate to the "Just Add Async" flagship?
+### How does this relate to the "Just add async" roadmap?
 
 RTN is the key to making async fn in traits usable in practice. Without it, trait authors must choose between:
 - Using `async fn` but preventing generic code from requiring `Send`

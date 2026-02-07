@@ -85,9 +85,8 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 self.replace_goal_lists(chapter)?;
                 self.replace_goal_chapters(chapter)?;
                 self.replace_goal_count(chapter)?;
-                self.replace_flagship_goal_count(chapter)?;
+                self.replace_roadmap_goal_count(chapter)?;
                 self.replace_reports(chapter)?;
-                // Process all markdown linking using shared processor
                 chapter.content = self
                     .markdown_processor
                     .process_markdown(&chapter.content, &mut self.processor_state)?;
@@ -128,23 +127,23 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         Ok(())
     }
 
-    fn replace_flagship_goal_count(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        if !re::FLAGSHIP_GOAL_COUNT.is_match(&chapter.content) {
+    fn replace_roadmap_goal_count(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        if !re::ROADMAP_GOAL_COUNT.is_match(&chapter.content) {
             return Ok(());
         }
 
         let Some(chapter_path) = &chapter.path else {
-            anyhow::bail!("found `(((#FLAGSHIP_GOALS)))` but chapter has no path")
+            anyhow::bail!("found `(((#ROADMAP_GOALS)))` but chapter has no path")
         };
 
         let goals = self.goal_documents(chapter_path)?;
 
         let count = goals
             .iter()
-            .filter(|g| g.metadata.flagship().is_some() && g.metadata.status.is_not_not_accepted())
+            .filter(|g| g.metadata.roadmap.is_some() && g.metadata.status.is_not_not_accepted())
             .count();
 
-        chapter.content = re::FLAGSHIP_GOAL_COUNT
+        chapter.content = re::ROADMAP_GOAL_COUNT
             .replace_all(&chapter.content, &count.to_string())
             .to_string();
 
@@ -152,16 +151,16 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     }
 
     fn replace_goal_lists(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        // Handle filtered flagship goals first (more specific pattern)
-        self.replace_flagship_goal_lists_filtered(chapter)?;
+        // Handle filtered roadmap goals first (more specific pattern)
+        self.replace_roadmap_goal_lists_filtered(chapter)?;
 
-        // Handle unfiltered flagship goals
-        self.replace_goal_lists_helper(chapter, &re::FLAGSHIP_GOAL_LIST, |goal, _capture| {
-            goal.metadata.flagship().is_some() && goal.metadata.status.content.is_not_not_accepted()
+        // Handle unfiltered roadmap goals
+        self.replace_goal_lists_helper(chapter, &re::ROADMAP_GOAL_LIST, |goal, _capture| {
+            goal.metadata.roadmap.is_some() && goal.metadata.status.content.is_not_not_accepted()
         })?;
 
         self.replace_goal_lists_helper(chapter, &re::OTHER_GOAL_LIST, |goal, _capture| {
-            goal.metadata.flagship().is_none() && goal.metadata.status.content.is_not_not_accepted()
+            goal.metadata.roadmap.is_empty() && goal.metadata.status.content.is_not_not_accepted()
         })?;
         self.replace_goal_lists_helper(chapter, &re::GOAL_LIST, |goal, _capture| {
             goal.metadata.status.content.is_not_not_accepted()
@@ -175,25 +174,63 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         self.replace_sized_goal_list(chapter, &re::MEDIUM_GOAL_LIST, GoalSize::Medium)?;
         self.replace_sized_goal_list(chapter, &re::SMALL_GOAL_LIST, GoalSize::Small)?;
 
-        // Handle stabilization summaries
-        self.replace_stabilization_summaries(chapter)?;
+        // Handle filtered highlight goal lists
+        self.replace_highlight_goal_lists_filtered(chapter)?;
 
         Ok(())
     }
 
-    fn replace_flagship_goal_lists_filtered(
+    fn replace_roadmap_goal_lists_filtered(
         &mut self,
         chapter: &mut Chapter,
     ) -> anyhow::Result<()> {
         self.replace_goal_lists_helper(
             chapter,
-            &re::FLAGSHIP_GOAL_LIST_FILTERED,
+            &re::ROADMAP_GOAL_LIST_FILTERED,
             |goal, capture| {
                 let filter_value = capture.unwrap().trim(); // Safe because this regex always has a capture
                 goal.metadata.status.content.is_not_not_accepted()
-                    && goal.metadata.flagship().map(|f| f.trim()) == Some(filter_value)
+                    && goal.metadata.roadmap.contains(filter_value)
             },
         )
+    }
+
+    fn replace_highlight_goal_lists_filtered(
+        &mut self,
+        chapter: &mut Chapter,
+    ) -> anyhow::Result<()> {
+        loop {
+            let Some(m) = re::HIGHLIGHT_GOAL_LIST_FILTERED.find(&chapter.content) else {
+                return Ok(());
+            };
+            let range = m.range();
+
+            let Some(chapter_path) = &chapter.path else {
+                anyhow::bail!("found `(((HIGHLIGHT GOALS: ...)))` but chapter has no path")
+            };
+
+            let capture_value = re::HIGHLIGHT_GOAL_LIST_FILTERED
+                .captures(&chapter.content[range.clone()])
+                .and_then(|caps| caps.get(1))
+                .map(|m| m.as_str().trim())
+                .unwrap(); // Safe: regex always has a capture group
+
+            let goals = self.goal_documents(chapter_path)?;
+            let mut filtered_goals: Vec<&GoalDocument> = goals
+                .iter()
+                .filter(|g| {
+                    g.metadata.status.content.is_not_not_accepted()
+                        && g.metadata.highlight.contains(capture_value)
+                })
+                .collect();
+
+            filtered_goals.sort_by_key(|g| &g.metadata.title);
+
+            let output = goal::format_highlight_goal_sections(&filtered_goals)
+                .map_err(|e| anyhow::anyhow!("{e}"))?;
+
+            chapter.content.replace_range(range, &output);
+        }
     }
 
     /// Replace sized goal list markers (LARGE GOALS, MEDIUM GOALS, SMALL GOALS)
@@ -221,67 +258,6 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
         let output =
             goal::format_sized_goal_table(&goals_with_status, size).map_err(|e| anyhow::anyhow!("{e}"))?;
-        chapter.content.replace_range(range, &output);
-
-        Ok(())
-    }
-
-    /// Replace `(((STABILIZATION SUMMARIES)))` marker with a list of goal titles and summaries
-    /// for all goals that have `stabilization: true` in their metadata.
-    fn replace_stabilization_summaries(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        let Some(m) = re::STABILIZATION_SUMMARIES.find(&chapter.content) else {
-            return Ok(());
-        };
-        let range = m.range();
-
-        let Some(chapter_path) = &chapter.path else {
-            anyhow::bail!("found `(((STABILIZATION SUMMARIES)))` but chapter has no path")
-        };
-
-        let goals = self.goal_documents(chapter_path)?;
-        let mut stabilization_goals: Vec<&GoalDocument> = goals
-            .iter()
-            .filter(|g| g.metadata.stabilization && g.metadata.status.content.is_not_not_accepted())
-            .collect();
-
-        // Sort by title
-        stabilization_goals.sort_by_key(|g| &g.metadata.title);
-
-        // Generate output for each goal
-        let mut output = String::new();
-        for goal in stabilization_goals {
-            // Add Help Wanted marker if this is an invited goal
-            let help_wanted = if goal.metadata.status.is_invited {
-                " ![Help Wanted][]"
-            } else {
-                ""
-            };
-
-            output.push_str(&format!(
-                "### [{}]({}){}\n\n",
-                goal.metadata.title.content,
-                goal.link_path.display(),
-                help_wanted,
-            ));
-
-            // Point of contact
-            output.push_str(&format!("**Point of contact:** {}\n\n", goal.metadata.pocs));
-
-            // Team champions (if any)
-            if !goal.metadata.champions.is_empty() {
-                let champions: Vec<String> = goal
-                    .metadata
-                    .champions
-                    .iter()
-                    .map(|(team, champion)| format!("{}: {}", team, champion.content))
-                    .collect();
-                output.push_str(&format!("**Team champions:** {}\n\n", champions.join(", ")));
-            }
-
-            // Summary
-            output.push_str(&format!("{}\n\n", goal.summary));
-        }
-
         chapter.content.replace_range(range, &output);
 
         Ok(())

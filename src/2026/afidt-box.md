@@ -4,7 +4,7 @@
 | :---------------- | -------------------- |
 | Point of contact  | @nikomatsakis        |
 | Status            | Proposed             |
-| Flagship          | Just Add Async       |
+| Roadmap           | Just add async       |
 | Tracking issue    |                      |
 | Zulip channel     | [#wg-async][channel] |
 | [lang] champion   | @nikomatsakis        |
@@ -112,6 +112,6 @@ The dynosaur crate is a good workaround, but native language support would:
 - Enable optimizations the compiler can't do through macro-generated code
 - Make the pattern discoverable and standard
 
-### How does this relate to the "Just Add Async" flagship?
+### How does this relate to the "Just add async" roadmap?
 
-Dynamic dispatch is a core Rust pattern. In sync code, you can freely use `&dyn Trait` for most traits. The "Just Add Async" theme is about making async code work like sync code. With `.box`, you can use `&dyn Trait` with async methods. You just need to explicitly box the future, which is a reasonable cost for the flexibility of dynamic dispatch.
+Dynamic dispatch is a core Rust pattern. In sync code, you can freely use `&dyn Trait` for most traits. The "Just add async" theme is about making async code work like sync code. With `.box`, you can use `&dyn Trait` with async methods. You just need to explicitly box the future, which is a reasonable cost for the flexibility of dynamic dispatch.

@@ -1,5 +1,5 @@
 # Flagship goals
 
-[Learn about flagship goals.](../about/flagship_goals.md)
+[Learn about flagship goals.](../about/roadmaps.md)
 
 (((FLAGSHIP GOALS)))

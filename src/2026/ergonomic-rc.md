@@ -4,7 +4,7 @@
 | :---------------- | ---------------------------------- |
 | Point of contact  | @nikomatsakis                      |
 | Status            | Proposed                           |
-| Flagship          | [Just Add Async](./flagship-just-add-async.md) |
+| Roadmap           | [Just add async](./roadmap-just-add-async.md) |
 | Tracking issue    | [rust-lang/rust-project-goals#107] |
 | Zulip channel     | N/A                                |
 | [lang] champion   | @nikomatsakis                      |

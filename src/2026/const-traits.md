@@ -6,8 +6,8 @@
 | Status           | Proposed                           |
 | Tracking issue   | [rust-lang/rust-project-goals#106] |
 | Zulip channel    | #t-compiler/project-const-traits   |
-| Stabilization    | true                               |
-| Flagship         | Constify all the things            |
+| Highlight        | true                               |
+| Roadmap          | Constify all the things            |
 
 ## Summary
 

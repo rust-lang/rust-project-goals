@@ -4,7 +4,7 @@
 | :-------------------- | ------------------------------------------------------------------------------------------------ |
 | Point of contact      | @jackh726                                                                                        |
 | Status                | Proposed                                                                                         |
-| Flagship              | [Just Add Async](./flagship-just-add-async.md)                                                   |
+| Roadmap               | [Just add async](./roadmap-just-add-async.md)                                                   |
 | Tracking issue        |                                                                                                  |
 | Other tracking issues | https://github.com/rust-lang/rust/issues/149607                                                  |
 | Zulip channel         | [#t-lang/move-trait](https://rust-lang.zulipchat.com/#narrow/channel/549962-t-lang.2Fmove-trait) |

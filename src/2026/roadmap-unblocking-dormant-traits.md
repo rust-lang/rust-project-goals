@@ -1,5 +1,14 @@
 # Unblocking dormant traits
 
+| Metadata         |                                                                                                   |
+|:-----------------|---------------------------------------------------------------------------------------------------|
+| Short title      | Unblocking dormant traits                                                                         |
+| What and why     | New trait solver ships, unblocking extern types, scalable vectors, and painless trait refactoring |
+| Point of contact | TBD                                                                                               |
+| Application area | Network services                                                                                  |
+| Application area | Systems & embedded                                                                                |
+| Application area | Cross-language interop                                                                            |
+
 ## Summary
 
 Long-blocked type system improvements finally ship, enabling extern types, scalable vectors, and painless trait refactoring.
@@ -58,7 +67,7 @@ By the end of 2026:
 
 ## 2026 goals
 
-(((FLAGSHIP GOALS: Unblocking dormant traits)))
+(((ROADMAP GOALS: Unblocking dormant traits)))
 
 ## Frequently asked questions
 

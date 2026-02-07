@@ -16,7 +16,7 @@ Continue experimenting with and fleshing out the design and semantics for the pi
 
 ## Motivation
 
-Several flagship Rust features, such as `async` and generators, depend on the ability to ensure data will not move in memory.
+Several major Rust features, such as `async` and generators, depend on the ability to ensure data will not move in memory.
 The way Rust achieves this is through the `Pin` wrapper, but pinning has notoriously poor ergonomics.
 Exploring how the ergonomics can be improved by integrating pinning into the language better could help unblock advancements in other Rust features.
 

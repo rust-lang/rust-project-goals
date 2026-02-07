@@ -3,7 +3,6 @@ use std::path::Path;
 use std::sync::Arc;
 use std::{collections::BTreeSet, path::PathBuf};
 
-use regex::Regex;
 use spanned::{Error, Result, Spanned};
 
 use crate::config::{Configuration, TeamAskDetails};
@@ -47,7 +46,6 @@ pub struct GoalDocument {
 /// Metadata loaded from the goal header
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Metadata {
-    #[allow(unused)]
     pub title: Spanned<String>,
     pub short_title: Spanned<String>,
     pub pocs: String,
@@ -58,11 +56,56 @@ pub struct Metadata {
     /// For each table entry like `[T-lang] champion`, we create an entry in this map
     pub champions: BTreeMap<&'static TeamName, Spanned<String>>,
 
-    /// Flagship category, if this is a flagship goal
-    pub flagship: Option<Spanned<String>>,
+    /// Roadmap themes this goal belongs to (zero or more)
+    pub roadmap: Themes,
 
-    /// True if this goal is about stabilization (something reaching completion and becoming available to users)
-    pub stabilization: bool,
+    /// Highlight themes this goal belongs to (zero or more)
+    pub highlight: Themes,
+}
+
+/// A set of theme names parsed from metadata rows.
+/// Used for both roadmap and highlight themes.
+#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Default)]
+pub struct Themes {
+    themes: Vec<Spanned<String>>,
+}
+
+impl Themes {
+    /// Returns true if no themes are present.
+    pub fn is_empty(&self) -> bool {
+        self.themes.is_empty()
+    }
+
+    /// Returns true if any theme is present.
+    pub fn is_some(&self) -> bool {
+        !self.themes.is_empty()
+    }
+
+    /// Returns true if the set contains a theme matching the given value (trimmed comparison).
+    pub fn contains(&self, value: &str) -> bool {
+        self.themes
+            .iter()
+            .any(|t| t.content.trim() == value.trim())
+    }
+
+    /// Iterate over all theme names as &str.
+    pub fn iter(&self) -> impl Iterator<Item = &str> {
+        self.themes.iter().map(|t| t.content.as_str())
+    }
+
+    /// Returns the first theme name, if any.
+    pub fn first(&self) -> Option<&str> {
+        self.themes.first().map(|t| t.content.as_str())
+    }
+
+    /// Iterate over all theme entries with their spans.
+    pub fn iter_spanned(&self) -> impl Iterator<Item = &Spanned<String>> {
+        self.themes.iter()
+    }
+
+    fn push(&mut self, theme: Spanned<String>) {
+        self.themes.push(theme);
+    }
 }
 
 pub const TRACKING_ISSUE_ROW: &str = "Tracking issue";
@@ -428,6 +471,50 @@ pub fn format_goal_table(
     Ok(util::format_table(&table))
 }
 
+/// Format highlight goals as `####` sections with people and summary.
+pub fn format_highlight_goal_sections(goals: &[&GoalDocument]) -> Result<String> {
+    let mut output = String::new();
+
+    for goal in goals {
+        if goal.metadata.status.is_invited {
+            output.push_str(&format!(
+                "#### [{}]({}) ![Help wanted][]\n\n",
+                *goal.metadata.title, goal.link_path.display()
+            ));
+        } else {
+            output.push_str(&format!(
+                "#### [{}]({})\n\n",
+                *goal.metadata.title, goal.link_path.display()
+            ));
+        }
+
+        // Build people list: POC first (with role), then task owners (no role), then champions (with team role)
+        let mut people: Vec<String> = Vec::new();
+
+        if !goal.metadata.status.is_invited {
+            people.push(format!("{} (point of contact)", goal.metadata.pocs));
+        }
+
+        for owner in &goal.task_owners {
+            if !goal.metadata.pocs.contains(owner.as_str()) {
+                people.push(owner.clone());
+            }
+        }
+
+        for (team, champion) in &goal.metadata.champions {
+            people.push(format!("{} ({} champion)", champion.content, team));
+        }
+
+        if !people.is_empty() {
+            output.push_str(&format!("*{}*\n\n", people.join(", ")));
+        }
+        output.push_str(goal.summary.trim());
+        output.push_str("\n\n");
+    }
+
+    Ok(output)
+}
+
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Copy, Clone)]
 pub struct Status {
     pub acceptance: AcceptanceStatus,
@@ -502,6 +589,27 @@ pub enum AcceptanceStatus {
     Proposed,
     Accepted,
     NotAccepted,
+}
+
+/// Parse all rows from a metadata table where the first column matches `key_name`
+/// (case-insensitive), collecting column 1 values into a `Themes` set.
+/// Markdown links like `[text](url)` are stripped to just the link text.
+fn parse_themed_rows(table: &Table, key_name: &str) -> Themes {
+    let mut themes = Themes::default();
+    for row in &table.rows {
+        if row[0].content.trim().eq_ignore_ascii_case(key_name) {
+            let mut value = row[1].clone();
+            if !value.content.trim().is_empty() {
+                // Strip markdown links: `[Just add async](./roadmap-just-add-async.md)` → `Just add async`
+                let stripped = crate::re::strip_markdown_link(&value.content);
+                if stripped != value.content {
+                    value.content = stripped.to_string();
+                }
+                themes.push(value);
+            }
+        }
+    }
+    themes
 }
 
 fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
@@ -613,31 +721,13 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
         }
     }
 
-    // Parse flagship row if present
-    let flagship = first_table
-        .rows
-        .iter()
-        .find(|row| row[0] == "Flagship")
-        .map(|row| row[1].clone());
-
-    // Parse stabilization row if present (value must be "true")
-    let stabilization = if let Some(row) = first_table
-        .rows
-        .iter()
-        .find(|row| row[0].to_lowercase() == "stabilization")
-    {
-        let value = row[1].trim().to_lowercase();
-        if value != "true" {
-            spanned::bail!(
-                row[1],
-                "stabilization metadata must be `true`, found `{}`",
-                row[1].trim()
-            );
-        }
-        true
-    } else {
-        false
-    };
+    // Parse roadmap and highlight theme rows
+    // Accept both "Roadmap" (new) and "Flagship" (old) for backward compatibility
+    let mut roadmap = parse_themed_rows(first_table, "Roadmap");
+    for theme in parse_themed_rows(first_table, "Flagship").iter() {
+        roadmap.push(Spanned::here(theme.to_string()));
+    }
+    let highlight = parse_themed_rows(first_table, "Highlight");
 
     Ok(Some(Metadata {
         title: title.clone(),
@@ -651,12 +741,12 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
         tracking_issue: issue,
         table: first_table.clone(),
         champions,
-        flagship,
-        stabilization,
+        roadmap,
+        highlight,
     }))
 }
 
-fn extract_summary(sections: &[Section]) -> Result<Option<String>> {
+pub fn extract_summary(sections: &[Section]) -> Result<Option<String>> {
     let Some(ownership_section) = sections.iter().find(|section| section.title == "Summary") else {
         return Ok(None);
     };
@@ -1232,19 +1322,13 @@ fn extract_team_names(s: &str) -> Vec<String> {
 }
 
 fn extract_identifiers(s: &str) -> Vec<&str> {
-    let regex = Regex::new("[-.A-Za-z]+").unwrap();
-    regex.find_iter(s).map(|m| m.as_str()).collect()
+    re::IDENTIFIERS.find_iter(s).map(|m| m.as_str()).collect()
 }
 
 impl Metadata {
-    /// Returns the flagship category if this is a flagship goal
-    pub fn flagship(&self) -> Option<&str> {
-        self.flagship.as_ref().map(|s| s.content.as_str())
-    }
-
-    /// Returns true if this goal is about stabilization
-    pub fn is_stabilization(&self) -> bool {
-        self.stabilization
+    /// Returns true if this goal has any highlight themes.
+    pub fn is_highlight(&self) -> bool {
+        self.highlight.is_some()
     }
 
     /// Extracts the `@abc` usernames found in the owner listing.

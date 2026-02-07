@@ -22,9 +22,9 @@ Finally, you can create the tracking issues. To do this, you run `cargo rpg issu
 
 You can run the command more than once, it tries to pick up from where it left off. It will adjust the state of all issues to match what is expected.
 
-## Author the "why this goal" sections for the flagship goals
+## Author the "why this goal" sections for the roadmap goals
 
-For each flagship goal, you should add a section entitled `## Why this goal?` into the tracking issue. Put in there about a paragraph of text that explains the background for this goal. This text will be included verbatim when you prepare monthly updates, so make it readily understood. Often this is the same text that appeared in the RFC itself.
+For each roadmap goal, you should add a section entitled `## Why this goal?` into the tracking issue. Put in there about a paragraph of text that explains the background for this goal. This text will be included verbatim when you prepare monthly updates, so make it readily understood. Often this is the same text that appeared in the RFC itself.
 
 ## Close old tracking issues
 
