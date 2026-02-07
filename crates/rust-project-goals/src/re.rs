@@ -77,6 +77,26 @@ lazy_static! {
     pub static ref VALID_TEAM_ASKS: Regex = Regex::new(r"\(\(\(VALID TEAM ASKS\)\)\)").unwrap();
 }
 
+// List of all roadmap documents (the roadmap-*.md files themselves, not goals tagged with a roadmap)
+lazy_static! {
+    pub static ref ROADMAPS: Regex = Regex::new(r"\(\(\(ROADMAPS\)\)\)").unwrap();
+}
+
+// Marker to create roadmap subchapters without rendering a table
+lazy_static! {
+    pub static ref ROADMAP_CHAPTERS: Regex = Regex::new(r"\(\(\(ROADMAP CHAPTERS\)\)\)").unwrap();
+}
+lazy_static! {
+    pub static ref ROADMAPS_FILTERED: Regex =
+        Regex::new(r"\(\(\(ROADMAPS:\s*(.+?)\s*\)\)\)").unwrap();
+}
+
+// Table of application areas and their associated roadmaps
+lazy_static! {
+    pub static ref APPLICATION_AREAS: Regex =
+        Regex::new(r"\(\(\(APPLICATION AREAS\)\)\)").unwrap();
+}
+
 lazy_static! {
     /// GitHub username.
     ///

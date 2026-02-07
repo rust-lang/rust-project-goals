@@ -17,7 +17,7 @@ use rust_project_goals_cli::Order;
 
 use rust_project_goals::spanned::Spanned;
 use rust_project_goals::{
-    goal::{self, GoalDocument, GoalSize, TeamAsk, TeamInvolvement},
+    goal::{self, GoalDocument, GoalSize, RoadmapDocument, TeamAsk, TeamInvolvement},
     re,
     team::TeamName,
 };
@@ -65,6 +65,7 @@ pub struct GoalPreprocessorWithContext<'c> {
     markdown_processor: MarkdownProcessor,
     processor_state: MarkdownProcessorState,
     goal_document_map: BTreeMap<PathBuf, Arc<Vec<GoalDocument>>>,
+    roadmap_document_map: BTreeMap<PathBuf, Arc<Vec<RoadmapDocument>>>,
     milestone_issues_cache:
         BTreeMap<String, Arc<Vec<rust_project_goals::gh::issues::ExistingGithubIssue>>>,
 }
@@ -90,6 +91,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             markdown_processor,
             processor_state: MarkdownProcessorState::default(),
             goal_document_map: Default::default(),
+            roadmap_document_map: Default::default(),
             milestone_issues_cache: Default::default(),
         })
     }
@@ -99,6 +101,10 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             BookItem::Chapter(chapter) => {
                 self.inject_metadata_rows(chapter)?;
                 self.replace_champions(chapter)?;
+                self.replace_roadmaps_filtered(chapter)?;
+                self.replace_roadmaps(chapter)?;
+                self.replace_application_areas(chapter)?;
+                self.replace_roadmap_chapters(chapter)?;
                 self.replace_team_asks(chapter)?;
                 self.replace_valid_team_asks(chapter)?;
                 self.replace_goal_lists(chapter)?;
@@ -322,6 +328,44 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         Ok(())
     }
 
+    /// Replace `(((ROADMAP CHAPTERS)))` marker by creating subchapters for each roadmap document.
+    /// The marker itself is removed from the content.
+    fn replace_roadmap_chapters(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        let Some(m) = re::ROADMAP_CHAPTERS.find(&chapter.content) else {
+            return Ok(());
+        };
+        let range = m.range();
+
+        let chapter_path = chapter_path(chapter, "(((ROADMAP CHAPTERS)))")?;
+
+        let roadmaps = self.roadmap_documents(chapter_path)?;
+        let mut sorted_roadmaps: Vec<&RoadmapDocument> = roadmaps.iter().collect();
+        sorted_roadmaps.sort_by_key(|r| &r.title);
+
+        // Create subchapters for each roadmap
+        let mut parent_names = chapter.parent_names.clone();
+        parent_names.push(chapter.name.clone());
+        for (roadmap, index) in sorted_roadmaps.iter().zip(0..) {
+            let content = std::fs::read_to_string(&roadmap.path)
+                .with_context(|| format!("reading `{}`", roadmap.path.display()))?;
+            let path = roadmap.path.strip_prefix(&self.ctx.config.book.src).unwrap();
+            let mut new_chapter =
+                Chapter::new(&roadmap.title.content, content, path, parent_names.clone());
+
+            if let Some(mut number) = chapter.number.clone() {
+                number.push(index + 1);
+                new_chapter.number = Some(number);
+            }
+
+            chapter.sub_items.push(BookItem::Chapter(new_chapter));
+        }
+
+        // Remove the marker from the content
+        chapter.content.replace_range(range, "");
+
+        Ok(())
+    }
+
     fn replace_goal_lists_helper(
         &mut self,
         chapter: &mut Chapter,
@@ -399,6 +443,67 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         let goal_refs: Vec<&GoalDocument> = goals.iter().collect();
         let format_champions = format_champions(&goal_refs).into_anyhow()?;
         chapter.content.replace_range(range, &format_champions);
+
+        Ok(())
+    }
+
+    /// Look for `(((ROADMAPS: area)))` in the chapter content and replace with filtered roadmaps table.
+    fn replace_roadmaps_filtered(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        loop {
+            let Some(m) = re::ROADMAPS_FILTERED.find(&chapter.content) else {
+                return Ok(());
+            };
+            let range = m.range();
+
+            let capture_value = re::ROADMAPS_FILTERED
+                .captures(&chapter.content[range.clone()])
+                .and_then(|caps| caps.get(1))
+                .map(|m| m.as_str().trim().to_string());
+
+            let path = chapter_path(chapter, "(((ROADMAPS: ...)))")?;
+
+            let roadmaps = self.roadmap_documents(path)?;
+            let roadmap_refs: Vec<&RoadmapDocument> = roadmaps.iter().collect();
+            let formatted =
+                goal::format_roadmap_table(&roadmap_refs, capture_value.as_deref())
+                    .into_anyhow()?;
+            chapter.content.replace_range(range, &formatted);
+        }
+    }
+
+    /// Look for `(((ROADMAPS)))` in the chapter content and replace it with the roadmaps table.
+    fn replace_roadmaps(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        let Some(m) = re::ROADMAPS.find(&chapter.content) else {
+            return Ok(());
+        };
+        let range = m.range();
+
+        let path = chapter_path(chapter, "(((ROADMAPS)))")?;
+
+        let roadmaps = self.roadmap_documents(path)?;
+        let roadmap_refs: Vec<&RoadmapDocument> = roadmaps.iter().collect();
+        let formatted =
+            goal::format_roadmap_table(&roadmap_refs, None).into_anyhow()?;
+        chapter.content.replace_range(range, &formatted);
+
+        Ok(())
+    }
+
+    /// Look for `(((APPLICATION AREAS)))` and replace with a table of application areas
+    /// and their associated roadmaps.
+    fn replace_application_areas(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        let Some(m) = re::APPLICATION_AREAS.find(&chapter.content) else {
+            return Ok(());
+        };
+        let range = m.range();
+
+        let path = chapter_path(chapter, "(((APPLICATION AREAS)))")?;
+
+        let roadmaps = self.roadmap_documents(path)?;
+        let roadmap_refs: Vec<&RoadmapDocument> = roadmaps.iter().collect();
+        let formatted = goal::format_application_areas_table(&roadmap_refs)
+            .into_anyhow()?;
+        chapter.content.replace_range(range, &formatted);
 
         Ok(())
     }
@@ -496,6 +601,28 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         self.goal_document_map
             .insert(milestone_path.to_path_buf(), goals.clone());
         Ok(goals)
+    }
+
+    /// Find the roadmap documents for the milestone in which this `chapter_path` resides.
+    fn roadmap_documents(
+        &mut self,
+        chapter_path: &Path,
+    ) -> anyhow::Result<Arc<Vec<RoadmapDocument>>> {
+        let Some(milestone_path) = chapter_path.parent() else {
+            anyhow::bail!("cannot get roadmap documents from `{chapter_path:?}`")
+        };
+
+        if let Some(roadmaps) = self.roadmap_document_map.get(milestone_path) {
+            return Ok(roadmaps.clone());
+        }
+
+        let roadmap_documents =
+            goal::roadmaps_in_dir(&self.ctx.config.book.src.join(milestone_path))
+                .into_anyhow()?;
+        let roadmaps = Arc::new(roadmap_documents);
+        self.roadmap_document_map
+            .insert(milestone_path.to_path_buf(), roadmaps.clone());
+        Ok(roadmaps)
     }
 
     /// Get or load milestone issues, caching the result for subsequent calls.
