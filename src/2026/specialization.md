@@ -3,10 +3,11 @@
 | Metadata         |                         |
 |:---------------- | ----------------------- |
 | Point of contact | @tmandry                |
-| Status           | Proposed |
+| Status           | Proposed                |
 | Tracking issue   |                         |
 | Zulip channel    | N/A                     |
-| Help wanted    | N/A                     |
+| Help wanted      | N/A                     |
+| Other tracking issues | #31844             |
 
 ## Summary
 
@@ -16,17 +17,20 @@ Follow stabilization of the new trait solver this year by stabilizing a subset o
 
 ### The status quo
 
-Specialization [has been blocked][tracking] for many years for two reasons:
+Specialization [has been blocked][tracking] for many years for a combination of reasons:
 
 * Soundness issues in the original design.
-* Limitations of the Rust compiler.
+* Limitations of the trait solver preventing causing issues like [this one][38516], preventing us from stabilizing even a subset.
+* Missing functionality, plus uncertainty about what a "minimally viable product" looks like.
 
-There are many use cases for specialization that only require specializing an impl for all instances of a given type, or that otherwise follow the basic "[always applicable]" rule. These are known to be sound, sidestepping the first issue.
+The second issue may get resolved soon, with the stabilization of the [next-gen trait solver](./next-solver.md).
 
-The second issue may also get resolved soon, with the stabilization of the [next-gen trait solver](./next-solver.md).
+There are many use cases for specialization that only require specializing an impl for all instances of a given type, or that otherwise follow the basic "[always applicable]" rule. These are widely understood to be sound, sidestepping the first issue. They also do not require lifting some of the existing limitations, including the lack of useful [associated type defaults] and the inability to override items together.
 
-[tracking]: https://github.com/rust-lang/rust/issues/31844
+[38516]: https://github.com/rust-lang/rust/issues/38516
+[associated type defaults]: https://github.com/rust-lang/rfcs/blob/master/text/2532-associated-type-defaults.md
 [always applicable]: https://smallcultfollowing.com/babysteps/blog/2018/02/09/maximally-minimal-specialization-always-applicable-impls/#when-is-an-impl-always-applicable
+[tracking]: https://github.com/rust-lang/rust/issues/31844
 
 #### Math libraries
 
@@ -58,13 +62,13 @@ impl<T> FromResidual<Result<!, StatusError>> for Result<T, StatusError> {
 
 [Crubit's](https://crubit.rs) ctor crate [implements][ctor] a trait called Ctor that can be used to construct a value in-place. The intention is that you can write a function signature like this to accept a constructor for some type:
 
-```rust!
+```rust
 fn takes_foo(ctor: impl Ctor<Output = Foo>) { ... }
 ```
 
 Regular types implement Ctor for themselves.
 
-```rust!
+```rust
 impl<T> Ctor for T {
     type Output = T;
     unsafe fn ctor(self, dest: *mut Self::Output) {
@@ -99,11 +103,33 @@ Specialization has long been blocked on a rewrite of the trait solver, and the n
 
 Specifically, stabilize specializing impls that follow the "[always applicable]" rule. Leave extensions to the rule for later.
 
+#### Future extensions
+
+As part of this work we should survey unsupported use cases mentioned in the original RFC and note
+
+* Whether we may want to support them
+* Whether we have an idea of how to support them
+* Whether the ideas seem plausible to implement
+* Whether the ideas are true extensions of the subset being stabilized
+
+#### Unresolved design concerns
+
+Most design concerns mentioned on the [original tracking issue] have been resolved in follow up work like the [associated type defaults] RFC or concern future extensions that do not need to be shipped as part of the MVP.
+
+While not mentioned on the tracking issue, there is a question of whether impls overriding defaults should be marked as such with `#[override]` or something similar.
+
+[original tracking issue]: https://github.com/rust-lang/rust/issues/31844
+
+#### Verifying soundness
+
+There have been many issues found with specialization over the 10 years since the RFC was opened. While we are fairly confident this subset of specialization is sound, it would be nice if we could model it in a-mir-formality or with another formal verification tool to check our intuition. The past issues found can provide inspiration for which soundness properties to model.
+
 ### Work items over the next year
 
 | Task                       | Owner(s) | Notes |
 | -------------------------- | -------- | ----- |
-| Implement `default` items  |          |       |
+| Survey use cases           |     |       |
+| Model subset in a-mir-formality |     |       |
 | Separate out feature gate  |          |       |
 | Write stabilization report |          |       |
 
@@ -113,9 +139,9 @@ Specifically, stabilize specializing impls that follow the "[always applicable]"
 | Team       | Support level | Notes |
 | ---------- | ------------- | ----- |
 | [compiler] | Small         |       |
-| [lang]     | Medium        |       |
+| [lang]     | Medium        | Resolve design concerns like `#[override]` and review stabilization |
 | [libs]     | Vibes         |       |
 | [opsem]    | Vibes         |       |
-| [types]    | Large         |       |
+| [types]    | Large         | Review future extensions for plausibility, soundness, and stabilization |
 
 ## Frequently asked questions
