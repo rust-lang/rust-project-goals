@@ -11,6 +11,16 @@ pub const ARROW: &str = "↳";
 
 pub const MILESTONE_REGEX: &'static str = r"^\d{4}([hH][12])?$";
 
+/// Format a goal title cell for use in markdown tables.
+/// If `subgoal_title` is Some, renders as `↳ subgoal`, otherwise as `[title](link)`.
+pub fn goal_title_cell(title: &str, link: &Path, subgoal_title: Option<&str>) -> String {
+    if let Some(subgoal) = subgoal_title {
+        format!("{} {}", ARROW, subgoal)
+    } else {
+        format!("[{}]({})", title, link.display())
+    }
+}
+
 /// Formats a table as markdown. The input should be a series of rows
 /// where each row has the same number of columns.
 /// The first row is the headers.
@@ -133,4 +143,47 @@ where
     R: Send,
 {
     std::thread::scope(|scope| scope.spawn(|| op()).join().unwrap())
+}
+
+/// Tracks footnotes for long text in markdown tables.
+///
+/// When a text value is too long to display inline in a table cell,
+/// it is replaced with a numbered reference like `\*1` and the full
+/// text is accumulated for rendering after the table.
+pub struct Footnotes {
+    entries: Vec<String>,
+}
+
+impl Footnotes {
+    /// Maximum text length before converting to a footnote reference.
+    const MAX_INLINE_LEN: usize = 22;
+
+    pub fn new() -> Self {
+        Self {
+            entries: Vec::new(),
+        }
+    }
+
+    /// If `text` is short enough, returns it as-is. Otherwise, stores a footnote
+    /// and returns a reference like `\*1`.
+    pub fn maybe_footnote(&mut self, text: &str, link: &Path) -> String {
+        if text.len() > Self::MAX_INLINE_LEN {
+            let index = self.entries.len() + 1;
+            self.entries.push(format!(
+                "\\*{index}: {text} ([from here]({link}))",
+                link = link.display()
+            ));
+            format!("\\*{index}")
+        } else {
+            text.to_string()
+        }
+    }
+
+    /// Write all accumulated footnotes to the output.
+    pub fn write_to(&self, output: &mut String) -> std::fmt::Result {
+        for footnote in &self.entries {
+            write!(output, "\n\n{}\n", footnote)?;
+        }
+        Ok(())
+    }
 }

@@ -22,6 +22,17 @@ use rust_project_goals::{
     team::TeamName,
 };
 
+/// Extension trait to convert `spanned::Result<T>` into `anyhow::Result<T>`.
+trait IntoAnyhow<T> {
+    fn into_anyhow(self) -> anyhow::Result<T>;
+}
+
+impl<T> IntoAnyhow<T> for rust_project_goals::spanned::Result<T> {
+    fn into_anyhow(self) -> anyhow::Result<T> {
+        self.map_err(|e| anyhow::anyhow!("{e}"))
+    }
+}
+
 /// Load goals configuration from book.toml using clean serde deserialization
 fn load_goals_config_from_book_toml(ctx: &PreprocessorContext) -> anyhow::Result<GoalsConfig> {
     // Find book.toml in the source directory
@@ -58,6 +69,14 @@ pub struct GoalPreprocessorWithContext<'c> {
         BTreeMap<String, Arc<Vec<rust_project_goals::gh::issues::ExistingGithubIssue>>>,
 }
 
+/// Returns the chapter's path, or an error if it has no path.
+fn chapter_path<'a>(chapter: &'a Chapter, directive: &str) -> anyhow::Result<&'a Path> {
+    chapter
+        .path
+        .as_deref()
+        .ok_or_else(|| anyhow::anyhow!("found `{directive}` but chapter has no path"))
+}
+
 impl<'c> GoalPreprocessorWithContext<'c> {
     pub fn new(ctx: &'c PreprocessorContext) -> anyhow::Result<Self> {
         // Extract goals configuration using clean parsing
@@ -78,7 +97,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     fn process_book_item(&mut self, book_item: &mut BookItem) -> anyhow::Result<()> {
         match book_item {
             BookItem::Chapter(chapter) => {
-                self.replace_metadata_placeholders(chapter)?;
+                self.inject_metadata_rows(chapter)?;
                 self.replace_champions(chapter)?;
                 self.replace_team_asks(chapter)?;
                 self.replace_valid_team_asks(chapter)?;
@@ -109,9 +128,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             return Ok(());
         }
 
-        let Some(chapter_path) = &chapter.path else {
-            anyhow::bail!("found `(((#GOALS)))` but chapter has no path")
-        };
+        let chapter_path = chapter_path(chapter, "(((#GOALS)))")?;
 
         let goals = self.goal_documents(chapter_path)?;
 
@@ -132,9 +149,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             return Ok(());
         }
 
-        let Some(chapter_path) = &chapter.path else {
-            anyhow::bail!("found `(((#ROADMAP_GOALS)))` but chapter has no path")
-        };
+        let chapter_path = chapter_path(chapter, "(((#ROADMAP_GOALS)))")?;
 
         let goals = self.goal_documents(chapter_path)?;
 
@@ -205,9 +220,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             };
             let range = m.range();
 
-            let Some(chapter_path) = &chapter.path else {
-                anyhow::bail!("found `(((HIGHLIGHT GOALS: ...)))` but chapter has no path")
-            };
+            let chapter_path = chapter_path(chapter, "(((HIGHLIGHT GOALS: ...)))")?;
 
             let capture_value = re::HIGHLIGHT_GOAL_LIST_FILTERED
                 .captures(&chapter.content[range.clone()])
@@ -227,7 +240,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             filtered_goals.sort_by_key(|g| &g.metadata.title);
 
             let output = goal::format_highlight_goal_sections(&filtered_goals)
-                .map_err(|e| anyhow::anyhow!("{e}"))?;
+                .into_anyhow()?;
 
             chapter.content.replace_range(range, &output);
         }
@@ -246,9 +259,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         };
         let range = m.range();
 
-        let Some(chapter_path) = &chapter.path else {
-            anyhow::bail!("found `{regex}` but chapter has no path")
-        };
+        let chapter_path = chapter_path(chapter, &format!("{regex}"))?;
 
         let goals = self.goal_documents(chapter_path)?;
         let goals_with_status: Vec<&GoalDocument> = goals
@@ -257,7 +268,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             .collect();
 
         let output =
-            goal::format_sized_goal_table(&goals_with_status, size).map_err(|e| anyhow::anyhow!("{e}"))?;
+            goal::format_sized_goal_table(&goals_with_status, size).into_anyhow()?;
         chapter.content.replace_range(range, &output);
 
         Ok(())
@@ -271,9 +282,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         };
         let range = m.range();
 
-        let Some(chapter_path) = &chapter.path else {
-            anyhow::bail!("found `(((GOAL CHAPTERS)))` but chapter has no path")
-        };
+        let chapter_path = chapter_path(chapter, "(((GOAL CHAPTERS)))")?;
 
         // Don't create subchapters for README files
         if chapter_path.file_stem() == Some("README".as_ref()) {
@@ -325,9 +334,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             };
             let range = m.range();
 
-            let Some(chapter_path) = &chapter.path else {
-                anyhow::bail!("found `{regex}` but chapter has no path")
-            };
+            let chapter_path = chapter_path(chapter, &format!("{regex}"))?;
 
             // Extract capture group if present
             let capture_value = regex
@@ -374,7 +381,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 &goals_with_status,
                 milestone_issues.as_ref().map(|arc| arc.as_slice()),
             )
-            .map_err(|e| anyhow::anyhow!("{e}"))?;
+            .into_anyhow()?;
             chapter.content.replace_range(range, &output);
         }
     }
@@ -386,13 +393,11 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         };
         let range = m.range();
 
-        let Some(path) = &chapter.path else {
-            anyhow::bail!("found `(((CHAMPIONS)))` but chapter has no path")
-        };
+        let path = chapter_path(chapter, "(((CHAMPIONS)))")?;
 
         let goals = self.goal_documents(path)?;
         let goal_refs: Vec<&GoalDocument> = goals.iter().collect();
-        let format_champions = format_champions(&goal_refs).map_err(|e| anyhow::anyhow!("{e}"))?;
+        let format_champions = format_champions(&goal_refs).into_anyhow()?;
         chapter.content.replace_range(range, &format_champions);
 
         Ok(())
@@ -405,9 +410,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         };
         let range = m.range();
 
-        let Some(path) = &chapter.path else {
-            anyhow::bail!("found `(((TEAM ASKS)))` but chapter has no path")
-        };
+        let path = chapter_path(chapter, "(((TEAM ASKS)))")?;
 
         let goals = self.goal_documents(path)?;
 
@@ -434,7 +437,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
         if !old_format_asks.is_empty() {
             formatted
-                .push_str(&format_team_asks(&old_format_asks).map_err(|e| anyhow::anyhow!("{e}"))?);
+                .push_str(&format_team_asks(&old_format_asks).into_anyhow()?);
         }
 
         if !new_format_goals.is_empty() {
@@ -442,7 +445,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 formatted.push_str("\n\n");
             }
             formatted.push_str(
-                &format_team_support(&new_format_goals).map_err(|e| anyhow::anyhow!("{e}"))?,
+                &format_team_support(&new_format_goals).into_anyhow()?,
             );
         }
 
@@ -488,7 +491,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         }
 
         let goal_documents = goal::goals_in_dir(&self.ctx.config.book.src.join(milestone_path))
-            .map_err(|e| anyhow::anyhow!("{e}"))?;
+            .into_anyhow()?;
         let goals = Arc::new(goal_documents);
         self.goal_document_map
             .insert(milestone_path.to_path_buf(), goals.clone());
@@ -527,16 +530,6 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         self.milestone_issues_cache
             .insert(milestone.to_string(), issues.clone());
         Ok(issues)
-    }
-
-    /// Replace placeholders like TASK_OWNERS and TEAMS_WITH_ASKS.
-    /// All goal documents should have this in their metadata table;
-    /// that is enforced during goal parsing.
-    fn replace_metadata_placeholders(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        // Auto-inject teams and task owners directly into metadata table instead of using placeholders
-        self.inject_metadata_rows(chapter)?;
-
-        Ok(())
     }
 
     /// Find the end of a markdown table (first line that doesn't start with |).
@@ -650,10 +643,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             return Ok(());
         }
 
-        let chapter_path = match &chapter.path {
-            Some(path) => path.clone(),
-            None => anyhow::bail!("found REPORTS placeholder but chapter has no path"),
-        };
+        let chapter_path = chapter_path(chapter, "(((REPORTS)))")?.to_path_buf();
 
         // Parse date range from the placeholder
         let date_range = if let Some(captures) = re::REPORTS.captures(&chapter.content) {
