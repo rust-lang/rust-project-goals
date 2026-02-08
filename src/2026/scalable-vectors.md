@@ -10,6 +10,7 @@
 | [compiler] champion | @davidtwco                         |
 | [lang] champion     | @nikomatsakis                      |
 | [libs-api] champion | @Amanieu                           |
+| [types] champion    | @lcnr                              |
 
 ## Summary
 
@@ -126,7 +127,7 @@ the next logical step, enabling efficient matrix processing in Rust.
 | [compiler] | Small         | Standard reviews for stabilization and SVE work         |
 | [lang]     | Medium        | RFC decision for [rfcs#3838], stabilization sign-off    |
 | [libs-api] | Medium        | Review RFC; review and approve stdarch SVE APIs         |
-| [types]    | Small         | Consultation on stabilization                           |
+| [types]    | Medium        | Type System implementation and stabilization sign-off   |
 
 ## Frequently asked questions
 
