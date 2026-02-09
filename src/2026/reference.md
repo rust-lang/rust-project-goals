@@ -37,9 +37,9 @@ Medium goals require support from an individual, the team champion.
 
 (((MEDIUM GOALS)))
 
-#### Smaller/vibes goals
+#### Small goals
 
-Smaller or vibes goals are covered by standard team processes and do not require dedicated support from anyone.
+Small goals are covered by standard team processes and do not require dedicated support from anyone.
 
 (((SMALL GOALS)))
 
@@ -51,11 +51,10 @@ Smaller or vibes goals are covered by standard team processes and do not require
 
 The following table highlights the support level requested from each affected team. Each goal specifies the level of involvement needed:
 
-* **Vibes**: The team doesn't need to do anything, but the goal author wants to know they support the idea.
 * **Small**: The team only needs to do routine activities (e.g., reviewing a few small PRs).
 * **Medium**: Dedicated support from one team member, but the rest of the team doesn't need to be heavily involved.
 * **Large**: Deeper review and involvement from the entire team (e.g., design meetings, complex RFCs).
 
-"Vibes" and "Small" asks require someone on the team to "second" the goal. "Medium" and "Large" asks require a dedicated champion from the team.
+"Small" asks require someone on the team to "second" the goal. "Medium" and "Large" asks require a dedicated champion from the team.
 
 (((TEAM ASKS)))

@@ -34,7 +34,7 @@ This covers multiple teams and needs a lot of coordination to balance the needs 
 
 | Team       | Support level | Notes                                   |
 | ---------- | ------------- | --------------------------------------- |
-| [cargo]    | Vibes         |                                         |
+| [cargo]    | Small         |                                         |
 | [compiler] | Small         | Design discussions, PR review           |
 
 ## Frequently asked questions

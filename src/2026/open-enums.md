@@ -147,7 +147,7 @@ enum, it becomes an *open enum* and can now be safely used with C and
 | [lang]     | Medium        | Champion and (ideally) a lang meeting   |
 | [libs]     | Small         | Changes to `derive`                     |
 | [opsem]    | Small         | Doc changes if necessary                |
-| [types]    | Vibes         |                                         |
+| [types]    | Small         |                                         |
 
 ## Frequently asked questions
 
