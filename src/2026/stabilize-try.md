@@ -54,7 +54,7 @@ impl<T, E> FromResidual<TracedResult<!, E>> for TracedResult<T, E> {
     }
 }
 
-impl<T, E> FromResidual<Result<!, E>> for Result<T, E> {
+impl<T, E> FromResidual<Result<!, E>> for TracedResult<T, E> {
     #[track_caller]
     fn from_residual(residual: Result<!, E>) -> Self {
         let location = Location::caller();
