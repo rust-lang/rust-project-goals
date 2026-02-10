@@ -6,7 +6,7 @@
 
 - [Overview](./2026/README.md)
 - [Highlights](./2026/highlights.md)
-- [Rust roadmaps](./2026/roadmaps.md)
+- [Roadmaps](./2026/roadmaps.md)
 - [Reference: all goals and roadmaps](./2026/reference.md)
 - [Frequently asked questions](./2026/faq.md)
 
