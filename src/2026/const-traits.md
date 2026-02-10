@@ -8,6 +8,7 @@
 | Zulip channel    | #t-compiler/project-const-traits   |
 | Highlight        | true                               |
 | Roadmap          | Constify all the things            |
+| [types] champion | @oli-obk                           |
 
 ## Summary
 
@@ -46,8 +47,9 @@ The compiler already has a mature implementation of const traits. We will draft 
 
 | Team       | Support level | Notes                                            |
 | ---------- | ------------- | ------------------------------------------------ |
-| [compiler] | Small         | Code reviews                                     |
 | [lang]     | Large         | Semantics, syntax, and stabilization decisions   |
+| [types]    | Large         | Implementation design and sign-off               |
+| [compiler] | Small         | Code reviews                                     |
 
 ## Frequently asked questions
 

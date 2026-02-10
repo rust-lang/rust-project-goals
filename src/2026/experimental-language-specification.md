@@ -1,11 +1,13 @@
 # Case study for experimental language specification, with integration into project teams and processes
 
 | Metadata         |                                                                                  |
-| :--------------- | -------------------------------------------------------------------------------- |
-| Point of contact | @jackh726 |
-| Status           | Proposed |
-| Tracking issue   | |
-| Zulip channel    | Likely a combination of #t-types and #t-spec |
+| :---------------- | -------------------------------------------------------------------------------- |
+| Point of contact  | @jackh726 |
+| Status            | Proposed |
+| Tracking issue    | |
+| Zulip channel     | Likely a combination of #t-types and #t-spec |
+| [lang] champion | @joshtriplett |
+| [types] champion | @jackh726 |
 
 ## Summary
 
@@ -60,11 +62,11 @@ One output of this goal will be clear periodic reporting of "how the experiment 
 
 ## Team asks
 
-| Team       | Support level | Notes                         |
-| ---------- | ------------- | ----------------------------- |
-| [types]    | Medium        | Champion @jackh726            |
-| [lang]     | Medium        | Champion @joshtriplett        |
-| [spec]     | Small         | General discussion on how this may align with other efforts to specify Rust. |
+| Team       | Support level | Notes                                                                            |
+| ---------- | ------------- | -------------------------------------------------------------------------------- |
+| [types]    | Medium        | Evaluate potential changes to (experimental) reference in routine team decisions |
+| [lang]     | Medium        |                                                                                  |
+| [spec]     | Small         | General discussion on how this may align with other efforts to specify Rust.     |
 
 This goal will also coordinate discussions with lang-docs in a non-blocking fashion, to ensure that different sources of Rust documentation are clearly delineated in a manner that avoids confusion, both in source repositories and in any rendered versions.
 

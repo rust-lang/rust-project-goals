@@ -2,10 +2,11 @@
 
 | Metadata         |                                                                                  |
 | :--------------- | -------------------------------------------------------------------------------- |
-| Point of contact | @jackh726                          |
+| Point of contact | @jackh726                                                                        |
 | Status           | Proposed                                                                         |
-| Tracking issue   | [rust-lang/rust-project-goals#122]     |
-| Zulip channel    | [#types/formality] |
+| Tracking issue   | [rust-lang/rust-project-goals#122]                                               |
+| Zulip channel    | [#types/formality]                                                               |
+| [types] champion | @jackh726                                                                        |
 
 [#types/formality]: https://rust-lang.zulipchat.com/#narrow/channel/402470-t-types.2Fformality
 
@@ -34,6 +35,9 @@ The work here is primarily divided into two main goals:
 For the former, it is expected this will intersect with other ongoing work (such as implementing borrow checking in a-mir-formality). It is also likely that this will be done through some combination of manual identification (such as through census of open issues) and more automatic identification (such as cross-testing the rustc test suite).
 
 For the latter, it is not yet clear in what form the integration with the reference will occur. Possibilities may range from simple linking of behavior from the reference to the relevant rules in a-mir-formality, to more complex integration, such as embedding of a-mir-formality tests or rules within the reference itself. Notably, the goal is to allow the reference to remain a user-friendly text while providing a platform to share the more concrete formalism of the type system.
+
+The types team has also discussed forming a subteam focused on a-mir-formality, which would likely own this work, rather
+than being owned primarily by individuals on the types team.
 
 | Task        | Owner(s) | Notes |
 | ----------- | -------- | ----- |

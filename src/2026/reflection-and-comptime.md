@@ -90,11 +90,12 @@ Open PRs:
 
 ## Team asks
 
-| Team       | Support level | Notes                      |
-|------------|---------------|----------------------------|
-| [compiler] | Medium        | Standard reviews           |
-| [lang]     | Large         | Design meeting, experiment |
-| [libs-api] | Medium        | Reviews                    |
+| Team       | Support level | Notes                                               |
+|------------|---------------|---------------------------------------------------- |
+| [compiler] | Medium        | Standard reviews                                    |
+| [lang]     | Large         | Design meeting, experiment                          |
+| [libs-api] | Medium        | Reviews                                             |
+| [types]    | Vibes         | General vibes on any additional type-system changes |
 
 
 ## Frequently asked questions

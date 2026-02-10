@@ -6,6 +6,7 @@
 | Status           | Proposed |
 | Tracking issue   |     |
 | Zulip channel    | N/A (just make a thread in t-types) |
+| [types] champion | @BoxyUwU |
 
 ## Summary
 

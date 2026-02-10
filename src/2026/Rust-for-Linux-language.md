@@ -8,6 +8,7 @@
 | Zulip channel        | [#rust-for-linux][channel-rfl]     |
 | [lang] champion      | @joshtriplett                      |
 | [lang-docs] champion | @traviscross                       |
+| [types] champion     | @jackh726                          |
 
 [channel-t-lang]: https://rust-lang.zulipchat.com/#narrow/channel/213817-t-lang
 [channel-rfl]: https://rust-lang.zulipchat.com/#narrow/channel/425075-rust-for-linux
@@ -72,9 +73,10 @@ As well as a set of compiler flags and other features which have their own [proj
 
 ## Team asks
 
-| Team        | Support level | Notes                      |
-|-------------|---------------|----------------------------|
-| [lang]      | Medium        | Reviews, Lang/RfL meetings |
-| [lang-docs] | Medium        | Reviews, Lang/RfL meetings |
-| [libs]      | Small         | Reviews                    |
-| [libs-api]  | Small         | Stabilizations             |
+| Team        | Support level | Notes                                              |
+|-------------|---------------|--------------------------------------------------- |
+| [types]     | Large         | Review of type-system stabilization/implementation |
+| [lang]      | Medium        | Reviews, Lang/RfL meetings                         |
+| [lang-docs] | Medium        | Reviews, Lang/RfL meetings                         |
+| [libs]      | Small         | Reviews                                            |
+| [libs-api]  | Small         | Stabilizations                                     |

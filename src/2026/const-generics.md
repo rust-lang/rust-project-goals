@@ -9,6 +9,7 @@
 | Zulip channel    | N/A                                |
 | Highlight        | Language changes                   |
 | [lang] champion  | @nikomatsakis                      |
+| [types] champion | @BoxyUwU                           |
 
 ## Summary
 
@@ -63,11 +64,11 @@ Our ultimate goal is to stabilize all parts of the const generics feature that w
 
 ## Team asks
 
-| Team       | Support level | Notes                                      |
-|------------|---------------|--------------------------------------------|
-| [lang]     | Large         | Stabilization decisions, directional alignment             |
-| [compiler] | Small         | Code reviews                               |
-| [types]    | Medium        | a-mir-formality modeling, design alignment |
+| Team       | Support level | Notes                                          |
+|------------|---------------|----------------------------------------------- |
+| [lang]     | Large         | Stabilization decisions, directional alignment |
+| [types]    | Large         | a-mir-formality modeling, design alignment     |
+| [compiler] | Small         | Code reviews                                   |
 
 ## Frequently asked questions
 
