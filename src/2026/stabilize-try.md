@@ -1,11 +1,13 @@
 # Stabilize the Try trait
 
-| Metadata         |                         |
-|:---------------- | ----------------------- |
-| Point of contact | @tmandry                |
-| Status           | Proposed                |
-| Other tracking issues | #84277             |
-| Zulip channel    | N/A                     |
+| Metadata              |                        |
+|:----------------------|------------------------|
+| Point of contact      | @tmandry               |
+| Status                | Proposed               |
+| Other tracking issues | [rust-lang/rust#84277] |
+| Zulip channel         | N/A                    |
+
+[rust-lang/rust#84277]: https://github.com/rust-lang/rust/issues/84277
 
 ## Summary
 
