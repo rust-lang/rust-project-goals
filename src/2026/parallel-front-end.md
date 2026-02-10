@@ -55,8 +55,8 @@ Performance improvement would be long-term work. We are considering potential me
 
 | Team       | Support level | Notes |
 | ---------- | ------------- | ----- |
-| [cargo]    |               |       |
-| [compiler] |               |       |
+| [wg-parallel-rustc]    |     Large      |   Discussion and Implementation    |
+| [compiler] |      Small         |  Code Reviews     |
 
 ## Frequently asked questions
 
