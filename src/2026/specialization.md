@@ -7,7 +7,7 @@
 | Tracking issue   |                         |
 | Zulip channel    | N/A                     |
 | Help wanted      | N/A                     |
-| Other tracking issues | #31844             |
+| Other tracking issues | rust-lang/rust#31844 |
 
 ## Summary
 
