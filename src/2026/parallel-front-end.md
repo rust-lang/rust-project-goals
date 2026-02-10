@@ -46,10 +46,11 @@ Performance improvement would be long-term work. We are considering potential me
 
 | Task                         | Owner(s) or team(s)  | Notes |
 | ---------------------------- | -------------------- | ----- |
-| Implementation               | @SparrowLii          |       |
-| Author tests                 | @SparrowLii          |       |
-| Discussion and moral support | ![Team][] [compiler] |       |
-
+| Issue Resolving              | @wg-parallel-rustc   |       |
+| Building the test suit       | @ywxt                |       |
+| Tools supporting             | @ywxt                |       |
+| Stabilization report         | @SparrowLii          |       |
+| Discussion and moral support | @wg-parallel-rustc   |       |
 
 ## Team asks
 
@@ -59,7 +60,6 @@ Performance improvement would be long-term work. We are considering potential me
 | [compiler] |      Small         |  Code Reviews     |
 
 ## Frequently asked questions
-
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/187679-t-compiler.2Fwg-parallel-rustc/
 [ICE]: https://github.com/rust-lang/rust/issues?q=label%3AA-parallel-compiler+ice
