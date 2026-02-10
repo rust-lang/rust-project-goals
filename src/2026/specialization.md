@@ -20,7 +20,7 @@ Follow stabilization of the new trait solver this year by stabilizing a subset o
 Specialization [has been blocked][tracking] for many years for a combination of reasons:
 
 * Soundness issues in the original design.
-* Limitations of the trait solver preventing causing issues like [this one][38516], preventing us from stabilizing even a subset.
+* Limitations of the trait solver causing issues like [this one][38516], preventing us from stabilizing even a subset.
 * Missing functionality, plus uncertainty about what a "minimally viable product" looks like.
 
 The second issue may get resolved soon, with the stabilization of the [next-gen trait solver](./next-solver.md).
@@ -79,7 +79,7 @@ impl<T> Ctor for T {
 
 However, there are also a number of "combinator" helper types that override this default implementation. For example, `FnCtor`, which calls a function on the desired out pointer.
 
-Today this is only possible with a hack, by adding an artificial `T: Unpin` bound on the blanket impl and artifically marking combinators as `!Unpin`. Besides the usual confusion of dealing with the `Unpin` trait, this bound is incorrect: It is entirely valid to initialize a `!Unpin` type by moving it, as long as you can access the type by value (in other words, as long as it isn't pinned). This bound has led to a lot of user headaches when dealing with `!Unpin` types like futures.
+Today this is only possible with a hack, by adding an artificial `T: Unpin` bound on the blanket impl and artificially marking combinators as `!Unpin`. Besides the usual confusion of dealing with the `Unpin` trait, this bound is incorrect: It is entirely valid to initialize a `!Unpin` type by moving it, as long as you can access the type by value (in other words, as long as it isn't pinned). This bound has led to a lot of user headaches when dealing with `!Unpin` types like futures.
 
 The reason for using an associated type `Output` instead of a generic on the trait (`Ctor<T>`) is that it better expresses the intent: Every type has only one `Ctor::Output` type. Most types output themselves, but special combinators like `FnCtor` output a different type. In practice, when a feature like [RFC 1672] "Disjointness based on associated types" is implemented, it would allow us to write impls like following. Note that this would not be possible with a generic trait: The trait system assumes that the same type could implement both `Ctor<Foo>` and `Ctor<Bar>`, leading to an overlap error.
 
