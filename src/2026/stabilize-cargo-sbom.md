@@ -8,7 +8,7 @@
 | Tracking issue        |                                                                                  |
 | Other tracking issues | https://github.com/rust-lang/cargo/issues/16565                                  |
 | Zulip channel         | N/A                                                                              |
-| Highlight             | Other                                                                            |
+| Highlight             | Invited                                                                          |
 
 ## Summary
 

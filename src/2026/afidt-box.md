@@ -3,7 +3,8 @@
 | Metadata          |                      |
 | :---------------- | -------------------- |
 | Point of contact  | @nikomatsakis        |
-| Status            | Proposed             |
+| Status            | Proposed for mentorship |
+| Highlight         | Invited              |
 | Roadmap           | Just add async       |
 | Tracking issue    |                      |
 | Zulip channel     | [#wg-async][channel] |

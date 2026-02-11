@@ -4,6 +4,7 @@
 | :--------------- | ----------------------- |
 | Point of contact | @thunderseethe          |
 | Status           | Proposed for mentorship |
+| Highlight        | Invited                 |
 | Tracking issue   |                         |
 | Zulip channel    | N/A                     |
 

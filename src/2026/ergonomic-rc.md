@@ -3,7 +3,8 @@
 | Metadata          |                                    |
 | :---------------- | ---------------------------------- |
 | Point of contact  | @nikomatsakis                      |
-| Status            | Proposed                           |
+| Status            | Proposed for mentorship |
+| Highlight         | Invited                 |
 | Roadmap           | [Just add async](./roadmap-just-add-async.md) |
 | Tracking issue    | [rust-lang/rust-project-goals#107] |
 | Zulip channel     | N/A                                |
@@ -71,7 +72,7 @@ tokio::spawn(async move {
 });
 
 // With move expressions: inline and clear
-tokio::spawn(async move {
+tokio::spawn(async {
     send_data(move(tx.clone())).await;
 });
 ```
@@ -81,7 +82,7 @@ This generalizes Rust's existing closure model. Rather than having separate "ref
 Combined with `Share`:
 
 ```rust
-tokio::spawn(async move {
+tokio::spawn(async {
     do_something(move(self.some_a.share()), move(self.some_b.share()));
 });
 ```

@@ -93,6 +93,7 @@ It is **not** a goal to match C++'s resolution rules exactly. Many languages imp
 | [lang]  | Medium         | Design meeting Experiment                                                                                                              |
 | [libs-api]  | Vibes         | Would like to know if they have use cases for overloading in standard Rust, or if there are certain approaches they would like better. May be involved if experiment involves library surface area (e.g. `Fn` traits) |
 | [types] | Medium        |                                                                                                                                        |
+| [compiler] | Small        | Most complexity is in the type system                                                                                                |
 
 ## Frequently asked questions
 
@@ -149,11 +150,11 @@ However, this is less a feature of `rust-call` and more a feature of `Fn*`. If y
 You might imagine implementing method overloading using `extern "rust-call"` as so:
 
 ```rust
-trait Method<Args: Tuple> {␋  extern "rust-call" fn method(&self, args: Args);}
+trait Method<Args: Tuple> { extern "rust-call" fn method(&self, args: Args); }
 
 struct MyType;
-impl Method<(u32,)> for MyType {␋  extern "rust-call" fn method(&self, args: (u32,)) {}}
-impl Method<(u32, u32, u32)> for MyType {␋  extern "rust-call" fn method(&self, args: (u32,)) {}}
+impl Method<(u32,)> for MyType { extern "rust-call" fn method(&self, args: (u32,)) {} }
+impl Method<(u32, u32, u32)> for MyType { extern "rust-call" fn method(&self, args: (u32,)) {} }
 ```
 
 But this does not allow calls like `MyType.method(1, 2, 3)`. We would need an additional feature for splatting arguments outside of the `Fn*` traits. ([playground](https://play.rust-lang.org/?version=nightly&mode=debug&edition=2024&gist=da283136e3ad3a8b0afa9925693f789a))
