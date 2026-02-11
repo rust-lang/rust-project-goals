@@ -15,7 +15,7 @@
 
 ## Summary
 
-Prepare TAIT (type alias impl trait) and return type notation (RTN) for stabilization together, giving Rust a coherent story for bounding opaque types whether they come from `-> impl Trait` returns or explicit associated types. Extend RTN to async closures via a new RFC. RTN enables bounds like `T::method(..): Send`, solving the ["Send bound" problem][sb] and unblocking widespread use of async fn in traits. Full stabilization is blocked on the [next-gen trait solver](./next-solver.md) work and may happen late this year.
+Prepare TAIT (type alias impl trait) and return type notation (RTN) for stabilization together, giving Rust a coherent story for bounding opaque types whether they come from `-> impl Trait` returns or explicit associated types. Extend RTN to async closures via a new RFC. RTN enables bounds like `T::method(..): Send`, solving the ["Send bound" problem][sb] and unblocking widespread use of async fn in traits. Full stabilization is blocked on the [next-gen trait solver](./next-solver.md) work and is intended to happen late this year.
 
 [sb]: https://smallcultfollowing.com/babysteps/blog/2023/02/01/async-trait-send-bounds-part-1-intro/
 
