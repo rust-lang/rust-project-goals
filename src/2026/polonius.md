@@ -77,8 +77,8 @@ During the preview period, we will also evaluate and address diagnostics quality
 
 | Task | Owner(s) | Notes |
 | ---- | -------- | ----- |
-| Fix soundness issue with opaque types and dead regions | @tiif | [trait-system-refactor-initiative#159](https://github.com/rust-lang/trait-system-refactor-initiative/issues/159) |
-| Expand test coverage from open fixed-by-polonius issues | @lqd | |
+| Fix soundness issue with opaque types and dead regions | @lqd, @tiif | @tiif's [trait-system-refactor-initiative#159](https://github.com/rust-lang/trait-system-refactor-initiative/issues/159) is a pre-requisite for a borrowck fix |
+| Expand test coverage from open fixed-by-polonius issues | @lqd | We've started doing this during the previous goal period, e.g. in [#145053](https://github.com/rust-lang/rust/pull/145053) |
 | Enable polonius testing on CI | @lqd | |
 | Build formal model in a-mir-formality | @tiif, @lqd | Validate against rustc implementation |
 | Upstream borrow checking specification into Rust reference | @tiif, @lqd | Ties to [experimental language specification](./experimental-language-specification.md) goal |
@@ -105,7 +105,6 @@ Stable support for the polonius alpha analysis, followed by gradually improving 
 | Team       | Support level | Notes                                                                            |
 |------------|---------------|----------------------------------------------------------------------------------|
 | [types]    | Large         | Design review, stabilization decision, reviews from @jackh726 and @matthewjasper |
-| [compiler] | Small         | @jackh726 to do the reviews                                                      |
 
 ### Support needed from the project
 
