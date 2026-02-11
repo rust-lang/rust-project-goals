@@ -234,10 +234,6 @@ pub struct TeamAsk {
 /// much involvement is needed from each team.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub enum SupportLevel {
-    /// Team doesn't need to do anything, but goal author wants to know they like the idea.
-    /// Example: Prototyping a new feature on crates.io that you hope to eventually upstream.
-    Vibes,
-
     /// Team only needs to do routine activities.
     /// Example: A compiler change that will require a few small PRs to be reviewed.
     Small,
@@ -263,7 +259,7 @@ pub struct TeamSupport {
     /// The team being asked for support
     pub team: &'static TeamName,
 
-    /// Level of support needed (Vibes, Small, Medium, Large)
+    /// Level of support needed (Small, Medium, Large)
     pub support_level: SupportLevel,
 
     /// Any notes about what's needed
@@ -281,7 +277,7 @@ pub enum TeamInvolvement {
     /// Parsed from "Ownership and team asks" section with Task/Owner(s)/Notes columns.
     Asks(Vec<TeamAsk>),
 
-    /// New format (2026+): support levels (Vibes, Small, Medium, Large)
+    /// New format (2026+): support levels (Small, Medium, Large)
     /// Parsed from "Team asks" section with Team/Support level/Notes columns.
     Support(Vec<TeamSupport>),
 }
@@ -1184,13 +1180,12 @@ fn extract_team_support_from_section(
 impl SupportLevel {
     fn from_str(s: &Spanned<String>) -> Result<Self> {
         match s.trim().to_lowercase().as_str() {
-            "vibes" => Ok(SupportLevel::Vibes),
             "small" => Ok(SupportLevel::Small),
             "medium" => Ok(SupportLevel::Medium),
             "large" => Ok(SupportLevel::Large),
             other => spanned::bail!(
                 s,
-                "unrecognized support level `{}`, expected one of: Vibes, Small, Medium, Large",
+                "unrecognized support level `{}`, expected one of: Small, Medium, Large",
                 other
             ),
         }
@@ -1199,7 +1194,6 @@ impl SupportLevel {
     /// Returns the display name for this support level.
     pub fn as_str(&self) -> &'static str {
         match self {
-            SupportLevel::Vibes => "Vibes",
             SupportLevel::Small => "Small",
             SupportLevel::Medium => "Medium",
             SupportLevel::Large => "Large",
@@ -1220,7 +1214,7 @@ pub enum GoalSize {
     Large,
     /// At least one team has a Medium ask, no Large asks
     Medium,
-    /// Only Small or Vibes asks
+    /// Only Small asks
     Small,
 }
 
@@ -1242,7 +1236,7 @@ impl GoalDocument {
         self.max_support_level().map(|level| match level {
             SupportLevel::Large => GoalSize::Large,
             SupportLevel::Medium => GoalSize::Medium,
-            SupportLevel::Small | SupportLevel::Vibes => GoalSize::Small,
+            SupportLevel::Small => GoalSize::Small,
         })
     }
 }
@@ -1261,7 +1255,7 @@ impl GoalDocument {
 ///
 /// - Goal and PoC only appear on the first row for each goal
 /// - Team name is **bold** for Large asks
-/// - Champion shows `@username`, `TBD` (for Large/Medium), or `*not needed*` (for Small/Vibes)
+/// - Champion shows `@username`, `TBD` (for Large/Medium), or `*not needed*` (for Small)
 pub fn format_sized_goal_table(goals: &[&GoalDocument], size: GoalSize) -> Result<String> {
     use std::fmt::Write;
 
@@ -1310,7 +1304,7 @@ pub fn format_sized_goal_table(goals: &[&GoalDocument], size: GoalSize) -> Resul
                 String::new()
             };
 
-            // Team name: bold for Large, normal for Medium/Small/Vibes
+            // Team name: bold for Large, normal for Medium/Small
             let team_cell = if *level == SupportLevel::Large {
                 format!("**{}**", team.name().to_lowercase())
             } else {
@@ -1326,7 +1320,7 @@ pub fn format_sized_goal_table(goals: &[&GoalDocument], size: GoalSize) -> Resul
                         "![TBD][]".to_string()
                     }
                 }
-                SupportLevel::Small | SupportLevel::Vibes => "*n/a*".to_string(),
+                SupportLevel::Small => "*n/a*".to_string(),
             };
 
             table.push(vec![
@@ -1362,7 +1356,7 @@ fn goal_team_rows(goal: &GoalDocument) -> Vec<(&'static TeamName, SupportLevel)>
             .or_insert(support.support_level);
     }
 
-    // Sort by level (Large > Medium > Small > Vibes) then by team name
+    // Sort by level (Large > Medium > Small) then by team name
     let mut sorted: Vec<_> = team_levels.into_iter().collect();
     sorted.sort_by(|a, b| {
         b.1.cmp(&a.1).then_with(|| a.0.name().cmp(&b.0.name()))

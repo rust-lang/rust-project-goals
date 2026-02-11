@@ -48,7 +48,7 @@ lazy_static! {
     pub static ref MEDIUM_GOAL_LIST: Regex = Regex::new(r"\(\(\(MEDIUM GOALS\)\)\)").unwrap();
 }
 
-// List of small goals (goals with only Small or Vibes asks)
+// List of small goals (goals with only Small asks)
 lazy_static! {
     pub static ref SMALL_GOAL_LIST: Regex = Regex::new(r"\(\(\(SMALL GOALS\)\)\)").unwrap();
 }

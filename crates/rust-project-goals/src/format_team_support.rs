@@ -1,7 +1,7 @@
 //! Formatting for the new team support format (2026+).
 //!
 //! This module formats team support entries into tables grouped by team,
-//! sorted by support level (Vibes → Small → Medium → Large).
+//! sorted by support level (Small → Medium → Large).
 
 use std::collections::BTreeSet;
 use std::path::PathBuf;
@@ -39,8 +39,8 @@ impl<'g> GoalSupportData<'g> {
 ///
 /// | Goal | Level | Champion | Notes |
 /// | :--- | :---- | :------- | :---- |
-/// | [Foo](foo.md) | Vibes | | |
-/// | [Bar](bar.md) | Small | @person | Need reviews |
+/// | [Foo](foo.md) | Small | | |
+/// | [Bar](bar.md) | Medium | @person | Need complex reviews |
 /// | ↳ Subgoal | Medium | | Dedicated work |
 /// ```
 pub fn format_team_support(goals: &[&GoalDocument]) -> Result<String> {
@@ -102,7 +102,7 @@ pub fn format_team_support_for_team(
         }
     }
 
-    // Sort by support level (Large first, then Medium, Small, Vibes)
+    // Sort by support level (Large first, then Medium, Small)
     // Within same level, maintain original order (by goal title implicitly)
     entries.sort_by_key(|e| std::cmp::Reverse(e.support_level));
 

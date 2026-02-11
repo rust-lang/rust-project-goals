@@ -140,8 +140,8 @@ There have been many issues found with specialization over the 10 years since th
 | ---------- | ------------- | ----- |
 | [compiler] | Small         |       |
 | [lang]     | Medium        | Resolve design concerns like `#[override]` and review stabilization |
-| [libs]     | Vibes         |       |
-| [opsem]    | Vibes         |       |
+| [libs]     | Small         |       |
+| [opsem]    | Small         |       |
 | [types]    | Large         | Review future extensions for plausibility, soundness, and stabilization |
 
 ## Frequently asked questions
