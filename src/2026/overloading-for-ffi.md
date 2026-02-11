@@ -66,8 +66,24 @@ We would like to implement a form of function overloading which is sufficient to
 
 Particular approaches we intend to explore:
 
-- Leveraging the existing trait system to perform something which is syntactically similar to C++ overloading. (For example, by extending `extern "rust-call"`.)
+- Leveraging the existing trait system to perform something which is syntactically similar to C++ overloading. (For example, by extending `extern "rust-call"`, or some other form of splatting.)
 - Integrate with existing or proposed unstable features, such as specialization, to cover as much of the C++ overload space as possible.
+
+As an example, something like:
+
+```rust
+trait MethodArgs : Tuple {
+    fn call_method(self, this: &Foo);
+}
+
+impl Foo {
+    fn method(&self, #[splat] args: impl MethodArgs) { args.call_method(self) }
+}
+
+impl MethodArgs for (i32, String) {
+    fn call_method(self, this: &Foo) { dbg!(self.0) }
+}
+```
 
 #### Design Axioms
 
