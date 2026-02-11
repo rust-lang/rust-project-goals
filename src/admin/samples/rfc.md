@@ -70,12 +70,11 @@ The full slate of project goals are as follows. These goals all have identified 
 
 The following table highlights the support level requested from each affected team. Each goal specifies the level of involvement needed:
 
-* **Vibes**: The team doesn't need to do anything, but the goal author wants to know they support the idea.
 * **Small**: The team only needs to do routine activities (e.g., reviewing a few small PRs).
 * **Medium**: Dedicated support from one team member, but the rest of the team doesn't need to be heavily involved.
 * **Large**: Deeper review and involvement from the entire team (e.g., design meetings, complex RFCs).
 
-"Vibes" and "Small" asks require someone on the team to "second" the goal. "Medium" and "Large" asks require a dedicated champion from the team.
+"Small" asks require someone on the team to "second" the goal. "Medium" and "Large" asks require a dedicated champion from the team.
 
 (((TEAM ASKS)))
 

@@ -104,6 +104,6 @@ Because there are open design questions that haven't yet been resolved, we shoul
 | [compiler] | Small         |                                         |
 | [lang]     | Medium        |                                         |
 | [libs]     | Medium        |                                         |
-| [types]    | Vibes         |                                         |
+| [types]    | Small         |                                         |
 
 ## Frequently asked questions
