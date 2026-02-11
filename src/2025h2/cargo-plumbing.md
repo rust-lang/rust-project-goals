@@ -1,13 +1,14 @@
 # Prototype a new set of Cargo "plumbing" commands
 
-| Metadata           |                                    |
-| :--                | :--                                |
-| Point of contact   | @epage                             |
-| Status             | Proposed for mentorship            |
-| Zulip channel      | N/A                                |
-| Tracking issue     | [rust-lang/rust-project-goals#264] |
+| Metadata         |                                    |
+|:-----------------|:-----------------------------------|
+| Point of contact | @epage                             |
+| Status           | Proposed                           |
+| Contingent on    | Contributor                        |
+| Zulip channel    | N/A                                |
+| Tracking issue   | [rust-lang/rust-project-goals#264] |
+| [cargo] champion | @epage                             |
 
-| [cargo] champion | @epage |
 ## Summary
 
 Create a third-party cargo subcommand that has "plumbing" (programmatic)

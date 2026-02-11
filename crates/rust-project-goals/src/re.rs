@@ -64,6 +64,12 @@ lazy_static! {
         Regex::new(r"\(\(\(HIGHLIGHT GOALS:\s*(.+?)\s*\)\)\)").unwrap();
 }
 
+// List of contingent goals filtered by contingency type (e.g. Funding, Contributor)
+lazy_static! {
+    pub static ref CONTINGENT_GOAL_LIST_FILTERED: Regex =
+        Regex::new(r"\(\(\(CONTINGENT GOALS:\s*(.+?)\s*\)\)\)").unwrap();
+}
+
 lazy_static! {
     pub static ref GOAL_COUNT: Regex = Regex::new(r"\(\(\(#GOALS\)\)\)").unwrap();
 }

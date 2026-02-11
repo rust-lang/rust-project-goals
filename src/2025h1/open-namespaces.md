@@ -1,10 +1,11 @@
 # Implement Open API Namespace Support
-| Metadata           |                                    |
-| :--                | :--                                |
-| Point of contact   | @epage                             |
-| Status             | Invited                            |
-| Zulip channel      | N/A                                |
-| Tracking issue     | [rust-lang/rust-project-goals#256] |
+| Metadata         |                                    |
+|:-----------------|:-----------------------------------|
+| Point of contact | @epage                             |
+| Status           | Accepted                           |
+| Contingent on    | Contributor                        |
+| Zulip channel    | N/A                                |
+| Tracking issue   | [rust-lang/rust-project-goals#256] |
 
 ## Summary
 

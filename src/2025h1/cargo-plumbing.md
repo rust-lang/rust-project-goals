@@ -1,11 +1,12 @@
 # Prototype a new set of Cargo "plumbing" commands
 
-| Metadata           |                                    |
-| :--                | :--                                |
-| Point of contact   | @epage                             |
-| Status             | Invited                            |
-| Zulip channel      | N/A                                |
-| Tracking issue     | [rust-lang/rust-project-goals#264] |
+| Metadata         |                                    |
+|:-----------------|:-----------------------------------|
+| Point of contact | @epage                             |
+| Status           | Accepted                           |
+| Contingent on    | Contributor                        |
+| Zulip channel    | N/A                                |
+| Tracking issue   | [rust-lang/rust-project-goals#264] |
 
 ## Summary
 

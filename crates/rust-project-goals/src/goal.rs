@@ -124,6 +124,16 @@ pub struct Metadata {
 
     /// Highlight themes this goal belongs to (zero or more)
     pub highlight: Themes,
+
+    /// Contingencies for this goal (zero or more), e.g. "Funding", "Contributor"
+    pub contingent_on: Themes,
+}
+
+impl Metadata {
+    /// True if this goal needs a contributor (i.e. is "help wanted").
+    pub fn is_help_wanted(&self) -> bool {
+        self.contingent_on.contains("Contributor")
+    }
 }
 
 /// A set of theme names parsed from metadata rows.
@@ -451,9 +461,9 @@ impl GoalDocument {
         Ok(())
     }
 
-    /// In goal lists, we render our point-of-contact as "Help Wanted" if this is an invited goal.
+    /// In goal lists, we render our point-of-contact as "Help Wanted" if this goal needs a contributor.
     pub fn point_of_contact_for_goal_list(&self) -> String {
-        if self.metadata.status.is_invited {
+        if self.metadata.is_help_wanted() {
             "![Help Wanted][]".to_string()
         } else {
             self.metadata.pocs.clone()
@@ -491,8 +501,8 @@ pub fn format_goal_table(
 ) -> Result<String> {
     // If any of the goals have tracking issues, include those in the table.
     let show_champions = goals.iter().any(|g| {
-        g.metadata.status.acceptance == AcceptanceStatus::Proposed
-            || g.metadata.status.acceptance == AcceptanceStatus::NotAccepted
+        *g.metadata.status == Status::Proposed
+            || *g.metadata.status == Status::NotAccepted
     });
 
     let mut table;
@@ -602,7 +612,7 @@ pub fn format_highlight_goal_sections(goals: &[&GoalDocument]) -> Result<String>
     let mut output = String::new();
 
     for goal in goals {
-        if goal.metadata.status.is_invited {
+        if goal.metadata.is_help_wanted() {
             output.push_str(&format!(
                 "#### [{}]({}) ![Help wanted][]\n\n",
                 *goal.metadata.title, goal.link_path.display()
@@ -712,58 +722,25 @@ pub fn format_application_areas_table(roadmaps: &[&RoadmapDocument]) -> Result<S
 }
 
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Copy, Clone)]
-pub struct Status {
-    pub acceptance: AcceptanceStatus,
-
-    /// If true, this is an INVITED goal, meaning that it lacks a primary owner
-    pub is_invited: bool,
+pub enum Status {
+    Proposed,
+    Accepted,
+    NotAccepted,
 }
 
 impl Status {
     /// True if this goal has not yet been rejected
     pub fn is_not_not_accepted(&self) -> bool {
-        self.acceptance != AcceptanceStatus::NotAccepted
+        *self != Status::NotAccepted
     }
 
     pub fn try_from(value: Spanned<&str>) -> Result<Spanned<Self>> {
         let value = value.trim();
 
         let valid_values = [
-            (
-                "Accepted",
-                Status {
-                    acceptance: AcceptanceStatus::Accepted,
-                    is_invited: false,
-                },
-            ),
-            (
-                "Invited",
-                Status {
-                    acceptance: AcceptanceStatus::Accepted,
-                    is_invited: true,
-                },
-            ),
-            (
-                "Proposed",
-                Status {
-                    acceptance: AcceptanceStatus::Proposed,
-                    is_invited: false,
-                },
-            ),
-            (
-                "Proposed for mentorship",
-                Status {
-                    acceptance: AcceptanceStatus::Proposed,
-                    is_invited: true,
-                },
-            ),
-            (
-                "Not accepted",
-                Status {
-                    acceptance: AcceptanceStatus::NotAccepted,
-                    is_invited: false,
-                },
-            ),
+            ("Accepted", Status::Accepted),
+            ("Proposed", Status::Proposed),
+            ("Not accepted", Status::NotAccepted),
         ];
 
         for (valid_value, status) in valid_values {
@@ -778,13 +755,6 @@ impl Status {
             valid_values.iter().map(|(s, _)| s).collect::<Vec<_>>(),
         )
     }
-}
-
-#[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Copy, Clone)]
-pub enum AcceptanceStatus {
-    Proposed,
-    Accepted,
-    NotAccepted,
 }
 
 /// Parse all rows from a metadata table where the first column matches `key_name`
@@ -858,7 +828,7 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
     {
         // Accepted goals must have a tracking issue.
         let has_tracking_issue = !r[1].is_empty();
-        if status.acceptance == AcceptanceStatus::Accepted && !has_tracking_issue {
+        if *status == Status::Accepted && !has_tracking_issue {
             spanned::bail!(r[1], "accepted goals cannot have an empty tracking issue");
         }
 
@@ -924,6 +894,7 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
         roadmap.push(Spanned::here(theme.to_string()));
     }
     let highlight = parse_themed_rows(first_table, "Highlight");
+    let contingent_on = parse_themed_rows(first_table, "Contingent on");
 
     Ok(Some(Metadata {
         title: title.clone(),
@@ -939,6 +910,7 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
         champions,
         roadmap,
         highlight,
+        contingent_on,
     }))
 }
 

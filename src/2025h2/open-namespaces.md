@@ -1,14 +1,15 @@
 # Implement Open API Namespace Support
 
-| Metadata           |                                    |
-| :--                | :--                                |
-| Point of contact   | @epage                             |
-| Status             | Proposed for mentorship                            |
-| Zulip channel      | N/A                                |
-| Tracking issue     | [rust-lang/rust-project-goals#256] |
-| [cargo] champion | @epage |
-| [compiler] champion | @b-naber |
-| [crates-io] champion | @carols10cents |
+| Metadata             |                                    |
+|:---------------------|:-----------------------------------|
+| Point of contact     | @epage                             |
+| Status               | Proposed                           |
+| Contingent on        | Contributor                        |
+| Zulip channel        | N/A                                |
+| Tracking issue       | [rust-lang/rust-project-goals#256] |
+| [cargo] champion     | @epage                             |
+| [compiler] champion  | @b-naber                           |
+| [crates-io] champion | @carols10cents                     |
 
 ## Summary
 

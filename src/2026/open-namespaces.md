@@ -1,16 +1,19 @@
 # Implement Open Rust Namespace Support
 
 | Metadata         |                                                                                  |
-| :--------------- | -------------------------------------------------------------------------------- |
-| Point of contact | @epage                                   |
-| Status           | Proposed for mentorship                                                                         |
+|:-----------------|----------------------------------------------------------------------------------|
+| Point of contact | @epage                                                                           |
+| Status           | Proposed                                                                         |
+| Contingent on    | Contributor                                                                      |
 | Highlight        | Invited                                                                          |
-| Tracking issue     | [rust-lang/rust-project-goals#256] |
+| Tracking issue   | [rust-lang/rust-project-goals#256]                                               |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
 
 ## Summary
 
 Navigate the cross-team design work to get [RFC 3243](https://github.com/rust-lang/rfcs/pull/3243) implemented.
+
+**Contingent on contributor:** This goal needs contributors to help complete the implementations in Cargo, rustc, and crates.io. The work spans multiple repositories and involves cross-team coordination. Estimated time commitment: TBD.
 
 ## Motivation
 
