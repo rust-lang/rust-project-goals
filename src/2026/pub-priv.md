@@ -2,20 +2,22 @@
 
 | Metadata         |                                                                                  |
 | :--------------- | -------------------------------------------------------------------------------- |
-| Point of contact | @epage                                   |
-| Status           | Proposed for mentorship                                                                         |
-| Tracking issue   | [rust-lang/rust-project-goals#272] |
+| Point of contact | @epage                                                                           |
+| Status           | Proposed for mentorship                                                          |
+| Roadmap          | Secure your supply chain                                                         |
+| Tracking issue   | [rust-lang/rust-project-goals#272]                                               |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
+| Highlight        | Invited                                                                          |
 
 ## Summary
 
-Find a MVP for stabilization and move it forward.
+Implement and stabilize the MVP of public dependencies described in [RFC #3516]. Public dependencies allow crates to declare dependencies whose types are *meant* to be exposed in the public API.
 
 ## Motivation
 
 This will allow users to tell Rustc and Cargo what dependencies are private
 - Help users catch ways they unexpectedly expose their implementation details
-- Help tooling better identify what all consistutes an API
+- Help tooling better identify what all constitutes an API
 - Speed up `cargo doc` by only building dependencies you can access
 - Help users keep versions between dependencies in sync
 
@@ -40,7 +42,7 @@ Work with [compiler] to identify a minimal subset of functionality for what the 
 
 | Team       | Support level | Notes                                   |
 | ---------- | ------------- | --------------------------------------- |
-| [cargo]    | Vibes         |                                         |
+| [cargo]    | Small         |                                         |
 | [compiler] | Medium        | An implementer, design discussions, PR review |
 
 ## Frequently asked questions

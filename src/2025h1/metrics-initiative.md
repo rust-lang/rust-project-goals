@@ -43,7 +43,7 @@ All together these tools give us the ability to gather information about the inn
 
 ### The "shiny future" we are working towards
 
-We'd like to get to the point where lang and libs can pull up a simple dashboard to see exactly what features exist, what their status is, and what their usage over time looks like. Beyond that, we want to get to the point where other contributors and teams can leverage the metrics to answer their own questions while we continue to build up the supporting infrastructure. The metrics should make it possiblle to track how often certain ICEs are encountered or if certain code paths are hit or any other question about real world usage of the compiler that our contributors and maintainers may have.
+We'd like to get to the point where lang and libs can pull up a simple dashboard to see exactly what features exist, what their status is, and what their usage over time looks like. Beyond that, we want to get to the point where other contributors and teams can leverage the metrics to answer their own questions while we continue to build up the supporting infrastructure. The metrics should make it possible to track how often certain ICEs are encountered or if certain code paths are hit or any other question about real world usage of the compiler that our contributors and maintainers may have.
 
 ## Design axioms
 

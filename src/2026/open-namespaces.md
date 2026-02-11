@@ -4,6 +4,7 @@
 | :--------------- | -------------------------------------------------------------------------------- |
 | Point of contact | @epage                                   |
 | Status           | Proposed for mentorship                                                                         |
+| Highlight        | Invited                                                                          |
 | Tracking issue     | [rust-lang/rust-project-goals#256] |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
 
@@ -34,7 +35,7 @@ This covers multiple teams and needs a lot of coordination to balance the needs 
 
 | Team       | Support level | Notes                                   |
 | ---------- | ------------- | --------------------------------------- |
-| [cargo]    | Vibes         |                                         |
+| [cargo]    | Small         |                                         |
 | [compiler] | Small         | Design discussions, PR review           |
 
 ## Frequently asked questions

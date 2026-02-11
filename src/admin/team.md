@@ -17,7 +17,7 @@ Team members perform some subset of the following roles:
     * Reviewing incoming goal proposals for quality and accuracy
     * Seeking feedback on behalf of outsiders' goals
     * Authoring the RFC and hounding team leads to check their boxes
-    * Deciding which goals to propose as flagship goals.
+    * Deciding which goals to propose as roadmap goals.
 * During the year:
     * Authoring round-up blog posts highlighting progress
     * Updating and maintaining the web-site
@@ -28,4 +28,4 @@ Team members perform some subset of the following roles:
 The team lead is the [owner](../about/owners.md) of the program,
 meaning that they take ultimately responsible for ensuring the goals program moves forward smoothly.
 They perform and and all of the member functions as needed, delegating where possible.
-In the event of conflicts (e.g., which goals to propose as flagship goals in the RFC), team lead makes the final decision.
+In the event of conflicts (e.g., which goals to propose as roadmap goals in the RFC), team lead makes the final decision.

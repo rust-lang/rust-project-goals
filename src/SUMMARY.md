@@ -5,8 +5,11 @@
 # ⏳ 2026 goal process
 
 - [Overview](./2026/README.md)
-- [Proposed goals](./2026/goals.md)
-- [Goals not accepted](./2026/not_accepted.md)
+- [Highlights](./2026/highlights.md)
+- [Help wanted](./2026/help-wanted.md)
+- [Roadmaps](./2026/roadmaps.md)
+- [Reference: all goals and roadmaps](./2026/reference.md)
+- [Frequently asked questions](./2026/faq.md)
 
 # ⚙️ 2025H2 goal process
 
@@ -18,7 +21,7 @@
 # 📖 Learn about
 
 - [Goal motivations](./about/motivation.md)
-- [Flagship goals](./about/flagship_goals.md)
+- [Roadmaps](./about/roadmaps.md)
 - [Invited goals](./about/invited_goals.md)
 - [Point of contact](./about/poc.md)
 - [Team asks](./about/team_asks.md)

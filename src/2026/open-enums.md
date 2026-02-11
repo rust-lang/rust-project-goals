@@ -86,7 +86,7 @@ set of names with associated values, or a wrapper around a plain integer. When a
 - `derive`s that work with names are less useful. The built-in `derive(Debug)`
   can't know the variant names to list. Third-party macros cannot easily know
   the variant names. The `open-enum` crate, which provides an attribute macro to
-  construct newtype integers from an `enum` declaration, requires a disctinct
+  construct newtype integers from an `enum` declaration, requires a distinct
   `derive` ecosystem for operations like `TryFrom`, `Debug`, `IsKnownVariant`,
   ser/de, etc. - a worse experience than if all derives were capable of reading
   a first-class open `enum` definition.
@@ -147,7 +147,7 @@ enum, it becomes an *open enum* and can now be safely used with C and
 | [lang]     | Medium        | Champion and (ideally) a lang meeting   |
 | [libs]     | Small         | Changes to `derive`                     |
 | [opsem]    | Small         | Doc changes if necessary                |
-| [types]    | Vibes         |                                         |
+| [types]    | Small         |                                         |
 
 ## Frequently asked questions
 

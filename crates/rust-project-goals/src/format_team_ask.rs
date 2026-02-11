@@ -9,7 +9,7 @@ use crate::{
     config::Configuration,
     goal::TeamAsk,
     team::TeamName,
-    util::{self, ARROW},
+    util,
 };
 
 /// Format a set of team asks into a table, with asks separated by team and grouped by kind.
@@ -29,9 +29,6 @@ pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> Result<String> {
 
     const CHECK: &str = "✅";
 
-    /// Arbitrary: max length of text before we insert a footnote
-    const FOOTNOTE_LEN: usize = 22;
-
     let mut output = String::new();
 
     let all_teams: BTreeSet<&TeamName> = asks_of_any_team
@@ -50,10 +47,10 @@ pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> Result<String> {
             .collect();
 
         let team_data = team_name.data();
-        write!(output, "\n### {} team\n", team_data.name)?;
+        write!(output, "\n#### {} team\n", team_data.name)?;
 
         // We will accumulate footnotes when we encounter comments that are too long.
-        let mut footnotes = vec![];
+        let mut footnotes = util::Footnotes::new();
 
         // These are things like "discussion and moral support". They are extracted from
         // the configuration. We prune out the ones that do not appear in the asks for a particular team.
@@ -97,23 +94,12 @@ pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> Result<String> {
                 CHECK
             };
 
-            let mut maybe_footnote = |text: &str| -> String {
-                if text.len() > FOOTNOTE_LEN {
-                    let footnote_index = footnotes.len() + 1;
-                    footnotes.push(format!(
-                        "\\*{footnote_index}: {text} ([from here]({link}))",
-                        link = ask.link_path.display()
-                    ));
-                    format!("\\*{footnote_index}")
-                } else {
-                    text.to_string()
-                }
-            };
+            let cell = footnotes.maybe_footnote(text, &ask.link_path);
 
             if !row[index].is_empty() {
-                row[index] = format!("{} {}", row[index], maybe_footnote(text));
+                row[index] = format!("{} {}", row[index], cell);
             } else {
-                row[index] = maybe_footnote(text);
+                row[index] = cell;
             }
         }
 
@@ -147,9 +133,7 @@ pub fn format_team_asks(asks_of_any_team: &[&TeamAsk]) -> Result<String> {
 
         write!(output, "{}", util::format_table(&table))?;
 
-        for footnote in footnotes {
-            write!(output, "\n\n{}\n", footnote)?;
-        }
+        footnotes.write_to(&mut output)?;
     }
 
     Ok(output)
@@ -184,10 +168,6 @@ impl<'g> GoalData<'g> {
     }
 
     fn goal_title(&self) -> String {
-        if let Some(subgoal_title) = self.subgoal_title {
-            format!("{} {}", ARROW, subgoal_title)
-        } else {
-            format!("[{}]({})", self.goal_title, self.link.display())
-        }
+        util::goal_title_cell(self.goal_title, self.link, self.subgoal_title.map(|s| s.as_str()))
     }
 }

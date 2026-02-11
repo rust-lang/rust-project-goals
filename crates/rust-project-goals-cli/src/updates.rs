@@ -24,6 +24,7 @@ pub enum Order {
     OldestFirst,
 
     /// Reverse chronological order: the most recent comments will show up first.
+    #[allow(unused)]
     NewestFirst,
 }
 
@@ -54,20 +55,21 @@ pub fn render_updates(
     milestone_path.push(milestone);
     let goal_documents = goal::goals_in_dir(&milestone_path)?;
 
-    // Create a mapping from issue numbers to themes for flagship goals
-    let issue_themes: std::collections::HashMap<u64, String> = goal_documents
-        .iter()
-        .filter_map(|doc| {
-            if let (Some(flagship_theme), Some(tracking_issue)) = (
-                doc.metadata.flagship(),
-                doc.metadata.tracking_issue.as_ref(),
-            ) {
-                Some((tracking_issue.number, flagship_theme.trim().to_string()))
-            } else {
-                None
+    // Create a mapping from issue numbers to themes for roadmap goals
+    let issue_themes: std::collections::HashMap<u64, Vec<String>> = {
+        let mut map: std::collections::HashMap<u64, Vec<String>> =
+            std::collections::HashMap::new();
+        for doc in &goal_documents {
+            if let Some(tracking_issue) = doc.metadata.tracking_issue.as_ref() {
+                for theme in doc.metadata.roadmap.iter() {
+                    map.entry(tracking_issue.number)
+                        .or_default()
+                        .push(theme.trim().to_string());
+                }
             }
-        })
-        .collect();
+        }
+        map
+    };
 
     // Create mappings for ownership information
     let issue_point_of_contact: std::collections::HashMap<u64, String> = goal_documents
@@ -169,7 +171,7 @@ pub fn render_updates(
         );
     }
 
-    let flagship_goals = prepare_goals(
+    let roadmap_goals = prepare_goals(
         repository,
         &filtered_issues,
         &filter,
@@ -193,7 +195,7 @@ pub fn render_updates(
         &issue_team_champions,
         &issue_task_owners,
     )?;
-    let updates = templates::Updates::new(milestone.to_string(), flagship_goals, other_goals);
+    let updates = templates::Updates::new(milestone.to_string(), roadmap_goals, other_goals);
 
     if use_progress_bar {
         progress_bar::finalize_progress_bar();
@@ -207,18 +209,18 @@ fn prepare_goals(
     repository: &Repository,
     issues: &[ExistingGithubIssue],
     filter: &Filter<'_>,
-    flagship: bool,
+    roadmap: bool,
     use_progress_bar: bool,
     comment_order: Order,
-    issue_themes: &std::collections::HashMap<u64, String>,
+    issue_themes: &std::collections::HashMap<u64, Vec<String>>,
     issue_point_of_contact: &std::collections::HashMap<u64, String>,
     issue_team_champions: &std::collections::HashMap<u64, String>,
     issue_task_owners: &std::collections::HashMap<u64, String>,
 ) -> Result<Vec<UpdatesGoal>> {
     let mut result = vec![];
-    // We process flagship and regular goals in two passes, and capture comments differently for flagship goals.
+    // We process roadmap and regular goals in two passes, and capture comments differently for roadmap goals.
     for issue in issues {
-        if flagship != issue.has_flagship_label() {
+        if roadmap != issue.has_roadmap_label() {
             continue;
         }
 
@@ -280,7 +282,10 @@ fn prepare_goals(
             tldr,
             why_this_goal,
             needs_separator: true, // updated after sorting
-            theme: issue_themes.get(&issue.number).cloned(),
+            theme: issue_themes
+                .get(&issue.number)
+                .cloned()
+                .unwrap_or_default(),
             point_of_contact: issue_point_of_contact
                 .get(&issue.number)
                 .cloned()

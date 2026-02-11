@@ -118,7 +118,7 @@ This critique suggests that if the goal is ergonomics, requiring more explicit s
 
 To explore the automatic alternative, we will:
 
-* Author an alternative RFC that avoids new keywords and includes a lint fo help catch potentially incorrect usage.
+* Author an alternative RFC that avoids new keywords and includes a lint of help catch potentially incorrect usage.
 * Implement the new design (feature-gated, natch) to support experimentation and measure compilation overhead.
 * Estimate the prevalence of code that benefits or is complicated by this change using Crater runs or other experiments.
 * Conduct design reviews with the lang team to compare/contrast the two approaches.

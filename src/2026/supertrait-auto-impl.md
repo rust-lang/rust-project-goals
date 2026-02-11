@@ -4,6 +4,7 @@
 |:----------------------|-------------------------|
 | Point of contact      | @tmandry                |
 | Status                | Proposed                |
+| Roadmap               | Unblocking dormant traits |
 | Tracking issue        |                         |
 | Other tracking issues | rust-lang/rust#149556   |
 | Zulip channel         | N/A                     |
@@ -86,7 +87,7 @@ We would like to establish a mechanism in the language to automatically derive t
 | [compiler] |               |                                         |
 | [infra]    |               |                                         |
 | [lang]     |  Medium | Team aligned already on the shape of the feature |
-| [libs]     |               |                                         |
+| [libs-api]     |               |                                         |
 | [opsem]    |               |                                         |
 | [types]    |               |                                         |
 | ...        | ...           | *Feel free to add rows for other teams* |

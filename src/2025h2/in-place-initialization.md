@@ -42,7 +42,7 @@ ergonomic than what is possible in an external crate.
 * For the Linux Kernel, there is the [pin-init] crate.
 * For C++ interop, there is the [moveit] crate, and the descendent [Ctor] trait
   from Crubit.
-* There is already an [open lang experiement][lang-experiment] on init
+* There is already an [open lang experiment][lang-experiment] on init
   expressions and supporting async fn in dyn trait, which is being implemented
   by [Michael Goulet] and [Ding Xiang Fei].
 
@@ -147,5 +147,5 @@ scheduled.
 | Design meeting               | ![Team][] [lang]                                 | Two design meetings |
 | Be the main author of an RFC | @Darksonn                                        |                     |
 | Contribute to the RFC        | @cramertj, @yoshuawuyts, @BennoLossin, @nbdd0121 |                     |
-| Lang-team liason             | @joshtriplett                                    |                     |
+| Lang-team liaison            | @joshtriplett                                    |                     |
 | Dedicated reviewer           | @compiler-errors                                 | Of lang experiments |

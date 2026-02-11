@@ -9,23 +9,25 @@ lazy_static! {
     pub static ref CHAMPIONS: Regex = Regex::new(r"\(\(\(CHAMPIONS\)\)\)").unwrap();
 }
 
-// List of all goals, flagship or otherwise
+// List of all goals, roadmap or otherwise
 lazy_static! {
     pub static ref GOAL_LIST: Regex = Regex::new(r"\(\(\(GOALS\)\)\)").unwrap();
 }
 
-// List of flagship goals (accepted or pending)
+// List of roadmap goals (accepted or pending)
+// Accepts both "ROADMAP GOALS" (new) and "FLAGSHIP GOALS" (old) for backward compatibility
 lazy_static! {
-    pub static ref FLAGSHIP_GOAL_LIST: Regex = Regex::new(r"\(\(\(FLAGSHIP GOALS\)\)\)").unwrap();
+    pub static ref ROADMAP_GOAL_LIST: Regex = Regex::new(r"\(\(\((?:ROADMAP|FLAGSHIP) GOALS\)\)\)").unwrap();
 }
 
-// List of flagship goals filtered by category (accepted or pending)
+// List of roadmap goals filtered by category (accepted or pending)
+// Accepts both "ROADMAP GOALS:" (new) and "FLAGSHIP GOALS:" (old) for backward compatibility
 lazy_static! {
-    pub static ref FLAGSHIP_GOAL_LIST_FILTERED: Regex =
-        Regex::new(r"\(\(\(FLAGSHIP GOALS:\s*(.+?)\s*\)\)\)").unwrap();
+    pub static ref ROADMAP_GOAL_LIST_FILTERED: Regex =
+        Regex::new(r"\(\(\((?:ROADMAP|FLAGSHIP) GOALS:\s*(.+?)\s*\)\)\)").unwrap();
 }
 
-// List of non-flagship goals (accepted or pending)
+// List of non-roadmap goals (accepted or pending)
 lazy_static! {
     pub static ref OTHER_GOAL_LIST: Regex = Regex::new(r"\(\(\(OTHER GOALS\)\)\)").unwrap();
 }
@@ -36,20 +38,67 @@ lazy_static! {
         Regex::new(r"\(\(\(GOALS NOT ACCEPTED\)\)\)").unwrap();
 }
 
+// List of large goals (goals with at least one Large team ask)
+lazy_static! {
+    pub static ref LARGE_GOAL_LIST: Regex = Regex::new(r"\(\(\(LARGE GOALS\)\)\)").unwrap();
+}
+
+// List of medium goals (goals with at least one Medium ask, no Large asks)
+lazy_static! {
+    pub static ref MEDIUM_GOAL_LIST: Regex = Regex::new(r"\(\(\(MEDIUM GOALS\)\)\)").unwrap();
+}
+
+// List of small goals (goals with only Small asks)
+lazy_static! {
+    pub static ref SMALL_GOAL_LIST: Regex = Regex::new(r"\(\(\(SMALL GOALS\)\)\)").unwrap();
+}
+
+// Marker to create goal subchapters without rendering a table
+lazy_static! {
+    pub static ref GOAL_CHAPTERS: Regex = Regex::new(r"\(\(\(GOAL CHAPTERS\)\)\)").unwrap();
+}
+
+// List of highlight goals filtered by theme (accepted or pending)
+lazy_static! {
+    pub static ref HIGHLIGHT_GOAL_LIST_FILTERED: Regex =
+        Regex::new(r"\(\(\(HIGHLIGHT GOALS:\s*(.+?)\s*\)\)\)").unwrap();
+}
+
 lazy_static! {
     pub static ref GOAL_COUNT: Regex = Regex::new(r"\(\(\(#GOALS\)\)\)").unwrap();
 }
 
+// Accepts both "#ROADMAP GOALS" (new) and "#FLAGSHIP GOALS" (old) for backward compatibility
 lazy_static! {
-    pub static ref FLAGSHIP_GOAL_COUNT: Regex = Regex::new(r"\(\(\(#FLAGSHIP GOALS\)\)\)").unwrap();
+    pub static ref ROADMAP_GOAL_COUNT: Regex = Regex::new(r"\(\(\(#(?:ROADMAP|FLAGSHIP) GOALS\)\)\)").unwrap();
 }
 
 lazy_static! {
     pub static ref VALID_TEAM_ASKS: Regex = Regex::new(r"\(\(\(VALID TEAM ASKS\)\)\)").unwrap();
 }
 
+// List of all roadmap documents (the roadmap-*.md files themselves, not goals tagged with a roadmap)
 lazy_static! {
-    /// Github username.
+    pub static ref ROADMAPS: Regex = Regex::new(r"\(\(\(ROADMAPS\)\)\)").unwrap();
+}
+
+// Marker to create roadmap subchapters without rendering a table
+lazy_static! {
+    pub static ref ROADMAP_CHAPTERS: Regex = Regex::new(r"\(\(\(ROADMAP CHAPTERS\)\)\)").unwrap();
+}
+lazy_static! {
+    pub static ref ROADMAPS_FILTERED: Regex =
+        Regex::new(r"\(\(\(ROADMAPS:\s*(.+?)\s*\)\)\)").unwrap();
+}
+
+// Table of application areas and their associated roadmaps
+lazy_static! {
+    pub static ref APPLICATION_AREAS: Regex =
+        Regex::new(r"\(\(\(APPLICATION AREAS\)\)\)").unwrap();
+}
+
+lazy_static! {
+    /// GitHub username.
     ///
     /// According to [this random page I found with a google search](https://github.com/GrantBirki/github-username-regex-js):
     /// * GitHub usernames may only contain alphanumeric characters or hyphens
@@ -126,10 +175,32 @@ lazy_static! {
 }
 
 lazy_static! {
+    /// Matches a markdown link like `[link text](url)` and captures the link text.
+    pub static ref MARKDOWN_LINK: Regex =
+        Regex::new(r"^\[(?P<text>[^\]]+)\]\([^)]+\)$")
+            .unwrap();
+}
+
+/// If `s` is a markdown link like `[text](url)`, return the link text.
+/// Otherwise return the original string (trimmed).
+pub fn strip_markdown_link(s: &str) -> &str {
+    let trimmed = s.trim();
+    if let Some(caps) = MARKDOWN_LINK.captures(trimmed) {
+        caps.name("text").unwrap().as_str()
+    } else {
+        trimmed
+    }
+}
+
+lazy_static! {
     /// Reports placeholder with optional date range
     pub static ref REPORTS: Regex =
         Regex::new(r"\(\(\(REPORTS(?::\s*([^)]+))?\)\)\)")
             .unwrap();
+}
+
+lazy_static! {
+    pub static ref IDENTIFIERS: Regex = Regex::new(r"[-.A-Za-z]+").unwrap();
 }
 
 #[cfg(test)]

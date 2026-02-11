@@ -3,6 +3,7 @@ use regex::Regex;
 use rust_project_goals::{
     gh::issue_id::Repository,
     spanned::{Context as _, Result, Spanned},
+    util::MILESTONE_REGEX,
 };
 use std::io::Write;
 use std::path::{Path, PathBuf};
@@ -11,6 +12,7 @@ use walkdir::WalkDir;
 
 mod cfp;
 mod csv_reports;
+mod review;
 mod rfc;
 mod team_repo;
 mod updates;
@@ -115,6 +117,16 @@ enum Command {
         #[command(subcommand)]
         cmd: CSVReports,
     },
+
+    /// Generate a markdown summary for a team to review their goals
+    Review {
+        /// The team name (e.g., "lang", "compiler", "cargo")
+        team: String,
+
+        /// Milestone to review (e.g., "2026"). Defaults to finding the latest.
+        #[arg(long)]
+        milestone: Option<String>,
+    },
 }
 
 #[derive(clap::Subcommand, Debug)]
@@ -187,14 +199,17 @@ fn main() -> Result<()> {
         )?,
 
         Command::CSV { cmd } => csv_reports::csv(&opt.repository, cmd)?,
+
+        Command::Review { team, milestone } => review::review(team, milestone.as_deref())?,
     }
 
     Ok(())
 }
 
 fn check() -> Result<()> {
-    // Look for all directories like `2024h2` or `2025h1` and load goals from those directories.
-    let regex = Regex::new(r"\d\d\d\dh[12]")?;
+    // Let's find directories named like goal periods (`2024h2` or `2026`), and load goals from
+    // them.
+    let regex = Regex::new(MILESTONE_REGEX)?;
 
     for entry in WalkDir::new("src") {
         let entry = entry?;
@@ -211,7 +226,9 @@ fn check() -> Result<()> {
             continue;
         }
 
-        let _goals = rust_project_goals::goal::goals_in_dir(entry.path())?;
+        let goals = rust_project_goals::goal::goals_in_dir(entry.path())?;
+        let roadmaps = rust_project_goals::goal::roadmaps_in_dir(entry.path())?;
+        rust_project_goals::goal::validate_roadmap_references(&goals, &roadmaps)?;
     }
 
     Ok(())
