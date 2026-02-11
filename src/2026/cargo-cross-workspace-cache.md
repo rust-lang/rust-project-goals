@@ -47,7 +47,7 @@ At the end of the year, we should have an understanding of the benefits and trad
 
 | Team       | Support level | Notes                                   |
 | ---------- | ------------- | --------------------------------------- |
-| [cargo]    | Small         | Design and code reviews                 |
+| [cargo]    | Medium         | Design and code reviews                 |
 
 ## Frequently asked questions
 
