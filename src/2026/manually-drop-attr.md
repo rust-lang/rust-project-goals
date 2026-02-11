@@ -5,7 +5,7 @@
 | Point of contact | @thunderseethe |
 | Status           | Proposed       |
 | Contingent on    | Contributor    |
-| Highlight        | Invited        |
+| Contingent on    | Funding        |
 | Tracking issue   |                |
 | Zulip channel    | N/A            |
 
