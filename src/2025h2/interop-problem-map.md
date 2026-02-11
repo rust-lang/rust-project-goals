@@ -2,7 +2,7 @@
 
 | Metadata            |                                                                                           |
 | :--                 | :--                                                                                       |
-| Point of contact    | @joelmarcey                                                                               |
+| Point of contact    | @JoelMarcey                                                                               |
 | Status              | Proposed                                                                                  |
 | Tracking issue      | [rust-lang/rust-project-goals#388]                                                        |
 | Zulip channel       | [t-lang/interop](https://rust-lang.zulipchat.com/#narrow/channel/427678-t-lang.2Finterop) |
@@ -75,7 +75,7 @@ Fundamentally, this goal is about organizing knowledge in a useful way. I will b
 
 | Task                         | Owner(s) or team(s)                             | Notes                                          |
 |------------------------------|-------------------------------------------------|------------------------------------------------|
-| Author problem statements    | @joelmarcey                                    | External contributions welcome and anticipated |
+| Author problem statements    | @JoelMarcey                                    | External contributions welcome and anticipated |
 | Standard reviews             | ![Team][] [lang], [compiler], [libs], [opsem]   | Problem statement review                       |
 
 ## Frequently asked questions
