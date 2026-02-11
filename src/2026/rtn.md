@@ -15,13 +15,47 @@
 
 ## Summary
 
-Prepare TAIT (type alias impl trait) and return type notation (RTN) for stabilization together, giving Rust a coherent story for bounding opaque types whether they come from `-> impl Trait` returns or explicit associated types. Extend RTN to async closures via a new RFC. RTN enables bounds like `T::method(..): Send`, solving the ["Send bound" problem][sb] and unblocking widespread use of async fn in traits. Full stabilization is blocked on the [next-gen trait solver](./next-solver.md) work and is intended to happen late this year.
+Prepare TAIT (type alias impl trait) and return type notation (RTN) for stabilization together, giving Rust a coherent story for naming and bounding previously unnameable and unboundable types. TAIT lets users name opaque types like closures, async blocks, and complex iterators without boxing. RTN enables bounds like `T::method(..): Send`, solving the ["Send bound" problem][sb] and unblocking widespread use of async fn in traits. This goal also extends RTN to async closures via a new RFC. Full stabilization is blocked on the [next-gen trait solver](./next-solver.md) work and is intended to happen late this year.
 
 [sb]: https://smallcultfollowing.com/babysteps/blog/2023/02/01/async-trait-send-bounds-part-1-intro/
 
 ## Motivation
 
 ### The status quo
+
+#### TAIT: naming the unnameable
+
+Many Rust types cannot be written explicitly. Closures, async blocks, complex iterator chains, and nested combinators all produce anonymous types that have no surface syntax. Today, the only way to use these types in a type alias, struct field, or associated type is to box them (`Box<dyn Trait>`) or restructure code to avoid naming them entirely.
+
+[Type alias impl trait][tait-rfc] (TAIT) solves this by letting you write `impl Trait` in type alias position:
+
+```rust
+// Name a complex iterator type without spelling it out
+type OddIntegers = impl Iterator<Item = u32>;
+
+fn odd_integers(start: u32, stop: u32) -> OddIntegers {
+    (start..stop).filter(|i| i % 2 != 0)
+}
+```
+
+The concrete "hidden type" is inferred by the compiler, so callers see only the trait bounds. This is valuable for hiding implementation details, simplifying complex type signatures, and, critically, implementing associated types in traits without boxing:
+
+```rust
+impl MyTrait for MyType {
+    type Output = impl Iterator<Item = u32>;  // no Box<dyn> needed
+
+    fn produce(&self) -> Self::Output {
+        self.items.iter().filter(|x| x.is_valid()).copied()
+    }
+}
+```
+
+TAIT is available on nightly under the feature flag `type_alias_impl_trait`. See the [impl trait initiative][iti] for more details.
+
+[tait-rfc]: https://rust-lang.github.io/rfcs/2515-type_alias_impl_trait.html
+[iti]: https://rust-lang.github.io/impl-trait-initiative/
+
+#### RTN: the Send bound problem
 
 Async fn in traits (AFIT) has been stable since Rust 1.75, but when users attempt to use it in a public trait, they get a warning:
 
@@ -65,15 +99,6 @@ RTN has been fully implemented and is available on nightly under the feature fla
 
 [RFC #3654]: https://rust-lang.github.io/rfcs/3654-return-type-notation.html
 
-#### The broader picture: bounding opaque types
-
-The Send bound problem is really about adding bounds to opaque types in general. Traits express opaque types in two ways:
-
-- **`-> impl Trait` return types** (including `async fn`, which desugars to `-> impl Future`), where RTN provides the bound syntax (`T::method(..): Send`).
-- **Explicit associated types** like `type Foo = impl Bar` (TAIT — type alias impl trait), which are used when trait authors want to name the opaque type or use it in multiple positions.
-
-Both patterns are common and both need a story for adding bounds. RTN and TAIT are closely related — RTN can be used to model TAIT — and it makes sense to stabilize them together so that Rust has a coherent story for bounding opaque types regardless of how they're expressed.
-
 #### RTN for async closures
 
 RTN solves the Send bound problem for trait methods, but what about async closures? Consider this function:
@@ -93,13 +118,13 @@ The [async closure RFC][ext] mentioned a syntax like `F(..): Send`, but this was
 
 [ext]: https://rust-lang.github.io/rfcs/3668-async-closures.html#interaction-with-return-type-notation-naming-the-future-returned-by-calling
 
-#### Stabilizing RTN and TAIT together
+#### Why stabilize RTN and TAIT together?
 
-A [stabilization PR][stab-pr] for RTN was opened but had to be closed because RTN's ability to name opaque types in arbitrary positions interacts with unresolved questions around TAIT and ATPIT (associated type position impl trait). Since RTN can model TAIT, stabilizing them separately risks locking in behaviors that would be awkward or wrong to change later. Rather than rushing RTN stabilization alone, this goal focuses on getting both ready so they can stabilize together.
+TAIT and RTN are deeply connected: RTN can be used to model TAIT, and both deal with bounding and naming opaque types. A [stabilization PR][stab-pr] for RTN was opened but had to be closed because RTN's ability to name opaque types in arbitrary positions interacts with unresolved questions around TAIT and ATPIT (associated type position impl trait). Since RTN can model TAIT, stabilizing them separately risks locking in behaviors that would be awkward or wrong to change later. Rather than rushing RTN stabilization alone, this goal focuses on getting both ready so they can stabilize together, giving Rust a coherent story for bounding opaque types regardless of how they're expressed.
 
 #### Dependency on the next-gen trait solver
 
-Full stabilization is blocked on the [next-gen trait solver](./next-solver.md) work and may happen late this year.
+Full stabilization is blocked on the [next-gen trait solver](./next-solver.md) work and is intended to happen late this year.
 
 [stab-pr]: https://github.com/rust-lang/rust/pull/138424
 
@@ -107,9 +132,9 @@ Full stabilization is blocked on the [next-gen trait solver](./next-solver.md) w
 
 We propose to prepare RTN for stabilization by:
 
-- **Investigating what's needed from the lang side for TAIT** — RTN can be used to model TAIT, so it makes sense to stabilize them together. Both are very useful, and we need to understand what lang work TAIT requires.
+- **Investigating what's needed from the lang side for TAIT**: RTN can be used to model TAIT, so it makes sense to stabilize them together. Both are very useful, and we need to understand what lang work TAIT requires.
 - **Updating the stabilization report** to address the concerns raised in the closed stabilization PR, so that once TAIT is resolved, RTN stabilization can proceed without delay.
-- **Extending RTN to async closures** via a new RFC and nightly implementation — this work is independent of the TAIT blocker and can proceed in parallel.
+- **Extending RTN to async closures** via a new RFC and nightly implementation. This work is independent of the TAIT blocker and can proceed in parallel.
 
 ### Looking for contributors
 
