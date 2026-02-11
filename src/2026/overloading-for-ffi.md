@@ -66,15 +66,14 @@ We would like to implement a form of function overloading which is sufficient to
 
 Particular approaches we intend to explore:
 
-- Ways to leverage the existing trait system to perform something which is syntactically similar to C++ overloading. (For example, by extending `extern "rust-call"`.)
-- Extending or wrapping trait resolution to allow for dispatch in the face of overlapping impls. For a straw proposal, one could imagine ordering impls by number, and trying to resolve at each number until we reach a matching impl. (Similar to inherent method resolution with `Deref`.)
+- Leveraging the existing trait system to perform something which is syntactically similar to C++ overloading. (For example, by extending `extern "rust-call"`.)
+- Integrate with existing or proposed unstable features, such as specialization, to cover as much of the C++ overload space as possible.
 
 #### Design Axioms
 
 - Be comprehensive. Overloading should not be a reason that a C++ function cannot be called.
 - Preserve maintainability across the language boundary. Adding or removing an overload should not be substantially more backwards-incompatible in Rust than it is in C++. Supporting Rust callers should not require more work than supporting C++ callers.
 - Keep Rust nice. Build on existing concepts where possible: a natural _extension_ of existing language semantics, not a _replacement_ for them.
-- Clearly delineate what is unnatural for Rust. Where language support for overloading makes Rust more complex or difficult, it should be self-evidently for advanced features like FFI. Everyday Rust code should not be made more difficult or complicated for the sake of C++ compatibility.
 - Avoid surprises. If a function call compiles, it should pick the overload you most expect.
 
 It is **not** a goal to match C++'s resolution rules exactly. Many languages implement overloading, and Rust may want to interoperate with more than one of them, even if they have conflicting resolution rules. We will not design C++'s [argument-dependent lookup (ADL)](https://en.cppreference.com/w/cpp/language/adl.html) for Rust. Every C++ function should be callable, but that does not mean that it has to be callable in exactly the same way with the same arguments. It is OK to require explicit conversions or markers to select an overload.
