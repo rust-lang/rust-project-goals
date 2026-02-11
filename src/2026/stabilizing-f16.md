@@ -41,7 +41,7 @@ With @tgross35 as the dedicated reviewer, the asks of the teams are limited.
 | Team       | Support level | Notes                                   |
 | ---------- | ------------- | --------------------------------------- |
 | [compiler] | small              |                                         |
-| [libs]     | small              |                                         |
+| [libs-api]     | small              |                                         |
 | [lang]     | small              | this might be medium? We don't need anything special, but occasionally being fast-tracked would be nice |
 
 ## Frequently asked questions
