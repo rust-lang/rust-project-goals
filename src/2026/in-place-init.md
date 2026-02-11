@@ -54,13 +54,10 @@ required.
 
 ### Work items over the next year
 
-| Task                        | Owner(s)     | Notes                     |
-| --------------------------- | ------------ | ------------------------- |
-| Organize all-hands workshop | @BennoLossin |                           |
-| --------------------------- | ------------ | ------------------------- |
-| Prepare design RFC          | @Darksonn    |                           |
-|                             | @BennoLossin |                           |
-|                             | @yoshuawuyts |                           |
+| Task                        | Owner(s)                              | Notes |
+| --------------------------- | ------------                          | ----- |
+| Prepare design RFC          | @Darksonn, @BennoLossin, @yoshuawuyts |       |
+| Organize all-hands workshop | @BennoLossin                          |       |
 
 ## Team asks
 
