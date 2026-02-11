@@ -47,8 +47,8 @@ For the latter, it is not yet clear in what form the integration with the refere
 | Team       | Support level | Notes                                   |
 | ---------- | ------------- | --------------------------------------- |
 | [types]    |  Small   | Members may have comments/thoughts on direction and priorities; Review work for a-mir-formality     |
-| [spec]     |  Vibes   | General vibes for integration of a-mir-formality with reference |
-| [lang-docs] | Vibes | Thoughts on shape of integration of a-mir-formality into reference |
+| [spec]     |  Small   | General discussion of integration of a-mir-formality with reference |
+| [lang-docs] | Small | General discussion of shape of integration of a-mir-formality into reference |
  
 ## Frequently asked questions
 

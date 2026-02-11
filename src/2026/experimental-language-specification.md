@@ -60,32 +60,13 @@ One output of this goal will be clear periodic reporting of "how the experiment 
 
 ## Team asks
 
-> This section outlines what support you need from the Rust teams. For each team, identify the level of support you need:
->
-> * Vibes: You don't need the team to do anything at all, but you do want to know they like your idea.
->     * *Example:* Prototyping a new feature on crates.io that you hope to eventually upstream.
->     * *Example:* Conducting research that might eventually become a language feature.
-> * Small: You only need the team to do its routine activities.
->     * *Example:* A compiler change that will require a few small PRs to be reviewed.
->     * *Example:* Asking the lang team to approve a lint.
-> * Medium: You need dedicated support from one person, but the rest of the team doesn't have to do much.
->     * *Example:* A compiler change that doesn't require any rearchitecting but 
->     * *Example:* Implementing a small, noncontroversial language feature.
-> * Large: You need deeper review from the entire team.
->     * *Example:* Rearchitecting part of the compiler.
->     * *Example:* Implementing a complex language feature that will require design meetings.
->
-> If you're not sure, leave it blank, the project goals team can help.
->
-> "Vibes" and "Small" asks require someone on the team to "second" your goal; "Medium" and "Large" asks require a dedicated champion from the team. If you don't have a second or a champion, the project goals team will help you find them, don't worry about it.
-
 | Team       | Support level | Notes                         |
 | ---------- | ------------- | ----------------------------- |
 | [types]    | Medium        | Champion @jackh726            |
 | [lang]     | Medium        | Champion @joshtriplett        |
-| [spec]     | Vibes         | Vibes on how this may align with other efforts to specify Rust. |
+| [spec]     | Small         | General discussion on how this may align with other efforts to specify Rust. |
 
-This goal will also coordinate vibes with lang-docs in a non-blocking fashion, to ensure that different sources of Rust documentation are clearly delineated in a manner that avoids confusion, both in source repositories and in any rendered versions.
+This goal will also coordinate discussions with lang-docs in a non-blocking fashion, to ensure that different sources of Rust documentation are clearly delineated in a manner that avoids confusion, both in source repositories and in any rendered versions.
 
 ## Frequently asked questions
 

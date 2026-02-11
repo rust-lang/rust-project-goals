@@ -97,8 +97,8 @@ impl Drop for UringState {
 | ---------- | ------------- | ------------------------- |
 | [compiler] | Small         | Implementation reviews    |
 | [lang]     | Medium        | Vibe check and RFC review |
-| [opsem]    | Vibes         |                           |
-| [types]    | Vibes         |                           |
+| [opsem]    | Small         |                           |
+| [types]    | Small         |                           |
 
 ## Frequently asked questions
 

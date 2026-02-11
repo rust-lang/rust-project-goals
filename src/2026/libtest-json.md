@@ -56,8 +56,8 @@ Most of that involves shifting responsibilities from the test harness to the tes
 
 | Team       | Support level | Notes                                   |
 | ---------- | ------------- | --------------------------------------- |
-| [cargo]    | Vibes         |                                         |
-| [libs-api]      | Vibes    |                                         |
+| [cargo]    | Small         |                                         |
+| [libs-api]      | Small    |                                         |
 | [testing-devex] | Small    | Design discussions and review           |
 
 ## Frequently asked questions
