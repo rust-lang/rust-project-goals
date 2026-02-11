@@ -42,27 +42,25 @@ For this purpose, we have created [a section on the beyond-refs wiki][wiki]
 that can hold proposals in one place. We are also planning a workshop at the
 All-Hands.
 
-At the end of the goal period, we would like to pick and recommend one of the
-approaches to in-place initialization. Under [the stages of development
-framework][stages], one could say that we want to move from the "we are
-exploring" phase to the "we have a plan" phase.
+At the end of the goal period, we would like to land a [design space RFC]. The
+goal of this RFC is to describe the design space and the tradeoffs of different
+solutions. If the lang team accepts this RFC, then this implies that the lang
+team agrees with the characterization of the tradeoffs. The RFC may also make
+an opinionated recommendation / narrow down the design space, but this is not
+required.
 
 [wiki]: https://rust-lang.github.io/beyond-refs/in-place-init.html
-[stages]: https://rust-lang.zulipchat.com/#narrow/channel/x/topic/x/near/570861907
+[design space RFC]: https://rust-lang.zulipchat.com/#narrow/channel/x/topic/x/near/572843436
 
 ### Work items over the next year
 
-> *Sketch out the specific things you are trying to achieve in this goal period. This should be short and high-level -- we don't want to see the design!*
-
-| Task        | Owner(s) | Notes |
-| ----------- | -------- | ----- |
-| Do the work | *owner*  |       |
+| Task                        | Owner(s)                              | Notes |
+| --------------------------- | ------------                          | ----- |
+| Prepare design RFC          | @Darksonn, @BennoLossin, @yoshuawuyts |       |
+| Organize all-hands workshop | @BennoLossin                          |       |
 
 ## Team asks
 
-To recommend a single approach to in-place initialization, we will need the
-lang team's input and buy-in on the selected approach.
-
 | Team       | Support level | Notes                                   |
 | ---------- | ------------- | --------------------------------------- |
-| [lang]     | Medium        |                                         |
+| [lang]     | Medium        | Review and accept a design space RFC    |
