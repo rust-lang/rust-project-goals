@@ -8,6 +8,7 @@
 | Zulip channel       | N/A                                |
 | [compiler] champion | @oli-obk                           |
 | [lang] champion     | @traviscross                       |
+| [types] champion    | @oli-obk                           |
 
 
 ## Summary
@@ -54,3 +55,4 @@ This is inconsistent and user feedback will be really important here -- both in 
 |------------|---------------|-----------------|
 | [compiler] | Medium        | Reviews         |
 | [lang]     | Medium        | Design meeting? |
+| [types]    | Medium        | Reviews         |

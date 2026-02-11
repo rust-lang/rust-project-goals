@@ -75,3 +75,4 @@ This would allow for major changes in the standard library API while still allow
 | [libs-api] | Large         | Determine what API changes should be made across editions. |
 | [edition]  | Large         | Review the feasibility of this proposal as well as the specific API changes. |
 | [rustdoc]  | Medium        | Figure out how such API changes should be presented in the API docs. |
+| [types]    | Small         | Review of any changes to HIR ty lowering or method resolution |

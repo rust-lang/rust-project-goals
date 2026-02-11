@@ -84,10 +84,11 @@ For more details and a broader look, see the [box, box, box][box-post] blog post
 
 ## Team asks
 
-| Team       | Support level | Notes                 |
-| ---------- | ------------- | --------------------- |
-| [lang]     | Medium        | RFC decision          |
-| [compiler] | Medium        | Implementation review |
+| Team       | Support level | Notes                                       |
+| ---------- | ------------- | ------------------------------------------- |
+| [lang]     | Medium        | RFC decision                                |
+| [compiler] | Medium        | Implementation review                       |
+| [types]    | Small         | May have changes to dyn-compatibility rules |
 
 ## Frequently asked questions
 

@@ -155,9 +155,3 @@ runtime." The current `?Sized` bound conflates "unsized but has metadata" with
 these cases, which is the key blocker for extern types.
 
 [rust-lang/rust-project-goals#270]: https://github.com/rust-lang/rust-project-goals/issues/270
-
-[Team]: /about/badges.md
-[compiler]: /about/badges.md#compiler
-[lang]: /about/badges.md#lang
-[libs-api]: /about/badges.md#libs
-[types]: /about/badges.md#types

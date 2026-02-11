@@ -8,6 +8,7 @@
 | Tracking issue        |                         |
 | Other tracking issues | rust-lang/rust#149556   |
 | Zulip channel         | N/A                     |
+| [types] champion      | @BoxyUwU                |
 
 ## Summary
 
@@ -89,7 +90,7 @@ We would like to establish a mechanism in the language to automatically derive t
 | [lang]     |  Medium | Team aligned already on the shape of the feature |
 | [libs-api]     |               |                                         |
 | [opsem]    |               |                                         |
-| [types]    |               |                                         |
+| [types]    | Medium | Want to ensure that the feature "fits within the lines" of a simple desugaring, still some possible type-system impl work |
 | ...        | ...           | *Feel free to add rows for other teams* |
 
 ## Frequently asked questions
