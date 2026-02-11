@@ -621,9 +621,7 @@ pub fn format_highlight_goal_sections(goals: &[&GoalDocument]) -> Result<String>
         // Build people list: POC first (with role), then task owners (no role), then champions (with team role)
         let mut people: Vec<String> = Vec::new();
 
-        if !goal.metadata.status.is_invited {
-            people.push(format!("{} (point of contact)", goal.metadata.pocs));
-        }
+        people.push(format!("{} (point of contact)", goal.metadata.pocs));
 
         for owner in &goal.task_owners {
             if !goal.metadata.pocs.contains(owner.as_str()) {
