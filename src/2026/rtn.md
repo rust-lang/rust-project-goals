@@ -9,7 +9,7 @@
 | Tracking issue    |                         |
 | Zulip channel     | [#wg-async][channel]    |
 | [lang] champion   | @nikomatsakis           |
-| [types] champion  | @nikomatsakis           |
+| [types] champion  | @lcnr                   |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/187312-wg-async/
 
