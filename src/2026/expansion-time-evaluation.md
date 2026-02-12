@@ -13,6 +13,8 @@
 
 Lay the architectural groundwork for functions that can be evaluated during macro expansion. This speculative work focuses on "queryifying" the resolver and implementing a restricted trait solver mode, enabling future language features like `macro fn` and compiler-integrated interop tools.
 
+**Contingent on funding:** This project is contingent on finding funding.
+
 ## Motivation
 
 ### The status quo
