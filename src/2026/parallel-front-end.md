@@ -39,7 +39,7 @@ Performance improvement would be long-term work. We are considering potential me
 - Enable the parallel front end in Cargo.
 - Add more benchmarks for the parallel front end to rustc-perf
 - Write a feature stabilization report and submit it for compiler FCP
-- Continue improving parallel compilation performance, by parallelizing macro expansion and reducing data contention.
+- Continue improving parallel compilation performance, by parallelizing more parts of the compiler, like name resolution and macro expansion, and reducing data contention.
 
 
 ### Work items over the next year
@@ -62,7 +62,7 @@ Performance improvement would be long-term work. We are considering potential me
 ## Frequently asked questions
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/187679-t-compiler.2Fwg-parallel-rustc/
-[ICE]: https://github.com/rust-lang/rust/issues?q=label%3AA-parallel-compiler+ice
+[ICE]: https://github.com/rust-lang/rust/issues?q=label%3AA-parallel-compiler%20label%3AI-ICE
 [deadlock]: https://github.com/rust-lang/rust/issues?q=label%3AA-parallel-compiler+deadlock
 [testing]: https://github.com/rust-lang/rust/issues/118698
 [open issues]: https://github.com/rust-lang/rust/issues?q=state%3Aopen%20label%3AA-parallel-compiler
