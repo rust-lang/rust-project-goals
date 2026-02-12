@@ -54,10 +54,11 @@ required.
 
 ### Work items over the next year
 
-| Task                        | Owner(s)                              | Notes |
-| --------------------------- | ------------                          | ----- |
-| Prepare design RFC          | @Darksonn, @BennoLossin, @yoshuawuyts |       |
-| Organize all-hands workshop | @BennoLossin                          |       |
+| Task                                                      | Owner(s)                              | Notes |
+| --------------------------------------------------------- | ------------------------------------- | ----- |
+| Prepare design RFC                                        | @Darksonn, @BennoLossin, @yoshuawuyts |       |
+| Organize all-hands workshop                               | @BennoLossin                          |       |
+| Lang experiment: phased initialization of local variables | TBD                                   |       |
 
 ## Team asks
 
