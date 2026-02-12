@@ -1,12 +1,12 @@
 # Prototype a new set of Cargo "plumbing" commands
 
 | Metadata         |                                                                                  |
-| :--------------- | -------------------------------------------------------------------------------- |
-| Point of contact | @epage                                   |
-| Status           | Proposed for mentorship                                                                         |
-| Highlight        | Invited                                                                          |
+|:-----------------|----------------------------------------------------------------------------------|
+| Point of contact | @epage                                                                           |
+| Status           | Proposed                                                                         |
+| Contingent on    | Contributor                                                                      |
 | Roadmap          | Building blocks                                                                  |
-| Tracking issue   | [rust-lang/rust-project-goals#264] |
+| Tracking issue   | [rust-lang/rust-project-goals#264]                                               |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
 
 ## Summary
@@ -16,6 +16,8 @@
 to be removed ([cargo-plumbing#82](https://github.com/crate-ci/cargo-plumbing/issues/82)).
 2. Round out proposed commands ([issues](https://github.com/crate-ci/cargo-plumbing/issues?q=is%3Aissue%20state%3Aopen%20label%3AA-new-subcommand))
 3. Finalize the message formats ([cargo-plumbing#18](https://github.com/crate-ci/cargo-plumbing/discussions/18))
+
+**Contingent on contributor:** This goal needs contributors to refactor Cargo internals, implement remaining plumbing commands, optimize performance, and iterate on output schemas. The work is primarily in [rust-lang/cargo](https://github.com/rust-lang/cargo) and [crate-ci/cargo-plumbing](https://github.com/crate-ci/cargo-plumbing). Estimated time commitment: TBD.
 
 ## Motivation
 

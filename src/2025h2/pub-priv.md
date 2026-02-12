@@ -1,12 +1,13 @@
 # Stabilize public/private dependencies
 
-| Metadata           |                                    |
-| :--                | :--                                |
-| Point of contact   | @epage                             |
-| Status             | Proposed for mentorship            |
-| Zulip channel      | N/A                                |
-| Tracking issue     | [rust-lang/rust-project-goals#272] |
-| [cargo] champion | @epage |
+| Metadata         |                                    |
+|:-----------------|:-----------------------------------|
+| Point of contact | @epage                             |
+| Status           | Proposed                           |
+| Contingent on    | Contributor                        |
+| Zulip channel    | N/A                                |
+| Tracking issue   | [rust-lang/rust-project-goals#272] |
+| [cargo] champion | @epage                             |
 
 ## Summary
 

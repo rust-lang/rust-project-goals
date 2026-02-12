@@ -3,9 +3,11 @@
 | Metadata         |                                    |
 |------------------|------------------------------------|
 | Point of contact | @epage                             |
-| Status           | Invited                            |
+| Status           | Accepted                           |
+| Contingent on    | Contributor                        |
 | Tracking issue   | [rust-lang/rust-project-goals#124] |
-| Zulip channel  | N/A                                |
+| Zulip channel    | N/A                                |
+
 ## Summary
 
 Extend Cargo's caching of intermediate artifacts across a workspace to caching them across all workspaces of the user.

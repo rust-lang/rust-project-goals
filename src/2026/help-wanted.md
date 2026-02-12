@@ -1,5 +1,18 @@
-# Help wanted
+# Help wanted ![Help Wanted][]
 
-The goals below are **invited goals**, meaning that the goal has a mentor but needs someone to do the actual implementation work. We are looking for people who are willing to commit to working on a weekly basis through the year. The [point of contact](../about/poc.md) listed on each goal is volunteering to mentor — reach out to them if you're interested in helping, or reach out to the project goals organizers.
+This section contains goals that are in need of help.
 
-(((HIGHLIGHT GOALS: Invited)))
+## Looking for contributors
+
+The goals below are looking for a contributor to do the implementation work. The goal summaries include details of the expected time commitment and work duration. If you might be interested in helping with a goal, please join the rust-lang Zulip and post a message in the [`#project-goals/2026-workshop`][channel] channel or write to the goals team at `goals-team@rust-lang.org`! We would love to help you learn more about it.
+
+[channel]: https://rust-lang.zulipchat.com/#narrow/channel/546987-project-goals.2F2026-workshop
+
+(((CONTINGENT GOALS: Contributor)))
+
+## Looking for funds
+
+The goals below are looking for funding. The goal summaries include details of the expected time commitment and work duration. If you might be interested in helping to fund a goal, please join the rust-lang Zulip and post a message in the [`#project-goals/2026-workshop`][channel] channel or write to the goals team at `goals-team@rust-lang.org`.
+
+(((CONTINGENT GOALS: Funding)))
+

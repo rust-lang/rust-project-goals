@@ -8,8 +8,14 @@
 >
 > The **point of contact** is the person responsible for providing updates.
 >
-> The **status** should be either **Proposed** (if you have owners)
-> or **Proposed for mentorship** (if you do not yet).
+> The **status** should be **Proposed** for new goals or **Accepted** once approved.
+>
+> If your goal is **contingent** on something, add one or more `Contingent on` rows:
+> * `Contingent on | Contributor` — the goal needs someone to step up and do the work.
+>    The project goals team will try to help you find someone.
+> * `Contingent on | Funding` — the goal needs funding to proceed.
+>
+> If you add a "contingent" line, please add a section in the summary giving more details.
 
 | Metadata         |                                                                                  |
 | :--------------- | -------------------------------------------------------------------------------- |

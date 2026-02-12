@@ -198,6 +198,9 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         // Handle filtered highlight goal lists
         self.replace_highlight_goal_lists_filtered(chapter)?;
 
+        // Handle filtered contingent goal lists
+        self.replace_contingent_goal_lists_filtered(chapter)?;
+
         Ok(())
     }
 
@@ -220,15 +223,44 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         &mut self,
         chapter: &mut Chapter,
     ) -> anyhow::Result<()> {
+        self.replace_themed_goal_list(
+            chapter,
+            &re::HIGHLIGHT_GOAL_LIST_FILTERED,
+            "(((HIGHLIGHT GOALS: ...)))",
+            |g| &g.metadata.highlight,
+        )
+    }
+
+    fn replace_contingent_goal_lists_filtered(
+        &mut self,
+        chapter: &mut Chapter,
+    ) -> anyhow::Result<()> {
+        self.replace_themed_goal_list(
+            chapter,
+            &re::CONTINGENT_GOAL_LIST_FILTERED,
+            "(((CONTINGENT GOALS: ...)))",
+            |g| &g.metadata.contingent_on,
+        )
+    }
+
+    /// Shared helper for replacing themed goal list directives (HIGHLIGHT GOALS, CONTINGENT GOALS).
+    /// Filters goals by a `Themes` field extracted via `get_themes`, then formats as `####` sections.
+    fn replace_themed_goal_list(
+        &mut self,
+        chapter: &mut Chapter,
+        regex: &Regex,
+        directive_name: &str,
+        get_themes: impl Fn(&GoalDocument) -> &goal::Themes,
+    ) -> anyhow::Result<()> {
         loop {
-            let Some(m) = re::HIGHLIGHT_GOAL_LIST_FILTERED.find(&chapter.content) else {
+            let Some(m) = regex.find(&chapter.content) else {
                 return Ok(());
             };
             let range = m.range();
 
-            let chapter_path = chapter_path(chapter, "(((HIGHLIGHT GOALS: ...)))")?;
+            let chapter_path = chapter_path(chapter, directive_name)?;
 
-            let capture_value = re::HIGHLIGHT_GOAL_LIST_FILTERED
+            let capture_value = regex
                 .captures(&chapter.content[range.clone()])
                 .and_then(|caps| caps.get(1))
                 .map(|m| m.as_str().trim())
@@ -239,7 +271,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 .iter()
                 .filter(|g| {
                     g.metadata.status.content.is_not_not_accepted()
-                        && g.metadata.highlight.contains(capture_value)
+                        && get_themes(g).contains(capture_value)
                 })
                 .collect();
 

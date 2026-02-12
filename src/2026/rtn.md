@@ -1,21 +1,23 @@
 # Prepare TAIT + RTN for stabilization
 
-| Metadata          |                         |
-| :---------------- | ----------------------- |
-| Point of contact  | @nikomatsakis           |
-| Status            | Proposed for mentorship |
-| Highlight         | Invited                 |
-| Roadmap           | Just add async          |
-| Tracking issue    |                         |
-| Zulip channel     | [#wg-async][channel]    |
-| [lang] champion   | @nikomatsakis           |
-| [types] champion  | @lcnr                   |
+| Metadata         |                      |
+|:-----------------|----------------------|
+| Point of contact | @nikomatsakis        |
+| Status           | Proposed             |
+| Contingent on    | Contributor          |
+| Roadmap          | Just add async       |
+| Tracking issue   |                      |
+| Zulip channel    | [#wg-async][channel] |
+| [lang] champion  | @nikomatsakis        |
+| [types] champion | @lcnr                |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/187312-wg-async/
 
 ## Summary
 
 Prepare TAIT (type alias impl trait) and return type notation (RTN) for stabilization together, giving Rust a coherent story for naming and bounding previously unnameable and unboundable types. TAIT lets users name opaque types like closures, async blocks, and complex iterators without boxing. RTN enables bounds like `T::method(..): Send`, solving the ["Send bound" problem][sb] and unblocking widespread use of async fn in traits. This goal also extends RTN to async closures via a new RFC. Full stabilization is blocked on the [next-gen trait solver](./next-solver.md) work and is intended to happen late this year.
+
+**Contingent on contributor:** The majority of the impl work for TAIT and RTN has been done however the syntactic design for RTN and async closures is incomplete. @nikomatsakis is seeking someone willing to help work on the RFC and explore the design space as well as to finalize impl details.
 
 [sb]: https://smallcultfollowing.com/babysteps/blog/2023/02/01/async-trait-send-bounds-part-1-intro/
 
