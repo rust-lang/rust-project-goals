@@ -1,11 +1,12 @@
 # Incremental Systems Rethought
 
-| Metadata         |                                                                                  |
-| :--------------- | -------------------------------------------------------------------------------- |
-| Point of contact | @blyxyas                                                                         |
-| Status           | Proposed                                                                         |
-| Tracking issue   |                                                                                  |
-| Zulip channel    | N/A                                                                              |
+| Metadata         |          |
+|:-----------------|----------|
+| Point of contact | @blyxyas |
+| Status           | Proposed |
+| Tracking issue   |          |
+| Zulip channel    | N/A      |
+| Contingent on    | Funding  |
 
 ## Summary
 
@@ -13,6 +14,8 @@ Design, propose, and implement a redesign of the incremental system to allow for
 
 There's already an [on-going RFC], based on [this blog post and talk] by the same author (and this project goal's point of contact)
 As my other project goals, this is a formalization of an already existing effort.
+
+**Contingent on funding:** @blyxyas is actively soliciting funding to be able to continue with this work.
 
 ## Motivation
 
