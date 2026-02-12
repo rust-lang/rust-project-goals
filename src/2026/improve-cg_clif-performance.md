@@ -4,7 +4,7 @@
 | :--------------- | -------------------------------------------------------------------------------- |
 | Point of contact | @bjorn3                                   |
 | Status           | Proposed                                                                         |
-| Tracking issue   | N/A  |
+| Tracking issue   |   |
 | Zulip channel    | N/A |
 | Contingent on    | Funding |
 
@@ -60,6 +60,6 @@ We additionally want to fix several long-standing bugs that limit `rustc_codegen
 | Team       | Support level | Notes                                   |
 | ---------- | ------------- | --------------------------------------- |
 | [cargo]    | Small        | In case we end up pursuing JITing as a way to improve performance that will eventually need native integration with `cargo run`. For now we're just prototyping, and so the occasional vibe check should be sufficient |
-| [compiler] | Small to medium | Depending on what ways we end up pursuing, we might need no rustc side changes at all or medium sized changes. |
+| [compiler] | Medium | Depending on what ways we end up pursuing, we might need no rustc side changes at all or medium sized changes. |
 
 ## Frequently asked questions
