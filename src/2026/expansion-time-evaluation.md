@@ -6,10 +6,9 @@
 | Status           | Proposed                   |
 | Flagship         | Constify all the things    |
 | [compiler] champion | @oli-obk                |
-| [compiler] champion | @petrochenkov                 |
 | Tracking issue   |                            |
 | Zulip channel    | N/A                        |
-| Contingent on    | Funding                        |
+| Contingent on    | Funding                    |
 
 ## Summary
 
@@ -64,7 +63,7 @@ We will prototype decoupling macro expansion from the monolithic resolver. This 
 
 | Team | Support level | Notes |
 | ---- | ------------- | ----- |
-| [compiler] | Large | Significant refactoring of the resolver |
+| [compiler] | Large | Significant refactoring of the resolver, reviews from @petrochenkov |
 | [types] | Medium | Support for the restricted solver mode in the new solver |
 
 ## Frequently asked questions
