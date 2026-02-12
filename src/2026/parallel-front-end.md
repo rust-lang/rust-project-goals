@@ -30,7 +30,7 @@ In addition, we need to document and enhance the support of surrounding tools fo
 
 After that, we will start the feature stabilization process to push parallel front end into the stable release channel.
 
-Performance improvement would be long-term work. We are considering potential measures to speed up the parallel front-end, such as reducing data contention, adopting finer-grained parallelism, and enabling parallel macro expansion.
+Performance improvement would be long-term work. We are considering potential measures to speed up the parallel front-end, such as reducing data contention, adopting finer-grained parallelism, and enabling parallel name resolution and macro expansion.
 
 ### What we propose to do about it
 
