@@ -45,6 +45,6 @@ Work with [compiler] to identify a minimal subset of functionality for what the 
 | Team       | Support level | Notes                                   |
 | ---------- | ------------- | --------------------------------------- |
 | [cargo]    | Small         |                                         |
-| [compiler] | Small         | Design discussions, PR review           |
+| [compiler] | Medium        | An implementer, design discussions, PR review |
 
 ## Frequently asked questions
