@@ -8,6 +8,7 @@
 | [compiler] champion | @oli-obk                |
 | Tracking issue   |                            |
 | Zulip channel    | N/A                        |
+| Contingent on    | Funding                        |
 
 ## Summary
 
