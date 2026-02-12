@@ -6,6 +6,7 @@
 | Status           | Proposed                   |
 | Flagship         | Constify all the things    |
 | [compiler] champion | @oli-obk                |
+| [compiler] champion | @petrochenkov                 |
 | Tracking issue   |                            |
 | Zulip channel    | N/A                        |
 | Contingent on    | Funding                        |
