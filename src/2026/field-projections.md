@@ -1,15 +1,18 @@
 # Field Projections
 
-| Metadata         |                                                                                  |
-| :--------------- | -------------------------------------------------------------------------------- |
-| Point of contact | @BennoLossin                                                                     |
-| Status           | Proposed                                                                         |
-| Roadmap          | Beyond the `&`                                                                   |
-| Roadmap          | Rust for Linux                                                                   |
-| Tracking issue   | [rust-lang/rust-project-goals#390]                                               |
-| Zulip channel    | [t-lang/custom-refs](https://rust-lang.zulipchat.com/#narrow/channel/522311-t-lang.2Fcustom-refs) |
-| [lang] champion  | @tmandry                                                                         |
-| [types] champion  | @lqd                                                                        |
+| Metadata             |                                           |
+| :------------------- | ----------------------------------------- |
+| Point of contact     | @BennoLossin                              |
+| Status               | Proposed                                  |
+| Roadmap              | Beyond the `&`                            |
+| Roadmap              | Rust for Linux                            |
+| Tracking issue       | [rust-lang/rust-project-goals#390]        |
+| Zulip channel        | [t-lang/custom-refs][custom-refs-channel] |
+| [lang] champion      | @tmandry                                  |
+| [types] champion     | @lqd                                      |
+| [compiler] champion  | @dingxiangfei2009                         |
+
+[custom-refs-channel]: https://rust-lang.zulipchat.com/#narrow/channel/522311-t-lang.2Fcustom-refs
 
 ## Summary
 
@@ -103,7 +106,7 @@ The design axioms from the last period still apply and are fulfilled by the virt
 | Explore and map the solution space | field projection working group | Discussions in [t-lang/custom-refs](https://rust-lang.zulipchat.com/#narrow/channel/522311-t-lang.2Fcustom-refs) & meetings with members of the working group  |
 | Document the design in the wiki | @BennoLossin | Write it down in RFC-style, to easily extract RFCs or design meeting documents from the wiki. |
 | Formalize the borrow checker integration in a-mir-formality | @BennoLossin, @lqd, @nikomatsakis | Verify our work formally and explore the algorithms needed for implementing it in the compiler |
-| Implement a compiler experiment | @BennoLossin, @dingxiangfei2009 | Evaluate our current approach by creating an experiment to try out in real code. |
+| Implement a compiler experiment | @BennoLossin, @dingxiangfei2009, @oli-obk | Evaluate our current approach by creating an experiment to try out in real code. Implementers: @BennoLossin & @dingxiangfei2009; Reviewer: @oli-obk |
 | Draft RFCs | @tmandry, @BennoLossin | Extract the knowledge from the wiki & provide historical context as well as rationale and a contiguous & comprehensive story. |
 
 **Success metric:** This project goal will be successful if it can significantly advance the design and knowledge on how to implement field projections in Rust; part of that is creating a compiler experiment in nightly. If we are able to accept the required RFCs, then we have over-achieved our goal. A major setback would be if we discover the current approach untenable or find other blockers that prevent making meaningful progress in the design and experiment.
