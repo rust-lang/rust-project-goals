@@ -122,5 +122,5 @@ Finnaly, such a guideline is also needed by the community. For example, there ha
 This goal focuses on identifying particular `unsafe` usage patterns for Eclipse iceoryx2 and tracing those back to relevant portions of the Rust Reference and standard library documentation. The main work is then to follow the work model of the [zerocopy](https://crates.io/crates/zerocopy) crate by working with the relevant teams to have normative language created in the Reference and standard library documentation such that safety-critical Rust users can build safety-cases upon them.
 > Priority areas include cross-process synchronization, memory-mapped regions, cross-process atomics, and UnsafeCell in shared memory—patterns common in systems programming but underdocumented.
 
-This goal is neither concerned with specific contracts nor with particular application scenarios. It starts from the Rust standard library and summarizes general rules to guide further development of library features involving unsafe code.
+This goal is focused on ensuring that particular `unsafe` usages from the language and standard library are documented in a normative fashion as to how they behave. It would not produce a general standard or set of guidelines on how to use `unsafe` to mitigate risk of introducing undefined behavior.
 
