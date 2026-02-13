@@ -1,12 +1,13 @@
 # In-place initialization
 
-| Metadata         |                                      |
-| :--------------- | ------------------------------------ |
-| Point of contact | @Darksonn                            |
-| Status           | Proposed                             |
-| Roadmap          | Beyond the `&`                       |
-| Tracking issue   | [rust-lang/rust-project-goals#395]   |
-| Zulip channel    | [#t-lang/in-place-init][channel]     |
+| Metadata         |                                    |
+|:-----------------|------------------------------------|
+| Point of contact | @Darksonn                          |
+| Status           | Proposed                           |
+| Roadmap          | Beyond the `&`                     |
+| Roadmap          | Rust for Linux                     |
+| Tracking issue   | [rust-lang/rust-project-goals#395] |
+| Zulip channel    | [#t-lang/in-place-init][channel]   |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/528918-t-lang.2Fin-place-init
 
