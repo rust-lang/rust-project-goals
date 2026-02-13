@@ -34,7 +34,7 @@ Performance improvement would be long-term work. We are considering potential me
 
 ### What we propose to do about it
 
-- Resolve remaining issues in the issue [list][open issues], especially [the major issue][big issue] related to incremental compilation.
+- Resolve remaining issues in the issue [list][open issues].
 - Build a parallel front end test suite to ensure the robustness and prevent regressions
 - Enable the parallel front end in Cargo.
 - Add more benchmarks for the parallel front end to rustc-perf
