@@ -9,7 +9,7 @@
 | Tracking issue        |                           |
 | Other tracking issues | rust-lang/rust#149556     |
 | Zulip channel         | N/A                       |
-| [types] champion      | @BoxyUwU                  |
+| [types] champion      |                           |
 
 ## Summary
 
