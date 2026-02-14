@@ -5,7 +5,7 @@ This repo tracks the effort to set and track goals for the Rust project.
 
 ## Next goal period (2026)
 
-The next goal period will be 2026. We are currently in the process of assembling goals. [Click here](./2026/goals.md) to see the current list. If you'd like to propose a goal, [instructions can be found here](./how_to/propose_a_goal.md).
+The next goal period will be 2026. We are currently in the process of assembling goals. [Click here](./2026/reference.md) to see the current list. If you'd like to propose a goal, [instructions can be found here](./how_to/propose_a_goal.md).
 
 ## Current goal period (2025H2)
 
