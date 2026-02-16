@@ -58,7 +58,7 @@ required.
 | --------------------------------------------------------- | ------------------------------------- | ----- |
 | Prepare design RFC                                        | @Darksonn, @BennoLossin, @yoshuawuyts |       |
 | Organize all-hands workshop                               | @BennoLossin                          |       |
-| Lang experiment: phased initialization of local variables | TBD                                   |       |
+| Lang experiment: phased initialization of local variables | @dingxiangfei2009                                   |       |
 
 ## Team asks
 
