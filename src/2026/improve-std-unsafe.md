@@ -110,7 +110,7 @@ Finnaly, such a guideline is also needed by the community. For example, there ha
 | Team       | Support level | Notes                                   |
 | ---------- | ------------- | --------------------------------------- |
 | [libs]     | Small         | Review pull requests; |
-| [opsem]    | Small         | Review pull requests; answer questions on Zulip when there are different openions about specific rules  |
+| [opsem]    | Small         | Review pull requests; answer questions on Zulip when there are different opinions about specific rules  |
 
 ## Frequently asked questions
 
