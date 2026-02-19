@@ -80,8 +80,8 @@ from Rust.
 ## Team asks
 
 | Team       | Support level | Notes                                                                                                                  |
-| ---------- | ------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| [compiler] | small         | New targets will need review and approval                                                                              |
+|------------|---------------|------------------------------------------------------------------------------------------------------------------------|
+| [compiler] | Medium        | Targets are small but `async fn` is not                                                                                |
 | [lang]     | small         | Experimentation with native Wasm features will need approval. May become "medium" if we are somehow really successful. |
 | [libs]     | small         | Threading support will need review                                                                                     |
 

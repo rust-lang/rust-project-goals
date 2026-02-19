@@ -124,7 +124,7 @@ the next logical step, enabling efficient matrix processing in Rust.
 
 | Team       | Support level | Notes                                                   |
 | ---------- | ------------- | ------------------------------------------------------- |
-| [compiler] | Small         | Standard reviews for stabilization and SVE work         |
+| [compiler] | Medium         | Standard reviews for stabilization and SVE work         |
 | [lang]     | Medium        | RFC decision for [rfcs#3838], stabilization sign-off    |
 | [libs-api] | Medium        | Review RFC; review and approve stdarch SVE APIs         |
 | [types]    | Medium        | Type System implementation and stabilization sign-off   |

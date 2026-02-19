@@ -1,11 +1,12 @@
 # Incremental Systems Rethought
 
-| Metadata         |                                                                                  |
-| :--------------- | -------------------------------------------------------------------------------- |
-| Point of contact | @blyxyas                                                                         |
-| Status           | Proposed                                                                         |
-| Tracking issue   |                                                                                  |
-| Zulip channel    | N/A                                                                              |
+| Metadata            |           |
+|:--------------------|-----------|
+| Point of contact    | @blyxyas  |
+| Status              | Proposed  |
+| Tracking issue      |           |
+| [compiler] champion | @jackh726 |
+| Zulip channel       | N/A       |
 
 ## Summary
 
@@ -54,11 +55,10 @@ After those 6 months, we'll focus on less systematic improvements. We'll work on
 and hopefully get it close to the finish line. In the stabilization process, we'll try to make the API
 as expandable as possible to allow for granularity in the recompilation tracking.
 
-| Task                    | Owner(s)           | Notes |
-| ----------------------- | ------------------ | ----- |
-| Design, propose         | @blyxyas @jackh726 |       |
-| Implementation          | @blyxyas           |       |
-| Champion                | @jackh726          |       |
+| Task            | Owner(s)           | Notes |
+|-----------------|--------------------|-------|
+| Design, propose | @blyxyas @jackh726 |       |
+| Implementation  | @blyxyas           |       |
 
 ### The "shiny future" we are working towards
 
@@ -75,9 +75,9 @@ The first step is completing the RFC and implementing it in an unstable stage.
 
 ## Team asks
 
-| Team       | Support level | Notes                                                                 |
-| ---------- | ------------- | --------------------------------------------------------------------- |
-| [compiler] | Medium        | Champion: @jackh726                                                   |
+| Team       | Support level | Notes |
+|------------|---------------|-------|
+| [compiler] | Medium        |       |
 
 ## Frequently asked questions
 
