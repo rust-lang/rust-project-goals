@@ -8,6 +8,7 @@
 | Zulip channel    | #t-compiler/project-const-traits   |
 | Highlight        | true                               |
 | Roadmap          | Constify all the things            |
+| Roadmap          | Rust for Linux                     |
 | [types] champion | @oli-obk                           |
 
 ## Summary
