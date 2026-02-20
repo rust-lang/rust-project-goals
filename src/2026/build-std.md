@@ -5,6 +5,7 @@
 | Point of contact | @davidtwco                         |
 | Status           | Proposed                           |
 | Roadmap          | Building blocks                    |
+| Roadmap          | Rust for Linux                     |
 | Zulip channel    | [#project-goals/build-std][zulip]  |
 | Tracking issue   | [rust-lang/rust-project-goals#274] |
 

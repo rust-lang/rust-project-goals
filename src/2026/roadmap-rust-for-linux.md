@@ -58,6 +58,69 @@ We have also been tracking the coordination through Project goals and this is a 
 `compiler_builtins` TODO(tomassedovic) the previous issue also lists compiler builtins. What are those?
 
 
+## Other topics
+
+These are other topics Rust for Linux is interested in but that do not have a project goal. There are more (please see the linked lists below), but for 2026 we considered these to be some we would like to focus on. In order of priority (roughly):
+
+  - `rustfmt`: removing the `//` hack inside imports ("kernel vertical style").
+    + Essentially being able to trigger the logic that currently gets triggered when `rustfmt` detects a comment.
+
+  - Coherence domains.
+    + Not just for the orphan rule, but also to e.g. define inherent methods on a dependency like `core` and `std` do to each other.
+    + We will be splitting soon our `kernel` crate in smaller crates.
+
+  - Niche optimizations.
+    + At least for Rust `enum`s that contain pointers to aligned objects (e.g. 4 byte alignment in XArray, or to a page, etc.).
+
+  - Clippy: support for more tagged comments.
+    + `// PANIC: ...`, `// CAST: ...` and `// ORDERING: ...`.
+
+  - `extern` types.
+    + Currently we use `Opaque` (a `UnsafeCell<MaybeUninit<T>>` + `PhantomPinned` for avoiding uniqueness for mutable references).
+
+  - `rustdoc`: Stabilizing `--output-format=doctest`.
+
+  - `-Coverflow-checks=report`.
+    + i.e. a new mode that allows to "report and continue" (wrapping), like UBSan and similar tools.
+
+  - CFI related improvements.
+    + `fn_cast!` macro and `bindgen` improvements to generate the annotation for CFI encoding on structs.
+
+  - Support packed types to be aligned or to contain aligned members.
+    + And `bindgen` support for it.
+
+  - Custom prelude.
+
+  - `build_assert!`.
+    + Especially ways to fail earlier and/or improve the error messages, similar to [GCC's](https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#index-error-function-attribute) and [Clang's](https://clang.llvm.org/docs/AttributeReference.html#error-warning) `error`/`warning` attribute.
+
+  - Specialization for improving the performance of our `alloc` types.
+
+  - `--emit=noreturn`.
+    + We may be able to improve `objtool`, but having this would significantly improve the situation.
+
+  - Safe transumations.
+    + We may vendor `zerocopy` for now, but long-term we are interested in seeing parts of it make it into the standard library.
+
+  - Contracts/better safety comment tools.
+
+Please see more details at the following Rust for Linux lists:
+
+  - [Rust unstable features needed for the kernel](https://github.com/Rust-for-Linux/linux/issues/2).
+
+  - [Rust wanted features](https://github.com/Rust-for-Linux/linux/issues/354).
+
+  - [`core` wanted features & bugfixes](https://github.com/Rust-for-Linux/linux/issues/514).
+
+  - [`rustc`](https://github.com/Rust-for-Linux/linux/issues/355).
+
+  - [`rustdoc` wanted features & bugfixes ](https://github.com/Rust-for-Linux/linux/issues/350).
+
+  - [`rustfmt` wanted features & bugfixes](https://github.com/Rust-for-Linux/linux/issues/398).
+
+  - [Clippy wanted features & bugfixes](https://github.com/Rust-for-Linux/linux/issues/349).
+
+
 ## Frequently asked questions
 
 TODO
