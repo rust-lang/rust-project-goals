@@ -125,14 +125,14 @@ pub struct Metadata {
     /// Highlight themes this goal belongs to (zero or more)
     pub highlight: Themes,
 
-    /// Contingencies for this goal (zero or more), e.g. "Funding", "Contributor"
-    pub contingent_on: Themes,
+    /// Needs of this goal (zero or more), e.g. "Funding", "Contributor"
+    pub needs: Themes,
 }
 
 impl Metadata {
     /// True if this goal needs a contributor (i.e. is "help wanted").
     pub fn is_help_wanted(&self) -> bool {
-        self.contingent_on.contains("Contributor")
+        self.needs.contains("Contributor")
     }
 }
 
@@ -894,7 +894,7 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
         roadmap.push(Spanned::here(theme.to_string()));
     }
     let highlight = parse_themed_rows(first_table, "Highlight");
-    let contingent_on = parse_themed_rows(first_table, "Contingent on");
+    let needs = parse_themed_rows(first_table, "Needs");
 
     Ok(Some(Metadata {
         title: title.clone(),
@@ -910,7 +910,7 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
         champions,
         roadmap,
         highlight,
-        contingent_on,
+        needs,
     }))
 }
 

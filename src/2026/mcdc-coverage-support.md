@@ -49,7 +49,7 @@ We acknowledge that the previous implementation was removed for valid reasons. T
 
 Rust has stable, well-maintained MC/DC coverage support that meets the requirements of DO-178C, ISO 26262, and IEC 61508. Safety-critical projects can use `cargo llvm-cov` (or similar tooling) to generate MC/DC reports suitable for certification evidence.
 
-**2026 scope:** We aim for unstable (`-Zcoverage-options=mcdc`) support covering the core use cases. Stabilization would be a subsequent goal, contingent on demonstrated maintenance sustainability.
+**2026 scope:** We aim for unstable (`-Zcoverage-options=mcdc`) support covering the core use cases. Stabilization would be a subsequent goal, if maintenance sustainability is demonstrated.
 
 ## Design notes
 

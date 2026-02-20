@@ -11,46 +11,46 @@ lazy_static! {
 
 // List of all goals, roadmap or otherwise
 lazy_static! {
-    pub static ref GOAL_LIST: Regex = Regex::new(r"\(\(\(GOALS\)\)\)").unwrap();
+    pub static ref GOALS_LIST: Regex = Regex::new(r"\(\(\(GOALS\)\)\)").unwrap();
 }
 
 // List of roadmap goals (accepted or pending)
 // Accepts both "ROADMAP GOALS" (new) and "FLAGSHIP GOALS" (old) for backward compatibility
 lazy_static! {
-    pub static ref ROADMAP_GOAL_LIST: Regex = Regex::new(r"\(\(\((?:ROADMAP|FLAGSHIP) GOALS\)\)\)").unwrap();
+    pub static ref ROADMAP_GOALS_LIST: Regex = Regex::new(r"\(\(\((?:ROADMAP|FLAGSHIP) GOALS\)\)\)").unwrap();
 }
 
 // List of roadmap goals filtered by category (accepted or pending)
 // Accepts both "ROADMAP GOALS:" (new) and "FLAGSHIP GOALS:" (old) for backward compatibility
 lazy_static! {
-    pub static ref ROADMAP_GOAL_LIST_FILTERED: Regex =
+    pub static ref ROADMAP_GOALS_LIST_FILTERED: Regex =
         Regex::new(r"\(\(\((?:ROADMAP|FLAGSHIP) GOALS:\s*(.+?)\s*\)\)\)").unwrap();
 }
 
 // List of non-roadmap goals (accepted or pending)
 lazy_static! {
-    pub static ref OTHER_GOAL_LIST: Regex = Regex::new(r"\(\(\(OTHER GOALS\)\)\)").unwrap();
+    pub static ref OTHER_GOALS_LIST: Regex = Regex::new(r"\(\(\(OTHER GOALS\)\)\)").unwrap();
 }
 
 // List of not accepted goals
 lazy_static! {
-    pub static ref GOAL_NOT_ACCEPTED_LIST: Regex =
+    pub static ref GOALS_NOT_ACCEPTED_LIST: Regex =
         Regex::new(r"\(\(\(GOALS NOT ACCEPTED\)\)\)").unwrap();
 }
 
 // List of large goals (goals with at least one Large team ask)
 lazy_static! {
-    pub static ref LARGE_GOAL_LIST: Regex = Regex::new(r"\(\(\(LARGE GOALS\)\)\)").unwrap();
+    pub static ref LARGE_GOALS_LIST: Regex = Regex::new(r"\(\(\(LARGE GOALS\)\)\)").unwrap();
 }
 
 // List of medium goals (goals with at least one Medium ask, no Large asks)
 lazy_static! {
-    pub static ref MEDIUM_GOAL_LIST: Regex = Regex::new(r"\(\(\(MEDIUM GOALS\)\)\)").unwrap();
+    pub static ref MEDIUM_GOALS_LIST: Regex = Regex::new(r"\(\(\(MEDIUM GOALS\)\)\)").unwrap();
 }
 
 // List of small goals (goals with only Small asks)
 lazy_static! {
-    pub static ref SMALL_GOAL_LIST: Regex = Regex::new(r"\(\(\(SMALL GOALS\)\)\)").unwrap();
+    pub static ref SMALL_GOALS_LIST: Regex = Regex::new(r"\(\(\(SMALL GOALS\)\)\)").unwrap();
 }
 
 // Marker to create goal subchapters without rendering a table
@@ -60,23 +60,23 @@ lazy_static! {
 
 // List of highlight goals filtered by theme (accepted or pending)
 lazy_static! {
-    pub static ref HIGHLIGHT_GOAL_LIST_FILTERED: Regex =
+    pub static ref HIGHLIGHT_GOALS_LIST_FILTERED: Regex =
         Regex::new(r"\(\(\(HIGHLIGHT GOALS:\s*(.+?)\s*\)\)\)").unwrap();
 }
 
-// List of contingent goals filtered by contingency type (e.g. Funding, Contributor)
+// List of goals with needs filtered by need (e.g. Funding, Contributor)
 lazy_static! {
-    pub static ref CONTINGENT_GOAL_LIST_FILTERED: Regex =
-        Regex::new(r"\(\(\(CONTINGENT GOALS:\s*(.+?)\s*\)\)\)").unwrap();
+    pub static ref GOALS_WITH_NEEDS_LIST_FILTERED: Regex =
+        Regex::new(r"\(\(\(GOALS WITH NEEDS:\s*(.+?)\s*\)\)\)").unwrap();
 }
 
 lazy_static! {
-    pub static ref GOAL_COUNT: Regex = Regex::new(r"\(\(\(#GOALS\)\)\)").unwrap();
+    pub static ref GOALS_COUNT: Regex = Regex::new(r"\(\(\(#GOALS\)\)\)").unwrap();
 }
 
 // Accepts both "#ROADMAP GOALS" (new) and "#FLAGSHIP GOALS" (old) for backward compatibility
 lazy_static! {
-    pub static ref ROADMAP_GOAL_COUNT: Regex = Regex::new(r"\(\(\(#(?:ROADMAP|FLAGSHIP) GOALS\)\)\)").unwrap();
+    pub static ref ROADMAP_GOALS_COUNT: Regex = Regex::new(r"\(\(\(#(?:ROADMAP|FLAGSHIP) GOALS\)\)\)").unwrap();
 }
 
 lazy_static! {
