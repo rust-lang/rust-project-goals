@@ -10,7 +10,7 @@
 >
 > The **status** should be **Proposed** for new goals or **Accepted** once approved.
 >
-> If your goal is **needs** something to proceed, add one or more `Needs` rows:
+> If your goal **needs** something to proceed, add one or more `Needs` rows:
 > * `Needs | Contributor` — the goal needs someone to step up and do the work.
 >    The project goals team will try to help you find someone.
 > * `Needs | Funding` — the goal needs funding to proceed.
