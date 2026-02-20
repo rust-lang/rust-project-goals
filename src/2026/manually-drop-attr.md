@@ -4,8 +4,8 @@
 |:-----------------|----------------|
 | Point of contact | @thunderseethe |
 | Status           | Proposed       |
-| Contingent on    | Contributor    |
-| Contingent on    | Funding        |
+| Needs            | Contributor    |
+| Needs            | Funding        |
 | Tracking issue   |                |
 | Zulip channel    | N/A            |
 
@@ -16,7 +16,7 @@ Allow users to easily control the drop semantics of struct fields, letting them 
 - Allow cross-language bindings to expose struct fields without compatibility hazards, and
 - Make all code that disables default destructor behavior more convenient to use in Rust.
 
-**Contingent on contributor:** This goal needs a contributor to implement a lang experiment in rustc and write an RFC. The work is a focused compiler feature touching drop semantics and destructor codegen. Estimated time commitment: TBD.
+**Needs contributor:** This goal needs a contributor to implement a lang experiment in rustc and write an RFC. The work is a focused compiler feature touching drop semantics and destructor codegen. Estimated time commitment: TBD.
 
 ## Motivation
 

@@ -6,13 +6,13 @@
 | Status           | Proposed                                                                         |
 | Tracking issue   |   |
 | Zulip channel    | N/A |
-| Contingent on    | Funding |
+| Needs            | Funding |
 
 ## Summary
 
 This goal aims to improve the rust development experience through faster incremental code generation with `rustc_codegen_cranelift`. We additionally want to fix several long-standing bugs that currently prevent `rustc_codegen_cranelift` from being used for popular crates.
 
-**Contingent on funding:** This goal is contingent on finding funding for this effort.
+**Needs funding:** This goal needs funding to proceed.
 
 ## Motivation
 

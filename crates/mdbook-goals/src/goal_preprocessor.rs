@@ -130,7 +130,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     }
 
     fn replace_goal_count(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        if !re::GOAL_COUNT.is_match(&chapter.content) {
+        if !re::GOALS_COUNT.is_match(&chapter.content) {
             return Ok(());
         }
 
@@ -143,7 +143,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             .filter(|g| g.metadata.status.is_not_not_accepted())
             .count();
 
-        chapter.content = re::GOAL_COUNT
+        chapter.content = re::GOALS_COUNT
             .replace_all(&chapter.content, &count.to_string())
             .to_string();
 
@@ -151,7 +151,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     }
 
     fn replace_roadmap_goal_count(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        if !re::ROADMAP_GOAL_COUNT.is_match(&chapter.content) {
+        if !re::ROADMAP_GOALS_COUNT.is_match(&chapter.content) {
             return Ok(());
         }
 
@@ -164,7 +164,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             .filter(|g| g.metadata.roadmap.is_some() && g.metadata.status.is_not_not_accepted())
             .count();
 
-        chapter.content = re::ROADMAP_GOAL_COUNT
+        chapter.content = re::ROADMAP_GOALS_COUNT
             .replace_all(&chapter.content, &count.to_string())
             .to_string();
 
@@ -176,30 +176,30 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         self.replace_roadmap_goal_lists_filtered(chapter)?;
 
         // Handle unfiltered roadmap goals
-        self.replace_goal_lists_helper(chapter, &re::ROADMAP_GOAL_LIST, |goal, _capture| {
+        self.replace_goal_lists_helper(chapter, &re::ROADMAP_GOALS_LIST, |goal, _capture| {
             goal.metadata.roadmap.is_some() && goal.metadata.status.content.is_not_not_accepted()
         })?;
 
-        self.replace_goal_lists_helper(chapter, &re::OTHER_GOAL_LIST, |goal, _capture| {
+        self.replace_goal_lists_helper(chapter, &re::OTHER_GOALS_LIST, |goal, _capture| {
             goal.metadata.roadmap.is_empty() && goal.metadata.status.content.is_not_not_accepted()
         })?;
-        self.replace_goal_lists_helper(chapter, &re::GOAL_LIST, |goal, _capture| {
+        self.replace_goal_lists_helper(chapter, &re::GOALS_LIST, |goal, _capture| {
             goal.metadata.status.content.is_not_not_accepted()
         })?;
-        self.replace_goal_lists_helper(chapter, &re::GOAL_NOT_ACCEPTED_LIST, |goal, _capture| {
+        self.replace_goal_lists_helper(chapter, &re::GOALS_NOT_ACCEPTED_LIST, |goal, _capture| {
             !goal.metadata.status.content.is_not_not_accepted()
         })?;
 
         // Handle sized goal lists (Large, Medium, Small)
-        self.replace_sized_goal_list(chapter, &re::LARGE_GOAL_LIST, GoalSize::Large)?;
-        self.replace_sized_goal_list(chapter, &re::MEDIUM_GOAL_LIST, GoalSize::Medium)?;
-        self.replace_sized_goal_list(chapter, &re::SMALL_GOAL_LIST, GoalSize::Small)?;
+        self.replace_sized_goal_list(chapter, &re::LARGE_GOALS_LIST, GoalSize::Large)?;
+        self.replace_sized_goal_list(chapter, &re::MEDIUM_GOALS_LIST, GoalSize::Medium)?;
+        self.replace_sized_goal_list(chapter, &re::SMALL_GOALS_LIST, GoalSize::Small)?;
 
         // Handle filtered highlight goal lists
         self.replace_highlight_goal_lists_filtered(chapter)?;
 
-        // Handle filtered contingent goal lists
-        self.replace_contingent_goal_lists_filtered(chapter)?;
+        // Handle filtered lists of goals with needs
+        self.replace_goals_with_needs_lists_filtered(chapter)?;
 
         Ok(())
     }
@@ -210,7 +210,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     ) -> anyhow::Result<()> {
         self.replace_goal_lists_helper(
             chapter,
-            &re::ROADMAP_GOAL_LIST_FILTERED,
+            &re::ROADMAP_GOALS_LIST_FILTERED,
             |goal, capture| {
                 let filter_value = capture.unwrap().trim(); // Safe because this regex always has a capture
                 goal.metadata.status.content.is_not_not_accepted()
@@ -225,25 +225,25 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     ) -> anyhow::Result<()> {
         self.replace_themed_goal_list(
             chapter,
-            &re::HIGHLIGHT_GOAL_LIST_FILTERED,
+            &re::HIGHLIGHT_GOALS_LIST_FILTERED,
             "(((HIGHLIGHT GOALS: ...)))",
             |g| &g.metadata.highlight,
         )
     }
 
-    fn replace_contingent_goal_lists_filtered(
+    fn replace_goals_with_needs_lists_filtered(
         &mut self,
         chapter: &mut Chapter,
     ) -> anyhow::Result<()> {
         self.replace_themed_goal_list(
             chapter,
-            &re::CONTINGENT_GOAL_LIST_FILTERED,
-            "(((CONTINGENT GOALS: ...)))",
-            |g| &g.metadata.contingent_on,
+            &re::GOALS_WITH_NEEDS_LIST_FILTERED,
+            "(((GOALS WITH NEEDS: ...)))",
+            |g| &g.metadata.needs,
         )
     }
 
-    /// Shared helper for replacing themed goal list directives (HIGHLIGHT GOALS, CONTINGENT GOALS).
+    /// Shared helper for replacing themed goal list directives (HIGHLIGHT GOALS, GOALS WITH NEEDS).
     /// Filters goals by a `Themes` field extracted via `get_themes`, then formats as `####` sections.
     fn replace_themed_goal_list(
         &mut self,
@@ -985,8 +985,8 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             &issues,
             &repository,
             milestone,
-            &Some(start_date),
-            &Some(end_date),
+            Some(&start_date),
+            Some(&end_date),
             None,
             false,
             Order::OldestFirst,
@@ -1022,8 +1022,8 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             &issues,
             &repository,
             milestone,
-            &Some(start_date),
-            &Some(end_date),
+            Some(&start_date),
+            Some(&end_date),
             Some(team_name),
             false,
             Order::NewestFirst,

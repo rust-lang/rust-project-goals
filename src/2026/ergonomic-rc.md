@@ -4,7 +4,7 @@
 |:-----------------|-----------------------------------------------|
 | Point of contact | @nikomatsakis                                 |
 | Status           | Proposed                                      |
-| Contingent on    | Contributor                                   |
+| Needs            | Contributor                                   |
 | Roadmap          | [Just add async](./roadmap-just-add-async.md) |
 | Tracking issue   | [rust-lang/rust-project-goals#107]            |
 | Zulip channel    | N/A                                           |
@@ -14,7 +14,7 @@
 
 Implement and prototype two foundational improvements for ergonomic ref-counting: (1) a `Share` trait that semantically identifies types where cloning creates an alias to the same underlying value, and (2) move expressions (`move($expr)`) that allow precise control over what closures capture and when. These changes lay groundwork for future ergonomic improvements while delivering immediate value, with prototypes targeted for summer 2026.
 
-**Contingent on contributor:** This is a medium complexity problem. @nikomatsakis would like to mentor this goal with either an experienced contributor or a cohort of folks who know Rust but not the compiler. It is estimated that the goal will take about 6 months to implement for a cohort with minimal compiler hacking experience.
+**Needs contributor:** This is a medium complexity problem. @nikomatsakis would like to mentor this goal with either an experienced contributor or a cohort of folks who know Rust but not the compiler. It is estimated that the goal will take about 6 months to implement for a cohort with minimal compiler hacking experience.
 
 ## Motivation
 

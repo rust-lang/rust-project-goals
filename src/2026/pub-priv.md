@@ -4,7 +4,7 @@
 |:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | @epage                                                                           |
 | Status           | Proposed                                                                         |
-| Contingent on    | Contributor                                                                      |
+| Needs            | Contributor                                                                      |
 | Roadmap          | Secure your supply chain                                                         |
 | Tracking issue   | [rust-lang/rust-project-goals#272]                                               |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
@@ -13,7 +13,7 @@
 
 Implement and stabilize the MVP of public dependencies described in [RFC #3516]. Public dependencies allow crates to declare dependencies whose types are *meant* to be exposed in the public API.
 
-**Contingent on contributor:** This goal needs a contributor to work with the compiler team on identifying and implementing the minimal lint subset needed for stabilization. The work spans rustc (lint implementation) and Cargo (dependency metadata). Estimated time commitment: TBD.
+**Needs contributor:** This goal needs a contributor to work with the compiler team on identifying and implementing the minimal lint subset needed for stabilization. The work spans rustc (lint implementation) and Cargo (dependency metadata). Estimated time commitment: TBD.
 
 ## Motivation
 

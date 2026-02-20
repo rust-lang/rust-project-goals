@@ -10,12 +10,12 @@
 >
 > The **status** should be **Proposed** for new goals or **Accepted** once approved.
 >
-> If your goal is **contingent** on something, add one or more `Contingent on` rows:
-> * `Contingent on | Contributor` — the goal needs someone to step up and do the work.
+> If your goal **needs** something to proceed, add one or more `Needs` rows:
+> * `Needs | Contributor` — the goal needs someone to step up and do the work.
 >    The project goals team will try to help you find someone.
-> * `Contingent on | Funding` — the goal needs funding to proceed.
+> * `Needs | Funding` — the goal needs funding to proceed.
 >
-> If you add a "contingent" line, please add a section in the summary giving more details.
+> If you add a 'need', please add a section in the summary giving more details.
 
 | Metadata         |                                                                                  |
 | :--------------- | -------------------------------------------------------------------------------- |

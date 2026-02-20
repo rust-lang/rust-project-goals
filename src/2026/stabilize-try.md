@@ -4,7 +4,7 @@
 |:----------------------|------------------------|
 | Point of contact      | @tmandry               |
 | Status                | Proposed               |
-| Contingent on         | Funding                |
+| Needs                 | Funding                |
 | Other tracking issues | rust-lang/rust#84277   |
 | Zulip channel         | N/A                    |
 

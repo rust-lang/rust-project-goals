@@ -4,7 +4,7 @@
 |:---------------- | ----------------------- |
 | Point of contact | @tmandry                |
 | Status           | Proposed                |
-| Contingent on    | Funding                 |
+| Needs            | Funding                 |
 | Tracking issue   |                         |
 | Zulip channel    | N/A                     |
 | Help wanted      | N/A                     |

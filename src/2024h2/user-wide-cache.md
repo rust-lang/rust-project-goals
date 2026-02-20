@@ -4,7 +4,7 @@
 |------------------|------------------------------------|
 | Point of contact | @epage                             |
 | Status           | Accepted                           |
-| Contingent on    | Contributor                        |
+| Needs            | Contributor                        |
 | Tracking issue   | [rust-lang/rust-project-goals#124] |
 | Zulip channel    | N/A                                |
 

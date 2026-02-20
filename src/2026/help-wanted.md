@@ -8,11 +8,11 @@ The goals below are looking for a contributor to do the implementation work. The
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/546987-project-goals.2F2026-workshop
 
-(((CONTINGENT GOALS: Contributor)))
+(((GOALS WITH NEEDS: Contributor)))
 
 ## Looking for funds
 
 The goals below are looking for funding. The goal summaries include details of the expected time commitment and work duration. If you might be interested in helping to fund a goal, please join the rust-lang Zulip and post a message in the [`#project-goals/2026-workshop`][channel] channel or write to the goals team at `goals-team@rust-lang.org`.
 
-(((CONTINGENT GOALS: Funding)))
+(((GOALS WITH NEEDS: Funding)))
 

@@ -4,7 +4,7 @@
 |:----------------------|-------------------------------------------------|
 | Point of contact      | @Shnatsel                                       |
 | Status                | Proposed                                        |
-| Contingent on         | Contributor                                     |
+| Needs                 | Contributor                                     |
 | Roadmap               | Secure your supply chain                        |
 | Tracking issue        |                                                 |
 | Other tracking issues | https://github.com/rust-lang/cargo/issues/16565 |
@@ -14,7 +14,7 @@
 
 Progress towards an MVP version of Cargo SBOM support by resolving known issues in Cargo's [SBOM precursor feature](https://doc.rust-lang.org/nightly/cargo/reference/unstable.html#sbom) and finalizing the RFC.
 
-**Contingent on contributor:** This goal needs contributors to help with testing, resolving known issues in Cargo's SBOM precursor, and converting downstream tooling like cargo-cyclonedx. The work is primarily in the [rust-lang/cargo](https://github.com/rust-lang/cargo) repository. Estimated time commitment: TBD.
+**Needs contributor:** This goal needs contributors to help with testing, resolving known issues in Cargo's SBOM precursor, and converting downstream tooling like cargo-cyclonedx. The work is primarily in the [rust-lang/cargo](https://github.com/rust-lang/cargo) repository. Estimated time commitment: TBD.
 
 ## Motivation
 
