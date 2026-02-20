@@ -4,8 +4,8 @@
 |:-----------------|----------------|
 | Point of contact | @thunderseethe |
 | Status           | Proposed       |
-| Needs    | Contributor    |
-| Needs    | Funding        |
+| Needs            | Contributor    |
+| Needs            | Funding        |
 | Tracking issue   |                |
 | Zulip channel    | N/A            |
 

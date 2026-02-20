@@ -4,7 +4,7 @@
 |:-----------------|----------------------|
 | Point of contact | @nikomatsakis        |
 | Status           | Proposed             |
-| Needs    | Contributor          |
+| Needs            | Contributor          |
 | Roadmap          | Just add async       |
 | Tracking issue   |                      |
 | Zulip channel    | [#wg-async][channel] |

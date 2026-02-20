@@ -4,7 +4,7 @@
 |:-----------------|-----------------------------------------------|
 | Point of contact | @nikomatsakis                                 |
 | Status           | Proposed                                      |
-| Needs    | Contributor                                   |
+| Needs            | Contributor                                   |
 | Roadmap          | [Just add async](./roadmap-just-add-async.md) |
 | Tracking issue   | [rust-lang/rust-project-goals#107]            |
 | Zulip channel    | N/A                                           |

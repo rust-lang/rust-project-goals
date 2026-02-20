@@ -6,7 +6,7 @@
 | Status           | Proposed                                                                         |
 | Tracking issue   |   |
 | Zulip channel    | N/A |
-| Needs    | Funding |
+| Needs            | Funding |
 
 ## Summary
 

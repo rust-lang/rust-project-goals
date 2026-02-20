@@ -3,7 +3,7 @@
 |:-----------------|:-----------------------------------|
 | Point of contact | @epage                             |
 | Status           | Accepted                           |
-| Needs    | Contributor                        |
+| Needs            | Contributor                        |
 | Zulip channel    | N/A                                |
 | Tracking issue   | [rust-lang/rust-project-goals#256] |
 
