@@ -34,8 +34,8 @@ pub fn render_updates(
     cached_issues: &[ExistingGithubIssue],
     repository: &Repository,
     milestone: &str,
-    start_date: &Option<NaiveDate>,
-    end_date: &Option<NaiveDate>,
+    start_date: Option<&NaiveDate>,
+    end_date: Option<&NaiveDate>,
     with_champion_from: Option<&str>,
     use_progress_bar: bool,
     comment_order: Order,
@@ -258,7 +258,7 @@ fn prepare_goals(
 
         let tldr = tldr(&issue_id, &mut comments)?;
 
-        let (has_help_wanted, help_wanted) = help_wanted(&issue_id, &tldr, &comments)?;
+        let (has_help_wanted, help_wanted) = help_wanted(&issue_id, tldr.as_deref(), &comments)?;
 
         let why_this_goal = why_this_goal(&issue_id, issue)?;
 
@@ -331,7 +331,7 @@ fn tldr(_issue_id: &IssueId, comments: &mut Vec<ExistingGithubComment>) -> Resul
 /// Search for comments that talk about help being wanted and extract that
 fn help_wanted(
     _issue_id: &IssueId,
-    tldr: &Option<String>,
+    tldr: Option<&str>,
     comments: &[ExistingGithubComment],
 ) -> Result<(bool, Vec<HelpWanted>)> {
     use std::fmt::Write;
@@ -339,7 +339,6 @@ fn help_wanted(
     let mut help_wanted = vec![];
 
     let tldr_has_help_wanted = tldr
-        .as_deref()
         .unwrap_or("")
         .lines()
         .any(|line| HELP_WANTED.is_match(line));
@@ -390,7 +389,7 @@ fn why_this_goal(issue_id: &IssueId, issue: &ExistingGithubIssue) -> Result<Stri
 
 struct Filter<'f> {
     start_date: NaiveDate,
-    end_date: &'f Option<NaiveDate>,
+    end_date: Option<&'f NaiveDate>,
 }
 
 impl Filter<'_> {
