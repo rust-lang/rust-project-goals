@@ -67,8 +67,8 @@ The proposed work also includes two further experiments as stretch goals.
 
 ## Team asks
 
-| Team       | Support level | Notes                                   |
-| ---------- | ------------- | --------------------------------------- |
-| [compiler] | Medium   | Is this Small or Medium? Does it need a champion? |
+| Team       | Support level | Notes |
+|------------|---------------|-------|
+| [compiler] | Medium        |       |
 
 ## Frequently asked questions

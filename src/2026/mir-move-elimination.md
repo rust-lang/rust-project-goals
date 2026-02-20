@@ -89,7 +89,7 @@ The end goal of this proposal is to be able to soundly perform move elimination 
 
 | Team         | Support level | Notes          |
 |--------------|---------------|----------------|
-| [lang]       | Small        | RFC decision   |
-| [compiler]   | Small        | RFC decision   |
-| [opsem]      | Large        | Design meeting |
+| [lang]       | Small         | RFC decision   |
+| [compiler]   | Medium        | RFC decision   |
+| [opsem]      | Large         | Design meeting |
 | [wg-mir-opt] | Medium        | Design meeting |

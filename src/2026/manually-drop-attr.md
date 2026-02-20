@@ -124,8 +124,8 @@ impl Drop for UringState {
 ## Team asks
 
 | Team       | Support level | Notes                     |
-| ---------- | ------------- | ------------------------- |
-| [compiler] | Small         | Implementation reviews    |
+|------------|---------------|---------------------------|
+| [compiler] | Medium        | Implementation reviews    |
 | [lang]     | Medium        | Vibe check and RFC review |
 | [opsem]    | Small         |                           |
 | [types]    | Small         |                           |
