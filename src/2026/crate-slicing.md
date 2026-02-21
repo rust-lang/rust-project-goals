@@ -8,321 +8,178 @@
 
 ## Summary
 
-Prototype "crate slicing" — a static analysis technique that computes the transitive closure of items actually used from dependency crates and generates minimal sliced versions, reducing frontend parsing and type-checking overhead during fresh builds.
+Use `cargo-slicer` and PRECC-Rust as proof-of-concept evidence that exploiting
+the **separate compilation gap** can meaningfully reduce Rust fresh build times,
+and engage the compiler and cargo teams on a well-designed rustc-native
+implementation using the query system and cross-crate MIR analysis.
 
 ## Motivation
 
 ### The status quo
 
-Rust compilation remains I/O and CPU-bound on dependency crates during fresh builds. Consider a typical async web service:
+The Rust compiler must process all visible items at each crate boundary — parsing,
+name resolution, and type-checking proceed regardless of whether an item is
+reachable from the final binary. We call the difference between what the compiler
+*must* process and what is *actually reachable* the **separate compilation gap**.
 
-```toml
-[dependencies]
-tokio = { version = "1.48", features = ["full"] }
-axum = "0.7"
-serde = { version = "1", features = ["derive"] }
-sqlx = { version = "0.8", features = ["postgres", "runtime-tokio"] }
-```
+Measurements across real Rust projects (see [5]) show this gap ranges from under
+1% to 37% of total CPU instructions:
 
-This dependency graph expands to 161 crates. The `tokio` crate alone contains
-315 module files totaling 92,790 lines of Rust source. Yet an application may
-only use a fraction of tokio's public API surface (e.g., `tokio::spawn`)， and
-some may depend only on a subcrate e.g., `tokio-macros` rather than on the main
-crate (as did by the `cargo-slicer tool`).
+| Project | Baseline (s) | PRECC-Rust (s) | Speedup | Gap |
+|---------|-------------|----------------|---------|-----|
+| zed (500K+ LOC) | 1,012 | 719 | **−29%** | 37% |
+| rustc | 135.8 | 112.4 | **−17%** | 26% |
+| zeroclaw (AI agent) | 192.9 | 170.4 | **−12%** | 13% |
+| helix | 71.2 | 66.6 | **−6%** | 11% |
+| ripgrep | 11.1 | 10.7 | **−4%** | 5% |
+| nushell | 106.5 | 108.9 | +2.3% | 0.4% (overhead > savings) |
+| bevy | 81.8 | 85.4 | +4.4% | 0.4% (overhead > savings) |
 
-The Rust compiler is designed to find and diagnose errors first and generate
-good code quickly second, hence it needs to do the following steps:
-1. **Parse** all the ~90,000 lines
-2. **Resolve** names and expand macros across all modules and submodules
-3. **Type-check** all items, including unused ones
-4. **Monomorphize** generic code (though only used instantiations)
+The nushell and bevy results are equally important: when the gap is small,
+analysis overhead exceeds savings. A production implementation must apply slicing
+*selectively*, only where predicted benefit exceeds cost.
 
-Only step 4 naturally excludes unused code. Steps 1-3 process everything.
-
-Current mitigations:
-- **Incremental compilation**: Caches type-checking results but requires prior builds
-- **sccache**: Caches compilation artifacts but requires cache hits
-- **Cranelift**: Accelerates codegen but not frontend (steps 1-3)
-- **Parallel frontend**: Parallelizes work but doesn't reduce total work
-- **Hint mostly unused**: Avoid codegen from unused dependencies by hinting on LLVM linker
-
-None of these reduce the fundamental quantity of source code processed during fresh builds.
+Existing mitigations (incremental compilation, sccache, Cranelift, parallel
+frontend) reduce repeated or parallelized work but none reduce the total quantity
+of source processed in a fresh build.
 
 ### The next 6 months
 
-We propose to slice crates: statically analyzing which items a project uses
-from each dependency and generating minimal crate versions containing only
-those items plus their transitive dependencies.
+**Part 1 — Consolidate POC findings.**
 
-**Technical approach:**
+Two prototypes establish the feasibility:
 
-1. **Usage extraction**: Parse project source using a customized parser or `rust-analyzer` to identify:
-   - Direct type references, e.g., `tokio::net::TcpListener`
-   - Use statements, e.g., `use axum::{Router, routing::get}`
-   - Method calls via variable type tracking, e.g., `listener.accept()` → `TcpListener::accept`
-   - Trait bounds, e.g., `impl<T: Serialize>` → `serde::Serialize`
+- **`cargo-slicer`** [4]: source-level slicer that statically identifies used items
+  from dependency crates and generates minimal sliced versions. Validates that
+  sliced major ecosystem crates (tokio, axum, hyper, reqwest, syn, rand, regex)
+  still compile correctly.
+- **PRECC-Rust** [5]: operates as a `RUSTC_WRAPPER`, hooking into rustc *after
+  type checking* to replace unreachable function bodies with MIR abort stubs,
+  eliminating downstream codegen work without modifying source code. Produces the
+  measured results in the table above.
 
-2. **Crate indexing**: Build a dependency graph of all items in the target crate:
-   - Map each `pub` item to its defining module
-   - Track `pub use` re-exports through the module tree
-   - Evaluate `#[cfg(...)]` expressions against enabled features
-   - Handle `#[path = "..."]` module redirections
+**Part 2 — Engage rustc and cargo teams on a production path.**
 
-3. **Transitive closure**: Compute minimal item set:
-   - Include all trait impls for used types
-   - Follow type definitions for struct fields and enum variants
-   - Expand `pub use crate::*` glob re-exports
-   - Preserve visibility modifiers for cross-module access
-   - Include document cooments and attributes related to the preserved items
+Neither prototype is suitable for direct adoption:
 
-4. **Sliced crate generation**: Emit minimal source:
-   - Copy only needed module files
-   - Filter items within each module
-   - Generate `Cargo.toml` with subset of features/dependencies
-  
-5. **Rustc verification**: For the soundness and correctness with respect to
-   type inferencing on trait bounds, e.g., simply slicing away everything
-   unused may lead to errors unless we have considered the corner cases. To make
-   sure it generates correct results, we will use Rust compiler to double check
-   the decisions made at the testing phase, before release the solution as
-   replacement of the Rust compiler.
+- `cargo-slicer` bypasses rustc's name resolution, type inference, and coherence
+  checking. It cannot safely handle blanket impls, proc-macro interactions, or
+  build scripts.
+- PRECC-Rust approximates the call graph with `syn`; the rustc query system
+  provides far more precise semantic information.
 
-**Prototype results (December 2025):**
+A robust solution requires a full-time engineer working *inside* rustc and Cargo.
+The 2026 goal is to use the POC evidence to:
 
-We have an early implementation (`cargo-slicer`) just demonstrates feasibility on major ecosystem crates:
+1. **Formalize soundness criteria**: under what conditions is a sliced crate
+   semantically equivalent to the original? (trait coherence, monomorphization,
+   build scripts, proc-macro crates)
 
-| Crate | Version | Original Modules | Original LOC | Slice Time | Status |
-|-------|---------|------------------|--------------|------------|--------|
-| tokio | 1.48.0 | 315 | ~90,000 | — | ✅ Compiles |
-| actix-web | 4.12.1 | 87 | ~28,000 | — | ✅ Compiles |
-| hyper | 1.8.1 | 51 | ~19,000 | — | ✅ Compiles |
-| axum | 0.7.9 | 45 | ~15,000 | — | ✅ Compiles |
-| reqwest | 0.12.28 | 26 | ~13,000 | — | ✅ Compiles |
-| syn | 2.0.x | 47 | ~15,000 | — | ✅ Compiles |
-| rand | 0.9.2 | 31 | ~8,000 | — | ✅ Compiles |
-| regex | 1.x | 21 | ~6,000 | 0.147s | ✅ Compiles |
+2. **Design the rustc integration**: evaluate candidate approaches with the compiler team:
+   - A `used_items(crate)` query so Cargo can pass reachability data to dependency compilations
+   - Native MIR-level stub replacement inside rustc proper, replacing the wrapper approximation
+   - Cargo two-pass orchestration (analyse root crate → compile dependencies with used-item sets)
 
-Measured slice times for smaller utility crates:
-
-| Crate | Items Needed | Module Files | Lines Generated |
-|-------|--------------|--------------|-----------------|
-| regex |309 | 20 | 10,671 |
-| memchr | 8 | 35 | 14,475 |
-| anyhow | 147 | 11 | 4,412 |
-| futures | 3 | 0 | 91 |
-| once_cell | 2 | 0 | 29 |
-| thiserror | 2 | 0 | 28 |
-
-The prototype handles complex patterns:
-- **Feature flag evaluation**: Parses `#[cfg(all(feature = "std", not(feature = "parking_lot")))]` expressions and evaluates against cargo metadata
-- **Facade crates**: Handles `futures` (re-exports from `futures-*`) and `sqlx` (facade over `sqlx-core`)
-- **Platform-specific code**: Filters `#[cfg(unix)]` / `#[cfg(windows)]` based on target
-- **Proc-macro crates**: Preserves as external dependencies (not sliced)
-- **Re-export chains**: Traces `pub use self::module::Item` through module hierarchy
-
-**Research goals for 2026:**
-
-1. **Quantify compilation time reduction**: Benchmark `cargo build` with sliced vs. original dependencies across diverse projects (CLI tools, web services, embedded)
-
-2. **Formalize soundness criteria**: Under what conditions is `sliced_crate` semantically equivalent to `original_crate` for a given usage set? Key concerns:
-   - Trait coherence: Are all required impl blocks included?
-   - Monomorphization: Does slicing affect which generic instantiations exist?
-   - Build scripts: How to handle `build.rs` code generation?
-
-3. **Evaluate integration architectures**:
-   - **Cargo plugin**: `cargo slice` generates sliced deps before `cargo build`
-   - **Build script**: Slice at `build.rs` time with caching
-   - **Registry proxy**: Serve pre-sliced crates based on declared usage
-   - **Compiler integration**: rustc-assisted slicing via query system
-
-4. **Identify fundamental limitations**: Which crate patterns cannot be safely sliced?
-   - Proc-macro crates (execute at compile time)
-   - Heavy `build.rs` generators
-   - `#[doc(hidden)]` internal APIs used via macros
-
-5. **Engage compiler/cargo teams**: Present findings and gather feedback on viable integration paths
+3. **Present findings** to compiler and cargo teams for feedback on the viable integration path.
 
 ### The "shiny future"
 
-The end state: `cargo build` automatically slices dependencies based on static usage analysis, achieving:
-
-- **30-50% reduction in fresh build time** for dependency-heavy projects
-- **Faster CI pipelines**: Cold builds complete much faster
-- **No ecosystem changes required**: Works with existing crates.io crates
-- **Slicing on transitive dependencies**: cache frequently used (stably dependent) crates by large project such as Zed
-
-This complements ongoing efforts:
-- **Parallel frontend** reduces wall-clock time; slicing reduces total work
-- **Cranelift** accelerates codegen; slicing reduces frontend overhead
+`cargo build` automatically exploits cross-crate reachability, achieving
+**20–40% reduction in fresh build time** for large dependency-heavy projects
+with no ecosystem changes required. This complements parallel frontend (reduces
+wall-clock) and Cranelift (reduces codegen overhead) by reducing the total
+*amount* of work.
 
 ## Design notes
 
-### Prior art: C/C++ precompilation
+### Why cargo-slicer is a POC, not a production solution
 
-This research extends techniques proven effective for C/C++:
+The source-level approach has fundamental limitations:
 
-**ICSM 2005** [1]: Demonstrated function-level compilation units for faster incremental builds. Changing one function recompiles only that unit.
+- Re-emitting source bypasses rustc's coherence checking and impl resolution
+- Fragile against language evolution (relies on parsing heuristics, not rustc IRs)
+- No integration with rustc's query system or incremental fingerprints
+- `syn`-based call graph is unsound for generic instantiation and dynamic dispatch
 
-**TR2012** [2]: Formalized CTags-based splitting architecture. Identified that preprocessing overhead was the bottleneck — AWK scripts took 4.68s to process 2,000 LOC.
+A proper implementation operates inside rustc (post-type-checking, at MIR level)
+and inside Cargo (first-class build orchestration), with the query system providing
+precise, cached, incremental reachability.
 
-**precc (2024-2025)**: Rewrote AWK to Rust, achieving **200× preprocessing speedup** (4.68s → 0.022s). Achieved **1.8× fresh build speedup** on Vim codebase (125 files, 100K LOC):
+### Path to a rustc-native implementation
 
-| Mode | Time | Compilation Units | Speedup |
-|------|------|-------------------|---------|
-| Baseline (gcc -j48) | 15s | 125 | 1.0× |
-| Passthrough (precc) | 8.5s | 125 | **1.8×** |
-| Split (fine-grained) | 12s | 8,311 | 1.25× |
+1. **Query-system reachability**: add a `used_items(crate)` query that Cargo
+   populates from the downstream crate's compilation, so dependency crates compile
+   with accurate reachability information.
+2. **MIR-level dead item elimination**: post-type-checking, unreachable items are
+   replaced with abort stubs or excluded from codegen, using the same mechanism as
+   existing MIR optimizations.
+3. **Cargo orchestration**: two-pass build — analyse root crate, compile
+   dependencies with used-item sets — mirroring existing feature resolution.
+4. **Incremental integration**: sliced item sets feed smaller fingerprints,
+   benefiting incremental builds too.
 
-Key insight: Preprocessing overhead must be < 10% of compilation time for fresh build benefits.
+### Rust-specific challenges
 
-### Rust-specific considerations
-
-| Aspect | C/C++ | Rust | Implication |
-|--------|-------|------|-------------|
-| Compilation unit | .c file | Crate | Slicing operates at crate granularity |
-| Name resolution | Headers + includes | Module system | Must trace `pub use` chains |
-| Generics | Templates (header-only) | Monomorphization | Only used instantiations codegen'd |
-| Trait impls | N/A | Coherence rules | Must include all impls for used types |
-| Conditional compilation | `#ifdef` | `#[cfg]` + features | Must evaluate feature expressions |
-| Macros | Preprocessor (textual) | Proc-macros (semantic) + `macro_rules!` | Proc-macro crates kept as-is |
-
-### Technical challenges solved
-
-The prototype required solving several non-trivial problems:
-
-1. **Cfg expression parsing**: Hand-rolled parser for `all()`, `any()`, `not()`, `feature = "x"`, `target_os = "linux"` expressions
-
-2. **Feature resolution**: Query cargo metadata for enabled features, expand `default` features from crate's own Cargo.toml
-
-3. **Module path resolution**: Handle `#[path = "imp_std.rs"]` with cfg gates like `#[cfg(feature = "std")]`
-
-4. **Re-export tracing**: Follow `pub use self::module::Item` through arbitrary nesting
-
-5. **Trait coherence**: Conservative inclusion of all trait impls where the implementing type or trait is used
-
-6. **Macro handling**: Skip `macro_rules!` bodies during re-export extraction; preserve proc-macro crate references by utilizing a function similar to `cargo-expand`
-
-### Open research questions
-
-1. **Monomorphization interaction**: Does slicing reduce monomorphization work (fewer generic items) ?
-
-2. **Incremental compilation interaction**: Do sliced crates have smaller/faster incremental compilation fingerprints?
-
-3. **Build determinism**: Is sliced output deterministic across platforms and Rust versions?
-
-4. **Semver compatibility**: If a crate updates and the sliced subset is unchanged, can we skip recompilation?
+| Challenge | Notes |
+|-----------|-------|
+| Trait coherence | All impls for used types must be included |
+| Generics / monomorphization | Analysis may miss instantiation paths |
+| Proc-macro crates | Execute at compile time; preserve as-is |
+| `build.rs` generators | Code invisible to static analysis; fall back to full crate |
+| Blanket impls | `impl<T> Trait for T` required if `Trait` is used |
 
 ## Task list
 
 | Task | Owner | Status |
 |------|-------|--------|
-| Benchmark sliced crate compilation (10 diverse crates) | @yijunyu | Done |
-| Prototype cargo integration | @yijunyu | Done |
-| Measure compilation time with sliced deps | @yijunyu | Done |
-| Document cfg expression evaluation algorithm | @yijunyu | Partially Done |
-| Formalize soundness requirements (trait coherence, visibility) | @yijunyu | Not started |
-| Present research findings to cargo team | TBD | Not started |
-| Write technical paper on crate slicing | @yijunyu | Not started |
+| Prototype cargo-slicer and PRECC-Rust | @yijunyu | Done |
+| Measure separate compilation gap across 8 projects | @yijunyu | Done |
+| Write technical paper (ASE 2026 submission) | @yijunyu | In Progress |
+| Formalize soundness requirements | @yijunyu | Not started |
+| Design rustc query-system integration architecture | TBD | Not started |
+| Present findings to compiler and cargo teams | TBD | Not started |
 
 ## Team asks
 
 | Team | Support level | Notes |
 |------|---------------|-------|
-| compiler | Medium | Consultation on approach feasibility and soundness concerns |
-| cargo | Medium | Discussion on cargo integration options |
+| compiler | Medium | Review query-system integration design; consult on soundness and rustc internals |
+| cargo | Medium | Discuss two-pass build orchestration and crate-level reachability integration |
 | types | Small | Consultation on trait coherence requirements for slicing |
-| lang | Small | Discussion on review of research methodology and findings |
-| rust-analyzer | Small | Discussion on rust-analyzer integration potential |
+| lang | Small | Feedback on corner cases and research methodology |
 
 ## Frequently asked questions
 
-### What exactly is being "sliced"?
+### Isn't cargo-slicer already solving the problem?
 
-Source code at the item level. Given:
-
-```rust
-// In dependency crate `foo`
-pub struct Used { ... }      // Kept: referenced by project
-pub struct Unused { ... }    // Removed: never referenced
-pub fn helper() { ... }      // Removed: never called
-impl Used {
-    pub fn needed(&self) { } // Kept: called by project
-    pub fn extra(&self) { }  // Removed: never called
-}
-impl Unused { ... }          // Removed: type not used
-impl Display for Used { }    // Kept: trait impl for used type
-```
-
-The sliced crate contains only `Used`, `Used::needed`, and the `Display` impl.
+No. It is a POC demonstrating the opportunity. It bypasses rustc semantics and
+cannot safely handle all language constructs. The POC is the argument for
+investing in a proper rustc-native implementation.
 
 ### How is this different from dead code elimination?
 
-Dead code elimination (DCE) happens during codegen for the final binary. Slicing happens *before compilation*, reducing:
-- Parsing time (fewer tokens to lex/parse)
-- Name resolution (smaller module tree)
-- Type checking (fewer items to check)
-- Macro expansion (fewer macro invocations)
-
-DCE doesn't help with these frontend costs.
+DCE operates after full compilation. Slicing reduces work *before* compilation —
+parsing, name resolution, type-checking, and macro expansion are all cheaper on
+a smaller item set.
 
 ### How is this different from feature flags?
 
-Feature flags require crate authors to manually partition their API:
-
-```toml
-[features]
-http1 = []
-http2 = ["h2"]
-full = ["http1", "http2", "websocket" ] # ... and so forth
-```
-
-This is labor-intensive, imperfect, and doesn't capture per-project usage patterns. Slicing is automatic and usage-based.
-
-### What about proc-macro crates?
-
-Proc-macro crates (like `serde_derive`, `tokio-macros`) are small and execute during compilation rather than being compiled into the output. They're preserved as-is and referenced as external dependencies in sliced crates.
-
-### Won't sliced crates break things?
-
-The research phase will establish correctness criteria. The prototype uses conservative inclusion:
-- All trait impls for any used type or trait
-- All items in the dependency closure
-- All visibility requirements satisfied
-
-Current prototype compiles 100% of tested crates (8/8 major async crates, 9/9 utility crates).
-
-### What's the expected speedup?
-
-Preliminary hypothesis based on:
-- C/C++ precompilation achieved 1.8× speedup when preprocessing overhead was eliminated
-- Many projects use <20% of dependency API surface
-- Frontend (parsing + type-checking) is ~30-50% of compilation time
-
-We hypothesize 20-40% reduction in fresh build time for dependency-heavy projects. The research phase will produce concrete measurements across diverse workloads.
-
-### How does this interact with caching?
-
-Complementary:
-- **sccache**: Caches compiled artifacts; slicing reduces what needs caching
-- **Incremental**: Caches type-check results; sliced crates have smaller fingerprints
-- **cargo-chef**: Caches dependency layer in Docker; sliced layer is smaller
+Feature flags require manual crate-author effort and are coarse-grained. Slicing
+is automatic, usage-based, and operates at the item level.
 
 ### What about crates that can't be sliced?
 
-Known limitations:
-- **Proc-macro crates**: Keep as-is (small anyway)
-- **Heavy build.rs**: May generate code not visible to static analysis
-- **`#[doc(hidden)]` internals**: Macros may use these; conservative inclusion needed
-- **Blanket impls**: `impl<T> Trait for T` must be included if `Trait` is used
-
-These are documented and handled gracefully (fall back to full crate).
+Fall back to full crate compilation. Known hard cases: proc-macro crates, heavy
+`build.rs` generators, `#[doc(hidden)]` items used via macros, blanket impls.
 
 ## References
 
-[1] Y. Yu, H. Dayani-Fard, J. Mylopoulos, P. Andritsos. "Reducing Build Time through Precompilations for Evolving Large Software." ICSM 2005.
+[1] Y. Yu et al. "Reducing Build Time through Precompilations for Evolving Large Software." ICSM 2005.
 
 [2] Y. Yu. "Precompilation: Splitting C/C++ Source Files for Faster Incremental Builds." Open University TR2012/01.
 
-[3] demo-precc: https://github.com/yijunyu/demo-precc (binaries for C/C++ precompilation)
+[3] demo-precc: https://github.com/yijunyu/demo-precc
 
-[4] cargo-slicer: https://github.com/yijunyu/cargo-slicer (proof-of-concept implementation of the proposed prototype)
+[4] cargo-slicer: https://github.com/yijunyu/cargo-slicer (proof-of-concept source-level crate slicer)
+
+[5] PRECC paper (ASE 2026, under review): "PRECC: Predictive Precompilation Cutting via Pareto-Optimal Selective Slicing"
