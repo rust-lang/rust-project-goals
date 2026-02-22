@@ -8,19 +8,25 @@
 
 ## Summary
 
-Use `cargo-slicer` and PRECC-Rust as proof-of-concept evidence that exploiting
-the **separate compilation gap** can meaningfully reduce Rust fresh build times,
-and engage the compiler and cargo teams on a well-designed rustc-native
-implementation using the query system and cross-crate MIR analysis.
+Use `cargo-slicer` and PRECC-Rust as proof-of-concept evidence that a significant
+**separate compilation gap** exists in Rust fresh builds, and engage the compiler
+team on a well-designed rustc-native implementation: emitting **stub rlibs**
+(names only, no bodies) for dependencies, then deferring type-checking, borrow
+checking, and codegen of used functions to the root crate's compilation — enabling
+better parallelism across currently idle cores.
 
 ## Motivation
 
 ### The status quo
 
-The Rust compiler must process all visible items at each crate boundary — parsing,
-name resolution, and type-checking proceed regardless of whether an item is
-reachable from the final binary. We call the difference between what the compiler
-*must* process and what is *actually reachable* the **separate compilation gap**.
+The normal Rust compilation pipeline for each crate is:
+`AST → HIR → THIR → MIR → LLVM IR`
+
+Type-checking happens when generating THIR; borrow-checking happens on MIR.
+Every dependency crate goes through all these stages regardless of how much of it
+is actually used by the downstream consumer. We call the difference between what
+the compiler *must* process and what is *actually reachable* from the final
+binary's entry points the **separate compilation gap**.
 
 Measurements across real Rust projects (see [5]) show this gap ranges from under
 1% to 37% of total CPU instructions:
@@ -36,12 +42,19 @@ Measurements across real Rust projects (see [5]) show this gap ranges from under
 | bevy | 81.8 | 85.4 | +4.4% | 0.4% (overhead > savings) |
 
 The nushell and bevy results are equally important: when the gap is small,
-analysis overhead exceeds savings. A production implementation must apply slicing
+analysis overhead exceeds savings. A production implementation must apply this
 *selectively*, only where predicted benefit exceeds cost.
 
+As the [parallel-rustc blog post](https://blog.rust-lang.org/2023/11/09/parallel-rustc/)
+shows, there are often idle cores during normal Rust compilation. The key insight
+is that the total amount of work does not necessarily decrease — we still generate
+THIR and MIR for every used function — but by deferring this work to the root
+crate's compilation it can proceed **in parallel** with other compilation work,
+exploiting those idle cores.
+
 Existing mitigations (incremental compilation, sccache, Cranelift, parallel
-frontend) reduce repeated or parallelized work but none reduce the total quantity
-of source processed in a fresh build.
+frontend) reduce repeated or parallelized work but none defer cross-crate
+type-checking and borrow-checking to exploit idle parallelism.
 
 ### The next 6 months
 
@@ -58,37 +71,55 @@ Two prototypes establish the feasibility:
   eliminating downstream codegen work without modifying source code. Produces the
   measured results in the table above.
 
-**Part 2 — Engage rustc and cargo teams on a production path.**
+**Part 2 — Engage the compiler team on a rustc-native design.**
 
 Neither prototype is suitable for direct adoption:
 
 - `cargo-slicer` bypasses rustc's name resolution, type inference, and coherence
   checking. It cannot safely handle blanket impls, proc-macro interactions, or
   build scripts.
-- PRECC-Rust approximates the call graph with `syn`; the rustc query system
-  provides far more precise semantic information.
+- PRECC-Rust's `syn`-based call graph is an approximation; the design described
+  below is architecturally cleaner and does not require Cargo involvement.
 
-A robust solution requires a full-time engineer working *inside* rustc and Cargo.
-The 2026 goal is to use the POC evidence to:
+A robust solution requires a full-time engineer working *inside* rustc. The
+proposed architecture (informed by compiler team feedback) is:
 
-1. **Formalize soundness criteria**: under what conditions is a sliced crate
-   semantically equivalent to the original? (trait coherence, monomorphization,
-   build scripts, proc-macro crates)
+1. **Stub rlibs**: rustc compiles each dependency crate only to `AST → HIR`,
+   emitting a stub rlib containing names and signatures but no function bodies.
+   This is analogous to how LTO defers LLVM IR generation — but stopping even
+   earlier in the pipeline, before THIR and MIR.
 
-2. **Design the rustc integration**: evaluate candidate approaches with the compiler team:
-   - A `used_items(crate)` query so Cargo can pass reachability data to dependency compilations
-   - Native MIR-level stub replacement inside rustc proper, replacing the wrapper approximation
-   - Cargo two-pass orchestration (analyse root crate → compile dependencies with used-item sets)
+2. **Deferred compilation at the root**: a single rustc process for the root
+   binary crate loads the stub rlibs and, for each function body actually
+   reachable from `main`, performs the full `THIR → MIR → LLVM IR` pipeline.
+   This work can proceed in parallel across dependency crates, filling idle cores
+   that normal sequential per-crate compilation leaves unused.
 
-3. **Present findings** to compiler and cargo teams for feedback on the viable integration path.
+3. **No Cargo changes needed**: the entire mechanism is internal to rustc.
+   Cargo invokes rustc as usual; rustc decides how to schedule stub vs. full
+   compilation.
+
+The 2026 goal is to use the POC measurements to:
+
+1. **Formalize soundness criteria**: under what conditions is deferred compilation
+   semantically equivalent to the standard pipeline? (trait coherence,
+   monomorphization, proc-macro crates, build scripts)
+
+2. **Work with the compiler team** to prototype stub rlib emission and the
+   deferred root-crate compilation pass inside rustc.
+
+3. **Quantify the parallelism benefit**: measure wall-clock improvement from
+   exploiting idle cores, using the separate compilation gap data as a predictor.
 
 ### The "shiny future"
 
-`cargo build` automatically exploits cross-crate reachability, achieving
-**20–40% reduction in fresh build time** for large dependency-heavy projects
-with no ecosystem changes required. This complements parallel frontend (reduces
-wall-clock) and Cranelift (reduces codegen overhead) by reducing the total
-*amount* of work.
+`cargo build` automatically emits stub rlibs for dependencies and defers
+type-checking, borrow-checking, and codegen of used functions to the root crate's
+compilation. This saturates idle cores during fresh builds, achieving meaningful
+wall-clock speedups for large projects with no changes required to Cargo or the
+ecosystem. It complements parallel frontend (reduces wall-clock within a crate)
+and Cranelift (reduces codegen time) by better utilizing available parallelism
+across crates.
 
 ## Design notes
 
@@ -98,25 +129,29 @@ The source-level approach has fundamental limitations:
 
 - Re-emitting source bypasses rustc's coherence checking and impl resolution
 - Fragile against language evolution (relies on parsing heuristics, not rustc IRs)
-- No integration with rustc's query system or incremental fingerprints
+- No integration with rustc's incremental fingerprints
 - `syn`-based call graph is unsound for generic instantiation and dynamic dispatch
 
-A proper implementation operates inside rustc (post-type-checking, at MIR level)
-and inside Cargo (first-class build orchestration), with the query system providing
-precise, cached, incremental reachability.
+### The stub rlib architecture
 
-### Path to a rustc-native implementation
+The proposed rustc-native design is analogous to LTO but defers work even earlier:
 
-1. **Query-system reachability**: add a `used_items(crate)` query that Cargo
-   populates from the downstream crate's compilation, so dependency crates compile
-   with accurate reachability information.
-2. **MIR-level dead item elimination**: post-type-checking, unreachable items are
-   replaced with abort stubs or excluded from codegen, using the same mechanism as
-   existing MIR optimizations.
-3. **Cargo orchestration**: two-pass build — analyse root crate, compile
-   dependencies with used-item sets — mirroring existing feature resolution.
-4. **Incremental integration**: sliced item sets feed smaller fingerprints,
-   benefiting incremental builds too.
+| Phase | Normal compilation | LTO | Stub rlib approach |
+|-------|--------------------|-----|--------------------|
+| AST → HIR | per crate | per crate | per crate (stub rlib emitted here) |
+| HIR → THIR (type-check) | per crate | per crate | deferred to root crate |
+| THIR → MIR (borrow-check) | per crate | per crate | deferred to root crate |
+| MIR → LLVM IR (codegen) | per crate | deferred to link | deferred to root crate |
+
+Dependencies emit stub rlibs after `AST → HIR`: names, signatures, and trait
+definitions, but no function bodies. The root binary crate then loads these stub
+rlibs and completes the pipeline only for functions reachable from `main`,
+running the deferred work in parallel across all dependencies within a single
+rustc process. This exploits the idle cores visible in the
+[parallel-rustc measurements](https://blog.rust-lang.org/2023/11/09/parallel-rustc/).
+
+Note: the total THIR/MIR/codegen work for reachable functions is unchanged —
+the benefit comes from *parallelism*, not from eliminating work.
 
 ### Rust-specific challenges
 
@@ -135,18 +170,18 @@ precise, cached, incremental reachability.
 | Prototype cargo-slicer and PRECC-Rust | @yijunyu | Done |
 | Measure separate compilation gap across 8 projects | @yijunyu | Done |
 | Write technical paper (ASE 2026 submission) | @yijunyu | In Progress |
-| Formalize soundness requirements | @yijunyu | Not started |
-| Design rustc query-system integration architecture | TBD | Not started |
-| Present findings to compiler and cargo teams | TBD | Not started |
+| Formalize soundness requirements for deferred compilation | @yijunyu | Not started |
+| Design stub rlib emission in rustc | TBD | Not started |
+| Prototype deferred root-crate compilation pass | TBD | Not started |
+| Present findings to compiler team | TBD | Not started |
 
 ## Team asks
 
 | Team | Support level | Notes |
 |------|---------------|-------|
-| compiler | Medium | Review query-system integration design; consult on soundness and rustc internals |
-| cargo | Medium | Discuss two-pass build orchestration and crate-level reachability integration |
-| types | Small | Consultation on trait coherence requirements for slicing |
-| lang | Small | Feedback on corner cases and research methodology |
+| compiler | Medium | Collaborate on stub rlib design and deferred compilation pass; consult on soundness and rustc internals |
+| types | Small | Consultation on trait coherence requirements for deferred type-checking |
+| lang | Small | Feedback on corner cases (blanket impls, proc-macros, build scripts) |
 
 ## Frequently asked questions
 
@@ -156,11 +191,18 @@ No. It is a POC demonstrating the opportunity. It bypasses rustc semantics and
 cannot safely handle all language constructs. The POC is the argument for
 investing in a proper rustc-native implementation.
 
+### Does this reduce the total amount of compilation work?
+
+Not necessarily. The total THIR, MIR, and codegen work for reachable functions
+remains the same. The benefit is **parallelism**: type-checking and borrow-checking
+of dependency functions is deferred to the root crate's compilation, where it can
+run concurrently with other work on idle cores, reducing wall-clock time.
+
 ### How is this different from dead code elimination?
 
-DCE operates after full compilation. Slicing reduces work *before* compilation —
-parsing, name resolution, type-checking, and macro expansion are all cheaper on
-a smaller item set.
+DCE operates after full compilation. The stub rlib approach defers
+type-checking and borrow-checking *before* codegen — it is closer to LTO
+(which defers LLVM IR generation) but stops even earlier in the pipeline.
 
 ### How is this different from feature flags?
 
