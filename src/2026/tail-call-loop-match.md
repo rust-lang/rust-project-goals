@@ -4,10 +4,9 @@
 | :-------------------- | ------------------------------------------------------------------------------------------------------ |
 | Point of contact      | @folkertdev                                                                                               |
 | Status                | Proposed                                                                                                   |
-| Tracking issue                                                                                                                  |
+| Tracking issue        |                                                                                                          |
 | Other tracking issues | https://github.com/rust-lang/rust/issues/112788, https://github.com/rust-lang/rust/issues/132306 |
-| Zulip channel                                                                                                                   |
-| Stabilization                                                                                                                   |
+| Zulip channel         |                                                                                                          |
 
 ## Summary
 
