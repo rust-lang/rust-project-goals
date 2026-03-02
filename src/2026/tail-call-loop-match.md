@@ -7,6 +7,7 @@
 | Tracking issue        |                                                                                                          |
 | Other tracking issues | https://github.com/rust-lang/rust/issues/112788, https://github.com/rust-lang/rust/issues/132306 |
 | Zulip channel         |                                                                                                          |
+| [lang] champion | @scottmcm |
 
 ## Summary
 
@@ -40,7 +41,7 @@ In light of these design issues, we'd also like to continue development of `loop
 | Team       | Support level | Notes                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ---------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [compiler] | small         | We expect to only need normal reviews.                                                                                                                                                                                                                                                                                                                                                                                           |
-| [lang]     | ?             | Some architectures cannot support guaranteed tail calls. Our current list of limitations is:<br><br>- `wasm32`/`wasm64` need the `tail-call` target feature to be enabled<br>- `powerpc` (when `elf1` is used) cannot tail call functions in other objects<br><br>Hence, rust code using guaranteed tail calls is not as portable as standard rust code. We need T-lang feedback on how to resolve this.<br><br>The all-hands is well-timed to figure out a solution. |
+| [lang]     | Medium             | Some architectures cannot support guaranteed tail calls. Our current list of limitations is:<br><br>- `wasm32`/`wasm64` need the `tail-call` target feature to be enabled<br>- `powerpc` (when `elf1` is used) cannot tail call functions in other objects<br><br>Hence, rust code using guaranteed tail calls is not as portable as standard rust code. We need T-lang feedback on how to resolve this.<br><br>The all-hands is well-timed to figure out a solution. |
 
 ## Frequently asked questions
 
