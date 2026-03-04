@@ -39,7 +39,7 @@ After they are done, the never type can be stabilized.
 
 | Team       | Support level | Notes                                                                          |
 | ---------- | ------------- | ------------------------------------------------------------------------------ |
-| [compiler] | small         | We expect to only need normal reviews                                          |
+| [types]    | small         | We expect to only need normal reviews                                          |
 | [lang]     | small         | Most of the plans / design was already approved, only minor sign-offs required |
 
 ## Frequently asked questions
