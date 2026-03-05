@@ -2,7 +2,7 @@
 
 | Metadata            |                                    |
 |:--------------------|:-----------------------------------|
-| Point of contact    | @JoelMarcey                        |
+| Point of contact    | @teor                              |
 | Status              | Proposed                           |
 | Tracking issue      | [rust-lang/rust-project-goals#388] |
 | Zulip channel       | [t-lang/interop][channel]          |
@@ -74,7 +74,7 @@ The output will be an interop initiative repository containing discrete problem 
 
 | Task                      | Owner(s) | Notes |
 |---------------------------|----------|-------|
-| Author problem statements | @baumanj |       |
+| Author problem statements | @teor |          |
 
 
 ## Team asks
