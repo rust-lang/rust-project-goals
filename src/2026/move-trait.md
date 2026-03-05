@@ -10,6 +10,7 @@
 | Other tracking issues | https://github.com/rust-lang/rust/issues/149607                                                  |
 | Zulip channel         | [#t-lang/move-trait](https://rust-lang.zulipchat.com/#narrow/channel/549962-t-lang.2Fmove-trait) |
 | [types] champion      | @lcnr                                                                                            |
+| [lang] champion | @jackh726 |
 
 ## Summary
 
