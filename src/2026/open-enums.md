@@ -1,12 +1,12 @@
 # Open Enums
 
-| Metadata         |           |   |
-|:-----------------|-----------|---|
-| Point of contact | @kupiakos |   |
-| Status           | Proposed  |   |
-| Tracking issue   |           |   |
-| Zulip channel    | N/A       |   |
-| [lang] champion  | @scottmcm |   |
+| Metadata         |           |
+|:-----------------|-----------|
+| Point of contact | @kupiakos |
+| Status           | Proposed  |
+| Tracking issue   |           |
+| Zulip channel    | N/A       |
+| [lang] champion  | @scottmcm |
 
 
 @joshtriplett can serve as the lang champion do it if Scott can't.
