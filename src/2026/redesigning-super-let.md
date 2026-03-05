@@ -1,11 +1,12 @@
 # Redesigning `super let`: Flexible Temporary Lifetime Extension
 
-| Metadata         |                                                                                  |
-| :--------------- |--------- |
-| Point of contact | @dianne  |
-| Status           | Proposed |
-| Tracking issue   |          |
-| Zulip channel    | N/A      |
+| Metadata         |              |
+|:-----------------|--------------|
+| Point of contact | @dianne      |
+| Status           | Proposed     |
+| Tracking issue   |              |
+| Zulip channel    | N/A          |
+| [lang] champion  | @traviscross |
 
 ## Summary
 
