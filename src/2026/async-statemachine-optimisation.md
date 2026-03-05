@@ -1,11 +1,13 @@
 # Async statemachine optimisation
 
-| Metadata         |             |
-| :--------------- | ----------- |
-| Point of contact | @diondokter |
-| Status           | Proposed    |
-| Tracking issue   |             |
-| Zulip channel    | N/A         |
+| Metadata            |             |
+|:--------------------|-------------|
+| Point of contact    | @diondokter |
+| Status              | Proposed    |
+| Needs               | Funding     |
+| Tracking issue      |             |
+| Zulip channel       | N/A         |
+| [compiler] champion | @eholk      |
 
 ## Summary
 

@@ -8,6 +8,7 @@
 | Roadmap          | Rust for Linux                     |
 | Zulip channel    | [#project-goals/build-std][zulip]  |
 | Tracking issue   | [rust-lang/rust-project-goals#274] |
+| [cargo] champion | @ehuss                             |
 
 [zulip]: https://rust-lang.zulipchat.com/#narrow/channel/516120-project-goals.2Fbuild-std
 
