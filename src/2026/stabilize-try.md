@@ -1,12 +1,13 @@
 # Stabilize the Try trait
 
-| Metadata              |                        |
-|:----------------------|------------------------|
-| Point of contact      | @tmandry               |
-| Status                | Proposed               |
-| Needs                 | Funding                |
-| Other tracking issues | rust-lang/rust#84277   |
-| Zulip channel         | N/A                    |
+| Metadata              |                      |
+|:----------------------|----------------------|
+| Point of contact      | @tmandry             |
+| Status                | Proposed             |
+| Needs                 | Funding              |
+| Other tracking issues | rust-lang/rust#84277 |
+| Zulip channel         | N/A                  |
+| [lang] champion       | @tmandry             |
 
 ## Summary
 

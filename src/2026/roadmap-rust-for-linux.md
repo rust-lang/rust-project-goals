@@ -62,6 +62,12 @@ We have also been tracking the coordination through Project goals and this is a 
 
 These are other topics Rust for Linux is interested in but that do not have a project goal. There are more (please see the linked lists below), but for 2026 we considered these to be some we would like to focus on. In order of priority (roughly):
 
+  - `asm_const_ptr`
+
+  - `cfg(no_fp_fmt_parse)`
+
+  - `used_with_arg`
+
   - `rustfmt`: removing the `//` hack inside imports ("kernel vertical style").
     + Essentially being able to trigger the logic that currently gets triggered when `rustfmt` detects a comment.
 

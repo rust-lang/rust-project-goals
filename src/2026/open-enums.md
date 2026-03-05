@@ -1,11 +1,15 @@
 # Open Enums
 
-| Metadata         |                                                                                  |
-| :--------------- | -------------------------------------------------------------------------------- |
-| Point of contact | @kupiakos                                                                        |
-| Status           | Proposed                                                                         |
-| Tracking issue   |                                                                                  |
-| Zulip channel    | (an existing stream can be re-used or new streams can be created on request)     |
+| Metadata         |           |
+|:-----------------|-----------|
+| Point of contact | @kupiakos |
+| Status           | Proposed  |
+| Tracking issue   |           |
+| Zulip channel    | N/A       |
+| [lang] champion  | @scottmcm |
+
+
+@joshtriplett can serve as the lang champion do it if Scott can't.
 
 ## Summary
 
