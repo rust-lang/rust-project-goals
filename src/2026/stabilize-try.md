@@ -8,6 +8,7 @@
 | Other tracking issues | rust-lang/rust#84277 |
 | Zulip channel         | N/A                  |
 | [lang] champion       | @tmandry             |
+| [libs-api] champion   | @Amanieu             |
 
 ## Summary
 
@@ -105,7 +106,7 @@ Because there are open design questions that haven't yet been resolved, we shoul
 | ---------- | ------------- | --------------------------------------- |
 | [compiler] | Small         |                                         |
 | [lang]     | Medium        |                                         |
-| [libs]     | Medium        |                                         |
+| [libs-api] | Medium        |                                         |
 | [types]    | Small         |                                         |
 
 ## Frequently asked questions
