@@ -8,6 +8,7 @@
 | Needs            | Funding        |
 | Tracking issue   |                |
 | Zulip channel    | N/A            |
+| [lang] champion  | @Nadrieril     |
 
 ## Summary
 
