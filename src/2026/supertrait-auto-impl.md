@@ -93,6 +93,6 @@ We would like to establish a mechanism in the language to automatically derive t
 | [opsem]    |               |                                         |
 | [types]    | Small | `r? types` when touching the type system. Expect that anything beyond "simple" types changes may be rejected or de-prioritized. [^types-small] |
 
-[^types-small]: https://rust-lang.zulipchat.com/#narrow/channel/144729-t-types/topic/2026.20Project.20Goals/near/573917638
+[^types-small]: [See discussion.](https://rust-lang.zulipchat.com/#narrow/channel/144729-t-types/topic/2026.20Project.20Goals/near/573917638)
 
 ## Frequently asked questions
