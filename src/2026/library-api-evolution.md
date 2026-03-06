@@ -7,6 +7,7 @@
 | Tracking issue      |          |
 | Zulip channel       | N/A      |
 | [libs-api] champion | @Amanieu |
+| [edition] champion  | @ehuss   |
 
 ## Summary
 
