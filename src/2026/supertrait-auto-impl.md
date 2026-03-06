@@ -91,7 +91,8 @@ We would like to establish a mechanism in the language to automatically derive t
 | [lang]     |  Medium | Team aligned already on the shape of the feature |
 | [libs-api]     |               |                                         |
 | [opsem]    |               |                                         |
-| [types]    | Medium | Want to ensure that the feature "fits within the lines" of a simple desugaring, still some possible type-system impl work |
-| ...        | ...           | *Feel free to add rows for other teams* |
+| [types]    | Small | `r? types` when touching the type system. Expect that anything beyond "simple" types changes may be rejected or de-prioritized. [^types-small] |
+
+[^types-small]: https://rust-lang.zulipchat.com/#narrow/channel/144729-t-types/topic/2026.20Project.20Goals/near/573917638
 
 ## Frequently asked questions
