@@ -5,9 +5,6 @@
 | Short title      | Beyond the `&`                                                                                                                   |
 | What and why     | Smart pointers (`Arc`, `Pin`, FFI wrappers) get the same ergonomics as `&` and `&mut` — reborrowing, field access, in-place init |
 | Point of contact | @tmandry                                                                                                                         |
-| Application area | Network services                                                                                                                 |
-| Application area | Systems & embedded                                                                                                               |
-| Application area | Cross-language interop                                                                                                           |
 
 ## Summary
 
