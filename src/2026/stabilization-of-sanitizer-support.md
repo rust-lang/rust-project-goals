@@ -48,5 +48,5 @@ The goal is to stabilize MemorySanitizer and ThreadSanitizer for [Tier 1](https:
 | ----------------------------- | ------------- | ---------------------- |
 | [infra]                       | Small         |                        |
 | [compiler]                    | Medium        | Reviews, stabilization |
-| [bootstrap]                   | Medium        | Dedicated reviewer     |
+| [bootstrap]                   | Small         |                        |
 | [project-exploit-mitigations] | Medium        | Dedicated reviewer     |
