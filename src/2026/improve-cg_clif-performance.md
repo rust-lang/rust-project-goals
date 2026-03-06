@@ -1,12 +1,13 @@
 # Improve `rustc_codegen_cranelift` performance
 
-| Metadata         |                                                                                  |
-| :--------------- | -------------------------------------------------------------------------------- |
-| Point of contact | @bjorn3                                   |
-| Status           | Proposed                                                                         |
-| Tracking issue   |   |
-| Zulip channel    | N/A |
-| Needs            | Funding |
+| Metadata            |          |
+| :------------------ | -------- |
+| Point of contact    | @bjorn3  |
+| Status              | Proposed |
+| Tracking issue      |          |
+| Zulip channel       | N/A      |
+| Needs               | Funding  |
+| [compiler] champion | @bjorn3  |
 
 ## Summary
 
@@ -37,9 +38,9 @@ We want to explore ambitious ways to substantially improve the speedup that the 
 
 Possible projects are:
 
-* A persistent daemon that caches the machine code of individual compiled functions in-memory, eliminating serialization overhead with respect to caching individual functions on disk.
-* Using just-in-time (JIT) compilation for functions as they are called.
-* Interpreting Cranelift IR rather than compiling it for functions that are called infrequently.
+- A persistent daemon that caches the machine code of individual compiled functions in-memory, eliminating serialization overhead with respect to caching individual functions on disk.
+- Using just-in-time (JIT) compilation for functions as they are called.
+- Interpreting Cranelift IR rather than compiling it for functions that are called infrequently.
 
 #### Stability & Usability improvements
 
@@ -50,16 +51,16 @@ We additionally want to fix several long-standing bugs that limit `rustc_codegen
 
 ### Work items over the next year
 
-| Task        | Owner(s) | Notes |
-| ----------- | -------- | ----- |
-| Stability/usability improvements | @bjorn3 | |
-| Investigate ways to speedup `rustc_codegen_cranelift` | @bjorn3 | |
+| Task                                                  | Owner(s) | Notes |
+| ----------------------------------------------------- | -------- | ----- |
+| Stability/usability improvements                      | @bjorn3  |       |
+| Investigate ways to speedup `rustc_codegen_cranelift` | @bjorn3  |       |
 
 ## Team asks
 
-| Team       | Support level | Notes                                   |
-| ---------- | ------------- | --------------------------------------- |
-| [cargo]    | Small        | In case we end up pursuing JITing as a way to improve performance that will eventually need native integration with `cargo run`. For now we're just prototyping, and so the occasional vibe check should be sufficient |
-| [compiler] | Medium | Depending on what ways we end up pursuing, we might need no rustc side changes at all or medium sized changes. |
+| Team       | Support level | Notes                                                                                                                                                                                                                  |
+| ---------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [cargo]    | Small         | In case we end up pursuing JITing as a way to improve performance that will eventually need native integration with `cargo run`. For now we're just prototyping, and so the occasional vibe check should be sufficient |
+| [compiler] | Medium        | Depending on what ways we end up pursuing, we might need no rustc side changes at all or medium sized changes.                                                                                                         |
 
 ## Frequently asked questions

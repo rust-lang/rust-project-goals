@@ -1,11 +1,13 @@
 # Evolving the standard library API across editions
 
-| Metadata         |                                                                                  |
-| :--------------- | --------- |
-| Point of contact | @Amanieu  |
-| Status           | Proposed  |
-| Tracking issue   |           |
-| Zulip channel    | N/A       |
+| Metadata            |          |
+| :------------------ | -------- |
+| Point of contact    | @Amanieu |
+| Status              | Proposed |
+| Tracking issue      |          |
+| Zulip channel       | N/A      |
+| [libs-api] champion | @Amanieu |
+| [edition] champion  | @ehuss   |
 
 ## Summary
 
@@ -35,7 +37,7 @@ Currently the only existing tool for making such changes is deprecating the old 
 
 ### What we propose to do about it
 
-We would like the ability to make larger API breaking changes across editions. To do so we would like to add a mechanism for *edition-dependent re-exports*. This would allow a single path in the standard library to resolve to different items depending on the edition of the code that is referencing it. For example:
+We would like the ability to make larger API breaking changes across editions. To do so we would like to add a mechanism for _edition-dependent re-exports_. This would allow a single path in the standard library to resolve to different items depending on the edition of the code that is referencing it. For example:
 
 ```rust
 // std
@@ -61,18 +63,18 @@ This would allow for major changes in the standard library API while still allow
 
 ### Work items over the next year
 
-| Task        | Owner(s) | Notes |
-| ----------- | -------- | ----- |
-| Draft RFC | @Amanieu |       |
-| Implement compiler support | *owner* |       |
+| Task                       | Owner(s) | Notes                                          |
+| -------------------------- | -------- | ---------------------------------------------- |
+| Draft RFC                  | @Amanieu |                                                |
+| Implement compiler support | @Amanieu | Needs a reviewer familiar with name resolution |
 
 ## Team asks
 
-| Team       | Support level | Notes                                    |
-| ---------- | ------------- | ---------------------------------------  |
-| [compiler] | Medium        | Design discussions and implementation review. |
-| [lang]     | Small         | Review of the feature and lang implications. |
-| [libs-api] | Large         | Determine what API changes should be made across editions. |
+| Team       | Support level | Notes                                                                        |
+| ---------- | ------------- | ---------------------------------------------------------------------------- |
+| [compiler] | Medium        | Design discussions and implementation review.                                |
+| [lang]     | Small         | Review of the feature and lang implications.                                 |
+| [libs-api] | Large         | Determine what API changes should be made across editions.                   |
 | [edition]  | Large         | Review the feasibility of this proposal as well as the specific API changes. |
-| [rustdoc]  | Medium        | Figure out how such API changes should be presented in the API docs. |
-| [types]    | Small         | Review of any changes to HIR ty lowering or method resolution |
+| [rustdoc]  | Medium        | Figure out how such API changes should be presented in the API docs.         |
+| [types]    | Small         | Review of any changes to HIR ty lowering or method resolution                |

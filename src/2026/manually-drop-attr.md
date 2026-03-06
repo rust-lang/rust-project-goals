@@ -8,6 +8,8 @@
 | Needs            | Funding        |
 | Tracking issue   |                |
 | Zulip channel    | N/A            |
+| [lang] champion  | @Nadrieril     |
+| [opsem] champion | @CAD97         |
 
 ## Summary
 
