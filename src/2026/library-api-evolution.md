@@ -64,7 +64,7 @@ This would allow for major changes in the standard library API while still allow
 | Task        | Owner(s) | Notes |
 | ----------- | -------- | ----- |
 | Draft RFC | @Amanieu |       |
-| Implement compiler support | *owner* |       |
+| Implement compiler support | @Amanieu | Needs a reviewer familiar with name resolution |
 
 ## Team asks
 

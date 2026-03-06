@@ -7,7 +7,7 @@
 | Tracking issue   |           |
 | Zulip channel    | N/A       |
 | [lang] champion  | @scottmcm |
-
+| [compiler] champion  | @madsmtm |
 
 @joshtriplett can serve as the lang champion do it if Scott can't.
 
