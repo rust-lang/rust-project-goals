@@ -4,7 +4,6 @@
 | :------------------- | ------------------ |
 | Point of contact     | @orhun             |
 | Status               | Proposed           |
-| Roadmap              | Building blocks    |
 | Tracking issue       |                    |
 | Other tacking issues | [#11213], [#15473] |
 | Zulip channel        | [TUI for Cargo]    |
