@@ -1,13 +1,13 @@
 # Stabilize MemorySanitizer and ThreadSanitizer Support
 
-| Metadata         |                                    |
-|:-----------------|:-----------------------------------|
-| Point of contact | @jakos-sec                         |
-| Status           | Proposed                           |
-| Tracking issue   | [rust-lang/rust-project-goals#403] |
-| Zulip channel    | N/A                                |
-| Highlight        | Other                              |
-
+| Metadata                               |                                    |
+| :------------------------------------- | :--------------------------------- |
+| Point of contact                       | @jakos-sec                         |
+| Status                                 | Proposed                           |
+| Tracking issue                         | [rust-lang/rust-project-goals#403] |
+| Zulip channel                          | N/A                                |
+| Highlight                              | Other                              |
+| [project-exploit-mitigations] champion | @rcvalle                           |
 
 ## Summary
 
@@ -19,10 +19,8 @@ Sanitizers help with increasing the robustness and security of software and have
 
 In order for them to be properly usable, the sanitizer support should be stabilized so it is no longer required to use a nightly toolchain and build your own standard libraries.
 
-
 In the future we want to stabilize all sanitizers (including memtag, cfi, kcfi, safestack, shadow-call-stack) and support them on all targets supported by the Rust compiler.
 In the meantime we work towards at least supporting [Tier 1](https://doc.rust-lang.org/nightly/rustc/platform-support.html#tier-1-with-host-tools) targets for all of them.
-
 
 ### The status quo
 
@@ -36,9 +34,8 @@ We start with stabilizing the `MemorySanitizer` and `ThreadSanitizer` and pick t
 
 The goal is to stabilize MemorySanitizer and ThreadSanitizer for [Tier 1](https://doc.rust-lang.org/nightly/rustc/platform-support.html#tier-1-with-host-tools) targets and provide a way to use them without rebuilding the standard library (which currently is also behind an unstable flag). This requires a way to ship sanitizer instrumented standard libraries (for Memory- and ThreadSanitizer) through [rustup](https://rustup.rs/).
 
-
 | Task             | Owner(s)            | Notes                             |
-|------------------|---------------------|-----------------------------------|
+| ---------------- | ------------------- | --------------------------------- |
 | Implementation   | @jakos-sec, @1c3t3a | [MCP 951 tracking issue][MCP 951] |
 | Reference PR     | @jakos-sec, @1c3t3a |                                   |
 | Stabilization PR | @jakos-sec, @1c3t3a |                                   |
@@ -48,7 +45,7 @@ The goal is to stabilize MemorySanitizer and ThreadSanitizer for [Tier 1](https:
 ## Team asks
 
 | Team                          | Support level | Notes                  |
-|-------------------------------|---------------|------------------------|
+| ----------------------------- | ------------- | ---------------------- |
 | [infra]                       | Small         |                        |
 | [compiler]                    | Medium        | Reviews, stabilization |
 | [bootstrap]                   | Medium        | Dedicated reviewer     |
