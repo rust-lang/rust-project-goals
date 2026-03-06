@@ -7,6 +7,7 @@
 | Tracking issue   | [rust-lang/rust-project-goals#396] |
 | Zulip channel    | N/A                                |
 | [lang] champion  | @Amanieu                           |
+| [opsem] champion | @RalfJung                          |
 
 
 ## Summary

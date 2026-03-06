@@ -8,6 +8,7 @@
 | Zulip channel    | N/A       |
 | [lang] champion  | @scottmcm |
 | [compiler] champion  | @madsmtm |
+| [opsem] champion | @chorman0773 |
 
 @joshtriplett can serve as the lang champion do it if Scott can't.
 
