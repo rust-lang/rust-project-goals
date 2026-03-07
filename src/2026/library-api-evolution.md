@@ -8,6 +8,7 @@
 | Zulip channel       | N/A      |
 | [libs-api] champion | @Amanieu |
 | [edition] champion  | @ehuss   |
+| [compiler] champion | @yaahc   |
 
 ## Summary
 
