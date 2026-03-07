@@ -12,25 +12,27 @@ Tone and style:
 Structure:
 - Status quo explains the HIGH-LEVEL CONCEPT the theme addresses, not individual features
 - Status quo identifies the problem or opportunity, then explains what improvements become possible
-- "What we are shooting for" describes concrete outcomes, not implementation details
-- Key use cases show what becomes possible, briefly
-- Design axioms guide tradeoffs across the theme
+- Design axioms come early to frame how you read everything that follows
+- "What we are shooting for" is a short, aspirational statement of the end state
+- "How we get there" leads with the goals table, then explains sequencing and dependencies
+- FAQ addresses cross-cutting questions
 
 Common mistakes to avoid:
 - Listing individual goals in the status quo (that's what the goals table is for)
 - Over-explaining each feature in detail (link to goal pages instead)
 - Marketing language that oversells the importance
 - Making the status quo too long with exhaustive problem descriptions
+- Making "What we are shooting for" too long — it should be punchy, not a bullet list
 
 Good examples to follow:
 - See "Beyond the `&`" for clean problem/solution structure
-- See "Unblocking dormant traits" for infrastructure-enables-features framing
+- See "Project Zero" for infrastructure-enables-fixes sequencing
 
 Length guidance:
 - Status quo: 2-4 paragraphs explaining the high-level problem/opportunity
-- What we are shooting for: 3-5 bullet points of concrete outcomes
-- Key use cases: 3-5 brief scenarios
 - Design axioms: 2-4 principles
+- What we are shooting for: 1-3 sentences describing the end state
+- How we get there: goals table followed by sequencing explanation
 - FAQ: 2-3 cross-cutting questions
 -->
 
@@ -59,25 +61,9 @@ Length guidance:
 >
 > *Keep it concise. The goal pages have details; this page provides the unifying narrative.*
 
-### What we are shooting for
-
-> *Paint a picture of the future in concrete terms. By the end of 2026:*
-> * *Bullet points describing specific outcomes*
-> * *Focus on what users can do, not implementation details*
-> * *Use present tense ("Extern types work") not future tense ("Extern types will work")*
-
-### Key use cases
-
-> *List 3-5 specific scenarios this theme will enable. For each use case:*
-> * *Name the use case in bold*
-> * *One sentence explaining what becomes possible*
->
-> *Example format:*
-> * **Use case name**: Description of what users can do and why it matters.
-
 ### Design axioms
 
-> *List the principles guiding decisions across all goals in this theme. Good design axioms:*
+> *List the principles guiding decisions across all goals in this theme. Design axioms come early because they frame how you read everything that follows. Good design axioms:*
 > * *Help resolve tradeoffs when they arise*
 > * *Explain the "why" behind design choices*
 > * *Are specific enough to be actionable*
@@ -85,16 +71,21 @@ Length guidance:
 > *Example format:*
 > * **Axiom name.** Explanation of the principle and how it guides decisions.
 
-## 2026 goals
+### What we are shooting for
+
+> *A short, aspirational statement of the end state. What does the world look like when this roadmap is done? Keep it punchy — 1-3 sentences, not a bullet list. The details of how we get there come next.*
+
+### How we get there
 
 (((ROADMAP GOALS: Theme Name)))
 
 > *Replace "Theme Name" above with the exact name used in the `Roadmap` metadata field of your goals. The preprocessor will automatically list all goals tagged with this theme.*
+>
+> *After the goals table, explain the sequencing and dependencies:*
+> * *What needs to happen first? What does it unblock?*
+> * *Which work items can proceed in parallel?*
+> * *What are the key blockers and how are they addressed?*
 
 ## Frequently asked questions
 
 > *Address questions that span multiple goals in the theme. Individual goal FAQs should go in those goal documents; theme FAQs address cross-cutting concerns.*
-
-### How do these goals relate to each other?
-
-> *Explain how the goals in this theme connect. Are they sequential dependencies? Parallel efforts? Independent pieces of a larger puzzle?*
