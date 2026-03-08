@@ -95,11 +95,11 @@ tokio::spawn(async {
 | ----------------------------------------------- | ------------- | ------------------------------ |
 | RFC for `Share` trait                           | @nikomatsakis | Define semantics, stdlib impls |
 | RFC for move expressions                        | @nikomatsakis | Closure desugaring semantics   |
-| Implement `Share` trait                         | @spastorino   |                                |
-| Implement move expressions                      | @spastorino   |                                |
+| Implement `Share` trait                         | @spastorino, @TaKO8Ki |                         |
+| Implement move expressions                      | @spastorino, @TaKO8Ki |                         |
 | Prepare reference changes                       | @nikomatsakis |                                |
-| Prepare stabilization PR for `Share` trait      | @spastorino   |                                |
-| Prepare stabilization PR for `move` expressions | @spastorino   |                                |
+| Prepare stabilization PR for `Share` trait      | @spastorino, @TaKO8Ki |                         |
+| Prepare stabilization PR for `move` expressions | @spastorino, @TaKO8Ki |                         |
 
 **Target:** Working prototypes on nightly by summer 2026.
 
