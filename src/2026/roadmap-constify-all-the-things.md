@@ -22,41 +22,25 @@ Rust's compile-time capabilities are powerful but incomplete. `const fn` enables
 
 * **Proc macros are the only option for code generation.** When you need compile-time code generation, proc macros work but are difficult to debug, can't access type information, and add compile-time overhead.
 
-Extending const generics and adding compile-time reflection would address all three limitations, letting users write normal Rust code that inspects types and runs at compile time.
+Extending const generics and adding compile-time reflection would address all three limitations, letting users write normal Rust code that inspects types and runs at compile time. The practical impact spans serialization (`serialize(&my_struct)` without derives), game engines (inspect any type's structure directly, making `#[derive(Component)]` optional), dimension-checked numerics (physical dimensions as const generic structs), and protocol buffer generation (work with Rust structs at compile time without external code generators).
+
+### Design axioms
+
+* **Extend the const boundary, don't reinvent.** Build on `const fn` and const generics rather than creating parallel evaluation systems. Users should write normal Rust code that happens to run at compile time.
+* **Remove boilerplate, don't shift it.** Reflection should eliminate the need for derives on every type, not replace one kind of boilerplate with another.
+* **Incremental delivery.** Const generics and reflection are independently valuable. Ship each as it's ready rather than waiting for the full vision.
 
 ### What we are shooting for
 
-**Stable by end of 2026:**
+Const generics that accept structs and enums (stable by end of 2026), and an experimental `comptime` reflection system validated against libraries like `bevy_reflect` and `facet`, with an RFC merged defining the stabilization path.
 
-* **Const generics accept structs and enums.** Write `Array<T, Dimensions { width: 4, height: 4 }>` and have it work. Use associated constants like `Buffer<T, T::SIZE>`.
-
-**RFC by end of 2026:**
-
-* **Reflection without derives.** An experimental `comptime` reflection system will be available on nightly and validated against libraries like `bevy_reflect` and `facet`. We aim to have an RFC merged defining the stabilization path.
-
-### Key use cases
-
-* **Zero-boilerplate serialization**: `serialize(&my_struct)` works for any struct without derives. The library inspects field types at compile time.
-
-* **Game engine reflection**: Engines like Bevy can inspect any type's structure directly, making `#[derive(Component)]` optional.
-
-* **Dimension-checked numerics**: Libraries encode physical dimensions in const generic structs, providing compile-time verification of unit calculations.
-
-* **Protocol buffer generation**: Libraries work directly with Rust structs at compile time, without external code generators.
-
-## 2026 goals
+### How we get there
 
 (((ROADMAP GOALS: Constify all the things)))
 
+**Const generics** extends what values can be used as compile-time parameters — foundational for many advanced patterns. **Reflection and comptime** provides the ability to inspect types at compile time, enabling libraries that work without derives. Together they transform what's possible at compile time: const generics let you parameterize by complex values, reflection lets you adapt to any type's structure.
+
 ## Frequently asked questions
-
-### How do these goals relate to each other?
-
-* **Const generics** extends what values can be used as compile-time parameters—foundational for many advanced patterns.
-
-* **Reflection and comptime** provides the ability to inspect types at compile time, enabling libraries that work without derives.
-
-Together they transform what's possible at compile time: const generics let you parameterize by complex values, reflection lets you adapt to any type's structure.
 
 ### How does reflection differ from proc macros?
 

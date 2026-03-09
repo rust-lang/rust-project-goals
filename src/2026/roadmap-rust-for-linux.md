@@ -31,31 +31,29 @@ We have representatives from the Language and Compiler teams present.
 
 We have also been tracking the coordination through Project goals and this is a continuation of that effort.
 
-### What we are shooting for
-
-* Build Linux kernel releases using the stable Rust language (no feature gates).
-* Support all the targets that Linux supports.
-* Address the [long tail of features Rust for Linux needs](https://github.com/rust-for-linux/linux/issues/354)
-
-### Key use cases
-
-* **Reduce the risk of critical errors:** By compartmentalising the unsafe parts of the code base and having a clear boundary, we can build code that will have fewer bugs. We can rewrite notoriously tricky sections and provide better primitives.
-
-* **Improve code quality across the kernel:** In addition to the direct benefits of the Rust code, the Kernel is seeing improvements in the *C* side as well. We are seeing improvements of existing APIs in terms of `const`-ness, clarity and safety. Even people working solely with C have started pushing for better API documentation. Having Rust with the constantly maintained high bar that the Rust for Linux folks started results in a *better codebase overall*.
-
-* **Bring in new contributors:** It is a frequent theme within the Rust community that people who would never felt confident writing C dive into low-level topics and able to learn, experiment and *ship* code that is safe to be integrated into larger systems.
+Beyond language stabilization, Rust for Linux demonstrates the broader value of Rust in systems software: compartmentalizing `unsafe` code to reduce critical errors, improving code quality across the kernel (even on the C side — APIs are getting clearer and better documented), and bringing in new contributors who would never have felt confident writing C for low-level systems.
 
 ### Design axioms
 
-**Don't let perfect be the enemy of good**™: The primary goal is to offer stable support for the particular use cases that the Linux kernel requires. Wherever possible we aim to stabilize features completely, but if necessary, we can try to stabilize a subset of the functionality that meets the kernel developers' needs while leaving other aspects unstable.
+**Don't let perfect be the enemy of good.** The primary goal is to offer stable support for the particular use cases that the Linux kernel requires. Wherever possible we aim to stabilize features completely, but if necessary, we can try to stabilize a subset of the functionality that meets the kernel developers' needs while leaving other aspects unstable.
 
+### What we are shooting for
 
-## 2026 Goals
+Build Linux kernel releases using the stable Rust language (no feature gates), support all the targets that Linux supports, and address the [long tail of features Rust for Linux needs](https://github.com/rust-for-linux/linux/issues/354).
+
+### How we get there
 
 (((ROADMAP GOALS: Rust for Linux)))
 
-`compiler_builtins` TODO(tomassedovic) the previous issue also lists compiler builtins. What are those?
+## Frequently asked questions
 
+### When is this done?
+
+When all the work listed here reaches stable Rust — no more `#![feature(...)]` declarations needed to build the kernel.
+
+### How do the goals relate to each other?
+
+The goals largely track independent feature stabilization efforts, coordinated through the biweekly meetings between the Rust Project and Rust for Linux teams.
 
 ## Other topics
 
@@ -97,7 +95,7 @@ These are other topics Rust for Linux is interested in but that do not have a pr
   - Custom prelude.
 
   - `build_assert!`.
-    + Especially ways to fail earlier and/or improve the error messages, similar to [GCC's](https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#index-error-function-attribute) and [Clang's](https://clang.llvm.org/docs/AttributeReference.html#error-warning) `error`/`warning` attribute.
+    + Especially ways to fail earlier and/or improve the error messages, similar to [GCC's](https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#index-error-function-attribute) and [Clang's](https://clang.llvm.org/docs/AttributeReference.html#index-error-function-attribute) `error`/`warning` attribute.
 
   - Specialization for improving the performance of our `alloc` types.
 
@@ -124,11 +122,3 @@ Please see more details at the following Rust for Linux lists:
   - [`rustfmt` wanted features & bugfixes](https://github.com/Rust-for-Linux/linux/issues/398).
 
   - [Clippy wanted features & bugfixes](https://github.com/Rust-for-Linux/linux/issues/349).
-
-
-## Frequently asked questions
-
-TODO
-
-* when is this done? (A: when the work here is all stable?)
-* how do the goals relate to each other (note the interdependencies)

@@ -14,11 +14,7 @@ Writing async Rust should be a natural extension of sync Rust: take your sync co
 
 ### The status quo
 
-#### Async Rust is widely used
-
 The promise of tight tail latency, low memory usage, and high-level reliable code has made Rust, and async Rust in particular, a popular choice for network services. Rust is now widely used at all levels, from superscalars like Amazon and Microsoft, to simple CRUD apps built on FAAS platforms like Lambda or Azure Functions, to low-level networking on embedded devices.
-
-#### But Async Rust doesn't support standard Rust patterns
 
 Despite this success, async Rust is widely seen as qualitatively harder than sync Rust. Not just more complex, but a different kind of challenge:
 
@@ -34,29 +30,7 @@ The problem isn't async concepts themselves. Developers understand concurrency (
 
 Each issue has workarounds. But the workarounds require knowledge that doesn't transfer from sync Rust, and the compiler doesn't guide you to them. The result: developers who would otherwise build a network service in Rust hit these walls and wonder if it's worth the trouble.
 
-**The ecosystem is waiting too.** Libraries like Tower remain on 0.x because they can't express the APIs they need. Tower's `Service` trait predates `async fn` in traits and uses complex workarounds. The maintainers want to ship a cleaner design, but they're blocked on language features. Particularly the ability to define one trait that works with both `Send` and non-`Send` futures. So Tower waits, and the middleware ecosystem built on it stays in flux.
-
-### What we are shooting for
-
-The goal is **"Just add async"**: patterns that work in sync Rust should work in async Rust without requiring workarounds, restructuring, or arcane incantations. When async does require something extra (like explicit boxing for dyn dispatch), the compiler guides you with clear, actionable errors. Not walls of opaque type errors.
-
-There should be straightforward equivalents for all the "rudiments of Rust":
-
-* [x] Inherent async function definitions and calls to those functions
-* [x] Async closures
-* [x] Static trait dispatch for traits with async functions
-* [ ] Generic functions that make use of those traits ([proposed for 2026](./rtn.md))
-* [ ] Dynamic trait dispatch ([proposed for 2026](./afidt-box.md))
-* [ ] Iterators (requires a stream trait design and other details)
-* [ ] Convenient ways to write recursive functions
-* [ ] Scoped parallelism (requires [immobile types and guaranteed destructors](./move-trait.md), proposed for 2026)
-* [ ] Async drop and resource cleanup (requires [immobile types and guaranteed destructors](./move-trait.md), proposed for 2026)
-
-### Key use cases
-
-* **Network service development:** Backend services, API servers, data pipelines. The most common async use case. In this scenario, allocation is acceptable. Performance bounds vary by application but consistency is often more important than absolute level of performance.
-
-* **Middleware and composable abstractions:** Libraries like Tower can define `Service` traits that work across runtimes (work-stealing and thread-per-core) without complex workarounds.
+The ecosystem is waiting too. Libraries like Tower remain on 0.x because they can't express the APIs they need. Tower's `Service` trait predates `async fn` in traits and uses complex workarounds. The maintainers want to ship a cleaner design, but they're blocked on language features — particularly the ability to define one trait that works with both `Send` and non-`Send` futures. So Tower waits, and the middleware ecosystem built on it stays in flux.
 
 ### Design axioms
 
@@ -66,9 +40,15 @@ There should be straightforward equivalents for all the "rudiments of Rust":
 
 * **Unblock the ecosystem, enable experimentation.** The goal isn't just language features. It's enabling libraries like Tower to ship stable APIs, and creating space for exploration of harder problems (in-place initialization, structured concurrency) without blocking on them. Ship end-to-end workflows that work today while leaving room for the designs to evolve.
 
-## 2026 goals
+### What we are shooting for
+
+Patterns that work in sync Rust should work in async Rust without requiring workarounds, restructuring, or arcane incantations. When async does require something extra (like explicit boxing for dyn dispatch), the compiler guides you with clear, actionable errors — not walls of opaque type errors.
+
+### How we get there
 
 (((ROADMAP GOALS: Just add async)))
+
+The 2026 goals are largely independent. **RTN** enables generic async code and is already RFC'd, waiting on trait solver work. **AFIDT / `.box` notation** enables dyn dispatch for async traits. **Ergonomic ref-counting** addresses closure capture pain that's amplified by async's `'static` spawn requirements. **Immobile types and guaranteed destructors** enables scoped spawn and async drop by letting types opt out of being moved or forgotten. RTN and AFIDT share a dependency on the next-generation trait solver, which is being worked on separately.
 
 ## Frequently asked questions
 
@@ -85,14 +65,3 @@ It does *not* mean agreeing to specific syntax (like `.box`) or implementation d
 ### What about async iterators / streams?
 
 Async iteration is part of this theme's vision, but not a 2026 focus. The 2026 goals target the foundational work: getting async fn in traits and closures fully working. That's enough scope for one year. Exploring streams fully will require those foundations plus [guaranteed destructors](./move-trait.md) (because streams interact with structured concurrency and cancellation). Once the 2026 work lands, streams become much more tractable.
-
-### How do the goals in this theme relate to each other?
-
-The four 2026 goals are largely independent:
-
-- **RTN** enables generic async code and is already RFC'd, waiting on trait solver work
-- **AFIDT / `.box` notation** enables dyn dispatch for async traits
-- **Ergonomic ref-counting** addresses closure capture pain that's amplified by async's `'static` spawn requirements
-- **Immobile types and guaranteed destructors** enables scoped spawn and async drop by letting types opt out of being moved or forgotten
-
-RTN and AFIDT share a dependency on the next-generation trait solver, which is being worked on separately.

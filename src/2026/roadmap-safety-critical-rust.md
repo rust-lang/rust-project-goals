@@ -36,22 +36,7 @@ What these teams need most:
 * **Continued progress on `unsafe` documentation.** The [Reference][rust-reference], [Rustonomicon][rustonomicon], and [standard library docs][std-docs] have improved substantially over the years, but gaps remain for common patterns.
 * **Stable foundations.** Product lifetimes of 10-20 years require confidence in toolchain support and MSRV conventions.
 
-Teams at SIL 2 and ASIL B are [shipping Rust today][vision-doc]. These deliverables reduce the workarounds they need and create a path to higher integrity levels.
-
-### What we are shooting for
-
-We are building a capability ladder that unlocks Rust at increasing safety-integrity levels. The 2026 focus is the foundation, while keeping a clear path to higher tiers.
-
-* **Foundation (ASIL A/B, SIL 1/2, DO-178C Level C).** Stable branch/DC coverage baselines and predictable [FLS][fls] releases, plus initial safety-critical linting to enforce [Safety-Critical Rust Consortium][scrc] coding standards.
-* **Intermediate (ASIL C, SIL 3, DO-178C Level B).** Normative `unsafe` pattern documentation and expanded lint coverage, with coordination for mixed-language interop and async runtime patterns.
-* **Highest integrity (ASIL D, SIL 4, DO-178C Level A).** [MC/DC][mcdc] coverage in rustc and formal-methods coordination toward contracts, semantics documentation, and verified tooling.
-
-### Key use cases
-
-* **Certification evidence**: Generate coverage and spec references that auditors accept.
-* **Qualified toolchains**: Tool vendors can qualify rustc/Clippy with predictable releases and lint sets.
-* **Mixed-language systems**: Integrate Rust into C and C++ stacks with well-defined `unsafe` contracts.
-* **Long-lived products**: Maintain 10-20 year systems with stable MSRV and documentation baselines.
+Teams at SIL 2 and ASIL B are [shipping Rust today][vision-doc]. These deliverables reduce the workarounds they need and create a path to higher integrity levels — enabling certification evidence, qualified toolchains, mixed-language integration with well-defined `unsafe` contracts, and long-lived products with stable MSRV and documentation baselines.
 
 ### Design axioms
 
@@ -60,15 +45,17 @@ We are building a capability ladder that unlocks Rust at increasing safety-integ
 * **Ship a ladder.** Foundations first, with an explicit path to higher integrity levels.
 * **Document safety contracts.** `unsafe` patterns must have normative, citable guidance.
 
-## 2026 goals
+### What we are shooting for
+
+A capability ladder that unlocks Rust at increasing safety-integrity levels — from ASIL A/B and SIL 1/2 today, through intermediate levels, to the highest integrity certifications.
+
+### How we get there
 
 (((ROADMAP GOALS: Safety-Critical Rust)))
 
+The goals form a coherent evidence chain across three tiers. The **foundation** tier (ASIL A/B, SIL 1/2, DO-178C Level C) delivers stable branch/DC coverage baselines and predictable [FLS][fls] releases, plus initial safety-critical linting to enforce [Safety-Critical Rust Consortium][scrc] coding standards. The **intermediate** tier (ASIL C, SIL 3, DO-178C Level B) adds normative `unsafe` pattern documentation and expanded lint coverage, with coordination for mixed-language interop and async runtime patterns. The **highest integrity** tier (ASIL D, SIL 4, DO-178C Level A) targets [MC/DC][mcdc] coverage in rustc and formal-methods coordination toward contracts, semantics documentation, and verified tooling.
+
 ## Frequently asked questions
-
-### How do these goals relate to each other?
-
-They form a coherent evidence chain: [FLS][fls] releases provide a citable specification, `unsafe` documentation defines safety contracts, Clippy lints enforce coding guidelines, and [MC/DC][mcdc] coverage produces the evidence required at the highest integrity levels.
 
 ### Does this certify Rust for safety-critical use?
 
