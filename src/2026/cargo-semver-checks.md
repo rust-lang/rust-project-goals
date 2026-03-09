@@ -4,7 +4,6 @@
 |:-------------------|------------------------------------|
 | Point of contact   | @obi1kenobi                        |
 | Status             | Proposed                           |
-| Roadmap            | Secure your supply chain           |
 | Tracking issue     | [rust-lang/rust-project-goals#104] |
 | Zulip channel      | N/A                                |
 | [cargo] champion   | @epage                             |

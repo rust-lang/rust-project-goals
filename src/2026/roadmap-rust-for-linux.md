@@ -5,7 +5,6 @@
 | Short title      | Rust for Linux         |
 | What and why     | Build the Linux kernel with only stable language features. |
 | Point of contact | @tomassedovic          |
-| Application area | Systems & embedded     |
 
 ## Summary
 

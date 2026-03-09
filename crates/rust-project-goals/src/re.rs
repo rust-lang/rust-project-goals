@@ -92,16 +92,6 @@ lazy_static! {
 lazy_static! {
     pub static ref ROADMAP_CHAPTERS: Regex = Regex::new(r"\(\(\(ROADMAP CHAPTERS\)\)\)").unwrap();
 }
-lazy_static! {
-    pub static ref ROADMAPS_FILTERED: Regex =
-        Regex::new(r"\(\(\(ROADMAPS:\s*(.+?)\s*\)\)\)").unwrap();
-}
-
-// Table of application areas and their associated roadmaps
-lazy_static! {
-    pub static ref APPLICATION_AREAS: Regex =
-        Regex::new(r"\(\(\(APPLICATION AREAS\)\)\)").unwrap();
-}
 
 lazy_static! {
     /// GitHub username.

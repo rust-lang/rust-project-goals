@@ -4,7 +4,7 @@
 |:----------------------|-------------------------------------------|
 | Point of contact      | @lcnr                                     |
 | Status                | Proposed                                  |
-| Roadmap               | Unblocking dormant traits                 |
+| Roadmap               | Project Zero                 |
 | Roadmap               | Just add async                            |
 | Tracking issue        | [rust-lang/rust-project-goals#113]        |
 | Other tracking issues | [rust-lang/rust#107374]                   |

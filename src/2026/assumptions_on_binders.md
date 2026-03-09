@@ -3,6 +3,7 @@
 | Metadata         |                                                                                  |
 | :--------------- | -------------------------------------------------------------------------------- |
 | Point of contact | @BoxyUwU |
+| Roadmap          | Project Zero |
 | Status           | Proposed |
 | Tracking issue   |     |
 | Zulip channel    | N/A (just make a thread in t-types) |

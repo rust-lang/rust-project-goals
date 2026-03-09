@@ -4,7 +4,7 @@
 |:----------------------|---------------------------|
 | Point of contact      | @dingxiangfei2009         |
 | Status                | Proposed                  |
-| Roadmap               | Unblocking dormant traits |
+| Roadmap               | Beyond the `&` |
 | Roadmap               | Rust for Linux            |
 | [lang] champion       | @cramertj                 |
 | Tracking issue        |                           |

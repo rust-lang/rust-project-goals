@@ -4,7 +4,6 @@
 | :--                 | :--                                |
 | Point of contact    | @davidtwco                         |
 | Status              | Proposed                           |
-| Roadmap             | Unblocking dormant traits          |
 | Tracking issue      | [rust-lang/rust-project-goals#270] |
 | Highlight           | Language changes                   |
 | [compiler] champion | @davidtwco                         |

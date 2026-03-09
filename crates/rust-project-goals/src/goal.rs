@@ -64,9 +64,6 @@ pub struct RoadmapDocument {
     /// Text from the "What and why" metadata row
     pub what_and_why: String,
 
-    /// Application areas this roadmap is relevant to (e.g. "Network services", "Systems & embedded")
-    pub application_areas: Themes,
-
     /// Point of contact (e.g. `@username` or "TBD")
     pub point_of_contact: String,
 
@@ -84,7 +81,6 @@ impl RoadmapDocument {
             title,
             short_title,
             what_and_why,
-            application_areas,
             point_of_contact,
         }) = extract_roadmap_metadata(&sections)?
         else {
@@ -99,7 +95,6 @@ impl RoadmapDocument {
             title,
             short_title,
             what_and_why,
-            application_areas,
             point_of_contact,
             summary,
         }))
@@ -650,10 +645,8 @@ pub fn format_highlight_goal_sections(goals: &[&GoalDocument]) -> Result<String>
 }
 
 /// Format roadmaps as a table with "Roadmap", "Point of contact", and "What and why" columns.
-/// If `area_filter` is Some, only roadmaps matching that application area are included.
 pub fn format_roadmap_table(
     roadmaps: &[&RoadmapDocument],
-    area_filter: Option<&str>,
 ) -> Result<String> {
     let mut table = vec![vec![
         Spanned::here("Roadmap".to_string()),
@@ -663,10 +656,6 @@ pub fn format_roadmap_table(
 
     let mut sorted_roadmaps: Vec<&&RoadmapDocument> = roadmaps
         .iter()
-        .filter(|r| match area_filter {
-            Some(area) => r.application_areas.contains(area),
-            None => true,
-        })
         .collect();
     sorted_roadmaps.sort_by_key(|r| &r.short_title);
 
@@ -679,42 +668,6 @@ pub fn format_roadmap_table(
             )),
             Spanned::here(roadmap.point_of_contact.clone()),
             Spanned::here(roadmap.what_and_why.clone()),
-        ]);
-    }
-
-    Ok(util::format_table(&table))
-}
-
-/// Format a table of application areas and their associated roadmaps.
-/// Each row lists an application area and the roadmaps that reference it.
-pub fn format_application_areas_table(roadmaps: &[&RoadmapDocument]) -> Result<String> {
-    // Collect area → roadmaps mapping
-    let mut area_to_roadmaps: std::collections::BTreeMap<String, Vec<&RoadmapDocument>> =
-        std::collections::BTreeMap::new();
-
-    for roadmap in roadmaps {
-        for area in roadmap.application_areas.iter() {
-            area_to_roadmaps
-                .entry(area.trim().to_string())
-                .or_default()
-                .push(roadmap);
-        }
-    }
-
-    let mut table = vec![vec![
-        Spanned::here("Application area".to_string()),
-        Spanned::here("Roadmaps".to_string()),
-    ]];
-
-    for (area, mut area_roadmaps) in area_to_roadmaps {
-        area_roadmaps.sort_by_key(|r| &r.short_title);
-        let links: Vec<String> = area_roadmaps
-            .iter()
-            .map(|r| format!("[{}]({})", *r.short_title, r.link_path.display()))
-            .collect();
-        table.push(vec![
-            Spanned::here(area),
-            Spanned::here(links.join(", ")),
         ]);
     }
 
@@ -926,7 +879,6 @@ struct RoadmapMetadata {
     title: Spanned<String>,
     short_title: Spanned<String>,
     what_and_why: String,
-    application_areas: Themes,
     point_of_contact: String,
 }
 
@@ -972,8 +924,6 @@ fn extract_roadmap_metadata(
         )
     };
 
-    let application_areas = parse_themed_rows(first_table, "Application area");
-
     let Some(poc_row) = first_table
         .rows
         .iter()
@@ -989,7 +939,6 @@ fn extract_roadmap_metadata(
         title: title.clone(),
         short_title,
         what_and_why: what_row[1].to_string(),
-        application_areas,
         point_of_contact: poc_row[1].to_string(),
     }))
 }

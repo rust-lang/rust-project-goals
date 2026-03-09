@@ -101,9 +101,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             BookItem::Chapter(chapter) => {
                 self.inject_metadata_rows(chapter)?;
                 self.replace_champions(chapter)?;
-                self.replace_roadmaps_filtered(chapter)?;
                 self.replace_roadmaps(chapter)?;
-                self.replace_application_areas(chapter)?;
                 self.replace_roadmap_chapters(chapter)?;
                 self.replace_team_asks(chapter)?;
                 self.replace_valid_team_asks(chapter)?;
@@ -479,30 +477,6 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         Ok(())
     }
 
-    /// Look for `(((ROADMAPS: area)))` in the chapter content and replace with filtered roadmaps table.
-    fn replace_roadmaps_filtered(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        loop {
-            let Some(m) = re::ROADMAPS_FILTERED.find(&chapter.content) else {
-                return Ok(());
-            };
-            let range = m.range();
-
-            let capture_value = re::ROADMAPS_FILTERED
-                .captures(&chapter.content[range.clone()])
-                .and_then(|caps| caps.get(1))
-                .map(|m| m.as_str().trim().to_string());
-
-            let path = chapter_path(chapter, "(((ROADMAPS: ...)))")?;
-
-            let roadmaps = self.roadmap_documents(path)?;
-            let roadmap_refs: Vec<&RoadmapDocument> = roadmaps.iter().collect();
-            let formatted =
-                goal::format_roadmap_table(&roadmap_refs, capture_value.as_deref())
-                    .into_anyhow()?;
-            chapter.content.replace_range(range, &formatted);
-        }
-    }
-
     /// Look for `(((ROADMAPS)))` in the chapter content and replace it with the roadmaps table.
     fn replace_roadmaps(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
         let Some(m) = re::ROADMAPS.find(&chapter.content) else {
@@ -515,26 +489,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         let roadmaps = self.roadmap_documents(path)?;
         let roadmap_refs: Vec<&RoadmapDocument> = roadmaps.iter().collect();
         let formatted =
-            goal::format_roadmap_table(&roadmap_refs, None).into_anyhow()?;
-        chapter.content.replace_range(range, &formatted);
-
-        Ok(())
-    }
-
-    /// Look for `(((APPLICATION AREAS)))` and replace with a table of application areas
-    /// and their associated roadmaps.
-    fn replace_application_areas(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
-        let Some(m) = re::APPLICATION_AREAS.find(&chapter.content) else {
-            return Ok(());
-        };
-        let range = m.range();
-
-        let path = chapter_path(chapter, "(((APPLICATION AREAS)))")?;
-
-        let roadmaps = self.roadmap_documents(path)?;
-        let roadmap_refs: Vec<&RoadmapDocument> = roadmaps.iter().collect();
-        let formatted = goal::format_application_areas_table(&roadmap_refs)
-            .into_anyhow()?;
+            goal::format_roadmap_table(&roadmap_refs).into_anyhow()?;
         chapter.content.replace_range(range, &formatted);
 
         Ok(())

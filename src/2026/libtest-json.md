@@ -4,7 +4,6 @@
 | :--------------- | -------------------------------------------------------------------------------- |
 | Point of contact | @epage                                   |
 | Status           | Proposed                                                                         |
-| Roadmap          | Building blocks                                                                  |
 | Tracking issue     | [rust-lang/rust-project-goals#255] |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
 

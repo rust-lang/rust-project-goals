@@ -5,7 +5,6 @@
 | Short title      | Just add async                                                                                   |
 | What and why     | Patterns that work in sync Rust should work in async Rust — traits, closures, drop, scoped tasks |
 | Point of contact | @nikomatsakis                                                                                    |
-| Application area | Network services                                                                                 |
 
 ## Summary
 
