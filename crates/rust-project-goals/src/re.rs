@@ -93,6 +93,13 @@ lazy_static! {
     pub static ref ROADMAP_CHAPTERS: Regex = Regex::new(r"\(\(\(ROADMAP CHAPTERS\)\)\)").unwrap();
 }
 
+// Roadmap goal rows (no headers) filtered by roadmap name.
+// Used inside manually authored markdown tables: `| (((ROADMAP ROWS: Theme))) |`
+lazy_static! {
+    pub static ref ROADMAP_ROWS_FILTERED: Regex =
+        Regex::new(r"\|\s*\(\(\(ROADMAP ROWS:\s*(.+?)\s*\)\)\)\s*\|").unwrap();
+}
+
 lazy_static! {
     /// GitHub username.
     ///

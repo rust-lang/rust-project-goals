@@ -34,7 +34,10 @@ If you don't write `unsafe`, you don't get memory unsafety. No caveats, no aster
 
 ### How we get there
 
-(((ROADMAP GOALS: Project Zero)))
+| Goal                             | Timespan | What and why |
+|----------------------------------|----------|--------------|
+| (((ROADMAP ROWS: Project Zero))) |
+| FIXME(lcnr)                      | Future   | FIXME(lcnr)  |
 
 The [known soundness bugs][unsoundnesses] aren't independent — many share common blockers, and fixing them requires a specific sequencing of infrastructure work.
 

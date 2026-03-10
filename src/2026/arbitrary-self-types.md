@@ -4,6 +4,7 @@
 |:----------------------|-------------------------|
 | Point of contact      | @dingxiangfei2009       |
 | Status                | Proposed                |
+| What and why          | Let user-defined smart pointers work as method receivers and support `dyn Trait` coercion |
 | Roadmap               | Rust for Linux          |
 | Roadmap               | Beyond the `&`          |
 | Tracking issue        |                         |

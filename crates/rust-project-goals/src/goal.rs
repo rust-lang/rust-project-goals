@@ -122,6 +122,12 @@ pub struct Metadata {
 
     /// Needs of this goal (zero or more), e.g. "Funding", "Contributor"
     pub needs: Themes,
+
+    /// Optional "What and why" description from metadata table
+    pub what_and_why: Option<String>,
+
+    /// Optional "Timespan" override (e.g. "2026–2027"). Defaults to the milestone directory name.
+    pub timespan: Option<String>,
 }
 
 impl Metadata {
@@ -464,6 +470,15 @@ impl GoalDocument {
             self.metadata.pocs.clone()
         }
     }
+
+    /// Returns the "What and why" text for this goal.
+    /// Falls back to the first sentence of the summary if no explicit "What and why" metadata row exists.
+    pub fn what_and_why(&self) -> &str {
+        match &self.metadata.what_and_why {
+            Some(w) => w,
+            None => first_sentence(&self.summary),
+        }
+    }
 }
 
 /// Generate progress HTML based on issue progress and state
@@ -674,6 +689,34 @@ pub fn format_roadmap_table(
     Ok(util::format_table(&table))
 }
 
+/// Format matching goals as markdown table rows (no headers, no separator).
+/// Each row has three columns: `| Goal | Timespan | What and why |`.
+///
+/// Used by the `(((ROADMAP ROWS: ...)))` directive, which appears
+/// inside a manually authored table.
+pub fn format_roadmap_goal_rows(goals: &[&GoalDocument]) -> String {
+    let mut output = String::new();
+    for goal in goals {
+        let timespan = goal.metadata.timespan.as_deref().unwrap_or_else(|| {
+            goal.path
+                .parent()
+                .unwrap()
+                .file_stem()
+                .unwrap()
+                .to_str()
+                .unwrap()
+        });
+        output.push_str(&format!(
+            "| [{}]({}) | {} | {} |\n",
+            *goal.metadata.title,
+            goal.link_path.display(),
+            timespan,
+            goal.what_and_why(),
+        ));
+    }
+    output
+}
+
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Copy, Clone)]
 pub enum Status {
     Proposed,
@@ -849,6 +892,18 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
     let highlight = parse_themed_rows(first_table, "Highlight");
     let needs = parse_themed_rows(first_table, "Needs");
 
+    let what_and_why = first_table
+        .rows
+        .iter()
+        .find(|row| row[0].content.trim().eq_ignore_ascii_case("What and why"))
+        .map(|row| row[1].to_string());
+
+    let timespan = first_table
+        .rows
+        .iter()
+        .find(|row| row[0].content.trim().eq_ignore_ascii_case("Timespan"))
+        .map(|row| row[1].to_string());
+
     Ok(Some(Metadata {
         title: title.clone(),
         short_title: if let Some(row) = short_title_row {
@@ -864,7 +919,27 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
         roadmap,
         highlight,
         needs,
+        what_and_why,
+        timespan,
     }))
+}
+
+/// Returns the first sentence of a string (up to and including the first `.` followed by whitespace or end of string).
+/// If no sentence boundary is found, returns the entire string.
+fn first_sentence(s: &str) -> &str {
+    let s = s.trim();
+    let mut chars = s.char_indices().peekable();
+    while let Some((i, ch)) = chars.next() {
+        if ch == '.' {
+            let next_is_boundary = chars
+                .peek()
+                .map_or(true, |&(_, next)| next.is_whitespace());
+            if next_is_boundary {
+                return &s[..=i];
+            }
+        }
+    }
+    s
 }
 
 pub fn extract_summary(sections: &[Section]) -> Result<Option<String>> {

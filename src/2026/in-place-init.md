@@ -4,6 +4,8 @@
 |:-----------------|------------------------------------|
 | Point of contact | @Darksonn                          |
 | Status           | Proposed                           |
+| What and why     | Align on a language approach for creating values directly at their final location without moving |
+| Timespan         | 2026-2028                          |
 | Roadmap          | Beyond the `&`                     |
 | Roadmap          | Rust for Linux                     |
 | Tracking issue   | [rust-lang/rust-project-goals#395] |

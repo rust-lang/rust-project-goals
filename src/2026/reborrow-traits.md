@@ -4,6 +4,8 @@
 | :--------------- | ---------------------------------- |
 | Point of contact | @aapoalas                          |
 | Status           | Proposed                           |
+| What and why     | Extend automatic reborrowing to user-defined types like `Pin<&mut T>` and custom smart pointers |
+| Timespan         | 2026-2027                          |
 | Roadmap          | Beyond the `&`                     |
 | Tracking issue   | [rust-lang/rust-project-goals#399] |
 | Zulip channel    | [#t-lang/custom-refs][channel]     |

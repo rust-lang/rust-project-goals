@@ -4,6 +4,7 @@
 | :--------------- | ------------------------------------------------------------ |
 | Point of contact | @RenjiSann                                                   |
 | Status           | Proposed                                                     |
+| What and why     | MC/DC and decision coverage in rustc, required by DO-178C, ISO 26262, and IEC 61508 for safety certification |
 | Roadmap          | Safety-Critical Rust                                         |
 | Tracking issue   |                                                              |
 | Zulip channel    | [mc/dc-support][mcdc-zulip] |

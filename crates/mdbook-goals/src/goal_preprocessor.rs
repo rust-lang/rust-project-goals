@@ -106,6 +106,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 self.replace_team_asks(chapter)?;
                 self.replace_valid_team_asks(chapter)?;
                 self.replace_goal_lists(chapter)?;
+                self.replace_roadmap_goal_rows(chapter)?;
                 self.replace_goal_chapters(chapter)?;
                 self.replace_goal_count(chapter)?;
                 self.replace_roadmap_goal_count(chapter)?;
@@ -215,6 +216,44 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                     && goal.metadata.roadmap.contains(filter_value)
             },
         )
+    }
+
+    /// Replace `| (((ROADMAP ROWS: <name>))) |` with table rows for matching goals.
+    /// Generates only row content (no headers), allowing roadmap authors to
+    /// manually control the table structure and add future goal rows.
+    fn replace_roadmap_goal_rows(
+        &mut self,
+        chapter: &mut Chapter,
+    ) -> anyhow::Result<()> {
+        loop {
+            let Some(m) = re::ROADMAP_ROWS_FILTERED.find(&chapter.content) else {
+                return Ok(());
+            };
+            let range = m.range();
+
+            let chapter_path = chapter_path(chapter, "(((ROADMAP ROWS: ...)))")?;
+
+            let filter_value = re::ROADMAP_ROWS_FILTERED
+                .captures(&chapter.content[range.clone()])
+                .and_then(|caps| caps.get(1))
+                .map(|m| m.as_str().trim())
+                .unwrap(); // Safe: regex always has a capture group
+
+            let goals = self.goal_documents(chapter_path)?;
+            let mut filtered_goals: Vec<&goal::GoalDocument> = goals
+                .iter()
+                .filter(|g| {
+                    g.metadata.status.content.is_not_not_accepted()
+                        && g.metadata.roadmap.contains(filter_value)
+                })
+                .collect();
+
+            filtered_goals.sort_by_key(|g| &g.metadata.title);
+
+            let output = goal::format_roadmap_goal_rows(&filtered_goals);
+
+            chapter.content.replace_range(range, output.trim_end());
+        }
     }
 
     fn replace_highlight_goal_lists_filtered(

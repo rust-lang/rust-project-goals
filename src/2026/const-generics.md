@@ -4,6 +4,7 @@
 | :--------------- | ---------------------------------- |
 | Point of contact | @BoxyUwU                           |
 | Status           | Proposed                           |
+| What and why     | Allow structs, enums, and associated constants as const generic arguments |
 | Roadmap          | Constify all the things            |
 | Roadmap          | Rust for Linux                     |
 | Tracking issue   | [rust-lang/rust-project-goals#100] |
