@@ -1,12 +1,13 @@
 # Promoting Parallel Front End
 
-| Metadata         |                                          |
-| :--------------- | ---------------------------------------- |
-| Point of contact | @SparrowLii                              |
-| Status           | Proposed                                 |
-| Tracking issue   | [rust-lang/rust-project-goals#121]       |
-| See also         | [rust-lang/rust#113349]                  |
-| Zulip channel    | [#t-compiler/wg-parallel-rustc][channel] |
+| Metadata                     |                                          |
+| :--------------------------- | ---------------------------------------- |
+| Point of contact             | @SparrowLii                              |
+| Status                       | Proposed                                 |
+| Tracking issue               | [rust-lang/rust-project-goals#121]       |
+| See also                     | [rust-lang/rust#113349]                  |
+| Zulip channel                | [#t-compiler/wg-parallel-rustc][channel] |
+| [wg-parallel-rustc] champion | @petrochenkov                            |
 
 ## Summary
 
@@ -40,7 +41,6 @@ Performance improvement would be long-term work. We are considering potential me
 - Add more benchmarks for the parallel front end to rustc-perf
 - Write a feature stabilization report and submit it for compiler FCP
 - Continue improving parallel compilation performance, by parallelizing more parts of the compiler, like name resolution and macro expansion, and reducing data contention.
-
 
 ### Work items over the next year
 
