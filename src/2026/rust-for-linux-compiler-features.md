@@ -4,6 +4,8 @@
 |:--------------------|------------------------------------|
 | Point of contact    | @tomassedovic                      |
 | Status              | Proposed                           |
+| What and why        | Stabilize compiler features the Linux kernel depends on so it can build with only stable Rust |
+| Timespan            | 2026-2027                          |
 | Roadmap             | Rust for Linux                     |
 | Tracking issue      | [rust-lang/rust-project-goals#407] |
 | Zulip channel       | [#rust-for-linux][channel-rfl]     |

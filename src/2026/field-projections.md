@@ -4,6 +4,8 @@
 | :------------------- | ----------------------------------------- |
 | Point of contact     | @BennoLossin                              |
 | Status               | Proposed                                  |
+| What and why         | Access fields through smart pointers and pinned references, not just `&` and `&mut` |
+| Timespan             | 2026-2028                                 |
 | Roadmap              | Beyond the `&`                            |
 | Roadmap              | Rust for Linux                            |
 | Tracking issue       | [rust-lang/rust-project-goals#390]        |

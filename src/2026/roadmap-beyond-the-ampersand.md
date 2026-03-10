@@ -37,7 +37,9 @@ User-defined smart pointers that are truly indistinguishable from built-in refer
 
 ### How we get there
 
-(((ROADMAP GOALS: Beyond the `&`)))
+| Goal | Timespan | What and why |
+| --- | --- | --- |
+| (((ROADMAP ROWS: Beyond the `&`))) |
 
 The goals are complementary but largely independent. **Reborrow traits** address automatic reborrowing, providing the general mechanism that types can opt into. **Field projections** provides the broader "place operations" framework that encompasses projection, borrowing, and reading/writing through custom pointer types. **In-place initialization** tackles a related but distinct problem: creating values that can't be moved.
 

@@ -43,7 +43,9 @@ Build Linux kernel releases using the stable Rust language (no feature gates), s
 
 ### How we get there
 
-(((ROADMAP GOALS: Rust for Linux)))
+| Goal | Timespan | What and why |
+| --- | --- | --- |
+| (((ROADMAP ROWS: Rust for Linux))) |
 
 ## Frequently asked questions
 

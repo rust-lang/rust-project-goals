@@ -4,6 +4,7 @@
 | :--------------- | ------------------------------------------------------------ |
 | Point of contact | @PLeVasseur                                                  |
 | Status           | Proposed                                                     |
+| What and why     | Normative documentation for common `unsafe` patterns so safety-critical developers have authoritative guidance |
 | Roadmap          | Safety-Critical Rust                                         |
 | Tracking issue   |                                                              |
 | Zulip channel    | N/A                                                          |

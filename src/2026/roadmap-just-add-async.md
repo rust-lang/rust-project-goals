@@ -46,7 +46,9 @@ Patterns that work in sync Rust should work in async Rust without requiring work
 
 ### How we get there
 
-(((ROADMAP GOALS: Just add async)))
+| Goal | Timespan | What and why |
+| --- | --- | --- |
+| (((ROADMAP ROWS: Just add async))) |
 
 The 2026 goals are largely independent. **RTN** enables generic async code and is already RFC'd, waiting on trait solver work. **AFIDT / `.box` notation** enables dyn dispatch for async traits. **Ergonomic ref-counting** addresses closure capture pain that's amplified by async's `'static` spawn requirements. **Immobile types and guaranteed destructors** enables scoped spawn and async drop by letting types opt out of being moved or forgotten. RTN and AFIDT share a dependency on the next-generation trait solver, which is being worked on separately.
 

@@ -51,7 +51,9 @@ A capability ladder that unlocks Rust at increasing safety-integrity levels — 
 
 ### How we get there
 
-(((ROADMAP GOALS: Safety-Critical Rust)))
+| Goal | Timespan | What and why |
+| --- | --- | --- |
+| (((ROADMAP ROWS: Safety-Critical Rust))) |
 
 The goals form a coherent evidence chain across three tiers. The **foundation** tier (ASIL A/B, SIL 1/2, DO-178C Level C) delivers stable branch/DC coverage baselines and predictable [FLS][fls] releases, plus initial safety-critical linting to enforce [Safety-Critical Rust Consortium][scrc] coding standards. The **intermediate** tier (ASIL C, SIL 3, DO-178C Level B) adds normative `unsafe` pattern documentation and expanded lint coverage, with coordination for mixed-language interop and async runtime patterns. The **highest integrity** tier (ASIL D, SIL 4, DO-178C Level A) targets [MC/DC][mcdc] coverage in rustc and formal-methods coordination toward contracts, semantics documentation, and verified tooling.
 

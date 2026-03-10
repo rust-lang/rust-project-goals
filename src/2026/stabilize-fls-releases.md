@@ -4,6 +4,7 @@
 | :--------------- | ---------------------------------- |
 | Point of contact | @PLeVasseur                        |
 | Status           | Proposed                           |
+| What and why     | Predictable FLS releases within six weeks of each Rust stable release, so safety assessors have a current spec |
 | Roadmap          | Safety-Critical Rust               |
 | Tracking issue   |                                    |
 | Zulip channel    | [#t-lang/fls](https://rust-lang.zulipchat.com/#narrow/channel/520710-t-lang.2Ffls) |

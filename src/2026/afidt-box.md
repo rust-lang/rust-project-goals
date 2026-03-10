@@ -4,6 +4,8 @@
 |:-----------------|----------------------|
 | Point of contact | @nikomatsakis        |
 | Status           | Proposed             |
+| What and why     | Enable dyn dispatch for async traits via `.box` notation |
+| Timespan         | 2026-2027            |
 | Needs            | Contributor          |
 | Roadmap          | Just add async       |
 | Tracking issue   |                      |

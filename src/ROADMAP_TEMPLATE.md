@@ -77,9 +77,20 @@ Length guidance:
 
 ### How we get there
 
-(((ROADMAP GOALS: Theme Name)))
+| Goal | Timespan | What and why |
+| --- | --- | --- |
+| (((ROADMAP ROWS: Theme Name))) |
 
-> *Replace "Theme Name" above with the exact name used in the `Roadmap` metadata field of your goals. The preprocessor will automatically list all goals tagged with this theme.*
+> *Replace "Theme Name" above with the exact name used in the `Roadmap` metadata field of your goals. The `(((ROADMAP ROWS: ...)))` directive expands into table rows for all goals tagged with this theme. Each goal's timespan defaults to its milestone year (e.g., "2026") but can be overridden with a `Timespan` metadata field in the goal document. The "What and why" column uses the goal's `What and why` metadata field, falling back to its Summary.*
+>
+> *You can add manual rows for future work that doesn't have a goal document yet:*
+>
+> ```markdown
+> | Goal | Timespan | What and why |
+> | --- | --- | --- |
+> | (((ROADMAP ROWS: Theme Name))) |
+> | Async iteration / streams | Future | First-class stream support building on async fn in traits |
+> ```
 >
 > *After the goals table, explain the sequencing and dependencies:*
 > * *What needs to happen first? What does it unblock?*

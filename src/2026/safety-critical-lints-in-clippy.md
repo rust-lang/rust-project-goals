@@ -4,6 +4,7 @@
 | :--------------- | ------------------------------------------------------------ |
 | Point of contact | @plevasseur                                                  |
 | Status           | Proposed                                                     |
+| What and why     | A sustainable home in Clippy for safety-critical coding standard lints from the Consortium |
 | Roadmap          | Safety-Critical Rust                                         |
 | Tracking issue   |                                                              |
 | Zulip channel    | N/A                                                          |

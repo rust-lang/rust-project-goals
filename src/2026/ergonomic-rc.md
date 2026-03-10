@@ -1,9 +1,10 @@
-# Ergonomic ref-counting: Share trait and move expressions
+# Alias + Move expr
 
 | Metadata         |                                               |
 |:-----------------|-----------------------------------------------|
 | Point of contact | @nikomatsakis                                 |
 | Status           | Proposed                                      |
+| What and why     | A `Share` trait for clone-as-alias types and `move($expr)` for precise closure capture control |
 | Needs            | Contributor                                   |
 | Roadmap          | [Just add async](./roadmap-just-add-async.md) |
 | Tracking issue   | [rust-lang/rust-project-goals#107]            |
