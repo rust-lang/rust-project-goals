@@ -34,12 +34,13 @@ A type system where borrowing relationships are first-class: lifetimes name the 
 | Goal | Timespan | What and why |
 | --- | --- | --- |
 | (((ROADMAP ROWS: The Borrow Checker Within))) |
+| Full Polonius | Future | Extend the alpha analysis with full flow-sensitivity, handling patterns like linked-list traversal with conditional reborrowing that the alpha leaves imprecise |
 | Maximally minimal view types | Future | Declare which fields a function accesses (e.g., `&mut self {counter}`), enabling the compiler to allow simultaneous borrows of disjoint fields across function boundaries |
 | Place-based lifetime syntax | Future | Syntax for lifetimes that name the place they borrow from (e.g., `'map`, `'self.text`), making borrow relationships readable in function signatures |
 | Richer view types | Future | Extend view types to cover public APIs and field abstraction |
 | Internal references | Future | Structs that hold references into their own data (`&'self.text str`), eliminating the need for index-based workarounds and enabling `'static` self-referential types |
 
-The features form a natural sequence. **Polonius** is the foundation — it fixes the borrow checker's analysis to correctly handle conditional borrows and lending iterators, which is prerequisite engineering for everything else. **Place-based lifetime syntax** builds on Polonius by giving programmers a way to name the places that lifetimes refer to, turning an internal compiler concept into readable syntax. **View types** use place-based syntax to declare field-level access in function signatures, solving the long-standing problem of calling `&mut self` methods while borrowing other fields. **Internal references** complete the picture by allowing place-based lifetimes to refer to fields within the same struct.
+The features form a natural sequence. **Polonius alpha** is the foundation — it fixes the borrow checker's analysis to correctly handle conditional borrows and lending iterators, which is prerequisite engineering for everything else. **Full Polonius** extends the alpha with full flow-sensitivity, handling patterns like linked-list traversal with conditional reborrowing where the alpha remains imprecise. **Place-based lifetime syntax** builds on Polonius by giving programmers a way to name the places that lifetimes refer to, turning an internal compiler concept into readable syntax. **View types** use place-based syntax to declare field-level access in function signatures, solving the long-standing problem of calling `&mut self` methods while borrowing other fields. **Internal references** complete the picture by allowing place-based lifetimes to refer to fields within the same struct.
 
 Each layer can be shipped independently, but earlier layers inform the design of later ones.
 
@@ -55,7 +56,7 @@ Counterintuitively, no. Today, when the borrow checker rejects correct code, the
 
 ### What's the timeline for the future work?
 
-Polonius is actively pursuing stabilization in 2026. The remaining features — place-based syntax, view types, and internal references — are in varying stages of design exploration. Place-based syntax has an existing formulation that needs bikeshedding; view types need modeling and have open design questions around strong updates; internal references have been formalized for a simplified Rust variant and need porting to full Rust.
+The Polonius alpha is actively pursuing stabilization in 2026. Full Polonius — extending the alpha with full flow-sensitivity — is future work. The remaining features — place-based syntax, view types, and internal references — are in varying stages of design exploration. Place-based syntax has an existing formulation that needs bikeshedding; view types need modeling and have open design questions around strong updates; internal references have been formalized for a simplified Rust variant and need porting to full Rust.
 
 ### Where can I read more?
 

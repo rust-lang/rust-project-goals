@@ -1,4 +1,4 @@
-# Stabilize the polonius alpha analysis
+# Stabilize and model Polonius Alpha
 
 | Metadata         |                                    |
 |:-----------------|------------------------------------|
