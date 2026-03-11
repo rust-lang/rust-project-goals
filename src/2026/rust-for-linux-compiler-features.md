@@ -54,7 +54,7 @@ There are others that we will want to start using in the future, such as:
   - [`-Zregparm`](https://github.com/rust-lang/rust/issues/131749) (x86_32).
   - [`-Zreg-struct-return`](https://github.com/rust-lang/rust/issues/116973) (x86_32).
   - [`-Zretpoline` and `-Zretpoline-external-thunk`](https://github.com/rust-lang/rust/pull/135927) (x86).
-  - [`-Zsanitizer=kernel-hwaddress` and `-Zsanitizer-recover=kernel-hwaddress`](https://github.com/rust-lang/rust/issues/123615) (arm64).
+  - [`-Zsanitizer=kernel-hwaddress` and `-Zsanitizer-recover=kernel-hwaddress`](https://github.com/rust-lang/compiler-team/issues/975) (arm64).
   - [`-Zsanitize-kcfi-arity`](https://github.com/rust-lang/rust/issues/138311) (x86_64).
 
 There is also the [`build-std` project goal](https://github.com/rust-lang/rfcs/pull/3873) support that we need as well (or, rather, only "`build-core`" for the Linux kernel), and the [sanitizers project goal](https://rust-lang.github.io/rust-project-goals/2025h2/stabilization-of-sanitizer-support.html).
