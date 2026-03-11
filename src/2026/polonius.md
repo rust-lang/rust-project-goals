@@ -1,4 +1,4 @@
-# Stabilize the polonius alpha analysis
+# Stabilize and model Polonius Alpha
 
 | Metadata         |                                    |
 |:-----------------|------------------------------------|
@@ -7,6 +7,8 @@
 | Tracking issue   | [rust-lang/rust-project-goals#118] |
 | Zulip channel    | [#t-types/polonius][channel]       |
 | [types] champion | @jackh726                          |
+| Roadmap          | The Borrow Checker Within           |
+| What and why     | Stabilize an improved borrow checker that accepts conditional borrows and lending iterators |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/186049-t-types.2Fpolonius
 
