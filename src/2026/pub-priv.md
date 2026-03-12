@@ -3,7 +3,7 @@
 | Metadata         |                                                                                  |
 |:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | @epage                                                                           |
-| Status           | Proposed                                                                         |
+| Status           | Not accepted                                                                         |
 | Needs            | Contributor                                                                      |
 | Tracking issue   | [rust-lang/rust-project-goals#272]                                               |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
