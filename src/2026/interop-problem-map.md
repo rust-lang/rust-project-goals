@@ -86,7 +86,7 @@ Fundamentally, this goal is about organizing knowledge in a useful way. I will b
 | [compiler] | Small         | Reviews                  |
 | [lang]     | Small         | Reviews                  |
 | [libs-api] | Small         | Reviews                  |
-| [opsem]    | Medium        | Problem statement review |
+| [opsem]    | Small         | Problem statement review |
 
 
 ## Frequently asked questions
