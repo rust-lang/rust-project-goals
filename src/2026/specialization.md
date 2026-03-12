@@ -10,7 +10,7 @@
 | Help wanted           | N/A                  |
 | Other tracking issues | rust-lang/rust#31844 |
 | [lang] champion       | @tmandry             |
-| [types] champion      | @todo                |
+| [types] champion      | @jackh726            |
 
 ## Summary
 
