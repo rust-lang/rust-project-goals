@@ -3,7 +3,7 @@
 | Metadata         |                |
 |:-----------------|----------------|
 | Point of contact | @thunderseethe |
-| Status           | Proposed       |
+| Status           | Not accepted   |
 | Needs            | Contributor    |
 | Needs            | Funding        |
 | Tracking issue   |                |
