@@ -3,7 +3,7 @@
 | Metadata         |                      |
 |:-----------------|----------------------|
 | Point of contact | @nikomatsakis        |
-| Status           | Proposed             |
+| Status           | Not accepted         |
 | What and why     | Enable dyn dispatch for async traits via `.box` notation |
 | Timespan         | 2026-2027            |
 | Needs            | Contributor          |
