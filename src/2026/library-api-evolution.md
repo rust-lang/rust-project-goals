@@ -3,12 +3,13 @@
 | Metadata            |          |
 | :------------------ | -------- |
 | Point of contact    | @Amanieu |
-| Status              | Not accepted |
+| Status              | Proposed |
 | Tracking issue      |          |
 | Zulip channel       | N/A      |
 | [libs-api] champion | @Amanieu |
 | [edition] champion  | @ehuss   |
 | [compiler] champion | @yaahc   |
+| [rustdoc] champion  | @GuillaumeGomez |
 
 ## Summary
 
