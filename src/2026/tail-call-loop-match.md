@@ -7,6 +7,7 @@
 | Tracking issue        |                                                                                                          |
 | Other tracking issues | https://github.com/rust-lang/rust/issues/112788, https://github.com/rust-lang/rust/issues/132306 |
 | Zulip channel         |                                                                                                          |
+| Needs | Funding |
 | [lang] champion | @scottmcm |
 
 ## Summary
