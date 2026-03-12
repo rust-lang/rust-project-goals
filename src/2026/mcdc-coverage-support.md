@@ -56,20 +56,17 @@ Rust has stable, well-maintained MC/DC coverage support that meets the requireme
 
 ### Architectural options under consideration
 
-Based on feedback from Niko Matsakis and the compiler team, we are investigating three potential architectural approaches:
+Based on feedback from Niko Matsakis and the compiler team, we are investigating two potential architectural approaches:
 
-1. **Extend Stable MIR:** Add the syntactic structure information needed for MC/DC to the [Stable MIR][project-stable-mir] API. This provides a stable foundation that is less likely to conflict with other compiler changes, but requires preliminary work prior to implementation of MC/DC coverage instrumentation itself. On Paper the Stable MIR approach aligns well with the needs of a verification tool, with a stable interface usable with multiple versions of the compiler, remains to be seen if the required adaptations would fit within the goal's timeframe.
+1. **Compiler hooks approach:** Use the existing mechanism for overriding compiler hooks (similar to what Kani uses today for MIR generation). This is more immediately achievable but may have similar maintenance characteristics to the previous implementation. It retains the benefit of keeping the implementation separate from the rustc codebase.
 
-2. **Compiler hooks approach:** Use the existing mechanism for overriding compiler hooks (similar to what Kani uses today for MIR generation). This is more immediately achievable but may have similar maintenance characteristics to the previous implementation. It retains the benefit of keeping the implementation separate from the rustc codebase.
-
-3. **Re-Implement the feature directly within rustc** Add the coverage instrumentation passes directly within rustc. Like the compiler hook approach, this is more immediate, with easier access to the AST, and has the advantage of keeping the existing coverage instrumentations and the newly proposed one within the same codebase. Careful design would be needed for the instrumentation not to be too invasive, or impede development of other features.
+2. **Re-Implement the feature directly within rustc** Add the coverage instrumentation passes directly within rustc. Like the compiler hook approach, this is more immediate, with easier access to the AST, and has the advantage of keeping the existing coverage instrumentations and the newly proposed one within the same codebase. Careful design would be needed for the instrumentation not to be too invasive, or impede development of other features.
 
 ## Team asks
 
 | Team       | Support level | Notes                                                        |
 | ---------- | ------------- | ------------------------------------------------------------ |
-| [compiler] | Medium        | Review of implementation PRs; guidance on architecture to avoid previous maintenance issues; input on Stable MIR extension feasibility |
-| [project-stable-mir] | Medium | Consultation on extending Stable MIR with syntactic structure; review of any proposed API additions (if this approach is chosen)|
+| [compiler] | Medium        | Review of implementation PRs; guidance on architecture to avoid previous maintenance issues |
 | [infra]    | Small         | CI support for MC/DC testing                                 |
 
 **Resources committed:** AdaCore is prepared to commit engineering resources to implementation and ongoing maintenance. We understand this was the missing piece previously.
@@ -98,6 +95,5 @@ GNATcoverage is AdaCore's coverage analysis tool. It can consume LLVM coverage d
 [mcdc-tracking-issue]: https://github.com/rust-lang/rust/issues/124144
 [mcdc-implementation-initial-pr]: https://github.com/rust-lang/rust/pull/123409
 [mcdc-update-pr]: https://github.com/rust-lang/rust/pull/126733
-[project-stable-mir]: https://github.com/rust-lang/project-stable-mir
 [mcdc-zulip]: https://rust-lang.zulipchat.com/#narrow/channel/546987-project-goals.2F2026-workshop/topic/mcdc-support/with/569335878
 [pattern-mcdc]: https://arc.aiaa.org/doi/10.2514/1.I011558
