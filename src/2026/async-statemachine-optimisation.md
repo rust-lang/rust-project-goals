@@ -7,6 +7,7 @@
 | Needs               | Funding     |
 | Tracking issue      |             |
 | Zulip channel       | N/A         |
+| Needs | Funding |
 | [compiler] champion | @eholk      |
 
 ## Summary
