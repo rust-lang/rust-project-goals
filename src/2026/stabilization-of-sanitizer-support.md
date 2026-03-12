@@ -3,7 +3,7 @@
 | Metadata                               |                                    |
 | :------------------------------------- | :--------------------------------- |
 | Point of contact                       | @jakos-sec                         |
-| Status                                 | Proposed                           |
+| Status                                 | Not accepted                       |
 | Tracking issue                         | [rust-lang/rust-project-goals#403] |
 | Zulip channel                          | N/A                                |
 | Highlight                              | Other                              |
