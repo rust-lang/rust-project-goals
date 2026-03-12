@@ -1,12 +1,12 @@
 # AArch64 Pointer Authentication using aarch64-unknown-linux-pauthtest target on Linux ELF platforms
 
-| Metadata            |                                                 |
-| :------------------ | ------------------------------------------------|
-| Point of contact    | @jchlanda                                       |
-| [compiler] champion | @davidtwco                                      |
-| Status              | Proposed                                        |
-| Tracking issue      | https://github.com/rust-lang/rust/issues/148640 |
-| Zulip channel       | N/A                                             |
+| Metadata             |                                                 |
+| :------------------- | ------------------------------------------------|
+| Point of contact     | @jchlanda                                       |
+| [compiler] champion  | @davidtwco                                      |
+| Status               | Proposed                                        |
+| Other tracking issue | https://github.com/rust-lang/rust/issues/148640 |
+| Zulip channel        | N/A                                             |
 
 ## Summary
 
