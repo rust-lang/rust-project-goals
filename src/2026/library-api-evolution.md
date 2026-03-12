@@ -3,7 +3,7 @@
 | Metadata            |          |
 | :------------------ | -------- |
 | Point of contact    | @Amanieu |
-| Status              | Proposed |
+| Status              | Not accepted |
 | Tracking issue      |          |
 | Zulip channel       | N/A      |
 | [libs-api] champion | @Amanieu |
