@@ -165,8 +165,8 @@ Provide pointer authentication support for native Rust code.
 | -------------------------------------------- | ---------- | ----- |
 | `aarch64-unknown-linux-pauthtest` PAC target | @jchlanda  |       |
 | PAC C interop                                | @jchlanda  |       |
-| PAC C++ intero                               | @jchlanda  |       |
-| PAC native Rust sopport                      | @jchlanda  |       |
+| PAC C++ interop                              | @jchlanda  |       |
+| PAC native Rust support                      | @jchlanda  |       |
 
 ## Team asks
 
