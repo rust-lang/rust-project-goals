@@ -1,12 +1,13 @@
 # Wasm Components
 
-| Metadata         |              |
-| :--------------- | ------------ |
-| Point of contact | @yoshuawuyts |
-| Status           | Not accepted |
-| Tracking issue   |              |
-| Zulip channel    | N/A          |
-| Highlight        | Other        |
+| Metadata            |              |
+|:--------------------|--------------|
+| Point of contact    | @yoshuawuyts |
+| Status              | Proposed     |
+| Tracking issue      |              |
+| Zulip channel       | N/A          |
+| Highlight           | Other        |
+| [compiler] champion | @WesleyWiser |
 
 ## Summary
 
@@ -53,9 +54,9 @@ There are a number of things with WebAssembly in Rust that are not ideal:
 | Introduce `wasm32-component` target as tier 3       | @alexcrichton | This target is very similar to `wasm32-wasip3`, but does not include the WASI APIs, making it `#[no_std]` + `alloc`.                                           |
 | Introduce `wasm32-component-web` target as tier 3   | @yoshuawuyts  | This target is very similar to `wasm32-component`, but with a different `cfg` that enables an ecosystem to be built specifically targeting the web.            |
 | Implement `std::thread` for WASIp3                  | @tartanllama  | This is a future extension to the component model, which will be part of a WASI 0.3.x release. Enables Wasm Components' "cooperative multi-threading" feature. |
-| Implement `async fn main` for WASIp3                | @yoshuawuyts  |                                                                                                                                                                |
 | Experiment with `#[repr(wasm)]` and `extern "wasm"` | tbd           | This item is more aspirational than the others. It would be good to do this, but we may not get to it.                                                         |
 
+We're leaving out the `async fn` implementation out of this goal's scope. That is a large task that the compiler team couldn't commit to reviewing.
 
 ### The "shiny future" we are working towards
 
