@@ -3,10 +3,12 @@
 | Metadata         |                                                                                  |
 |:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | @epage                                                                           |
-| Status           | Not accepted                                                                         |
+| Status           | Proposed                                                                         |
 | Needs            | Contributor                                                                      |
 | Tracking issue   | [rust-lang/rust-project-goals#272]                                               |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
+| [compiler] champion | @petrochenkov |
+
 
 ## Summary
 
@@ -44,6 +46,6 @@ Work with [compiler] to identify a minimal subset of functionality for what the 
 | Team       | Support level | Notes                                   |
 | ---------- | ------------- | --------------------------------------- |
 | [cargo]    | Small         |                                         |
-| [compiler] | Medium        | An implementer, design discussions, PR review |
+| [compiler] | Medium        | Design discussions, PR review |
 
 ## Frequently asked questions
