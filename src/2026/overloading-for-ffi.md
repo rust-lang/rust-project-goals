@@ -90,7 +90,9 @@ impl MethodArgs for (i32, String) {
 
 - Be comprehensive. Overloading should not be a reason that a C++ function cannot be called.
 - Preserve maintainability across the language boundary. Adding or removing an overload should not be substantially more backwards-incompatible in Rust than it is in C++. Supporting Rust callers should not require more work than supporting C++ callers.
-- Keep Rust nice. Build on existing concepts where possible: a natural _extension_ of existing language semantics, not a _replacement_ for them.
+- Keep Rust nice:
+  - Build on existing concepts where possible: a natural _extension_ of existing language semantics, not a _replacement_ for them.
+  - Overloading is meant for _FFI compatibility_, not for native Rust usage.
 - Avoid surprises. If a function call compiles, it should pick the overload you most expect.
 
 It is **not** a goal to match C++'s resolution rules exactly. Many languages implement overloading, and Rust may want to interoperate with more than one of them, even if they have conflicting resolution rules. We will not design C++'s [argument-dependent lookup (ADL)](https://en.cppreference.com/w/cpp/language/adl.html) for Rust. Every C++ function should be callable, but that does not mean that it has to be callable in exactly the same way with the same arguments. It is OK to require explicit conversions or markers to select an overload.
