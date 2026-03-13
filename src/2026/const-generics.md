@@ -81,4 +81,4 @@ Our ultimate goal is to stabilize all parts of the const generics feature that w
 
 ### What is the role of lang vs types team in the stabilizations?
 
-The questions of what equality means and what kinds of ADTs (structs, enums) can be used as const values, intersects both lang and types (`adt_const_params`).
+The questions of what equality means and what kinds of ADTs (structs, enums) can be used as const values, intersects both lang and types (ADT Const Parameters).
