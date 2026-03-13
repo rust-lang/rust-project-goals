@@ -13,7 +13,7 @@
 | [lang] champion  | @nikomatsakis                       |
 | [types] champion | @BoxyUwU                            |
 
-[zulip]: https://rust-lang.zulipchat.com/#narrow/channel/260443-project-const-generics
+[#project-const-generics]: https://rust-lang.zulipchat.com/#narrow/channel/260443-project-const-generics
 
 ## Summary
 
