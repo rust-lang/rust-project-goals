@@ -8,6 +8,8 @@
 | Zulip channel    | N/A                                |
 | [lang] champion  | @Amanieu                           |
 | [opsem] champion | @RalfJung                          |
+| [compiler]       | @dianqk                            |
+| [wg-mir-opt]     | @dianqk                            |
 
 
 ## Summary
