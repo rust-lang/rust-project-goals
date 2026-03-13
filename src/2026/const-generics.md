@@ -41,6 +41,10 @@ The implementation for this is under `feature(adt_const_params)` and is largely 
 * Split out a `min_adt_const_params` feature which does not support structs with private fields
 * Publish an RFC defining which ADTs are permitted. Some structs may be excluded due to concerns about privacy and unsafe invariants when the compiler infers const values. The RFC will nail down the precise rules.
 
+While we're currently only looking to stabilize uses of Structs/Enums in Const Generics, that isn't everything that *should* be supported as the types of const generics.
+
+In the future we intend to explore supporting more builtin types (e.g. floats, references, raw pointers, function pointers, slices/string slices), as well as revisiting the restrictions on field privacy. We also intend to explore allowing generic parameters in the types of const generics (e.g. `fn foo<T, const N: T>`).
+
 **Generic Const Arguments**: Extending const generic arguments to support some kinds of expressions which cannot be immediately evaluated (for example `T::ASSOC_CONST`).
 
 `feature(min_generic_const_args)` currently exists as a prototype of a potential *minimal* stabilizeable improvement. We intend to make more progress on the implementation for this feature so that it is more ready for stabilization.
@@ -82,3 +86,7 @@ Our ultimate goal is to stabilize all parts of the const generics feature that w
 ### What is the role of lang vs types team in the stabilizations?
 
 The questions of what equality means and what kinds of ADTs (structs, enums) can be used as const values, intersects both lang and types (ADT Const Parameters).
+
+### When will strings be supported in Const Generics
+
+We intend to explore support for strings *after* stabilizing structs/enums in Const Generics as they are much more complicated than basic support for structs/enums.
