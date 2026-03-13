@@ -11,6 +11,7 @@
 | Tracking issue   |                      |
 | Zulip channel    | [#wg-async][channel] |
 | [lang] champion  | @nikomatsakis        |
+| [compiler] champion | @TaKO8Ki          |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/187312-wg-async/
 

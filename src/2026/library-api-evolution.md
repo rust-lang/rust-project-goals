@@ -9,6 +9,7 @@
 | [libs-api] champion | @Amanieu |
 | [edition] champion  | @ehuss   |
 | [compiler] champion | @yaahc   |
+| [rustdoc] champion  | @GuillaumeGomez |
 
 ## Summary
 

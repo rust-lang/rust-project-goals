@@ -8,6 +8,7 @@
 | Roadmap          | Safety-Critical Rust                                         |
 | Tracking issue   |                                                              |
 | Zulip channel    | [mc/dc-support][mcdc-zulip] |
+| [compiler] champion | @davidtwco |
 
 ## Summary
 

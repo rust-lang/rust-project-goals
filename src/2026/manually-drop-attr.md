@@ -1,15 +1,16 @@
 # Control over Drop semantics
 
-| Metadata         |                |
-|:-----------------|----------------|
-| Point of contact | @thunderseethe |
-| Status           | Proposed       |
-| Needs            | Contributor    |
-| Needs            | Funding        |
-| Tracking issue   |                |
-| Zulip channel    | N/A            |
-| [lang] champion  | @Nadrieril     |
-| [opsem] champion | @CAD97         |
+| Metadata            |                |
+|:--------------------|----------------|
+| Point of contact    | @thunderseethe |
+| Status              | Proposed   |
+| Needs               | Contributor    |
+| Needs               | Funding        |
+| Tracking issue      |                |
+| Zulip channel       | N/A            |
+| [lang] champion     | @Nadrieril     |
+| [opsem] champion    | @CAD97         |
+| [compiler] champion | @oli-obk       |
 
 ## Summary
 
@@ -127,7 +128,7 @@ impl Drop for UringState {
 
 | Team       | Support level | Notes                     |
 |------------|---------------|---------------------------|
-| [compiler] | Medium        | Implementation reviews    |
+| [compiler] | Medium        | Implementation reviews (@oli-obk will review Proposal 2)    |
 | [lang]     | Medium        | Vibe check and RFC review |
 | [opsem]    | Small         |                           |
 | [types]    | Small         |                           |
