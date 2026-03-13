@@ -1,4 +1,4 @@
-# reflection and comptime
+# Experiment with compile-time type reflection
 
 | Metadata             |                                    |
 |:---------------------|:-----------------------------------|

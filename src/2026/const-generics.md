@@ -1,4 +1,4 @@
-# Const Generics
+# Expand const generic values to include structs, enums, and associated constants
 
 | Metadata         |                                    |
 | :--------------- | ---------------------------------- |
