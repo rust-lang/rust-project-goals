@@ -4,6 +4,8 @@
 | :--------------- | -------------------------------------------------------------------------------- |
 | Point of contact | @Nadrieril                                                                       |
 | Status           | Proposed                                                                         |
+| What and why     | Experiment with converting where-clauses to use dictionary passing style, avoiding many implementation bugs by construction |
+| Roadmap          | Project Zero                 |
 | Tracking issue   |                                                                                  |
 | Zulip channel    |                                                                                  |
 | [types] champion | @lcnr                                                                            |
