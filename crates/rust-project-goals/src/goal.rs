@@ -1581,7 +1581,15 @@ fn parse_task_tree_child(section: &Section, parent_metadata: &Metadata) -> Resul
     // Compute effective timespan: child's own > parent's
     let effective_timespan = own_timespan.or_else(|| parent_metadata.timespan.clone());
 
-    // Compute effective what_and_why: child's own > parent's
+    // Compute effective what_and_why: metadata table > first sentence of section text > parent's
+    let own_what_and_why = own_what_and_why.or_else(|| {
+        let text = section.text.trim();
+        if text.is_empty() {
+            None
+        } else {
+            Some(first_sentence(text).to_owned())
+        }
+    });
     let effective_what_and_why = own_what_and_why.or_else(|| parent_metadata.what_and_why.clone());
 
     // Parse task items from this section
