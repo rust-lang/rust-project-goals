@@ -1,16 +1,8 @@
 # Reference: all goals and roadmaps
 
-This section contains the complete lists of [roadmaps](#roadmaps) and [goals](#goals) for 2026:
+This section contains the complete lists of [goals](#goals) for 2026.
 
-* A [goal](#goals) is a specific feature or project.
-* Goals are collected into larger [roadmaps](#roadmaps) that tell a more complete story. A single goal can be involved in many roadmaps.
-
-(((ROADMAP CHAPTERS)))
 (((GOAL CHAPTERS)))
-
-## Roadmaps
-
-(((ROADMAPS)))
 
 ## Goals
 
