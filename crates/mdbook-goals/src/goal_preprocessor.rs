@@ -743,39 +743,60 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         // Find the goal document for this chapter
         let goals = self.goal_documents(&chapter_path)?;
         let chapter_in_context = self.ctx.config.book.src.join(chapter_path);
-        let Some(goal) = goals.iter().find(|gd| gd.path == chapter_in_context) else {
-            return Ok(()); // No goal document found, nothing to inject
-        };
 
-        // Compute the team names
-        let team_names: Vec<String> = goal
-            .teams_with_asks()
+        if let Some(goal) = goals.iter().find(|gd| gd.path == chapter_in_context) {
+            // This is a goal document — inject teams and task owners
+            let team_names: Vec<String> = goal
+                .teams_with_asks()
+                .iter()
+                .map(|team_name| team_name.name())
+                .collect();
+
+            let teams_text = if team_names.is_empty() {
+                "(none)".to_string()
+            } else {
+                team_names.join(", ")
+            };
+
+            let task_owners: Vec<String> = goal.task_owners.iter().cloned().collect();
+
+            let task_owners_text = if task_owners.is_empty() {
+                "(none)".to_string()
+            } else {
+                task_owners.join(", ")
+            };
+
+            if let Some(table_end) = Self::find_markdown_table_end(&chapter.content) {
+                let insertion_text = format!(
+                    "| Teams            | {} |\n| Task owners      | {} |\n",
+                    teams_text, task_owners_text
+                );
+                chapter.content.insert_str(table_end, &insertion_text);
+            }
+        } else if let Some(roadmap) = self
+            .roadmap_documents(chapter_path)?
             .iter()
-            .map(|team_name| team_name.name())
-            .collect();
+            .find(|rd| rd.path == chapter_in_context)
+        {
+            // This is a roadmap document — inject task owners from all constituent goals
+            let theme = &roadmap.short_title.content;
+            let mut all_task_owners: BTreeSet<String> = BTreeSet::new();
+            for goal in goals.iter() {
+                if goal.metadata.status.is_not_not_accepted() && goal.matches_roadmap_theme(theme) {
+                    all_task_owners.extend(goal.task_owners.iter().cloned());
+                }
+            }
 
-        let teams_text = if team_names.is_empty() {
-            "(none)".to_string()
-        } else {
-            team_names.join(", ")
-        };
+            let task_owners_text = if all_task_owners.is_empty() {
+                "(none)".to_string()
+            } else {
+                all_task_owners.into_iter().collect::<Vec<_>>().join(", ")
+            };
 
-        // Compute the task owner names
-        let task_owners: Vec<String> = goal.task_owners.iter().cloned().collect();
-
-        let task_owners_text = if task_owners.is_empty() {
-            "(none)".to_string()
-        } else {
-            task_owners.join(", ")
-        };
-
-        // Find the table end and insert both rows
-        if let Some(table_end) = Self::find_markdown_table_end(&chapter.content) {
-            let insertion_text = format!(
-                "| Teams            | {} |\n| Task owners      | {} |\n",
-                teams_text, task_owners_text
-            );
-            chapter.content.insert_str(table_end, &insertion_text);
+            if let Some(table_end) = Self::find_markdown_table_end(&chapter.content) {
+                let insertion_text = format!("| Task owners      | {} |\n", task_owners_text);
+                chapter.content.insert_str(table_end, &insertion_text);
+            }
         }
 
         Ok(())
