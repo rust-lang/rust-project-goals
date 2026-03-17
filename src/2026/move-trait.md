@@ -58,13 +58,24 @@ With `!Forget`, we could build safe scoped spawn: the handle's destructor joins 
 
 ### Work items over the next year
 
+#### `Move` trait
+
+Let types opt out of being relocated in memory, encoding immovability as a type property rather than a place property.
+
 | Task                                             | Owner(s)         | Notes                                                                                                                              |
 | ------------------------------------------------ | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | Compiler implementation for `Move`               | @lcnr and @nia-e |                                                                                                                                    |
 | Write the `Move` RFC                             | @yoshuawuyts     |                                                                                                                                    |
-| Design exploration for guaranteed destructors    | @nikomatsakis    | Explore trait hierarchy options and interaction with existing features                                                             |
 | Test in Linux kernel                             | @bennolossin     | RfL is an important Rust user which uses a lot of self-referential data structures.                                                |
 | Test interactions between `Iterator` and `!Move` | @yoshuawuyts     | It's important to prove that generator-based effects can be desugared to `impl Trait + !Move` so they can support self-references. |
+
+#### Guaranteed destructors
+
+Explore letting types opt out of `mem::forget`, enabling patterns like safe scoped spawn for async.
+
+| Task                                             | Owner(s)         | Notes                                                                                                                              |
+| ------------------------------------------------ | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| Design exploration for guaranteed destructors    | @nikomatsakis    | Explore trait hierarchy options and interaction with existing features                                                             |
 
 
 What is concretely out of scope for this year is anything related to changing or

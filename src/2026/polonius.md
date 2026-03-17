@@ -77,18 +77,29 @@ During the preview period, we will also evaluate and address diagnostics quality
 
 ### Work items over the next year
 
+#### Stabilize polonius alpha
+
+Fix remaining issues, validate on real-world code, and ship a stable improved borrow checker.
+
 | Task | Owner(s) | Notes |
 | ---- | -------- | ----- |
 | Fix soundness issue with opaque types and dead regions | @lqd, @tiif | @tiif's [trait-system-refactor-initiative#159](https://github.com/rust-lang/trait-system-refactor-initiative/issues/159) is a pre-requisite for a borrowck fix |
 | Expand test coverage | @lqd | We've started doing this during the previous goal period, e.g. from open fixed-by-polonius issues in [#145053](https://github.com/rust-lang/rust/pull/145053) |
 | Enable polonius testing on CI | @lqd | |
-| Build formal model in a-mir-formality | @tiif, @lqd | Validate against rustc implementation |
-| Upstream borrow checking specification into Rust reference | @tiif, @lqd | Ties to [experimental language specification](./experimental-language-specification.md) goal |
 | Ship nightly preview behind feature gate | @lqd | With blog post / call for testing |
 | Validate performance on real-world code | @lqd | |
 | Address diagnostics feedback from preview | @lqd | |
 | Write stabilization report | @lqd | |
 | Write rustc dev guide documentation | @lqd | |
+
+#### Extend formality for Polonius alpha
+
+Build a formal model of borrow checking in a-mir-formality and upstream it into the Rust reference.
+
+| Task | Owner(s) | Notes |
+| ---- | -------- | ----- |
+| Build formal model in a-mir-formality | @tiif, @lqd | Validate against rustc implementation |
+| Upstream borrow checking specification into Rust reference | @tiif, @lqd | Ties to [experimental language specification](./experimental-language-specification.md) goal |
 
 ### The "shiny future" we are working towards
 

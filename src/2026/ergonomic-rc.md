@@ -92,14 +92,25 @@ tokio::spawn(async {
 
 ### Work items over the next year
 
+#### `Share` trait
+
+A trait that identifies types where cloning creates an alias to the same underlying value, like `Arc`, `Rc`, and shared references.
+
 | Task                                            | Owner(s)      | Notes                          |
 | ----------------------------------------------- | ------------- | ------------------------------ |
 | RFC for `Share` trait                           | @nikomatsakis | Define semantics, stdlib impls |
-| RFC for move expressions                        | @nikomatsakis | Closure desugaring semantics   |
 | Implement `Share` trait                         | @spastorino, @TaKO8Ki |                         |
+| Prepare stabilization PR for `Share` trait      | @spastorino, @TaKO8Ki |                         |
+
+#### Move expressions
+
+Precise control over what closures capture and when, eliminating the need for awkward clone-into-temporary patterns.
+
+| Task                                            | Owner(s)      | Notes                          |
+| ----------------------------------------------- | ------------- | ------------------------------ |
+| RFC for move expressions                        | @nikomatsakis | Closure desugaring semantics   |
 | Implement move expressions                      | @spastorino, @TaKO8Ki |                         |
 | Prepare reference changes                       | @nikomatsakis |                                |
-| Prepare stabilization PR for `Share` trait      | @spastorino, @TaKO8Ki |                         |
 | Prepare stabilization PR for `move` expressions | @spastorino, @TaKO8Ki |                         |
 
 **Target:** Working prototypes on nightly by summer 2026.
