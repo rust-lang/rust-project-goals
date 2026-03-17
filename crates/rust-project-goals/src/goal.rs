@@ -459,6 +459,63 @@ pub fn roadmaps_in_dir(directory_path: &Path) -> Result<Vec<RoadmapDocument>> {
     Ok(roadmap_documents)
 }
 
+/// Validate that usernames are consistently capitalized across all goals.
+/// GitHub usernames are case-insensitive, so `@BennoLossin` and `@bennolossin`
+/// refer to the same person but would appear as duplicates in aggregated lists.
+pub fn validate_username_consistency(goals: &[GoalDocument]) -> Result<()> {
+    // Map from lowercase username to (set of observed casings, list of files where each appears)
+    let mut seen: std::collections::BTreeMap<
+        String,
+        std::collections::BTreeMap<String, Vec<String>>,
+    > = std::collections::BTreeMap::new();
+
+    for goal in goals {
+        let file = goal.path.display().to_string();
+
+        // Collect usernames from point of contact
+        for username in owner_usernames(&goal.metadata.pocs) {
+            seen.entry(username.to_lowercase())
+                .or_default()
+                .entry(username.to_string())
+                .or_default()
+                .push(file.clone());
+        }
+
+        // Collect usernames from task owners (filter to @-prefixed entries,
+        // since old-format goals may have non-username owner text)
+        for username in &goal.task_owners {
+            if !username.starts_with('@') {
+                continue;
+            }
+            seen.entry(username.to_lowercase())
+                .or_default()
+                .entry(username.to_string())
+                .or_default()
+                .push(file.clone());
+        }
+    }
+
+    let mut errors = Vec::new();
+    for (_, casings) in &seen {
+        if casings.len() > 1 {
+            let variants: Vec<String> = casings
+                .iter()
+                .map(|(name, files)| format!("{} (in {})", name, files.join(", ")))
+                .collect();
+            errors.push(format!(
+                "inconsistent username capitalization: {}",
+                variants.join(" vs ")
+            ));
+        }
+    }
+
+    if !errors.is_empty() {
+        spanned::bail_here!("{}", errors.join("\n"));
+    }
+
+    Ok(())
+}
+
 /// Validate that every `| Roadmap | theme |` declared by a goal has a corresponding
 /// `roadmap-*.md` file whose short title matches. Skipped when no roadmap documents exist
 /// in the directory (e.g. older milestones that used `| Flagship |`).

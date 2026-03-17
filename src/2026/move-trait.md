@@ -66,7 +66,7 @@ Let types opt out of being relocated in memory, encoding immovability as a type 
 | ------------------------------------------------ | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | Compiler implementation for `Move`               | @lcnr and @nia-e |                                                                                                                                    |
 | Write the `Move` RFC                             | @yoshuawuyts     |                                                                                                                                    |
-| Test in Linux kernel                             | @bennolossin     | RfL is an important Rust user which uses a lot of self-referential data structures.                                                |
+| Test in Linux kernel                             | @BennoLossin     | RfL is an important Rust user which uses a lot of self-referential data structures.                                                |
 | Test interactions between `Iterator` and `!Move` | @yoshuawuyts     | It's important to prove that generator-based effects can be desugared to `impl Trait + !Move` so they can support self-references. |
 
 #### Guaranteed destructors

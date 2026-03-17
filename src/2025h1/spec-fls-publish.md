@@ -47,15 +47,15 @@ The following [design axioms][da] apply:
 
 ## Ownership and team asks
 
-**Owner:** @JoelMarcey, in his capacity of `t-spec` team member and Rust Foundation representative, will lead this project goal.
+**Owner:** @joelmarcey, in his capacity of `t-spec` team member and Rust Foundation representative, will lead this project goal.
 
 Some subgoals list an expected due/completion date. If one is omitted, completion by the end of 2025h1 is implied.
 
 | Task                               | Owner(s) or team(s)            | Notes                           |
 |------------------------------------|--------------------------------|---------------------------------|
 | Discussion and moral support       | ![Team][] [spec][]             |                                 |
-| Copyright cleanup and assignment   | @JoelMarcey                    | End of February 2025            |
-| Adjust tooling, as needed          | @JoelMarcey                    | Joel to find appropriate person |
+| Copyright cleanup and assignment   | @joelmarcey                    | End of February 2025            |
+| Adjust tooling, as needed          | @joelmarcey                    | Joel to find appropriate person |
 | Standard reviews                   | ![Team][] [bootstrap][]        | For any tooling integration     |
 | Continued updates for new releases | Ferrous Systems                |                                 |
 
