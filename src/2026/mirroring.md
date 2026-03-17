@@ -135,4 +135,4 @@ We have decided not to explore this method, as our exponential artifact growth (
 | [cargo] | Medium | Support needed for registry field design and resolver consistency. |
 | [rustup] | Medium | Required for integrating the prototype into the primary toolchain installer. |
 | [infra] | Medium | Critical for setting up the signing pipeline and Azure deployment. |
-| [crates.io] | Low | Primarily focused on potential future logging/bandwidth savings. |
+| [crates-io] | Small | Primarily focused on potential future logging/bandwidth savings. |
