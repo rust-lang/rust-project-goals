@@ -1,4 +1,4 @@
-# Stabilize Const Traits
+# Const Traits
 
 | Metadata         |                                    |
 | :--------------- | ---------------------------------- |
@@ -38,6 +38,10 @@ There are also language features that require the use of traits, such as iterati
 The compiler already has a mature implementation of const traits. We will draft the RFC to address any outstanding concerns from existing feedback. Afterwards we will call for testing and push for stabilization.
 
 ### Work items over the next year
+
+#### Stabilize const traits MVP
+
+Finalize the RFC, complete the compiler implementation, and stabilize so `const fn` can call trait methods.
 
 | Task                   | Owner(s)   | Notes |
 | ---------------------- | ---------- | ----- |

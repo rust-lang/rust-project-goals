@@ -102,6 +102,10 @@ The design axioms from the last period still apply and are fulfilled by the virt
 
 ### Work items over the next year
 
+#### Map the field projection design space
+
+Explore the virtual places approach, document it in the beyond-refs wiki, formalize borrow checker integration, and build a compiler experiment.
+
 | Task        | Owner(s) | Notes |
 | ----------- | -------- | ----- |
 | Establish a working group for field projections | @tmandry | The group should start out with the members: @BennoLossin, @Nadrieril, @tmandry, @dingxiangfei2009. Any contributor is welcome to join if they intend to develop and design field projections. |

@@ -81,6 +81,10 @@ Open PRs:
 
 ### Work items over the next year
 
+#### Explore design space for comptime `const fn`
+
+Implement and validate `#[compile_time_only]` attribute for `const fn` that enables type reflection without runtime overhead.
+
 | Task                                                     | Owner(s) | Notes |
 |----------------------------------------------------------|----------|-------|
 | Continue the experiment (land open PRs)                  | @oli-obk | [^1]  |
