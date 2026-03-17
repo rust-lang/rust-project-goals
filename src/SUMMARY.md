@@ -20,6 +20,7 @@
 
 # 📖 Learn about
 
+- [Goal format](./about/goal-format.md)
 - [Goal motivations](./about/motivation.md)
 - [Roadmaps](./about/roadmaps.md)
 - [Invited goals](./about/invited_goals.md)
