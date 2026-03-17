@@ -303,7 +303,7 @@ fn format_roadmap_themes(
     let mut by_roadmap: BTreeMap<(String, String), Vec<&GoalDocument>> = BTreeMap::new();
 
     for goal in goals {
-        for roadmap in goal.metadata.roadmap.iter() {
+        for roadmap in goal.all_roadmaps().iter() {
             let (name, slug) = normalize_roadmap_name(roadmap);
             by_roadmap.entry((name, slug)).or_default().push(*goal);
         }

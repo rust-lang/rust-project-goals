@@ -160,7 +160,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
         let count = goals
             .iter()
-            .filter(|g| g.metadata.roadmap.is_some() && g.metadata.status.is_not_not_accepted())
+            .filter(|g| g.all_roadmaps().is_some() && g.metadata.status.is_not_not_accepted())
             .count();
 
         chapter.content = re::ROADMAP_GOALS_COUNT
@@ -176,11 +176,11 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
         // Handle unfiltered roadmap goals
         self.replace_goal_lists_helper(chapter, &re::ROADMAP_GOALS_LIST, |goal, _capture| {
-            goal.metadata.roadmap.is_some() && goal.metadata.status.content.is_not_not_accepted()
+            goal.all_roadmaps().is_some() && goal.metadata.status.content.is_not_not_accepted()
         })?;
 
         self.replace_goal_lists_helper(chapter, &re::OTHER_GOALS_LIST, |goal, _capture| {
-            goal.metadata.roadmap.is_empty() && goal.metadata.status.content.is_not_not_accepted()
+            goal.all_roadmaps().is_empty() && goal.metadata.status.content.is_not_not_accepted()
         })?;
         self.replace_goal_lists_helper(chapter, &re::GOALS_LIST, |goal, _capture| {
             goal.metadata.status.content.is_not_not_accepted()
@@ -210,7 +210,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             |goal, capture| {
                 let filter_value = capture.unwrap().trim(); // Safe because this regex always has a capture
                 goal.metadata.status.content.is_not_not_accepted()
-                    && goal.metadata.roadmap.contains(filter_value)
+                    && goal.matches_roadmap_theme(filter_value)
             },
         )
     }
@@ -238,13 +238,13 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 .iter()
                 .filter(|g| {
                     g.metadata.status.content.is_not_not_accepted()
-                        && g.metadata.roadmap.contains(filter_value)
+                        && g.matches_roadmap_theme(filter_value)
                 })
                 .collect();
 
             filtered_goals.sort_by_key(|g| &g.metadata.title);
 
-            let output = goal::format_roadmap_goal_rows(&filtered_goals);
+            let output = goal::format_roadmap_goal_rows(&filtered_goals, filter_value);
 
             chapter.content.replace_range(range, output.trim_end());
         }

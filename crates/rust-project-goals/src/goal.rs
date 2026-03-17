@@ -35,12 +35,17 @@ pub struct GoalDocument {
     pub goal_plans: Vec<GoalPlan>,
 
     /// Owners of any task that are not team asks.
-    /// Only present for old format goals (pre-2026).
+    /// For old format: extracted from "Ownership and team asks" plan items.
+    /// For new format: extracted from `| Task | Owner(s) | Notes |` tables in the task tree.
     pub task_owners: BTreeSet<String>,
 
     /// How teams are involved with this goal - either through specific asks (old format)
     /// or support levels (new format).
     pub team_involvement: TeamInvolvement,
+
+    /// Hierarchical task structure parsed from "Work items over the next year".
+    /// When it has children, roadmap tables show one row per child instead of one row for the goal.
+    pub task_tree: TaskTree,
 }
 
 /// Data parsed from a roadmap file (`roadmap-*.md`).
@@ -182,7 +187,91 @@ impl Themes {
 
 pub const TRACKING_ISSUE_ROW: &str = "Tracking issue";
 
-/// Items required to complete the goal.
+/// A single row from a `| Task | Owner(s) | Notes |` table
+/// under "Work items over the next year" (2026+ format).
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
+pub struct TaskItem {
+    pub task: Spanned<String>,
+    pub owners: String,
+    pub notes: String,
+}
+
+/// Hierarchical task structure parsed from "Work items over the next year" (2026+ format).
+/// The root node represents the goal itself; children represent `####` subsections.
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
+pub struct TaskTree {
+    /// Title of this node (goal title for root, heading text for children)
+    pub title: Spanned<String>,
+
+    /// Task items from the `| Task | Owner(s) | Notes |` table in this section
+    pub tasks: Vec<TaskItem>,
+
+    /// Effective roadmap themes (parent UNION own for children; from metadata for root)
+    pub roadmap: Themes,
+
+    /// Effective timespan (own if present, else parent's)
+    pub timespan: Option<String>,
+
+    /// Effective "what and why" (own if present, else parent's)
+    pub what_and_why: Option<String>,
+
+    /// Child nodes from `####` subsections
+    pub children: Vec<TaskTree>,
+}
+
+impl TaskTree {
+    /// Build a root task tree node from goal metadata.
+    fn root(metadata: &Metadata, tasks: Vec<TaskItem>, children: Vec<TaskTree>) -> Self {
+        TaskTree {
+            title: metadata.title.clone(),
+            tasks,
+            roadmap: metadata.roadmap.clone(),
+            timespan: metadata.timespan.clone(),
+            what_and_why: metadata.what_and_why.clone(),
+            children,
+        }
+    }
+
+    /// Recursively collect all owner usernames from task items across the tree.
+    pub fn all_task_owners(&self) -> BTreeSet<String> {
+        let mut owners = BTreeSet::new();
+        for task in &self.tasks {
+            for username in owner_usernames(&task.owners) {
+                owners.insert(username.to_string());
+            }
+        }
+        for child in &self.children {
+            owners.extend(child.all_task_owners());
+        }
+        owners
+    }
+
+    /// Recursively collect all roadmap themes across the tree (union).
+    pub fn all_roadmap_themes(&self) -> Themes {
+        let mut themes = self.roadmap.clone();
+        for child in &self.children {
+            for theme in child.all_roadmap_themes().iter_spanned() {
+                if !themes.contains(&theme.content) {
+                    themes.push(theme.clone());
+                }
+            }
+        }
+        themes
+    }
+
+    /// Returns true if this node (or any child) matches the given roadmap theme.
+    /// When children exist, only children are checked (they inherit parent themes).
+    pub fn matches_roadmap_theme(&self, theme: &str) -> bool {
+        if self.children.is_empty() {
+            self.roadmap.contains(theme)
+        } else {
+            self.children.iter().any(|c| c.roadmap.contains(theme))
+        }
+    }
+}
+
+/// Deprecated: items required to complete the goal (pre-2026 format).
+/// New goals use `TaskTree` instead.
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub struct GoalPlan {
     /// If `Some`, title of the subsection in which these items were found.
@@ -192,7 +281,8 @@ pub struct GoalPlan {
     pub plan_items: Vec<PlanItem>,
 }
 
-/// Identifies a particular ask for a set of Rust teams
+/// Deprecated: a row from the old-format (pre-2026) "Ownership and team asks" table.
+/// New goals use `TaskItem` (via `TaskTree`) instead.
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub struct PlanItem {
     pub text: Spanned<String>,
@@ -386,24 +476,33 @@ pub fn validate_roadmap_references(
         .collect();
 
     for goal in goals {
-        for theme in goal.metadata.roadmap.iter_spanned() {
-            let theme_name = theme.content.trim();
-            if !roadmap_titles.contains(theme_name) {
-                spanned::bail!(
-                    theme,
-                    "goal declares roadmap `{}` but no `roadmap-*.md` file has that short title; \
-                     available roadmaps: {}",
-                    theme_name,
-                    roadmap_titles
-                        .iter()
-                        .cloned()
-                        .collect::<Vec<_>>()
-                        .join(", "),
-                );
-            }
-        }
+        validate_themes(&goal.all_roadmaps(), &roadmap_titles)?;
     }
 
+    Ok(())
+}
+
+/// Validate that every theme in `themes` has a corresponding roadmap document.
+fn validate_themes(
+    themes: &Themes,
+    roadmap_titles: &std::collections::BTreeSet<String>,
+) -> Result<()> {
+    for theme in themes.iter_spanned() {
+        let theme_name = theme.content.trim();
+        if !roadmap_titles.contains(theme_name) {
+            spanned::bail!(
+                theme,
+                "roadmap `{}` does not match any `roadmap-*.md` short title; \
+                 available roadmaps: {}",
+                theme_name,
+                roadmap_titles
+                    .iter()
+                    .cloned()
+                    .collect::<Vec<_>>()
+                    .join(", "),
+            );
+        }
+    }
     Ok(())
 }
 
@@ -420,7 +519,7 @@ impl GoalDocument {
         let link_path = Arc::new(link_path.to_path_buf());
 
         // Try to extract team involvement - could be old format or new format
-        let (team_involvement, goal_plans, task_owners) =
+        let (team_involvement, goal_plans, mut task_owners) =
             extract_team_involvement(&sections, &link_path, &metadata)?;
 
         // Enforce that every goal has some team involvement (unless it is not accepted)
@@ -431,6 +530,12 @@ impl GoalDocument {
             );
         }
 
+        // Extract task tree from "Work items over the next year"
+        let task_tree = extract_task_tree(&sections, &metadata)?;
+
+        // Compute task_owners from the task tree
+        task_owners.extend(task_tree.all_task_owners());
+
         Ok(Some(GoalDocument {
             path: path.to_path_buf(),
             link_path,
@@ -439,6 +544,7 @@ impl GoalDocument {
             team_involvement,
             goal_plans,
             task_owners,
+            task_tree,
         }))
     }
 
@@ -481,6 +587,30 @@ impl GoalDocument {
             None => first_sentence(&self.summary),
         }
     }
+
+    /// Returns true if this goal (or any task tree child) matches the given roadmap theme.
+    pub fn matches_roadmap_theme(&self, theme: &str) -> bool {
+        self.task_tree.matches_roadmap_theme(theme)
+    }
+
+    /// Returns all roadmap themes for this goal — the union across the task tree.
+    pub fn all_roadmaps(&self) -> Themes {
+        self.task_tree.all_roadmap_themes()
+    }
+}
+
+/// Convert a heading title to an mdbook-compatible anchor slug.
+fn slugify(title: &str) -> String {
+    title
+        .trim()
+        .to_lowercase()
+        .chars()
+        .map(|c| if c.is_alphanumeric() { c } else { '-' })
+        .collect::<String>()
+        .split('-')
+        .filter(|s| !s.is_empty())
+        .collect::<Vec<_>>()
+        .join("-")
 }
 
 /// Generate progress HTML based on issue progress and state
@@ -693,25 +823,55 @@ pub fn format_roadmap_table(roadmaps: &[&RoadmapDocument]) -> Result<String> {
 ///
 /// Used by the `(((ROADMAP ROWS: ...)))` directive, which appears
 /// inside a manually authored table.
-pub fn format_roadmap_goal_rows(goals: &[&GoalDocument]) -> String {
+///
+/// When a goal's task tree has children, emits one row per child that matches
+/// `filter_theme` instead of one row for the goal.
+pub fn format_roadmap_goal_rows(goals: &[&GoalDocument], filter_theme: &str) -> String {
     let mut output = String::new();
     for goal in goals {
-        let timespan = goal.metadata.timespan.as_deref().unwrap_or_else(|| {
-            goal.path
-                .parent()
-                .unwrap()
-                .file_stem()
-                .unwrap()
-                .to_str()
-                .unwrap()
-        });
-        output.push_str(&format!(
-            "| [{}]({}) | {} | {} |\n",
-            *goal.metadata.title,
-            goal.link_path.display(),
-            timespan,
-            goal.what_and_why(),
-        ));
+        let milestone_dir = goal
+            .path
+            .parent()
+            .unwrap()
+            .file_stem()
+            .unwrap()
+            .to_str()
+            .unwrap();
+
+        let children = &goal.task_tree.children;
+
+        if children.is_empty() {
+            // No children: emit one row for the goal
+            let timespan = goal.metadata.timespan.as_deref().unwrap_or(milestone_dir);
+            output.push_str(&format!(
+                "| [{}]({}) | {} | {} |\n",
+                *goal.metadata.title,
+                goal.link_path.display(),
+                timespan,
+                goal.what_and_why(),
+            ));
+        } else {
+            // Has children: emit one row per child that matches the theme
+            for child in children {
+                if !child.roadmap.contains(filter_theme) {
+                    continue;
+                }
+                let timespan = child.timespan.as_deref().unwrap_or(milestone_dir);
+                let what_and_why = child
+                    .what_and_why
+                    .as_deref()
+                    .unwrap_or_else(|| goal.what_and_why());
+                let anchor = slugify(&child.title);
+                output.push_str(&format!(
+                    "| [{}]({}#{}) | {} | {} |\n",
+                    *child.title,
+                    goal.link_path.display(),
+                    anchor,
+                    timespan,
+                    what_and_why,
+                ));
+            }
+        }
     }
     output
 }
@@ -1349,6 +1509,117 @@ fn goal_team_rows(goal: &GoalDocument) -> Vec<(&'static TeamName, SupportLevel)>
     sorted.sort_by(|a, b| b.1.cmp(&a.1).then_with(|| a.0.name().cmp(&b.0.name())));
 
     sorted
+}
+
+/// Extract a task tree from "Work items over the next year".
+/// Returns an empty tree (no tasks, no children) if the section is absent.
+fn extract_task_tree(sections: &[Section], metadata: &Metadata) -> Result<TaskTree> {
+    let Some(work_items_index) = sections
+        .iter()
+        .position(|s| s.title.content.trim() == "Work items over the next year")
+    else {
+        return Ok(TaskTree::root(metadata, vec![], vec![]));
+    };
+
+    let work_items_section = &sections[work_items_index];
+    let work_items_level = work_items_section.level;
+
+    // Parse task table at the root level (if present)
+    let root_tasks = extract_task_items(work_items_section)?;
+
+    // Collect child sections exactly one level deeper (#### under ###)
+    let subsections: Vec<&Section> = sections
+        .iter()
+        .skip(work_items_index + 1)
+        .take_while(|s| s.level > work_items_level)
+        .filter(|s| s.level == work_items_level + 1)
+        .collect();
+
+    let mut children = vec![];
+    for subsection in subsections {
+        children.push(parse_task_tree_child(subsection, metadata)?);
+    }
+
+    Ok(TaskTree::root(metadata, root_tasks, children))
+}
+
+/// Parse a single `####` child node of the task tree.
+/// Looks for an optional `| Metadata | |` table and an optional `| Task | Owner(s) | Notes |` table.
+fn parse_task_tree_child(section: &Section, parent_metadata: &Metadata) -> Result<TaskTree> {
+    // Look for a metadata table (headers: ["Metadata", ""])
+    let metadata_table = section
+        .tables
+        .iter()
+        .find(|t| t.header.len() == 2 && t.header[0].content.trim() == "Metadata");
+
+    // Parse child-specific fields from metadata table (if present)
+    let (own_roadmap, own_timespan, own_what_and_why) = if let Some(table) = metadata_table {
+        let roadmap = parse_themed_rows(table, "Roadmap");
+        let timespan = table
+            .rows
+            .iter()
+            .find(|row| row[0].content.trim().eq_ignore_ascii_case("Timespan"))
+            .map(|row| row[1].to_string());
+        let what_and_why = table
+            .rows
+            .iter()
+            .find(|row| row[0].content.trim().eq_ignore_ascii_case("What and why"))
+            .map(|row| row[1].to_string());
+        (roadmap, timespan, what_and_why)
+    } else {
+        (Themes::default(), None, None)
+    };
+
+    // Compute effective roadmap: parent UNION child's own
+    let mut effective_roadmap = parent_metadata.roadmap.clone();
+    for theme in own_roadmap.iter_spanned() {
+        if !effective_roadmap.contains(&theme.content) {
+            effective_roadmap.push(theme.clone());
+        }
+    }
+
+    // Compute effective timespan: child's own > parent's
+    let effective_timespan = own_timespan.or_else(|| parent_metadata.timespan.clone());
+
+    // Compute effective what_and_why: child's own > parent's
+    let effective_what_and_why = own_what_and_why.or_else(|| parent_metadata.what_and_why.clone());
+
+    // Parse task items from this section
+    let tasks = extract_task_items(section)?;
+
+    Ok(TaskTree {
+        title: section.title.clone(),
+        tasks,
+        roadmap: effective_roadmap,
+        timespan: effective_timespan,
+        what_and_why: effective_what_and_why,
+        children: vec![],
+    })
+}
+
+/// Extract task items from a section's `| Task | Owner(s) | Notes |` table (if present).
+fn extract_task_items(section: &Section) -> Result<Vec<TaskItem>> {
+    // Look for a task table with 3 columns: Task, Owner(s) [or team(s)], Notes
+    let task_table = section.tables.iter().find(|t| {
+        t.header.len() == 3
+            && t.header[0].content.trim() == "Task"
+            && t.header[2].content.trim() == "Notes"
+    });
+
+    let Some(table) = task_table else {
+        return Ok(vec![]);
+    };
+
+    let mut items = vec![];
+    for row in &table.rows {
+        items.push(TaskItem {
+            task: row[0].clone(),
+            owners: row[1].to_string(),
+            notes: row[2].to_string(),
+        });
+    }
+
+    Ok(items)
 }
 
 /// Extract plan items from the old format, starting at the given section index.

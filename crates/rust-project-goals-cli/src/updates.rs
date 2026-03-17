@@ -60,7 +60,7 @@ pub fn render_updates(
         let mut map: std::collections::HashMap<u64, Vec<String>> = std::collections::HashMap::new();
         for doc in &goal_documents {
             if let Some(tracking_issue) = doc.metadata.tracking_issue.as_ref() {
-                for theme in doc.metadata.roadmap.iter() {
+                for theme in doc.all_roadmaps().iter() {
                     map.entry(tracking_issue.number)
                         .or_default()
                         .push(theme.trim().to_string());

@@ -485,7 +485,7 @@ fn issue<'doc>(timeframe: &str, document: &'doc GoalDocument) -> Result<GithubIs
     }
 
     let mut labels = vec!["C-tracking-issue".to_string()];
-    if document.metadata.roadmap.is_some() {
+    if document.all_roadmaps().is_some() {
         labels.push("Roadmap Goal".to_string());
     }
     for team in document.teams_with_asks() {
