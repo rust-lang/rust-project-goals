@@ -17,7 +17,7 @@ pub fn format_champions(goals: &[&GoalDocument]) -> Result<String> {
         for champion in goal.metadata.champions.values() {
             let champion_name = champion.content.clone();
             let goal_link = format!(
-                "° [{}]({})",
+                "[{}]({})",
                 goal.metadata.title.content,
                 goal.link_path.display()
             );
@@ -33,21 +33,36 @@ pub fn format_champions(goals: &[&GoalDocument]) -> Result<String> {
         return Ok("No champions found.".to_string());
     }
 
-    // Create the table
+    // Create the table with one row per goal,
+    // showing champion name and count only on the first row.
     let table = {
         let headings = vec![
             Spanned::here("Champion".to_string()),
             Spanned::here("#".to_string()),
-            Spanned::here("Goals".to_string()),
+            Spanned::here("Goal".to_string()),
         ];
 
-        let rows = champion_goals.into_iter().map(|(champion, goals)| {
+        let rows = champion_goals.into_iter().flat_map(|(champion, goals)| {
             let goals_vec: Vec<String> = goals.into_iter().collect();
-            vec![
-                Spanned::here(champion),
-                Spanned::here(goals_vec.len().to_string()),
-                Spanned::here(goals_vec.join("<br>")),
-            ]
+            let count = goals_vec.len();
+            goals_vec
+                .into_iter()
+                .enumerate()
+                .map(move |(i, goal_link)| {
+                    if i == 0 {
+                        vec![
+                            Spanned::here(champion.clone()),
+                            Spanned::here(count.to_string()),
+                            Spanned::here(goal_link),
+                        ]
+                    } else {
+                        vec![
+                            Spanned::here(String::new()),
+                            Spanned::here(String::new()),
+                            Spanned::here(goal_link),
+                        ]
+                    }
+                })
         });
 
         std::iter::once(headings).chain(rows).collect::<Vec<_>>()
