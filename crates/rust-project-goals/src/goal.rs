@@ -157,9 +157,7 @@ impl Themes {
 
     /// Returns true if the set contains a theme matching the given value (trimmed comparison).
     pub fn contains(&self, value: &str) -> bool {
-        self.themes
-            .iter()
-            .any(|t| t.content.trim() == value.trim())
+        self.themes.iter().any(|t| t.content.trim() == value.trim())
     }
 
     /// Iterate over all theme names as &str.
@@ -396,7 +394,11 @@ pub fn validate_roadmap_references(
                     "goal declares roadmap `{}` but no `roadmap-*.md` file has that short title; \
                      available roadmaps: {}",
                     theme_name,
-                    roadmap_titles.iter().cloned().collect::<Vec<_>>().join(", "),
+                    roadmap_titles
+                        .iter()
+                        .cloned()
+                        .collect::<Vec<_>>()
+                        .join(", "),
                 );
             }
         }
@@ -511,8 +513,7 @@ pub fn format_goal_table(
 ) -> Result<String> {
     // If any of the goals have tracking issues, include those in the table.
     let show_champions = goals.iter().any(|g| {
-        *g.metadata.status == Status::Proposed
-            || *g.metadata.status == Status::NotAccepted
+        *g.metadata.status == Status::Proposed || *g.metadata.status == Status::NotAccepted
     });
 
     let mut table;
@@ -625,12 +626,14 @@ pub fn format_highlight_goal_sections(goals: &[&GoalDocument]) -> Result<String>
         if goal.metadata.is_help_wanted() {
             output.push_str(&format!(
                 "#### [{}]({}) ![Help wanted][]\n\n",
-                *goal.metadata.title, goal.link_path.display()
+                *goal.metadata.title,
+                goal.link_path.display()
             ));
         } else {
             output.push_str(&format!(
                 "#### [{}]({})\n\n",
-                *goal.metadata.title, goal.link_path.display()
+                *goal.metadata.title,
+                goal.link_path.display()
             ));
         }
 
@@ -660,18 +663,14 @@ pub fn format_highlight_goal_sections(goals: &[&GoalDocument]) -> Result<String>
 }
 
 /// Format roadmaps as a table with "Roadmap", "Point of contact", and "What and why" columns.
-pub fn format_roadmap_table(
-    roadmaps: &[&RoadmapDocument],
-) -> Result<String> {
+pub fn format_roadmap_table(roadmaps: &[&RoadmapDocument]) -> Result<String> {
     let mut table = vec![vec![
         Spanned::here("Roadmap".to_string()),
         Spanned::here("Point of contact".to_string()),
         Spanned::here("What and why".to_string()),
     ]];
 
-    let mut sorted_roadmaps: Vec<&&RoadmapDocument> = roadmaps
-        .iter()
-        .collect();
+    let mut sorted_roadmaps: Vec<&&RoadmapDocument> = roadmaps.iter().collect();
     sorted_roadmaps.sort_by_key(|r| &r.short_title);
 
     for roadmap in sorted_roadmaps {
@@ -931,9 +930,7 @@ fn first_sentence(s: &str) -> &str {
     let mut chars = s.char_indices().peekable();
     while let Some((i, ch)) = chars.next() {
         if ch == '.' {
-            let next_is_boundary = chars
-                .peek()
-                .map_or(true, |&(_, next)| next.is_whitespace());
+            let next_is_boundary = chars.peek().map_or(true, |&(_, next)| next.is_whitespace());
             if next_is_boundary {
                 return &s[..=i];
             }
@@ -959,9 +956,7 @@ struct RoadmapMetadata {
 
 /// Extract roadmap metadata from the first section of a markdown file.
 /// Returns None if the file doesn't have the expected roadmap metadata structure.
-fn extract_roadmap_metadata(
-    sections: &[Section],
-) -> Result<Option<RoadmapMetadata>> {
+fn extract_roadmap_metadata(sections: &[Section]) -> Result<Option<RoadmapMetadata>> {
     let Some(first_section) = sections.first() else {
         return Ok(None);
     };
@@ -978,21 +973,14 @@ fn extract_roadmap_metadata(
 
     expect_headers(first_table, &["Metadata", ""])?;
 
-    let short_title = if let Some(row) = first_table
-        .rows
-        .iter()
-        .find(|row| row[0] == "Short title")
+    let short_title = if let Some(row) = first_table.rows.iter().find(|row| row[0] == "Short title")
     {
         row[1].clone()
     } else {
         title.clone()
     };
 
-    let Some(what_row) = first_table
-        .rows
-        .iter()
-        .find(|row| row[0] == "What and why")
-    else {
+    let Some(what_row) = first_table.rows.iter().find(|row| row[0] == "What and why") else {
         spanned::bail!(
             first_table.rows[0][0],
             "roadmap metadata table has no `What and why` row"
@@ -1069,9 +1057,15 @@ fn extract_team_involvement(
     }
 
     if let Some(section) = sections.first() {
-        spanned::bail!(&section.title, "no `Team asks` or `Ownership and team asks` section found")
+        spanned::bail!(
+            &section.title,
+            "no `Team asks` or `Ownership and team asks` section found"
+        )
     } else {
-        spanned::bail_here!("no `Team asks` or `Ownership and team asks` section found in {}", link_path.display())
+        spanned::bail_here!(
+            "no `Team asks` or `Ownership and team asks` section found in {}",
+            link_path.display()
+        )
     }
 }
 
@@ -1219,9 +1213,7 @@ impl GoalDocument {
     /// Returns None if this goal uses the old format or has no team support entries.
     pub fn max_support_level(&self) -> Option<SupportLevel> {
         match &self.team_involvement {
-            TeamInvolvement::Support(supports) => {
-                supports.iter().map(|s| s.support_level).max()
-            }
+            TeamInvolvement::Support(supports) => supports.iter().map(|s| s.support_level).max(),
             TeamInvolvement::Asks(_) => None,
         }
     }
@@ -1354,9 +1346,7 @@ fn goal_team_rows(goal: &GoalDocument) -> Vec<(&'static TeamName, SupportLevel)>
 
     // Sort by level (Large > Medium > Small) then by team name
     let mut sorted: Vec<_> = team_levels.into_iter().collect();
-    sorted.sort_by(|a, b| {
-        b.1.cmp(&a.1).then_with(|| a.0.name().cmp(&b.0.name()))
-    });
+    sorted.sort_by(|a, b| b.1.cmp(&a.1).then_with(|| a.0.name().cmp(&b.0.name())));
 
     sorted
 }

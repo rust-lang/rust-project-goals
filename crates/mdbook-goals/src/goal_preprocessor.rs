@@ -203,10 +203,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         Ok(())
     }
 
-    fn replace_roadmap_goal_lists_filtered(
-        &mut self,
-        chapter: &mut Chapter,
-    ) -> anyhow::Result<()> {
+    fn replace_roadmap_goal_lists_filtered(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
         self.replace_goal_lists_helper(
             chapter,
             &re::ROADMAP_GOALS_LIST_FILTERED,
@@ -221,10 +218,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     /// Replace `| (((ROADMAP ROWS: <name>))) |` with table rows for matching goals.
     /// Generates only row content (no headers), allowing roadmap authors to
     /// manually control the table structure and add future goal rows.
-    fn replace_roadmap_goal_rows(
-        &mut self,
-        chapter: &mut Chapter,
-    ) -> anyhow::Result<()> {
+    fn replace_roadmap_goal_rows(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
         loop {
             let Some(m) = re::ROADMAP_ROWS_FILTERED.find(&chapter.content) else {
                 return Ok(());
@@ -314,8 +308,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
             filtered_goals.sort_by_key(|g| &g.metadata.title);
 
-            let output = goal::format_highlight_goal_sections(&filtered_goals)
-                .into_anyhow()?;
+            let output = goal::format_highlight_goal_sections(&filtered_goals).into_anyhow()?;
 
             chapter.content.replace_range(range, &output);
         }
@@ -342,8 +335,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             .filter(|g| g.metadata.status.content.is_not_not_accepted())
             .collect();
 
-        let output =
-            goal::format_sized_goal_table(&goals_with_status, size).into_anyhow()?;
+        let output = goal::format_sized_goal_table(&goals_with_status, size).into_anyhow()?;
         chapter.content.replace_range(range, &output);
 
         Ok(())
@@ -417,7 +409,10 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         for (roadmap, index) in sorted_roadmaps.iter().zip(0..) {
             let content = std::fs::read_to_string(&roadmap.path)
                 .with_context(|| format!("reading `{}`", roadmap.path.display()))?;
-            let path = roadmap.path.strip_prefix(&self.ctx.config.book.src).unwrap();
+            let path = roadmap
+                .path
+                .strip_prefix(&self.ctx.config.book.src)
+                .unwrap();
             let mut new_chapter =
                 Chapter::new(&roadmap.title.content, content, path, parent_names.clone());
 
@@ -527,8 +522,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
         let roadmaps = self.roadmap_documents(path)?;
         let roadmap_refs: Vec<&RoadmapDocument> = roadmaps.iter().collect();
-        let formatted =
-            goal::format_roadmap_table(&roadmap_refs).into_anyhow()?;
+        let formatted = goal::format_roadmap_table(&roadmap_refs).into_anyhow()?;
         chapter.content.replace_range(range, &formatted);
 
         Ok(())
@@ -567,17 +561,14 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         let mut formatted = String::new();
 
         if !old_format_asks.is_empty() {
-            formatted
-                .push_str(&format_team_asks(&old_format_asks).into_anyhow()?);
+            formatted.push_str(&format_team_asks(&old_format_asks).into_anyhow()?);
         }
 
         if !new_format_goals.is_empty() {
             if !formatted.is_empty() {
                 formatted.push_str("\n\n");
             }
-            formatted.push_str(
-                &format_team_support(&new_format_goals).into_anyhow()?,
-            );
+            formatted.push_str(&format_team_support(&new_format_goals).into_anyhow()?);
         }
 
         chapter.content.replace_range(range, &formatted);
@@ -621,8 +612,8 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             return Ok(goals.clone());
         }
 
-        let goal_documents = goal::goals_in_dir(&self.ctx.config.book.src.join(milestone_path))
-            .into_anyhow()?;
+        let goal_documents =
+            goal::goals_in_dir(&self.ctx.config.book.src.join(milestone_path)).into_anyhow()?;
         let goals = Arc::new(goal_documents);
         self.goal_document_map
             .insert(milestone_path.to_path_buf(), goals.clone());
@@ -643,8 +634,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         }
 
         let roadmap_documents =
-            goal::roadmaps_in_dir(&self.ctx.config.book.src.join(milestone_path))
-                .into_anyhow()?;
+            goal::roadmaps_in_dir(&self.ctx.config.book.src.join(milestone_path)).into_anyhow()?;
         let roadmaps = Arc::new(roadmap_documents);
         self.roadmap_document_map
             .insert(milestone_path.to_path_buf(), roadmaps.clone());
@@ -1217,4 +1207,3 @@ These reports include the details only of goals for a particular team.
         assert_eq!(months[3], (2025, 12));
     }
 }
-

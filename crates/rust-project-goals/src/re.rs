@@ -17,7 +17,8 @@ lazy_static! {
 // List of roadmap goals (accepted or pending)
 // Accepts both "ROADMAP GOALS" (new) and "FLAGSHIP GOALS" (old) for backward compatibility
 lazy_static! {
-    pub static ref ROADMAP_GOALS_LIST: Regex = Regex::new(r"\(\(\((?:ROADMAP|FLAGSHIP) GOALS\)\)\)").unwrap();
+    pub static ref ROADMAP_GOALS_LIST: Regex =
+        Regex::new(r"\(\(\((?:ROADMAP|FLAGSHIP) GOALS\)\)\)").unwrap();
 }
 
 // List of roadmap goals filtered by category (accepted or pending)
@@ -76,7 +77,8 @@ lazy_static! {
 
 // Accepts both "#ROADMAP GOALS" (new) and "#FLAGSHIP GOALS" (old) for backward compatibility
 lazy_static! {
-    pub static ref ROADMAP_GOALS_COUNT: Regex = Regex::new(r"\(\(\(#(?:ROADMAP|FLAGSHIP) GOALS\)\)\)").unwrap();
+    pub static ref ROADMAP_GOALS_COUNT: Regex =
+        Regex::new(r"\(\(\(#(?:ROADMAP|FLAGSHIP) GOALS\)\)\)").unwrap();
 }
 
 lazy_static! {

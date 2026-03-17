@@ -57,8 +57,7 @@ pub fn render_updates(
 
     // Create a mapping from issue numbers to themes for roadmap goals
     let issue_themes: std::collections::HashMap<u64, Vec<String>> = {
-        let mut map: std::collections::HashMap<u64, Vec<String>> =
-            std::collections::HashMap::new();
+        let mut map: std::collections::HashMap<u64, Vec<String>> = std::collections::HashMap::new();
         for doc in &goal_documents {
             if let Some(tracking_issue) = doc.metadata.tracking_issue.as_ref() {
                 for theme in doc.metadata.roadmap.iter() {
@@ -282,10 +281,7 @@ fn prepare_goals(
             tldr,
             why_this_goal,
             needs_separator: true, // updated after sorting
-            theme: issue_themes
-                .get(&issue.number)
-                .cloned()
-                .unwrap_or_default(),
+            theme: issue_themes.get(&issue.number).cloned().unwrap_or_default(),
             point_of_contact: issue_point_of_contact
                 .get(&issue.number)
                 .cloned()
