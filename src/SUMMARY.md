@@ -8,7 +8,7 @@
 - [Highlights](./2026/highlights.md)
 - [Help wanted](./2026/help-wanted.md)
 - [Roadmaps](./2026/roadmaps.md)
-- [Reference: all goals](./2026/reference.md)
+- [Goals](./2026/goals.md)
 - [Frequently asked questions](./2026/faq.md)
 
 # ⚙️ 2025H2 goal process
