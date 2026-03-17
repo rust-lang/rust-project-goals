@@ -1,14 +1,10 @@
-# Reference: all goals and roadmaps
+# Reference: all goals
 
-This section contains the complete lists of [goals](#goals) for 2026.
+This section contains the complete list of all (((#GOALS))) [goals](#goals) for 2026. There are a lot of them! You may prefer to look at the [roadmaps](./roadmaps.md) to get a higher level picture of where Rust is going.
 
 (((GOAL CHAPTERS)))
 
 ## Goals
-
-> Just because a goal is listed on this list does not mean the goal has been accepted.
-> The owner of the goal process makes the final decisions on which goals to include
-> and prepares an RFC to ask approval from the teams.
 
 ### Goals by size
 
