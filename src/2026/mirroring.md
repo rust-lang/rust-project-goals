@@ -1,11 +1,14 @@
 # [Proposed] 2026 Goal: Implement Verifiable Mirroring Prototype
 
-| Metadata         |                |
-|:-----------------|----------------|
-| Point of contact | @walterhpearce |
-| Status           | Proposed       |
-| Tracking issue   |                |
-| Zulip channel    | [#tbd-signing] |
+| Metadata          |                  |
+|:------------------|------------------|
+| Point of contact  | @walterhpearce   |
+| Status            | Proposed         |
+| Tracking issue    |                  |
+| Zulip channel     | [#tbd-signing]   |
+| [rustup] champion | @djc             |
+| [cargo] champion  | @arlosi          |
+| [infra] champion  | @Mark-Simulacrum |
 
 [#tbd-signing]: https://rust-lang.zulipchat.com/#narrow/channel/417663-tbd-signing
 
