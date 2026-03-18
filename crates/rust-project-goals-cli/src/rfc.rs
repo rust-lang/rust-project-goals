@@ -1,5 +1,5 @@
 use std::{
-    collections::BTreeSet,
+    collections::{BTreeMap, BTreeSet},
     fmt::Display,
     path::{Path, PathBuf},
     process::Command,
@@ -67,31 +67,188 @@ pub fn generate_comment(path: &Path) -> Result<()> {
     Ok(())
 }
 
+/// Split markdown content into body text and reference link definitions.
+/// Reference links are lines matching `[label]: URL`.
+fn separate_reference_links(text: &str) -> (String, Vec<String>) {
+    let ref_link_re = Regex::new(r"^\[([^\]]+)\]:\s+\S").unwrap();
+    let mut body_lines = Vec::new();
+    let mut ref_links = Vec::new();
+
+    for line in text.lines() {
+        if ref_link_re.is_match(line) {
+            ref_links.push(line.to_string());
+        } else {
+            body_lines.push(line);
+        }
+    }
+
+    // Trim trailing blank lines from body
+    while body_lines.last().map_or(false, |l| l.trim().is_empty()) {
+        body_lines.pop();
+    }
+
+    (body_lines.join("\n"), ref_links)
+}
+
+/// Rewrite `.md` links to GitHub Pages URLs.
+fn rewrite_md_links(text: &str, timeframe: &str) -> String {
+    let link_re = Regex::new(r"\]\((\./)?([^)#]*?)\.md(#[^)]*)?\)").unwrap();
+
+    link_re
+        .replace_all(text, |caps: &regex::Captures| {
+            let path_stem = &caps[2];
+            let fragment = caps.get(3).map_or("", |m| m.as_str());
+
+            let clean_path = path_stem.trim_start_matches("../");
+            if clean_path.contains('/') || path_stem.starts_with("../") {
+                format!("](https://rust-lang.github.io/rust-project-goals/{clean_path}.html{fragment})")
+            } else {
+                format!("](https://rust-lang.github.io/rust-project-goals/{timeframe}/{clean_path}.html{fragment})")
+            }
+        })
+        .to_string()
+}
+
+/// Rewrite .md URLs inside reference link definitions to GitHub Pages URLs.
+fn rewrite_ref_link_urls(ref_links: &mut BTreeMap<String, String>, timeframe: &str) {
+    let md_url_re = Regex::new(r"^(\[[^\]]+\]:\s+)(\./)?(\S*?)\.md(\s.*)?$").unwrap();
+    for def in ref_links.values_mut() {
+        let def_clone = def.clone();
+        if let Some(caps) = md_url_re.captures(&def_clone) {
+            let prefix = &caps[1];
+            let path_stem = &caps[3];
+            let rest = caps.get(4).map_or("", |m| m.as_str());
+            let clean_path = path_stem.trim_start_matches("../");
+            if clean_path.contains('/') || path_stem.starts_with("../") {
+                *def = format!("{prefix}https://rust-lang.github.io/rust-project-goals/{clean_path}.html{rest}");
+            } else {
+                *def = format!("{prefix}https://rust-lang.github.io/rust-project-goals/{timeframe}/{clean_path}.html{rest}");
+            }
+        }
+    }
+}
+
+/// Inline a rendered markdown file: strip the top `#` heading and bump all
+/// remaining heading levels by one (e.g., `##` becomes `###`).
+fn inline_rendered_file(text: &str) -> String {
+    let heading_re = Regex::new(r"^(#+)\s").unwrap();
+    let mut lines = text.lines();
+
+    // Skip lines until we find and consume the top-level heading
+    for line in &mut lines {
+        if heading_re.is_match(line) {
+            break; // found and consumed the top heading
+        }
+    }
+
+    // Process remaining lines: bump heading levels by 1
+    let mut result = Vec::new();
+    for line in lines {
+        if heading_re.is_match(line) {
+            result.push(format!("#{}", line));
+        } else {
+            result.push(line.to_string());
+        }
+    }
+
+    // Trim leading blank lines
+    while result.first().map_or(false, |l| l.trim().is_empty()) {
+        result.remove(0);
+    }
+
+    result.join("\n")
+}
+
 pub fn generate_rfc(path: &Path) -> Result<()> {
     let timeframe = &validate_path(path)?;
 
-    // run mdbook build
+    // Run mdbook build to expand (((directives)))
     Command::new("mdbook").arg("build").status()?;
 
-    // find the markdown output
-    let generated_path = PathBuf::from("book/markdown")
-        .join(timeframe)
-        .join("index.md");
-    if !generated_path.exists() {
-        spanned::bail_here!("no markdown generated at {}", generated_path.display());
+    let book_dir = PathBuf::from("book/markdown").join(timeframe);
+    if !book_dir.exists() {
+        spanned::bail_here!("no markdown generated at {}", book_dir.display());
     }
 
-    let generated_text = std::fs::read_to_string(&generated_path)
-        .with_path_context(&generated_path, "reading generated markdown")?;
+    // Read the rendered README (index.md) as our skeleton
+    let index_path = book_dir.join("index.md");
+    let index_text = std::fs::read_to_string(&index_path)
+        .with_path_context(&index_path, "reading rendered index.md")?;
 
-    let regex = Regex::new(r"\]\(([^(]*)\.md(#[^)]*)?\)").unwrap();
+    // Separate reference links from the index
+    let (index_body, index_ref_links) = separate_reference_links(&index_text);
 
-    let result = regex.replace_all(
-        &generated_text,
-        format!("](https://rust-lang.github.io/rust-project-goals/{timeframe}/$1.html$2)"),
-    );
+    // Collect all reference link definitions for deduplication
+    let ref_label_re = Regex::new(r"^\[([^\]]+)\]:\s").unwrap();
+    let mut all_ref_links: BTreeMap<String, String> = BTreeMap::new();
+    for ref_link in &index_ref_links {
+        if let Some(caps) = ref_label_re.captures(ref_link) {
+            let label = caps[1].to_string();
+            all_ref_links
+                .entry(label)
+                .or_insert_with(|| ref_link.clone());
+        }
+    }
 
-    println!("{result}");
+    // Pattern for link-list lines: `- [Text](./2026/foo.md)` or `- [Text](./foo.md)`
+    let link_line_re = Regex::new(r"^- \[[^\]]+\]\(\./(?:[\w-]+/)*([\w-]+)\.md\)\s*$").unwrap();
+
+    // Process the index body line by line, inlining linked files
+    let mut output = String::new();
+    for line in index_body.lines() {
+        if let Some(caps) = link_line_re.captures(line) {
+            let stem = &caps[1];
+            let chapter_path = book_dir.join(format!("{}.md", stem));
+            if !chapter_path.exists() {
+                eprintln!(
+                    "warning: linked file not found: {}, skipping",
+                    chapter_path.display()
+                );
+                continue;
+            }
+
+            let chapter_text = std::fs::read_to_string(&chapter_path)
+                .with_path_context(&chapter_path, "reading linked file")?;
+
+            // Collect reference links from the chapter
+            let (chapter_body, chapter_ref_links) = separate_reference_links(&chapter_text);
+            for ref_link in &chapter_ref_links {
+                if let Some(caps) = ref_label_re.captures(ref_link) {
+                    let label = caps[1].to_string();
+                    all_ref_links
+                        .entry(label)
+                        .or_insert_with(|| ref_link.clone());
+                }
+            }
+
+            // Inline: strip top heading, bump remaining headings
+            let inlined = inline_rendered_file(&chapter_body);
+            output.push_str(&inlined);
+            output.push('\n');
+        } else {
+            output.push_str(line);
+            output.push('\n');
+        }
+    }
+
+    // Rewrite .md links to GitHub Pages URLs
+    let rewritten = rewrite_md_links(&output, timeframe);
+
+    // Rewrite .md URLs inside reference link definitions
+    rewrite_ref_link_urls(&mut all_ref_links, timeframe);
+
+    // Assemble final output: body + reference links
+    let mut final_output = rewritten;
+    if !final_output.ends_with('\n') {
+        final_output.push('\n');
+    }
+    final_output.push('\n');
+    for ref_link in all_ref_links.values() {
+        final_output.push_str(ref_link);
+        final_output.push('\n');
+    }
+
+    print!("{final_output}");
 
     Ok(())
 }
