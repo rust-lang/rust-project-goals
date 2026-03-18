@@ -14,11 +14,12 @@ Fix every known type system soundness bug in Rust, so that `unsafe` is the only 
 
 ### The status quo
 
-Rust's defining promise is that safe code cannot cause undefined behavior. Users depend on this guarantee to build critical systems - if the type system says it's safe, it should be safe.
+Rust's reputation for reliability rests on its *safety promise*, that users who write "safe Rust" code (to a first approximation, Rust that does not contain the `unsafe` keyword) cannot violate memory safety or trigger undefined behavior. The US government [strongly encourages](https://www.cisa.gov/resources-tools/resources/memory-safe-languages-reducing-vulnerabilities-modern-software-development) the use of memory safe languages like Rust, going so far as to call the use of memory unsafe languages a "threat to national security".
 
-In practice, Rust's type system has accumulated [known soundness bugs][unsoundnesses] over the years. These bugs are obscure and have rarely if ever affected production systems, but they nonetheless reduce Rust's value proposition.
+Despite its innocuous sounding name, bugs that trigger "undefined behavior" are among the worst kind of bugs, as they indicate a program that could do *anything*. Exploits based on undefined behavior typically give attackers complete control of the target machine, unlike other forms of vulnerabilities that frequently have more limited exposure. Many of the most infamous exploits in recent times, such as Heartbleed and Stuxnet, were caused by memory safety errors, and studies at Microsoft and elsewhere have found that fully 70% of vulnerabilities are triggered by memory safety errors.
 
-Knowing that their program will never violate memory safety gives users an important guardrail, allowing them to hack without fear.
+Over the last few years, a number of [known soundness bugs][unsoundnesses] have been found in Rust's type system. These bugs are obscure and have rarely if ever affected production systems, but if they are not fixed, one of them is likely to be the basis for a Rust exploit. This is frightening both because it could mean exposed systems (never good) but it would also do damage to Rust's reputation as a secure language.
+
 
 [unsoundnesses]: https://github.com/orgs/rust-lang/projects/61/views/1
 
@@ -26,11 +27,11 @@ Knowing that their program will never violate memory safety gives users an impor
 
 * **Zero means zero.** Not "fewer bugs" or "the important ones." The goal is to fix every known soundness issue, however obscure.
 
-* **Migrate, don't break.** Breakage is acceptable only if it is necessary to prevent the unsound behavior, and even then the transition should be gradual. If it causes non-trivial breakage, fixes must use future-compatibility warnings to give the ecosystem time to adapt. 
+* **Migrate, don't break.** Breakage is acceptable to prevent unsound behavior but care should be taken to minimize the practical impact on users. Phasing in breaking changes gradually through future-compatibility warnings is preferred, particularly in cases where many crates affected.
 
 ### What we are shooting for
 
-If you don't write `unsafe`, you don't get memory unsafety. No caveats, no asterisks, no "except for these obscure edge cases." Rust's safety guarantee holds completely.
+Our goal is simple: *If you stick to safe Rust, you don't have to worry about memory unsafety.* End of story. 
 
 ### How we get there
 
@@ -43,9 +44,9 @@ If you don't write `unsafe`, you don't get memory unsafety. No caveats, no aster
 | Support emitting FCW for borrowck errors | 2026 | Support rerunning borrowck in case of errors, weakening the failure to future-compatability warnings to give users the time to fix their crates |  
 | Check where-bounds when instantiating binders | Future | Checking where bounds when instantiating binders fixes most of our unsoundnesses around implied bounds. Blocked on supporting assumptions on binders |
 
-The [known soundness bugs][unsoundnesses] aren't independent — many share common blockers, and fixing them requires a specific sequencing of infrastructure work.
+[Open soundness bugs][unsoundnesses] remain open because naive fixes to them would also cause a number of safe Rust code patterns to break. Fixing these bugs in a way that ensures valid code continues to work requires extending Rust's type system implementation with new capabilities.
 
-**Step 1: Stabilize the next-generation trait solver.** The current trait solver has accumulated technical debt and limitations that make correct fixes impossible without breaking its assumptions. The [next-generation trait solver](./next-solver.md), already stable for coherence checking since Rust 1.84, provides the sound foundation needed to fix bugs that were previously intractable. Stabilizing it everywhere is the single highest-leverage step.
+**Step 1: Stabilize the next-generation trait solver.** For the last few years the Rust types team has been developing a [next-generation trait solver](./next-solver.md) that will lift a number of limitations in the current trait system. This new trait solver started being used for coherence checking in Rust 1.84. In 2026 we plan to stabilize it for use across all of Rust. This step is needed to unblock virtually all of the following steps.
 
 **Step 2: Fix self-contained issues and simplify implementation.** A number of soundness bugs can be fixed independently, without waiting for larger infrastructure changes. These range from straightforward fixes (closure return value checking, orphan check projection handling) to more involved work (replacing higher-ranked subtyping with coercions, fixing `Pin::new` soundness). Each fix ships with future-compatibility warnings first.
 
