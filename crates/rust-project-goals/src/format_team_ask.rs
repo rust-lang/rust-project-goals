@@ -5,12 +5,7 @@ use std::{
 
 use spanned::{Result, Spanned};
 
-use crate::{
-    config::Configuration,
-    goal::TeamAsk,
-    team::TeamName,
-    util,
-};
+use crate::{config::Configuration, goal::TeamAsk, team::TeamName, util};
 
 /// Format a set of team asks into a table, with asks separated by team and grouped by kind.
 ///
@@ -168,6 +163,10 @@ impl<'g> GoalData<'g> {
     }
 
     fn goal_title(&self) -> String {
-        util::goal_title_cell(self.goal_title, self.link, self.subgoal_title.map(|s| s.as_str()))
+        util::goal_title_cell(
+            self.goal_title,
+            self.link,
+            self.subgoal_title.map(|s| s.as_str()),
+        )
     }
 }

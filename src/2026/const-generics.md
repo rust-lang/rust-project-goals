@@ -64,11 +64,22 @@ Our ultimate goal is to stabilize all parts of the const generics feature that w
 
 ### Work items over the next year
 
+#### ADT const params
+
+Support structs, tuples, arrays in const generics.
+
 | Task                                              | Owner(s) | Notes |
 |---------------------------------------------------|----------|-------|
 | Publish and merge `adt_const_params` RFC          | @BoxyUwU |       |
 | Model `adt_const_params` in a-mir-formality       | @BoxyUwU | @nikomatsakis to help |
 | Stabilize `adt_const_params`                      | @BoxyUwU |       |
+
+#### Min generic const arguments
+
+Support associated constants and generic parameters embedded in other expressions.
+
+| Task                                              | Owner(s) | Notes |
+|---------------------------------------------------|----------|-------|
 | Finish `min_generic_const_args` implementation    | @BoxyUwU | Currently is a working prototype |
 | Model `min_generic_const_args` in a-mir-formality | @BoxyUwU | @nikomatsakis to help |
 | Prototype a "full" generic const args             | @BoxyUwU |       |

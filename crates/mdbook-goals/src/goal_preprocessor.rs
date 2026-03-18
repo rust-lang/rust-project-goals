@@ -160,7 +160,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
         let count = goals
             .iter()
-            .filter(|g| g.metadata.roadmap.is_some() && g.metadata.status.is_not_not_accepted())
+            .filter(|g| g.all_roadmaps().is_some() && g.metadata.status.is_not_not_accepted())
             .count();
 
         chapter.content = re::ROADMAP_GOALS_COUNT
@@ -176,11 +176,11 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
         // Handle unfiltered roadmap goals
         self.replace_goal_lists_helper(chapter, &re::ROADMAP_GOALS_LIST, |goal, _capture| {
-            goal.metadata.roadmap.is_some() && goal.metadata.status.content.is_not_not_accepted()
+            goal.all_roadmaps().is_some() && goal.metadata.status.content.is_not_not_accepted()
         })?;
 
         self.replace_goal_lists_helper(chapter, &re::OTHER_GOALS_LIST, |goal, _capture| {
-            goal.metadata.roadmap.is_empty() && goal.metadata.status.content.is_not_not_accepted()
+            goal.all_roadmaps().is_empty() && goal.metadata.status.content.is_not_not_accepted()
         })?;
         self.replace_goal_lists_helper(chapter, &re::GOALS_LIST, |goal, _capture| {
             goal.metadata.status.content.is_not_not_accepted()
@@ -203,17 +203,14 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         Ok(())
     }
 
-    fn replace_roadmap_goal_lists_filtered(
-        &mut self,
-        chapter: &mut Chapter,
-    ) -> anyhow::Result<()> {
+    fn replace_roadmap_goal_lists_filtered(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
         self.replace_goal_lists_helper(
             chapter,
             &re::ROADMAP_GOALS_LIST_FILTERED,
             |goal, capture| {
                 let filter_value = capture.unwrap().trim(); // Safe because this regex always has a capture
                 goal.metadata.status.content.is_not_not_accepted()
-                    && goal.metadata.roadmap.contains(filter_value)
+                    && goal.matches_roadmap_theme(filter_value)
             },
         )
     }
@@ -221,10 +218,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     /// Replace `| (((ROADMAP ROWS: <name>))) |` with table rows for matching goals.
     /// Generates only row content (no headers), allowing roadmap authors to
     /// manually control the table structure and add future goal rows.
-    fn replace_roadmap_goal_rows(
-        &mut self,
-        chapter: &mut Chapter,
-    ) -> anyhow::Result<()> {
+    fn replace_roadmap_goal_rows(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
         loop {
             let Some(m) = re::ROADMAP_ROWS_FILTERED.find(&chapter.content) else {
                 return Ok(());
@@ -244,13 +238,13 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 .iter()
                 .filter(|g| {
                     g.metadata.status.content.is_not_not_accepted()
-                        && g.metadata.roadmap.contains(filter_value)
+                        && g.matches_roadmap_theme(filter_value)
                 })
                 .collect();
 
             filtered_goals.sort_by_key(|g| &g.metadata.title);
 
-            let output = goal::format_roadmap_goal_rows(&filtered_goals);
+            let output = goal::format_roadmap_goal_rows(&filtered_goals, filter_value);
 
             chapter.content.replace_range(range, output.trim_end());
         }
@@ -314,8 +308,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
             filtered_goals.sort_by_key(|g| &g.metadata.title);
 
-            let output = goal::format_highlight_goal_sections(&filtered_goals)
-                .into_anyhow()?;
+            let output = goal::format_highlight_goal_sections(&filtered_goals).into_anyhow()?;
 
             chapter.content.replace_range(range, &output);
         }
@@ -342,8 +335,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             .filter(|g| g.metadata.status.content.is_not_not_accepted())
             .collect();
 
-        let output =
-            goal::format_sized_goal_table(&goals_with_status, size).into_anyhow()?;
+        let output = goal::format_sized_goal_table(&goals_with_status, size).into_anyhow()?;
         chapter.content.replace_range(range, &output);
 
         Ok(())
@@ -417,7 +409,10 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         for (roadmap, index) in sorted_roadmaps.iter().zip(0..) {
             let content = std::fs::read_to_string(&roadmap.path)
                 .with_context(|| format!("reading `{}`", roadmap.path.display()))?;
-            let path = roadmap.path.strip_prefix(&self.ctx.config.book.src).unwrap();
+            let path = roadmap
+                .path
+                .strip_prefix(&self.ctx.config.book.src)
+                .unwrap();
             let mut new_chapter =
                 Chapter::new(&roadmap.title.content, content, path, parent_names.clone());
 
@@ -527,8 +522,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
         let roadmaps = self.roadmap_documents(path)?;
         let roadmap_refs: Vec<&RoadmapDocument> = roadmaps.iter().collect();
-        let formatted =
-            goal::format_roadmap_table(&roadmap_refs).into_anyhow()?;
+        let formatted = goal::format_roadmap_table(&roadmap_refs).into_anyhow()?;
         chapter.content.replace_range(range, &formatted);
 
         Ok(())
@@ -567,17 +561,14 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         let mut formatted = String::new();
 
         if !old_format_asks.is_empty() {
-            formatted
-                .push_str(&format_team_asks(&old_format_asks).into_anyhow()?);
+            formatted.push_str(&format_team_asks(&old_format_asks).into_anyhow()?);
         }
 
         if !new_format_goals.is_empty() {
             if !formatted.is_empty() {
                 formatted.push_str("\n\n");
             }
-            formatted.push_str(
-                &format_team_support(&new_format_goals).into_anyhow()?,
-            );
+            formatted.push_str(&format_team_support(&new_format_goals).into_anyhow()?);
         }
 
         chapter.content.replace_range(range, &formatted);
@@ -621,8 +612,8 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             return Ok(goals.clone());
         }
 
-        let goal_documents = goal::goals_in_dir(&self.ctx.config.book.src.join(milestone_path))
-            .into_anyhow()?;
+        let goal_documents =
+            goal::goals_in_dir(&self.ctx.config.book.src.join(milestone_path)).into_anyhow()?;
         let goals = Arc::new(goal_documents);
         self.goal_document_map
             .insert(milestone_path.to_path_buf(), goals.clone());
@@ -643,8 +634,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         }
 
         let roadmap_documents =
-            goal::roadmaps_in_dir(&self.ctx.config.book.src.join(milestone_path))
-                .into_anyhow()?;
+            goal::roadmaps_in_dir(&self.ctx.config.book.src.join(milestone_path)).into_anyhow()?;
         let roadmaps = Arc::new(roadmap_documents);
         self.roadmap_document_map
             .insert(milestone_path.to_path_buf(), roadmaps.clone());
@@ -753,39 +743,60 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         // Find the goal document for this chapter
         let goals = self.goal_documents(&chapter_path)?;
         let chapter_in_context = self.ctx.config.book.src.join(chapter_path);
-        let Some(goal) = goals.iter().find(|gd| gd.path == chapter_in_context) else {
-            return Ok(()); // No goal document found, nothing to inject
-        };
 
-        // Compute the team names
-        let team_names: Vec<String> = goal
-            .teams_with_asks()
+        if let Some(goal) = goals.iter().find(|gd| gd.path == chapter_in_context) {
+            // This is a goal document — inject teams and task owners
+            let team_names: Vec<String> = goal
+                .teams_with_asks()
+                .iter()
+                .map(|team_name| team_name.name())
+                .collect();
+
+            let teams_text = if team_names.is_empty() {
+                "(none)".to_string()
+            } else {
+                team_names.join(", ")
+            };
+
+            let task_owners: Vec<String> = goal.task_owners.iter().cloned().collect();
+
+            let task_owners_text = if task_owners.is_empty() {
+                "(none)".to_string()
+            } else {
+                task_owners.join(", ")
+            };
+
+            if let Some(table_end) = Self::find_markdown_table_end(&chapter.content) {
+                let insertion_text = format!(
+                    "| Teams            | {} |\n| Task owners      | {} |\n",
+                    teams_text, task_owners_text
+                );
+                chapter.content.insert_str(table_end, &insertion_text);
+            }
+        } else if let Some(roadmap) = self
+            .roadmap_documents(chapter_path)?
             .iter()
-            .map(|team_name| team_name.name())
-            .collect();
+            .find(|rd| rd.path == chapter_in_context)
+        {
+            // This is a roadmap document — inject task owners from all constituent goals
+            let theme = &roadmap.short_title.content;
+            let mut all_task_owners: BTreeSet<String> = BTreeSet::new();
+            for goal in goals.iter() {
+                if goal.metadata.status.is_not_not_accepted() && goal.matches_roadmap_theme(theme) {
+                    all_task_owners.extend(goal.task_owners.iter().cloned());
+                }
+            }
 
-        let teams_text = if team_names.is_empty() {
-            "(none)".to_string()
-        } else {
-            team_names.join(", ")
-        };
+            let task_owners_text = if all_task_owners.is_empty() {
+                "(none)".to_string()
+            } else {
+                all_task_owners.into_iter().collect::<Vec<_>>().join(", ")
+            };
 
-        // Compute the task owner names
-        let task_owners: Vec<String> = goal.task_owners.iter().cloned().collect();
-
-        let task_owners_text = if task_owners.is_empty() {
-            "(none)".to_string()
-        } else {
-            task_owners.join(", ")
-        };
-
-        // Find the table end and insert both rows
-        if let Some(table_end) = Self::find_markdown_table_end(&chapter.content) {
-            let insertion_text = format!(
-                "| Teams            | {} |\n| Task owners      | {} |\n",
-                teams_text, task_owners_text
-            );
-            chapter.content.insert_str(table_end, &insertion_text);
+            if let Some(table_end) = Self::find_markdown_table_end(&chapter.content) {
+                let insertion_text = format!("| Task owners      | {} |\n", task_owners_text);
+                chapter.content.insert_str(table_end, &insertion_text);
+            }
         }
 
         Ok(())
@@ -1217,4 +1228,3 @@ These reports include the details only of goals for a particular team.
         assert_eq!(months[3], (2025, 12));
     }
 }
-

@@ -14,7 +14,7 @@ use rust_project_goals::{
         issues::{
             change_milestone, change_title, create_comment, create_issue, fetch_issue,
             list_issues_in_milestone, lock_issue, sync_assignees, sync_labels, update_issue_body,
-            CONTINUING_GOAL_PREFIX, ROADMAP_LABEL, LOCK_TEXT,
+            CONTINUING_GOAL_PREFIX, LOCK_TEXT, ROADMAP_LABEL,
         },
         labels::GhLabel,
     },
@@ -485,7 +485,7 @@ fn issue<'doc>(timeframe: &str, document: &'doc GoalDocument) -> Result<GithubIs
     }
 
     let mut labels = vec!["C-tracking-issue".to_string()];
-    if document.metadata.roadmap.is_some() {
+    if document.all_roadmaps().is_some() {
         labels.push("Roadmap Goal".to_string());
     }
     for team in document.teams_with_asks() {

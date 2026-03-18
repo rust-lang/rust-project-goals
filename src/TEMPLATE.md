@@ -1,10 +1,13 @@
 # TEMPLATE (replace with title of your goal)
 
 > **Instructions:** Copy this template to a fresh file with a name based on your plan.
-> Give it a title that describes what you plan to get done in the next 6 months
-> (e.g., "stabilize X" or "nightly support for X" or "gather data about X").
+> Give it a title that names the overall theme of your goal
+> (e.g., "Const Generics" or "Polonius" or "Cargo Script").
+> Use the `What and why` metadata row for a more readable one-liner
+> (e.g., "Permit structs/enums to be used as the value of a const generic parameter").
 > Feel free to replace any text with anything, but there are placeholders
 > designed to help you get started.
+> See the [goal format reference](./about/goal-format.md) for full details on the format.
 >
 > The **point of contact** is the person responsible for providing updates.
 >
@@ -45,6 +48,15 @@
 | Task        | Owner(s) | Notes |
 | ----------- | -------- | ----- |
 | Do the work | *owner*  |       |
+
+> **Subgoals:** If your goal has distinct workstreams, you can break them into
+> subgoals using `####` headings. Each subgoal should have a specific, actionable
+> title and its own task table. For example, a goal titled "Full Const Generics"
+> might have subgoals "ADT const params" and "Min generic const arguments."
+>
+> Subgoals can optionally have their own `| Metadata | |` table to override
+> `Roadmap`, `Timespan`, or `What and why` from the parent goal.
+> See the [goal format reference](./about/goal-format.md) for details.
 
 ## Team asks
 

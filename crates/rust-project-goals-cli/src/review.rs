@@ -59,7 +59,10 @@ pub fn review(team_name: &str, milestone: Option<&str>) -> Result<()> {
         .collect();
 
     if team_goals.is_empty() {
-        println!("# Goals review for {} team ({})\n", team_name, milestone_name);
+        println!(
+            "# Goals review for {} team ({})\n",
+            team_name, milestone_name
+        );
         println!("No goals involve the {} team.", team_name);
         return Ok(());
     }
@@ -134,13 +137,21 @@ fn format_review(
     let mut output = String::new();
 
     let team_data = team.data();
-    writeln!(output, "# Goals review for {} team ({})\n", team_data.name, milestone)?;
+    writeln!(
+        output,
+        "# Goals review for {} team ({})\n",
+        team_data.name, milestone
+    )?;
 
     // Section 1: Roadmap themes affecting this team
     let roadmap_section = format_roadmap_themes(goals, team, milestone)?;
     if !roadmap_section.is_empty() {
         writeln!(output, "## Roadmaps\n")?;
-        writeln!(output, "The following roadmaps include goals that involve the {} team:\n", team_data.name)?;
+        writeln!(
+            output,
+            "The following roadmaps include goals that involve the {} team:\n",
+            team_data.name
+        )?;
         write!(output, "{}", roadmap_section)?;
     }
 
@@ -150,7 +161,11 @@ fn format_review(
 
     // Section 3: Summary table by champion
     writeln!(output, "\n## Summary by champion\n")?;
-    write!(output, "{}", format_by_champion_table(goals, team, milestone)?)?;
+    write!(
+        output,
+        "{}",
+        format_by_champion_table(goals, team, milestone)?
+    )?;
 
     // Section 4: Goal details with space for comments
     writeln!(output, "\n## Goal details\n")?;
@@ -227,9 +242,7 @@ fn format_team_table(
     // Collect entries
     let mut entries: Vec<(&GoalDocument, SupportLevel)> = goals
         .iter()
-        .filter_map(|goal| {
-            get_team_support_level(goal, team).map(|level| (*goal, level))
-        })
+        .filter_map(|goal| get_team_support_level(goal, team).map(|level| (*goal, level)))
         .collect();
 
     // Sort by support level (Large first)
@@ -290,12 +303,9 @@ fn format_roadmap_themes(
     let mut by_roadmap: BTreeMap<(String, String), Vec<&GoalDocument>> = BTreeMap::new();
 
     for goal in goals {
-        for roadmap in goal.metadata.roadmap.iter() {
+        for roadmap in goal.all_roadmaps().iter() {
             let (name, slug) = normalize_roadmap_name(roadmap);
-            by_roadmap
-                .entry((name, slug))
-                .or_default()
-                .push(*goal);
+            by_roadmap.entry((name, slug)).or_default().push(*goal);
         }
     }
 
@@ -318,7 +328,12 @@ fn format_roadmap_themes(
 
         let roadmap_url = format!("{}/{}/roadmap-{}.html", BASE_URL, milestone, slug);
 
-        writeln!(output, "### [{}]({})\n", roadmap_name.replace('`', ""), roadmap_url)?;
+        writeln!(
+            output,
+            "### [{}]({})\n",
+            roadmap_name.replace('`', ""),
+            roadmap_url
+        )?;
 
         if !summary.is_empty() {
             for line in summary.lines() {
@@ -350,7 +365,9 @@ fn format_roadmap_themes(
 /// Extract the Summary section from a markdown file.
 fn extract_summary_from_file(path: &Path) -> Option<String> {
     let sections = rust_project_goals::markwaydown::parse(path).ok()?;
-    rust_project_goals::goal::extract_summary(&sections).ok().flatten()
+    rust_project_goals::goal::extract_summary(&sections)
+        .ok()
+        .flatten()
 }
 
 /// Format a table grouped by champion.
@@ -393,12 +410,10 @@ fn format_by_champion_table(
 
     // Sort champions: "(no champion)" last, then alphabetically
     let mut champions: Vec<_> = by_champion.keys().collect();
-    champions.sort_by(|a, b| {
-        match (a.as_str(), b.as_str()) {
-            ("(no champion)", _) => std::cmp::Ordering::Greater,
-            (_, "(no champion)") => std::cmp::Ordering::Less,
-            _ => a.cmp(b),
-        }
+    champions.sort_by(|a, b| match (a.as_str(), b.as_str()) {
+        ("(no champion)", _) => std::cmp::Ordering::Greater,
+        (_, "(no champion)") => std::cmp::Ordering::Less,
+        _ => a.cmp(b),
     });
 
     for champion in champions {

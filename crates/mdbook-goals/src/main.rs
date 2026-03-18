@@ -1,6 +1,6 @@
 use clap::Parser;
-use mdbook_preprocessor::Preprocessor;
 use goal_preprocessor::GoalPreprocessor;
+use mdbook_preprocessor::Preprocessor;
 use semver::{Version, VersionReq};
 use std::io;
 

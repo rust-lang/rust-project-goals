@@ -8,7 +8,7 @@
 - [Highlights](./2026/highlights.md)
 - [Help wanted](./2026/help-wanted.md)
 - [Roadmaps](./2026/roadmaps.md)
-- [Reference: all goals and roadmaps](./2026/reference.md)
+- [Goals](./2026/goals.md)
 - [Frequently asked questions](./2026/faq.md)
 
 # ⚙️ 2025H2 goal process
@@ -20,6 +20,7 @@
 
 # 📖 Learn about
 
+- [Goal format](./about/goal-format.md)
 - [Goal motivations](./about/motivation.md)
 - [Roadmaps](./about/roadmaps.md)
 - [Invited goals](./about/invited_goals.md)
@@ -64,4 +65,4 @@
         * [`rfc`, export RFC text](./admin/rfc_command.md)
         * [`fcp`, create the FCP merge comment](./admin/fcp_command.md)
         * [`issues`, creating tracking issues](./admin/issues.md)
-        * [`updates`, create monthly blog post summary](./admin/updates.md) 
+        * [`updates`, create monthly blog post summary](./admin/updates.md)

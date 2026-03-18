@@ -112,6 +112,10 @@ The implementation is largely done, but the stabilization is blocked on `arbitra
 
 ### Work items over the next year
 
+#### Arbitrary self types
+
+Let user-defined smart pointers work as method receivers, stabilizing the `arbitrary_self_types` feature.
+
 | Task                                        | Owner(s)          | Notes |
 |---------------------------------------------|-------------------|-------|
 | Implementation of `Deref` decoupling        | @dingxiangfei2009 |       |
@@ -119,12 +123,26 @@ The implementation is largely done, but the stabilization is blocked on `arbitra
 | Update `arbitrary_self_types` documentation | @dingxiangfei2009 |       |
 | `arbitrary_self_types` Reference PR         | @dingxiangfei2009 |       |
 | `arbitrary_self_types` Stabilization PR     | @dingxiangfei2009 |       |
+
+#### `Deref`/`Receiver` split chain experiment
+
+Experiment with letting `Receiver::Target` and `Deref::Target` diverge, collecting data on utility and use cases.
+
+| Task                                        | Owner(s)          | Notes |
+|---------------------------------------------|-------------------|-------|
 | `Deref`/`Receiver` Implementation           | @dingxiangfei2009 |       |
 | `Deref`/`Receiver` Community engagement     | @dingxiangfei2009 |       |
 | `Deref`/`Receiver` Stabilization PR         | @dingxiangfei2009 |       |
 | `Deref`/`Receiver` Reference PR             | @dingxiangfei2009 |       |
-| `derive(CoercePointee)` Reference PR        | @Darksonn         | Blocked on `arbitrary_self_types |
-| `derive(CoercePointee)` Stabilization PR    | @Darksonn         | Blocked on `arbitrary_self_types |
+
+#### `derive(CoercePointee)`
+
+Support `dyn Trait` coercion for user-defined smart pointers.
+
+| Task                                        | Owner(s)          | Notes |
+|---------------------------------------------|-------------------|-------|
+| `derive(CoercePointee)` Reference PR        | @Darksonn         | Blocked on `arbitrary_self_types` |
+| `derive(CoercePointee)` Stabilization PR    | @Darksonn         | Blocked on `arbitrary_self_types` |
 
 
 ## Team asks
