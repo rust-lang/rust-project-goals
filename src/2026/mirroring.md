@@ -1,4 +1,4 @@
-# [Proposed] 2026 Goal: Implement Verifiable Mirroring Prototype
+# Implement Verifiable Mirroring Prototype
 
 | Metadata          |                  |
 |:------------------|------------------|
