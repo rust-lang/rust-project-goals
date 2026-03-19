@@ -275,7 +275,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
     }
 
     /// Shared helper for replacing themed goal list directives (HIGHLIGHT GOALS, GOALS WITH NEEDS).
-    /// Filters goals by a `Themes` field extracted via `get_themes`, then formats as `####` sections.
+    /// Filters goals by a `Themes` field extracted via `get_themes`, then formats as heading sections.
     fn replace_themed_goal_list(
         &mut self,
         chapter: &mut Chapter,
@@ -308,7 +308,18 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
             filtered_goals.sort_by_key(|g| &g.metadata.title);
 
-            let output = goal::format_highlight_goal_sections(&filtered_goals).into_anyhow()?;
+            // Search backwards from the directive for the most recent heading to
+            // determine the level at which to emit goal sub-headings.
+            let heading_re = Regex::new(r"(?m)^(#+)\s").unwrap();
+            let preceding = &chapter.content[..range.start];
+            let context_level = heading_re
+                .find_iter(preceding)
+                .last()
+                .map(|m| m.as_str().trim().len())
+                .unwrap_or(1);
+
+            let output = goal::format_highlight_goal_sections(&filtered_goals, context_level + 1)
+                .into_anyhow()?;
 
             chapter.content.replace_range(range, &output);
         }

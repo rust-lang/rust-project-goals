@@ -805,20 +805,24 @@ pub fn format_goal_table(
     Ok(util::format_table(&table))
 }
 
-/// Format highlight goals as `####` sections with people and summary.
-pub fn format_highlight_goal_sections(goals: &[&GoalDocument]) -> Result<String> {
+/// Format highlight goals as sections with people and summary at the given heading level.
+pub fn format_highlight_goal_sections(
+    goals: &[&GoalDocument],
+    heading_level: usize,
+) -> Result<String> {
     let mut output = String::new();
+    let hashes = "#".repeat(heading_level);
 
     for goal in goals {
         if goal.metadata.is_help_wanted() {
             output.push_str(&format!(
-                "#### [{}]({}) ![Help wanted][]\n\n",
+                "{hashes} [{}]({}) ![Help wanted][]\n\n",
                 *goal.metadata.title,
                 goal.link_path.display()
             ));
         } else {
             output.push_str(&format!(
-                "#### [{}]({})\n\n",
+                "{hashes} [{}]({})\n\n",
                 *goal.metadata.title,
                 goal.link_path.display()
             ));
