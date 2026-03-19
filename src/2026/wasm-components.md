@@ -6,7 +6,6 @@
 | Status              | Proposed     |
 | Tracking issue      |              |
 | Zulip channel       | N/A          |
-| Highlight           | Other        |
 | [compiler] champion | @WesleyWiser |
 
 ## Summary

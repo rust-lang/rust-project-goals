@@ -6,6 +6,7 @@
 | Status                    | Proposed                                                                         |
 | Tracking issue            |                                                                                  |
 | Other Tracking issue(s)   | https://github.com/rust-lang/rust/issues/35121                                   |
+| Highlight                 | Try, never, extern types                                                         |
 | Zulip channel             | N/A                                                                              |
 
 ## Summary

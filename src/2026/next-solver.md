@@ -10,7 +10,7 @@
 | Tracking issue        | [rust-lang/rust-project-goals#113]        |
 | Other tracking issues | [rust-lang/rust#107374]                   |
 | Zulip channel         | [#t-types/trait-system-refactor][channel] |
-| Highlight             | Language changes                          |
+| Highlight             | Next-generation trait solver              |
 | [types] champion      | @lcnr                                     |
 | [lang] champion       | @nikomatsakis                             |
 

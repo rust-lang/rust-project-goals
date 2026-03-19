@@ -9,6 +9,7 @@
 | Roadmap              | Beyond the `&`                            |
 | Roadmap              | Rust for Linux                            |
 | Tracking issue       | [rust-lang/rust-project-goals#390]        |
+| Highlight            | Custom pointer types                      |
 | Zulip channel        | [t-lang/custom-refs][custom-refs-channel] |
 | [lang] champion      | @tmandry                                  |
 | [types] champion     | @lqd                                      |

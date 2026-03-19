@@ -9,7 +9,7 @@
 | Roadmap          | Rust for Linux                      |
 | Tracking issue   | [rust-lang/rust-project-goals#100]  |
 | Zulip channel    | [#project-const-generics]           |
-| Highlight        | Language changes                    |
+| Highlight        | Const and reflection                |
 | [lang] champion  | @nikomatsakis                       |
 | [types] champion | @BoxyUwU                            |
 
