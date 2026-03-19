@@ -854,17 +854,38 @@ pub fn format_highlight_goal_sections(
 }
 
 /// Format highlight goals as a table with "Goal" and "What and why" columns.
+/// When a goal has subgoals (task tree children), emits one row per child
+/// instead of one row for the goal itself.
 pub fn format_highlight_table(goals: &[&GoalDocument]) -> String {
     let mut output = String::new();
     output.push_str("| Goal | What and why |\n");
     output.push_str("| --- | --- |\n");
     for goal in goals {
-        output.push_str(&format!(
-            "| [{}]({}) | {} |\n",
-            *goal.metadata.title,
-            goal.link_path.display(),
-            goal.what_and_why(),
-        ));
+        let children = &goal.task_tree.children;
+
+        if children.is_empty() {
+            output.push_str(&format!(
+                "| [{}]({}) | {} |\n",
+                *goal.metadata.title,
+                goal.link_path.display(),
+                goal.what_and_why(),
+            ));
+        } else {
+            for child in children {
+                let what_and_why = child
+                    .what_and_why
+                    .clone()
+                    .unwrap_or_else(|| goal.what_and_why());
+                let anchor = slugify(&child.title);
+                output.push_str(&format!(
+                    "| [{}]({}#{}) | {} |\n",
+                    *child.title,
+                    goal.link_path.display(),
+                    anchor,
+                    what_and_why,
+                ));
+            }
+        }
     }
     output
 }
