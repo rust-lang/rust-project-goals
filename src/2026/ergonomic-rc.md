@@ -1,4 +1,4 @@
-# Alias + Move expr
+# Ergonomic ref-counting
 
 | Metadata         |                                               |
 |:-----------------|-----------------------------------------------|
@@ -93,7 +93,7 @@ tokio::spawn(async {
 
 ### Work items over the next year
 
-#### `Share` trait
+#### Add a `Share` trait
 
 A trait that identifies types where cloning creates an alias to the same underlying value, like `Arc`, `Rc`, and shared references.
 
@@ -103,7 +103,7 @@ A trait that identifies types where cloning creates an alias to the same underly
 | Implement `Share` trait                         | @spastorino, @TaKO8Ki |                         |
 | Prepare stabilization PR for `Share` trait      | @spastorino, @TaKO8Ki |                         |
 
-#### Move expressions
+#### Support `move(...)` expressions in closures
 
 Precise control over what closures capture and when, eliminating the need for awkward clone-into-temporary patterns.
 
