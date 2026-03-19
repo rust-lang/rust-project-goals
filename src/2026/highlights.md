@@ -10,6 +10,8 @@ There are a total of (((#GOALS))) planned for this year. That's a lot! You can s
 
 *People involved: (((HIGHLIGHT CREDITS: Cargo script)))*
 
+---
+
 "Cargo script" let's you create a single file that specifies both a Rust program and the dependencies it needs and then execute that program with one convenient command. For example, you can now take a Rust file like this:
 
 ```rust
@@ -38,6 +40,8 @@ This feature makes good use of [one of the things we found when doing our resear
 (((HIGHLIGHT TABLE: Polonius)))
 
 *People involved: (((HIGHLIGHT CREDITS: Polonius)))*
+
+---
 
 The "Polonius Alpha" work represents the final completion of the original promise from the [2018 Non-lexical Lifetimes RFC](https://rust-lang.github.io/rfcs/2094-nll.html). That RFC originally planned to address three problematic patterns -- but ultimately, for efficiency reasons, we were only able to fix two. In the meantime, for the last several years, we have been pursuing work on Polonius, a next generation borrow checker formulation, that aims to close this gap and more.
 
@@ -68,6 +72,8 @@ Polonius Alpha is part of a larger roadmap called [the Borrow-Checker Within](./
 (((HIGHLIGHT TABLE: Const and reflection)))
 
 *People involved: (((HIGHLIGHT CREDITS: Const and reflection)))*
+
+---
 
 This year we'll be extending Rust's support for const evaluation in several ways. To start, you'll be able to use structs and enums as the values for const generics, not only integers. So where today you can write `Array<3>`, you'll be able to write something like this:
 
@@ -108,6 +114,8 @@ Finally, we're beginning early experimental work on compile-time reflection — 
 
 *People involved: (((HIGHLIGHT CREDITS: Async and ergonomic RC)))*
 
+---
+
 We have a lot of ongoing plans to improve the async Rust experience, but the two most likely to hit stable are [more ergonomic ref-counting](./ergonomic-rc.md) and [extensions to async fn in traits](./afidt-box.md).
 
 The [ergonomic ref-counting](./ergonomic-rc.md) discussion has gone through [many stages](https://smallcultfollowing.com/babysteps/series/ergonomic-rc/), but one solid step everyone agrees on is making it (a) more obvious when you are sharing two handles to the same object vs doing a deep clone, via the `Share` trait, and (b) more ergonomic to capture clones into closures and async blocks with `move($expr)` expressions:
@@ -133,6 +141,8 @@ We also plan to cut a "practical path" to support [invoking async fns through `d
 
 *People involved: (((HIGHLIGHT CREDITS: Try, never, extern types)))*
 
+---
+
 Three long-awaited features are making their way toward stabilization this year.
 
 The [`Try` trait](./stabilize-try.md) customizes the behavior of the `?` operator, letting you use it with your own types beyond `Result` and `Option`. For example, you could define a `TracedResult` that automatically captures the source location each time an error is bubbled up with `?`:
@@ -155,6 +165,8 @@ Finally, the [Sized trait hierarchy](./scalable-vectors.md) work will stabilize 
 (((HIGHLIGHT TABLE: Custom pointer types)))
 
 *People involved: (((HIGHLIGHT CREDITS: Custom pointer types)))*
+
+---
 
 Two goals this year are working to make it possible for user-defined types to be used in all the ways that you can use `Box`, `Arc`, and `&`.
 
@@ -181,6 +193,8 @@ Both of these goals spun out from the ongoing work to support the needs of the [
 
 *People involved: (((HIGHLIGHT CREDITS: Build-std)))*
 
+---
+
 A new version of [build-std](./build-std.md) is expected to hit nightly this year. Build-std lets Cargo rebuild the standard library from source, which unlocks things like using std with tier three targets, rebuilding with different codegen flags, and stabilizing ABI-modifying compiler flags. It's particularly valuable for embedded developers, where optimizing for size matters and targets often don't ship with a pre-compiled std.
 
 An unstable `-Zbuild-std` flag has existed for a while, but this new design — progressing through a series of RFCs ([one accepted](https://github.com/rust-lang/rfcs/pull/3873), [two more](https://github.com/rust-lang/rfcs/pull/3874) [in review](https://github.com/rust-lang/rfcs/pull/3875)) — has a path to stabilization. Build-std is also part of the [Rust for Linux](./roadmap-rust-for-linux.md) roadmap.
@@ -190,6 +204,8 @@ An unstable `-Zbuild-std` flag has existed for a while, but this new design — 
 (((HIGHLIGHT TABLE: Next-generation trait solver)))
 
 *People involved: (((HIGHLIGHT CREDITS: Next-generation trait solver)))*
+
+---
 
 This year, the Rust types team plans to stabilize the [next-generation trait solver](./next-solver.md). This solver is a ground-up rewrite of the core engine that decides whether types satisfy trait bounds, normalizes associated types, and more. The types team has been working on it since late 2022, and it already powers coherence checking as of Rust 1.84. The goal for this year is to stabilize it for use across all of Rust and remove the old implementation.
 
