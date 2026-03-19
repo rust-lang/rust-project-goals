@@ -6,32 +6,32 @@ There are a total of (((#GOALS))) planned for this year. That's a lot! You can s
 
 ## Cargo script
 
-(((HIGHLIGHT GOALS: Cargo script)))
+(((HIGHLIGHT TABLE: Cargo script)))
 
 ## Polonius
 
-(((HIGHLIGHT GOALS: Polonius)))
+(((HIGHLIGHT TABLE: Polonius)))
 
 ## Const and reflection
 
-(((HIGHLIGHT GOALS: Const and reflection)))
+(((HIGHLIGHT TABLE: Const and reflection)))
 
 ## Async and ergonomic RC
 
-(((HIGHLIGHT GOALS: Async and ergonomic RC)))
+(((HIGHLIGHT TABLE: Async and ergonomic RC)))
 
 ## Try, never, extern types, oh my!
 
-(((HIGHLIGHT GOALS: Try, never, extern types)))
+(((HIGHLIGHT TABLE: Try, never, extern types)))
 
 ## Custom pointer types
 
-(((HIGHLIGHT GOALS: Custom pointer types)))
+(((HIGHLIGHT TABLE: Custom pointer types)))
 
 ## Build-std
 
-(((HIGHLIGHT GOALS: Build-std)))
+(((HIGHLIGHT TABLE: Build-std)))
 
 ## Next-generation trait solver
 
-(((HIGHLIGHT GOALS: Next-generation trait solver)))
+(((HIGHLIGHT TABLE: Next-generation trait solver)))

@@ -65,6 +65,12 @@ lazy_static! {
         Regex::new(r"\(\(\(HIGHLIGHT GOALS:\s*(.+?)\s*\)\)\)").unwrap();
 }
 
+// Highlight table (header + rows) filtered by theme
+lazy_static! {
+    pub static ref HIGHLIGHT_TABLE_FILTERED: Regex =
+        Regex::new(r"\(\(\(HIGHLIGHT TABLE:\s*(.+?)\s*\)\)\)").unwrap();
+}
+
 // List of goals with needs filtered by need (e.g. Funding, Contributor)
 lazy_static! {
     pub static ref GOALS_WITH_NEEDS_LIST_FILTERED: Regex =
