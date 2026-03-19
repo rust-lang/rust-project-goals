@@ -46,19 +46,19 @@ Once the Goals RFC is accepted, you can follow along with the progress on a goal
 # Guide-level explanation
 [guide-level-explanation]: #guide-level-explanation
 
-- [Highlights](./2026/highlights.md)
-- [Help wanted](./2026/help-wanted.md)
-- [Roadmaps](./2026/roadmaps.md)
+- [Highlights](./highlights.md)
+- [Help wanted](./help-wanted.md)
+- [Roadmaps](./roadmaps.md)
 
 # Reference-level explanation
 [reference-level-explanation]: #reference-level-explanation
 
-- [Goals](./2026/goals.md)
+- [Goals](./goals.md)
 
 # Frequently asked questions
 [rationale-and-alternatives]: #frequently-asked-questions
 [faq]: #frequently-asked-questions
 
-- [Frequently asked questions](./2026/faq.md)
+- [Frequently asked questions](./faq.md)
 
 <!-- GitHub usernames -->
