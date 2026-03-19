@@ -887,6 +887,33 @@ pub fn format_highlight_table(goals: &[&GoalDocument]) -> String {
             }
         }
     }
+
+    // Collect all people involved: task owners, POCs, and champions
+    let mut all_people: BTreeSet<String> = BTreeSet::new();
+    for goal in goals {
+        for username in owner_usernames(&goal.metadata.pocs) {
+            all_people.insert(username.to_string());
+        }
+        for owner in &goal.task_owners {
+            if owner.starts_with('@') {
+                all_people.insert(owner.clone());
+            }
+        }
+        for (_team, champion) in &goal.metadata.champions {
+            for username in owner_usernames(&champion.content) {
+                all_people.insert(username.to_string());
+            }
+        }
+    }
+
+    if !all_people.is_empty() {
+        let people_list: Vec<&str> = all_people.iter().map(|s| s.as_str()).collect();
+        output.push_str(&format!(
+            "\n*The following people are working on these goals: {}.*\n",
+            people_list.join(", ")
+        ));
+    }
+
     output
 }
 
