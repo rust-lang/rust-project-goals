@@ -888,7 +888,12 @@ pub fn format_highlight_table(goals: &[&GoalDocument]) -> String {
         }
     }
 
-    // Collect all people involved: task owners, POCs, and champions
+    output
+}
+
+/// Format a credits line listing all people involved in the given goals.
+/// Unions task owners, POCs, and team champions, deduplicates, and sorts alphabetically.
+pub fn format_highlight_credits(goals: &[&GoalDocument]) -> String {
     let mut all_people: BTreeSet<String> = BTreeSet::new();
     for goal in goals {
         for username in owner_usernames(&goal.metadata.pocs) {
@@ -906,15 +911,12 @@ pub fn format_highlight_table(goals: &[&GoalDocument]) -> String {
         }
     }
 
-    if !all_people.is_empty() {
-        let people_list: Vec<&str> = all_people.iter().map(|s| s.as_str()).collect();
-        output.push_str(&format!(
-            "\n*The following people are working on these goals: {}.*\n",
-            people_list.join(", ")
-        ));
+    if all_people.is_empty() {
+        return String::new();
     }
 
-    output
+    let people_list: Vec<&str> = all_people.iter().map(|s| s.as_str()).collect();
+    people_list.join(", ")
 }
 
 /// Format roadmaps as a table with "Roadmap", "Point of contact", and "What and why" columns.

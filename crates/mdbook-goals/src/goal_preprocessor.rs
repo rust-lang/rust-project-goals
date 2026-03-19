@@ -200,6 +200,9 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         // Handle highlight tables
         self.replace_highlight_tables(chapter)?;
 
+        // Handle highlight credits (people lists)
+        self.replace_highlight_credits(chapter)?;
+
         // Handle filtered lists of goals with needs
         self.replace_goals_with_needs_lists_filtered(chapter)?;
 
@@ -294,6 +297,38 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             let output = goal::format_highlight_table(&filtered_goals);
 
             chapter.content.replace_range(range, output.trim_end());
+        }
+    }
+
+    fn replace_highlight_credits(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        loop {
+            let Some(m) = re::HIGHLIGHT_CREDITS_FILTERED.find(&chapter.content) else {
+                return Ok(());
+            };
+            let range = m.range();
+
+            let chapter_path = chapter_path(chapter, "(((HIGHLIGHT CREDITS: ...)))")?;
+
+            let filter_value = re::HIGHLIGHT_CREDITS_FILTERED
+                .captures(&chapter.content[range.clone()])
+                .and_then(|caps| caps.get(1))
+                .map(|m| m.as_str().trim())
+                .unwrap();
+
+            let goals = self.goal_documents(chapter_path)?;
+            let mut filtered_goals: Vec<&GoalDocument> = goals
+                .iter()
+                .filter(|g| {
+                    g.metadata.status.content.is_not_not_accepted()
+                        && g.metadata.highlight.contains(filter_value)
+                })
+                .collect();
+
+            filtered_goals.sort_by_key(|g| &g.metadata.title);
+
+            let output = goal::format_highlight_credits(&filtered_goals);
+
+            chapter.content.replace_range(range, &output);
         }
     }
 

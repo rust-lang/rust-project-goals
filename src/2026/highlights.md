@@ -11,7 +11,7 @@ There are a total of (((#GOALS))) planned for this year. That's a lot! You can s
 "Cargo script" let's you create a single file that specifies both a Rust program and the dependencies it needs and then execute that program with one convenient command. For example, you can now take a Rust file like this:
 
 ```rust
-// my_ip.rs
+#!/usr/bin/env cargo
 ---
 edition: 2024
 [dependencies]
@@ -27,9 +27,11 @@ fn main() {
 }
 ```
 
-and run it with `cargo my_ip.rs`.  Or, if we add a `#!/usr/bin/env cargo`, you can just run `./my_ip.rs`.
+and run it with `cargo my_ip.rs`.  Or, thanks to the `#!` line, you can just run `./my_ip.rs`.
 
 This feature makes good use of [one of the things we found when doing our research for the Vision Doc](https://blog.rust-lang.org/2025/12/19/what-do-people-love-about-rust/#but-what-they-love-is-the-sense-of-empowerment-and-versatility): that people love Rust not only because it helps them build foundational software, but because it's a expressive and productive enough that "you can write everything from the top to the bottom of your stack in it" (-- Rust expert and consultant focused on embedded and real-time systems). Until now, the fly in the ointment was that packaging up a Rust package required several files and required people to do a separate compilation step. Cargo script solves that problem.
+
+*The following people are working on these goals: (((HIGHLIGHT CREDITS: Cargo script)))*
 
 ## The borrow checker will be more flexible with *Polonius alpha*
 
@@ -44,20 +46,22 @@ fn get_default<'r,K:Hash+Eq+Copy,V:Default>(
     map: &'r mut HashMap<K,V>,
     key: K,
 ) -> &'r mut V {
-    match map.get_mut(&key) { // -------------+ 'r
-        Some(value) => value,              // |
-        None => {                          // |
-            map.insert(key, V::default()); // |
-            //  ^~~~~~ ERROR               // |
-            map.get_mut(&key).unwrap()     // |
-        }                                  // |
-    }                                      // |
-}                                          // v
+    match map.get_mut(&key) { // ──────────────────┐ 'r only needs to
+        Some(value) => value,              // ◄────┘ be valid here...
+        None => {                          //      │
+            map.insert(key, V::default()); //      │
+            //  ^~~~~~ ERROR               //      │
+            map.get_mut(&key).unwrap()     //      │
+        }                                  //      │
+    }                                      //      │ ...but today it covers
+}                                          // ◄────┘ all this
 ```
 
 Under Polonius Alpha, this code compiles.
 
 Polonius Alpha is part of a larger roadmap called [the Borrow-Checker Within](./roadmap-borrow-checker-within.md) that we expect to be driving over the next few years. This year, another part of that work is including Polonius Alpha in [a-mir-formality](https://github.com/rust-lang/a-mir-formality/), the [types team's](https://rust-lang.org/governance/teams/compiler/#team-types) (in-progress) specification for how the Rust type system works. As part of another goal, we are planning to [integrate a-mir-formality into the Rust reference](./a-mir-formality.md). This would make Polonius the first version of the borrow checker whose behavior is specified outside of the Rust compiler.
+
+*The following people are working on these goals: (((HIGHLIGHT CREDITS: Polonius)))*
 
 ## Extending const evaluation to *structs/enums*, *traits*, and *reflection*
 
@@ -96,6 +100,8 @@ const fn sum_up<I: [const] Iterator<Item = i32>>(iter: I) -> i32 {
 
 Finally, we're beginning early experimental work on compile-time reflection — the ability for const functions to inspect type information. It's too early to promise specifics, but the long-term vision is things like serialization working without derive macros.
 
+*The following people are working on these goals: (((HIGHLIGHT CREDITS: Const and reflection)))*
+
 ## Ergonomic ref-counting and (maybe) async traits
 
 (((HIGHLIGHT TABLE: Async and ergonomic RC)))
@@ -119,6 +125,8 @@ tokio::spawn(async {
 
 We also plan to cut a "practical path" to support [invoking async fns through `dyn Trait`](./afidt-box.md). The initial version would be limited to boxed futures but the goal is to be forwards-compatible with the ongoing [in-place initialization](./in-place-init.md) designs for non-boxed allocation (e.g., stack). The RFC for this hasn't been written yet, and the proposal includes some new syntax, so that could be spicy! Stay tuned.
 
+*The following people are working on these goals: (((HIGHLIGHT CREDITS: Async and ergonomic RC)))*
+
 ## Try, never, extern types, oh my!
 
 (((HIGHLIGHT TABLE: Try, never, extern types)))
@@ -139,6 +147,8 @@ No more choosing between readable error handling and useful diagnostics.
 The [never type `!`](./stabilize-never-type.md) has been unstable for *ten years*. It represents computations that never produce a value — like functions that always panic or loop forever. The final blockers are being resolved, and stabilization is in sight.
 
 Finally, the [Sized trait hierarchy](./scalable-vectors.md) work will stabilize a richer set of sizing traits, which unblocks [extern types](https://github.com/rust-lang/rfcs/pull/1861) — another long-requested feature. Today, `?Sized` conflates "unsized but has metadata" with "truly sizeless." The new hierarchy distinguishes these cases. This same work is also laying the foundation for scalable vector support (Arm SVE), where vector sizes depend on the CPU rather than being fixed at compile time.
+
+*The following people are working on these goals: (((HIGHLIGHT CREDITS: Try, never, extern types)))*
 
 ## Going "beyond the `&`" with better integration for custom pointer types
 
@@ -163,6 +173,8 @@ We are also continuing our experimental work to support [custom field projection
 
 Both of these goals spun out from the ongoing work to support the needs of the [Rust for Linux](./roadmap-rust-for-linux.md) project and are part of the [Beyond the `&`](./roadmap-beyond-the-ampersand.md) roadmap.
 
+*The following people are working on these goals: (((HIGHLIGHT CREDITS: Custom pointer types)))*
+
 ## Build it your way with build-std
 
 (((HIGHLIGHT TABLE: Build-std)))
@@ -171,6 +183,8 @@ A new version of [build-std](./build-std.md) is expected to hit nightly this yea
 
 An unstable `-Zbuild-std` flag has existed for a while, but this new design — progressing through a series of RFCs ([one accepted](https://github.com/rust-lang/rfcs/pull/3873), [two more](https://github.com/rust-lang/rfcs/pull/3874) [in review](https://github.com/rust-lang/rfcs/pull/3875)) — has a path to stabilization. Build-std is also part of the [Rust for Linux](./roadmap-rust-for-linux.md) roadmap.
 
+*The following people are working on these goals: (((HIGHLIGHT CREDITS: Build-std)))*
+
 ## Closing soundness bugs and supporting new lang features with a new trait solver
 
 (((HIGHLIGHT TABLE: Next-generation trait solver)))
@@ -178,3 +192,5 @@ An unstable `-Zbuild-std` flag has existed for a while, but this new design — 
 This year, the Rust types team plans to stabilize the [next-generation trait solver](./next-solver.md). This solver is a ground-up rewrite of the core engine that decides whether types satisfy trait bounds, normalizes associated types, and more. The types team has been working on it since late 2022, and it already powers coherence checking as of Rust 1.84. The goal for this year is to stabilize it for use across all of Rust and remove the old implementation.
 
 This goal may not *sound* like it's going to impact your life, but finishing the new solver unblocks a *lot* of stuff. To start, it allows us to make progress on the [Project Zero](./roadmap-project-zero.md) roadmap, which aims to fix every known type system soundness bug. It also unblocks long-desired features like implied bounds, cyclic trait matching, and features needed by the [Just add async](./roadmap-just-add-async.md) roadmap.
+
+*The following people are working on these goals: (((HIGHLIGHT CREDITS: Next-generation trait solver)))*
