@@ -128,24 +128,38 @@ fn rewrite_ref_link_urls(ref_links: &mut BTreeMap<String, String>, timeframe: &s
     }
 }
 
-/// Inline a rendered markdown file: strip the top `#` heading and bump all
-/// remaining heading levels by one (e.g., `##` becomes `###`).
-fn inline_rendered_file(text: &str) -> String {
+/// Inline a rendered markdown file: strip the top heading and adjust all
+/// remaining heading levels relative to the insertion context.
+///
+/// `context_level` is the heading level at the point of insertion in the
+/// parent document. Headings in the inlined file are shifted so that the
+/// file's top heading level maps to `context_level + 1`.
+fn inline_rendered_file(text: &str, context_level: usize) -> String {
     let heading_re = Regex::new(r"^(#+)\s").unwrap();
     let mut lines = text.lines();
 
-    // Skip lines until we find and consume the top-level heading
+    // Find and consume the top-level heading, recording its level
+    let mut top_level = None;
     for line in &mut lines {
-        if heading_re.is_match(line) {
-            break; // found and consumed the top heading
+        if let Some(caps) = heading_re.captures(line) {
+            top_level = Some(caps[1].len());
+            break;
         }
     }
 
-    // Process remaining lines: bump heading levels by 1
+    let top_level = top_level.unwrap_or(1);
+    // delta: how much to shift remaining headings
+    // e.g. if top heading was # (1) and context is # (1), delta = 1 - 1 = 0
+    // e.g. if top heading was # (1) and context is ## (2), delta = 2 - 1 = 1
+    let delta: isize = context_level as isize - top_level as isize;
+
     let mut result = Vec::new();
     for line in lines {
-        if heading_re.is_match(line) {
-            result.push(format!("#{}", line));
+        if let Some(caps) = heading_re.captures(line) {
+            let old_level = caps[1].len() as isize;
+            let new_level = (old_level + delta).max(1) as usize;
+            let rest = &line[caps[1].len()..];
+            result.push(format!("{}{}", "#".repeat(new_level), rest));
         } else {
             result.push(line.to_string());
         }
@@ -190,15 +204,23 @@ pub fn generate_rfc(path: &Path) -> Result<()> {
         }
     }
 
-    // Pattern for link-list lines: `- [Text](./2026/foo.md)` or `- [Text](./foo.md)`
-    let link_line_re = Regex::new(r"^- \[[^\]]+\]\(\./(?:[\w-]+/)*([\w-]+)\.md\)\s*$").unwrap();
+    // Pattern for link-list lines: `- [Text](./relative/path.md)`
+    // Captures the relative path (e.g., `./highlights.md` or `./2026/highlights.md`)
+    let link_line_re = Regex::new(r"^- \[[^\]]+\]\((\./[^)]+\.md)\)\s*$").unwrap();
+    let heading_re = Regex::new(r"^(#+)\s").unwrap();
 
     // Process the index body line by line, inlining linked files
+    let mut current_heading_level: usize = 1;
     let mut output = String::new();
     for line in index_body.lines() {
+        // Track the current heading level
+        if let Some(caps) = heading_re.captures(line) {
+            current_heading_level = caps[1].len();
+        }
+
         if let Some(caps) = link_line_re.captures(line) {
-            let stem = &caps[1];
-            let chapter_path = book_dir.join(format!("{}.md", stem));
+            let rel_path = Path::new(&caps[1]);
+            let chapter_path = book_dir.join(rel_path);
             if !chapter_path.exists() {
                 eprintln!(
                     "warning: linked file not found: {}, skipping",
@@ -221,8 +243,8 @@ pub fn generate_rfc(path: &Path) -> Result<()> {
                 }
             }
 
-            // Inline: strip top heading, bump remaining headings
-            let inlined = inline_rendered_file(&chapter_body);
+            // Inline: strip top heading, adjust remaining headings relative to context
+            let inlined = inline_rendered_file(&chapter_body, current_heading_level);
             output.push_str(&inlined);
             output.push('\n');
         } else {
