@@ -9,6 +9,7 @@
 | Roadmap               | Beyond the `&`          |
 | Tracking issue        |                         |
 | Other tracking issues | [rust-lang/rust#44874], [rust-lang/rust#146095], [rust-lang/rust#123430] |
+| Highlight             | Custom pointer types    |
 | Zulip channel         | N/A                     |
 | [lang] champion       | @tmandry                |
 | [types] champion      | @jackh726               |

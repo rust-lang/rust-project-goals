@@ -9,6 +9,7 @@
 | Needs            | Contributor          |
 | Roadmap          | Just add async       |
 | Tracking issue   |                      |
+| Highlight        | Async and ergonomic RC |
 | Zulip channel    | [#wg-async][channel] |
 | [lang] champion  | @nikomatsakis        |
 | [compiler] champion | @TaKO8Ki          |

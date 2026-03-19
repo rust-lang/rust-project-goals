@@ -9,6 +9,7 @@
 | [types] champion | @jackh726                          |
 | Roadmap          | The Borrow Checker Within           |
 | What and why     | Stabilize an improved borrow checker that accepts conditional borrows and lending iterators |
+| Highlight        | Polonius                            |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/186049-t-types.2Fpolonius
 
@@ -98,7 +99,7 @@ Build a formal model of borrow checking in a-mir-formality and upstream it into 
 
 | Task | Owner(s) | Notes |
 | ---- | -------- | ----- |
-| Build formal model in a-mir-formality | @tiif, @lqd | Validate against rustc implementation |
+| Build formal model in a-mir-formality | @tiif, @lqd, @nikomatsakis | Validate against rustc implementation |
 | Upstream borrow checking specification into Rust reference | @tiif, @lqd | Ties to [experimental language specification](./experimental-language-specification.md) goal |
 
 ### The "shiny future" we are working towards

@@ -6,7 +6,6 @@
 | Status                                 | Proposed                           |
 | Tracking issue                         | [rust-lang/rust-project-goals#403] |
 | Zulip channel                          | N/A                                |
-| Highlight                              | Other                              |
 | [project-exploit-mitigations] champion | @rcvalle                           |
 | [compiler] champion                    | @rcvalle                           |
 

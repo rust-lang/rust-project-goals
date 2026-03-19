@@ -638,9 +638,9 @@ impl GoalDocument {
 
     /// Returns the "What and why" text for this goal.
     /// Falls back to the first sentence of the summary if no explicit "What and why" metadata row exists.
-    pub fn what_and_why(&self) -> &str {
+    pub fn what_and_why(&self) -> String {
         match &self.metadata.what_and_why {
-            Some(w) => w,
+            Some(w) => w.clone(),
             None => first_sentence(&self.summary),
         }
     }
@@ -853,6 +853,72 @@ pub fn format_highlight_goal_sections(
     Ok(output)
 }
 
+/// Format highlight goals as a table with "Goal" and "What and why" columns.
+/// When a goal has subgoals (task tree children), emits one row per child
+/// instead of one row for the goal itself.
+pub fn format_highlight_table(goals: &[&GoalDocument]) -> String {
+    let mut output = String::new();
+    output.push_str("| Goal | What and why |\n");
+    output.push_str("| --- | --- |\n");
+    for goal in goals {
+        let children = &goal.task_tree.children;
+
+        if children.is_empty() {
+            output.push_str(&format!(
+                "| [{}]({}) | {} |\n",
+                *goal.metadata.title,
+                goal.link_path.display(),
+                goal.what_and_why(),
+            ));
+        } else {
+            for child in children {
+                let what_and_why = child
+                    .what_and_why
+                    .clone()
+                    .unwrap_or_else(|| goal.what_and_why());
+                let anchor = slugify(&child.title);
+                output.push_str(&format!(
+                    "| [{}]({}#{}) | {} |\n",
+                    *child.title,
+                    goal.link_path.display(),
+                    anchor,
+                    what_and_why,
+                ));
+            }
+        }
+    }
+
+    output
+}
+
+/// Format a credits line listing all people involved in the given goals.
+/// Unions task owners, POCs, and team champions, deduplicates, and sorts alphabetically.
+pub fn format_highlight_credits(goals: &[&GoalDocument]) -> String {
+    let mut all_people: BTreeSet<String> = BTreeSet::new();
+    for goal in goals {
+        for username in owner_usernames(&goal.metadata.pocs) {
+            all_people.insert(username.to_string());
+        }
+        for owner in &goal.task_owners {
+            if owner.starts_with('@') {
+                all_people.insert(owner.clone());
+            }
+        }
+        for (_team, champion) in &goal.metadata.champions {
+            for username in owner_usernames(&champion.content) {
+                all_people.insert(username.to_string());
+            }
+        }
+    }
+
+    if all_people.is_empty() {
+        return String::new();
+    }
+
+    let people_list: Vec<&str> = all_people.iter().map(|s| s.as_str()).collect();
+    people_list.join(", ")
+}
+
 /// Format roadmaps as a table with "Roadmap", "Point of contact", and "What and why" columns.
 pub fn format_roadmap_table(roadmaps: &[&RoadmapDocument]) -> Result<String> {
     let mut table = vec![vec![
@@ -920,7 +986,7 @@ pub fn format_roadmap_goal_rows(goals: &[&GoalDocument], filter_theme: &str) -> 
                 let timespan = child.timespan.as_deref().unwrap_or(milestone_dir);
                 let what_and_why = child
                     .what_and_why
-                    .as_deref()
+                    .clone()
                     .unwrap_or_else(|| goal.what_and_why());
                 let anchor = slugify(&child.title);
                 output.push_str(&format!(
@@ -1145,19 +1211,29 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
 }
 
 /// Returns the first sentence of a string (up to and including the first `.` followed by whitespace or end of string).
-/// If no sentence boundary is found, returns the entire string.
-fn first_sentence(s: &str) -> &str {
+/// Stops at blank lines (paragraph boundaries) and collapses internal newlines to spaces.
+/// If no sentence boundary is found within the first paragraph, returns the whole first paragraph.
+fn first_sentence(s: &str) -> String {
     let s = s.trim();
-    let mut chars = s.char_indices().peekable();
+
+    // Take only the first paragraph (up to the first blank line)
+    let first_para = s.split("\n\n").next().unwrap_or(s);
+
+    // Collapse internal newlines to spaces
+    let collapsed = first_para.replace('\n', " ");
+    let collapsed = collapsed.trim();
+
+    // Find the first sentence boundary (period followed by whitespace or end of string)
+    let mut chars = collapsed.char_indices().peekable();
     while let Some((i, ch)) = chars.next() {
         if ch == '.' {
             let next_is_boundary = chars.peek().map_or(true, |&(_, next)| next.is_whitespace());
             if next_is_boundary {
-                return &s[..=i];
+                return collapsed[..=i].to_owned();
             }
         }
     }
-    s
+    collapsed.to_owned()
 }
 
 pub fn extract_summary(sections: &[Section]) -> Result<Option<String>> {
@@ -1648,7 +1724,7 @@ fn parse_task_tree_child(section: &Section, parent_metadata: &Metadata) -> Resul
         if text.is_empty() {
             None
         } else {
-            Some(first_sentence(text).to_owned())
+            Some(first_sentence(text))
         }
     });
     let effective_what_and_why = own_what_and_why.or_else(|| parent_metadata.what_and_why.clone());

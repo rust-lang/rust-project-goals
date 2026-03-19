@@ -7,6 +7,7 @@
 | Needs                 | Funding              |
 | Other tracking issues | rust-lang/rust#84277 |
 | Zulip channel         | N/A                  |
+| Highlight             | Try, never, extern types |
 | [lang] champion       | @tmandry             |
 | [libs-api] champion   | @Amanieu             |
 

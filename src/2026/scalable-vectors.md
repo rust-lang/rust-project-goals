@@ -5,7 +5,7 @@
 | Point of contact    | @davidtwco                         |
 | Status              | Proposed                           |
 | Tracking issue      | [rust-lang/rust-project-goals#270] |
-| Highlight           | Language changes                   |
+| Highlight           | Try, never, extern types           |
 | [compiler] champion | @davidtwco                         |
 | [lang] champion     | @nikomatsakis                      |
 | [libs-api] champion | @Amanieu                           |

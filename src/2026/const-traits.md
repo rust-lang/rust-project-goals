@@ -7,7 +7,7 @@
 | What and why     | Let `const fn` call trait methods so compile-time code can use generics and standard library traits |
 | Tracking issue   | [rust-lang/rust-project-goals#106] |
 | Zulip channel    | #t-compiler/project-const-traits   |
-| Highlight        | true                               |
+| Highlight        | Const and reflection               |
 | Roadmap          | Constify all the things            |
 | Roadmap          | Rust for Linux                     |
 | [types] champion | @oli-obk                           |
