@@ -14,7 +14,7 @@
 
 ## Summary
 
-Follow stabilization of the new trait solver this year by stabilizing a subset of specializing impls: Impls that follow the [always applicable] rule. This roughly corresponds to specializing trait impls on concrete types.
+Follow stabilization of the new trait solver this year by stabilizing a subset of specializing impls: Impls that follow the [always applicable][always applicable] rule. This roughly corresponds to specializing trait impls on concrete types.
 
 ## Motivation
 
