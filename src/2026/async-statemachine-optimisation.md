@@ -17,7 +17,7 @@ Add optimisations to the coroutine MIR transform to elide or simplify the genera
 This will help both async futures and generators.
 
 *Note: This has some overlap with [this other proposal](./async-future-memory-optimisation.md).
-I'm not trying to userp the issue. I was working on it incidentally at the same time and noticed very late that proposal already existed.*
+I'm not trying to usurp the issue. I was working on it incidentally at the same time and noticed very late that proposal already existed.*
 
 ## Motivation
 
