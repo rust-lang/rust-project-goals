@@ -92,7 +92,7 @@ impl Drop for UringState {
 }
 ```
 
-#### Proposal 2: Add a `drop_in_place` method to the `Drop` trait
+#### Proposal 2: Add a `drop_in_place` method to the `Destruct` trait
 
 Add a `drop_in_place` method to the `Destruct` trait, which is called by the compiler instead of the normal drop glue when a type is dropped.
 
@@ -104,12 +104,12 @@ struct UringState {
     buffers: [UringBuf; 16],
 }
 
-impl Drop for UringState {
+impl Destruct for UringState {
     /// Does the full dropping of the value.
     /// If not overridden by the user, this is compiler-
     /// generated; the default wil call `Self::drop` then drop the fields.
     /// Use this to control the drop order of the fields, or emulate `ManuallyDrop`.
-    unsafe fn drop_in_place(&mut self) {
+    unsafe fn drop_in_place(*mut self) {
         // call C++ destructor
     }
 }
