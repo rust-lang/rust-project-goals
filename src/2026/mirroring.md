@@ -31,7 +31,7 @@ We plan to trial TUF validation on these mirrors in a phased approach, starting 
 ### The status quo
 While Rustup and Cargo have basic building blocks for mirrors, they lack first-class support and robust security. Currently, artifacts are often signed with legacy keys on individual laptops, and users must trust the HTTPS endpoint of the infra providers implicitly.
 
-For the past 2 years, we have seen multiple iterations of artifact signing exploration for the Rust Project (PKI, TheUpdateFramework). As we continue testing and exploring out-of-band prototypes for these solutions, we need to align on what a more concrete mirroring solution for Rust may look like. We want to investigate and implement a first-pass solution for officially mirroring both Rust releases and crates.io packages. This problem space is parallel but distinct from signing; specifically, we need to answer the question: "Assuming all artifacts can be cryptographically validated, how would official and private mirrors for Rustup and crates.io operate?". This goal is to determine what solutions are available to us, what the current hurdles in our ecosystem are, and implement a solution for mirroring Rust releases at different endpoints and the integration of this implementation into Rustup.
+For the past 2 years, we have seen multiple iterations of artifact signing exploration for the Rust Project (PKI, TheUpdateFramework). [^rustweek-2025] As we continue testing and exploring out-of-band prototypes for these solutions, we need to align on what a more concrete mirroring solution for Rust may look like. We want to investigate and implement a first-pass solution for officially mirroring both Rust releases and crates.io packages. This problem space is parallel but distinct from signing; specifically, we need to answer the question: "Assuming all artifacts can be cryptographically validated, how would official and private mirrors for Rustup and crates.io operate?". This goal is to determine what solutions are available to us, what the current hurdles in our ecosystem are, and implement a solution for mirroring Rust releases at different endpoints and the integration of this implementation into Rustup.
 
 ### What we propose to do about it
 
@@ -140,3 +140,5 @@ We have decided not to explore this method, as our exponential artifact growth (
 | [rustup] | Medium | Required for integrating the prototype into the primary toolchain installer. |
 | [infra] | Medium | Critical for setting up the signing pipeline and Azure deployment. |
 | [crates-io] | Small | Primarily focused on potential future logging/bandwidth savings. |
+
+[^rustweek-2025]: See a [related discussion](https://rust-lang.zulipchat.com/#narrow/channel/417663-tbd-signing/topic/.E2.9C.94.20Notes.20from.20Rust.20Week.20discussion/with/525551676).
