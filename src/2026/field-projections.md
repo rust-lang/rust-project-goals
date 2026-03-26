@@ -14,6 +14,7 @@
 | [lang] champion      | @tmandry                                  |
 | [types] champion     | @lqd                                      |
 | [compiler] champion  | @dingxiangfei2009                         |
+| [opsem] champion     | @digama0                                  |
 
 [custom-refs-channel]: https://rust-lang.zulipchat.com/#narrow/channel/522311-t-lang.2Fcustom-refs
 
