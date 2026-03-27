@@ -179,7 +179,7 @@ the benefit comes from *parallelism*, not from eliminating work.
 
 | Team | Support level | Notes |
 |------|---------------|-------|
-| compiler | Medium | Collaborate on stub rlib design and deferred compilation pass; consult on soundness and rustc internals |
+| compiler | Small | Collaborate on stub rlib design and deferred compilation pass |
 | types | Small | Consultation on trait coherence requirements for deferred type-checking |
 | cargo | Small | Feedback on integration with the cargo polyfill toolchain |
 
