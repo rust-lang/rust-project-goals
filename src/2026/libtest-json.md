@@ -4,6 +4,7 @@
 | :--------------- | -------------------------------------------------------------------------------- |
 | Point of contact | @epage                                   |
 | Status           | Proposed                                                                         |
+| Needs            | Contributor                                                                      |
 | Tracking issue     | [rust-lang/rust-project-goals#255] |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
 
@@ -42,9 +43,9 @@ Most of that involves shifting responsibilities from the test harness to the tes
 
 | Task        | Owner(s) | Notes |
 | ----------- | -------- | ----- |
-| Experiment with potential test harness features | *owner*  |       |
-| Experiment with test reporting moving to Cargo | *owner*  |       |
-| Putting forward a proposal for approval | *owner*  |       |
+| Experiment with potential test harness features | ![Help wanted][]  |       |
+| Experiment with test reporting moving to Cargo | ![Help wanted][]  |       |
+| Putting forward a proposal for approval | ![Help wanted][]  |       |
 
 ### The "shiny future" we are working towards
 
