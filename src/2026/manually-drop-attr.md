@@ -4,7 +4,6 @@
 |:--------------------|----------------|
 | Point of contact    | @thunderseethe |
 | Status              | Proposed   |
-| Needs               | Contributor    |
 | Needs               | Funding        |
 | Tracking issue      |                |
 | Zulip channel       | N/A            |
@@ -18,8 +17,6 @@ Allow users to easily control the drop semantics of struct fields, letting them 
 
 - Allow cross-language bindings to expose struct fields without compatibility hazards, and
 - Make all code that disables default destructor behavior more convenient to use in Rust.
-
-**Needs contributor:** This goal needs a contributor to implement a lang experiment in rustc and write an RFC. The work is a focused compiler feature touching drop semantics and destructor codegen. Estimated time commitment: TBD.
 
 ## Motivation
 
@@ -119,10 +116,10 @@ impl Destruct for UringState {
 
 ### Work items over the next year
 
-| Task                        | Owner(s) | Notes                                                         |
-| --------------------------- | -------- | ------------------------------------------------------------- |
-| Implement a lang experiment |          | @thunderseethe to find an owner. @tmandry can act as champion |
-| Write an RFC                |          | @thunderseethe to find an owner                               |
+| Task                        | Owner(s)  | Notes |
+| --------------------------- | --------- | ----- |
+| Implement a lang experiment | JayanAXHF |       |
+| Write an RFC                | JayanAXHF |       |
 
 ## Team asks
 
