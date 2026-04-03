@@ -51,7 +51,7 @@ Given that specialization is largely blocked on design work to address known sou
 | ---------- | ------------- | ----- |
 | [lang]     | Medium        | Review design document |
 | [types]    | Large         | Review design document |
-| [libs]     | Vibes         |       |
-| [opsem]    | Vibes         |       |
+| [libs]     | Small         |       |
+| [opsem]    | Small         |       |
 
 ## Frequently asked questions
