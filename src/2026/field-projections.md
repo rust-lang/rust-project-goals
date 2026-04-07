@@ -12,7 +12,7 @@
 | Highlight            | Custom pointer types                      |
 | Zulip channel        | [t-lang/custom-refs][custom-refs-channel] |
 | [lang] champion      | @tmandry                                  |
-| [types] champion     | @lqd                                      |
+| [types] champion     | @nikomatsakis                             |
 | [compiler] champion  | @dingxiangfei2009                         |
 | [opsem] champion     | @digama0                                  |
 
@@ -113,7 +113,7 @@ Explore the virtual places approach, document it in the beyond-refs wiki, formal
 | Establish a working group for field projections | @tmandry | The group should start out with the members: @BennoLossin, @Nadrieril, @tmandry, @dingxiangfei2009. Any contributor is welcome to join if they intend to develop and design field projections. |
 | Explore and map the solution space | field projection working group | Discussions in [t-lang/custom-refs](https://rust-lang.zulipchat.com/#narrow/channel/522311-t-lang.2Fcustom-refs) & meetings with members of the working group  |
 | Document the design in the wiki | @BennoLossin | Write it down in RFC-style, to easily extract RFCs or design meeting documents from the wiki. |
-| Formalize the borrow checker integration in a-mir-formality | @BennoLossin, @lqd, @nikomatsakis | Verify our work formally and explore the algorithms needed for implementing it in the compiler |
+| Formalize the borrow checker integration in a-mir-formality | @BennoLossin, @nikomatsakis | Verify our work formally and explore the algorithms needed for implementing it in the compiler |
 | Implement a compiler experiment | @BennoLossin, @dingxiangfei2009, @oli-obk | Evaluate our current approach by creating an experiment to try out in real code. Implementers: @BennoLossin & @dingxiangfei2009; Reviewer: @oli-obk |
 | Draft RFCs | @tmandry, @BennoLossin | Extract the knowledge from the wiki & provide historical context as well as rationale and a contiguous & comprehensive story. |
 
