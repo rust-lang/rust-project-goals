@@ -47,6 +47,9 @@ Once the Goals RFC is accepted, you can follow along with the progress on a goal
 [guide-level-explanation]: #guide-level-explanation
 
 - [Highlights](./highlights.md)
+
+## Roadmaps
+
 - [Roadmaps](./roadmaps.md)
 
 # Reference-level explanation
