@@ -1596,16 +1596,15 @@ pub fn format_sized_goal_table(goals: &[&GoalDocument], size: GoalSize) -> Resul
                 team.name().to_lowercase()
             };
 
-            // Champion: @username, ![TBD][], or *not needed*
-            let champion_cell = match level {
-                SupportLevel::Large | SupportLevel::Medium => {
-                    if let Some(champion) = goal.metadata.champions.get(team) {
-                        champion.content.clone()
-                    } else {
-                        "![TBD][]".to_string()
-                    }
+            // Champion: @username, ![TBD][], or *n/a*
+            let champion_cell = if let Some(champion) = goal.metadata.champions.get(team) {
+                champion.content.clone()
+            } else {
+                use SupportLevel::*;
+                match level {
+                    Large | Medium => "![TBD][]".to_string(),
+                    Small => "*n/a*".to_string(),
                 }
-                SupportLevel::Small => "*n/a*".to_string(),
             };
 
             table.push(vec![
