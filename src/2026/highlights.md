@@ -67,7 +67,7 @@ Under Polonius Alpha, this code compiles.
 
 Polonius Alpha is part of a larger roadmap called [the Borrow-Checker Within](./roadmap-borrow-checker-within.md) that we expect to be driving over the next few years. This year, another part of that work is including Polonius Alpha in [a-mir-formality](https://github.com/rust-lang/a-mir-formality/), the [types team's](https://rust-lang.org/governance/teams/compiler/#team-types) (in-progress) specification for how the Rust type system works. As part of another goal, we are planning to [integrate a-mir-formality into the Rust reference](./a-mir-formality.md). This would make Polonius the first version of the borrow checker whose behavior is specified outside of the Rust compiler.
 
-## Extending const evaluation to *structs/enums*, *traits*, and *reflection*
+## Change const evaluation to support *traits*, and *reflection*, allow *structs/enums* as const parameter types
 
 (((HIGHLIGHT TABLE: Const and reflection)))
 
