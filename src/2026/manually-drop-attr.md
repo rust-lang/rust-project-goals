@@ -116,10 +116,10 @@ impl Destruct for UringState {
 
 ### Work items over the next year
 
-| Task                        | Owner(s)  | Notes |
-| --------------------------- | --------- | ----- |
-| Implement a lang experiment | JayanAXHF |       |
-| Write an RFC                | JayanAXHF |       |
+| Task                        | Owner(s)   | Notes |
+| --------------------------- | ---------- | ----- |
+| Implement a lang experiment | @JayanAXHF |       |
+| Write an RFC                | @JayanAXHF |       |
 
 ## Team asks
 
