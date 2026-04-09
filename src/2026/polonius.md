@@ -88,10 +88,10 @@ Fix remaining issues, validate on real-world code, and ship a stable improved bo
 | Expand test coverage | @lqd | We've started doing this during the previous goal period, e.g. from open fixed-by-polonius issues in [#145053](https://github.com/rust-lang/rust/pull/145053) |
 | Enable polonius testing on CI | @lqd | |
 | Ship nightly preview behind feature gate | @lqd | With blog post / call for testing |
-| Validate performance on real-world code | @lqd | |
+| Validate performance on real-world code | @lqd, @amandasystems | |
 | Address diagnostics feedback from preview | @lqd | |
 | Write stabilization report | @lqd | |
-| Write rustc dev guide documentation | @lqd | |
+| Write rustc dev guide documentation | @lqd, @amandasystems | |
 
 #### Extend formality for Polonius alpha
 
