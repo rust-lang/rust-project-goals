@@ -126,7 +126,7 @@ const fn type_of(id: TypeId) -> &'static Type;
 
 These functions can't be run at runtime, because that would require there to be some global table somewhere that maps all `TypeId`s to their repr. This is an obvious no-go in my book.
 
-an demonstration impl (absolutely not salvageable for anything that could be landed!) can be found [here](https://github.com/rust-lang/rust/compare/master...oli-obk:rust:compile-time-reflection)
+A demonstration impl (absolutely not salvageable for anything that could be landed!) can be found [here](https://github.com/rust-lang/rust/compare/main...oli-obk:rust:compile-time-reflection).
 
 ### Why not continue where uwuflection left off?
 
