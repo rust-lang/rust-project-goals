@@ -63,6 +63,8 @@ Based on feedback from Niko Matsakis and the compiler team, we are investigating
 
 2. **Re-Implement the feature directly within rustc** Add the coverage instrumentation passes directly within rustc. Like the compiler hook approach, this is more immediate, with easier access to the AST, and has the advantage of keeping the existing coverage instrumentations and the newly proposed one within the same codebase. Careful design would be needed for the instrumentation not to be too invasive, or impede development of other features.
 
+The [Design Document][mcdc-design-doc] provides an updated status of actual implementation choices and details.
+
 ## Team asks
 
 | Team       | Support level | Notes                                                        |
@@ -84,7 +86,10 @@ Two key differences:
 
 ### What about pattern matching?
 
-Pattern matching MC/DC support was only at draft stage previously, the coverage criterion being still ill-defined for this language construct. Ferrous Systems have proposed [one interpretations of patterns as decisions and conditions][pattern-mcdc], to which we could apply MC/DC coverage, but we're uncertain how much additional work this requires. Our initial scope focuses on boolean expressions and nested decisions, which covers the most common safety-critical use cases.
+Summarizing the [Design Document][mcdc-design-doc], MC/DC for pattern matching is definitely interesting, since it is a principal way of making decisions in Rust.
+Its support is planned for implementation, after boolean expressions support.
+[Toward Modified Condition/Decision Coverage of Rust][pattern-mcdc], a paper from Ferrous Systems proposes an interpretation of patterns as MC/DC decisions.
+This will require some additional work, since for example, the paper does not address the problems of "multi-pattern constructs" (like matches, as opposed to "single pattern constructs", like if-lets), or "irrefutability by context".
 
 AdaCore plans to instruct customers to avoid pattern matching with an initial offering. Pattern matching support would be a stretch goal or follow-on effort.
 
@@ -98,3 +103,4 @@ GNATcoverage is AdaCore's coverage analysis tool. It can consume LLVM coverage d
 [mcdc-update-pr]: https://github.com/rust-lang/rust/pull/126733
 [mcdc-zulip]: https://rust-lang.zulipchat.com/#narrow/channel/546987-project-goals.2F2026-workshop/topic/mcdc-support/with/569335878
 [pattern-mcdc]: https://arc.aiaa.org/doi/10.2514/1.I011558
+[mcdc-design-doc]: https://hackmd.io/@renjisann/HJtqcTr_We
