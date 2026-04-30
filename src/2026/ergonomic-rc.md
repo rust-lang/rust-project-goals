@@ -5,7 +5,6 @@
 | Point of contact | @nikomatsakis                                 |
 | Status           | Proposed                                      |
 | What and why     | A `Share` trait for clone-as-alias types and `move($expr)` for precise closure capture control |
-| Needs            | Contributor                                   |
 | Roadmap          | [Just add async](./roadmap-just-add-async.md) |
 | Tracking issue   | [rust-lang/rust-project-goals#107]            |
 | Highlight        | Async and ergonomic RC                         |
@@ -124,6 +123,12 @@ Precise control over what closures capture and when, eliminating the need for aw
 | [lang]      | Medium        |         |
 | [lang-docs] | Small         |         |
 | [libs-api]  | Small         | Reviews of RFC and API surface area |
+
+## Help wanted
+
+| Task | Experience level | Time investment |
+|------|-----------------|-----------------|
+| Implementation work | TBD | TBD |
 
 ## Frequently asked questions
 

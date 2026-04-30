@@ -4,7 +4,6 @@
 |:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | @epage                                                                           |
 | Status           | Proposed                                                                         |
-| Needs            | Contributor                                                                      |
 | Tracking issue   | [rust-lang/rust-project-goals#272]                                               |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
 | [compiler] champion | @petrochenkov |
@@ -47,5 +46,11 @@ Work with [compiler] to identify a minimal subset of functionality for what the 
 | ---------- | ------------- | --------------------------------------- |
 | [cargo]    | Small         |                                         |
 | [compiler] | Medium        | Design discussions, PR review |
+
+## Help wanted
+
+| Task | Experience level | Time investment |
+|------|-----------------|-----------------|
+| Implementation work | TBD | TBD |
 
 ## Frequently asked questions

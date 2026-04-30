@@ -4,7 +4,6 @@
 |:----------------------|----------------------|
 | Point of contact      | @tmandry             |
 | Status                | Proposed             |
-| Needs                 | Funding              |
 | Tracking issue        |                      |
 | Zulip channel         | N/A                  |
 | Help wanted           | N/A                  |
@@ -53,5 +52,11 @@ Given that specialization is largely blocked on design work to address known sou
 | [types]    | Large         | Review design document |
 | [libs]     | Small         |       |
 | [opsem]    | Small         |       |
+
+## Funding
+
+| Purpose | Cost | Status |
+|---------|------|--------|
+| Contributor | TBD | 💬 Under discussion |
 
 ## Frequently asked questions

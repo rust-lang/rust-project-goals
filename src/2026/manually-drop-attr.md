@@ -4,7 +4,6 @@
 |:--------------------|----------------|
 | Point of contact    | @thunderseethe |
 | Status              | Proposed   |
-| Needs               | Funding        |
 | Tracking issue      |                |
 | Zulip channel       | N/A            |
 | [lang] champion     | @Nadrieril     |
@@ -129,6 +128,12 @@ impl Destruct for UringState {
 | [lang]     | Medium        | Vibe check and RFC review |
 | [opsem]    | Small         |                           |
 | [types]    | Small         |                           |
+
+## Funding
+
+| Purpose | Cost | Status |
+|---------|------|--------|
+| Contributor | TBD | 💬 Under discussion |
 
 ## Frequently asked questions
 

@@ -4,7 +4,6 @@
 |:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | @epage                                                                           |
 | Status           | Proposed                                                                         |
-| Needs            | Contributor                                                                      |
 | Tracking issue   | [rust-lang/rust-project-goals#256]                                               |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
 
@@ -39,5 +38,11 @@ This covers multiple teams and needs a lot of coordination to balance the needs 
 | ---------- | ------------- | --------------------------------------- |
 | [cargo]    | Small         |                                         |
 | [compiler] | Small         | Design discussions, PR review           |
+
+## Help wanted
+
+| Task | Experience level | Time investment |
+|------|-----------------|-----------------|
+| Implementation work | TBD | TBD |
 
 ## Frequently asked questions

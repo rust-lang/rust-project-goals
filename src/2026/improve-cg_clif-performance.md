@@ -6,14 +6,12 @@
 | Status              | Proposed |
 | Tracking issue      |          |
 | Zulip channel       | N/A      |
-| Needs               | Funding  |
+| Roadmap            | Fast Builds |
 | [compiler] champion | @bjorn3  |
 
 ## Summary
 
 This goal aims to improve the rust development experience through faster incremental code generation with `rustc_codegen_cranelift`. We additionally want to fix several long-standing bugs that currently prevent `rustc_codegen_cranelift` from being used for popular crates.
-
-**Needs funding:** This goal needs funding to proceed.
 
 ## Motivation
 
@@ -62,5 +60,11 @@ We additionally want to fix several long-standing bugs that limit `rustc_codegen
 | ---------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [cargo]    | Small         | In case we end up pursuing JITing as a way to improve performance that will eventually need native integration with `cargo run`. For now we're just prototyping, and so the occasional vibe check should be sufficient |
 | [compiler] | Medium        | Depending on what ways we end up pursuing, we might need no rustc side changes at all or medium sized changes.                                                                                                         |
+
+## Funding
+
+| Purpose | Cost | Status |
+|---------|------|--------|
+| Contributor | $75,000 | ✅ Finalized |
 
 ## Frequently asked questions

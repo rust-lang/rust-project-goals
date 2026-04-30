@@ -4,7 +4,6 @@
 |:----------------------|-------------------------------------------------|
 | Point of contact      | @Shnatsel                                       |
 | Status                | Proposed                                        |
-| Needs                 | Contributor                                     |
 | Tracking issue        |                                                 |
 | Other tracking issues | https://github.com/rust-lang/cargo/issues/16565 |
 | Zulip channel         | N/A                                             |
@@ -61,6 +60,12 @@ We will need:
 | Team       | Support level | Notes                                   |
 | ---------- | ------------- | --------------------------------------- |
 | [cargo]    | Medium |                                         |
+
+## Help wanted
+
+| Task | Experience level | Time investment |
+|------|-----------------|-----------------|
+| Implementation work | TBD | TBD |
 
 ## Frequently asked questions
 

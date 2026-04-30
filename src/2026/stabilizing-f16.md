@@ -7,15 +7,12 @@
 | Tracking issue   |    |
 | Other tracking issues | https://github.com/rust-lang/rust/issues/116909 |
 | Zulip channel    | N/A  |
-| Needs | Funding |
 
 ## Summary
 
 In recent years we've seen increasing hardware support for the `f16` and `f128` float types. Especially for `f16` support was originally motivated by machine learning/AI, but these types have since also found applications in other domains like graphics and physics simulations.
 
 With LLVM 22, the remaining blockers in the backends have been cleared for `f16`, and therefore stabilizing this type in 2026 is realistic. 
-
-**Needs funding:** This goal needs funding to proceed.
 
 ## Motivation
 
@@ -45,6 +42,12 @@ With @tgross35 as the dedicated reviewer, the asks of the teams are limited.
 | [compiler] | small              |                                         |
 | [libs-api]     | small              |                                         |
 | [lang]     | small              | occasionally being fast-tracked would be nice |
+
+## Funding
+
+| Purpose | Cost | Status |
+|---------|------|--------|
+| Contributor | $25,000 | ✅ Finalized |
 
 ## Frequently asked questions
 

@@ -4,7 +4,6 @@
 | :--------------- | -------------------------------------------------------------------------------- |
 | Point of contact | @epage                                   |
 | Status           | Proposed                                                                         |
-| Needs            | Contributor                                                                      |
 | Tracking issue     | [rust-lang/rust-project-goals#255] |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
 
@@ -59,5 +58,11 @@ Most of that involves shifting responsibilities from the test harness to the tes
 | [cargo]    | Small         |                                         |
 | [libs-api]      | Small    |                                         |
 | [testing-devex] | Small    | Design discussions and review           |
+
+## Help wanted
+
+| Task | Experience level | Time investment |
+|------|-----------------|-----------------|
+| Implementation work | TBD | TBD |
 
 ## Frequently asked questions
