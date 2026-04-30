@@ -14,6 +14,99 @@ use crate::team::{self, TeamName};
 use crate::util::{self, commas, markdown_files};
 use rust_project_goals_json::{GithubIssueState, Progress};
 
+/// A parsed funding cost value.
+#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
+pub enum FundingCost {
+    /// A known dollar amount in USD (stored as whole dollars).
+    Usd(u64),
+    /// The cost is not yet determined.
+    Tbd,
+}
+
+impl FundingCost {
+    /// Parse a cost string like "$25,000", "$75K", "$1.5M", or "TBD".
+    pub fn parse(s: &str) -> Option<Self> {
+        let s = s.trim();
+        if s.eq_ignore_ascii_case("TBD") {
+            return Some(FundingCost::Tbd);
+        }
+        let s = s.strip_prefix('$')?;
+        let s = s.replace(',', "");
+        let s = s.trim();
+        if let Some(base) = s.strip_suffix('K').or_else(|| s.strip_suffix('k')) {
+            let n: f64 = base.trim().parse().ok()?;
+            Some(FundingCost::Usd((n * 1_000.0) as u64))
+        } else if let Some(base) = s.strip_suffix('M').or_else(|| s.strip_suffix('m')) {
+            let n: f64 = base.trim().parse().ok()?;
+            Some(FundingCost::Usd((n * 1_000_000.0) as u64))
+        } else {
+            let n: u64 = s.parse().ok()?;
+            Some(FundingCost::Usd(n))
+        }
+    }
+
+    /// Format as a display string (e.g., "$75,000" or "TBD").
+    pub fn display(&self) -> String {
+        match self {
+            FundingCost::Tbd => "TBD".to_string(),
+            FundingCost::Usd(amount) => format!("${}", format_with_commas(*amount)),
+        }
+    }
+}
+
+fn format_with_commas(n: u64) -> String {
+    let s = n.to_string();
+    let mut result = String::new();
+    for (i, c) in s.chars().rev().enumerate() {
+        if i > 0 && i % 3 == 0 {
+            result.push(',');
+        }
+        result.push(c);
+    }
+    result.chars().rev().collect()
+}
+
+/// Sum a slice of FundingCost values. Returns None if all are TBD, otherwise sums the known amounts.
+pub fn sum_funding_costs(costs: &[FundingCost]) -> Option<FundingCost> {
+    let mut total: u64 = 0;
+    let mut any_known = false;
+    let mut any_tbd = false;
+    for cost in costs {
+        match cost {
+            FundingCost::Usd(n) => {
+                total += n;
+                any_known = true;
+            }
+            FundingCost::Tbd => {
+                any_tbd = true;
+            }
+        }
+    }
+    if !any_known && any_tbd {
+        Some(FundingCost::Tbd)
+    } else if any_known {
+        Some(FundingCost::Usd(total))
+    } else {
+        None
+    }
+}
+
+/// A single row from the `## Funding` section's `| Purpose | Cost | Status |` table.
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
+pub struct FundingItem {
+    pub purpose: String,
+    pub cost: FundingCost,
+    pub status: String,
+}
+
+/// A single row from the `## Help wanted` section's `| Task | Experience level | Time investment |` table.
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
+pub struct HelpWantedItem {
+    pub task: String,
+    pub experience_level: String,
+    pub time_investment: String,
+}
+
 /// Data parsed from a goal file in the expected format
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub struct GoalDocument {
@@ -46,6 +139,14 @@ pub struct GoalDocument {
     /// Hierarchical task structure parsed from "Work items over the next year".
     /// When it has children, roadmap tables show one row per child instead of one row for the goal.
     pub task_tree: TaskTree,
+
+    /// Funding items parsed from the `## Funding` section (if present).
+    /// Presence of this section means the goal needs funding.
+    pub funding: Vec<FundingItem>,
+
+    /// Help wanted items parsed from the `## Help wanted` section (if present).
+    /// Presence of this section means the goal needs a contributor.
+    pub help_wanted: Vec<HelpWantedItem>,
 }
 
 /// Data parsed from a roadmap file (`roadmap-*.md`).
@@ -593,6 +694,12 @@ impl GoalDocument {
         // Compute task_owners from the task tree
         task_owners.extend(task_tree.all_task_owners());
 
+        // Extract funding items from the `## Funding` section (if present)
+        let funding = extract_funding(&sections)?;
+
+        // Extract help wanted items from the `## Help wanted` section (if present)
+        let help_wanted = extract_help_wanted(&sections)?;
+
         Ok(Some(GoalDocument {
             path: path.to_path_buf(),
             link_path,
@@ -602,12 +709,24 @@ impl GoalDocument {
             goal_plans,
             task_owners,
             task_tree,
+            funding,
+            help_wanted,
         }))
     }
 
     /// Returns all teams involved with this goal.
     pub fn teams_with_asks(&self) -> BTreeSet<&'static TeamName> {
         self.team_involvement.teams()
+    }
+
+    /// True if this goal needs funding (has a `## Funding` section).
+    pub fn needs_funding(&self) -> bool {
+        !self.funding.is_empty()
+    }
+
+    /// True if this goal needs a contributor (has a `## Help wanted` section).
+    pub fn needs_contributor(&self) -> bool {
+        !self.help_wanted.is_empty()
     }
 
     /// True if this goal is a candidate (may yet be accepted)
@@ -629,7 +748,7 @@ impl GoalDocument {
 
     /// In goal lists, we render our point-of-contact as "Help Wanted" if this goal needs a contributor.
     pub fn point_of_contact_for_goal_list(&self) -> String {
-        if self.metadata.is_help_wanted() {
+        if self.needs_contributor() || self.metadata.is_help_wanted() {
             "![Help Wanted][]".to_string()
         } else {
             self.metadata.pocs.clone()
@@ -814,7 +933,7 @@ pub fn format_highlight_goal_sections(
     let hashes = "#".repeat(heading_level);
 
     for goal in goals {
-        if goal.metadata.is_help_wanted() {
+        if goal.needs_contributor() || goal.metadata.is_help_wanted() {
             output.push_str(&format!(
                 "{hashes} [{}]({}) ![Help wanted][]\n\n",
                 *goal.metadata.title,
@@ -848,6 +967,223 @@ pub fn format_highlight_goal_sections(
         }
         output.push_str(goal.summary.trim());
         output.push_str("\n\n");
+    }
+
+    Ok(output)
+}
+
+/// Format a summary table of goals needing funding.
+/// Columns: Goal (linked to page#funding), Cost, Status, What and why.
+pub fn format_funding_table(goals: &[&GoalDocument]) -> String {
+    let mut output = String::new();
+    output.push_str("| Goal | Cost | Status | What and why |\n");
+    output.push_str("| --- | --- | --- | --- |\n");
+    for goal in goals {
+        format_funding_table_row(&mut output, goal);
+    }
+    output
+}
+
+/// Format a summary table of goals needing funding, grouped by roadmap.
+/// Each roadmap gets a bold header row linking to the roadmap page.
+/// Goals not in any roadmap go under "Other goals".
+pub fn format_funding_table_grouped(
+    goals: &[&GoalDocument],
+    roadmaps: &[&RoadmapDocument],
+) -> String {
+    let mut output = String::new();
+    output.push_str("| Goal | Cost | Status | What and why |\n");
+    output.push_str("| --- | --- | --- | --- |\n");
+
+    let mut used: Vec<bool> = vec![false; goals.len()];
+    let mut all_costs: Vec<FundingCost> = vec![];
+
+    // Sort roadmaps alphabetically by short title
+    let mut sorted_roadmaps: Vec<&&RoadmapDocument> = roadmaps.iter().collect();
+    sorted_roadmaps.sort_by_key(|r| &r.short_title);
+
+    for roadmap in sorted_roadmaps {
+        let theme = roadmap.short_title.content.trim();
+        let matching: Vec<usize> = goals
+            .iter()
+            .enumerate()
+            .filter(|(_, g)| g.matches_roadmap_theme(theme))
+            .map(|(i, _)| i)
+            .collect();
+
+        if matching.is_empty() {
+            continue;
+        }
+
+        // Collect costs for subtotal
+        let group_costs: Vec<FundingCost> = matching
+            .iter()
+            .flat_map(|&i| goals[i].funding.iter().map(|f| f.cost.clone()))
+            .collect();
+        let subtotal = sum_funding_costs(&group_costs);
+        let subtotal_str = subtotal.map(|c| c.display()).unwrap_or_default();
+
+        // Emit roadmap header row with subtotal
+        output.push_str(&format!(
+            "| **[{}]({})** | **{}** | | |\n",
+            theme,
+            roadmap.link_path.display(),
+            subtotal_str,
+        ));
+
+        for i in &matching {
+            used[*i] = true;
+            all_costs.extend(goals[*i].funding.iter().map(|f| f.cost.clone()));
+            format_funding_table_row(&mut output, goals[*i]);
+        }
+    }
+
+    // Emit "Other goals" for anything not in a roadmap
+    let other: Vec<usize> = (0..goals.len()).filter(|i| !used[*i]).collect();
+    if !other.is_empty() {
+        let group_costs: Vec<FundingCost> = other
+            .iter()
+            .flat_map(|&i| goals[i].funding.iter().map(|f| f.cost.clone()))
+            .collect();
+        let subtotal = sum_funding_costs(&group_costs);
+        let subtotal_str = subtotal.map(|c| c.display()).unwrap_or_default();
+
+        output.push_str(&format!("| **Other goals** | **{}** | | |\n", subtotal_str));
+        for i in &other {
+            all_costs.extend(goals[*i].funding.iter().map(|f| f.cost.clone()));
+            format_funding_table_row(&mut output, goals[*i]);
+        }
+    }
+
+    // Grand total
+    if let Some(total) = sum_funding_costs(&all_costs) {
+        output.push_str(&format!("| **Total** | **{}** | | |\n", total.display()));
+    }
+
+    output
+}
+
+fn format_funding_table_row(output: &mut String, goal: &GoalDocument) {
+    let total = sum_funding_costs(
+        &goal
+            .funding
+            .iter()
+            .map(|f| f.cost.clone())
+            .collect::<Vec<_>>(),
+    );
+    let cost_str = total.map(|c| c.display()).unwrap_or_default();
+    let status = goal
+        .funding
+        .first()
+        .map(|f| f.status.as_str())
+        .unwrap_or("");
+    output.push_str(&format!(
+        "| [{}]({}#funding) | {} | {} | {} |\n",
+        *goal.metadata.title,
+        goal.link_path.display(),
+        cost_str,
+        status,
+        goal.what_and_why(),
+    ));
+}
+
+/// Format goals that need funding as sections with people, summary, and funding table.
+pub fn format_funding_goal_sections(
+    goals: &[&GoalDocument],
+    heading_level: usize,
+) -> Result<String> {
+    let mut output = String::new();
+    let hashes = "#".repeat(heading_level);
+
+    for goal in goals {
+        output.push_str(&format!(
+            "{hashes} [{}]({})\n\n",
+            *goal.metadata.title,
+            goal.link_path.display()
+        ));
+
+        // Build people list
+        let mut people: Vec<String> = Vec::new();
+        people.push(format!("{} (point of contact)", goal.metadata.pocs));
+        for owner in &goal.task_owners {
+            if !goal.metadata.pocs.contains(owner.as_str()) {
+                people.push(owner.clone());
+            }
+        }
+        for (team, champion) in &goal.metadata.champions {
+            people.push(format!("{} ({} champion)", champion.content, team));
+        }
+        if !people.is_empty() {
+            output.push_str(&format!("*{}*\n\n", people.join(", ")));
+        }
+
+        output.push_str(goal.summary.trim());
+        output.push_str("\n\n");
+
+        // Render funding table
+        if !goal.funding.is_empty() {
+            output.push_str("| Purpose | Cost | Status |\n");
+            output.push_str("|---------|------|--------|\n");
+            for item in &goal.funding {
+                output.push_str(&format!(
+                    "| {} | {} | {} |\n",
+                    item.purpose,
+                    item.cost.display(),
+                    item.status
+                ));
+            }
+            output.push('\n');
+        }
+    }
+
+    Ok(output)
+}
+
+/// Format goals that need a contributor as sections with people, summary, and help wanted table.
+pub fn format_help_wanted_goal_sections(
+    goals: &[&GoalDocument],
+    heading_level: usize,
+) -> Result<String> {
+    let mut output = String::new();
+    let hashes = "#".repeat(heading_level);
+
+    for goal in goals {
+        output.push_str(&format!(
+            "{hashes} [{}]({})\n\n",
+            *goal.metadata.title,
+            goal.link_path.display()
+        ));
+
+        // Build people list
+        let mut people: Vec<String> = Vec::new();
+        people.push(format!("{} (point of contact)", goal.metadata.pocs));
+        for owner in &goal.task_owners {
+            if !goal.metadata.pocs.contains(owner.as_str()) {
+                people.push(owner.clone());
+            }
+        }
+        for (team, champion) in &goal.metadata.champions {
+            people.push(format!("{} ({} champion)", champion.content, team));
+        }
+        if !people.is_empty() {
+            output.push_str(&format!("*{}*\n\n", people.join(", ")));
+        }
+
+        output.push_str(goal.summary.trim());
+        output.push_str("\n\n");
+
+        // Render help wanted table
+        if !goal.help_wanted.is_empty() {
+            output.push_str("| Task | Experience level | Time investment |\n");
+            output.push_str("|------|-----------------|------------------|\n");
+            for item in &goal.help_wanted {
+                output.push_str(&format!(
+                    "| {} | {} | {} |\n",
+                    item.task, item.experience_level, item.time_investment
+                ));
+            }
+            output.push('\n');
+        }
     }
 
     Ok(output)
@@ -1242,6 +1578,53 @@ pub fn extract_summary(sections: &[Section]) -> Result<Option<String>> {
     };
 
     Ok(Some(ownership_section.text.trim().to_string()))
+}
+
+/// Extract funding items from the `## Funding` section, if present.
+fn extract_funding(sections: &[Section]) -> Result<Vec<FundingItem>> {
+    let Some(section) = sections.iter().find(|s| s.title == "Funding") else {
+        return Ok(vec![]);
+    };
+
+    let Some(table) = section.tables.first() else {
+        return Ok(vec![]);
+    };
+
+    expect_headers(table, &["Purpose", "Cost", "Status"])?;
+
+    let mut items = vec![];
+    for row in &table.rows {
+        let cost = FundingCost::parse(row[1].trim()).unwrap_or(FundingCost::Tbd);
+        items.push(FundingItem {
+            purpose: row[0].to_string(),
+            cost,
+            status: row[2].to_string(),
+        });
+    }
+    Ok(items)
+}
+
+/// Extract help wanted items from the `## Help wanted` section, if present.
+fn extract_help_wanted(sections: &[Section]) -> Result<Vec<HelpWantedItem>> {
+    let Some(section) = sections.iter().find(|s| s.title == "Help wanted") else {
+        return Ok(vec![]);
+    };
+
+    let Some(table) = section.tables.first() else {
+        return Ok(vec![]);
+    };
+
+    expect_headers(table, &["Task", "Experience level", "Time investment"])?;
+
+    let mut items = vec![];
+    for row in &table.rows {
+        items.push(HelpWantedItem {
+            task: row[0].to_string(),
+            experience_level: row[1].to_string(),
+            time_investment: row[2].to_string(),
+        });
+    }
+    Ok(items)
 }
 
 struct RoadmapMetadata {

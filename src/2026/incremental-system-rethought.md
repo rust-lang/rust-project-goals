@@ -5,6 +5,7 @@
 | Point of contact    | @blyxyas  |
 | Status              | Proposed  |
 | Tracking issue      |           |
+| Roadmap             | Fast Builds |
 | [compiler] champion | @jackh726 |
 | Zulip channel       | N/A       |
 

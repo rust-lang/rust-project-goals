@@ -6,7 +6,6 @@
 | Status           | Proposed             |
 | What and why     | Enable dyn dispatch for async traits via `.box` notation |
 | Timespan         | 2026-2027            |
-| Needs            | Contributor          |
 | Roadmap          | Just add async       |
 | Tracking issue   |                      |
 | Highlight        | Async and ergonomic RC |
@@ -95,6 +94,12 @@ For more details and a broader look, see the [box, box, box][box-post] blog post
 | [lang]     | Medium        | RFC decision                                |
 | [compiler] | Medium        | Implementation review                       |
 | [types]    | Small         | May have changes to dyn-compatibility rules |
+
+## Help wanted
+
+| Task | Experience level | Time investment |
+|------|-----------------|-----------------|
+| Implementation work | TBD | TBD |
 
 ## Frequently asked questions
 

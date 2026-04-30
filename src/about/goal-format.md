@@ -28,13 +28,12 @@ The recognized fields are:
 | **Zulip channel** | No | A link to the relevant Zulip stream for discussion. |
 | **Roadmap** | No | The name of a roadmap theme this goal belongs to, e.g. `Rust for Linux`. Can appear multiple times if the goal spans several roadmaps. |
 | **Highlight** | No | A category name for the highlights page. Can appear multiple times. |
-| **Needs** | No | Signals that the goal needs something to proceed. Use `Contributor` (someone to do the work) or `Funding` (financial support). Can appear multiple times. |
 | **Timespan** | No | Overrides the default goal period, e.g. `2026-2027` for multi-year goals. |
 | **\[team\] champion** | No | The champion for a specific team, e.g. `[lang] champion \| @someone`. Medium and Large team asks require a champion. |
 | **Teams** | *Auto-injected* | Filled in automatically from team asks. Do not add this row yourself. |
 | **Task owners** | *Auto-injected* | Filled in automatically from work item tables. Do not add this row yourself. |
 
-**Multiple-value fields:** `Roadmap`, `Highlight`, and `Needs` support multiple values by repeating the row:
+**Multiple-value fields:** `Roadmap` and `Highlight` support multiple values by repeating the row:
 
 ```markdown
 | Roadmap          | Rust for Linux           |
@@ -143,6 +142,40 @@ The `## Team asks` section specifies what support the goal needs from Rust teams
 Medium and Large asks require a **champion** from the team, declared via a `[team] champion` row in the metadata table. If you don't have a champion yet, the goals team will help you find one.
 
 See [Team asks](./team_asks.md) for the full list of recognized ask types.
+
+### Help wanted
+
+The `## Help wanted` section is optional. Include it if your goal needs a contributor to do the work. It contains a table with three columns:
+
+```markdown
+## Help wanted
+
+| Task | Experience level | Time investment |
+|------|-----------------|-----------------|
+| Implement the feature | Intermediate Rust | 3 months part-time |
+| Write documentation | Beginner | 2 weeks |
+```
+
+The presence of this section signals that the goal is looking for someone to step up. Goals that already have all the contributors they need should omit this section entirely. The project goals team will help connect goals with potential contributors.
+
+### Funding
+
+The `## Funding` section is optional. Include it if your goal needs financial support to proceed. It contains a table with three columns:
+
+```markdown
+## Funding
+
+| Purpose | Cost | Status |
+|---------|------|--------|
+| Contributor (6 months, full-time) | $60,000 | 🔍 Looking |
+| Maintenance | $10,000 | 💬 Under discussion |
+```
+
+The presence of this section signals that the goal is looking for funding. Goals that do not need funding should omit this section entirely. The table rows describe what the funding would cover (purpose), the estimated cost, and the current status. Status values are:
+
+- 🔍 Looking — actively seeking a funder
+- 💬 Under discussion — in conversation with a potential funder
+- ✅ Finalized — funding secured
 
 ### Frequently asked questions
 

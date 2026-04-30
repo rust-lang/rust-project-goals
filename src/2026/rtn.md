@@ -5,7 +5,6 @@
 | Point of contact | @traviscross         |
 | Status           | Proposed             |
 | What and why     | Name opaque types and bound async return types so `async fn` in traits works with `Send` and `dyn` |
-| Needs            | Contributor          |
 | Roadmap          | Just add async       |
 | Tracking issue   |                      |
 | Zulip channel    | [#wg-async][channel] |
@@ -158,6 +157,12 @@ We're looking to mentor one or more contributors on this goal. The work spans la
 |---------|---------------|-----------------------------------------------|
 | [lang]  | Medium        | RFC review, design discussions                 |
 | [types] | Medium        | Stabilization report review, TAIT interactions |
+
+## Help wanted
+
+| Task | Experience level | Time investment |
+|------|-----------------|-----------------|
+| Implementation work | TBD | TBD |
 
 ## Frequently asked questions
 
