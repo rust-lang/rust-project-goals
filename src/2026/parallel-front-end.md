@@ -7,6 +7,7 @@
 | Tracking issue               | [rust-lang/rust-project-goals#121]       |
 | See also                     | [rust-lang/rust#113349]                  |
 | Zulip channel                | [#t-compiler/wg-parallel-rustc][channel] |
+| Roadmap                      | Fast Builds                              |
 | [wg-parallel-rustc] champion | @petrochenkov                            |
 
 ## Summary
