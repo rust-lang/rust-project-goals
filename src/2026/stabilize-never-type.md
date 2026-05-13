@@ -3,7 +3,7 @@
 | Metadata                |                                                |
 | :--                     | :--                                            |
 | Point of contact        | @WaffleLapkin                                  |
-| Status                  | Proposed                                       |
+| Status                  | Accepted                                       |
 | Tracking issue          | [rust-lang/rust-project-goals#653]             |
 | Other Tracking issue(s) | https://github.com/rust-lang/rust/issues/35121 |
 | Highlight               | Try, never, extern types                       |

@@ -3,7 +3,7 @@
 | Metadata            |                                    |
 | :--                 | :--                                |
 | Point of contact    | @bjorn3                            |
-| Status              | Proposed                           |
+| Status              | Accepted                           |
 | Tracking issue      | [rust-lang/rust-project-goals#639] |
 | Zulip channel       | N/A                                |
 | Needs               | Funding                            |

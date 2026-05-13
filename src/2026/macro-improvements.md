@@ -3,7 +3,7 @@
 | Metadata         |                                    |
 | :--              | :--                                |
 | Point of contact | @joshtriplett                      |
-| Status           | Proposed                           |
+| Status           | Accepted                           |
 | Tracking issue   | [rust-lang/rust-project-goals#629] |
 | Zulip channel    | #t-lang                            |
 | [lang] champion  | @joshtriplett                      |

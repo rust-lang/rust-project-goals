@@ -3,7 +3,7 @@
 | Metadata         |                                                                                                    |
 | :--              | :--                                                                                                |
 | Point of contact | @traviscross                                                                                       |
-| Status           | Proposed                                                                                           |
+| Status           | Accepted                                                                                           |
 | What and why     | Name opaque types and bound async return types so `async fn` in traits works with `Send` and `dyn` |
 | Needs            | Contributor                                                                                        |
 | Roadmap          | Just add async                                                                                     |

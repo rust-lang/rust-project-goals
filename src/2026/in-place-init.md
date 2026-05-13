@@ -3,7 +3,7 @@
 | Metadata         |                                    |
 |:-----------------|------------------------------------|
 | Point of contact | @Darksonn                          |
-| Status           | Proposed                           |
+| Status           | Accepted                           |
 | What and why     | Align on a language approach for creating values directly at their final location without moving |
 | Timespan         | 2026-2028                          |
 | Roadmap          | Beyond the `&`                     |

@@ -4,7 +4,7 @@
 | :--                  | :--                                             |
 | Point of contact     | @jchlanda                                       |
 | [compiler] champion  | @davidtwco                                      |
-| Status               | Proposed                                        |
+| Status               | Accepted                                        |
 | Other tracking issue | https://github.com/rust-lang/rust/issues/148640 |
 | Zulip channel        | N/A                                             |
 | Tracking issue       | [rust-lang/rust-project-goals#618]              |

@@ -3,7 +3,7 @@
 | Metadata         |                                                                                                                             |
 | :--              | :--                                                                                                                         |
 | Point of contact | @Nadrieril                                                                                                                  |
-| Status           | Proposed                                                                                                                    |
+| Status           | Accepted                                                                                                                    |
 | What and why     | Experiment with converting where-clauses to use dictionary passing style, avoiding many implementation bugs by construction |
 | Roadmap          | Project Zero                                                                                                                |
 | Tracking issue   | [rust-lang/rust-project-goals#630]                                                                                          |

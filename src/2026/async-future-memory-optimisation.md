@@ -3,7 +3,7 @@
 | Metadata            |                                    |
 | :--                 | :--                                |
 | Point of contact    | @dingxiangfei2009                  |
-| Status              | Proposed                           |
+| Status              | Accepted                           |
 | Tracking issue      | [rust-lang/rust-project-goals#622] |
 | Zulip channel       | N/A                                |
 | [compiler] champion | @tmandry                           |

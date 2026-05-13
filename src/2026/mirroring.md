@@ -3,7 +3,7 @@
 | Metadata             |                                    |
 | :--                  | :--                                |
 | Point of contact     | @walterhpearce                     |
-| Status               | Proposed                           |
+| Status               | Accepted                           |
 | Tracking issue       | [rust-lang/rust-project-goals#637] |
 | Zulip channel        | [#tbd-signing]                     |
 | [rustup] champion    | @djc                               |

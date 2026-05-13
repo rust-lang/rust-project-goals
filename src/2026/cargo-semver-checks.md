@@ -3,7 +3,7 @@
 | Metadata           |                                    |
 |:-------------------|------------------------------------|
 | Point of contact   | @obi1kenobi                        |
-| Status             | Proposed                           |
+| Status             | Accepted                           |
 | Tracking issue     | [rust-lang/rust-project-goals#104] |
 | Zulip channel      | N/A                                |
 | [cargo] champion   | @epage                             |

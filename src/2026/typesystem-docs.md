@@ -3,7 +3,7 @@
 | Metadata              |                                    |
 |:----------------------|:-----------------------------------|
 | Point of contact      | @BoxyUwU                           |
-| Status                | Proposed                           |
+| Status                | Accepted                           |
 | Tracking issue        | [rust-lang/rust-project-goals#405] |
 | Other tracking issues | [rustc-dev-guide#2663]             |
 | Zulip channel         | [#t-compiler/rustc-dev-guide]                            |

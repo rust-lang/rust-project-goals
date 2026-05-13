@@ -3,7 +3,7 @@
 | Metadata         |                                    |
 | :--              | :--                                |
 | Point of contact | @ranger-ross                       |
-| Status           | Proposed                           |
+| Status           | Accepted                           |
 | Tracking issue   | [rust-lang/rust-project-goals#626] |
 | Zulip channel    | N/A                                |
 | [cargo] champion | @epage                             |

@@ -3,7 +3,7 @@
 | Metadata            |                                    |
 | :--                 | :--                                |
 | Point of contact    | @kupiakos                          |
-| Status              | Proposed                           |
+| Status              | Accepted                           |
 | Tracking issue      | [rust-lang/rust-project-goals#645] |
 | Zulip channel       | N/A                                |
 | [lang] champion     | @scottmcm                          |

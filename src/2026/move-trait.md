@@ -3,7 +3,7 @@
 | Metadata              |                                                                                                      |
 | :--                   | :--                                                                                                  |
 | Point of contact      | @jackh726                                                                                            |
-| Status                | Proposed                                                                                             |
+| Status                | Accepted                                                                                             |
 | What and why          | Let types opt out of being moved or forgotten, enabling scoped spawn, async drop, and pin-by-default |
 | Timespan              | 2026-2027                                                                                            |
 | Roadmap               | [Just add async](./roadmap-just-add-async.md)                                                        |

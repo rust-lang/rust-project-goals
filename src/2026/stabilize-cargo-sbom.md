@@ -3,7 +3,7 @@
 | Metadata              |                                                 |
 | :--                   | :--                                             |
 | Point of contact      | @Shnatsel                                       |
-| Status                | Proposed                                        |
+| Status                | Accepted                                        |
 | Needs                 | Contributor                                     |
 | Tracking issue        | [rust-lang/rust-project-goals#649]              |
 | Other tracking issues | https://github.com/rust-lang/cargo/issues/16565 |

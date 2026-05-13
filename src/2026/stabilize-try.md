@@ -3,7 +3,7 @@
 | Metadata              |                                    |
 | :--                   | :--                                |
 | Point of contact      | @tmandry                           |
-| Status                | Proposed                           |
+| Status                | Accepted                           |
 | Needs                 | Funding                            |
 | Other tracking issues | rust-lang/rust#84277               |
 | Zulip channel         | N/A                                |

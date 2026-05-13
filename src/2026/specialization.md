@@ -3,7 +3,7 @@
 | Metadata              |                                    |
 | :--                   | :--                                |
 | Point of contact      | @tmandry                           |
-| Status                | Proposed                           |
+| Status                | Accepted                           |
 | Needs                 | Funding                            |
 | Tracking issue        | [rust-lang/rust-project-goals#652] |
 | Zulip channel         | N/A                                |

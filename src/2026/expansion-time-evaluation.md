@@ -3,7 +3,7 @@
 | Metadata            |                                    |
 | :--                 | :--                                |
 | Point of contact    | @tmandry                           |
-| Status              | Proposed                           |
+| Status              | Accepted                           |
 | Flagship            | Constify all the things            |
 | [types] champion    | @oli-obk                           |
 | [compiler] champion | @petrochenkov                      |

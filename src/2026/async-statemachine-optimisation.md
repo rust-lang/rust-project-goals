@@ -3,7 +3,7 @@
 | Metadata            |                                    |
 | :--                 | :--                                |
 | Point of contact    | @diondokter                        |
-| Status              | Proposed                           |
+| Status              | Accepted                           |
 | Needs               | Funding                            |
 | Tracking issue      | [rust-lang/rust-project-goals#623] |
 | Zulip channel       | N/A                                |

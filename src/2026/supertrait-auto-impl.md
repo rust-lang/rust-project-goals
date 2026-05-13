@@ -3,7 +3,7 @@
 | Metadata              |                                                                                                          |
 | :--                   | :--                                                                                                      |
 | Point of contact      | @dingxiangfei2009                                                                                        |
-| Status                | Proposed                                                                                                 |
+| Status                | Accepted                                                                                                 |
 | What and why          | Automatically implement supertraits when a subtrait is implemented, enabling trait hierarchy refactoring |
 | Roadmap               | Beyond the `&`                                                                                           |
 | Roadmap               | Rust for Linux                                                                                           |

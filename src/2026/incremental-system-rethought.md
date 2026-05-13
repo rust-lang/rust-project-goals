@@ -3,7 +3,7 @@
 | Metadata            |                                    |
 | :--                 | :--                                |
 | Point of contact    | @blyxyas                           |
-| Status              | Proposed                           |
+| Status              | Accepted                           |
 | Tracking issue      | [rust-lang/rust-project-goals#641] |
 | [compiler] champion | @jackh726                          |
 | Zulip channel       | N/A                                |

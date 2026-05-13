@@ -3,7 +3,7 @@
 | Metadata         |                                    |
 | :--              | :--                                |
 | Point of contact | @nikomatsakis                      |
-| Status           | Proposed                           |
+| Status           | Accepted                           |
 | Tracking issue   | [rust-lang/rust-project-goals#632] |
 | Zulip channel    | [#vision-doc-2025][channel]        |
 

@@ -3,7 +3,7 @@
 | Metadata            |                                    |
 | :--                 | :--                                |
 | Point of contact    | @dianne                            |
-| Status              | Proposed                           |
+| Status              | Accepted                           |
 | Tracking issue      | [rust-lang/rust-project-goals#648] |
 | Zulip channel       | N/A                                |
 | [lang] champion     | @traviscross                       |

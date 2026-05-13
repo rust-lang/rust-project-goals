@@ -3,7 +3,7 @@
 | Metadata            |                                    |
 | :--                 | :--                                |
 | Point of contact    | @Amanieu                           |
-| Status              | Proposed                           |
+| Status              | Accepted                           |
 | Tracking issue      | [rust-lang/rust-project-goals#633] |
 | Zulip channel       | N/A                                |
 | [libs-api] champion | @Amanieu                           |

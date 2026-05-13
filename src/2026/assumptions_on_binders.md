@@ -4,7 +4,7 @@
 | :--              | :--                                 |
 | Point of contact | @BoxyUwU                            |
 | Roadmap          | Project Zero                        |
-| Status           | Proposed                            |
+| Status           | Accepted                            |
 | Tracking issue   | [rust-lang/rust-project-goals#621]  |
 | Zulip channel    | N/A (just make a thread in t-types) |
 | [types] champion | @BoxyUwU                            |

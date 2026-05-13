@@ -3,7 +3,7 @@
 | Metadata            |                                    |
 | :--                 | :--                                |
 | Point of contact    | @ZuseZ4                            |
-| Status              | Proposed                           |
+| Status              | Accepted                           |
 | Tracking issue      | [rust-lang/rust-project-goals#647] |
 | Zulip channel       | N/A                                |
 | [lang] champion     | @traviscross                       |

@@ -3,7 +3,7 @@
 | Metadata            |                                    |
 | :--                 | :--                                |
 | Point of contact    | @thunderseethe                     |
-| Status              | Proposed                           |
+| Status              | Accepted                           |
 | Needs               | Funding                            |
 | Tracking issue      | [rust-lang/rust-project-goals#628] |
 | Zulip channel       | N/A                                |

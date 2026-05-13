@@ -3,7 +3,7 @@
 | Metadata         |                                    |
 | :--              | :--                                |
 | Point of contact | @ssbr                              |
-| Status           | Proposed                           |
+| Status           | Accepted                           |
 | Tracking issue   | [rust-lang/rust-project-goals#643] |
 | Zulip channel    | N/A                                |
 | [lang] champion  | @tmandry                           |

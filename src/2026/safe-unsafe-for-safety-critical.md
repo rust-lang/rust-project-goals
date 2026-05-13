@@ -3,7 +3,7 @@
 | Metadata         |                                                                                                                |
 | :--              | :--                                                                                                            |
 | Point of contact | @PLeVasseur                                                                                                    |
-| Status           | Proposed                                                                                                       |
+| Status           | Accepted                                                                                                       |
 | What and why     | Normative documentation for common `unsafe` patterns so safety-critical developers have authoritative guidance |
 | Roadmap          | Safety-Critical Rust                                                                                           |
 | Tracking issue   | [rust-lang/rust-project-goals#644]                                                                             |

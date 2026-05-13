@@ -3,7 +3,7 @@
 | Metadata              |                                           |
 |:----------------------|-------------------------------------------|
 | Point of contact      | @lcnr                                     |
-| Status                | Proposed                                  |
+| Status                | Accepted                                  |
 | What and why          | Replace the existing trait solver with a sound, maintainable implementation that unblocks soundness fixes and async features |
 | Roadmap               | Project Zero                 |
 | Roadmap               | Just add async                            |
