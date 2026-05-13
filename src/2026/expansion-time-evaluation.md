@@ -1,15 +1,16 @@
 # Architectural groundwork for expansion-time evaluation
 
-| Metadata         |                            |
-| :--------------- | -------------------------- |
-| Point of contact | @tmandry                   |
-| Status           | Proposed                   |
-| Flagship         | Constify all the things    |
-| [types] champion | @oli-obk |
-| [compiler] champion | @petrochenkov |
-| Tracking issue   |                            |
-| Zulip channel    | N/A                        |
-| Needs            | Funding                    |
+| Metadata            |                                    |
+| :--                 | :--                                |
+| Point of contact    | @tmandry                           |
+| Status              | Proposed                           |
+| Flagship            | Constify all the things            |
+| [types] champion    | @oli-obk                           |
+| [compiler] champion | @petrochenkov                      |
+| Tracking issue      | [rust-lang/rust-project-goals#620] |
+| Zulip channel       | N/A                                |
+| Needs               | Funding                            |
+
 
 ## Summary
 

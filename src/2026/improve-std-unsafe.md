@@ -1,11 +1,12 @@
 # Improving Unsafe Code Documentation in the Rust Standard Library
 
-| Metadata         |                                                                                  |
-| :--------------- | -------------------------------------------------------------------------------- |
-| Point of contact | @hxuhack                                   |
-| Status           | Proposed                                                                         |
-| Tracking issue   |      |
-| Zulip channel    | N/A  |
+| Metadata         |                                    |
+| :--              | :--                                |
+| Point of contact | @hxuhack                           |
+| Status           | Proposed                           |
+| Tracking issue   | [rust-lang/rust-project-goals#640] |
+| Zulip channel    | N/A                                |
+
 
 ## Summary
 

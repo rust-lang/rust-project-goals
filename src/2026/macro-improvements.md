@@ -1,12 +1,13 @@
 # Declarative (`macro_rules!`) macro improvements
 
-| Metadata         |               |
-| :--------------- | ------------- |
-| Point of contact | @joshtriplett |
-| Status           | Proposed      |
-| Tracking issue   |               |
-| Zulip channel    | #t-lang       |
-| [lang] champion  | @joshtriplett |
+| Metadata         |                                    |
+| :--              | :--                                |
+| Point of contact | @joshtriplett                      |
+| Status           | Proposed                           |
+| Tracking issue   | [rust-lang/rust-project-goals#629] |
+| Zulip channel    | #t-lang                            |
+| [lang] champion  | @joshtriplett                      |
+
 
 ## Summary
 

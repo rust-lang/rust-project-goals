@@ -1,13 +1,14 @@
 # Redesigning `super let`: Flexible Temporary Lifetime Extension
 
-| Metadata            |              |
-| :------------------ | ------------ |
-| Point of contact    | @dianne      |
-| Status              | Proposed     |
-| Tracking issue      |              |
-| Zulip channel       | N/A          |
-| [lang] champion     | @traviscross |
-| [compiler] champion | @dianne      |
+| Metadata            |                                    |
+| :--                 | :--                                |
+| Point of contact    | @dianne                            |
+| Status              | Proposed                           |
+| Tracking issue      | [rust-lang/rust-project-goals#648] |
+| Zulip channel       | N/A                                |
+| [lang] champion     | @traviscross                       |
+| [compiler] champion | @dianne                            |
+
 
 ## Summary
 

@@ -1,14 +1,15 @@
 # Stabilize Cargo SBOM precursor
 
 | Metadata              |                                                 |
-|:----------------------|-------------------------------------------------|
+| :--                   | :--                                             |
 | Point of contact      | @Shnatsel                                       |
 | Status                | Proposed                                        |
 | Needs                 | Contributor                                     |
-| Tracking issue        |                                                 |
+| Tracking issue        | [rust-lang/rust-project-goals#649]              |
 | Other tracking issues | https://github.com/rust-lang/cargo/issues/16565 |
 | Zulip channel         | N/A                                             |
 | [cargo] champion      | @weihanglo                                      |
+
 
 ## Summary
 

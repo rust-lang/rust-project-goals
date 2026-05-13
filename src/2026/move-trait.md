@@ -1,18 +1,19 @@
 # Immobile types and guaranteed destructors
 
-| Metadata              |                                                                                                  |
-| :-------------------- | ------------------------------------------------------------------------------------------------ |
-| Point of contact      | @jackh726                                                                                        |
-| Status                | Proposed                                                                                         |
+| Metadata              |                                                                                                      |
+| :--                   | :--                                                                                                  |
+| Point of contact      | @jackh726                                                                                            |
+| Status                | Proposed                                                                                             |
 | What and why          | Let types opt out of being moved or forgotten, enabling scoped spawn, async drop, and pin-by-default |
-| Timespan              | 2026-2027                                                                                        |
-| Roadmap               | [Just add async](./roadmap-just-add-async.md)                                                    |
-| Roadmap               | [Rust for Linux](./roadmap-rust-for-linux.md)                                                    |
-| Tracking issue        |                                                                                                  |
-| Other tracking issues | https://github.com/rust-lang/rust/issues/149607                                                  |
-| Zulip channel         | [#t-lang/move-trait](https://rust-lang.zulipchat.com/#narrow/channel/549962-t-lang.2Fmove-trait) |
-| [types] champion      | @lcnr                                                                                            |
-| [lang] champion | @jackh726 |
+| Timespan              | 2026-2027                                                                                            |
+| Roadmap               | [Just add async](./roadmap-just-add-async.md)                                                        |
+| Roadmap               | [Rust for Linux](./roadmap-rust-for-linux.md)                                                        |
+| Tracking issue        | [rust-lang/rust-project-goals#635]                                                                   |
+| Other tracking issues | https://github.com/rust-lang/rust/issues/149607                                                      |
+| Zulip channel         | [#t-lang/move-trait](https://rust-lang.zulipchat.com/#narrow/channel/549962-t-lang.2Fmove-trait)     |
+| [types] champion      | @lcnr                                                                                                |
+| [lang] champion       | @jackh726                                                                                            |
+
 
 ## Summary
 

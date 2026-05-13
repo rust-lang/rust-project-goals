@@ -1,13 +1,14 @@
 # Stabilize never type (`!`)
 
-| Metadata                  |                                                                                  |
-| :------------------------ | -------------------------------------------------------------------------------- |
-| Point of contact          | @WaffleLapkin                                                                    |
-| Status                    | Proposed                                                                         |
-| Tracking issue            |                                                                                  |
-| Other Tracking issue(s)   | https://github.com/rust-lang/rust/issues/35121                                   |
-| Highlight                 | Try, never, extern types                                                         |
-| Zulip channel             | N/A                                                                              |
+| Metadata                |                                                |
+| :--                     | :--                                            |
+| Point of contact        | @WaffleLapkin                                  |
+| Status                  | Proposed                                       |
+| Tracking issue          | [rust-lang/rust-project-goals#653]             |
+| Other Tracking issue(s) | https://github.com/rust-lang/rust/issues/35121 |
+| Highlight               | Try, never, extern types                       |
+| Zulip channel           | N/A                                            |
+
 
 ## Summary
 

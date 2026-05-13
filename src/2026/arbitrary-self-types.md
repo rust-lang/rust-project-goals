@@ -1,19 +1,20 @@
 # Arbitrary Self Types
 
-| Metadata              |                         |
-|:----------------------|-------------------------|
-| Point of contact      | @dingxiangfei2009       |
-| Status                | Proposed                |
+| Metadata              |                                                                                           |
+| :--                   | :--                                                                                       |
+| Point of contact      | @dingxiangfei2009                                                                         |
+| Status                | Proposed                                                                                  |
 | What and why          | Let user-defined smart pointers work as method receivers and support `dyn Trait` coercion |
-| Roadmap               | Rust for Linux          |
-| Roadmap               | Beyond the `&`          |
-| Tracking issue        |                         |
-| Other tracking issues | [rust-lang/rust#44874], [rust-lang/rust#146095], [rust-lang/rust#123430] |
-| Highlight             | Custom pointer types    |
-| Zulip channel         | N/A                     |
-| [lang] champion       | @tmandry                |
-| [types] champion      | @jackh726               |
-| [lang-docs] champion  | @traviscross            |
+| Roadmap               | Rust for Linux                                                                            |
+| Roadmap               | Beyond the `&`                                                                            |
+| Tracking issue        | [rust-lang/rust-project-goals#619]                                                        |
+| Other tracking issues | [rust-lang/rust#44874], [rust-lang/rust#146095], [rust-lang/rust#123430]                  |
+| Highlight             | Custom pointer types                                                                      |
+| Zulip channel         | N/A                                                                                       |
+| [lang] champion       | @tmandry                                                                                  |
+| [types] champion      | @jackh726                                                                                 |
+| [lang-docs] champion  | @traviscross                                                                              |
+
 
 ## Summary
 

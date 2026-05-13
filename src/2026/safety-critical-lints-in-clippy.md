@@ -1,13 +1,14 @@
 # Establish a Spot for Safety-Critical Lints in Clippy
 
-| Metadata         |                                                              |
-| :--------------- | ------------------------------------------------------------ |
-| Point of contact | @PLeVasseur                                                  |
-| Status           | Proposed                                                     |
+| Metadata         |                                                                                            |
+| :--              | :--                                                                                        |
+| Point of contact | @PLeVasseur                                                                                |
+| Status           | Proposed                                                                                   |
 | What and why     | A sustainable home in Clippy for safety-critical coding standard lints from the Consortium |
-| Roadmap          | Safety-Critical Rust                                         |
-| Tracking issue   |                                                              |
-| Zulip channel    | N/A                                                          |
+| Roadmap          | Safety-Critical Rust                                                                       |
+| Tracking issue   | [rust-lang/rust-project-goals#631]                                                         |
+| Zulip channel    | N/A                                                                                        |
+
 
 ## Summary
 

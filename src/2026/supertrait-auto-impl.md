@@ -1,16 +1,17 @@
 # Implement Supertrait `auto impl`
 
-| Metadata              |                           |
-|:----------------------|---------------------------|
-| Point of contact      | @dingxiangfei2009         |
-| Status                | Proposed                  |
+| Metadata              |                                                                                                          |
+| :--                   | :--                                                                                                      |
+| Point of contact      | @dingxiangfei2009                                                                                        |
+| Status                | Proposed                                                                                                 |
 | What and why          | Automatically implement supertraits when a subtrait is implemented, enabling trait hierarchy refactoring |
-| Roadmap               | Beyond the `&` |
-| Roadmap               | Rust for Linux            |
-| [lang] champion       | @cramertj                 |
-| Tracking issue        |                           |
-| Other tracking issues | rust-lang/rust#149556     |
-| Zulip channel         | N/A                       |
+| Roadmap               | Beyond the `&`                                                                                           |
+| Roadmap               | Rust for Linux                                                                                           |
+| [lang] champion       | @cramertj                                                                                                |
+| Tracking issue        | [rust-lang/rust-project-goals#636]                                                                       |
+| Other tracking issues | rust-lang/rust#149556                                                                                    |
+| Zulip channel         | N/A                                                                                                      |
+
 
 ## Summary
 

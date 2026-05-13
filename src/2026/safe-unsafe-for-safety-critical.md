@@ -1,14 +1,15 @@
 # Normative Documentation for Sound `unsafe` Rust
 
-| Metadata         |                                                              |
-| :--------------- | ------------------------------------------------------------ |
-| Point of contact | @PLeVasseur                                                  |
-| Status           | Proposed                                                     |
+| Metadata         |                                                                                                                |
+| :--              | :--                                                                                                            |
+| Point of contact | @PLeVasseur                                                                                                    |
+| Status           | Proposed                                                                                                       |
 | What and why     | Normative documentation for common `unsafe` patterns so safety-critical developers have authoritative guidance |
-| Roadmap          | Safety-Critical Rust                                         |
-| Tracking issue   |                                                              |
-| Zulip channel    | N/A                                                          |
-| [opsem] champion    | @RalfJung                                                          |
+| Roadmap          | Safety-Critical Rust                                                                                           |
+| Tracking issue   | [rust-lang/rust-project-goals#644]                                                                             |
+| Zulip channel    | N/A                                                                                                            |
+| [opsem] champion | @RalfJung                                                                                                      |
+
 
 ## Summary
 

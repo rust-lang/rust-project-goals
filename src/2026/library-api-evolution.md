@@ -1,15 +1,16 @@
 # Evolving the standard library API across editions
 
-| Metadata            |          |
-| :------------------ | -------- |
-| Point of contact    | @Amanieu |
-| Status              | Proposed |
-| Tracking issue      |          |
-| Zulip channel       | N/A      |
-| [libs-api] champion | @Amanieu |
-| [edition] champion  | @ehuss   |
-| [compiler] champion | @yaahc   |
-| [rustdoc] champion  | @GuillaumeGomez |
+| Metadata            |                                    |
+| :--                 | :--                                |
+| Point of contact    | @Amanieu                           |
+| Status              | Proposed                           |
+| Tracking issue      | [rust-lang/rust-project-goals#633] |
+| Zulip channel       | N/A                                |
+| [libs-api] champion | @Amanieu                           |
+| [edition] champion  | @ehuss                             |
+| [compiler] champion | @yaahc                             |
+| [rustdoc] champion  | @GuillaumeGomez                    |
+
 
 ## Summary
 

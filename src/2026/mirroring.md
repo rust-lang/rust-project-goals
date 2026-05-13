@@ -1,15 +1,16 @@
 # Implement Verifiable Mirroring Prototype
 
-| Metadata             |                  |
-|:---------------------|------------------|
-| Point of contact     | @walterhpearce   |
-| Status               | Proposed         |
-| Tracking issue       |                  |
-| Zulip channel        | [#tbd-signing]   |
-| [rustup] champion    | @djc             |
-| [cargo] champion     | @arlosi          |
-| [infra] champion     | @Mark-Simulacrum |
-| [crates-io] champion | @LawnGnome       |
+| Metadata             |                                    |
+| :--                  | :--                                |
+| Point of contact     | @walterhpearce                     |
+| Status               | Proposed                           |
+| Tracking issue       | [rust-lang/rust-project-goals#637] |
+| Zulip channel        | [#tbd-signing]                     |
+| [rustup] champion    | @djc                               |
+| [cargo] champion     | @arlosi                            |
+| [infra] champion     | @Mark-Simulacrum                   |
+| [crates-io] champion | @LawnGnome                         |
+
 
 [#tbd-signing]: https://rust-lang.zulipchat.com/#narrow/channel/417663-tbd-signing
 

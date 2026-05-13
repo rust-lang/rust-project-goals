@@ -1,18 +1,19 @@
 # Box notation for dyn async trait
 
-| Metadata         |                      |
-|:-----------------|----------------------|
-| Point of contact | @nikomatsakis        |
-| Status           | Proposed             |
-| What and why     | Enable dyn dispatch for async traits via `.box` notation |
-| Timespan         | 2026-2027            |
-| Needs            | Contributor          |
-| Roadmap          | Just add async       |
-| Tracking issue   |                      |
-| Highlight        | Async and ergonomic RC |
-| Zulip channel    | [#wg-async][channel] |
-| [lang] champion  | @nikomatsakis        |
-| [compiler] champion | @TaKO8Ki          |
+| Metadata            |                                                          |
+| :--                 | :--                                                      |
+| Point of contact    | @nikomatsakis                                            |
+| Status              | Proposed                                                 |
+| What and why        | Enable dyn dispatch for async traits via `.box` notation |
+| Timespan            | 2026-2027                                                |
+| Needs               | Contributor                                              |
+| Roadmap             | Just add async                                           |
+| Tracking issue      | [rust-lang/rust-project-goals#625]                       |
+| Highlight           | Async and ergonomic RC                                   |
+| Zulip channel       | [#wg-async][channel]                                     |
+| [lang] champion     | @nikomatsakis                                            |
+| [compiler] champion | @TaKO8Ki                                                 |
+
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/187312-wg-async/
 

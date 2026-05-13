@@ -1,12 +1,13 @@
 # Wasm Components
 
-| Metadata            |              |
-|:--------------------|--------------|
-| Point of contact    | @yoshuawuyts |
-| Status              | Proposed     |
-| Tracking issue      |              |
-| Zulip channel       | N/A          |
-| [compiler] champion | @WesleyWiser |
+| Metadata            |                                    |
+| :--                 | :--                                |
+| Point of contact    | @yoshuawuyts                       |
+| Status              | Proposed                           |
+| Tracking issue      | [rust-lang/rust-project-goals#656] |
+| Zulip channel       | N/A                                |
+| [compiler] champion | @WesleyWiser                       |
+
 
 ## Summary
 

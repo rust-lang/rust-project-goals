@@ -1,12 +1,13 @@
 # Nightly support for function overloading in FFI bindings
 
-| Metadata         |          |
-| :--------------- | -------- |
-| Point of contact | @ssbr    |
-| Status           | Proposed |
-| Tracking issue   |          |
-| Zulip channel    | N/A      |
-| [lang] champion  | @tmandry |
+| Metadata         |                                    |
+| :--              | :--                                |
+| Point of contact | @ssbr                              |
+| Status           | Proposed                           |
+| Tracking issue   | [rust-lang/rust-project-goals#643] |
+| Zulip channel    | N/A                                |
+| [lang] champion  | @tmandry                           |
+
 
 ## Summary
 
