@@ -1,14 +1,15 @@
 # Async statemachine optimisation
 
-| Metadata            |             |
-|:--------------------|-------------|
-| Point of contact    | @diondokter |
-| Status              | Proposed    |
-| Needs               | Funding     |
-| Tracking issue      |             |
-| Zulip channel       | N/A         |
-| Needs | Funding |
-| [compiler] champion | @eholk      |
+| Metadata            |                                    |
+| :--                 | :--                                |
+| Point of contact    | @diondokter                        |
+| Status              | Accepted                           |
+| Needs               | Funding                            |
+| Tracking issue      | [rust-lang/rust-project-goals#623] |
+| Zulip channel       | N/A                                |
+| Needs               | Funding                            |
+| [compiler] champion | @eholk                             |
+
 
 ## Summary
 

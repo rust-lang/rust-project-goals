@@ -1,14 +1,15 @@
 # Open Enums
 
-| Metadata         |           |
-|:-----------------|-----------|
-| Point of contact | @kupiakos |
-| Status           | Proposed  |
-| Tracking issue   |           |
-| Zulip channel    | N/A       |
-| [lang] champion  | @scottmcm |
-| [compiler] champion  | @madsmtm |
-| [opsem] champion | @chorman0773 |
+| Metadata            |                                    |
+| :--                 | :--                                |
+| Point of contact    | @kupiakos                          |
+| Status              | Accepted                           |
+| Tracking issue      | [rust-lang/rust-project-goals#645] |
+| Zulip channel       | N/A                                |
+| [lang] champion     | @scottmcm                          |
+| [compiler] champion | @madsmtm                           |
+| [opsem] champion    | @chorman0773                       |
+
 
 @joshtriplett can serve as the lang champion do it if Scott can't.
 

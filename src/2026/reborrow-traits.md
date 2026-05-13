@@ -3,7 +3,7 @@
 | Metadata         |                                    |
 | :--------------- | ---------------------------------- |
 | Point of contact | @aapoalas                          |
-| Status           | Proposed                           |
+| Status           | Accepted                           |
 | What and why     | Extend automatic reborrowing to user-defined types like `Pin<&mut T>` and custom smart pointers |
 | Timespan         | 2026-2027                          |
 | Roadmap          | Beyond the `&`                     |

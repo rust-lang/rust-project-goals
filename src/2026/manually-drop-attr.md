@@ -1,15 +1,16 @@
 # Control over Drop semantics
 
-| Metadata            |                |
-|:--------------------|----------------|
-| Point of contact    | @thunderseethe |
-| Status              | Proposed   |
-| Needs               | Funding        |
-| Tracking issue      |                |
-| Zulip channel       | N/A            |
-| [lang] champion     | @Nadrieril     |
-| [opsem] champion    | @CAD97         |
-| [compiler] champion | @oli-obk       |
+| Metadata            |                                    |
+| :--                 | :--                                |
+| Point of contact    | @thunderseethe                     |
+| Status              | Accepted                           |
+| Needs               | Funding                            |
+| Tracking issue      | [rust-lang/rust-project-goals#628] |
+| Zulip channel       | N/A                                |
+| [lang] champion     | @Nadrieril                         |
+| [opsem] champion    | @CAD97                             |
+| [compiler] champion | @oli-obk                           |
+
 
 ## Summary
 

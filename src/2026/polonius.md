@@ -3,7 +3,7 @@
 | Metadata         |                                    |
 |:-----------------|------------------------------------|
 | Point of contact | @lqd                               |
-| Status           | Proposed                           |
+| Status           | Accepted                           |
 | Tracking issue   | [rust-lang/rust-project-goals#118] |
 | Zulip channel    | [#t-types/polonius][channel]       |
 | [types] champion | @jackh726                          |

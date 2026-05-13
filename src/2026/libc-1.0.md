@@ -1,12 +1,13 @@
 # libc 1.0 release readiness
 
 | Metadata              |                                                                      |
-| :-------------------- | -------------------------------------------------------------------- |
+| :--                   | :--                                                                  |
 | Point of contact      | @JohnTitor                                                           |
-| Status                | Proposed                                                             |
-| Tracking issue        |  |
+| Status                | Accepted                                                             |
+| Tracking issue        | [rust-lang/rust-project-goals#657]                                   |
 | Other tracking issues | [rust-lang/libc#3248](https://github.com/rust-lang/libc/issues/3248) |
 | Zulip channel         | N/A                                                                  |
+
 
 ## Summary
 

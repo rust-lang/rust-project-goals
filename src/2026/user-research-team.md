@@ -1,11 +1,12 @@
 # Establish a User Research Team
 
 | Metadata         |                                    |
-| :--------------- | ---------------------------------- |
+| :--              | :--                                |
 | Point of contact | @nikomatsakis                      |
-| Status           | Proposed                           |
-| Tracking issue   |                                    |
+| Status           | Accepted                           |
+| Tracking issue   | [rust-lang/rust-project-goals#632] |
 | Zulip channel    | [#vision-doc-2025][channel]        |
+
 
 ## Summary
 

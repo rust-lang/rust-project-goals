@@ -1,12 +1,13 @@
 # Cargo cross workspace cache
 
-| Metadata         |                                                                                  |
-| :--------------- | -------------------------------------------------------------------------------- |
-| Point of contact | @ranger-ross                                                                     |
-| Status           | Proposed                                                                         |
-| Tracking issue   |                                                                                  |
-| Zulip channel    | N/A                                                                              |
-| [cargo] champion | @epage                                                                           |
+| Metadata         |                                    |
+| :--              | :--                                |
+| Point of contact | @ranger-ross                       |
+| Status           | Accepted                           |
+| Tracking issue   | [rust-lang/rust-project-goals#626] |
+| Zulip channel    | N/A                                |
+| [cargo] champion | @epage                             |
+
 
 ## Summary
 

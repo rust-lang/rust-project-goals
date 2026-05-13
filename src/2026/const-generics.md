@@ -3,7 +3,7 @@
 | Metadata         |                                     |
 | :--------------- | ----------------------------------- |
 | Point of contact | @BoxyUwU                            |
-| Status           | Proposed                            |
+| Status           | Accepted                            |
 | What and why     | Finish "the rest" of Const Generics |
 | Roadmap          | Constify all the things             |
 | Roadmap          | Rust for Linux                      |

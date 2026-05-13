@@ -1,15 +1,17 @@
 # Stabilize the Try trait
 
-| Metadata              |                      |
-|:----------------------|----------------------|
-| Point of contact      | @tmandry             |
-| Status                | Proposed             |
-| Needs                 | Funding              |
-| Other tracking issues | rust-lang/rust#84277 |
-| Zulip channel         | N/A                  |
-| Highlight             | Try, never, extern types |
-| [lang] champion       | @tmandry             |
-| [libs-api] champion   | @Amanieu             |
+| Metadata              |                                    |
+| :--                   | :--                                |
+| Point of contact      | @tmandry                           |
+| Status                | Accepted                           |
+| Needs                 | Funding                            |
+| Other tracking issues | rust-lang/rust#84277               |
+| Zulip channel         | N/A                                |
+| Highlight             | Try, never, extern types           |
+| [lang] champion       | @tmandry                           |
+| [libs-api] champion   | @Amanieu                           |
+| Tracking issue        | [rust-lang/rust-project-goals#654] |
+
 
 ## Summary
 

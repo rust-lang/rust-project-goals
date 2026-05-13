@@ -3,7 +3,7 @@
 | Metadata         |                                    |
 |:-----------------|:-----------------------------------|
 | Point of contact | @davidtwco                         |
-| Status           | Proposed                           |
+| Status           | Accepted                           |
 | What and why     | Let Cargo rebuild the standard library from source for custom targets and configurations |
 | Roadmap          | Rust for Linux                     |
 | Highlight        | Build-std                          |
