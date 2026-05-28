@@ -2,7 +2,7 @@
 
 | Metadata            |                                    |
 | :--                 | :--                                |
-| Point of contact    | @thunderseethe                     |
+| Point of contact    | @JayanAXHF                         |
 | Status              | Accepted                           |
 | Needs               | Funding                            |
 | Tracking issue      | [rust-lang/rust-project-goals#628] |
