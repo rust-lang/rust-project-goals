@@ -71,17 +71,16 @@ Instead `bar` could 'become' the `foo` future which would save a statemachine.
 
 I believe that if we keep stacking optimizations like these, we'll get some really nice results.
 
-I've got 3 optimisations on my list so far. You can see them in the work items and in the draft blog post I'm writing (linked in FAQ).
+I've got 4 optimisations on my list so far. You can see them in the work items and in the draft blog post I'm writing (linked in FAQ).
 
 ### Work items over the next year
 
 | Task                                                                                     | Owner(s)    | Notes                                   |
 | ---------------------------------------------------------------------------------------- | ----------- | --------------------------------------- |
-| Create a list of all the optimisations we could do                                       | @diondokter |                                         |
 | Create (unstable?) compiler flag to replace future panics with returning `Poll::Pending` | @diondokter |                                         |
 | Create an optimisation for futures with no awaits                                        | @diondokter |                                         |
 | Create an optimisation for futures with one await (`bar` becomes `foo`)                  | @diondokter | Maybe generalisable to the 'last' await |
-| Implement the rest of the list from task 1                                               | @diondokter |                                         |
+| Collapse states when multiple await points are the same                                  | @diondokter |                                         |
 
 ## Team asks
 
@@ -102,14 +101,14 @@ This shows how much bloat async can add.
 For a big customer we were running against the 900 KB limit of the hardware and had to do a lot of manual optimisations to the async code to make it fit.
 I then looked into the MIR pass responsible and found it pretty much does no optimisations.
 
-The plan is/was to find parties willing to fund work on these optimisations. To get to stage, we want to release 2 blogposts on the Tweede golf website.
-The first one will cover the bloat and some optimisations you can do as a developer now and the second one ([draft](https://hackmd.io/@diondokter/Sk6f2uXHbe)) dives more into how we could bring those optimisations to the compiler so you don't have to apply them manually anymore.
+We're working on getting funding. In that process we've released two blog posts raising awareness:
+- [debloat your async rust](https://tweedegolf.nl/en/blog/235/debloat-your-async-rust)
+- [async rust never left the mvp state](https://tweedegolf.nl/en/blog/237/async-rust-never-left-the-mvp-state)
 
 ### What's your commitment?
 
 Without funding other commercial work will sadly take priority. This means I can only commit up to half a day per week on most weeks.
-
-With funding we can make it a real project and we (Tweede golf) can bring in more people too like @folkertdev and/or @bjorn3.
+There's interest from some companies to fund the work. When more becomes clear this section will be updated.
 
 ### How does this relate to the [other similar proposal](./async-future-memory-optimisation.md)?
 
