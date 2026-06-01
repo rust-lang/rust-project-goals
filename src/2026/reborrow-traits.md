@@ -57,7 +57,7 @@ The fundamental design philosophy remains:
 | Team       | Support level | Notes                                         |
 | ---------- | ------------- | --------------------------------------------- |
 | [lang]     | Medium        | Continued experiment support, design feedback |
-| [compiler] | Small         | Standard reviews for trait implementation PRs |
+| [compiler] | Medium        | Standard reviews for trait implementation PRs, handled by @oli |
 | [types]    | Small         | Review work on the type system is expected to be trivial and feature-gated |
 
 ## Frequently asked questions
