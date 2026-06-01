@@ -66,7 +66,7 @@ fn format_with_commas(n: u64) -> String {
     result.chars().rev().collect()
 }
 
-/// Sum a slice of FundingCost values. Returns None if all are TBD, otherwise sums the known amounts.
+/// Sum a slice of FundingCost values. Returns None if the slice is empty, `Tbd` if all costs are TBD, otherwise sums the known amounts.
 pub fn sum_funding_costs(costs: &[FundingCost]) -> Option<FundingCost> {
     let mut total: u64 = 0;
     let mut any_known = false;
