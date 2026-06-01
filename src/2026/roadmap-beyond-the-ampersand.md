@@ -43,6 +43,10 @@ User-defined smart pointers that are truly indistinguishable from built-in refer
 
 The goals are complementary but largely independent. **Reborrow traits** address automatic reborrowing, providing the general mechanism that types can opt into. **Field projections** provides the broader "place operations" framework that encompasses projection, borrowing, and reading/writing through custom pointer types. **In-place initialization** tackles a related but distinct problem: creating values that can't be moved.
 
+## Funding
+
+(((FUNDING TABLE: Beyond the `&`)))
+
 ## Frequently asked questions
 
 ### What types will benefit from this work?

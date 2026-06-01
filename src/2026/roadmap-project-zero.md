@@ -54,6 +54,10 @@ Our goal is simple: *If you stick to safe Rust, you don't have to worry about me
 
 **Step 4: Formalize trait system semantics.** To prevent future soundness bugs, we need a formal specification of what the trait solver *should* do. This catches bugs before they ship and provides a reference for correctness as the type system evolves.
 
+## Funding
+
+(((FUNDING TABLE: Project Zero)))
+
 ## Frequently asked questions
 
 ### Will these fixes break my code?
