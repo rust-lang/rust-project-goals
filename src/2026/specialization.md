@@ -1,15 +1,15 @@
 # Stabilize concrete type specialization
 
-| Metadata              |                      |
-|:----------------------|----------------------|
-| Point of contact      | @tmandry             |
-| Status                | Proposed             |
-| Tracking issue        |                      |
-| Zulip channel         | N/A                  |
-| Help wanted           | N/A                  |
-| Other tracking issues | rust-lang/rust#31844 |
-| [lang] champion       | @tmandry             |
-| [types] champion      | @jackh726            |
+| Metadata              |                                    |
+| :--                   | :--                                |
+| Point of contact      | @tmandry                           |
+| Status                | Accepted                           |
+| Tracking issue        | [rust-lang/rust-project-goals#652] |
+| Zulip channel         | N/A                                |
+| Other tracking issues | rust-lang/rust#31844               |
+| [lang] champion       | @tmandry                           |
+| [types] champion      | @jackh726                          |
+
 
 ## Summary
 

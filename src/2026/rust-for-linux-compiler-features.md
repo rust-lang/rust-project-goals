@@ -3,7 +3,7 @@
 | Metadata            |                                    |
 |:--------------------|------------------------------------|
 | Point of contact    | @tomassedovic                      |
-| Status              | Proposed                           |
+| Status              | Accepted                           |
 | What and why        | Stabilize compiler features the Linux kernel depends on so it can build with only stable Rust |
 | Timespan            | 2026-2027                          |
 | Roadmap             | Rust for Linux                     |

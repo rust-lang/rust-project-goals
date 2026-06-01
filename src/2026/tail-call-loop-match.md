@@ -1,13 +1,14 @@
 # Explicit tail calls & `loop_match` 
 
-| Metadata              |                                                                                                         |
-| :-------------------- | ------------------------------------------------------------------------------------------------------ |
-| Point of contact      | @folkertdev                                                                                               |
-| Status                | Proposed                                                                                                   |
-| Tracking issue        |                                                                                                          |
+| Metadata              |                                                                                                  |
+| :--                   | :--                                                                                              |
+| Point of contact      | @folkertdev                                                                                      |
+| Status                | Accepted                                                                                         |
+| Tracking issue        | [rust-lang/rust-project-goals#634]                                                               |
 | Other tracking issues | https://github.com/rust-lang/rust/issues/112788, https://github.com/rust-lang/rust/issues/132306 |
-| Zulip channel         |                                                                                                          |
-| [lang] champion | @scottmcm |
+| Zulip channel         |                                                                                                  |
+| [lang] champion       | @scottmcm                                                                                        |
+
 
 ## Summary
 

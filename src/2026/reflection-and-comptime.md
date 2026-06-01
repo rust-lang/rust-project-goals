@@ -3,7 +3,7 @@
 | Metadata             |                                    |
 |:---------------------|:-----------------------------------|
 | Point of contact     | @oli-obk                           |
-| Status               | Proposed                           |
+| Status               | Accepted                           |
 | What and why         | Compile-time type reflection via `const fn` so `serialize(&my_struct)` works without derives |
 | Timespan             | 2026-2028                          |
 | Roadmap              | Constify all the things            |
@@ -19,7 +19,7 @@
 ## Summary
 
 Finish the implemented reflection scheme based on `const fn` that can only be called at compile time.
-Valdiate it against existing reflection libraries by giving them a nightly feature that obsoletes having derives and makes the derives no-ops.
+Validate it against existing reflection libraries by giving them a nightly feature that obsoletes having derives and makes the derives no-ops.
 Obtain T-lang and T-libs-api buy-in for the scheme and write an RFC.
 This proposal is solely for producing const eval values, not for putting types back into the type system.
 That will be a follow-up once this proposal has a merged MVP.
@@ -78,7 +78,7 @@ Open PRs:
 
 * add an attribute for `const fn` that prevents them from being called from runtime code or `const fn` without the attribute
     * See the FAQ for why we need `#[rustc_comptime] const fn() {}` declarations
-* add basic datastructures to libcore that represent common information about types and the APIs to obtain that information
+* add basic data structures to libcore that represent common information about types and the APIs to obtain that information
 
 ### Work items over the next year
 
@@ -162,6 +162,6 @@ zig's approach to comptime from a very high level is effectively
 we do not experiment with this approach at this time, because the compiler is not set up in a way to permit proc macros from accessing type information from the current crate.
 While there are ongoing refactorings that go into the direction of potentially allowing more of that in the future, that future seems to be more than 5 years away at my best guess.
 
-* the compiler is not set up to add AST nodes while type information is already available. It possibly never will, and it would be an immense amount of work to get there. I'm doing lots of refactorings that would need to be done for sth like that anyway, even if the goal is just better incremental and general compilar architecture.
+* the compiler is not set up to add AST nodes while type information is already available. It possibly never will, and it would be an immense amount of work to get there. I'm doing lots of refactorings that would need to be done for sth like that anyway, even if the goal is just better incremental and general compiler architecture.
 * there are too many open language questions about it that we haven't even started to discuss
-* a hacky comptime reflection prototype that works for just tuples and that works with regular const eval exists right now, so pursueing the definitely possible implementation will pay off in a shorter term.
+* a hacky comptime reflection prototype that works for just tuples and that works with regular const eval exists right now, so pursuing the definitely possible implementation will pay off in a shorter term.

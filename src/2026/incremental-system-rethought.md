@@ -1,13 +1,14 @@
 # Incremental Systems Rethought
 
-| Metadata            |           |
-|:--------------------|-----------|
-| Point of contact    | @blyxyas  |
-| Status              | Proposed  |
-| Tracking issue      |           |
-| Roadmap             | Fast Builds |
-| [compiler] champion | @jackh726 |
-| Zulip channel       | N/A       |
+| Metadata            |                                    |
+| :--                 | :--                                |
+| Point of contact    | @blyxyas                           |
+| Status              | Accepted                           |
+| Tracking issue      | [rust-lang/rust-project-goals#641] |
+| Roadmap             | Fast Builds                        |
+| [compiler] champion | @jackh726                          |
+| Zulip channel       | N/A                                |
+
 
 ## Summary
 

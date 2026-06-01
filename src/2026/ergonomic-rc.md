@@ -3,7 +3,7 @@
 | Metadata         |                                               |
 |:-----------------|-----------------------------------------------|
 | Point of contact | @nikomatsakis                                 |
-| Status           | Proposed                                      |
+| Status           | Accepted                                      |
 | What and why     | A `Share` trait for clone-as-alias types and `move($expr)` for precise closure capture control |
 | Roadmap          | [Just add async](./roadmap-just-add-async.md) |
 | Tracking issue   | [rust-lang/rust-project-goals#107]            |

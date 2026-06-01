@@ -3,7 +3,7 @@
 | Metadata            |                                    |
 |:--------------------|:-----------------------------------|
 | Point of contact    | @teor2345                          |
-| Status              | Proposed                           |
+| Status              | Accepted                           |
 | Tracking issue      | [rust-lang/rust-project-goals#388] |
 | Zulip channel       | [t-lang/interop][channel]          |
 | [compiler] champion | @oli-obk                           |

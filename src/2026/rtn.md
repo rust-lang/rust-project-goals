@@ -1,15 +1,16 @@
 # Prepare TAIT + RTN for stabilization
 
-| Metadata         |                      |
-|:-----------------|----------------------|
-| Point of contact | @traviscross         |
-| Status           | Proposed             |
+| Metadata         |                                                                                                    |
+| :--              | :--                                                                                                |
+| Point of contact | @traviscross                                                                                       |
+| Status           | Accepted                                                                                           |
 | What and why     | Name opaque types and bound async return types so `async fn` in traits works with `Send` and `dyn` |
-| Roadmap          | Just add async       |
-| Tracking issue   |                      |
-| Zulip channel    | [#wg-async][channel] |
-| [lang] champion  | @traviscross         |
-| [types] champion | @lcnr                |
+| Roadmap          | Just add async                                                                                     |
+| Tracking issue   | [rust-lang/rust-project-goals#646]                                                                 |
+| Zulip channel    | [#wg-async][channel]                                                                               |
+| [lang] champion  | @traviscross                                                                                       |
+| [types] champion | @lcnr                                                                                              |
+
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/187312-wg-async/
 

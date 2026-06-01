@@ -4,7 +4,7 @@
 | :--                | :--                                                                                       |
 | Point of contact   | @jswrenn                                                                                  |
 | [lang] champion    | @nikomatsakis                                                                             |
-| Status             | Proposed                                                                                  |
+| Status             | Accepted                                                                                  |
 | Tracking issue     | [rust-lang/rust-project-goals#273]                                                        |
 | Zulip channel      | https://rust-lang.zulipchat.com/#narrow/channel/213817-t-lang/topic/unsafe.20fields.20RFC |
 

@@ -1,13 +1,14 @@
 # Project goal - High-Level ML optimizations
 
-| Metadata            |              |
-|:--------------------|--------------|
-| Point of contact    | @ZuseZ4      |
-| Status              | Proposed     |
-| Tracking issue      |              |
-| Zulip channel       | N/A          |
-| [lang] champion     | @traviscross |
-| [compiler] champion | @oli-obk     |
+| Metadata            |                                    |
+| :--                 | :--                                |
+| Point of contact    | @ZuseZ4                            |
+| Status              | Accepted                           |
+| Tracking issue      | [rust-lang/rust-project-goals#647] |
+| Zulip channel       | N/A                                |
+| [lang] champion     | @traviscross                       |
+| [compiler] champion | @oli-obk                           |
+
 
 ## Motivation
 

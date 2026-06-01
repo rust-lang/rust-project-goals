@@ -1,25 +1,25 @@
 # Box notation for dyn async trait
 
-| Metadata         |                      |
-|:-----------------|----------------------|
-| Point of contact | @nikomatsakis        |
-| Status           | Proposed             |
-| What and why     | Enable dyn dispatch for async traits via `.box` notation |
-| Timespan         | 2026-2027            |
-| Roadmap          | Just add async       |
-| Tracking issue   |                      |
-| Highlight        | Async and ergonomic RC |
-| Zulip channel    | [#wg-async][channel] |
-| [lang] champion  | @nikomatsakis        |
-| [compiler] champion | @TaKO8Ki          |
+| Metadata            |                                                          |
+| :--                 | :--                                                      |
+| Point of contact    | @nikomatsakis                                            |
+| Status              | Accepted                                                 |
+| What and why        | Enable dyn dispatch for async traits via `.box` notation |
+| Timespan            | 2026-2027                                                |
+| Roadmap             | Just add async                                           |
+| Tracking issue      | [rust-lang/rust-project-goals#625]                       |
+| Highlight           | Async and ergonomic RC                                   |
+| Zulip channel       | [#wg-async][channel]                                     |
+| [lang] champion     | @nikomatsakis                                            |
+| [types] champion    | @jackh726                                                |
+| [compiler] champion | @spastorino                                              |
+
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/187312-wg-async/
 
 ## Summary
 
 Introduce `.box` notation and use it to enable dyn dispatch for traits with async methods. The initial scope is `foo.method().box` where `method()` returns a dyn-compatible RPITIT. In the future `.box` could be used more generally but before expanding it we would like to see progress on the work towards [in-place initialization](./in-place-init.md).
-
-**Needs contributor:** @nikomatsakis is able to devote 1h/wk to support an experienced contributor or a cohort of contributors in driving this design forward as a lang experiment. This is a challenging problem that will require modifying various parts of the compiler and would also benefit from modeling in a-mir-formality.
 
 ## Motivation
 
@@ -84,8 +84,8 @@ For more details and a broader look, see the [box, box, box][box-post] blog post
 | ---------------------------------- | ---------------- | ---------------------------------------- |
 | RFC for method-scope dyn compat    | @nikomatsakis    |                                          |
 | RFC for `.box` notation            | @nikomatsakis    | Scoped to RPITIT/async returns initially |
-| Implementation                     | ![Help Wanted][] | Nightly experiment                       |
-| Documentation                      | ![Help Wanted][] |                                          |
+| Implementation                     | @spastorino      | Nightly experiment                       |
+| Documentation                      | @spastorino      |                                          |
 
 ## Team asks
 
@@ -95,11 +95,12 @@ For more details and a broader look, see the [box, box, box][box-post] blog post
 | [compiler] | Medium        | Implementation review                       |
 | [types]    | Small         | May have changes to dyn-compatibility rules |
 
-## Help wanted
+## Funding
 
-| Task | Experience level | Time investment |
-|------|-----------------|-----------------|
-| Implementation work | TBD | TBD |
+| Purpose | Cost | Status |
+|---------|------|--------|
+| Contributor | TBD | 🔍 Looking |
+
 
 ## Frequently asked questions
 

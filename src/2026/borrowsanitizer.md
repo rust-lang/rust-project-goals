@@ -1,14 +1,15 @@
 # BorrowSanitizer
 
-| Metadata         |                                                                                  |
-| :--------------- | -------------------------------------------------------------------------------- |
-| Point of contact | @icmccorm                                                                         |
-| Status           | Proposed                                                                         |
-| Tracking issue   |                                                                                  |
-| Zulip channel    | N/A                                                                              |
-| [compiler] champion    | @RalfJung                                                                               |
-| [opsem] champion    | @RalfJung                                                                              |
-| [lang] champion    | @tmandry                                                                              |
+| Metadata            |                                    |
+| :--                 | :--                                |
+| Point of contact    | @icmccorm                          |
+| Status              | Accepted                           |
+| Tracking issue      | [rust-lang/rust-project-goals#624] |
+| Zulip channel       | N/A                                |
+| [compiler] champion | @RalfJung                          |
+| [opsem] champion    | @RalfJung                          |
+| [lang] champion     | @tmandry                           |
+
 
 ## Summary
 

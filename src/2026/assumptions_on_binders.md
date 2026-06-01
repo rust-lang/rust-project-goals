@@ -1,13 +1,14 @@
 # Assumptions on Binders 
 
-| Metadata         |                                                                                  |
-| :--------------- | -------------------------------------------------------------------------------- |
-| Point of contact | @BoxyUwU |
-| Roadmap          | Project Zero |
-| Status           | Proposed |
-| Tracking issue   |     |
+| Metadata         |                                     |
+| :--              | :--                                 |
+| Point of contact | @BoxyUwU                            |
+| Roadmap          | Project Zero                        |
+| Status           | Accepted                            |
+| Tracking issue   | [rust-lang/rust-project-goals#621]  |
 | Zulip channel    | N/A (just make a thread in t-types) |
-| [types] champion | @BoxyUwU |
+| [types] champion | @BoxyUwU                            |
+
 
 ## Summary
 

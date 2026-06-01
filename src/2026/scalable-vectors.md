@@ -3,7 +3,7 @@
 | Metadata            |                                    |
 | :--                 | :--                                |
 | Point of contact    | @davidtwco                         |
-| Status              | Proposed                           |
+| Status              | Accepted                           |
 | Tracking issue      | [rust-lang/rust-project-goals#270] |
 | Highlight           | Try, never, extern types           |
 | [compiler] champion | @davidtwco                         |
