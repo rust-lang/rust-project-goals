@@ -1,11 +1,10 @@
 # Finish the libtest json output experiment
 
 | Metadata         |                                                                                  |
-| :--------------- | -------------------------------------------------------------------------------- |
-| Point of contact | @epage                                   |
+|:-----------------|----------------------------------------------------------------------------------|
+| Point of contact | @epage                                                                           |
 | Status           | Accepted                                                                         |
-| Needs            | Contributor                                                                      |
-| Tracking issue     | [rust-lang/rust-project-goals#255] |
+| Tracking issue   | [rust-lang/rust-project-goals#255]                                               |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
 
 ## Summary
@@ -59,5 +58,11 @@ Most of that involves shifting responsibilities from the test harness to the tes
 | [cargo]    | Small         |                                         |
 | [libs-api]      | Small    |                                         |
 | [testing-devex] | Small    | Design discussions and review           |
+
+## Help wanted
+
+| Task | Experience level | Time investment |
+|------|-----------------|-----------------|
+| Implementation work | TBD | TBD |
 
 ## Frequently asked questions

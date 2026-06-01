@@ -4,7 +4,6 @@
 |:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | @epage                                                                           |
 | Status           | Accepted                                                                         |
-| Needs            | Contributor                                                                      |
 | Tracking issue   | [rust-lang/rust-project-goals#264]                                               |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
 
@@ -85,5 +84,11 @@ See [2025h2 goal](../2025h2/cargo-plumbing.md) for more background.
 | Team       | Support level | Notes                                   |
 | ---------- | ------------- | --------------------------------------- |
 | [cargo]    | Small         | PR reviews for Cargo changes; design discussions |
+
+## Help wanted
+
+| Task | Experience level | Time investment |
+|------|-----------------|-----------------|
+| Implementation work | TBD | TBD |
 
 ## Frequently asked questions

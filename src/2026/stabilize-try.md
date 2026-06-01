@@ -4,7 +4,6 @@
 | :--                   | :--                                |
 | Point of contact      | @tmandry                           |
 | Status                | Accepted                           |
-| Needs                 | Funding                            |
 | Other tracking issues | rust-lang/rust#84277               |
 | Zulip channel         | N/A                                |
 | Highlight             | Try, never, extern types           |
@@ -111,5 +110,11 @@ Because there are open design questions that haven't yet been resolved, we shoul
 | [lang]     | Medium        |                                         |
 | [libs-api] | Medium        |                                         |
 | [types]    | Small         |                                         |
+
+## Funding
+
+| Purpose | Cost | Status |
+|---------|------|--------|
+| Contributor | TBD | 💬 Under discussion |
 
 ## Frequently asked questions

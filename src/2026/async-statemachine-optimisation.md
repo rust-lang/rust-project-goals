@@ -4,12 +4,9 @@
 | :--                 | :--                                |
 | Point of contact    | @diondokter                        |
 | Status              | Accepted                           |
-| Needs               | Funding                            |
 | Tracking issue      | [rust-lang/rust-project-goals#623] |
 | Zulip channel       | N/A                                |
-| Needs               | Funding                            |
 | [compiler] champion | @eholk                             |
-
 
 ## Summary
 
@@ -87,6 +84,12 @@ I've got 4 optimisations on my list so far. You can see them in the work items a
 | Team       | Support level | Notes                                                                                                           |
 | ---------- | ------------- | --------------------------------------------------------------------------------------------------------------- |
 | [compiler] | Medium        | Most will be review work, but pushing optimisations to the max will possibly touch on some controversial points that need discussion |
+
+## Funding
+
+| Purpose | Cost | Status |
+|---------|------|--------|
+| Contributor | TBD | 💬 Under discussion |
 
 ## Frequently asked questions
 

@@ -4,10 +4,8 @@
 | :--                   | :--                                |
 | Point of contact      | @tmandry                           |
 | Status                | Accepted                           |
-| Needs                 | Funding                            |
 | Tracking issue        | [rust-lang/rust-project-goals#652] |
 | Zulip channel         | N/A                                |
-| Help wanted           | N/A                                |
 | Other tracking issues | rust-lang/rust#31844               |
 | [lang] champion       | @tmandry                           |
 | [types] champion      | @jackh726                          |
@@ -54,5 +52,11 @@ Given that specialization is largely blocked on design work to address known sou
 | [types]    | Large         | Review design document |
 | [libs]     | Small         |       |
 | [opsem]    | Small         |       |
+
+## Funding
+
+| Purpose | Cost | Status |
+|---------|------|--------|
+| Contributor | TBD | 💬 Under discussion |
 
 ## Frequently asked questions

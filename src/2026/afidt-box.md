@@ -10,7 +10,6 @@
 | Tracking issue      | [rust-lang/rust-project-goals#625]                       |
 | Highlight           | Async and ergonomic RC                                   |
 | Zulip channel       | [#wg-async][channel]                                     |
-| Needs               | Funding                                                  |
 | [lang] champion     | @nikomatsakis                                            |
 | [types] champion    | @jackh726                                                |
 | [compiler] champion | @spastorino                                              |
@@ -21,8 +20,6 @@
 ## Summary
 
 Introduce `.box` notation and use it to enable dyn dispatch for traits with async methods. The initial scope is `foo.method().box` where `method()` returns a dyn-compatible RPITIT. In the future `.box` could be used more generally but before expanding it we would like to see progress on the work towards [in-place initialization](./in-place-init.md).
-
-**Needs funding:** This goal needs funding to proceed.
 
 ## Motivation
 
@@ -97,6 +94,13 @@ For more details and a broader look, see the [box, box, box][box-post] blog post
 | [lang]     | Medium        | RFC decision                                |
 | [compiler] | Medium        | Implementation review                       |
 | [types]    | Small         | May have changes to dyn-compatibility rules |
+
+## Funding
+
+| Purpose | Cost | Status |
+|---------|------|--------|
+| Contributor | TBD | 🔍 Looking |
+
 
 ## Frequently asked questions
 

@@ -13,12 +13,9 @@
 >
 > The **status** should be **Proposed** for new goals or **Accepted** once approved.
 >
-> If your goal **needs** something to proceed, add one or more `Needs` rows:
-> * `Needs | Contributor` — the goal needs someone to step up and do the work.
->    The project goals team will try to help you find someone.
-> * `Needs | Funding` — the goal needs funding to proceed.
+> If your goal needs a **contributor**, add a `## Help wanted` section (see below).
 >
-> If you add a 'need', please add a section in the summary giving more details.
+> If your goal needs **funding**, add a `## Funding` section (see below).
 
 | Metadata         |                                                                                  |
 | :--------------- | -------------------------------------------------------------------------------- |
@@ -88,6 +85,30 @@
 | [opsem]    |               |                                         |
 | [types]    |               |                                         |
 | ...        | ...           | *Feel free to add rows for other teams* |
+
+## Help wanted
+
+> **Instructions:** If your goal needs a contributor, fill in the table below
+> describing the work, the experience level needed, and the expected time investment.
+> The presence of this section signals that the goal is looking for someone to do the work.
+> The project goals team will try to help you find someone.
+> Delete this section if your goal does not need a contributor.
+
+| Task | Experience level | Time investment |
+|------|-----------------|-----------------|
+| *e.g., Implement the feature* | *e.g., Intermediate Rust* | *e.g., 3 months part-time* |
+
+## Funding
+
+> **Instructions:** If your goal needs funding to proceed, fill in the table below
+> describing what the funding would cover and the estimated cost.
+> The presence of this section signals that the goal is looking for financial support.
+> Delete this section if your goal does not need funding.
+
+| Purpose | Cost | Status |
+|---------|------|--------|
+| *e.g., Contributor (6 months, full-time)* | *e.g., $60,000* | 🔍 Looking |
+| *e.g., Maintenance* | *e.g., $10,000* | 🔍 Looking |
 
 ## Frequently asked questions
 
