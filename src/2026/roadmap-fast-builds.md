@@ -26,7 +26,7 @@ The Rust compiler has made progress on compilation performance over the years, w
 
 * **No one thing.** Particularly for batch compilation, we're past the point of easy wins. Improving build times means doing many small improvements that add up.
 * **End-to-end, not just the compiler.** From the user's perspective, time spent linking or waiting for Cargo coordination is still time spent waiting. We should consider the big picture, not limit our focus to the compiler proper.
-* **Scenario matters.** Different workflows have different bottlenecks. By focusing on particular scenarios — like incremental rebuilds during development — we can find specialized wins (like RDR) that dramatically improve that case.
+* **Scenario matters.** Different workflows have different bottlenecks. By focusing on particular scenarios — like incremental rebuilds during development — we can find specialized wins (like RDR — "Relink, Don't Rebuild") that dramatically improve that case.
 
 ### What we are shooting for
 
