@@ -77,6 +77,8 @@ Length guidance:
 
 ### How we get there
 
+> Update the `Theme Name` below. Any goals that need funding will be listed here.
+
 | Goal | Timespan | What and why |
 | --- | --- | --- |
 | (((ROADMAP ROWS: Theme Name))) |
@@ -96,6 +98,10 @@ Length guidance:
 > * *What needs to happen first? What does it unblock?*
 > * *Which work items can proceed in parallel?*
 > * *What are the key blockers and how are they addressed?*
+
+## Funding
+
+(((FUNDING TABLE: Theme Name)))
 
 ## Frequently asked questions
 
