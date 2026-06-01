@@ -9,7 +9,7 @@
 | Roadmap          | Beyond the `&`                     |
 | Tracking issue   | [rust-lang/rust-project-goals#399] |
 | Zulip channel    | [#t-lang/custom-refs][channel]     |
-| [compiler] champion | @oli-obk                        |
+| [types] champion | @oli-obk                        |
 | [lang] champion  | @tmandry                           |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/522311-t-lang.2Fcustom-refs
@@ -58,8 +58,8 @@ The fundamental design philosophy remains:
 | Team       | Support level | Notes                                         |
 | ---------- | ------------- | --------------------------------------------- |
 | [lang]     | Medium        | Continued experiment support, design feedback |
-| [compiler] | Medium        | Standard reviews for trait implementation PRs |
-| [types]    | Small         | Review work on the type system is expected to be trivial and feature-gated |
+| [compiler] | Small         | Standard reviews for maintainability of changes |
+| [types]    | Medium        | MIR restructuring for borrowck |
 
 ## Frequently asked questions
 
