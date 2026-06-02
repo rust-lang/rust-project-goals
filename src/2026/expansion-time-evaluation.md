@@ -2,7 +2,7 @@
 
 | Metadata            |                                    |
 | :--                 | :--                                |
-| Point of contact    | @tmandry                           |
+| Point of contact    | @oli-obk                           |
 | Status              | Accepted                           |
 | Flagship            | Constify all the things            |
 | [types] champion    | @oli-obk                           |
