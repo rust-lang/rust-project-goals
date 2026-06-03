@@ -1,8 +1,8 @@
-# Stabilize concrete type specialization
+# Design, model, and implement a stabilizable-subset of specialization
 
 | Metadata              |                                    |
 | :--                   | :--                                |
-| Point of contact      | @tmandry                           |
+| Point of contact      | @jackh726                           |
 | Status                | Accepted                           |
 | Tracking issue        | [rust-lang/rust-project-goals#652] |
 | Zulip channel         | N/A                                |
@@ -13,7 +13,7 @@
 
 ## Summary
 
-Follow stabilization of the new trait solver this year by stabilizing a subset of specializing impls: Impls that follow the [always applicable][always applicable] rule. This roughly corresponds to specializing trait impls on concrete types.
+Work over this year will be done to identify key use cases of specialization and possible designs that could address them, and to implement a minimal, sound design for future stabilization.
 
 ## Motivation
 
