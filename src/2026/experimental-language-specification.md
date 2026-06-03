@@ -1,4 +1,4 @@
-# Case study for experimental language specification, with integration into project teams and processes
+# Experimental language specification
 
 | Metadata         |                                              |
 | :--              | :--                                          |
