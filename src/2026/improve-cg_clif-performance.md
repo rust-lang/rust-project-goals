@@ -66,6 +66,6 @@ We additionally want to fix several long-standing bugs that limit `rustc_codegen
 
 | Purpose | Cost | Status |
 |---------|------|--------|
-| Contributor | $75,000 | ✅ Finalized |
+| Contributor | $75,000 | 🔍 Looking |
 
 ## Frequently asked questions
