@@ -1,4 +1,4 @@
-# Project goal - High-Level ML optimizations
+# High-Level ML optimizations
 
 | Metadata            |                                    |
 | :--                 | :--                                |
