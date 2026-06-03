@@ -132,9 +132,9 @@ impl Destruct for UringState {
 
 ## Funding
 
-| Purpose | Cost | Status |
-|---------|------|--------|
-| Contributor | TBD | 💬 Under discussion |
+| Purpose | Cost | Funded | Sponsor(s) |
+|---------|------|--------|------------|
+| Contributor | TBD | Partial | |
 
 ## Frequently asked questions
 

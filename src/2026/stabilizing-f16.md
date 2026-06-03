@@ -7,7 +7,7 @@
 | Tracking issue        | [rust-lang/rust-project-goals#655]              |
 | Other tracking issues | https://github.com/rust-lang/rust/issues/116909 |
 | Zulip channel         | N/A                                             |
-
+| Funding point of contact | [Trifecta Tech Foundation](https://trifectatech.org/) |
 
 ## Summary
 
@@ -46,9 +46,9 @@ With @tgross35 as the dedicated reviewer, the asks of the teams are limited.
 
 ## Funding
 
-| Purpose | Cost | Status |
-|---------|------|--------|
-| Contributor | $25,000 | 🔍 Looking |
+| Purpose | Cost | Funded | Sponsor(s) |
+|---------|------|--------|------------|
+| Contributor | $25,000 | No | |
 
 ## Frequently asked questions
 

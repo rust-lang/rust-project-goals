@@ -1,7 +1,13 @@
 # Looking for funding
 
-The goals below are looking for funding. If you might be interested in helping to fund a goal, please join the rust-lang Zulip and post a message in the [`#project-goals/2026-workshop`][channel] channel or write to the goals team at `goals-team@rust-lang.org`.
+The following goals below are looking for funding. Many goals have a point of contact but you can also work with the Rust Funding Team to interface (`funding@rust-lang.org`).
 
-[channel]: https://rust-lang.zulipchat.com/#narrow/channel/546987-project-goals.2F2026-workshop
+(((FUNDING LEGEND)))
 
-(((FUNDING TABLE GROUPED)))
+## By roadmap
+
+(((FUNDING TABLE GROUPED BY GOAL)))
+
+## By funding POC
+
+(((FUNDING TABLE GROUPED BY POC)))

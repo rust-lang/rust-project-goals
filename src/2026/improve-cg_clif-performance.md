@@ -3,12 +3,12 @@
 | Metadata            |                                    |
 | :--                 | :--                                |
 | Point of contact    | @bjorn3                            |
+| Funding point of contact | [Tweede Golf](https://tweedegolf.nl/en) |
 | Status              | Accepted                           |
 | Tracking issue      | [rust-lang/rust-project-goals#639] |
 | Zulip channel       | N/A                                |
 | Roadmap             | Fast Builds                        |
 | [compiler] champion | @bjorn3                            |
-
 
 ## Summary
 
@@ -64,8 +64,8 @@ We additionally want to fix several long-standing bugs that limit `rustc_codegen
 
 ## Funding
 
-| Purpose | Cost | Status |
-|---------|------|--------|
-| Contributor | $75,000 | 🔍 Looking |
+| Purpose | Cost | Funded | Sponsor(s) |
+|---------|------|--------|------------|
+| Contributor | $75,000 | No | |
 
 ## Frequently asked questions
