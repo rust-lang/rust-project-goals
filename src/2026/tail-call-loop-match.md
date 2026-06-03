@@ -48,7 +48,7 @@ In light of these design issues, we'd also like to continue development of `loop
 
 | Purpose | Cost | Status |
 |---------|------|--------|
-| Contributor | $25,000 | ✅ Finalized |
+| Contributor | $25,000 | 💬 Under discussion |
 
 ## Frequently asked questions
 

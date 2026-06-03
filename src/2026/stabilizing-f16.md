@@ -48,7 +48,7 @@ With @tgross35 as the dedicated reviewer, the asks of the teams are limited.
 
 | Purpose | Cost | Status |
 |---------|------|--------|
-| Contributor | $25,000 | ✅ Finalized |
+| Contributor | $25,000 | 🔍 Looking |
 
 ## Frequently asked questions
 

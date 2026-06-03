@@ -89,7 +89,7 @@ I've got 4 optimisations on my list so far. You can see them in the work items a
 
 | Purpose | Cost | Status |
 |---------|------|--------|
-| Contributor | TBD | 💬 Under discussion |
+| Contributor | $50,000 | 💬 Under discussion |
 
 ## Frequently asked questions
 
