@@ -11,32 +11,38 @@
 
 ## Summary
 
-In recent years we've seen increasing hardware support for the `f16` and `f128` float types. Especially for `f16` support was originally motivated by machine learning/AI, but these types have since also found applications in other domains like graphics and physics simulations.
+In recent years we've seen increasing hardware support for the `f16` float type. Support was originally motivated by machine learning/AI, but `f16` has since also found applications in other domains like graphics and physics simulations.
 
-With LLVM 22, the remaining blockers in the backends have been cleared for `f16`, and therefore stabilizing this type in 2026 is realistic. 
+With LLVM 22, the remaining blockers in the backends have been cleared for `f16`, and therefore stabilizing this type in 2026 is realistic.
 
 ## Motivation
 
 ### The status quo
 
-The `f16` and `f128` are unstable. Their implementations are mostly complete, with some missing const support. For `f128` there are still some serious ABI issues that require fixes in LLVM. For `f16` LLVM 22 has the support we need.
+The `f16` is unstable. The implementation in the compiler is mostly complete, with some missing const support. For `f16` LLVM 22 has the support we need.
 
 ### What we propose to do about it
 
-We will stabilize `f16`, and push `f128` as far as we can. There is not much to design at this point.
+We will stabilize `f16`. There is not much to design at this point.
+
+When rustc drops support for LLVM 21 (summer 2026) we can clean up the implementation significantly.
+
+The LLVM backend provides implementations for some `f16` functions (type conversions, arithmetic, etc.)
+that are not available when using the cranelift backend. We propose to add implementations to
+`rust-lang/compiler-builtins` as needed to get the cranelift backend on-par with the LLVM backend.
 
 ### Work items over the next year
 
 | Task        | Owner(s) | Notes |
 | ----------- | -------- | ----- |
 | complete support in const-eval/miri | @folkertdev  |       |
-| improve support in `rustc_codegen_gcc` | @folkertdev  |       |
-| remove `cfg(target_has_reliable_f16)` | @folkertdev, @tgross35 | | 
+| improve support in `rustc_codegen_cranelift` | @folkertdev, @bjorn3, @tgross35  |       |
+| remove `cfg(target_has_reliable_f16)` | @folkertdev, @tgross35 | |
 | write the stabilization report | @folkertdev, @tgross35  |       |
 
 ## Team asks
 
-With @tgross35 as the dedicated reviewer, the asks of the teams are limited.  
+With @tgross35 as the dedicated reviewer, the asks of the teams are limited.
 
 | Team       | Support level | Notes                                   |
 | ---------- | ------------- | --------------------------------------- |
@@ -49,6 +55,12 @@ With @tgross35 as the dedicated reviewer, the asks of the teams are limited.
 | Purpose | Cost | Status |
 |---------|------|--------|
 | Contributor | $25,000 | 🔍 Looking |
+
+## Notes
+
+An earlier version of this project goal also mentioned `f128`.
+We decided to split this out because it is much further away from stabilization,
+and is related to interop as well (via C `long double` on some targets).
 
 ## Frequently asked questions
 
