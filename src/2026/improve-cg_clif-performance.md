@@ -12,7 +12,7 @@
 
 ## Summary
 
-This goal aims to improve the rust development experience through faster incremental code generation with `rustc_codegen_cranelift`. We additionally want to fix several long-standing bugs that currently prevent `rustc_codegen_cranelift` from being used for popular crates.
+This goal aims to improve the rust development experience through faster incremental code generation with `rustc_codegen_cranelift`. We're targeting a 2x speedup inside the `rustc_codegen_cranelift` backend.
 
 ## Motivation
 
@@ -33,7 +33,7 @@ With `-Cdebuginfo=line-tables-only` the performance benefit of the cranelift bac
 
 ### What we propose to do about it
 
-We want to explore ambitious ways to substantially improve the speedup that the cranelift backend offers over LLVM, thereby increasing the utility of `rustc_codegen_cranelift`.
+We want to explore ambitious ways to substantially improve the speedup that the cranelift backend offers over LLVM (we are targeting a 2x speedup inside the backend), thereby increasing the utility of `rustc_codegen_cranelift`.
 
 Possible projects are:
 
@@ -45,7 +45,6 @@ Possible projects are:
 
 We additionally want to fix several long-standing bugs that limit `rustc_codegen_cranelift`'s usability today. In particular:
 
-- [Linking error with `aws_lc_rs`](https://github.com/rust-lang/rustc_codegen_cranelift/issues/1520)
 - [add support for `mod_init_funcs`](https://github.com/rust-lang/rustc_codegen_cranelift/issues/1588)
 
 ### Work items over the next year
@@ -66,6 +65,6 @@ We additionally want to fix several long-standing bugs that limit `rustc_codegen
 
 | Purpose | Cost | Funded | Sponsor(s) |
 |---------|------|--------|------------|
-| Contributor | $75,000 | No | |
+| Contributor | $65,000 | No | |
 
 ## Frequently asked questions
