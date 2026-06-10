@@ -1111,10 +1111,10 @@ pub fn format_highlight_goal_sections(
 }
 
 /// Format a summary table of goals needing funding.
-/// Columns: status emoji, Goal, Contact, Sponsor, What and why.
+/// Columns: status emoji, Goal, Cost, Sponsor.
 pub fn format_funding_table(goals: &[&GoalDocument]) -> String {
     let mut output = String::new();
-    output.push_str("| | Goal | Contact | Funding POC | Sponsor(s) |\n");
+    output.push_str("| | Goal | Cost | Funding POC | Sponsor(s) |\n");
     output.push_str("| --- | --- | --- | --- | --- |\n");
     for goal in goals {
         format_funding_table_row(&mut output, goal);
@@ -1130,7 +1130,7 @@ pub fn format_funding_table_grouped(
     roadmaps: &[&RoadmapDocument],
 ) -> String {
     let mut output = String::new();
-    output.push_str("| | Goal | Contact | Funding POC | Sponsor(s) |\n");
+    output.push_str("| | Goal | Cost | Funding POC | Sponsor(s) |\n");
     output.push_str("| --- | --- | --- | --- | --- |\n");
 
     let mut used: Vec<bool> = vec![false; goals.len()];
@@ -1181,7 +1181,7 @@ pub fn format_funding_table_grouped(
 /// Each distinct POC gets a bold header row. Goals are listed underneath their POC.
 pub fn format_funding_table_grouped_by_poc(goals: &[&GoalDocument]) -> String {
     let mut output = String::new();
-    output.push_str("| | Goal | Contact | Funding POC | Sponsor(s) |\n");
+    output.push_str("| | Goal | Cost | Funding POC | Sponsor(s) |\n");
     output.push_str("| --- | --- | --- | --- | --- |\n");
 
     // Group goals by their funding POC
