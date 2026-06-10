@@ -7,7 +7,7 @@
 | Tracking issue      | [rust-lang/rust-project-goals#623] |
 | Zulip channel       | N/A                                |
 | [compiler] champion | @eholk                             |
-| Funding point of contact | [Trifecta Tech Foundation](https://trifectatech.org/) |
+| Funding point of contact | [Tweede golf](https://tweedegolf.nl/) |
 
 ## Summary
 
