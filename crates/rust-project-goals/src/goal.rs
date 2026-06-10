@@ -124,7 +124,7 @@ impl FundingStatus {
             FundingStatus::Partial(None)
         } else if let Some(rest) = s.strip_prefix("Partial by ").or_else(|| s.strip_prefix("partial by ")) {
             FundingStatus::Partial(Some(rest.trim().to_string()))
-        } else if s.eq_ignore_ascii_case("yes") {
+        } else if s.eq_ignore_ascii_case("full") {
             FundingStatus::Funded(None)
         } else if let Some(rest) = s.strip_prefix("By ").or_else(|| s.strip_prefix("by ")) {
             FundingStatus::Funded(Some(rest.trim().to_string()))

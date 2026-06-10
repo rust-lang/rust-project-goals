@@ -176,7 +176,7 @@ The presence of this section signals that the goal is looking for funding. Goals
 
 - `No` — not yet funded
 - `Partial` — partially funded or in discussion
-- `Yes` — fully funded
+- `Full` — fully funded
 
 To specify who potential funders should contact, add a `Funding point of contact` row to the metadata table at the top of the file. This can be freeform text with markdown links, e.g. `[Trifecta Tech Foundation](https://trifectatech.org/)`. If omitted, it defaults to the [Rust Funding team](https://rust-lang.org/governance/teams/launching-pad/#team-funding).
 
