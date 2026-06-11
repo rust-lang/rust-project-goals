@@ -56,6 +56,16 @@ With @tgross35 as the dedicated reviewer, the asks of the teams are limited.
 |---------|------|--------|
 | Contributor | $25,000 | 🔍 Looking |
 
+## Target
+
+The duration of the project is 12 months. The timeline we're targeting is:
+
+- Month 3: finish the implementation work items
+- Month 6: publish stabilization report
+- Month 12: stabilize `f16`
+
+The expected effort for the work is 6 person-weeks.
+
 ## Notes
 
 An earlier version of this project goal also mentioned `f128`.
