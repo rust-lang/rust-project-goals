@@ -56,15 +56,15 @@ With @tgross35 as the dedicated reviewer, the asks of the teams are limited.
 |---------|------|--------|
 | Contributor | $25,000 | 🔍 Looking |
 
-## Target
+## Target timeline
 
-The duration of the project is 12 months. The timeline we're targeting is:
+The duration of the project is 6 months. Starting from the agreed start date ("Month 1"), the timeline we're targeting is:
 
-- Month 3: finish the implementation work items
-- Month 6: publish stabilization report
-- Month 12: stabilize `f16`
+- Month 1-3: finish the implementation work items
+- Month 3-4: publish stabilization report
+- Month 6: open stabilization PR
 
-The expected effort for the work is 6 person-weeks.
+The expected effort for the work is 2 person-months.
 
 ## Notes
 
