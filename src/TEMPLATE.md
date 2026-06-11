@@ -115,7 +115,7 @@
 | *e.g., Contributor (6 months, full-time)* | *e.g., $60,000* | No | |
 | *e.g., Maintenance* | *e.g., $10,000* | No | |
 
-> If you don't know the expected cost, enter `TBD`. If you do, but prefer to not have it public on the internet, enter `Undisclosed` and the readers will be directed to contact the *Funding POC* to learn more.
+> If you don't know the expected cost, enter `TBD`. If you do, but prefer to not have it public on the internet, enter `Ask` and the readers will be directed to ask the *Funding contact* about the cost.
 
 ## Frequently asked questions
 

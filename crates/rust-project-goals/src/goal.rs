@@ -21,19 +21,19 @@ pub enum FundingCost {
     Usd(u64),
     /// The cost is not yet determined.
     Tbd,
-    /// The cost is undisclosed.
-    Undisclosed,
+    /// Ask the Funding contact about the cost.
+    Ask,
 }
 
 impl FundingCost {
-    /// Parse a cost string like "$25,000", "$75K", "$1.5M", "TBD", or "Undisclosed".
+    /// Parse a cost string like "$25,000", "$75K", "$1.5M", "TBD", or "Ask".
     pub fn parse(s: &str) -> Option<Self> {
         let s = s.trim();
         if s.eq_ignore_ascii_case("TBD") {
             return Some(FundingCost::Tbd);
         }
-        if s.eq_ignore_ascii_case("Undisclosed") {
-            return Some(FundingCost::Undisclosed);
+        if s.eq_ignore_ascii_case("Ask") {
+            return Some(FundingCost::Ask);
         }
         let s = s.strip_prefix('$')?;
         let s = s.replace(',', "");
@@ -50,11 +50,11 @@ impl FundingCost {
         }
     }
 
-    /// Format as a display string (e.g., "$75,000", "TBD", or "Ask Funding POC").
+    /// Format as a display string (e.g., "$75,000", "TBD", or "Ask").
     pub fn display(&self) -> String {
         match self {
             FundingCost::Tbd => "TBD".to_string(),
-            FundingCost::Undisclosed => "Ask Funding POC".to_string(),
+            FundingCost::Ask => "Ask".to_string(),
             FundingCost::Usd(amount) => format!("${}", format_with_commas(*amount)),
         }
     }
@@ -87,7 +87,7 @@ pub fn sum_funding_costs(costs: &[FundingCost]) -> Option<FundingCost> {
             FundingCost::Tbd => {
                 any_tbd = true;
             }
-            FundingCost::Undisclosed => {
+            FundingCost::Ask => {
                 any_undisclosed = true;
             }
         }
@@ -97,7 +97,7 @@ pub fn sum_funding_costs(costs: &[FundingCost]) -> Option<FundingCost> {
     } else if any_tbd {
         Some(FundingCost::Tbd)
     } else if any_undisclosed {
-        Some(FundingCost::Undisclosed)
+        Some(FundingCost::Ask)
     } else {
         None
     }
@@ -1114,7 +1114,7 @@ pub fn format_highlight_goal_sections(
 /// Columns: status emoji, Goal, Cost, Sponsor.
 pub fn format_funding_table(goals: &[&GoalDocument]) -> String {
     let mut output = String::new();
-    output.push_str("| | Goal | Cost | Funding POC | Sponsor(s) |\n");
+    output.push_str("| | Goal | Cost | Funding contact | Sponsor(s) |\n");
     output.push_str("| --- | --- | --- | --- | --- |\n");
     for goal in goals {
         format_funding_table_row(&mut output, goal);
@@ -1130,7 +1130,7 @@ pub fn format_funding_table_grouped(
     roadmaps: &[&RoadmapDocument],
 ) -> String {
     let mut output = String::new();
-    output.push_str("| | Goal | Cost | Funding POC | Sponsor(s) |\n");
+    output.push_str("| | Goal | Cost | Funding contact | Sponsor(s) |\n");
     output.push_str("| --- | --- | --- | --- | --- |\n");
 
     let mut used: Vec<bool> = vec![false; goals.len()];
@@ -1181,7 +1181,7 @@ pub fn format_funding_table_grouped(
 /// Each distinct POC gets a bold header row. Goals are listed underneath their POC.
 pub fn format_funding_table_grouped_by_poc(goals: &[&GoalDocument]) -> String {
     let mut output = String::new();
-    output.push_str("| | Goal | Cost | Funding POC | Sponsor(s) |\n");
+    output.push_str("| | Goal | Cost | Funding contact | Sponsor(s) |\n");
     output.push_str("| --- | --- | --- | --- | --- |\n");
 
     // Group goals by their funding POC
