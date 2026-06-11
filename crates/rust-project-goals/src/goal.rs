@@ -21,18 +21,18 @@ pub enum FundingCost {
     Usd(u64),
     /// The cost is not yet determined.
     Tbd,
-    /// The cost is undisclosed or not applicable.
+    /// The cost is undisclosed.
     Undisclosed,
 }
 
 impl FundingCost {
-    /// Parse a cost string like "$25,000", "$75K", "$1.5M", "TBD", or "-".
+    /// Parse a cost string like "$25,000", "$75K", "$1.5M", "TBD", or "Undisclosed".
     pub fn parse(s: &str) -> Option<Self> {
         let s = s.trim();
         if s.eq_ignore_ascii_case("TBD") {
             return Some(FundingCost::Tbd);
         }
-        if s == "-" {
+        if s.eq_ignore_ascii_case("Undisclosed") {
             return Some(FundingCost::Undisclosed);
         }
         let s = s.strip_prefix('$')?;
@@ -50,11 +50,11 @@ impl FundingCost {
         }
     }
 
-    /// Format as a display string (e.g., "$75,000", "TBD", or "-").
+    /// Format as a display string (e.g., "$75,000", "TBD", or "Ask Funding POC").
     pub fn display(&self) -> String {
         match self {
             FundingCost::Tbd => "TBD".to_string(),
-            FundingCost::Undisclosed => "-".to_string(),
+            FundingCost::Undisclosed => "Ask Funding POC".to_string(),
             FundingCost::Usd(amount) => format!("${}", format_with_commas(*amount)),
         }
     }
