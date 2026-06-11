@@ -104,11 +104,18 @@
 > describing what the funding would cover and the estimated cost.
 > The presence of this section signals that the goal is looking for financial support.
 > Delete this section if your goal does not need funding.
+>
+> If you have a specific funding point of contact (e.g., an organization that can
+> receive and administer funds), add a `Funding point of contact` row to the
+> metadata table at the top of this file. If omitted, it defaults to the
+> [Rust Funding team](https://rust-lang.org/governance/teams/launching-pad/#team-funding).
 
-| Purpose | Cost | Status |
-|---------|------|--------|
-| *e.g., Contributor (6 months, full-time)* | *e.g., $60,000* | 🔍 Looking |
-| *e.g., Maintenance* | *e.g., $10,000* | 🔍 Looking |
+| Purpose | Cost | Funded | Sponsor(s) |
+|---------|------|--------|------------|
+| *e.g., Contributor (6 months, full-time)* | *e.g., $60,000* | No | |
+| *e.g., Maintenance* | *e.g., $10,000* | No | |
+
+> If you don't know the expected cost, enter `TBD`. If you do, but prefer to not have it public on the internet, enter `Ask` and the readers will be directed to ask the *Funding contact* about the cost.
 
 ## Frequently asked questions
 

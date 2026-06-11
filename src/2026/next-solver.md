@@ -13,6 +13,7 @@
 | Highlight             | Next-generation trait solver              |
 | [types] champion      | @lcnr                                     |
 | [lang] champion       | @nikomatsakis                             |
+| Funding point of contact | [Hexcat](https://hexcat.nl/) |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/364551-t-types.2Ftrait-system-refactor
 
@@ -59,6 +60,13 @@ Stabilize `-Znext-solver=globally` and rip out the old implementation
 | ------- | ------------- | ------------------------------------------- |
 | [lang]  | Medium        | Stabilization decision for user facing changes |
 | [types] | Large         | Stabilization decision, ongoing review work |
+
+## Funding
+
+| Purpose           | Cost | Funded | Sponsor(s)     |
+|-------------------|------|--------|----------------|
+| Core contribution | Ask | Full   | Anon1, Anon2 |
+| Acceleration      | Ask | No     |
 
 ## Frequently asked questions
 

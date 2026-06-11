@@ -97,9 +97,9 @@ For more details and a broader look, see the [box, box, box][box-post] blog post
 
 ## Funding
 
-| Purpose | Cost | Status |
-|---------|------|--------|
-| Contributor | TBD | 🔍 Looking |
+| Purpose | Cost | Funded | Sponsor(s) |
+|---------|------|--------|------------|
+| Contributor | TBD | No | |
 
 
 ## Frequently asked questions

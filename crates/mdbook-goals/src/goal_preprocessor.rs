@@ -215,6 +215,15 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         // Handle grouped funding table
         self.replace_funding_table_grouped(chapter)?;
 
+        // Handle funding table grouped by goal (alias for grouped)
+        self.replace_funding_table_grouped_by_goal(chapter)?;
+
+        // Handle funding table grouped by POC
+        self.replace_funding_table_grouped_by_poc(chapter)?;
+
+        // Handle funding legend
+        self.replace_funding_legend(chapter)?;
+
         Ok(())
     }
 
@@ -484,6 +493,66 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
         let roadmap_refs: Vec<&goal::RoadmapDocument> = roadmaps.iter().collect();
         let output = goal::format_funding_table_grouped(&filtered_goals, &roadmap_refs);
+        chapter.content.replace_range(range, &output);
+        Ok(())
+    }
+
+    fn replace_funding_table_grouped_by_goal(
+        &mut self,
+        chapter: &mut Chapter,
+    ) -> anyhow::Result<()> {
+        let Some(m) = re::FUNDING_TABLE_GROUPED_BY_GOAL.find(&chapter.content) else {
+            return Ok(());
+        };
+        let range = m.range();
+
+        let chapter_path = chapter_path(chapter, "(((FUNDING TABLE GROUPED BY GOAL)))")?;
+        let goals = self.goal_documents(chapter_path)?;
+        let roadmaps = self.roadmap_documents(chapter_path)?;
+
+        let mut filtered_goals: Vec<&GoalDocument> = goals
+            .iter()
+            .filter(|g| g.metadata.status.content.is_not_not_accepted() && g.needs_funding())
+            .collect();
+
+        filtered_goals.sort_by_key(|g| &g.metadata.title);
+
+        let roadmap_refs: Vec<&goal::RoadmapDocument> = roadmaps.iter().collect();
+        let output = goal::format_funding_table_grouped(&filtered_goals, &roadmap_refs);
+        chapter.content.replace_range(range, &output);
+        Ok(())
+    }
+
+    fn replace_funding_table_grouped_by_poc(
+        &mut self,
+        chapter: &mut Chapter,
+    ) -> anyhow::Result<()> {
+        let Some(m) = re::FUNDING_TABLE_GROUPED_BY_POC.find(&chapter.content) else {
+            return Ok(());
+        };
+        let range = m.range();
+
+        let chapter_path = chapter_path(chapter, "(((FUNDING TABLE GROUPED BY POC)))")?;
+        let goals = self.goal_documents(chapter_path)?;
+
+        let mut filtered_goals: Vec<&GoalDocument> = goals
+            .iter()
+            .filter(|g| g.metadata.status.content.is_not_not_accepted() && g.needs_funding())
+            .collect();
+
+        filtered_goals.sort_by_key(|g| &g.metadata.title);
+
+        let output = goal::format_funding_table_grouped_by_poc(&filtered_goals);
+        chapter.content.replace_range(range, &output);
+        Ok(())
+    }
+
+    fn replace_funding_legend(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        let Some(m) = re::FUNDING_LEGEND.find(&chapter.content) else {
+            return Ok(());
+        };
+        let range = m.range();
+        let output = goal::format_funding_legend();
         chapter.content.replace_range(range, &output);
         Ok(())
     }
