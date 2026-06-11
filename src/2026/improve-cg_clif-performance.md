@@ -67,4 +67,14 @@ We additionally want to fix several long-standing bugs that limit `rustc_codegen
 |---------|------|--------|
 | Contributor | $65,000 | 🔍 Looking |
 
+## Target timeline
+
+The duration of the project is 6 months. The timeline we're targeting is:
+
+- Month 1-2: identify optimization Project 1, implement it, run benchmarks and publish results; inform next cycle
+- Month 3-4: identify optimization Project 2, implement it, run benchmarks and publish results; inform next cycle
+- Month 5-6: identify optimization Project 3, implement it, run benchmarks and publish results
+
+The expected effort for the work is 15 person-weeks.
+
 ## Frequently asked questions
