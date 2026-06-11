@@ -2,7 +2,7 @@
 
 | Metadata         |                                    |
 | :--              | :--                                |
-| Point of contact | @ssbr                              |
+| Point of contact | @teor2345                          |
 | Status           | Accepted                           |
 | Tracking issue   | [rust-lang/rust-project-goals#643] |
 | Zulip channel    | N/A                                |
@@ -101,7 +101,7 @@ It is **not** a goal to match C++'s resolution rules exactly. Many languages imp
 | Task                                                | Owner(s)           | Notes                       |
 | --------------------------------------------------- | ------------------ | --------------------------- |
 | Design an overloading mechanism that is fit for FFI | @ssbr              | @tmandry to act as champion |
-| Implement it as a lang experiment                   | (filling in later) | @tmandry to act as champion |
+| Implement it as a lang experiment                   | @teor2345          | @tmandry to act as champion |
 
 ## Team asks
 
