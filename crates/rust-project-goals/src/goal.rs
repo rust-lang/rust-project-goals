@@ -1000,7 +1000,7 @@ pub fn format_funding_table_grouped(
 
     // Sort roadmaps alphabetically by short title
     let mut sorted_roadmaps: Vec<&&RoadmapDocument> = roadmaps.iter().collect();
-    sorted_roadmaps.sort_by_key(|r| &r.short_title.content);
+    sorted_roadmaps.sort_by_key(|r| r.short_title.to_lowercase());
 
     for roadmap in sorted_roadmaps {
         let theme = roadmap.short_title.content.trim();
@@ -1264,7 +1264,7 @@ pub fn format_roadmap_table(roadmaps: &[&RoadmapDocument]) -> Result<String> {
     ]];
 
     let mut sorted_roadmaps: Vec<&&RoadmapDocument> = roadmaps.iter().collect();
-    sorted_roadmaps.sort_by_key(|r| &r.short_title.content);
+    sorted_roadmaps.sort_by_key(|r| r.short_title.to_lowercase());
 
     for roadmap in sorted_roadmaps {
         table.push(vec![
@@ -1938,7 +1938,7 @@ pub fn format_sized_goal_table(goals: &[&GoalDocument], size: GoalSize) -> Resul
     }
 
     // Sort goals by title
-    filtered_goals.sort_by_key(|g| &g.metadata.title.content);
+    filtered_goals.sort_by_key(|g| g.metadata.title.to_lowercase());
 
     // Build the table
     let mut table: Vec<Vec<Spanned<String>>> = vec![vec![

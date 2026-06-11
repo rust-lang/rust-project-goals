@@ -257,7 +257,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 })
                 .collect();
 
-            filtered_goals.sort_by_key(|g| &g.metadata.title.content);
+            filtered_goals.sort_by_key(|g| g.metadata.title.to_lowercase());
 
             let output = goal::format_roadmap_goal_rows(&filtered_goals, filter_value);
 
@@ -301,7 +301,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 })
                 .collect();
 
-            filtered_goals.sort_by_key(|g| &g.metadata.title.content);
+            filtered_goals.sort_by_key(|g| g.metadata.title.to_lowercase());
 
             let output = goal::format_highlight_table(&filtered_goals);
 
@@ -333,7 +333,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 })
                 .collect();
 
-            filtered_goals.sort_by_key(|g| &g.metadata.title.content);
+            filtered_goals.sort_by_key(|g| g.metadata.title.to_lowercase());
 
             let output = goal::format_highlight_credits(&filtered_goals);
 
@@ -386,7 +386,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                     .collect()
             };
 
-            filtered_goals.sort_by_key(|g| &g.metadata.title.content);
+            filtered_goals.sort_by_key(|g| g.metadata.title.to_lowercase());
 
             let heading_re = Regex::new(r"(?m)^(#+)\s").unwrap();
             let preceding = &chapter.content[..range.start];
@@ -425,7 +425,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             .filter(|g| g.metadata.status.content.is_not_not_accepted() && g.needs_funding())
             .collect();
 
-        filtered_goals.sort_by_key(|g| &g.metadata.title.content);
+        filtered_goals.sort_by_key(|g| g.metadata.title.to_lowercase());
 
         let output = goal::format_funding_table(&filtered_goals);
         chapter.content.replace_range(range, &output);
@@ -458,7 +458,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             })
             .collect();
 
-        filtered_goals.sort_by_key(|g| &g.metadata.title.content);
+        filtered_goals.sort_by_key(|g| g.metadata.title.to_lowercase());
 
         let output = goal::format_funding_table(&filtered_goals);
         chapter.content.replace_range(range, &output);
@@ -480,7 +480,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             .filter(|g| g.metadata.status.content.is_not_not_accepted() && g.needs_funding())
             .collect();
 
-        filtered_goals.sort_by_key(|g| &g.metadata.title.content);
+        filtered_goals.sort_by_key(|g| g.metadata.title.to_lowercase());
 
         let roadmap_refs: Vec<&goal::RoadmapDocument> = roadmaps.iter().collect();
         let output = goal::format_funding_table_grouped(&filtered_goals, &roadmap_refs);
@@ -520,7 +520,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 })
                 .collect();
 
-            filtered_goals.sort_by_key(|g| &g.metadata.title.content);
+            filtered_goals.sort_by_key(|g| g.metadata.title.to_lowercase());
 
             // Search backwards from the directive for the most recent heading to
             // determine the level at which to emit goal sub-headings.
@@ -588,7 +588,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             .filter(|g| g.metadata.status.content.is_not_not_accepted())
             .collect();
 
-        goals_with_status.sort_by_key(|g| &g.metadata.title.content);
+        goals_with_status.sort_by_key(|g| g.metadata.title.to_lowercase());
 
         // Create subchapters for each goal
         let mut parent_names = chapter.parent_names.clone();
@@ -626,7 +626,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
         let roadmaps = self.roadmap_documents(chapter_path)?;
         let mut sorted_roadmaps: Vec<&RoadmapDocument> = roadmaps.iter().collect();
-        sorted_roadmaps.sort_by_key(|r| &r.title.content);
+        sorted_roadmaps.sort_by_key(|r| r.title.to_lowercase());
 
         // Create subchapters for each roadmap
         let mut parent_names = chapter.parent_names.clone();
@@ -680,7 +680,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             let mut goals_with_status: Vec<&GoalDocument> =
                 goals.iter().filter(|g| filter(g, capture_value)).collect();
 
-            goals_with_status.sort_by_key(|g| &g.metadata.title.content);
+            goals_with_status.sort_by_key(|g| g.metadata.title.to_lowercase());
 
             // Get milestone issues for progress generation
             let milestone_issues = if let Some(first_goal) = goals_with_status.first() {
