@@ -15,8 +15,6 @@
 
 Implement and prototype two foundational improvements for ergonomic ref-counting: (1) a `Share` trait that semantically identifies types where cloning creates an alias to the same underlying value, and (2) move expressions (`move($expr)`) that allow precise control over what closures capture and when. These changes lay groundwork for future ergonomic improvements while delivering immediate value, with prototypes targeted for summer 2026.
 
-**Needs contributor:** This is a medium complexity problem. @nikomatsakis would like to mentor this goal with either an experienced contributor or a cohort of folks who know Rust but not the compiler. It is estimated that the goal will take about 6 months to implement for a cohort with minimal compiler hacking experience.
-
 ## Motivation
 
 ### The status quo
@@ -123,12 +121,6 @@ Precise control over what closures capture and when, eliminating the need for aw
 | [lang]      | Medium        |         |
 | [lang-docs] | Small         |         |
 | [libs-api]  | Small         | Reviews of RFC and API surface area |
-
-## Help wanted
-
-| Task | Experience level | Time investment |
-|------|-----------------|-----------------|
-| Implementation work | TBD | TBD |
 
 ## Frequently asked questions
 
