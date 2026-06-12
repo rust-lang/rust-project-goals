@@ -114,8 +114,8 @@ Because there are open design questions that haven't yet been resolved, we shoul
 
 ## Funding
 
-| Purpose | Cost | Status |
-|---------|------|--------|
-| Contributor | TBD | 💬 Under discussion |
+| Purpose | Cost | Funded | Sponsor(s) |
+|---------|------|--------|------------|
+| Contributor | TBD | Partial | |
 
 ## Frequently asked questions

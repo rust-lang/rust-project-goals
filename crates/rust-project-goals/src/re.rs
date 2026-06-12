@@ -124,6 +124,24 @@ lazy_static! {
         Regex::new(r"\(\(\(FUNDING TABLE GROUPED\)\)\)").unwrap();
 }
 
+// Summary table of goals needing funding, grouped by roadmap (alias)
+lazy_static! {
+    pub static ref FUNDING_TABLE_GROUPED_BY_GOAL: Regex =
+        Regex::new(r"\(\(\(FUNDING TABLE GROUPED BY GOAL\)\)\)").unwrap();
+}
+
+// Summary table of goals needing funding, grouped by funding point of contact
+lazy_static! {
+    pub static ref FUNDING_TABLE_GROUPED_BY_POC: Regex =
+        Regex::new(r"\(\(\(FUNDING TABLE GROUPED BY POC\)\)\)").unwrap();
+}
+
+// Funding legend showing emoji meanings
+lazy_static! {
+    pub static ref FUNDING_LEGEND: Regex =
+        Regex::new(r"\(\(\(FUNDING LEGEND\)\)\)").unwrap();
+}
+
 // Roadmap goal rows (no headers) filtered by roadmap name.
 // Used inside manually authored markdown tables: `| (((ROADMAP ROWS: Theme))) |`
 lazy_static! {

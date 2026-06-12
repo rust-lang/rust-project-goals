@@ -7,6 +7,7 @@
 | Tracking issue      | [rust-lang/rust-project-goals#623] |
 | Zulip channel       | N/A                                |
 | [compiler] champion | @eholk                             |
+| Funding point of contact | [Tweede golf](https://tweedegolf.nl/) |
 
 ## Summary
 
@@ -87,9 +88,9 @@ I've got 4 optimisations on my list so far. You can see them in the work items a
 
 ## Funding
 
-| Purpose | Cost | Status |
-|---------|------|--------|
-| Contributor | $50,000 | 💬 Under discussion |
+| Purpose | Cost | Funded | Sponsor(s) |
+|---------|------|--------|------------|
+| Contributor | $50,000 | No | |
 
 ## Frequently asked questions
 
