@@ -48,7 +48,7 @@ In light of these design issues, we'd also like to continue development of `loop
 
 | Purpose | Cost | Funded | Sponsor(s) |
 |---------|------|--------|------------|
-| Contributor | $25,000 | No | |
+| Contributor | $25,000 | Full | [Tempo Labs](https://tempo.xyz/) |
 
 ## Target timeline
 
