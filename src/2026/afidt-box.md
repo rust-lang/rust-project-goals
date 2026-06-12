@@ -10,7 +10,7 @@
 | Tracking issue      | [rust-lang/rust-project-goals#625]                       |
 | Highlight           | Async and ergonomic RC                                   |
 | Zulip channel       | [#wg-async][channel]                                     |
-| [lang] champion     | @nikomatsakis                                            |
+| [lang] champion     | @jackh726                                                |
 | [types] champion    | @jackh726                                                |
 | [compiler] champion | @spastorino                                              |
 
