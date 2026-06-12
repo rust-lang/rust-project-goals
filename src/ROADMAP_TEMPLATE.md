@@ -77,18 +77,20 @@ Length guidance:
 
 ### How we get there
 
+> Update the `Roadmap Name` below. Any goals that need funding will be listed here.
+
 | Goal | Timespan | What and why |
 | --- | --- | --- |
-| (((ROADMAP ROWS: Theme Name))) |
+| (((ROADMAP ROWS: Roadmap Name))) |
 
-> *Replace "Theme Name" above with the exact name used in the `Roadmap` metadata field of your goals. The `(((ROADMAP ROWS: ...)))` directive expands into table rows for all goals tagged with this theme. Each goal's timespan defaults to its milestone year (e.g., "2026") but can be overridden with a `Timespan` metadata field in the goal document. The "What and why" column uses the goal's `What and why` metadata field, falling back to its Summary.*
+> *Replace "Roadmap Name" above with the exact name used in the `Roadmap` metadata field of your goals. The `(((ROADMAP ROWS: ...)))` directive expands into table rows for all goals tagged with this theme. Each goal's timespan defaults to its milestone year (e.g., "2026") but can be overridden with a `Timespan` metadata field in the goal document. The "What and why" column uses the goal's `What and why` metadata field, falling back to its Summary.*
 >
 > *You can add manual rows for future work that doesn't have a goal document yet:*
 >
 > ```markdown
 > | Goal | Timespan | What and why |
 > | --- | --- | --- |
-> | (((ROADMAP ROWS: Theme Name))) |
+> | (((ROADMAP ROWS: Roadmap Name))) |
 > | Async iteration / streams | Future | First-class stream support building on async fn in traits |
 > ```
 >
@@ -96,6 +98,10 @@ Length guidance:
 > * *What needs to happen first? What does it unblock?*
 > * *Which work items can proceed in parallel?*
 > * *What are the key blockers and how are they addressed?*
+
+## Funding
+
+(((FUNDING TABLE: Roadmap Name)))
 
 ## Frequently asked questions
 
