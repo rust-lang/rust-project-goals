@@ -42,6 +42,10 @@ Const generics that accept structs and enums (stable by end of 2026), and an exp
 
 **Const generics** extends what values can be used as compile-time parameters — foundational for many advanced patterns. **Reflection and comptime** provides the ability to inspect types at compile time, enabling libraries that work without derives. Together they transform what's possible at compile time: const generics let you parameterize by complex values, reflection lets you adapt to any type's structure.
 
+## Funding
+
+(((FUNDING TABLE: Constify all the things)))
+
 ## Frequently asked questions
 
 ### How does reflection differ from proc macros?

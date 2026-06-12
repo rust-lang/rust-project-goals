@@ -47,6 +47,10 @@ Build Linux kernel releases using the stable Rust language (no feature gates), s
 | --- | --- | --- |
 | (((ROADMAP ROWS: Rust for Linux))) |
 
+## Funding
+
+(((FUNDING TABLE: Rust for Linux)))
+
 ## Frequently asked questions
 
 ### When is this done?
