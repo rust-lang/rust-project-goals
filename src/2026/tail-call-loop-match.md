@@ -8,7 +8,7 @@
 | Other tracking issues | https://github.com/rust-lang/rust/issues/112788, https://github.com/rust-lang/rust/issues/132306 |
 | Zulip channel         |                                                                                                  |
 | [lang] champion       | @scottmcm                                                                                        |
-| Funding point of contact | [Trifecta Tech Foundation](https://trifectatech.org/) |
+| Funding contact       | [Trifecta Tech Foundation](https://trifectatech.org/) |
 
 ## Summary
 

@@ -7,7 +7,7 @@
 | Tracking issue        | [rust-lang/rust-project-goals#655]              |
 | Other tracking issues | https://github.com/rust-lang/rust/issues/116909 |
 | Zulip channel         | N/A                                             |
-| Funding point of contact | [Trifecta Tech Foundation](https://trifectatech.org/) |
+| Funding contact       | [Trifecta Tech Foundation](https://trifectatech.org/) |
 
 ## Summary
 

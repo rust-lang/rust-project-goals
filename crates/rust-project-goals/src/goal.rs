@@ -1682,7 +1682,7 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
             row[0]
                 .content
                 .trim()
-                .eq_ignore_ascii_case("Funding point of contact")
+                .eq_ignore_ascii_case("Funding contact")
         })
         .map(|row| row[1].to_string())
         .filter(|s| !s.trim().is_empty());
