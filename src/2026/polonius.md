@@ -15,11 +15,11 @@
 
 ## Summary
 
-Stabilize the [polonius alpha][alpha] borrow checking analysis, which resolves [common limitations of the borrow checker][pc3] such as the [NLL problem case #3][pc3] and lending iterator patterns ([issue #92985]). This goal covers fixing the remaining known soundness issue, expanding test coverage, building a formal model in [a-mir-formality][] and upstreaming it into the Rust reference, validating performance, and preparing a stabilization report.
+Stabilize the [polonius alpha][alpha] borrow checking analysis, which resolves [common limitations of the borrow checker][pc3] such as the [NLL problem case #3][pc3] and lending iterator patterns ([rust-lang/rust#92985]). This goal covers fixing the remaining known soundness issue, expanding test coverage, building a formal model in [a-mir-formality][] and upstreaming it into the Rust reference, validating performance, and preparing a stabilization report.
 
 [alpha]: https://github.com/rust-lang/rust/pull/143093
 [pc3]: https://blog.rust-lang.org/inside-rust/2023/10/06/polonius-update.html#background-on-polonius
-[issue #92985]: https://github.com/rust-lang/rust/issues/92985
+[rust-lang/rust#92985]: https://github.com/rust-lang/rust/issues/92985
 [a-mir-formality]: https://github.com/rust-lang/a-mir-formality/
 
 ## Motivation
