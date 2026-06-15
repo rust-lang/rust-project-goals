@@ -161,7 +161,7 @@ The presence of this section signals that the goal is looking for someone to ste
 
 ### Funding
 
-The `## Funding` section is optional. Include it if your goal needs financial support to proceed. It contains a table with three columns:
+The `## Funding` section is optional. Include it if your goal needs financial support to proceed. It contains the following table:
 
 ```markdown
 ## Funding
