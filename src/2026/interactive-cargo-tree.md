@@ -1,12 +1,12 @@
 # Interactive cargo-tree: TUI for Cargo's dependency graph visualization
 
-| Metadata             |                                    |
-| :--                  | :--                                |
-| Point of contact     | @orhun                             |
-| Status               | Accepted                           |
-| Tracking issue       | [rust-lang/rust-project-goals#642] |
-| Other tracking issues | [#11213], [#15473]                 |
-| Zulip channel        | [TUI for Cargo]                    |
+| Metadata              |                                                  |
+| :--                   | :--                                              |
+| Point of contact      | @orhun                                           |
+| Status                | Accepted                                         |
+| Tracking issue        | [rust-lang/rust-project-goals#642]               |
+| Other tracking issues | [rust-lang/cargo#11213], [rust-lang/cargo#15473] |
+| Zulip channel         | [TUI for Cargo]                                  |
 
 
 ## Summary
@@ -73,8 +73,8 @@ In the distant future, implementing this would open up possibilities for adding 
 
 n/A
 
-[#11213]: https://github.com/rust-lang/cargo/issues/11213
-[#15473]: https://github.com/rust-lang/cargo/issues/15473
+[rust-lang/cargo#11213]: https://github.com/rust-lang/cargo/issues/11213
+[rust-lang/cargo#15473]: https://github.com/rust-lang/cargo/issues/15473
 [TUI for Cargo]: https://rust-lang.zulipchat.com/#narrow/channel/246057-t-cargo/topic/TUI.20for.20cargo
 [`cargo-tree`]: https://doc.rust-lang.org/cargo/commands/cargo-tree.html
 [cargo-tree-tui]: https://github.com/orhun/cargo-tree-tui
