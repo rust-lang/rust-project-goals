@@ -3,7 +3,7 @@
 | Metadata            |                                    |
 | :--                 | :--                                |
 | Point of contact    | @bjorn3                            |
-| Funding point of contact | [Tweede Golf](https://tweedegolf.nl/en) |
+| Funding contact     | [Tweede golf](https://tweedegolf.nl/) |
 | Status              | Accepted                           |
 | Tracking issue      | [rust-lang/rust-project-goals#639] |
 | Zulip channel       | N/A                                |

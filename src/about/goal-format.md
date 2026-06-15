@@ -29,7 +29,7 @@ The recognized fields are:
 | **Roadmap** | No | The name of a roadmap theme this goal belongs to, e.g. `Rust for Linux`. Can appear multiple times if the goal spans several roadmaps. |
 | **Highlight** | No | A category name for the highlights page. Can appear multiple times. |
 | **Timespan** | No | Overrides the default goal period, e.g. `2026-2027` for multi-year goals. |
-| **Funding point of contact** | No | Freeform text (may include markdown links) identifying who to contact about funding this goal. Defaults to the [Rust Funding team](https://rust-lang.org/governance/teams/launching-pad/#team-funding) if omitted. Only relevant for goals with a `## Funding` section. |
+| **Funding contact** | No | Freeform text (may include markdown links) identifying who to contact about funding this goal. Defaults to the [Rust Funding team](https://rust-lang.org/governance/teams/launching-pad/#team-funding) if omitted. Only relevant for goals with a `## Funding` section. |
 | **\[team\] champion** | No | The champion for a specific team, e.g. `[lang] champion \| @someone`. Medium and Large team asks require a champion. |
 | **Teams** | *Auto-injected* | Filled in automatically from team asks. Do not add this row yourself. |
 | **Task owners** | *Auto-injected* | Filled in automatically from work item tables. Do not add this row yourself. |
@@ -161,7 +161,7 @@ The presence of this section signals that the goal is looking for someone to ste
 
 ### Funding
 
-The `## Funding` section is optional. Include it if your goal needs financial support to proceed. It contains a table with three columns:
+The `## Funding` section is optional. Include it if your goal needs financial support to proceed. It contains the following table:
 
 ```markdown
 ## Funding
@@ -178,7 +178,7 @@ The presence of this section signals that the goal is looking for funding. Goals
 - `Partial` — partially funded or in discussion
 - `Full` — fully funded
 
-To specify who potential funders should contact, add a `Funding point of contact` row to the metadata table at the top of the file. This can be freeform text with markdown links, e.g. `[Trifecta Tech Foundation](https://trifectatech.org/)`. If omitted, it defaults to the [Rust Funding team](https://rust-lang.org/governance/teams/launching-pad/#team-funding).
+To specify who potential funders should contact, add a `Funding contact` row to the metadata table at the top of the file. This can be freeform text with markdown links, e.g. `[Trifecta Tech Foundation](https://trifectatech.org/)`. If omitted, it defaults to the [Rust Funding team](https://rust-lang.org/governance/teams/launching-pad/#team-funding).
 
 ### Frequently asked questions
 

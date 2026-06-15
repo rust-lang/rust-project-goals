@@ -13,7 +13,7 @@
 | Highlight             | Next-generation trait solver              |
 | [types] champion      | @lcnr                                     |
 | [lang] champion       | @nikomatsakis                             |
-| Funding point of contact | [Hexcat](https://hexcat.nl/) |
+| Funding contact       | [Hexcat](https://hexcat.nl/) |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/364551-t-types.2Ftrait-system-refactor
 

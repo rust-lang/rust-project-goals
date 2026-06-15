@@ -106,7 +106,7 @@
 > Delete this section if your goal does not need funding.
 >
 > If you have a specific funding point of contact (e.g., an organization that can
-> receive and administer funds), add a `Funding point of contact` row to the
+> receive and administer funds), add a `Funding contact` row to the
 > metadata table at the top of this file. If omitted, it defaults to the
 > [Rust Funding team](https://rust-lang.org/governance/teams/launching-pad/#team-funding).
 
