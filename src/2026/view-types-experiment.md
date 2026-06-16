@@ -10,8 +10,6 @@
 
 ## Summary
 
-_Short description of what you will do over the next year._
-
 Add view types support to `rustc` as well as a few syntaxes proposed by project
 members for experimentation purposes.
 
