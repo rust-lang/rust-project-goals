@@ -38,7 +38,7 @@ This will be even more of an issue once we add new *implicit default auto trait 
 
 | Team       | Support level | Notes                                   |
 | ---------- | ------------- | --------------------------------------- |
-| [lang]     | Medium        | Probably want to have a lang meeting at some point |                                         |
+| [lang]     | Medium        | Probably want to have a lang meeting at some point |
 | [libs]     | Small         | We would like to test some of the desired standard library changes and get input on the design |
 | [types]    | Medium        | Review and discuss type system changes if required                                         |
 
