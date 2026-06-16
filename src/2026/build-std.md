@@ -89,6 +89,3 @@ There are two primary objectives of this goal in this next goal cycle:
 ## Frequently asked questions
 
 None yet.
-
-[rust-lang/rfcs#3874]: https://github.com/rust-lang/rfcs/pull/3874
-[rust-lang/rfcs#3875]: https://github.com/rust-lang/rfcs/pull/3875

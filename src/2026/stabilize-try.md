@@ -4,7 +4,7 @@
 | :--                   | :--                                |
 | Point of contact      | @tmandry                           |
 | Status                | Accepted                           |
-| Other tracking issues | rust-lang/rust#84277               |
+| Other tracking issues | [rust-lang/rust#84277]             |
 | Zulip channel         | [#t-lang/try][channel]             |
 | Highlight             | Try, never, extern types           |
 | [lang] champion       | @tmandry                           |

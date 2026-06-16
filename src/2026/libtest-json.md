@@ -25,10 +25,10 @@ this helped show [how much people have come to rely on programmatic output](http
 Cargo could also benefit from programmatic test output to improve user interactions, including
 - [Wanting to run test binaries in parallel](https://github.com/rust-lang/cargo/issues/5609), like `cargo nextest`
 - [Lack of summary across all binaries](https://github.com/rust-lang/cargo/issues/4324)
-- [Noisy test output](https://github.com/rust-lang/cargo/issues/2832) (see also [#5089](https://github.com/rust-lang/cargo/issues/5089))
-- [Confusing command-line interactions](https://github.com/rust-lang/cargo/issues/1983) (see also [#8903](https://github.com/rust-lang/cargo/issues/8903), [#10392](https://github.com/rust-lang/cargo/issues/10392))
+- [Noisy test output](https://github.com/rust-lang/cargo/issues/2832) (see also [rust-lang/cargo#5089])
+- [Confusing command-line interactions](https://github.com/rust-lang/cargo/issues/1983) (see also [rust-lang/cargo#8903], [rust-lang/cargo#10392])
 - [Poor messaging when a filter doesn't match](https://github.com/rust-lang/cargo/issues/6151)
-- [Smarter test execution order](https://github.com/rust-lang/cargo/issues/6266) (see also [#8685](https://github.com/rust-lang/cargo/issues/8685), [#10673](https://github.com/rust-lang/cargo/issues/10673))
+- [Smarter test execution order](https://github.com/rust-lang/cargo/issues/6266) (see also [rust-lang/cargo#8685], [rust-lang/cargo#10673])
 - [JUnit output is incorrect when running multiple test binaries](https://github.com/rust-lang/rust/issues/85563)
 - [Lack of failure when test binaries exit unexpectedly](https://github.com/rust-lang/rust/issues/87323)
 

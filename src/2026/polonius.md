@@ -19,7 +19,6 @@ Stabilize the [polonius alpha][alpha] borrow checking analysis, which resolves [
 
 [alpha]: https://github.com/rust-lang/rust/pull/143093
 [pc3]: https://blog.rust-lang.org/inside-rust/2023/10/06/polonius-update.html#background-on-polonius
-[rust-lang/rust#92985]: https://github.com/rust-lang/rust/issues/92985
 [a-mir-formality]: https://github.com/rust-lang/a-mir-formality/
 
 ## Motivation
@@ -57,7 +56,7 @@ fn get_or_insert_default<'r, K: Hash + Eq + Copy, V: Default>(
 }
 ```
 
-A similar variation is the filtering lending iterator pattern, where `next()` reborrows `self` in a loop — code that NLLs incorrectly rejects today. Beyond being an ergonomic hazard, this limitation is also an expressiveness gap: it blocks the ability to write [lending iterator patterns][#92985] entirely.
+A similar variation is the filtering lending iterator pattern, where `next()` reborrows `self` in a loop — code that NLLs incorrectly rejects today. Beyond being an ergonomic hazard, this limitation is also an expressiveness gap: it blocks the ability to write [lending iterator patterns](https://github.com/rust-lang/rust/issues/92985) entirely.
 
 #### What the alpha analysis does not accept
 
@@ -84,8 +83,8 @@ Fix remaining issues, validate on real-world code, and ship a stable improved bo
 
 | Task | Owner(s) | Notes |
 | ---- | -------- | ----- |
-| Fix soundness issue with opaque types and dead regions | @lqd, @tiif | @tiif's [trait-system-refactor-initiative#159](https://github.com/rust-lang/trait-system-refactor-initiative/issues/159) is a pre-requisite for a borrowck fix |
-| Expand test coverage | @lqd | We've started doing this during the previous goal period, e.g. from open fixed-by-polonius issues in [#145053](https://github.com/rust-lang/rust/pull/145053) |
+| Fix soundness issue with opaque types and dead regions | @lqd, @tiif | @tiif's [rust-lang/trait-system-refactor-initiative#159] is a pre-requisite for a borrowck fix |
+| Expand test coverage | @lqd | We've started doing this during the previous goal period, e.g. from open fixed-by-polonius issues in [rust-lang/rust#145053] |
 | Enable polonius testing on CI | @lqd | |
 | Ship nightly preview behind feature gate | @lqd | With blog post / call for testing |
 | Validate performance on real-world code | @lqd, @amandasystems | |

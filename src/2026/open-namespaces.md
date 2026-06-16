@@ -9,13 +9,13 @@
 
 ## Summary
 
-Navigate the cross-team design work to get [RFC 3243](https://github.com/rust-lang/rfcs/pull/3243) implemented.
+Navigate the cross-team design work to get [RFC #3243] implemented.
 
 **Needs contributor:** This goal needs contributors to help complete the implementations in Cargo, rustc, and crates.io. The work spans multiple repositories and involves cross-team coordination. Estimated time commitment: TBD.
 
 ## Motivation
 
-[RFC 3243](https://github.com/rust-lang/rfcs/pull/3243) proposed opening up namespaces in Rust to extension,
+[RFC #3243] proposed opening up namespaces in Rust to extension,
 managed by the package name with crates-io putting access control on who can publish to a crate's API namespace.
 This covers multiple teams and needs a lot of coordination to balance the needs of each team as shown on the [rustc tracking issue](https://github.com/rust-lang/rust/issues/122349).
 

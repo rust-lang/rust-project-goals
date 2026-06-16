@@ -31,10 +31,10 @@ A shared cache would:
 * Provide a central location to cleanup unneeded build artifacts (potentially automatically by Cargo)
 * Could be extended in the future to be pre-populated from a remote cache for CI usecases.
 
-In 2026, we will design and implement this cache in Cargo, making it available on nightly for users to begin experimenting with. (tracked in [cargo#5931](https://github.com/rust-lang/cargo/issues/5931))
+In 2026, we will design and implement this cache in Cargo, making it available on nightly for users to begin experimenting with. (tracked in [rust-lang/cargo#5931])
 As part of implementing the cache we will stabilize the `build-dir` [layout rework](https://github.com/rust-lang/cargo/issues/15010) that was done in 2025.
 In the beginning, the cache would be fairly conservative in what is cached but would be expanded over time.
-At the end of the year, we should have an understanding of the benefits and tradeoffs of the design we pick as well as a rough path towards stablization.
+At the end of the year, we should have an understanding of the benefits and tradeoffs of the design we pick as well as a rough path towards stabilization.
 
 ### Work items over the next year
 

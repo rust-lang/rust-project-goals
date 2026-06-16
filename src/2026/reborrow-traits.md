@@ -75,6 +75,5 @@ Originally `CoerceShared` had `type Target` to prevent multiple coercion targets
 
 Supporting multiple lifetimes requires dealing with rmeta (Rust metadata) complexity. Focusing on single-lifetime reborrowing first lets us get the core functionality working before tackling that additional complexity.
 
-[rust-lang/rust-project-goals#399]: https://github.com/rust-lang/rust-project-goals/issues/399
 [lang]: https://github.com/rust-lang/lang-team
 [compiler]: https://github.com/rust-lang/compiler-team

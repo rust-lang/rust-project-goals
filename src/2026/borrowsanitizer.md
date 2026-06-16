@@ -28,7 +28,7 @@ checks during compilation to detect errors at run-time. Its purpose is to find v
 aliasing model, as well as accesses out-of-bounds and use-after-free errors. 
 
 BorrowSanitizer relies on changes to the Rust compiler, an LLVM instrumentation pass, and a runtime library. We modified the compiler to emit special "retag" intrinsics that indicate when
-references are created and updated. Our LLVM pass lowers these intrinsics into runtime calls that associate each pointer with "provenance" metadata (see RFC [#3559](https://rust-lang.github.io/rfcs/3559-rust-has-provenance.html)). We validate provenance before memory accesses to detect undefined behavior. 
+references are created and updated. Our LLVM pass lowers these intrinsics into runtime calls that associate each pointer with "provenance" metadata (see [provenance RFC #3559](https://rust-lang.github.io/rfcs/3559-rust-has-provenance.html)). We validate provenance before memory accesses to detect undefined behavior. 
 
 Our primary goal is for BorrowSanitizer to be useful in practice. This will require broad support for Rust, C, and C++ language features. We want to achieve better performance than Miri while fully supporting the different features of Tree Borrows. 
 

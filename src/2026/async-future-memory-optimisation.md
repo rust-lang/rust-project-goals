@@ -41,7 +41,7 @@ We would like to deliver the first `async`-future memory packing scheme `-Zpack-
 
 ### The status quo
 
-Exponential growth of `async`-future types has been a long-standing issue, tracked by #62958. In addition, any data that is alive and used across more than two `await` points will incur further penalty, because their memory slots are indiscriminately reserved throughout the futures' life span.
+Exponential growth of `async`-future types has been a long-standing issue, tracked by [rust-lang/rust#62958]. In addition, any data that is alive and used across more than two `await` points will incur further penalty, because their memory slots are indiscriminately reserved throughout the futures' life span.
 
 This issue has manifested in two ways that hinder the adoption of general `async` Rust or require use of unergonomic mitigations.
 
@@ -50,7 +50,7 @@ This issue has manifested in two ways that hinder the adoption of general `async
 
 ### What we propose to do about it
 
-A proposed fix has been proposed in #135527 which strives for perfect preservation of coroutine semantics while reducing the memory bloat contributed by coroutine captures, which has been the most common case for large future sizes. This experimental implementation work has shown success in improving future sizes. It also retains the default memory layout scheme in order to allow experimentation without affecting existing stable Rust users. Based on this foundation, the proposed work involves a second packing scheme to relax the overall layout computation, so that memory allocation can still be released even values are live across more than one `await` suspension points, enabling even further memory compaction. These changes will continue to abide by the design axiom, under which the surface Rust language remains unchanged and improvement work should be contained only in the internal Application Binary Interface (ABI) or code generation.
+A proposed fix has been proposed in [rust-lang/rust#135527] which strives for perfect preservation of coroutine semantics while reducing the memory bloat contributed by coroutine captures, which has been the most common case for large future sizes. This experimental implementation work has shown success in improving future sizes. It also retains the default memory layout scheme in order to allow experimentation without affecting existing stable Rust users. Based on this foundation, the proposed work involves a second packing scheme to relax the overall layout computation, so that memory allocation can still be released even values are live across more than one `await` suspension points, enabling even further memory compaction. These changes will continue to abide by the design axiom, under which the surface Rust language remains unchanged and improvement work should be contained only in the internal Application Binary Interface (ABI) or code generation.
 
 The proposed work also includes two further experiments as stretch goals.
 
