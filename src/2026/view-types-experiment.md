@@ -1,11 +1,12 @@
 # View types experiment
 
-| Metadata         |           |
-| :--------------- | --------- |
-| Point of contact | @scrabsha |
-| Status           | Proposed  |
-| Tracking issue   |           |
-| Zulip channel    | TODO      |
+| Metadata            |           |
+| :------------------ | --------- |
+| Point of contact    | @scrabsha |
+| Status              | Proposed  |
+| Tracking issue      |           |
+| Zulip channel       | TODO      |
+| [compiler] champion |           |
 
 ## Summary
 
