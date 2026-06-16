@@ -42,9 +42,9 @@ Most of that involves shifting responsibilities from the test harness to the tes
 
 | Task        | Owner(s) | Notes |
 | ----------- | -------- | ----- |
-| Experiment with potential test harness features | ![Help wanted][]  |       |
-| Experiment with test reporting moving to Cargo | ![Help wanted][]  |       |
-| Putting forward a proposal for approval | ![Help wanted][]  |       |
+| Experiment with test harness features | ![Help wanted][]  |       |
+| Experiment with moving test reporting to Cargo | ![Help wanted][]  |       |
+| Prepare an RFC | ![Help wanted][]  |       |
 
 ### The "shiny future" we are working towards
 
@@ -63,6 +63,8 @@ Most of that involves shifting responsibilities from the test harness to the tes
 
 | Task | Experience level | Time investment |
 |------|-----------------|-----------------|
-| Implementation work | TBD | TBD |
+| Experiment with test harness features | TBD | TBD |
+| Experiment with moving test reporting to Cargo | TBD | TBD |
+| Prepare an RFC | TBD | TBD |
 
 ## Frequently asked questions

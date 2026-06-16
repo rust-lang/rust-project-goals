@@ -13,7 +13,7 @@
 
 Implement and stabilize the MVP of public dependencies described in [RFC #3516]. Public dependencies allow crates to declare dependencies whose types are *meant* to be exposed in the public API.
 
-**Needs contributor:** This goal needs a contributor to work with the compiler team on identifying and implementing the minimal lint subset needed for stabilization. The work spans rustc (lint implementation) and Cargo (dependency metadata). Estimated time commitment: TBD.
+**Needs contributor:** This goal needs a contributor to work with the compiler team on identifying and implementing the minimal lint subset needed for stabilization. The work spans rustc (lint implementation) and Cargo (dependency metadata).
 
 ## Motivation
 
@@ -51,6 +51,7 @@ Work with [compiler] to identify a minimal subset of functionality for what the 
 
 | Task | Experience level | Time investment |
 |------|-----------------|-----------------|
-| Implementation work | TBD | TBD |
+| Find a minimal stabilizable subset of the lint's functionality (with [compiler]) | TBD | TBD |
+| Complete the tasks related to the lint's stabilization | TBD | TBD |
 
 ## Frequently asked questions
