@@ -6,7 +6,7 @@
 | Status              | Proposed  |
 | Tracking issue      |           |
 | Zulip channel       | TODO      |
-| [compiler] champion |           |
+| [compiler] champion | @oli-obk |
 
 ## Summary
 
