@@ -60,8 +60,6 @@ impl BigTrait for MyType {
 
 ### The status quo
 
-> *Elaborate in more detail about the problem you are trying to solve. This section is making the case for why this particular problem is worth prioritizing with project bandwidth. A strong status quo section will (a) identify the target audience and (b) give specifics about the problems they are facing today. Sometimes it may be useful to start sketching out how you think those problems will be addressed by your change, as well, though it's not necessary.*
-
 Supertrait `auto impl` targets library authors who needs to refactor traits or design a trait hierarchy. A recurring topic arising from this activity is that with refined trait granularity, or smaller traits in other words, also comes many required `impl`s. The problem exacerbates when it is an upstream trait receiving a refactor. While this is rightfully a breaking change, downstream crates would also have to move trait items into new `impl` blocks as the original trait is broken into smaller supertraits. This major rewrite is often undesirable for library authors as this would discourage downstream users to upgrade the library. For standard library, this often means that the changes can only land on an Edition boundary.
 
 ### The next 6 months
@@ -72,12 +70,6 @@ Supertrait `auto impl` targets library authors who needs to refactor traits or d
 | ...                                    |                   |       |
 
 ### The "shiny future" we are working towards
-
-> *If this goal is part of a larger plan that will extend beyond this goal period, sketch out the goal you are working towards. It may be worth adding some text about why these particular goals were chosen as the next logical step to focus on.*
->
-> *This text is NORMATIVE, in the sense that teams should review this and make sure they are aligned. If not, then the shiny future should be moved to frequently asked questions with a title like "what might we do next".*
-
-*However, for most proposals, alignment on exact syntax should not be required to start a goal, only alignment on the problem and the general sketch of the solution. This may vary for goals that are specifically about syntax, such as ergonomic improvements.*
 
 We would like to establish a mechanism in the language to automatically derive the required supertrait implementation using the items available in the subtrait implementation. The first step is to enable the resolution of the supertrait associated items in the subtrait implementation block to the corresponding supertraits when there is no risk of ambiguity.
 
