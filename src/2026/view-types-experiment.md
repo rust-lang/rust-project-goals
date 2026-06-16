@@ -219,7 +219,7 @@ To facilitate testing, the following syntaxes will be added:
 
 | Team       | Support level | Notes                                               |
 | ---------- | ------------- | --------------------------------------------------- |
-| [compiler] | Small         | Code review, questions                              |
+| [compiler] | Medium        | Code review, questions                              |
 | [lang]     | Small         | Suggestion of alternative syntaxes                  |
 | [types]    | Small         | Add the `Contiguous` marker trait and implied bound |
 
