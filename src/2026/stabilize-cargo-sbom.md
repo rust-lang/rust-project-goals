@@ -14,7 +14,7 @@
 
 Progress towards an MVP version of Cargo SBOM support by resolving known issues in Cargo's [SBOM precursor feature](https://doc.rust-lang.org/nightly/cargo/reference/unstable.html#sbom) and finalizing the RFC.
 
-**Needs contributor:** This goal needs contributors to help with testing, resolving known issues in Cargo's SBOM precursor, and converting downstream tooling like cargo-cyclonedx. The work is primarily in the [rust-lang/cargo](https://github.com/rust-lang/cargo) repository. Estimated time commitment: TBD.
+**Needs contributor:** This goal needs contributors to help with testing, resolving known issues in Cargo's SBOM precursor, and converting downstream tooling like cargo-cyclonedx. The work is primarily in the [rust-lang/cargo](https://github.com/rust-lang/cargo) repository.
 
 ## Motivation
 
@@ -44,7 +44,7 @@ Inaccurate SBOMs lead to false positives on vulnerability scans and/or complianc
 | ----------- | -------- | ----- |
 | Complete the RFC | @Shnatsel et al. |    |
 | Resolve known issues | @Shnatsel et al. |       |
-| convert cargo-cyclonedx to use the SBOM precursor | @Shnatsel et al. | outside the Rust Project repositories, no Rust Project mentorship needed |
+| Convert cargo-cyclonedx to use the SBOM precursor | @Shnatsel et al. | outside the Rust Project repositories, no Rust Project mentorship needed |
 | Resolve newly uncovered issues | @Shnatsel et al. |       |
 | Stabilize the MVP | @Shnatsel et al. |       |
 
@@ -66,7 +66,9 @@ We will need:
 
 | Task | Experience level | Time investment |
 |------|-----------------|-----------------|
-| Implementation work | TBD | TBD |
+| Test Cargo's SBOM precursor | TBD | TBD |
+| Resolve issues in the SBOM precursor | TBD | TBD |
+| Convert cargo-cyclonedx to use the SBOM precursor | TBD | TBD |
 
 ## Frequently asked questions
 

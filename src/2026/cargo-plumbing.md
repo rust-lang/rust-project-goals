@@ -15,7 +15,7 @@ to be removed ([cargo-plumbing#82](https://github.com/crate-ci/cargo-plumbing/is
 2. Round out proposed commands ([issues](https://github.com/crate-ci/cargo-plumbing/issues?q=is%3Aissue%20state%3Aopen%20label%3AA-new-subcommand))
 3. Finalize the message formats ([cargo-plumbing#18](https://github.com/crate-ci/cargo-plumbing/discussions/18))
 
-**Needs contributor:** This goal needs contributors to refactor Cargo internals, implement remaining plumbing commands, optimize performance, and iterate on output schemas. The work is primarily in [rust-lang/cargo](https://github.com/rust-lang/cargo) and [crate-ci/cargo-plumbing](https://github.com/crate-ci/cargo-plumbing). Estimated time commitment: TBD.
+**Needs contributor:** This goal needs contributors to refactor Cargo internals, implement remaining plumbing commands, optimize performance, and iterate on output schemas. The work is primarily in [rust-lang/cargo](https://github.com/rust-lang/cargo) and [crate-ci/cargo-plumbing](https://github.com/crate-ci/cargo-plumbing).
 
 ## Motivation
 
@@ -66,10 +66,10 @@ Continue on the third-party subcommand to experiment with plumbing commands ([so
 | Task                                    | Owner(s) or team(s)      | Notes |
 |-----------------------------------------|--------------------------|-------|
 | Refactor cargo                          | ![Help wanted][]         |       |
-| Implement remaining commands            | ![Help wanted][]         |       |
+| Implement remaining plumbing commands            | ![Help wanted][]         |       |
 | Inside Rust blog post inviting feedback | @epage                   |       |
-| Optimizing Cargo                        | ![Help wanted][], @epage |       |
-| Iterate on schemas including schema evolution plan | ![Help wanted][]         |       |
+| Optimize cargo                        | ![Help wanted][], @epage |       |
+| Iterate on schemas and plan schema evolution | ![Help wanted][]         |       |
 
 See [2025h2 goal](../2025h2/cargo-plumbing.md) for more background.
 
@@ -89,6 +89,9 @@ See [2025h2 goal](../2025h2/cargo-plumbing.md) for more background.
 
 | Task | Experience level | Time investment |
 |------|-----------------|-----------------|
-| Implementation work | TBD | TBD |
+| Refactor cargo | TBD | TBD |
+| Implement remaining plumbing commands | TBD | TBD |
+| Optimize cargo | TBD | TBD |
+| Iterate on schemas and plan schema evolution | TBD | TBD |
 
 ## Frequently asked questions

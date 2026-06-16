@@ -163,7 +163,10 @@ We're looking to mentor one or more contributors on this goal. The work spans la
 
 | Task | Experience level | Time investment |
 |------|-----------------|-----------------|
-| Implementation work | TBD | TBD |
+| Explore designs for return type notation | TBD | TBD |
+| Explore designs for async closures | TBD | TBD |
+| Work on the RFC | TBD | TBD |
+| Finalize the implementation | TBD | TBD |
 
 ## Frequently asked questions
 

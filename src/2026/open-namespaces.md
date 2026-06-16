@@ -1,7 +1,7 @@
 # Implement Open Rust Namespace Support
 
 | Metadata         |                                                                                  |
-|:-----------------|----------------------------------------------------------------------------------|
+| :--------------- | -------------------------------------------------------------------------------- |
 | Point of contact | @epage                                                                           |
 | Status           | Accepted                                                                         |
 | Tracking issue   | [rust-lang/rust-project-goals#256]                                               |
@@ -11,7 +11,7 @@
 
 Navigate the cross-team design work to get [RFC 3243](https://github.com/rust-lang/rfcs/pull/3243) implemented.
 
-**Needs contributor:** This goal needs contributors to help complete the implementations in Cargo, rustc, and crates.io. The work spans multiple repositories and involves cross-team coordination. Estimated time commitment: TBD.
+**Needs contributor:** This goal needs contributors to help complete the implementations in Cargo, rustc, and crates.io. The work spans multiple repositories and involves cross-team coordination.
 
 ## Motivation
 
@@ -34,15 +34,17 @@ This covers multiple teams and needs a lot of coordination to balance the needs 
 
 ## Team asks
 
-| Team       | Support level | Notes                                   |
-| ---------- | ------------- | --------------------------------------- |
-| [cargo]    | Small         |                                         |
-| [compiler] | Small         | Design discussions, PR review           |
+| Team       | Support level | Notes                         |
+| ---------- | ------------- | ----------------------------- |
+| [cargo]    | Small         |                               |
+| [compiler] | Small         | Design discussions, PR review |
 
 ## Help wanted
 
-| Task | Experience level | Time investment |
-|------|-----------------|-----------------|
-| Implementation work | TBD | TBD |
+| Task                       | Experience level | Time investment |
+| -------------------------- | ---------------- | --------------- |
+| Implement the RFC (Cargo)     | TBD              | TBD             |
+| Implement the RFC (rustc)     | TBD              | TBD             |
+| Implement the RFC (crates.io) | TBD              | TBD             |
 
 ## Frequently asked questions
