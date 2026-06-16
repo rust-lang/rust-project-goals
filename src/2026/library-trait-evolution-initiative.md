@@ -6,7 +6,7 @@
 | Point of contact | @lcnr                                                                            |
 | What and why     | Enable library authors to more easily change their trait definitions             |
 | Status           | Proposed                                                                         |
-| Tracking issue   | *if this is a continuing goal, add the old tracking issue, else leave blank*     |
+| Tracking issue   |      |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
 | Funding contact       | [Hexcat](https://hexcat.nl/) |
 
