@@ -29,6 +29,7 @@ This will be even more of an issue once we add new *implicit default auto trait 
 
 | Task        | Owner(s) | Notes |
 | ----------- | -------- | ----- |
+| Setup a Library Trait Evolution Initiative and create its repository | @lcnr |
 | Collect and explore different use-cases in a single repository | @lcnr  |       
 | Collaborate on the design and implementation of language features to solve these issues | @lcnr |
 
