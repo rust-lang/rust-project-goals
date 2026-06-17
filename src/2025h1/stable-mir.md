@@ -4,10 +4,10 @@
 | :--                | :--                                |
 | Point of contact   | @celinval                          |
 | Status             | Accepted                           |
-| Zulip channel      | [#project-stable-mir][channel]     |
+| Zulip channel      | [#project-rustc-public][channel]     |
 | Tracking issue     | [rust-lang/rust-project-goals#266] |
 
-[channel]: https://rust-lang.zulipchat.com/#narrow/channel/320896-project-stable-mir
+[channel]: https://rust-lang.zulipchat.com/#narrow/channel/320896-project-rustc-public
 
 ## Summary
 
@@ -72,7 +72,7 @@ fostering innovation and reducing bottlenecks.
 |------------------------------|--------------------------------|-------|
 | Discussion and moral support | ![Team][] [compiler]           |       |
 | Implementation               | @celinval                      |       |
-| Standard reviews             | ![Team][] [project-stable-mir] |       |
+| Standard reviews             | ![Team][] [project-rustc-public] |       |
 | Fork configuration           | Help needed                    |       |
 | Documentation                | Help needed                    |       |
 | Publish crate                | @celinval                      |       |
