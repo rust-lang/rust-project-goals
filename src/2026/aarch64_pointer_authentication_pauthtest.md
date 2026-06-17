@@ -5,7 +5,7 @@
 | Point of contact     | @jchlanda                                       |
 | [compiler] champion  | @davidtwco                                      |
 | Status               | Accepted                                        |
-| Other tracking issue | https://github.com/rust-lang/rust/issues/148640 |
+| Other tracking issue | [rust-lang/rust#148640]                         |
 | Zulip channel        | N/A                                             |
 | Tracking issue       | [rust-lang/rust-project-goals#618]              |
 

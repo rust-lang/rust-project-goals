@@ -5,7 +5,7 @@
 | Point of contact      | @folkertdev                                                                                      |
 | Status                | Accepted                                                                                         |
 | Tracking issue        | [rust-lang/rust-project-goals#634]                                                               |
-| Other tracking issues | https://github.com/rust-lang/rust/issues/112788, https://github.com/rust-lang/rust/issues/132306 |
+| Other tracking issues | [rust-lang/rust#112788], [rust-lang/rust#132306]                                                 |
 | Zulip channel         |                                                                                                  |
 | [lang] champion       | @scottmcm                                                                                        |
 | Funding contact       | [Trifecta Tech Foundation](https://trifectatech.org/) |
@@ -31,10 +31,10 @@ In light of these design issues, we'd also like to continue development of `loop
 | Task                                                                                                        | Owner(s)             | Notes                                                                                                |
 | ----------------------------------------------------------------------------------------------------------- | -------------------- | ---------------------------------------------------------------------------------------------------- |
 | 1. add "computed goto" codegen to `loop_match`                                                                 | @folkertdev, @WaffleLapkin |                                                                                                      |
-| 2. improve the `loop_match` implementation in `rustc_codegen_ssa`                                              | @folkertdev, @WaffleLapkin | - https://github.com/rust-lang/rust/issues/143806                                                    |
-| 3. implement tail calls that pass arguments via the stack across targets (this may involve some work in LLVM)  | @folkertdev, @WaffleLapkin | - https://github.com/rust-lang/rust/pull/151143<br>- https://github.com/rust-lang/rust/issues/148748 |
+| 2. improve the `loop_match` implementation in `rustc_codegen_ssa`                                              | @folkertdev, @WaffleLapkin | [rust-lang/rust#143806]                                                    |
+| 3. implement tail calls that pass arguments via the stack across targets (this may involve some work in LLVM)  | @folkertdev, @WaffleLapkin | [rust-lang/rust#151143], [rust-lang/rust#148748] |
 | 4. improve the validation checks for tail calls                                                             | @WaffleLapkin              |                                                                                                      |
-| 5. accept tail call signatures that are a subtype                                                              | @WaffleLapkin              | - https://github.com/rust-lang/rust/issues/144953                                                    |
+| 5. accept tail call signatures that are a subtype                                                              | @WaffleLapkin              | [rust-lang/rust#144953]                                                    |
 | 6. add experimental `extern "tail"` ABI that lowers to LLVM `tailcc` and lifts the same-signature restriction (this will probably require some work in LLVM)  | @WaffleLapkin, @folkertdev |                                                                                                      |
 
 ## Team asks

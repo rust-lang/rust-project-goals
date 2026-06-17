@@ -11,7 +11,7 @@
 
 1. Refactor Cargo to allow hacks in
 [proposed cargo-plumbing commands](https://github.com/crate-ci/cargo-plumbing)
-to be removed ([cargo-plumbing#82](https://github.com/crate-ci/cargo-plumbing/issues/82)).
+to be removed ([crate-ci/cargo-plumbing#82]).
 2. Round out proposed commands ([issues](https://github.com/crate-ci/cargo-plumbing/issues?q=is%3Aissue%20state%3Aopen%20label%3AA-new-subcommand))
 3. Finalize the message formats ([cargo-plumbing#18](https://github.com/crate-ci/cargo-plumbing/discussions/18))
 

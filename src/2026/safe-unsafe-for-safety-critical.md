@@ -23,7 +23,7 @@ Rust's `unsafe` documentation has gaps. The Rustonomicon self-describes as "inco
 
 This matters acutely in safety-critical domains. Automotive, medical, and aerospace software must demonstrate code behaves correctly. Without normative documentation, developers cannot build rigorous safety cases for `unsafe` code.
 
-The [zerocopy crate](https://github.com/google/zerocopy) established a model: annotate every `unsafe` block with rationale citing official Rust documentation; when documentation is insufficient, work with t-opsem to improve it (e.g., [rust-lang/rust#114902](https://github.com/rust-lang/rust/issues/114902) for `addr_of!` semantics).
+The [zerocopy crate](https://github.com/google/zerocopy) established a model: annotate every `unsafe` block with rationale citing official Rust documentation; when documentation is insufficient, work with t-opsem to improve it (e.g., [rust-lang/rust#114902] for `addr_of!` semantics).
 
 ### What we'll do
 

@@ -41,7 +41,7 @@ If this experiment is successful, crates like `bevy` will be able to "just work"
 just to get the `bevy_reflect` information built at compile-time. Crates like `bevy_reflect` and `facet` will still exist, but only as different libraries with different goals and methods for exposing reflection information.
 
 Furthermore it opens up new possibilities of reflection-like behaviour by
-* specializing serialization on specific formats (e.g. serde won't support changing serialization depending on the serializer  https://github.com/serde-rs/serde/issues/2877),
+* specializing serialization on specific formats (e.g. serde won't support changing serialization depending on the serializer  [serde-rs/serde#2877]),
 * specializing trait impl method bodies to have more performant code paths for specific types, groups of types or shapes (e.g. based on the layout) of types.
 
 I consider reflection orthogonal to derives as they solve similar problems from different directions. Reflection lets you write the logic that processes your types in a way very similar to dynamic languages, by inspecting values' types during the execution of the reflection code, while derives generate the code that processes types ahead of time. Proc macros derives have historically been shown to be fairly hard to debug and bootstrap from scratch (we should totally also improve proc macro workflows). While reflection can get similarly complex fast, it allows for a more dynamic approach where you can easily debug the state your are in, as you do not have to pair the derive logic with the consumer logic (e.g. a serializer) and are instead directly writing just the consumer logic.

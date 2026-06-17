@@ -5,7 +5,7 @@
 | Point of contact      | @Shnatsel                                       |
 | Status                | Accepted                                        |
 | Tracking issue        | [rust-lang/rust-project-goals#649]              |
-| Other tracking issues | https://github.com/rust-lang/cargo/issues/16565 |
+| Other tracking issues | [rust-lang/cargo#16565]                         |
 | Zulip channel         | N/A                                             |
 | [cargo] champion      | @weihanglo                                      |
 
@@ -32,7 +32,7 @@ Inaccurate SBOMs lead to false positives on vulnerability scans and/or complianc
 
 ### What we propose to do about it
 
-1. Complete [the RFC](https://github.com/rust-lang/rfcs/pull/3553) for this feature and get it accepted
+1. Complete [RFC #3553] for this feature and get it accepted
 1. Resolve the already known issue(s) in the Cargo SBOM precursor feature
 1. Modify [cargo-cyclonedx](https://crates.io/crates/cargo-cyclonedx) to use the Cargo SBOM precursor as a data source, to prove that it can be used to generate a complete and accurate SBOM in an industry standard format
 1. Address any issues that point 2 uncovers in the Cargo SBOM precursor feature

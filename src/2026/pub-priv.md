@@ -25,13 +25,10 @@ This will allow users to tell Rustc and Cargo what dependencies are private
 
 ### The status quo
 
-[RFC #1977](https://github.com/rust-lang/rfcs/pull/1977) has been superseded by
-[RFC #3516](https://github.com/rust-lang/rfcs/pull/3516) to reduce complexity on the Cargo side to help get this over the line.
+[RFC #1977] has been superseded by
+[RFC #3516] to reduce complexity on the Cargo side to help get this over the line.
 However, there is still a lot of complexity on the compiler side to get this right
-(
-[rust#3516](https://github.com/rust-lang/rfcs/pull/3516),
-[rust#119428](https://github.com/rust-lang/rust/issues/119428),
-),
+([RFC #3516], [rust-lang/rust#119428]),
 keeping this feature in limbo
 
 ### The next 6 months

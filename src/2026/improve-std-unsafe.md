@@ -18,7 +18,7 @@ Review unsafe code documentation in the Rust standard library, identify inconsis
 
 The Rust standard library provides many unsafe APIs accompanied by safety documentation. 
 While most unsafe APIs include safety sections, the quality of these documents does not always match the rigor of the code itself. 
-Inconsistencies exist, such as missing safety sections (e.g., [#138309](https://github.com/rust-lang/rust/pull/138309), [#146925](https://github.com/rust-lang/rust/pull/146925)) and incomplete safety properties (e.g., [#134953](https://github.com/rust-lang/rust/pull/134953), [#134496](https://github.com/rust-lang/rust/pull/134496), [#135009](https://github.com/rust-lang/rust/pull/135009)). A systematic review is therefore necessary to uphold the quality of this flagship component of Rust.
+Inconsistencies exist, such as missing safety sections (e.g., [rust-lang/rust#138309], [rust-lang/rust#146925]) and incomplete safety properties (e.g., [rust-lang/rust#134953], [rust-lang/rust#134496], [rust-lang/rust#135009]). A systematic review is therefore necessary to uphold the quality of this flagship component of Rust.
 
 Additionally, the Rust standard library lacks systematic guidelines for safety reasoning and unsafe code documentation. 
 As the library continues to grow in size and complexity, maintaining unsafe code documentation quality becomes increasingly challenging without such guidelines.
@@ -30,14 +30,14 @@ Finnaly, such a guideline is also needed by the community. For example, there ha
 
 ### What we propose to do about it
 
-- **Review unsafe code documentation in the Rust standard library, identify and resolve inconsistencies (missing safety sections and missing safety properties), following the approach taken in [#138309](https://github.com/rust-lang/rust/pull/138309), [#146925](https://github.com/rust-lang/rust/pull/146925), [#134953](https://github.com/rust-lang/rust/pull/134953), [#134496](https://github.com/rust-lang/rust/pull/134496), and [#135009](https://github.com/rust-lang/rust/pull/135009).** This effort will require continued collaboration between the opsem team and the standard library team, as in previous reviews.
+- **Review unsafe code documentation in the Rust standard library, identify and resolve inconsistencies (missing safety sections and missing safety properties), following the approach taken in [rust-lang/rust#138309], [rust-lang/rust#146925], [rust-lang/rust#134953], [rust-lang/rust#134496], and [rust-lang/rust#135009].** This effort will require continued collaboration between the opsem team and the standard library team, as in previous reviews.
 
   The inconsistency checking will be primarily based on the following mechanisms and will not introduce hard semantic-related issues.
   - **i. Missing safety sections:**
   For example, an unsafe API without the safety section in its doc.
   
   - **ii. Cross-checking API naming and parameters:**
-  API names and parameters often encode specific safety properties. For instance, the following four APIs (`from_raw(raw: *mut T)`, `from_raw_in(raw: *mut T, alloc: A)`, `from_non_null(ptr: NonNull<T>)`, `from_non_null_in(raw: NonNull<T>, alloc: A)`) of `Box` illustrate a naming convention. The substring `_in` indicates that the pointer must refer to a block of memory allocated by the provided allocator `alloc`. By contrast, APIs without the `_in` suffix imply that the pointer must refer to a block of memory allocated by the global allocator. Such naming patterns also exist in other structs like `Weak` and `Arc`. It is not difficult to detect and confirm inconsistencies among them. See [#135009](https://github.com/rust-lang/rust/pull/135009) and [#135805](https://github.com/rust-lang/rust/pull/135805) for more details.
+  API names and parameters often encode specific safety properties. For instance, the following four APIs (`from_raw(raw: *mut T)`, `from_raw_in(raw: *mut T, alloc: A)`, `from_non_null(ptr: NonNull<T>)`, `from_non_null_in(raw: NonNull<T>, alloc: A)`) of `Box` illustrate a naming convention. The substring `_in` indicates that the pointer must refer to a block of memory allocated by the provided allocator `alloc`. By contrast, APIs without the `_in` suffix imply that the pointer must refer to a block of memory allocated by the global allocator. Such naming patterns also exist in other structs like `Weak` and `Arc`. It is not difficult to detect and confirm inconsistencies among them. See [rust-lang/rust#135009] and [rust-lang/rust#135805] for more details.
 
   - **iii. Inference based on unsafe callees:**
   If an unsafe callee has safety requirements that are not enforced or discharged by the caller, this may indicate that a safety requirement is missing from the caller’s documentation.
@@ -104,7 +104,7 @@ Finnaly, such a guideline is also needed by the community. For example, there ha
 ### The "shiny future"
 
 - The standard can also be adopted by downstream Rust crates, promoting more consistent and sound unsafe code practices across the ecosystem. A particularly important beneficiary would be Rust for Linux, which places significant emphasis on the correct handling of unsafe code.
-- It can serve as a basis for future attribute-based safety documentation and checking, as proposed in [RFC 3842](https://github.com/rust-lang/rfcs/pull/3842). 
+- It can serve as a basis for future attribute-based safety documentation and checking, as proposed in [RFC #3842]. 
 
 ## Team asks
 
@@ -117,11 +117,10 @@ Finnaly, such a guideline is also needed by the community. For example, there ha
 
 ### What is the difference from goal [486](https://github.com/rust-lang/rust-project-goals/pull/486).
 
-[#486](https://github.com/rust-lang/rust-project-goals/pull/486) will start with Eclipse iceoryx2.
+[rust-lang/rust-project-goals#486] will start with Eclipse iceoryx2.
 > We’ll apply the zerocopy model systematically, starting with [Eclipse iceoryx2](https://github.com/eclipse-iceoryx/iceoryx2), a zero-copy IPC framework with ~3,300 unsafe usages.
 
 This goal focuses on identifying particular `unsafe` usage patterns for Eclipse iceoryx2 and tracing those back to relevant portions of the Rust Reference and standard library documentation. The main work is then to follow the work model of the [zerocopy](https://crates.io/crates/zerocopy) crate by working with the relevant teams to have normative language created in the Reference and standard library documentation such that safety-critical Rust users can build safety-cases upon them.
 > Priority areas include cross-process synchronization, memory-mapped regions, cross-process atomics, and UnsafeCell in shared memory—patterns common in systems programming but underdocumented.
 
 This goal is focused on ensuring that particular `unsafe` usages from the language and standard library are documented in a normative fashion as to how they behave. It would not produce a general standard or set of guidelines on how to use `unsafe` to mitigate risk of introducing undefined behavior.
-

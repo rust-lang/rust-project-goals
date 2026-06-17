@@ -29,6 +29,8 @@ The next-generation trait solver is intended to fully replace the existing type 
 
 There are multiple type system unsoundnesses blocked on the next-generation trait solver: [project board][unsoundnesses]. Desirable features such as coinductive trait semantics and perfect derive, where-bounds on binders, and better handling of higher-ranked bounds and types are also stalled due to shortcomings of the existing implementation.
 
+[unsoundnesses]: https://github.com/orgs/rust-lang/projects/44/views/1
+
 Since starting to work on this at the EOY 2022, we've:
 - stabilized its use in coherence checking in Rust 1.84
 - replaced the use of `chalk` in `rust-analyzer`

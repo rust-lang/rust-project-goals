@@ -1,12 +1,12 @@
 # Stabilizing `f16`
 
-| Metadata              |                                                 |
-| :--                   | :--                                             |
-| Point of contact      | @folkertdev                                     |
-| Status                | Accepted                                        |
-| Tracking issue        | [rust-lang/rust-project-goals#655]              |
-| Other tracking issues | https://github.com/rust-lang/rust/issues/116909 |
-| Zulip channel         | N/A                                             |
+| Metadata              |                                                       |
+| :--                   | :--                                                   |
+| Point of contact      | @folkertdev                                           |
+| Status                | Accepted                                              |
+| Tracking issue        | [rust-lang/rust-project-goals#655]                    |
+| Other tracking issues | [rust-lang/rust#116909]                               |
+| Zulip channel         | N/A                                                   |
 | Funding contact       | [Trifecta Tech Foundation](https://trifectatech.org/) |
 
 ## Summary

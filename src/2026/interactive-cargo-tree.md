@@ -43,10 +43,10 @@ The goal for the next 6 months is to design and implement an interactive termina
 | Task                                   | Owner(s) | Notes                                                |
 | -------------------------------------- | -------- | ---------------------------------------------------- |
 | Implement basic interactive tree       | @orhun   | already done in [cargo-tree-tui]                     |
-| Match [`cargo-tree`] semantics         | @orhun   | [cargo-tree-tui#4]                                   |
-| Improve the UX & styling               | @orhun   | [cargo-tree-tui#8]                                   |
+| Match [`cargo-tree`] semantics         | @orhun   | [orhun/cargo-tree-tui#4]                             |
+| Improve the UX & styling               | @orhun   | [orhun/cargo-tree-tui#8]                             |
 | Directly depend on cargo as dependency | @orhun   | There might be some upstream APIs need to be changed |
-| Optimize for performance               | @orhun   | [cargo-tree-tui#37]                                  |
+| Optimize for performance               | @orhun   | [orhun/cargo-tree-tui#37]                            |
 | Prepare for inclusion in Cargo         | @orhun   | Integration and documentation work                   |
 
 ### The "shiny future" we are working towards
@@ -73,11 +73,6 @@ In the distant future, implementing this would open up possibilities for adding 
 
 n/A
 
-[rust-lang/cargo#11213]: https://github.com/rust-lang/cargo/issues/11213
-[rust-lang/cargo#15473]: https://github.com/rust-lang/cargo/issues/15473
 [TUI for Cargo]: https://rust-lang.zulipchat.com/#narrow/channel/246057-t-cargo/topic/TUI.20for.20cargo
 [`cargo-tree`]: https://doc.rust-lang.org/cargo/commands/cargo-tree.html
 [cargo-tree-tui]: https://github.com/orhun/cargo-tree-tui
-[cargo-tree-tui#4]: https://github.com/orhun/cargo-tree-tui/issues/4
-[cargo-tree-tui#8]: https://github.com/orhun/cargo-tree-tui/issues/8
-[cargo-tree-tui#37]: https://github.com/orhun/cargo-tree-tui/issues/37

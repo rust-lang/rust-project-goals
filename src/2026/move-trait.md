@@ -9,7 +9,7 @@
 | Roadmap               | [Just add async](./roadmap-just-add-async.md)                                                        |
 | Roadmap               | [Rust for Linux](./roadmap-rust-for-linux.md)                                                        |
 | Tracking issue        | [rust-lang/rust-project-goals#635]                                                                   |
-| Other tracking issues | https://github.com/rust-lang/rust/issues/149607                                                      |
+| Other tracking issues | [rust-lang/rust#149607]                                                                              |
 | Zulip channel         | [#t-lang/move-trait](https://rust-lang.zulipchat.com/#narrow/channel/549962-t-lang.2Fmove-trait)     |
 | [types] champion      | @lcnr                                                                                                |
 | [lang] champion       | @jackh726                                                                                            |

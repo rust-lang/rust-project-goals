@@ -18,12 +18,12 @@ the `Sized` trait hierarchy and continue nightly support for scalable vectors:
 
 - Stabilize the refined `Sized` trait hierarchy (without constness), unblocking extern types
 - Propose and implement `const Sized` to support scalable vectors
-- Achieve RFC acceptance for [rfcs#3838] (Scalable Vectors)
+- Achieve RFC acceptance for [RFC #3838] (Scalable Vectors)
 - Land SVE types and intrinsics in stdarch for nightly experimentation
 - Continue addressing stabilization blockers for SVE itself
 - Begin design work for supporting the Scalable Matrix Extension (SME)
 
-The `const Sized` work (Part II of [rfcs#3729]) is deferred to a future goal,
+The `const Sized` work (Part II of [RFC #3729]) is deferred to a future goal,
 allowing us to deliver value sooner through the trait hierarchy stabilization.
 This future work interacts with ongoing [const generics][const-generics-goal]
 efforts, as `const Sized` depends on progress in const traits.
@@ -67,32 +67,22 @@ systems programming language with native support for these hardware capabilities
 
 Significant progress was made in 2025:
 
-- **Sized Hierarchy: Part I** ([rust#137944]) has been merged, introducing
+- **Sized Hierarchy: Part I** ([rust-lang/rust#137944]) has been merged, introducing
   new non-const sizing traits behind the `sized_hierarchy` feature gate
-- **Scalable vector infrastructure** ([rust#143924]) has been merged, adding
+- **Scalable vector infrastructure** ([rust-lang/rust#143924]) has been merged, adding
   experimental `rustc_scalable_vector(N)` attribute support
-- **Hierarchy of Sized traits** ([rfcs#3729]) is being implemented experimentally
+- **Hierarchy of Sized traits** ([RFC #3729]) is being implemented experimentally
 
-See the tracking issues for the Sized Hierarchy prerequisite ([rust#144404]) and
-for Scalable Vectors themselves ([rust#145052]).
-
-[rust#137944]: https://github.com/rust-lang/rust/pull/137944
-[rust#143924]: https://github.com/rust-lang/rust/pull/143924
-[rust#144404]: https://github.com/rust-lang/rust/issues/144404
-[rust#145052]: https://github.com/rust-lang/rust/issues/145052
-[rfcs#3729]: https://github.com/rust-lang/rfcs/pull/3729
-[rfcs#3838]: https://github.com/rust-lang/rfcs/pull/3838
-[stdarch#1509]: https://github.com/rust-lang/stdarch/pull/1509
+See the tracking issues for the Sized Hierarchy prerequisite ([rust-lang/rust#144404]) and
+for Scalable Vectors themselves ([rust-lang/rust#145052]).
 
 ### What we propose to do about it
 
-In 2026, we plan to factor out a subset of [RFC 3729] that can be stabilized
+In 2026, we plan to factor out a subset of [RFC #3729] that can be stabilized
 independently: traits like `SizeOfVal` that don't require const trait support.
-This subset unblocks extern types ([RFC 1861]), a long-requested feature, while
+This subset unblocks extern types ([RFC #1861]), a long-requested feature, while
 the const-specific portions needed for SVE itself remain experimental pending
 progress on const traits.
-
-[RFC 1861]: https://github.com/rust-lang/rfcs/pull/1861
 
 Our design axioms:
 
@@ -114,7 +104,7 @@ the next logical step, enabling efficient matrix processing in Rust.
 | Task                                          | Owner(s) or team(s) | Notes                                     |
 | --------------------------------------------- | ------------------- | ----------------------------------------- |
 | Stabilize Sized trait hierarchy               | @davidtwco          | Unblocks extern types                     |
-| Achieve RFC acceptance for [rfcs#3838]        | @davidtwco          | Scalable Vectors RFC                      |
+| Achieve RFC acceptance for [RFC #3838]        | @davidtwco          | Scalable Vectors RFC                      |
 | Update and reopen stdarch SVE PR              | @davidtwco          | SVE types and intrinsics                  |
 | Address SVE stabilization blockers            | @davidtwco          | Identify and resolve blockers             |
 | SME design exploration                        | @davidtwco          | Understand implications for Rust          |
@@ -124,7 +114,7 @@ the next logical step, enabling efficient matrix processing in Rust.
 | Team       | Support level | Notes                                                   |
 | ---------- | ------------- | ------------------------------------------------------- |
 | [compiler] | Medium         | Standard reviews for stabilization and SVE work         |
-| [lang]     | Medium        | RFC decision for [rfcs#3838], stabilization sign-off    |
+| [lang]     | Medium        | RFC decision for [RFC #3838], stabilization sign-off    |
 | [libs-api] | Medium        | Review RFC; review and approve stdarch SVE APIs         |
 | [types]    | Medium        | Type System implementation and stabilization sign-off   |
 
@@ -152,5 +142,3 @@ Extern types need a way to express "this type has no known size, not even at
 runtime." The current `?Sized` bound conflates "unsized but has metadata" with
 "truly sizeless." The refined trait hierarchy allows distinguishing
 these cases, which is the key blocker for extern types.
-
-[rust-lang/rust-project-goals#270]: https://github.com/rust-lang/rust-project-goals/issues/270

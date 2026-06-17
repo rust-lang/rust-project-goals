@@ -100,7 +100,6 @@ where
 
 RTN has been fully implemented and is available on nightly under the feature flag `return_type_notation`.
 
-[RFC #3654]: https://rust-lang.github.io/rfcs/3654-return-type-notation.html
 
 #### RTN for async closures
 

@@ -1,6 +1,6 @@
 - Feature Name: `project_goals_2026`
 - Start Date: 2026-02-23
-- RFC PR: [rust-lang/rfcs#0000](https://github.com/rust-lang/rfcs/pull/0000)
+- RFC PR: [RFC #3935]
 
 # Summary
 [summary]: #summary
