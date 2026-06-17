@@ -1,6 +1,6 @@
 # Rust Project Goals
 
-The [2026 goal period](./2026/README.md) is in progress.
+The [2026 goal period](./2026/) is in progress.
 
 ## About the process
 
