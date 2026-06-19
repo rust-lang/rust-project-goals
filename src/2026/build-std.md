@@ -86,6 +86,18 @@ There are two primary objectives of this goal in this next goal cycle:
 | [libs]      | Small         | Reviews of [rust-lang/rfcs#3874] and [rust-lang/rfcs#3875] and any implementation patches  |
 | [crates-io] | Small         | Reviews of [rust-lang/rfcs#3874] and [rust-lang/rfcs#3875] and any implementation patches  |
 
+## Funding
+
+build-std is being worked on by the Rust team at Arm and the goal owners have sufficient capacity to
+do the work, but a big bottlebeck is the bandwidth of the Cargo team to provide reviews - which
+threatens our ability to actually deliver build-std - without addl. funding for reviews, the goal
+may not progress.
+
+| Purpose       | Cost                                                                   | Funded | Sponsor(s) |
+|---------------|------------------------------------------------------------------------|--------|------------|
+| Contributions | N/A                                                                    | Yes    | Arm        |
+| Reviews       | Contract for t-cargo maintainers to have bandwidth to review this work | No     |            |
+
 ## Frequently asked questions
 
 None yet.
