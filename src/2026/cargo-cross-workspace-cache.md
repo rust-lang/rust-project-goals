@@ -72,10 +72,10 @@ In Cargo, we have much more knowledge about the dependency graph and crate metad
 
 ## Target Timeline
 
-1. Stabilize the new Cargo `build-dir` layout as its a prerequisite for the cross workspace caching ([cargo#16807](https://github.com/rust-lang/cargo/pull/16807)).
+1. Stabilize the new Cargo `build-dir` layout as it's a prerequisite for the cross workspace caching ([cargo#16807](https://github.com/rust-lang/cargo/pull/16807)).
 2. Design the cache and get buy in from the Cargo team, this may involve creating toy prototypes.
 3. Any prerequisite Cargo improvements
 4. Add an initial shared cache on nightly that only supports basic crates (no build scripts, proc macros, etc)
 5. Expand the cache to be able support more build unit types
-6. Gather data about how the cache works in real world scenarios, probably via a call for testing. Evaluate if its a meaningful improvement over the status quo and push for stabilisation.
+6. Gather data about how the cache works in real world scenarios, probably via a call for testing. Evaluate if it's a meaningful improvement over the status quo and push for stabilisation.
 
