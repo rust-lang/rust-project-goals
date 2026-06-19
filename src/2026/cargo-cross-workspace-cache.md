@@ -50,6 +50,12 @@ At the end of the year, we should have an understanding of the benefits and trad
 | ---------- | ------------- | --------------------------------------- |
 | [cargo]    | Medium         | Design and code reviews                 |
 
+## Funding
+
+| Purpose | Cost | Funded | Sponsor(s) |
+|---------|------|--------|------------|
+| Contributor (10 months, part-time) | $30,000 | No | |
+
 ## Frequently asked questions
 
 ### What about shared CARGO_TARGET_DIR?
