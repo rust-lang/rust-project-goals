@@ -69,3 +69,13 @@ It would be great if we could get the benefits of a shared `CARGO_TARGET_DIR` ou
 
 Tools like sccache try to infer inputs for hashing a cache key from command-line arguments.
 In Cargo, we have much more knowledge about the dependency graph and crate metadata, which could allow us to be more aggressive in what we choose to cache.
+
+## Target Timeline
+
+1. Stabilize the new Cargo `build-dir` layout as its a prerequisite for the cross workspace caching ([cargo#16807](https://github.com/rust-lang/cargo/pull/16807)).
+2. Design the cache and get buy in from the Cargo team, this may involve creating toy prototypes.
+3. Any prerequisite Cargo improvements
+4. Add an initial shared cache on nightly that only supports basic crates (no build scripts, proc macros, etc)
+5. Expand the cache to be able support more build unit types
+6. Gather data about how the cache works in real world scenarios, probably via a call for testing. Evaluate if its a meaningful improvement over the status quo and push for stabilisation.
+
