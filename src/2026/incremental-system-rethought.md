@@ -96,11 +96,11 @@ The duration of the project is 12 months. Starting from the agreed start date ("
   - Notion of data dependencies & atomic levels in the compiler.
   - Have some kind of `cargo build` <-> `cargo check` compatibility merged in the compiler.
 - Month 6-12:
-  - Implement data dependency difing algorithm in the compilerr for the different stages.
+  - Implement data dependency diffing algorithm in the compiler for the different stages.
   - Polishing, perf measurements, integration testing...
   - Measure interaction with official rustc-driver projects, such as Clippy or Miri.
-  - (secondary) Measure interaction with unnofficial rustc-driver projects.
-- Month 12-...:
+  - (secondary) Measure interaction with unofficial rustc-driver projects.
+- Month 12-future:
   - Allow for stable interoperability with other tools.
   - (Eventual) Stabilization.
 
