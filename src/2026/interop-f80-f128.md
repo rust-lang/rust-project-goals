@@ -37,8 +37,6 @@ We will also continue to push `f128` forward, both on the LLVM and rustc side.
 
 ### Work items over the next year
 
-> *Sketch out the specific things you are trying to achieve in this goal period. This should be short and high-level -- we don't want to see the design!*
-
 | Task        | Owner(s) | Notes |
 | ----------- | -------- | ----- |
 | implement `core::arch::x86::x87_f80` | @folkertdev  |       |
@@ -87,6 +85,4 @@ Further discussion is at [#t-libs > &#96;f80&#96;, &#96;f128&#96; and &#96;c_lon
 
 ## Frequently asked questions
 
-### What do I do with this space?
-
-*This is a good place to elaborate on your reasoning above -- for example, why did you put the design axioms in the order that you did? It's also a good place to put the answers to any questions that come up during discussion. The expectation is that this FAQ section will grow as the goal is discussed and eventually should contain a complete summary of the points raised along the way.*
+(None.)
