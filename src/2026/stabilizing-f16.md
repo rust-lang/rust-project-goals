@@ -8,6 +8,7 @@
 | Other tracking issues | [rust-lang/rust#116909]                               |
 | Zulip channel         | N/A                                                   |
 | Funding contact       | [Trifecta Tech Foundation](https://trifectatech.org/) |
+| [compiler] champion   | @tgross35                                             |
 
 ## Summary
 
