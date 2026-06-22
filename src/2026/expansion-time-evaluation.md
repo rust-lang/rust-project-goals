@@ -3,6 +3,7 @@
 | Metadata            |                                    |
 | :--                 | :--                                |
 | Point of contact    | @oli-obk                           |
+| Funding contact     | [RustNL](https://rustnl.org)                          |
 | Status              | Accepted                           |
 | Flagship            | Constify all the things            |
 | [types] champion    | @oli-obk                           |
@@ -69,7 +70,7 @@ We will prototype decoupling macro expansion from the monolithic resolver. This 
 
 | Purpose | Cost | Funded | Sponsor(s) |
 |---------|------|--------|------------|
-| Contributor | TBD | Yes |  |
+| Contributor | Ask | Full | Google |
 
 ## Frequently asked questions
 
