@@ -69,7 +69,7 @@ We will prototype decoupling macro expansion from the monolithic resolver. This 
 
 | Purpose | Cost | Funded | Sponsor(s) |
 |---------|------|--------|------------|
-| Contributor | TBD | No | |
+| Contributor | TBD | Yes |  |
 
 ## Frequently asked questions
 
