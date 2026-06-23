@@ -83,6 +83,27 @@ The first step is completing the RFC and implementing it in an unstable stage.
 
 ## Frequently asked questions
 
+## Target timeline
+
+The duration of the project is 12 months. Starting from the agreed start date ("Month 1"), the target timeline is:
+
+- Month 1-3:
+  - Resolve all concerns, merge RFC. (In parallel with experimentation)
+  - Stablish formal communication with the notable teams. (i.e. cargo and compiler)
+  - Experiment with `cargo build` building off of `cargo check`.
+- Month 3-6:
+  - Declare semi-stable fingerprinting format following any known schema.
+  - Notion of data dependencies & atomic levels in the compiler.
+  - Have some kind of `cargo build` <-> `cargo check` compatibility merged in the compiler.
+- Month 6-12:
+  - Implement data dependency diffing algorithm in the compiler for the different stages.
+  - Polishing, perf measurements, integration testing...
+  - Measure interaction with official rustc-driver projects, such as Clippy or Miri.
+  - (secondary) Measure interaction with unofficial rustc-driver projects.
+- Month 12-future:
+  - Allow for stable interoperability with other tools.
+  - (Eventual) Stabilization.
+
 [on-going RFC]: https://github.com/rust-lang/rfcs/pull/3881/
 [this blog post and talk]: https://blog.goose.love/posts/improving-the-incremental-system-in-the-rust-compiler/
 [perf-survey]: https://blog.rust-lang.org/2025/09/10/rust-compiler-performance-survey-2025-results/#incremental-rebuilds
