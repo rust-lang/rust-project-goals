@@ -89,7 +89,7 @@ There are two primary objectives of this goal in this next goal cycle:
 ## Funding
 
 build-std is being worked on by the Rust team at Arm and the goal owners have sufficient capacity to
-do the work, but a big bottlebeck is the bandwidth of the Cargo team to provide reviews - which
+do the work, but a big bottleneck is the bandwidth of the Cargo team to provide reviews - which
 threatens our ability to actually deliver build-std - without addl. funding for reviews, the goal
 may not progress.
 
