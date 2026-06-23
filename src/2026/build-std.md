@@ -95,7 +95,7 @@ may not progress.
 
 | Purpose       | Cost                                                                   | Funded | Sponsor(s) |
 |---------------|------------------------------------------------------------------------|--------|------------|
-| Contributions | N/A                                                                    | Yes    | Arm        |
+| Contributions | TBD                                                                    | Full   | Arm        |
 | Reviews       | Contract for t-cargo maintainers to have bandwidth to review this work | No     |            |
 
 ## Frequently asked questions
