@@ -8,6 +8,7 @@
 | Status           | Proposed                                                                         |
 | Tracking issue   |      |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
+| [lang] champion | @tmandry |
 | Funding contact       | [Hexcat](https://hexcat.nl/) |
 
 ## Summary
