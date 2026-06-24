@@ -1,4 +1,4 @@
-# Library Trait Evolution Initiative 
+# Library Trait Evolution Experiment
 
 
 | Metadata         |                                                                                  |
@@ -13,7 +13,7 @@
 
 ## Summary
 
-Setup a Library Trait Evolution Initiative. This initiative works to unify the design of language features to make trait definitions less rigid. This includes [refined trait implementations](https://github.com/rust-lang/rfcs/pull/3245) and [Supertrait Auto-impl](https://github.com/rust-lang/rfcs/pull/3851), but also more targeted features for the standard library, such as [`#[rustc_must_implement_one_of]`](https://github.com/rust-lang/rust/issues/107460).
+Setup a Library Trait Evolution experiment. It works to unify the design of language features to make trait definitions less rigid. This includes [refined trait implementations](https://github.com/rust-lang/rfcs/pull/3245) and [Supertrait Auto-impl](https://github.com/rust-lang/rfcs/pull/3851), but also more targeted features for the standard library, such as [`#[rustc_must_implement_one_of]`](https://github.com/rust-lang/rust/issues/107460).
 
 We plan to collect different use-cases and requirements here, both from the standard library and the wider ecosystem. We then use this to design, implement, and stabilize features solving these issues.
 
@@ -30,7 +30,7 @@ This will be even more of an issue once we add new *implicit default auto trait 
 
 | Task        | Owner(s) | Notes |
 | ----------- | -------- | ----- |
-| Setup a Library Trait Evolution Initiative and create its repository | @lcnr |
+| Setup a Library Trait Evolution experiment and create its repository | @lcnr |
 | Collect and explore different use-cases in a single repository | @lcnr  |       
 | Collaborate on the design and implementation of language features to solve these issues | @lcnr |
 
