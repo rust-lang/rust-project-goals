@@ -7,7 +7,7 @@
 | What and why     | Enable library authors to more easily change their trait definitions             |
 | Status           | Proposed                                                                         |
 | Tracking issue   |      |
-| Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
+| Zulip channel    | N/A |
 | [lang] champion | @tmandry |
 | Funding contact       | [Hexcat](https://hexcat.nl/) |
 
