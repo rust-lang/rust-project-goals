@@ -88,5 +88,7 @@ goal. The benefits of doing this are two-fold: 1. we can directly evaluate the a
 
 | Team       | Support level | Notes                                   |
 | ---------- | ------------- | --------------------------------------- |
+| [compiler] | Small         | Code reviews                            |
+| [miri]     | Medium        | Guidance on integration                 |
 
 ## Frequently asked questions
