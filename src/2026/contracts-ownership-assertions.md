@@ -5,7 +5,7 @@
 | What and why     | Implement [MCP #942](https://github.com/rust-lang/compiler-team/issues/942): experiment with Fulminate-like ownership primitives in contracts                |
 | Point of contact | @dawidl022                                   |
 | Status           | Proposed                                                                         |
-| Tracking issue   | #149213     |
+| Tracking issue   |      |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
 | Needs | Funding |
 
