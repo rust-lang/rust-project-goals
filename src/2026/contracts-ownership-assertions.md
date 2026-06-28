@@ -34,6 +34,8 @@ necessary to express the correctness of unsafe Rust code, we advance a step
 closer to closing the gap between the widely praised hypothetical safety of Rust
 as a language, to tangible proofs of such being the case.
 
+There is currently an [experiment](https://github.com/rust-lang/rust/issues/128044) inside rustc to add special annotations that describe pre/post-conditions of functions. While built to be extensible, today this can only represent rather simple invariants. Unsafe code typically needs to reason with a more powerful logic, for example about memory ownership.
+
 The first step in building the Rust specification language for use in
 [contracts](../2025h1/std-contracts.md) is introducing ownership primitives, as
 described in detail in [MCP
