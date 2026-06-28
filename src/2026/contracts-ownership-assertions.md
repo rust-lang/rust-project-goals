@@ -36,13 +36,14 @@ as a language, to tangible proofs of such being the case.
 
 There is currently an [experiment](https://github.com/rust-lang/rust/issues/128044) inside rustc to add special annotations that describe pre/post-conditions of functions. While built to be extensible, today this can only represent rather simple invariants. Unsafe code typically needs to reason with a more powerful logic, for example about memory ownership.
 
-The first step in building the Rust specification language for use in
-[contracts](../2025h1/std-contracts.md) is introducing ownership primitives, as
-described in detail in [MCP
-#942](https://github.com/rust-lang/compiler-team/issues/942). These ownership
-assertions leverage decades of formal verification research on separation
-logic, and have been implemented in practical systems recently ([Fulminate](https://dl.acm.org/doi/10.1145/3704879)), offering
-a promising direction for the verification landscape in Rust.
+We want this specification language to be able to specify
+[the whole of the standard library](../2025h1/std-contracts.md).
+For this purpose, we propose to introduce ownership primitives, as
+described in detail in [MCP #942](https://github.com/rust-lang/compiler-team/issues/942).
+These primitives are based on the standard and well-understood theory of separation logic,
+and modeled after [Fulminate](https://dl.acm.org/doi/10.1145/3704879),
+which is a practical, runtime-checkable, and non-expert-legible take on writing
+separation logic predicates, which looks to be a great fit for Rust.
 
 ### What we propose to do about it
 
