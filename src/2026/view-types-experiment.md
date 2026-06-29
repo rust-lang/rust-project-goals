@@ -1,12 +1,13 @@
 # View types experiment
 
-| Metadata            |           |
-| :------------------ | --------- |
-| Point of contact    | @scrabsha |
-| Status              | Proposed  |
-| Tracking issue      |           |
-| Zulip channel       | TODO      |
-| [compiler] champion | @oli-obk |
+| Metadata            |                                    |
+| :--                 | :--                                |
+| Point of contact    | @scrabsha                          |
+| Status              | Accepted                           |
+| Tracking issue      | [rust-lang/rust-project-goals#702] |
+| Zulip channel       | N/A                                |
+| [compiler] champion | @oli-obk                           |
+
 
 ## Summary
 
