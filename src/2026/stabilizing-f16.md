@@ -55,7 +55,7 @@ With @tgross35 as the dedicated reviewer, the asks of the teams are limited.
 
 | Purpose | Cost | Funded | Sponsor(s) |
 |---------|------|--------|------------|
-| Contributor | $25,000 | No | |
+| Contributor | $25,000 | Full | [VectorWare](https://vectorware.com/), [OpenAI](https://openai.com/) |
 
 ## Target timeline
 
