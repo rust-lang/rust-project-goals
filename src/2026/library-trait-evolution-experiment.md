@@ -9,6 +9,7 @@
 | Tracking issue   |      |
 | Zulip channel    | N/A |
 | [lang] champion | @tmandry |
+| [types] champion | @lcnr |
 | Funding contact       | [Hexcat](https://hexcat.nl/) |
 
 ## Summary
