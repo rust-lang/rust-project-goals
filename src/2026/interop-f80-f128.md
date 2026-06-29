@@ -3,12 +3,12 @@
 | Metadata              |                                                       |
 | :--                   | :--                                                   |
 | Point of contact      | @folkertdev                                           |
-| Status                | Proposed                                              |
-| What and why          | |
-| Tracking issue        |                                                       |
+| Status                | Accepted                                              |
+| Tracking issue        | [rust-lang/rust-project-goals#701]                    |
 | Other tracking issues | N/A                                                   |
 | Zulip channel         | N/A                                                   |
 | Funding contact       | [Trifecta Tech Foundation](https://trifectatech.org/) |
+
 
 ## Summary
 
