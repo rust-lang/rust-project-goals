@@ -83,6 +83,14 @@ The first step is completing the RFC and implementing it in an unstable stage.
 
 ## Frequently asked questions
 
+## Funding
+
+| Purpose | Cost | Funded | Sponsor(s) |
+|---------|------|--------|------------|
+| Contributor | $75,000-$120,000 | Partial | |
+
+Greater amount of funding would allow for more time spent working on the goal. If the funding goal is not met, part-time work will be given instead.
+
 ## Target timeline
 
 The duration of the project is 12 months. Starting from the agreed start date ("Month 1"), the target timeline is:
