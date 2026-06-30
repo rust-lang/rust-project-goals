@@ -65,7 +65,7 @@ We additionally want to fix several long-standing bugs that limit `rustc_codegen
 
 | Purpose | Cost | Funded | Sponsor(s) |
 |---------|------|--------|------------|
-| Contributor | $65,000 | No | |
+| Contributor | $65,000 | Full | [OpenAI](https://openai.com/), [AWS](https://aws.amazon.com/) |
 
 ## Target timeline
 
