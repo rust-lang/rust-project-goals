@@ -1,3 +1,3 @@
 # rust-project-goals
 
-Check out the github pages site.
+Check out the [website](https://rust-lang.github.io/rust-project-goals/).
