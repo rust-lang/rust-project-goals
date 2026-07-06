@@ -1,4 +1,4 @@
-# Design, model, and implement a stabilizable-subset of specialization
+# Specialization: minimal implementation
 
 | Metadata              |                                    |
 | :--                   | :--                                |
