@@ -72,7 +72,7 @@ goal. The benefits of doing this are two-fold: 1. we can directly evaluate the a
 | Low-level ownership assertion intrinsics available for use in contracts. | @dawidl022  |       |
 | Higher-level wrapper assertions for typical use cases, including alignment, arrays etc. | @dawidl022 | |
 | Prototype integration with Miri - runtime ownership checks should work with the prototype Miri runtime ownership tracker as [implemented by Johannes Hostert](https://github.com/JoJoDeveloping/miri/tree/fulminate).|@dawidl022 | |
-| Full Miri runtime ownership support | |
+| Full Miri runtime ownership support | @dawidl022 |
 
 #### Documentation
 
