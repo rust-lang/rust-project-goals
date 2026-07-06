@@ -1,22 +1,21 @@
 # Implement Open Rust Namespace Support
 
 | Metadata         |                                                                                  |
-|:-----------------|----------------------------------------------------------------------------------|
+| :--------------- | -------------------------------------------------------------------------------- |
 | Point of contact | @epage                                                                           |
 | Status           | Accepted                                                                         |
-| Needs            | Contributor                                                                      |
 | Tracking issue   | [rust-lang/rust-project-goals#256]                                               |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
 
 ## Summary
 
-Navigate the cross-team design work to get [RFC 3243](https://github.com/rust-lang/rfcs/pull/3243) implemented.
+Navigate the cross-team design work to get [RFC #3243] implemented.
 
-**Needs contributor:** This goal needs contributors to help complete the implementations in Cargo, rustc, and crates.io. The work spans multiple repositories and involves cross-team coordination. Estimated time commitment: TBD.
+**Needs contributor:** This goal needs contributors to help complete the implementations in Cargo, rustc, and crates.io. The work spans multiple repositories and involves cross-team coordination.
 
 ## Motivation
 
-[RFC 3243](https://github.com/rust-lang/rfcs/pull/3243) proposed opening up namespaces in Rust to extension,
+[RFC #3243] proposed opening up namespaces in Rust to extension,
 managed by the package name with crates-io putting access control on who can publish to a crate's API namespace.
 This covers multiple teams and needs a lot of coordination to balance the needs of each team as shown on the [rustc tracking issue](https://github.com/rust-lang/rust/issues/122349).
 
@@ -35,9 +34,17 @@ This covers multiple teams and needs a lot of coordination to balance the needs 
 
 ## Team asks
 
-| Team       | Support level | Notes                                   |
-| ---------- | ------------- | --------------------------------------- |
-| [cargo]    | Small         |                                         |
-| [compiler] | Small         | Design discussions, PR review           |
+| Team       | Support level | Notes                         |
+| ---------- | ------------- | ----------------------------- |
+| [cargo]    | Small         |                               |
+| [compiler] | Small         | Design discussions, PR review |
+
+## Help wanted
+
+| Task                       | Experience level | Time investment |
+| -------------------------- | ---------------- | --------------- |
+| Implement the RFC (Cargo)     | TBD              | TBD             |
+| Implement the RFC (rustc)     | TBD              | TBD             |
+| Implement the RFC (crates.io) | TBD              | TBD             |
 
 ## Frequently asked questions

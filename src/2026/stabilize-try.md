@@ -4,14 +4,14 @@
 | :--                   | :--                                |
 | Point of contact      | @tmandry                           |
 | Status                | Accepted                           |
-| Needs                 | Funding                            |
-| Other tracking issues | rust-lang/rust#84277               |
-| Zulip channel         | N/A                                |
+| Other tracking issues | [rust-lang/rust#84277]             |
+| Zulip channel         | [#t-lang/try][channel]             |
 | Highlight             | Try, never, extern types           |
 | [lang] champion       | @tmandry                           |
 | [libs-api] champion   | @Amanieu                           |
 | Tracking issue        | [rust-lang/rust-project-goals#654] |
 
+[channel]: https://rust-lang.zulipchat.com/#narrow/channel/605325-t-lang.2Ftry
 
 ## Summary
 
@@ -111,5 +111,11 @@ Because there are open design questions that haven't yet been resolved, we shoul
 | [lang]     | Medium        |                                         |
 | [libs-api] | Medium        |                                         |
 | [types]    | Small         |                                         |
+
+## Funding
+
+| Purpose | Cost | Funded | Sponsor(s) |
+|---------|------|--------|------------|
+| Contributor | TBD | Partial | |
 
 ## Frequently asked questions

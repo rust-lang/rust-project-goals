@@ -13,6 +13,7 @@
 | Highlight             | Next-generation trait solver              |
 | [types] champion      | @lcnr                                     |
 | [lang] champion       | @nikomatsakis                             |
+| Funding contact       | [Hexcat](https://hexcat.nl/) |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/364551-t-types.2Ftrait-system-refactor
 
@@ -27,6 +28,8 @@ The next-generation trait solver is intended to fully replace the existing type 
 ### The status quo
 
 There are multiple type system unsoundnesses blocked on the next-generation trait solver: [project board][unsoundnesses]. Desirable features such as coinductive trait semantics and perfect derive, where-bounds on binders, and better handling of higher-ranked bounds and types are also stalled due to shortcomings of the existing implementation.
+
+[unsoundnesses]: https://github.com/orgs/rust-lang/projects/44/views/1
 
 Since starting to work on this at the EOY 2022, we've:
 - stabilized its use in coherence checking in Rust 1.84
@@ -59,6 +62,13 @@ Stabilize `-Znext-solver=globally` and rip out the old implementation
 | ------- | ------------- | ------------------------------------------- |
 | [lang]  | Medium        | Stabilization decision for user facing changes |
 | [types] | Large         | Stabilization decision, ongoing review work |
+
+## Funding
+
+| Purpose           | Cost | Funded | Sponsor(s)     |
+|-------------------|------|--------|----------------|
+| Core contribution | Ask | Full   | Anon1, Anon2 |
+| Acceleration      | Ask | No     |
 
 ## Frequently asked questions
 

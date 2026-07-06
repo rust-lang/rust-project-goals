@@ -24,17 +24,17 @@ To help users in a way that can still be silenced, Cargo warns if `workspace.res
 Users can silence this by setting `workspace.resoler`.
 However, we can't raise awareness of `workspace.resolver` being stale because there wouldn't be a way to silence it.
 
-When considering a linting system in [#12235](https://github.com/rust-lang/cargo/issues/12235),
+When considering a linting system in [rust-lang/cargo#12235]
 we collected a good number of issues that would benefit from having one.
 
 ### What we propose to do about it
 
-This comes in two parts ([#12235](https://github.com/rust-lang/cargo/issues/12235)):
+This comes in two parts ([rust-lang/cargo#12235]):
 - Polish the linting system to be up to the quality of rustc and clippy
 - Implement an initial batch of lints to serve as examples for future lints, vet our design, and provide a motivation for stabilization and use
 
 In particular, we feel that native support for detecting unused dependencies
-([#15813](https://github.com/rust-lang/cargo/issues/15813))
+([rust-lang/cargo#15813])
 would provide a strong motivation for use of the linting system because it will,
 over time, improve build times.
 
@@ -49,7 +49,7 @@ See [the Cargo docs](https://doc.rust-lang.org/nightly/cargo/reference/lints.htm
 | Document lint contribution process | *epage*  |       |
 | Misc polish | *epage*  |       |
 
-See [#12235](https://github.com/rust-lang/cargo/issues/12235) for more details
+See [rust-lang/cargo#12235] for more details
 
 ## Team asks
 

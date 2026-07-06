@@ -44,6 +44,10 @@ The features form a natural sequence. **Polonius alpha** is the foundation — i
 
 Each layer can be shipped independently, but earlier layers inform the design of later ones.
 
+## Funding
+
+(((FUNDING TABLE: The Borrow Checker Within)))
+
 ## Frequently asked questions
 
 ### How does this relate to "Beyond the `&`"?

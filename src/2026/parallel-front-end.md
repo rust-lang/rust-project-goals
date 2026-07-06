@@ -7,6 +7,7 @@
 | Tracking issue               | [rust-lang/rust-project-goals#121]       |
 | See also                     | [rust-lang/rust#113349]                  |
 | Zulip channel                | [#t-compiler/wg-parallel-rustc][channel] |
+| Roadmap                      | Fast Builds                              |
 | [wg-parallel-rustc] champion | @petrochenkov                            |
 
 ## Summary
@@ -21,7 +22,7 @@ Verify and resolve the few remaining issues(especially related to incremental co
 
 The parallel front-end has progressed well over the past year. We resolved [deadlock] issues and several [ICEs][ICE], added the `rustc-rayon` dependency for the parallel front-end to the rustc working tree, and enabled the parallel front-end in bootstrap. Thanks to everyone for their efforts!
 
-We recently fixed (in rust-lang/rust#151509) a major issue related to race conditions when incremental compilation executed in parallel.them.
+We recently fixed (in rust-lang/rust#151509) a major issue related to race conditions when incremental compilation executed in parallel.
 
 The inconstancy of query cycle errors between parallel and serial compilers is another point we should pay attention to.
 

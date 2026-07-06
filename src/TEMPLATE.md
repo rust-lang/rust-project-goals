@@ -13,12 +13,9 @@
 >
 > The **status** should be **Proposed** for new goals or **Accepted** once approved.
 >
-> If your goal **needs** something to proceed, add one or more `Needs` rows:
-> * `Needs | Contributor` — the goal needs someone to step up and do the work.
->    The project goals team will try to help you find someone.
-> * `Needs | Funding` — the goal needs funding to proceed.
+> If your goal needs a **contributor**, add a `## Help wanted` section (see below).
 >
-> If you add a 'need', please add a section in the summary giving more details.
+> If your goal needs **funding**, add a `## Funding` section (see below).
 
 | Metadata         |                                                                                  |
 | :--------------- | -------------------------------------------------------------------------------- |
@@ -88,6 +85,37 @@
 | [opsem]    |               |                                         |
 | [types]    |               |                                         |
 | ...        | ...           | *Feel free to add rows for other teams* |
+
+## Help wanted
+
+> **Instructions:** If your goal needs a contributor, fill in the table below
+> describing the work, the experience level needed, and the expected time investment.
+> The presence of this section signals that the goal is looking for someone to do the work.
+> The project goals team will try to help you find someone.
+> Delete this section if your goal does not need a contributor.
+
+| Task | Experience level | Time investment |
+|------|-----------------|-----------------|
+| *e.g., Implement the feature* | *e.g., Intermediate Rust* | *e.g., 3 months part-time* |
+
+## Funding
+
+> **Instructions:** If your goal needs funding to proceed, fill in the table below
+> describing what the funding would cover and the estimated cost.
+> The presence of this section signals that the goal is looking for financial support.
+> Delete this section if your goal does not need funding.
+>
+> If you have a specific funding point of contact (e.g., an organization that can
+> receive and administer funds), add a `Funding contact` row to the
+> metadata table at the top of this file. If omitted, it defaults to the
+> [Rust Funding team](https://rust-lang.org/governance/teams/launching-pad/#team-funding).
+
+| Purpose | Cost | Funded | Sponsor(s) |
+|---------|------|--------|------------|
+| *e.g., Contributor (6 months, full-time)* | *e.g., $60,000* | No | |
+| *e.g., Maintenance* | *e.g., $10,000* | No | |
+
+> If you don't know the expected cost, enter `TBD`. If you do, but prefer to not have it public on the internet, enter `Ask` and the readers will be directed to ask the *Funding contact* about the cost.
 
 ## Frequently asked questions
 

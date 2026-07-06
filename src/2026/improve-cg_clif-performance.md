@@ -3,18 +3,16 @@
 | Metadata            |                                    |
 | :--                 | :--                                |
 | Point of contact    | @bjorn3                            |
+| Funding contact     | [Tweede golf](https://tweedegolf.nl/) |
 | Status              | Accepted                           |
 | Tracking issue      | [rust-lang/rust-project-goals#639] |
 | Zulip channel       | N/A                                |
-| Needs               | Funding                            |
+| Roadmap             | Fast Builds                        |
 | [compiler] champion | @bjorn3                            |
-
 
 ## Summary
 
-This goal aims to improve the rust development experience through faster incremental code generation with `rustc_codegen_cranelift`. We additionally want to fix several long-standing bugs that currently prevent `rustc_codegen_cranelift` from being used for popular crates.
-
-**Needs funding:** This goal needs funding to proceed.
+This goal aims to improve the rust development experience through faster incremental code generation with `rustc_codegen_cranelift`. We're targeting a 2x speedup inside the `rustc_codegen_cranelift` backend.
 
 ## Motivation
 
@@ -35,7 +33,7 @@ With `-Cdebuginfo=line-tables-only` the performance benefit of the cranelift bac
 
 ### What we propose to do about it
 
-We want to explore ambitious ways to substantially improve the speedup that the cranelift backend offers over LLVM, thereby increasing the utility of `rustc_codegen_cranelift`.
+We want to explore ambitious ways to substantially improve the speedup that the cranelift backend offers over LLVM (we are targeting a 2x speedup inside the backend), thereby increasing the utility of `rustc_codegen_cranelift`.
 
 Possible projects are:
 
@@ -47,7 +45,6 @@ Possible projects are:
 
 We additionally want to fix several long-standing bugs that limit `rustc_codegen_cranelift`'s usability today. In particular:
 
-- [Linking error with `aws_lc_rs`](https://github.com/rust-lang/rustc_codegen_cranelift/issues/1520)
 - [add support for `mod_init_funcs`](https://github.com/rust-lang/rustc_codegen_cranelift/issues/1588)
 
 ### Work items over the next year
@@ -63,5 +60,21 @@ We additionally want to fix several long-standing bugs that limit `rustc_codegen
 | ---------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [cargo]    | Small         | In case we end up pursuing JITing as a way to improve performance that will eventually need native integration with `cargo run`. For now we're just prototyping, and so the occasional vibe check should be sufficient |
 | [compiler] | Medium        | Depending on what ways we end up pursuing, we might need no rustc side changes at all or medium sized changes.                                                                                                         |
+
+## Funding
+
+| Purpose | Cost | Funded | Sponsor(s) |
+|---------|------|--------|------------|
+| Contributor | $65,000 | Full | [OpenAI](https://openai.com/), [AWS](https://aws.amazon.com/) |
+
+## Target timeline
+
+The duration of the project is 6 months. Starting from the agreed start date ("Month 1"), the timeline we're targeting is:
+
+- Month 1-2: identify optimization Project 1, implement it, run benchmarks and publish results; inform next cycle
+- Month 3-4: identify optimization Project 2, implement it, run benchmarks and publish results; inform next cycle
+- Month 5-6: identify optimization Project 3, implement it, run benchmarks and publish results
+
+The expected effort for the work is 4 person-months.
 
 ## Frequently asked questions

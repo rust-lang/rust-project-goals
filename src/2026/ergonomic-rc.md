@@ -5,7 +5,6 @@
 | Point of contact | @nikomatsakis                                 |
 | Status           | Accepted                                      |
 | What and why     | A `Share` trait for clone-as-alias types and `move($expr)` for precise closure capture control |
-| Needs            | Contributor                                   |
 | Roadmap          | [Just add async](./roadmap-just-add-async.md) |
 | Tracking issue   | [rust-lang/rust-project-goals#107]            |
 | Highlight        | Async and ergonomic RC                         |
@@ -16,15 +15,13 @@
 
 Implement and prototype two foundational improvements for ergonomic ref-counting: (1) a `Share` trait that semantically identifies types where cloning creates an alias to the same underlying value, and (2) move expressions (`move($expr)`) that allow precise control over what closures capture and when. These changes lay groundwork for future ergonomic improvements while delivering immediate value, with prototypes targeted for summer 2026.
 
-**Needs contributor:** This is a medium complexity problem. @nikomatsakis would like to mentor this goal with either an experienced contributor or a cohort of folks who know Rust but not the compiler. It is estimated that the goal will take about 6 months to implement for a cohort with minimal compiler hacking experience.
-
 ## Motivation
 
 ### The status quo
 
 Working with ref-counted data in Rust is a well-documented pain point. The problem affects high-level GUI applications (Dioxus, Sycamore), async network services (tokio), language interop (PyO3), and even the Rust compiler itself. Projects have gone to great lengths to work around it, from arena-based designs to custom preprocessors.
 
-This goal represents the culmination of extensive design exploration. After RFC #3680 proposed `.use` syntax and received mixed feedback, we spent 2025H2 deeply exploring the design space through [a series of blog posts][blog-series] and community discussions. Those discussions led to reframing the goal, focusing first on solutions **"low-level enough for a kernel, usable enough for a GUI"**.
+This goal represents the culmination of extensive design exploration. After [RFC #3680] proposed `.use` syntax and received mixed feedback, we spent 2025H2 deeply exploring the design space through [a series of blog posts][blog-series] and community discussions. Those discussions led to reframing the goal, focusing first on solutions **"low-level enough for a kernel, usable enough for a GUI"**.
 
 [blog-series]: https://smallcultfollowing.com/babysteps/series/ergonomic-rc/
 
@@ -133,7 +130,7 @@ The goal has taken a long journey:
 
 **2024H2:** Jonathan Kelley from Dioxus wrote a [blog post about high-level Rust][dioxus-post] that sparked the ergonomic ref-counting effort as a project goal.
 
-**2025H1:** RFC #3680 proposed `.use` syntax and `use ||` closures. Santiago Pastorino implemented experimental support on nightly. Community feedback was positive about addressing the problem but raised concerns about whether adding more required syntax actually improves ergonomics.
+**2025H1:** [RFC #3680] proposed `.use` syntax and `use ||` closures. Santiago Pastorino implemented experimental support on nightly. Community feedback was positive about addressing the problem but raised concerns about whether adding more required syntax actually improves ergonomics.
 
 **2025H2:** Through design meetings, the RustConf Unconf, and extensive blogging, we explored the design space more deeply. Key realizations emerged:
 
@@ -180,8 +177,6 @@ We considered several names. `Handle` is a good noun but awkward as a verb ("han
 
 Some applications genuinely need to track where aliases are created—for performance debugging, memory leak investigation, or APIs like `Arc::make_mut`. Making everything automatic would serve high-level apps well but fail the "low-level enough for a kernel" test. Our approach keeps aliases visible while reducing boilerplate. Once this is done, we will evaluate whether to continue with further changes.
 
-### How does this relate to RFC #3680?
+### How does this relate to [RFC #3680]?
 
-RFC #3680 proposed `.use` syntax and a `Use` trait. That work remains available on nightly and informed our thinking. This goal represents a refined direction based on community feedback and deeper exploration. The `Share` trait is similar in spirit to `Use` but with clearer semantics; move expressions address similar problems to `use ||` closures but generalize more naturally.
-
-[rust-lang/rust-project-goals#107]: https://github.com/rust-lang/rust-project-goals/issues/107
+[RFC #3680] proposed `.use` syntax and a `Use` trait. That work remains available on nightly and informed our thinking. This goal represents a refined direction based on community feedback and deeper exploration. The `Share` trait is similar in spirit to `Use` but with clearer semantics; move expressions address similar problems to `use ||` closures but generalize more naturally.

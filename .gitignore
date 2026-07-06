@@ -11,3 +11,6 @@ src/api
 
 # copied into the repo by `mdbook-mermaid` install:
 /mermaid*.js
+
+.agents
+.kiro

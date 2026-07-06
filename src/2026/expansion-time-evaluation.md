@@ -2,21 +2,19 @@
 
 | Metadata            |                                    |
 | :--                 | :--                                |
-| Point of contact    | @tmandry                           |
+| Point of contact    | @oli-obk                           |
+| Funding contact     | [RustNL](https://rustnl.org)                          |
 | Status              | Accepted                           |
 | Flagship            | Constify all the things            |
 | [types] champion    | @oli-obk                           |
 | [compiler] champion | @petrochenkov                      |
 | Tracking issue      | [rust-lang/rust-project-goals#620] |
 | Zulip channel       | N/A                                |
-| Needs               | Funding                            |
 
 
 ## Summary
 
 Lay the architectural groundwork for functions that can be evaluated during macro expansion. This speculative work focuses on "queryifying" the resolver and implementing a restricted trait solver mode, enabling future language features like `macro fn` and compiler-integrated interop tools.
-
-**Needs funding:** This goal needs funding to proceed.
 
 ## Motivation
 
@@ -67,6 +65,12 @@ We will prototype decoupling macro expansion from the monolithic resolver. This 
 | ---- | ------------- | ----- |
 | [compiler] | Large | Significant refactoring of the resolver, reviews from @petrochenkov |
 | [types] | Medium | Support for the restricted solver mode in the new solver |
+
+## Funding
+
+| Purpose | Cost | Funded | Sponsor(s) |
+|---------|------|--------|------------|
+| Contributor | Ask | Full | Google |
 
 ## Frequently asked questions
 

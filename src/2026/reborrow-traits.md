@@ -9,6 +9,7 @@
 | Roadmap          | Beyond the `&`                     |
 | Tracking issue   | [rust-lang/rust-project-goals#399] |
 | Zulip channel    | [#t-lang/custom-refs][channel]     |
+| [types] champion | @oli-obk                        |
 | [lang] champion  | @tmandry                           |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/522311-t-lang.2Fcustom-refs
@@ -57,8 +58,8 @@ The fundamental design philosophy remains:
 | Team       | Support level | Notes                                         |
 | ---------- | ------------- | --------------------------------------------- |
 | [lang]     | Medium        | Continued experiment support, design feedback |
-| [compiler] | Small         | Standard reviews for trait implementation PRs |
-| [types]    | Small         | Review work on the type system is expected to be trivial and feature-gated |
+| [compiler] | Small         | Standard reviews for maintainability of changes |
+| [types]    | Medium        | MIR restructuring for borrowck |
 
 ## Frequently asked questions
 
@@ -74,6 +75,5 @@ Originally `CoerceShared` had `type Target` to prevent multiple coercion targets
 
 Supporting multiple lifetimes requires dealing with rmeta (Rust metadata) complexity. Focusing on single-lifetime reborrowing first lets us get the core functionality working before tackling that additional complexity.
 
-[rust-lang/rust-project-goals#399]: https://github.com/rust-lang/rust-project-goals/issues/399
 [lang]: https://github.com/rust-lang/lang-team
 [compiler]: https://github.com/rust-lang/compiler-team

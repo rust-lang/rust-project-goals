@@ -31,24 +31,34 @@ A shared cache would:
 * Provide a central location to cleanup unneeded build artifacts (potentially automatically by Cargo)
 * Could be extended in the future to be pre-populated from a remote cache for CI usecases.
 
-In 2026, we will design and implement this cache in Cargo, making it available on nightly for users to begin experimenting with. (tracked in [cargo#5931](https://github.com/rust-lang/cargo/issues/5931))
+In 2026, we will design and implement this cache in Cargo, making it available on nightly for users to begin experimenting with. (tracked in [rust-lang/cargo#5931])
 As part of implementing the cache we will stabilize the `build-dir` [layout rework](https://github.com/rust-lang/cargo/issues/15010) that was done in 2025.
 In the beginning, the cache would be fairly conservative in what is cached but would be expanded over time.
-At the end of the year, we should have an understanding of the benefits and tradeoffs of the design we pick as well as a rough path towards stablization.
+At the end of the year, we should have an understanding of the benefits and tradeoffs of the design we pick as well as a rough path towards stabilization.
 
 ### Work items over the next year
 
 
 | Task        | Owner(s) | Notes |
 | ----------- | -------- | ----- |
+| Stabilize the new Cargo `build-dir` layout | @ranger-ross  | The new layout a prerequisite for the cross workspace caching ([cargo#16807](https://github.com/rust-lang/cargo/pull/16807)) |
 | Design the cache | @ranger-ross  | In collaboration with T-cargo |
-| Implement in Cargo | @ranger-ross  |  |
+| Make prerequisite Cargo improvements | @ranger-ross  | These changes will vary based on the cache design |
+| Implement in Cargo | @ranger-ross  | Add an initial shared cache on nightly that only supports basic crates (no build scripts, proc macros, etc) |
+| Expand the cache | @ranger-ross  | Expand the cache to be able support more build unit types |
+| Work towards stabilization | @ranger-ross  | Gather data about how the cache works in real world scenarios, probably via a call for testing. Evaluate if it's a meaningful improvement over the status quo and push for stabilisation. This will likely not be completed during the goal period |
 
 ## Team asks
 
 | Team       | Support level | Notes                                   |
 | ---------- | ------------- | --------------------------------------- |
 | [cargo]    | Medium         | Design and code reviews                 |
+
+## Funding
+
+| Purpose | Cost | Funded | Sponsor(s) |
+|---------|------|--------|------------|
+| Contributor (10 months, part-time) | $30,000 | No | |
 
 ## Frequently asked questions
 
@@ -63,3 +73,4 @@ It would be great if we could get the benefits of a shared `CARGO_TARGET_DIR` ou
 
 Tools like sccache try to infer inputs for hashing a cache key from command-line arguments.
 In Cargo, we have much more knowledge about the dependency graph and crate metadata, which could allow us to be more aggressive in what we choose to cache.
+

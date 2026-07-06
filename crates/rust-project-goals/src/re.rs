@@ -107,6 +107,41 @@ lazy_static! {
     pub static ref ROADMAP_CHAPTERS: Regex = Regex::new(r"\(\(\(ROADMAP CHAPTERS\)\)\)").unwrap();
 }
 
+// Summary table of goals needing funding with their total cost and what-and-why
+lazy_static! {
+    pub static ref FUNDING_TABLE: Regex = Regex::new(r"\(\(\(FUNDING TABLE\)\)\)").unwrap();
+}
+
+// Summary table of goals needing funding, filtered by roadmap theme
+lazy_static! {
+    pub static ref FUNDING_TABLE_FILTERED: Regex =
+        Regex::new(r"\(\(\(FUNDING TABLE:\s*(.+?)\s*\)\)\)").unwrap();
+}
+
+// Summary table of goals needing funding, grouped by roadmap with header rows
+lazy_static! {
+    pub static ref FUNDING_TABLE_GROUPED: Regex =
+        Regex::new(r"\(\(\(FUNDING TABLE GROUPED\)\)\)").unwrap();
+}
+
+// Summary table of goals needing funding, grouped by roadmap (alias)
+lazy_static! {
+    pub static ref FUNDING_TABLE_GROUPED_BY_GOAL: Regex =
+        Regex::new(r"\(\(\(FUNDING TABLE GROUPED BY GOAL\)\)\)").unwrap();
+}
+
+// Summary table of goals needing funding, grouped by funding point of contact
+lazy_static! {
+    pub static ref FUNDING_TABLE_GROUPED_BY_POC: Regex =
+        Regex::new(r"\(\(\(FUNDING TABLE GROUPED BY POC\)\)\)").unwrap();
+}
+
+// Funding legend showing emoji meanings
+lazy_static! {
+    pub static ref FUNDING_LEGEND: Regex =
+        Regex::new(r"\(\(\(FUNDING LEGEND\)\)\)").unwrap();
+}
+
 // Roadmap goal rows (no headers) filtered by roadmap name.
 // Used inside manually authored markdown tables: `| (((ROADMAP ROWS: Theme))) |`
 lazy_static! {

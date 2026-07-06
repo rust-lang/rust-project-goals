@@ -176,7 +176,7 @@ fn format_review(
 
     for goal in sorted_goals {
         // Help wanted marker
-        let help_wanted = if goal.metadata.is_help_wanted() {
+        let help_wanted = if goal.needs_contributor() || goal.metadata.is_help_wanted() {
             " ![Help Wanted][]"
         } else {
             ""

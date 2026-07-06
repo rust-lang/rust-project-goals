@@ -206,6 +206,24 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         // Handle filtered lists of goals with needs
         self.replace_goals_with_needs_lists_filtered(chapter)?;
 
+        // Handle funding summary table
+        self.replace_funding_table(chapter)?;
+
+        // Handle roadmap-filtered funding table
+        self.replace_funding_table_filtered(chapter)?;
+
+        // Handle grouped funding table
+        self.replace_funding_table_grouped(chapter)?;
+
+        // Handle funding table grouped by goal (alias for grouped)
+        self.replace_funding_table_grouped_by_goal(chapter)?;
+
+        // Handle funding table grouped by POC
+        self.replace_funding_table_grouped_by_poc(chapter)?;
+
+        // Handle funding legend
+        self.replace_funding_legend(chapter)?;
+
         Ok(())
     }
 
@@ -248,7 +266,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 })
                 .collect();
 
-            filtered_goals.sort_by_key(|g| &g.metadata.title);
+            filtered_goals.sort_by_key(|g| g.metadata.title.to_lowercase());
 
             let output = goal::format_roadmap_goal_rows(&filtered_goals, filter_value);
 
@@ -292,7 +310,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 })
                 .collect();
 
-            filtered_goals.sort_by_key(|g| &g.metadata.title);
+            filtered_goals.sort_by_key(|g| g.metadata.title.to_lowercase());
 
             let output = goal::format_highlight_table(&filtered_goals);
 
@@ -324,7 +342,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 })
                 .collect();
 
-            filtered_goals.sort_by_key(|g| &g.metadata.title);
+            filtered_goals.sort_by_key(|g| g.metadata.title.to_lowercase());
 
             let output = goal::format_highlight_credits(&filtered_goals);
 
@@ -336,12 +354,207 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         &mut self,
         chapter: &mut Chapter,
     ) -> anyhow::Result<()> {
-        self.replace_themed_goal_list(
-            chapter,
-            &re::GOALS_WITH_NEEDS_LIST_FILTERED,
-            "(((GOALS WITH NEEDS: ...)))",
-            |g| &g.metadata.needs,
-        )
+        loop {
+            let Some(m) = re::GOALS_WITH_NEEDS_LIST_FILTERED.find(&chapter.content) else {
+                return Ok(());
+            };
+            let range = m.range();
+
+            let chapter_path = chapter_path(chapter, "(((GOALS WITH NEEDS: ...)))")?;
+
+            let capture_value = re::GOALS_WITH_NEEDS_LIST_FILTERED
+                .captures(&chapter.content[range.clone()])
+                .and_then(|caps| caps.get(1))
+                .map(|m| m.as_str().trim())
+                .unwrap();
+
+            let goals = self.goal_documents(chapter_path)?;
+
+            let mut filtered_goals: Vec<&GoalDocument> = if capture_value == "Funding" {
+                goals
+                    .iter()
+                    .filter(|g| {
+                        g.metadata.status.content.is_not_not_accepted() && g.needs_funding()
+                    })
+                    .collect()
+            } else if capture_value == "Contributor" {
+                goals
+                    .iter()
+                    .filter(|g| {
+                        g.metadata.status.content.is_not_not_accepted()
+                            && (g.needs_contributor() || g.metadata.is_help_wanted())
+                    })
+                    .collect()
+            } else {
+                goals
+                    .iter()
+                    .filter(|g| {
+                        g.metadata.status.content.is_not_not_accepted()
+                            && g.metadata.needs.contains(capture_value)
+                    })
+                    .collect()
+            };
+
+            filtered_goals.sort_by_key(|g| g.metadata.title.to_lowercase());
+
+            let heading_re = Regex::new(r"(?m)^(#+)\s").unwrap();
+            let preceding = &chapter.content[..range.start];
+            let context_level = heading_re
+                .find_iter(preceding)
+                .last()
+                .map(|m| m.as_str().trim().len())
+                .unwrap_or(1);
+
+            let output = if capture_value == "Funding" {
+                goal::format_funding_goal_sections(&filtered_goals, context_level + 1)
+                    .into_anyhow()?
+            } else if capture_value == "Contributor" {
+                goal::format_help_wanted_goal_sections(&filtered_goals, context_level + 1)
+                    .into_anyhow()?
+            } else {
+                goal::format_highlight_goal_sections(&filtered_goals, context_level + 1)
+                    .into_anyhow()?
+            };
+
+            chapter.content.replace_range(range, &output);
+        }
+    }
+
+    fn replace_funding_table(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        let Some(m) = re::FUNDING_TABLE.find(&chapter.content) else {
+            return Ok(());
+        };
+        let range = m.range();
+
+        let chapter_path = chapter_path(chapter, "(((FUNDING TABLE)))")?;
+        let goals = self.goal_documents(chapter_path)?;
+
+        let mut filtered_goals: Vec<&GoalDocument> = goals
+            .iter()
+            .filter(|g| g.metadata.status.content.is_not_not_accepted() && g.needs_funding())
+            .collect();
+
+        filtered_goals.sort_by_key(|g| g.metadata.title.to_lowercase());
+
+        let output = goal::format_funding_table(&filtered_goals);
+        chapter.content.replace_range(range, &output);
+        Ok(())
+    }
+
+    fn replace_funding_table_filtered(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        let Some(m) = re::FUNDING_TABLE_FILTERED.find(&chapter.content) else {
+            return Ok(());
+        };
+        let range = m.range();
+
+        let chapter_path = chapter_path(chapter, "(((FUNDING TABLE: ...)))")?;
+
+        let filter_value = re::FUNDING_TABLE_FILTERED
+            .captures(&chapter.content[range.clone()])
+            .and_then(|caps| caps.get(1))
+            .map(|m| m.as_str().trim())
+            .unwrap();
+        let filter_value = filter_value.to_string();
+
+        let goals = self.goal_documents(chapter_path)?;
+
+        let mut filtered_goals: Vec<&GoalDocument> = goals
+            .iter()
+            .filter(|g| {
+                g.metadata.status.content.is_not_not_accepted()
+                    && g.needs_funding()
+                    && g.matches_roadmap_theme(&filter_value)
+            })
+            .collect();
+
+        filtered_goals.sort_by_key(|g| g.metadata.title.to_lowercase());
+
+        let output = goal::format_funding_table(&filtered_goals);
+        chapter.content.replace_range(range, &output);
+        Ok(())
+    }
+
+    fn replace_funding_table_grouped(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        let Some(m) = re::FUNDING_TABLE_GROUPED.find(&chapter.content) else {
+            return Ok(());
+        };
+        let range = m.range();
+
+        let chapter_path = chapter_path(chapter, "(((FUNDING TABLE GROUPED)))")?;
+        let goals = self.goal_documents(chapter_path)?;
+        let roadmaps = self.roadmap_documents(chapter_path)?;
+
+        let mut filtered_goals: Vec<&GoalDocument> = goals
+            .iter()
+            .filter(|g| g.metadata.status.content.is_not_not_accepted() && g.needs_funding())
+            .collect();
+
+        filtered_goals.sort_by_key(|g| g.metadata.title.to_lowercase());
+
+        let roadmap_refs: Vec<&goal::RoadmapDocument> = roadmaps.iter().collect();
+        let output = goal::format_funding_table_grouped(&filtered_goals, &roadmap_refs);
+        chapter.content.replace_range(range, &output);
+        Ok(())
+    }
+
+    fn replace_funding_table_grouped_by_goal(
+        &mut self,
+        chapter: &mut Chapter,
+    ) -> anyhow::Result<()> {
+        let Some(m) = re::FUNDING_TABLE_GROUPED_BY_GOAL.find(&chapter.content) else {
+            return Ok(());
+        };
+        let range = m.range();
+
+        let chapter_path = chapter_path(chapter, "(((FUNDING TABLE GROUPED BY GOAL)))")?;
+        let goals = self.goal_documents(chapter_path)?;
+        let roadmaps = self.roadmap_documents(chapter_path)?;
+
+        let mut filtered_goals: Vec<&GoalDocument> = goals
+            .iter()
+            .filter(|g| g.metadata.status.content.is_not_not_accepted() && g.needs_funding())
+            .collect();
+
+        filtered_goals.sort_by_key(|g| &g.metadata.title);
+
+        let roadmap_refs: Vec<&goal::RoadmapDocument> = roadmaps.iter().collect();
+        let output = goal::format_funding_table_grouped(&filtered_goals, &roadmap_refs);
+        chapter.content.replace_range(range, &output);
+        Ok(())
+    }
+
+    fn replace_funding_table_grouped_by_poc(
+        &mut self,
+        chapter: &mut Chapter,
+    ) -> anyhow::Result<()> {
+        let Some(m) = re::FUNDING_TABLE_GROUPED_BY_POC.find(&chapter.content) else {
+            return Ok(());
+        };
+        let range = m.range();
+
+        let chapter_path = chapter_path(chapter, "(((FUNDING TABLE GROUPED BY POC)))")?;
+        let goals = self.goal_documents(chapter_path)?;
+
+        let mut filtered_goals: Vec<&GoalDocument> = goals
+            .iter()
+            .filter(|g| g.metadata.status.content.is_not_not_accepted() && g.needs_funding())
+            .collect();
+
+        filtered_goals.sort_by_key(|g| &g.metadata.title);
+
+        let output = goal::format_funding_table_grouped_by_poc(&filtered_goals);
+        chapter.content.replace_range(range, &output);
+        Ok(())
+    }
+
+    fn replace_funding_legend(&mut self, chapter: &mut Chapter) -> anyhow::Result<()> {
+        let Some(m) = re::FUNDING_LEGEND.find(&chapter.content) else {
+            return Ok(());
+        };
+        let range = m.range();
+        let output = goal::format_funding_legend();
+        chapter.content.replace_range(range, &output);
+        Ok(())
     }
 
     /// Shared helper for replacing themed goal list directives (HIGHLIGHT GOALS, GOALS WITH NEEDS).
@@ -376,7 +589,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
                 })
                 .collect();
 
-            filtered_goals.sort_by_key(|g| &g.metadata.title);
+            filtered_goals.sort_by_key(|g| g.metadata.title.to_lowercase());
 
             // Search backwards from the directive for the most recent heading to
             // determine the level at which to emit goal sub-headings.
@@ -444,7 +657,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             .filter(|g| g.metadata.status.content.is_not_not_accepted())
             .collect();
 
-        goals_with_status.sort_by_key(|g| &g.metadata.title);
+        goals_with_status.sort_by_key(|g| g.metadata.title.to_lowercase());
 
         // Create subchapters for each goal
         let mut parent_names = chapter.parent_names.clone();
@@ -482,7 +695,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
 
         let roadmaps = self.roadmap_documents(chapter_path)?;
         let mut sorted_roadmaps: Vec<&RoadmapDocument> = roadmaps.iter().collect();
-        sorted_roadmaps.sort_by_key(|r| &r.title);
+        sorted_roadmaps.sort_by_key(|r| r.title.to_lowercase());
 
         // Create subchapters for each roadmap
         let mut parent_names = chapter.parent_names.clone();
@@ -536,7 +749,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             let mut goals_with_status: Vec<&GoalDocument> =
                 goals.iter().filter(|g| filter(g, capture_value)).collect();
 
-            goals_with_status.sort_by_key(|g| &g.metadata.title);
+            goals_with_status.sort_by_key(|g| g.metadata.title.to_lowercase());
 
             // Get milestone issues for progress generation
             let milestone_issues = if let Some(first_goal) = goals_with_status.first() {

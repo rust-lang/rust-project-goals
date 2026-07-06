@@ -2,9 +2,8 @@
 
 | Metadata            |                                    |
 | :--                 | :--                                |
-| Point of contact    | @thunderseethe                     |
+| Point of contact    | @JayanAXHF                         |
 | Status              | Accepted                           |
-| Needs               | Funding                            |
 | Tracking issue      | [rust-lang/rust-project-goals#628] |
 | Zulip channel       | N/A                                |
 | [lang] champion     | @Nadrieril                         |
@@ -130,6 +129,12 @@ impl Destruct for UringState {
 | [lang]     | Medium        | Vibe check and RFC review |
 | [opsem]    | Small         |                           |
 | [types]    | Small         |                           |
+
+## Funding
+
+| Purpose | Cost | Funded | Sponsor(s) |
+|---------|------|--------|------------|
+| Contributor | TBD | Partial | |
 
 ## Frequently asked questions
 

@@ -5,7 +5,6 @@
 | Point of contact | @traviscross                                                                                       |
 | Status           | Accepted                                                                                           |
 | What and why     | Name opaque types and bound async return types so `async fn` in traits works with `Send` and `dyn` |
-| Needs            | Contributor                                                                                        |
 | Roadmap          | Just add async                                                                                     |
 | Tracking issue   | [rust-lang/rust-project-goals#646]                                                                 |
 | Zulip channel    | [#wg-async][channel]                                                                               |
@@ -101,7 +100,6 @@ where
 
 RTN has been fully implemented and is available on nightly under the feature flag `return_type_notation`.
 
-[RFC #3654]: https://rust-lang.github.io/rfcs/3654-return-type-notation.html
 
 #### RTN for async closures
 
@@ -159,6 +157,15 @@ We're looking to mentor one or more contributors on this goal. The work spans la
 |---------|---------------|-----------------------------------------------|
 | [lang]  | Medium        | RFC review, design discussions                 |
 | [types] | Medium        | Stabilization report review, TAIT interactions |
+
+## Help wanted
+
+| Task | Experience level | Time investment |
+|------|-----------------|-----------------|
+| Explore designs for return type notation | TBD | TBD |
+| Explore designs for async closures | TBD | TBD |
+| Work on the RFC | TBD | TBD |
+| Finalize the implementation | TBD | TBD |
 
 ## Frequently asked questions
 

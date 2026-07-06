@@ -16,7 +16,7 @@
 
 ## Summary
 
-We aim to ship a Minimum Viable Product that provides cryptographically verified mirrors for Rustup and Cargo, specifically targeting high-traffic environments like GitHub Actions (GHA) runners on Azure. By utilizing [The Update Framework (TUF)][tuf], we will establish a secure, multi-key distribution model that reduces infrastructure costs while providing for utilizing TUF as a validating mechanism on the backend transfers for mirroring, while integrating the needed unstable features into Rustup and Cargo for implementation. Our goal is to implement a first trial pass of [RFC#3724](https://github.com/rust-lang/rfcs/pull/3724), with modifications, allowing for mirrors of Rust releases and crates to be configurable or automatically utilized by the Rustup toolchain.
+We aim to ship a Minimum Viable Product that provides cryptographically verified mirrors for Rustup and Cargo, specifically targeting high-traffic environments like GitHub Actions (GHA) runners on Azure. By utilizing [The Update Framework (TUF)][tuf], we will establish a secure, multi-key distribution model that reduces infrastructure costs while providing for utilizing TUF as a validating mechanism on the backend transfers for mirroring, while integrating the needed unstable features into Rustup and Cargo for implementation. Our goal is to implement a first trial pass of [RFC #3724], with modifications, allowing for mirrors of Rust releases and crates to be configurable or automatically utilized by the Rustup toolchain.
 
 [tuf]: https://theupdateframework.io/
 

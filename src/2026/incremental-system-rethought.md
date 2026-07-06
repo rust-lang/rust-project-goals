@@ -5,6 +5,7 @@
 | Point of contact    | @blyxyas                           |
 | Status              | Accepted                           |
 | Tracking issue      | [rust-lang/rust-project-goals#641] |
+| Roadmap             | Fast Builds                        |
 | [compiler] champion | @jackh726                          |
 | Zulip channel       | N/A                                |
 
@@ -81,6 +82,35 @@ The first step is completing the RFC and implementing it in an unstable stage.
 | [compiler] | Medium        |       |
 
 ## Frequently asked questions
+
+## Funding
+
+| Purpose | Cost | Funded | Sponsor(s) |
+|---------|------|--------|------------|
+| Contributor | $75,000-$120,000 | Partial | |
+
+Greater amount of funding would allow for more time spent working on the goal. If the funding goal is not met, part-time work will be given instead.
+
+## Target timeline
+
+The duration of the project is 12 months. Starting from the agreed start date ("Month 1"), the target timeline is:
+
+- Month 1-3:
+  - Resolve all concerns, merge RFC. (In parallel with experimentation)
+  - Stablish formal communication with the notable teams. (i.e. cargo and compiler)
+  - Experiment with `cargo build` building off of `cargo check`.
+- Month 3-6:
+  - Declare semi-stable fingerprinting format following any known schema.
+  - Notion of data dependencies & atomic levels in the compiler.
+  - Have some kind of `cargo build` <-> `cargo check` compatibility merged in the compiler.
+- Month 6-12:
+  - Implement data dependency diffing algorithm in the compiler for the different stages.
+  - Polishing, perf measurements, integration testing...
+  - Measure interaction with official rustc-driver projects, such as Clippy or Miri.
+  - (secondary) Measure interaction with unofficial rustc-driver projects.
+- Month 12-future:
+  - Allow for stable interoperability with other tools.
+  - (Eventual) Stabilization.
 
 [on-going RFC]: https://github.com/rust-lang/rfcs/pull/3881/
 [this blog post and talk]: https://blog.goose.love/posts/improving-the-incremental-system-in-the-rust-compiler/

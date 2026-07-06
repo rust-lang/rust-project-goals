@@ -4,7 +4,6 @@
 |:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | @epage                                                                           |
 | Status           | Accepted                                                                         |
-| Needs            | Contributor                                                                      |
 | Tracking issue   | [rust-lang/rust-project-goals#272]                                               |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
 | [compiler] champion | @petrochenkov |
@@ -14,7 +13,7 @@
 
 Implement and stabilize the MVP of public dependencies described in [RFC #3516]. Public dependencies allow crates to declare dependencies whose types are *meant* to be exposed in the public API.
 
-**Needs contributor:** This goal needs a contributor to work with the compiler team on identifying and implementing the minimal lint subset needed for stabilization. The work spans rustc (lint implementation) and Cargo (dependency metadata). Estimated time commitment: TBD.
+**Needs contributor:** This goal needs a contributor to work with the compiler team on identifying and implementing the minimal lint subset needed for stabilization. The work spans rustc (lint implementation) and Cargo (dependency metadata).
 
 ## Motivation
 
@@ -26,13 +25,10 @@ This will allow users to tell Rustc and Cargo what dependencies are private
 
 ### The status quo
 
-[RFC #1977](https://github.com/rust-lang/rfcs/pull/1977) has been superseded by
-[RFC #3516](https://github.com/rust-lang/rfcs/pull/3516) to reduce complexity on the Cargo side to help get this over the line.
+[RFC #1977] has been superseded by
+[RFC #3516] to reduce complexity on the Cargo side to help get this over the line.
 However, there is still a lot of complexity on the compiler side to get this right
-(
-[rust#3516](https://github.com/rust-lang/rfcs/pull/3516),
-[rust#119428](https://github.com/rust-lang/rust/issues/119428),
-),
+([RFC #3516], [rust-lang/rust#119428]),
 keeping this feature in limbo
 
 ### The next 6 months
@@ -47,5 +43,12 @@ Work with [compiler] to identify a minimal subset of functionality for what the 
 | ---------- | ------------- | --------------------------------------- |
 | [cargo]    | Small         |                                         |
 | [compiler] | Medium        | Design discussions, PR review |
+
+## Help wanted
+
+| Task | Experience level | Time investment |
+|------|-----------------|-----------------|
+| Find a minimal stabilizable subset of the lint's functionality (with [compiler]) | TBD | TBD |
+| Complete the tasks related to the lint's stabilization | TBD | TBD |
 
 ## Frequently asked questions

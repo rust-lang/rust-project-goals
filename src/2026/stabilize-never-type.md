@@ -5,7 +5,7 @@
 | Point of contact        | @WaffleLapkin                                  |
 | Status                  | Accepted                                       |
 | Tracking issue          | [rust-lang/rust-project-goals#653]             |
-| Other tracking issues | https://github.com/rust-lang/rust/issues/35121 |
+| Other tracking issues   | [rust-lang/rust#35121]                         |
 | Highlight               | Try, never, extern types                       |
 | Zulip channel           | N/A                                            |
 
@@ -31,10 +31,10 @@ After they are done, the never type can be stabilized.
 
 | Task                                                                 | Owner(s)                      | Notes                                           |
 | -------------------------------------------------------------------- | ----------------------------- | ----------------------------------------------- |
-| Don't consider `Result<T, !>` as `must_use` unless `T` is            | @WaffleLapkin                 | https://github.com/rust-lang/rust/pull/148214   |
-| Improve dead-code lint to work with never type fallback              | @jdonszelmann, @WaffleLapkin  | https://github.com/rust-lang/rust/issues/146085 |
-| Further restrict what coercions are allowed on places of type `!` | @WaffleLapkin                 | https://github.com/rust-lang/rust/issues/131297 |
-| Re-assess the breakage needed for the fallback change               | @WaffleLapkin                 |                                                 |
+| Don't consider `Result<T, !>` as `must_use` unless `T` is            | @WaffleLapkin                 | [rust-lang/rust#148214]                      |
+| Improve dead-code lint to work with never type fallback              | @jdonszelmann, @WaffleLapkin  | [rust-lang/rust#146085]                         |
+| Further restrict what coercions are allowed on places of type `!`    | @WaffleLapkin                 | [rust-lang/rust#131297]                         |
+| Re-assess the breakage needed for the fallback change              v | @WaffleLapkin                 |                                                 |
 | Stabilize the never type!                                            | @WaffleLapkin                 |                                                 |
 
 ## Team asks

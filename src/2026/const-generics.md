@@ -12,6 +12,7 @@
 | Highlight        | Const and reflection                |
 | [lang] champion  | @nikomatsakis                       |
 | [types] champion | @BoxyUwU                            |
+| Funding contact  | [Hexcat](https://hexcat.nl/)        |
 
 [#project-const-generics]: https://rust-lang.zulipchat.com/#narrow/channel/260443-project-const-generics
 
@@ -91,6 +92,12 @@ Support associated constants and generic parameters embedded in other expression
 |------------|---------------|----------------------------------------------- |
 | [lang]     | Large         | Stabilization decisions, directional alignment |
 | [types]    | Large         | a-mir-formality modeling, design alignment, reviews    |
+
+## Funding
+
+| Purpose           | Cost | Funded | Sponsor(s)     |
+|-------------------|------|--------|----------------|
+| Contributors      | Ask  | No     |                |
 
 ## Frequently asked questions
 
