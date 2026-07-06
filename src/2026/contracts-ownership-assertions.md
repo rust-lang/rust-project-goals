@@ -7,7 +7,6 @@
 | Status           | Proposed                                                                         |
 | Tracking issue   |      |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
-| Needs | Funding |
 
 ## Summary
 
@@ -20,8 +19,6 @@ is split into two main phases:
 - Implementation: Building the core compiler intrinsics and higher-level wrappers, alongside integrating them with Miri for dynamic runtime testing.
 
 - Documentation: Creating extensive reference materials and real-world tutorials to teach developers how to apply these separation logic concepts to verify libraries using unsafe Rust, e.g. the Rust standard library.
-
-**Needs funding:** This goal needs funding to proceed.
 
 ## Motivation
 
@@ -90,5 +87,11 @@ goal. The benefits of doing this are two-fold: 1. we can directly evaluate the a
 | ---------- | ------------- | --------------------------------------- |
 | [compiler] | Small         | Code reviews                            |
 | [miri]     | Medium        | Guidance on integration                 |
+
+## Funding
+
+| Purpose | Cost | Funded | Sponsor(s) |
+|---------|------|--------|------------|
+| Contributor (12 months) | Ask | No | |
 
 ## Frequently asked questions
