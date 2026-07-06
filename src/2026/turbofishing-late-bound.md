@@ -7,6 +7,7 @@
 | Funding contact     | [RustNL](https://rustnl.org)                          |
 | Tracking issue   |      |
 | Zulip channel    | https://rust-lang.zulipchat.com/#narrow/channel/600108-t-types.2Fearly-late-cleanup |
+| [types] champion | @BoxyUwU |
 
 ## Summary
 
@@ -74,7 +75,7 @@ We want both to become expressible, and irrespective of syntax, we need to suppo
 | ---------- | ------------- | --------------------------------------- |
 | [compiler] | small         |                                         |
 | [lang]     | small         | Not relevant yet, but in the future     |
-| [types]    | large         | Champion: @BoxyUwU |
+| [types]    | large         |  |
 
 ## Funding
 
