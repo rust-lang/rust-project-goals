@@ -7,6 +7,8 @@
 | Funding contact     | [RustNL](https://rustnl.org)                          |
 | Tracking issue   |      |
 | Zulip channel    | N/A |
+| [compiler] champion | @oli-obk |
+| [types] champion | @lcnr |
 
 ## Summary
 
@@ -40,8 +42,8 @@ I'm going to refactor the diagnostic reporting infra in borrowck and introduce a
 
 | Team       | Support level | Notes                                   |
 | ---------- | ------------- | --------------------------------------- |
-| [compiler] | medium        | Champion: @oli-obk                      |
-| [types]    | medium        | Champion: @lcnr                         |
+| [compiler] | medium        | |
+| [types]    | medium        | |
 
 ## Funding
 
