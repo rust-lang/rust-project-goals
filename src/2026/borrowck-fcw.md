@@ -1,14 +1,14 @@
 # Reintroduce a FCW system to borrowck
 
-| Metadata         |                                                                                  |
-| :--------------- | -------------------------------------------------------------------------------- |
-| Point of contact | @oli-obk                                   |
-| Status           | Proposed                                                                         |
-| Funding contact     | [RustNL](https://rustnl.org)                          |
-| Tracking issue   |      |
-| Zulip channel    | N/A |
-| [compiler] champion | @oli-obk |
-| [types] champion | @lcnr |
+| Metadata            |                                    |
+| :------------------ | :--------------------------------- |
+| Point of contact    | @oli-obk                           |
+| Status              | Accepted                           |
+| Funding contact     | [RustNL](https://rustnl.org)       |
+| Tracking issue      | [rust-lang/rust-project-goals#713] |
+| Zulip channel       | N/A                                |
+| [compiler] champion | @oli-obk                           |
+| [types] champion    | @lcnr                              |
 
 ## Summary
 
@@ -31,24 +31,23 @@ I'm going to refactor the diagnostic reporting infra in borrowck and introduce a
 
 ### Work items over the next year
 
-| Task        | Owner(s) | Notes |
-| ----------- | -------- | ----- |
-| link all `Diag<'infcx>` to the borrowck root instead | @oli-obk  |       |
-| delay all diag reporting to the end of borrowck | @oli-obk | may change diagnostic order |
+| Task                                                                                          | Owner(s) | Notes                                                                                     |
+| --------------------------------------------------------------------------------------------- | -------- | ----------------------------------------------------------------------------------------- |
+| link all `Diag<'infcx>` to the borrowck root instead                                          | @oli-obk |                                                                                           |
+| delay all diag reporting to the end of borrowck                                               | @oli-obk | may change diagnostic order                                                               |
 | add an enum for borrowck modes and a list of borrowck modes to try and compare errors between | @oli-obk | we don't have anything to test this well, so I may need to test it with some dummy change |
-
 
 ## Team asks
 
-| Team       | Support level | Notes                                   |
-| ---------- | ------------- | --------------------------------------- |
-| [compiler] | medium        | |
-| [types]    | medium        | |
+| Team       | Support level | Notes |
+| ---------- | ------------- | ----- |
+| [compiler] | medium        |       |
+| [types]    | medium        |       |
 
 ## Funding
 
-| Purpose | Cost | Funded | Sponsor(s) |
-|---------|------|--------|------------|
-| Reviews | Ask | Partial |  |
+| Purpose | Cost | Funded  | Sponsor(s) |
+| ------- | ---- | ------- | ---------- |
+| Reviews | Ask  | Partial |            |
 
 ## Frequently asked questions

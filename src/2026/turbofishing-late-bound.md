@@ -1,13 +1,16 @@
 # Allow turbofishing late bound vars
 
-| Metadata         |                                                                                  |
-| :--------------- | -------------------------------------------------------------------------------- |
-| Point of contact | @oli-obk                                   |
-| Status           | Proposed                                                                         |
-| Funding contact     | [RustNL](https://rustnl.org)                          |
-| Tracking issue   |      |
-| Zulip channel    | https://rust-lang.zulipchat.com/#narrow/channel/600108-t-types.2Fearly-late-cleanup |
-| [types] champion | @BoxyUwU |
+| Metadata         |                                      |
+| :--------------- | :----------------------------------- |
+| Point of contact | @oli-obk                             |
+| Status           | Accepted                             |
+| Funding contact  | [RustNL](https://rustnl.org)         |
+| Tracking issue   | [rust-lang/rust-project-goals#711]   |
+| Zulip channel    | [#t-types/early-late-cleanup][zulip] |
+| [types] champion | @BoxyUwU                             |
+| Funding contact  | [Hexcat](https://hexcat.nl/)         |
+
+[zulip]: https://rust-lang.zulipchat.com/#narrow/channel/600108-t-types.2Fearly-late-cleanup
 
 ## Summary
 
@@ -62,26 +65,25 @@ We want both to become expressible, and irrespective of syntax, we need to suppo
 
 ### Work items over the next year
 
-| Task        | Owner(s) | Notes |
-| ----------- | -------- | ----- |
-| add binders to FnDef | @addiesh  |       |
+| Task                            | Owner(s) | Notes |
+| ------------------------------- | -------- | ----- |
+| add binders to FnDef            | @addiesh |       |
 | fill binders on FnDef with vars | @addiesh |       |
-| change borrowck | @oli-obk |      |
-
+| change borrowck                 | @oli-obk |       |
 
 ## Team asks
 
-| Team       | Support level | Notes                                   |
-| ---------- | ------------- | --------------------------------------- |
-| [compiler] | small         |                                         |
-| [lang]     | small         | Not relevant yet, but in the future     |
-| [types]    | large         |  |
+| Team       | Support level | Notes                               |
+| ---------- | ------------- | ----------------------------------- |
+| [compiler] | small         |                                     |
+| [lang]     | small         | Not relevant yet, but in the future |
+| [types]    | large         |                                     |
 
 ## Funding
 
-| Purpose | Cost | Funded | Sponsor(s) |
-|---------|------|--------|------------|
-| Reviews and Impl | Ask | Partial |  |
+| Purpose          | Cost | Funded  | Sponsor(s) |
+| ---------------- | ---- | ------- | ---------- |
+| Reviews and Impl | Ask  | Partial |            |
 
 ## Frequently asked questions
 

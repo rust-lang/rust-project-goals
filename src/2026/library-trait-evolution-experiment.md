@@ -1,16 +1,17 @@
 # Library Trait Evolution Experiment
 
 
-| Metadata         |                                                                                  |
-| :--------------- | -------------------------------------------------------------------------------- |
-| Point of contact | @lcnr                                                                            |
-| What and why     | Enable library authors to more easily change their trait definitions             |
-| Status           | Proposed                                                                         |
-| Tracking issue   |      |
-| Zulip channel    | N/A |
-| [lang] champion | @tmandry |
-| [types] champion | @lcnr |
-| Funding contact       | [Hexcat](https://hexcat.nl/) |
+| Metadata         |                                                                      |
+| :--              | :--                                                                  |
+| Point of contact | @lcnr                                                                |
+| What and why     | Enable library authors to more easily change their trait definitions |
+| Status           | Proposed                                                             |
+| Tracking issue   | [rust-lang/rust-project-goals#712]                                   |
+| Zulip channel    | N/A                                                                  |
+| [lang] champion  | @tmandry                                                             |
+| [types] champion | @lcnr                                                                |
+| Funding contact  | [Hexcat](https://hexcat.nl/)                                         |
+
 
 ## Summary
 
