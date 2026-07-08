@@ -136,4 +136,12 @@ Field projections is part of a larger idea called *beyond references*. There sho
 
 The lang team support level is Large, since we could end up with an RFC review and decision at the end of the year. If not, then the input from t-lang is much more manageable and more in-line with Medium: the design meetings and the champion suffice as support.
 
+## Help wanted
+
+| Task | Experience level | Time investment |
+|------|-----------------|-----------------|
+| Fix a bug in rustdoc: [rust#158768] ([comment][rustdoc-help-wanted]) | Familiarity with rustdoc and procecural macros |  |
+
+[rustdoc-help-wanted]: https://github.com/rust-lang/rust-project-goals/issues/390#issuecomment-4881394710
+
 ## Frequently asked questions
