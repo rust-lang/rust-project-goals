@@ -140,7 +140,7 @@ The lang team support level is Large, since we could end up with an RFC review a
 
 | Task | Experience level | Time investment |
 |------|-----------------|-----------------|
-| Fix a bug in rustdoc: [rust#158768] ([comment][rustdoc-help-wanted]) | Familiarity with rustdoc and procecural macros |  |
+| Fix a bug in rustdoc: [rust#158768] ([comment][rustdoc-help-wanted]) | Familiarity with rustdoc and procedural macros |  |
 
 [rustdoc-help-wanted]: https://github.com/rust-lang/rust-project-goals/issues/390#issuecomment-4881394710
 
