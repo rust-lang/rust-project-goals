@@ -61,6 +61,13 @@ The fundamental design philosophy remains:
 | [compiler] | Small         | Standard reviews for maintainability of changes |
 | [types]    | Medium        | MIR restructuring for borrowck |
 
+## Help wanted
+
+| Task | Experience level | Time investment |
+|------|-----------------|-----------------|
+| Help with borrow checking ([context](https://github.com/rust-lang/rust-project-goals/issues/399#issuecomment-4917408838)) | If you're an expert on the internals of borrowck and have a good idea of how to teach borrowck about `&mut T` reborrows happening at arbitrary depths during a Reborrow, then please come talk to me! |  |
+| Help with rmeta / caching ([context](https://github.com/rust-lang/rust-project-goals/issues/399#issuecomment-4917408838)) | If you're an expert on rmeta / caching, then I'd again love your help on how to avoid/cache the Reborrow recursion result. |  |
+
 ## Frequently asked questions
 
 ### How does this relate to Pin ergonomics?
