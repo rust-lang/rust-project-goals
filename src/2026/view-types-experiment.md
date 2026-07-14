@@ -7,6 +7,7 @@
 | Tracking issue      | [rust-lang/rust-project-goals#702] |
 | Zulip channel       | N/A                                |
 | [compiler] champion | @oli-obk                           |
+| Funding contact     | [Hexcat](https://hexcat.nl/)       |
 
 
 ## Summary
@@ -222,6 +223,12 @@ To facilitate testing, the following syntaxes will be added:
 | [compiler] | Medium        | Code review, questions                              |
 | [lang]     | Small         | Suggestion of alternative syntaxes                  |
 | [types]    | Small         | Add the `Contiguous` marker trait and implied bound |
+
+## Funding
+
+| Purpose        | Cost | Funded | Sponsor(s) |
+| -------------- | ---- | ------ | ---------- |
+| Implementation | Ask  | No     |            |
 
 ## Frequently asked questions
 
