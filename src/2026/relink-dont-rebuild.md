@@ -53,7 +53,6 @@ The largest concern of adding such public API hash is maintainability: adding ne
 | ---------- | ------------- | --------------------------------------- |
 | [cargo]    | Small         | review cargo integration                 |
 | [compiler] | Medium        | dedicated reviewer                             |
-| [compiler] | Large         | Only for "update spans" mode. It would need to change how spans are stored in diagnostics |
 
 ## Funding
 
