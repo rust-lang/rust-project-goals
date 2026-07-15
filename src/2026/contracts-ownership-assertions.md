@@ -7,6 +7,7 @@
 | Status           | Proposed                                                                         |
 | Tracking issue   |      |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
+| [miri] champion | @RalfJung |
 
 ## Summary
 
