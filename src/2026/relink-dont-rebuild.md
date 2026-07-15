@@ -35,17 +35,17 @@ The largest concern of adding such public API hash is maintainability: adding ne
 #### Usable implementation in nightly, with limitations.
 | Task        | Owner(s) | Notes |
 | ----------- | -------- | ----- |
-| Split up the existing implementation into smaller PRs, review | @susitsm, reviewer  |       |
-| Cargo integration | @susitsm  |       |
-| Add a mode that ignores spans | @susitsm  |       |
+| Split up the existing implementation into smaller PRs, review | @susitsm, reviewer  | 2 months |
+| Cargo integration | @susitsm  | 1 month |
+| Add a mode that ignores spans | @susitsm  | |
 
 #### Stabilization
 | Task        | Owner(s) | Notes |
 | ----------- | -------- | ----- |
-| Restore compiler diagnostics | @susitsm |       |
-| Optimize the implementation | @susitsm |       |
-| Add an "update spans" mode to rustc | @susitsm |       |
-| Integrate with rustdoc | @susitsm |       |
+| Restore compiler diagnostics | @susitsm | 1 month |
+| Optimize the implementation | @susitsm | 2 months |
+| Add an "update spans" mode to rustc | @susitsm | 5 months |
+| Integrate with rustdoc | @susitsm | 1 month |
 
 ## Team asks
 
@@ -56,11 +56,21 @@ The largest concern of adding such public API hash is maintainability: adding ne
 
 ## Funding
 
+The duration of the project is 12 months. With distinct subgoals which can be funded independently.
+
+- Month 1-3 (Usable implementation in nightly)
+  - This stage could already provide benefits for nightly users, at the cost of possibly incorrect line info in diagnostics and debuginfo of dependents. This would greatly help `cargo check` runs in IDE-s, since debuginfo is not a concern there.
+  - Some diagnostics will not be available
+  - Lot of the work is already done, needs review.
+- Month 4-12 (Stabilization)
+  - Performance optimizations
+  - Fixing the holes required for a stable release
+
 | Purpose | Cost | Funded | Sponsor(s) |
 |---------|------|--------|------------|
-| Contributor - Nightly implementation - 3 months: cargo integration 1 month. Split up, review, ignore spans 2 months | Ask | No | |
+| Contributor - Nightly implementation | Ask | No | |
 | Reviewer - Nightly implementation | Ask | No | |
-| Contributor - Stabilization - 9 months: optimize 2 months, restore diagnostics 1 month, "update spans" mode 5 months, rustdoc 1 month | Ask | No | |
+| Contributor - Stabilization | Ask | No | |
 
 
 ## Frequently asked questions
