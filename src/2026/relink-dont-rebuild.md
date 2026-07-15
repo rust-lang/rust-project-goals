@@ -4,7 +4,7 @@
 | :--------------- | -------------------------------------------------------------------------------- |
 | Point of contact | @susitsm                                                                         |
 | Status           | Proposed                                                                         |
-| What and why     | Massive speedup                                                                  |
+| What and why     | Massive speedup of rebuilds in large multi-crate projects                                                                |
 | Roadmap          | Fast Builds                                                                      |
 | Tracking issue   |                                                                                  |
 | Other tracking issues | [https://github.com/rust-lang/rust/issues/158844]                                |
