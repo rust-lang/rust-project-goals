@@ -182,7 +182,7 @@ as these are complex yet self-contained.
 
 | Purpose | Cost | Funded | Sponsor(s) |
 |---------|------|--------|------------|
-| Contributor (1 year, full-time) | TBD | | |
+| Contributor (1 year, full-time) | Ask @dianne | No | |
 
 ## Frequently asked questions
 
