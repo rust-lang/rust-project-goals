@@ -75,11 +75,11 @@ The expected effort for the work is 3 person-months, the long timeline is really
 
 ## Notes
 
-There is a stalled RFC for some of these types at https://github.com/rust-lang/rfcs/pull/3456.
+There is a stalled RFC for some of these types at [rust-lang/rfcs#3456].
 
 Blockers for `f128` support are tracked at [`cfg.has_reliable_f128`](https://github.com/rust-lang/rust/blob/2cfb951a24de2520de67f6911fd1fc0045a2662e/compiler/rustc_codegen_llvm/src/llvm_util.rs#L394-L415).
 
-There is a draft PR https://github.com/rust-lang/rust/pull/140417 for `c_longdouble` that already lists the right type for `c_longdouble` for many targets.
+There is a draft PR [rust-lang/rust#140417] for `c_longdouble` that already lists the right type for `c_longdouble` for many targets.
 
 Further discussion is at [#t-libs > &#96;f80&#96;, &#96;f128&#96; and &#96;c_longdouble&#96;](https://rust-lang.zulipchat.com/#narrow/channel/219381-t-libs/topic/.60f80.60.2C.20.60f128.60.20and.20.60c_longdouble.60/with/604820894).
 
