@@ -23,7 +23,7 @@ Without Decision and MC/DC support in rustc, Rust cannot be used in these domain
 
 ### The status quo
 
-MC/DC support has a [tracking issue][mcdc-tracking-issue] with initial implementation and updates in 2024 (PRs [#123409][mcdc-implementation-initial-pr], [#126733][mcdc-update-pr]) under the `-Zcoverage-options=mcdc` flag. However, it was **removed in late 2025** (commit [562222b](https://github.com/rust-lang/rust/commit/562222b73765a326fa800a075814deaf627874df)). The removal rationale from the maintainer cited:
+MC/DC support has a [tracking issue][mcdc-tracking-issue] with initial implementation and updates in 2024 (PRs [rust-lang/rust#123409], [rust-lang/rust#126733]) under the `-Zcoverage-options=mcdc` flag. However, it was **removed in late 2025** (commit [562222b](https://github.com/rust-lang/rust/commit/562222b73765a326fa800a075814deaf627874df)). The removal rationale from the maintainer cited:
 
 > - "Major burden on overall maintenance of coverage instrumentation"
 > - "Major obstacle to other planned improvements" (e.g., macro expansion regions)
@@ -99,9 +99,6 @@ AdaCore plans to instruct customers to avoid pattern matching with an initial of
 GNATcoverage is AdaCore's coverage analysis tool. It can consume LLVM coverage data including MC/DC information. Having MC/DC support in rustc means GNATcoverage (and other LLVM-based coverage tools) can provide MC/DC reports for Rust code. This is valuable for organizations already using GNATcoverage for Ada/C in mixed-language safety-critical systems.
 
 [mcdc-wikipedia]: https://en.wikipedia.org/wiki/Modified_condition/decision_coverage
-[mcdc-tracking-issue]: https://github.com/rust-lang/rust/issues/124144
-[mcdc-implementation-initial-pr]: https://github.com/rust-lang/rust/pull/123409
-[mcdc-update-pr]: https://github.com/rust-lang/rust/pull/126733
 [mcdc-zulip]: https://rust-lang.zulipchat.com/#narrow/channel/546987-project-goals.2F2026-workshop/topic/mcdc-support/with/569335878
 [pattern-mcdc]: https://arc.aiaa.org/doi/10.2514/1.I011558
 [mcdc-design-doc]: https://hackmd.io/@renjisann/HJtqcTr_We
