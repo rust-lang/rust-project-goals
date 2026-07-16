@@ -39,6 +39,12 @@ This covers multiple teams and needs a lot of coordination to balance the needs 
 | [cargo]    | Small         |                               |
 | [compiler] | Small         | Design discussions, PR review |
 
+## Funding
+
+| Purpose | Cost | Funded | Sponsor(s) |
+|---------|------|--------|------------|
+| Contributor | TBD | No | |
+
 ## Help wanted
 
 | Task                       | Experience level | Time investment |
