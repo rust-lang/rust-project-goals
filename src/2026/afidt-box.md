@@ -10,12 +10,14 @@
 | Tracking issue      | [rust-lang/rust-project-goals#625]   |
 | Highlight           | Async and ergonomic RC               |
 | Zulip channel       | [#wg-async][channel]                 |
+| Funding contact     | [Jess Izen][jess_izen]               |
 | [lang] champion     | @jackh726                            |
 | [types] champion    | @jackh726                            |
 | [compiler] champion | @spastorino                          |
 
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/187312-wg-async/
+[jess_izen]: https://book.jessizen.com
 
 ## Summary
 
@@ -146,9 +148,9 @@ The duration of the project is 12 months of full-time work (~1,920 hours) split 
   - Author the RFC and build [lang] team consensus for async dispatch through trait objects.
   - Documentation.
 
-| Purpose      | Cost | Funded | Sponsor(s) |
-|--------------|------|--------|------------|
-| Contributors | Ask  | No     |            |
+| Purpose      | Cost | Funded | Sponsor(s)                     |
+|--------------|------|--------|--------------------------------|
+| Contributors | Ask  | 50%    | [AWS](https://aws.amazon.com/) |
 
 ## Frequently asked questions
 
