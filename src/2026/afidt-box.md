@@ -10,14 +10,13 @@
 | Tracking issue      | [rust-lang/rust-project-goals#625]   |
 | Highlight           | Async and ergonomic RC               |
 | Zulip channel       | [#wg-async][channel]                 |
-| Funding contact     | [Jess Izen][jess_izen]               |
+| Funding contact     | [Jess Izen](https://book.jessizen.com) |
 | [lang] champion     | @jackh726                            |
 | [types] champion    | @jackh726                            |
 | [compiler] champion | @spastorino                          |
 
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/187312-wg-async/
-[jess_izen]: https://book.jessizen.com
 
 ## Summary
 
