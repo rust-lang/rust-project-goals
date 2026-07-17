@@ -7,8 +7,10 @@
 | What and why     | Massive speedup of rebuilds in large multi-crate projects                                                                |
 | Roadmap          | Fast Builds                                                                      |
 | Tracking issue   |                                                                                  |
-| Other tracking issues | [https://github.com/rust-lang/rust/issues/158844]                                |
-| Zulip channel    | [https://rust-lang.zulipchat.com/#narrow/channel/604410-t-compiler.2Frelink-dont-rebuild] |
+| Other tracking issues | [rust-lang/rust#158844]            |
+| Zulip channel    | [t-compiler/relink-dont-rebuild][zulip] |
+
+[zulip]: https://rust-lang.zulipchat.com/#narrow/channel/604410-t-compiler.2Frelink-dont-rebuild
 
 ## Summary
 
