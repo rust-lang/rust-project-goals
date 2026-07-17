@@ -6,6 +6,7 @@
 | Status           | Accepted                           |
 | Tracking issue   | [rust-lang/rust-project-goals#626] |
 | Zulip channel    | N/A                                |
+| Funding contact  | [Jess Izen][https://book.jessizen.com] |
 | [cargo] champion | @epage                             |
 
 
@@ -58,7 +59,7 @@ At the end of the year, we should have an understanding of the benefits and trad
 
 | Purpose | Cost | Funded | Sponsor(s) |
 |---------|------|--------|------------|
-| Contributor (10 months, part-time) | $30,000 | No | |
+| Contributor (10 months, part-time) | $30,000 | Partial | [AWS](https://aws.amazon.com/) |
 
 ## Frequently asked questions
 
