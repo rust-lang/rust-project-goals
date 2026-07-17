@@ -6,7 +6,7 @@
 | Status           | Accepted                           |
 | Tracking issue   | [rust-lang/rust-project-goals#626] |
 | Zulip channel    | N/A                                |
-| Funding contact  | [Jess Izen][https://book.jessizen.com] |
+| Funding contact  | [Jess Izen](https://book.jessizen.com) |
 | [cargo] champion | @epage                             |
 
 
