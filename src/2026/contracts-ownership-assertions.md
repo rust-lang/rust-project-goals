@@ -8,6 +8,7 @@
 | Tracking issue   |      |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
 | [miri] champion | @RalfJung |
+| [lang] champion | @Nadrieril |
 
 ## Summary
 
@@ -88,6 +89,7 @@ goal. The benefits of doing this are two-fold: 1. we can directly evaluate the a
 | ---------- | ------------- | --------------------------------------- |
 | [compiler] | Small         | Code reviews                            |
 | [miri]     | Medium        | Guidance on integration                 |
+| [lang]     | Small         | Guidance on the design                  |
 
 ## Funding
 
