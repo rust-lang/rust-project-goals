@@ -6,6 +6,7 @@
 | Status           | Accepted                           |
 | What and why     | Let Cargo rebuild the standard library from source for custom targets and configurations |
 | Roadmap          | Rust for Linux                     |
+| Roadmap          | Binary size reduction              |
 | Highlight        | Build-std                          |
 | Zulip channel    | [#project-goals/build-std][zulip]  |
 | Tracking issue   | [rust-lang/rust-project-goals#274] |
