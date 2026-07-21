@@ -1,14 +1,15 @@
 # Contracts: primitive ownership assertions
 
-| Metadata         |                                                                                  |
-| :--------------- | -------------------------------------------------------------------------------- |
-| What and why     | Implement [MCP #942](https://github.com/rust-lang/compiler-team/issues/942): experiment with Fulminate-like ownership primitives in contracts                |
-| Point of contact | @dawidl022                                   |
-| Status           | Proposed                                                                         |
-| Tracking issue   |      |
-| Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
-| [miri] champion | @RalfJung |
-| [lang] champion | @Nadrieril |
+| Metadata         |                                                                                                                                               |
+| :--              | :--                                                                                                                                           |
+| What and why     | Implement [MCP #942](https://github.com/rust-lang/compiler-team/issues/942): experiment with Fulminate-like ownership primitives in contracts |
+| Point of contact | @dawidl022                                                                                                                                    |
+| Status           | Accepted                                                                                                                                      |
+| Tracking issue   | [rust-lang/rust-project-goals#734]                                                                                                            |
+| Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request)                                                              |
+| [miri] champion  | @RalfJung                                                                                                                                     |
+| [lang] champion  | @Nadrieril                                                                                                                                    |
+
 
 ## Summary
 
