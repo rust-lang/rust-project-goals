@@ -162,12 +162,12 @@ as these are complex yet self-contained.
 | Task        | Owner(s) | Notes |
 | ----------- | -------- | ----- |
 | Parse functions and traits | Nadri    |       |
-| Run rustc on the test suite to compare | ?    |       |
-| Compile to a-mir-formality's expression language | Nadri?    |       |
-| Hook into a-mir-formality for trait solving | Nadri?    |       |
-| Implement temporary lifetime extension | Dianne?    |       |
-| Implement method resolution | ?    |       |
-| Implement some other syntactic feature | ?    |       |
+| Run rustc on the test suite to compare | Nadri    |       |
+| Compile to a-mir-formality's expression language | Nadri    |       |
+| Hook into a-mir-formality for trait solving | Nadri    |       |
+| Implement temporary lifetime extension | Dianne or Nadri    |       |
+| Implement method resolution | Nadri    |       |
+| Implement some other syntactic feature | ?    | Optional |
 
 ## Team asks
 
