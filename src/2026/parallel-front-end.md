@@ -2,7 +2,7 @@
 
 | Metadata                     |                                          |
 | :--------------------------- | ---------------------------------------- |
-| Point of contact             | @SparrowLii                              |
+| Point of contact             | @petrochenkov                            |
 | Status                       | Accepted                                 |
 | Tracking issue               | [rust-lang/rust-project-goals#121]       |
 | See also                     | [rust-lang/rust#113349]                  |
