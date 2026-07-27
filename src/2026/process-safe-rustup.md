@@ -1,12 +1,13 @@
 # Process-Safe Rustup Toolchain Operations
 
 | Metadata         |                                                                       |
-| ---------------- | --------------------------------------------------------------------- |
+| :--              | :--                                                                   |
 | Point of contact | @rami3l                                                               |
-| Status           | Proposed                                                              |
+| Status           | Accepted                                                              |
 | What and why     | Allow concurrent rustup instances to safely manage the same toolchain |
-| Tracking issue   |                                                                       |
+| Tracking issue   | [rust-lang/rust-project-goals#736]                                    |
 | Zulip channel    | [#t-rustup]                                                           |
+
 
 [#t-rustup]: https://rust-lang.zulipchat.com/#narrow/channel/490103-t-rustup
 
