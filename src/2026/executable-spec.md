@@ -7,7 +7,7 @@
 | Status           | Proposed                                                                               |
 | Tracking issue   |                                                                                        |
 | Zulip channel    | N/A                                                                                    |
-
+| [formality] champion | @nikomatsakis |
 ## Summary
 
 The goal is to build a specification for the whole of Rust,
