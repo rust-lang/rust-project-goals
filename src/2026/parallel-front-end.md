@@ -50,7 +50,7 @@ Performance improvement would be long-term work. We are considering potential me
 | Issue Resolving              | @wg-parallel-rustc   |       |
 | Building the test suit       | @ywxt                |       |
 | Tools supporting             | @ywxt                |       |
-| Stabilization report         | @SparrowLii          |       |
+| Stabilization report         | @petrochenkov        |       |
 | Discussion and moral support | @wg-parallel-rustc   |       |
 
 ## Team asks
