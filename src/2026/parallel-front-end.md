@@ -2,7 +2,7 @@
 
 | Metadata                     |                                          |
 | :--------------------------- | ---------------------------------------- |
-| Point of contact             | @SparrowLii                              |
+| Point of contact             | @petrochenkov                            |
 | Status                       | Accepted                                 |
 | Tracking issue               | [rust-lang/rust-project-goals#121]       |
 | See also                     | [rust-lang/rust#113349]                  |
@@ -50,7 +50,7 @@ Performance improvement would be long-term work. We are considering potential me
 | Issue Resolving              | @wg-parallel-rustc   |       |
 | Building the test suit       | @ywxt                |       |
 | Tools supporting             | @ywxt                |       |
-| Stabilization report         | @SparrowLii          |       |
+| Stabilization report         | @petrochenkov        |       |
 | Discussion and moral support | @wg-parallel-rustc   |       |
 
 ## Team asks
