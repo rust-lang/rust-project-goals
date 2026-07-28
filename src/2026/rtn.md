@@ -14,8 +14,6 @@
 
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/187312-wg-async/
-[rust-lang/rust#63063]: https://github.com/rust-lang/rust/issues/63063
-[rust-lang/rust#109417]: https://github.com/rust-lang/rust/issues/109417
 
 ## Summary
 
