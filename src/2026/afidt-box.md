@@ -2,7 +2,7 @@
 
 | Metadata            |                                        |
 | :--                 | :--                                    |
-| Point of contact    | @jackh726                              |
+| Point of contact    | @spastorino                            |
 | Status              | Accepted                               |
 | What and why        | Enable dyn dispatch for async traits   |
 | Timespan            | 2026-2027                              |
