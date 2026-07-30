@@ -43,7 +43,6 @@ We will also continue to push `f128` forward, both on the LLVM and rustc side.
 | implement `core::arch::powerpc::ibm_f128` | @folkertdev  |       |
 | `f128` `ToString`/`FromString` | @folkertdev` | There is some active work on these algorithms, we'll try to help out where we can |
 | `core::arch::powerpc::ibm_f128` `ToString`/`FromString`  | @folkertdev  |       |
-| add `f128` assembly support for riscv in LLVM & rustc | @folkertdev | |
 | fix the `f128` windows ABI in LLVM | @folkertdev, @tgross35 | we will likely need support from the LLVM/Microsoft side here |
 | stabilize `core::arch::x86::x87_f80` | @folkertdev  |       |
 | stabilize `core::arch::powerpc::ibm_f128` | @folkertdev  |       |
