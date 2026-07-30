@@ -1,19 +1,19 @@
 # Native async fn dynamic dispatch in traits
 
-| Metadata            |                                      |
-| :--                 | :--                                  |
-| Point of contact    | @jackh726                            |
-| Status              | Accepted                             |
-| What and why        | Enable dyn dispatch for async traits |
-| Timespan            | 2026-2027                            |
-| Roadmap             | Just add async                       |
-| Tracking issue      | [rust-lang/rust-project-goals#625]   |
-| Highlight           | Async and ergonomic RC               |
-| Zulip channel       | [#wg-async][channel]                 |
+| Metadata            |                                        |
+| :--                 | :--                                    |
+| Point of contact    | @jackh726                              |
+| Status              | Accepted                               |
+| What and why        | Enable dyn dispatch for async traits   |
+| Timespan            | 2026-2027                              |
+| Roadmap             | Just add async                         |
+| Tracking issue      | [rust-lang/rust-project-goals#625]     |
+| Highlight           | Async and ergonomic RC                 |
+| Zulip channel       | [#wg-async][channel]                   |
 | Funding contact     | [Jess Izen](https://book.jessizen.com) |
-| [lang] champion     | @jackh726                            |
-| [types] champion    | @jackh726                            |
-| [compiler] champion | @spastorino                          |
+| [lang] champion     | @jackh726                              |
+| [types] champion    | @jackh726                              |
+| [compiler] champion | @spastorino                            |
 
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/187312-wg-async/
