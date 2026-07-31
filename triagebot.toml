@@ -3,9 +3,4 @@ trigger-files = ["src/"]
 
 [assign]
 
-[nominate.teams]
-compiler = "T-compiler"
-lang = "T-lang"
-types = "T-types"
-libs = "T-libs"
-libs-api = "T-libs-api"
+[nominate]
