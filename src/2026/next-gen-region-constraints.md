@@ -12,7 +12,7 @@
 
 ## Summary
 
-Rework the way we represent and handle region constraints in the compiler to unblock a bunch of important gaming.
+Rework the way we represent and handle region constraints in the compiler to unblock a bunch of important refactors and language features.
 
 ## Motivation
 
