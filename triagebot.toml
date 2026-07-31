@@ -3,4 +3,12 @@ trigger-files = ["src/"]
 
 [assign]
 
-[nominate]
+[notify-zulip."I-types-nominated"]
+zulip_stream = 326866 # #T-types/nominated
+topic = "goals#{number}: {title}"
+message_on_add = """\
+@*T-types* goals#{number} "{title}" has been nominated for team discussion.
+"""
+message_on_remove = "goals#{number}'s nomination has been removed. Thanks all for participating!"
+message_on_close = "goals#{number} has been closed. Thanks for participating!"
+message_on_reopen = "goals#{number} has been reopened. Pinging @*T-types*."
