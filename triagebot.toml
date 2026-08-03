@@ -12,3 +12,14 @@ message_on_add = """\
 message_on_remove = "goals#{number}'s nomination has been removed. Thanks all for participating!"
 message_on_close = "goals#{number} has been closed. Thanks for participating!"
 message_on_reopen = "goals#{number} has been reopened. Pinging @*T-types*."
+
+[notify-zulip."C-goal-proposal"]
+zulip_stream = 546987 # #project-goals/2026-workshop
+topic = "goals#{number}: {title}"
+message_on_add = """\
+New goal proposal: "{title}" (goals#{number}).
+
+cc {recipients}
+"""
+github_comment = "A [zulip topic]({zulip_topic_url}) was opened to discuss this issue."
+message_on_close = "goals#{number} has been closed. Thanks for participating!"
