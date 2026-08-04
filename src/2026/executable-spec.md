@@ -1,13 +1,14 @@
 # End-to-End Executable Rust Specification
 
-| Metadata         |                                                                                        |
-| :--------------- | --------------------------------------------------------------------------------       |
-| Point of contact | @Nadrieril                                                                             |
-| What and why     | Build an executable specification for Rust that covers the whole language              |
-| Status           | Proposed                                                                               |
-| Tracking issue   |                                                                                        |
-| Zulip channel    | N/A                                                                                    |
-| [formality] champion | @nikomatsakis |
+| Metadata             |                                                                           |
+| :--                  | :--                                                                       |
+| Point of contact     | @Nadrieril                                                                |
+| What and why         | Build an executable specification for Rust that covers the whole language |
+| Status               | Accepted                                                                  |
+| Tracking issue       | [rust-lang/rust-project-goals#749]                                        |
+| Zulip channel        | N/A                                                                       |
+| [formality] champion | @nikomatsakis                                                             |
+
 ## Summary
 
 The goal is to build a specification for the whole of Rust,
