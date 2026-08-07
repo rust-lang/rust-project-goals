@@ -4,7 +4,7 @@
 | :--                 | :--                                |
 | Point of contact    | @scrabsha                          |
 | Status              | Accepted                           |
-| Tracking issue      | [rust-lang/rust-project-goals#702] |
+| Tracking issue      | [rust-lang/goals#702] |
 | Zulip channel       | N/A                                |
 | [compiler] champion | @oli-obk                           |
 | Funding contact     | [Hexcat](https://hexcat.nl/)       |

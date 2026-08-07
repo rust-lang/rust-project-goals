@@ -6,7 +6,7 @@
 | Status             | Accepted                           |
 | Flagship         | Yes                                |
 | Zulip channel      | N/A                                |
-| Tracking issue     | [rust-lang/rust-project-goals#263] |
+| Tracking issue     | [rust-lang/goals#263] |
 
 ## Summary
 

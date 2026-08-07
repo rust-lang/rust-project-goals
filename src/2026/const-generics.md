@@ -7,7 +7,7 @@
 | What and why     | Finish "the rest" of Const Generics |
 | Roadmap          | Constify all the things             |
 | Roadmap          | Rust for Linux                      |
-| Tracking issue   | [rust-lang/rust-project-goals#100]  |
+| Tracking issue   | [rust-lang/goals#100]  |
 | Zulip channel    | [#project-const-generics]           |
 | Highlight        | Const and reflection                |
 | [lang] champion  | @nikomatsakis                       |

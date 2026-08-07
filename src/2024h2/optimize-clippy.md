@@ -5,7 +5,7 @@
 |----------------|------------------------------------|
 | Point of contact | @blyxyas                           |
 | Status         | Accepted                           |
-| Tracking issue | [rust-lang/rust-project-goals#114] |
+| Tracking issue | [rust-lang/goals#114] |
 | Zulip channel  | N/A                                |
 ## Summary
 

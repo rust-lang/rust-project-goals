@@ -6,7 +6,7 @@
 | Status           | Accepted                                                                                           |
 | What and why     | Name opaque types and bound async return types so `async fn` in traits works with `Send` and `dyn` |
 | Roadmap          | Just add async                                                                                     |
-| Tracking issue   | [rust-lang/rust-project-goals#646]                                                                 |
+| Tracking issue   | [rust-lang/goals#646]                                                                 |
 | Other tracking issues | [rust-lang/rust#63063], [rust-lang/rust#109417]                                               |
 | Zulip channel    | [#wg-async][channel]                                                                               |
 | [lang] champion  | @traviscross                                                                                       |

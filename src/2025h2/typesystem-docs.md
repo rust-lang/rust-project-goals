@@ -4,7 +4,7 @@
 | :--              | :--                                |
 | Point of contact | @BoxyUwU                           |
 | Status           | Proposed                           |
-| Tracking issue   | [rust-lang/rust-project-goals#405] |
+| Tracking issue   | [rust-lang/goals#405] |
 | Zulip channel    | N/A                                |
 | [types] champion | @boxyuwu                           |
 

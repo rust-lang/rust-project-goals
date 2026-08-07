@@ -4,7 +4,7 @@
 |:---------------------------------------|:-----------------------------------|
 | Point of contact                       | @jakos-sec                         |
 | Status                                 | Accepted                           |
-| Tracking issue                         | [rust-lang/rust-project-goals#403] |
+| Tracking issue                         | [rust-lang/goals#403] |
 | Zulip channel                          | N/A                                |
 | [project-exploit-mitigations] champion | @rcvalle                           |
 | [compiler] champion                    | @rcvalle                           |

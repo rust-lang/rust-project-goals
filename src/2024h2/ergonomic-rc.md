@@ -4,7 +4,7 @@
 | ---            | ---                                |
 | Point of contact | @jkelleyrtp                        |
 | Status         | Accepted                           |
-| Tracking issue | [rust-lang/rust-project-goals#107] |
+| Tracking issue | [rust-lang/goals#107] |
 | Zulip channel  | N/A                                |
 ## Summary
 

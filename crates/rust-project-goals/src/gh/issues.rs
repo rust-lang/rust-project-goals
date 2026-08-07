@@ -262,7 +262,7 @@ pub fn create_issue(
 
     // Output in stdout looks like
     //
-    // https://github.com/rust-lang/rust-project-goals/issues/413}
+    // https://github.com/rust-lang/goals/issues/413}
 
     for line in str::from_utf8(&output.stdout)?.lines() {
         if let Some(issue_id) = IssueId::from_url(line.trim()) {

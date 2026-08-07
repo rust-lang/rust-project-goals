@@ -6,7 +6,7 @@
 | Status              | Proposed                           |
 | Flagship            | Flexible, fast(er) compilation     |
 | Zulip channel       | N/A                                |
-| Tracking issue      | [rust-lang/rust-project-goals#274] |
+| Tracking issue      | [rust-lang/goals#274] |
 | [cargo] champion    | @ehuss                             |
 | [compiler] champion | @davidtwco                         |
 | [libs] champion     | @Amanieu                           |

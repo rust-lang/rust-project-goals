@@ -4,7 +4,7 @@
 | ---            | ---                                      |
 | Point of contact | @SparrowLii                            |
 | Status         | Accepted                                 |
-| Tracking issue | [rust-lang/rust-project-goals#121]       |
+| Tracking issue | [rust-lang/goals#121]       |
 | Zulip channel  | [#t-compiler/wg-parallel-rustc][channel] |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/187679-t-compiler.2Fwg-parallel-rustc/

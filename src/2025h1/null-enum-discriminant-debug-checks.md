@@ -5,7 +5,7 @@
 | Point of contact   | @1c3t3a                            |
 | Status             | Accepted                           |
 | Zulip channel      | N/A                                |
-| Tracking issue     | [rust-lang/rust-project-goals#262] |
+| Tracking issue     | [rust-lang/goals#262] |
 
 ## Summary
 

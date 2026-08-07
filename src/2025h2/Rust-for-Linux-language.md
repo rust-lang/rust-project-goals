@@ -4,7 +4,7 @@
 |:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | @tomassedovic                                                                    |
 | Status           | Proposed                                                                         |
-| Tracking issue   | [rust-lang/rust-project-goals#116]                                               |
+| Tracking issue   | [rust-lang/goals#116]                                               |
 | Zulip channel    | [#t-lang][channel-t-lang], [#rust-for-linux][channel-rust-for-linux]             |
 | [lang] champion | @joshtriplett |
 | [lang-docs] champion | @traviscross |
@@ -18,7 +18,7 @@ Continue working towards Rust for Linux on stable. In particular, this goal is f
 
 ## Motivation
 
-Getting the Linux kernel to build with stable Rust and, more generally, supporting the needs of the Linux kernel to make Rust a success there, has been a priority for the Rust project and a previous flagship goal: [2024H2](https://rust-lang.github.io/rust-project-goals/2024h2/rfl_stable.html), [2025H1](https://rust-lang.github.io/rust-project-goals/2025h1/rfl.html).
+Getting the Linux kernel to build with stable Rust and, more generally, supporting the needs of the Linux kernel to make Rust a success there, has been a priority for the Rust project and a previous flagship goal: [2024H2](https://rust-lang.github.io/goals/2024h2/rfl_stable.html), [2025H1](https://rust-lang.github.io/goals/2025h1/rfl.html).
 
 One of the key areas are language features, given the impact they could have on the kernel if they were to change, especially those that may require changes on potentially many source files and/or that may not be easy to workaround with conditional compilation.
 
@@ -34,8 +34,8 @@ The Linux kernel, at the time of writing, relies on a few Rust language unstable
 In addition, there are others that we will likely want to start using in the future, such as:
 
   - [`asm_const_ptr`](https://github.com/rust-lang/rust/issues/128464).
-  - Field projections: [project goal](https://github.com/rust-lang/rust-project-goals/pull/329).
-  - In-place initialization / Emplacement / ...: [project goal](https://github.com/rust-lang/rust-project-goals/pull/344).
+  - Field projections: [project goal](https://github.com/rust-lang/goals/pull/329).
+  - In-place initialization / Emplacement / ...: [project goal](https://github.com/rust-lang/goals/pull/344).
 
 For completeness, on the library side, we use:
 
@@ -47,7 +47,7 @@ Furthermore, on the compiler side, we use:
   - `compiler_builtins`.
   - [`used_with_arg`](https://github.com/rust-lang/rust/issues/93798).
 
-As well as a set of compiler flags and other features which have their own [project goal](https://github.com/rust-lang/rust-project-goals/pull/346).
+As well as a set of compiler flags and other features which have their own [project goal](https://github.com/rust-lang/goals/pull/346).
 
 ### The next 6 months
 

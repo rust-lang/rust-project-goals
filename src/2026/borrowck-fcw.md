@@ -5,7 +5,7 @@
 | Point of contact    | @oli-obk                           |
 | Status              | Accepted                           |
 | Funding contact     | [RustNL](https://rustnl.org)       |
-| Tracking issue      | [rust-lang/rust-project-goals#713] |
+| Tracking issue      | [rust-lang/goals#713] |
 | Zulip channel       | N/A                                |
 | [compiler] champion | @oli-obk                           |
 | [types] champion    | @lcnr                              |

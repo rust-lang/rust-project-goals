@@ -4,7 +4,7 @@
 | :--                   | :--                                                                                              |
 | Point of contact      | @folkertdev                                                                                      |
 | Status                | Accepted                                                                                         |
-| Tracking issue        | [rust-lang/rust-project-goals#634]                                                               |
+| Tracking issue        | [rust-lang/goals#634]                                                               |
 | Other tracking issues | [rust-lang/rust#112788], [rust-lang/rust#132306]                                                 |
 | Zulip channel         |                                                                                                  |
 | [lang] champion       | @scottmcm                                                                                        |

@@ -4,7 +4,7 @@
 | :--              | :--                                |
 | Point of contact | @hxuhack                           |
 | Status           | Accepted                           |
-| Tracking issue   | [rust-lang/rust-project-goals#640] |
+| Tracking issue   | [rust-lang/goals#640] |
 | Zulip channel    | N/A                                |
 
 
@@ -115,9 +115,9 @@ Finnaly, such a guideline is also needed by the community. For example, there ha
 
 ## Frequently asked questions
 
-### What is the difference from goal [486](https://github.com/rust-lang/rust-project-goals/pull/486).
+### What is the difference from goal [486](https://github.com/rust-lang/goals/pull/486).
 
-[rust-lang/rust-project-goals#486] will start with Eclipse iceoryx2.
+[rust-lang/goals#486] will start with Eclipse iceoryx2.
 > We’ll apply the zerocopy model systematically, starting with [Eclipse iceoryx2](https://github.com/eclipse-iceoryx/iceoryx2), a zero-copy IPC framework with ~3,300 unsafe usages.
 
 This goal focuses on identifying particular `unsafe` usage patterns for Eclipse iceoryx2 and tracing those back to relevant portions of the Rust Reference and standard library documentation. The main work is then to follow the work model of the [zerocopy](https://crates.io/crates/zerocopy) crate by working with the relevant teams to have normative language created in the Reference and standard library documentation such that safety-critical Rust users can build safety-cases upon them.

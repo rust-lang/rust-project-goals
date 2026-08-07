@@ -4,7 +4,7 @@
 |:-----------------|:-----------------------------------|
 | Point of contact | @Amanieu                           |
 | Status           | Accepted                           |
-| Tracking issue   | [rust-lang/rust-project-goals#396] |
+| Tracking issue   | [rust-lang/goals#396] |
 | Zulip channel    | N/A                                |
 | [lang] champion  | @Amanieu                           |
 | [opsem] champion | @RalfJung                          |

@@ -29,9 +29,9 @@ ignore_users = [
 
 
 [output.html]
-git-repository-url = "https://github.com/rust-lang/rust-project-goals"
-edit-url-template = "https://github.com/rust-lang/rust-project-goals/edit/main/{path}"
-site-url = "/rust-project-goals/"
+git-repository-url = "https://github.com/rust-lang/goals"
+edit-url-template = "https://github.com/rust-lang/goals/edit/main/{path}"
+site-url = "/goals/"
 additional-js = ["mermaid.min.js", "mermaid-init.js"]
 
 [output.html.fold]

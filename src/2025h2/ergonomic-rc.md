@@ -5,7 +5,7 @@
 | Point of contact | @nikomatsakis                      |
 | Status           | Proposed                           |
 | Flagship         | Higher-level Rust                  |
-| Tracking issue   | [rust-lang/rust-project-goals#107] |
+| Tracking issue   | [rust-lang/goals#107] |
 | Zulip channel    | N/A                                |
 | [compiler] champion | @spastorino |
 | [lang] champion | @nikomatsakis |

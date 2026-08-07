@@ -4,7 +4,7 @@
 | :--              | :--                                                                              |
 | Point of contact | @ranger-ross                                                                     |
 | Status           | Proposed                                                                         |
-| Tracking issue   | [rust-lang/rust-project-goals#401]                                               |
+| Tracking issue   | [rust-lang/goals#401]                                               |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
 | [cargo] champion | @weihanglo                                                                       |
 
@@ -67,7 +67,7 @@ A cooperating CI service could provide their own plugin that, instead of caching
 | Implementation               | @ranger-ross        |       |
 ### Definitions
 
-For definitions for terms used above, see the [About > Team Asks](https://rust-lang.github.io/rust-project-goals/about/team_asks.html) page.
+For definitions for terms used above, see the [About > Team Asks](https://rust-lang.github.io/goals/about/team_asks.html) page.
 
 * *Discussion and moral support* is the lowest level offering, basically committing the team to nothing but good vibes and general support for this endeavor.
 * *Author RFC* and *Implementation* means actually writing the code, document, whatever.

@@ -5,7 +5,7 @@
 | Point of contact | @lcnr                                     |
 | Status           | Proposed                                  |
 | Flagship         | Unblocking dormant traits                 |
-| Tracking issue   | [rust-lang/rust-project-goals#113]        |
+| Tracking issue   | [rust-lang/goals#113]        |
 | Zulip channel    | [#t-types/trait-system-refactor][channel] |
 | [types] champion | @lcnr |
 

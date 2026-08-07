@@ -4,7 +4,7 @@
 |:-----------------|------------------------------------|
 | Point of contact | @obi1kenobi                        |
 | Status           | Proposed                           |
-| Tracking issue   | [rust-lang/rust-project-goals#104] |
+| Tracking issue   | [rust-lang/goals#104] |
 | Zulip channel    | N/A                                |
 | [cargo] champion | @epage |
 | [rustdoc] champion | @adotinthevoid |
@@ -13,8 +13,8 @@
 
 Design and implement `cargo-semver-checks` functionality that lies on the critical path for merging the tool into cargo itself. Continues the work of [the 2025h1 goal][2025h1-goal].
 
-[2024h2-goal]: https://rust-lang.github.io/rust-project-goals/2024h2/cargo-semver-checks.html
-[2025h1-goal]: https://rust-lang.github.io/rust-project-goals/2025h1/cargo-semver-checks.html
+[2024h2-goal]: https://rust-lang.github.io/goals/2024h2/cargo-semver-checks.html
+[2025h1-goal]: https://rust-lang.github.io/goals/2025h1/cargo-semver-checks.html
 
 ## Motivation
 

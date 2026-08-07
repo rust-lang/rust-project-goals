@@ -4,7 +4,7 @@
 | :--                   | :--                                |
 | Point of contact      | @kupiakos                          |
 | Status                | Accepted                           |
-| Tracking issue        | [rust-lang/rust-project-goals#645] |
+| Tracking issue        | [rust-lang/goals#645] |
 | Other tracking issues | [rust-lang/rust#156628]            |
 | Zulip channel         | N/A                                |
 | [lang] champion       | @scottmcm                          |
@@ -137,7 +137,7 @@ enum, it becomes an *open enum* and can now be safely used with C and
 - Bindgen generates `repr(C)` open `enum`s by default, and there's rarely a
   reason to select another variation.
 
-[safe-linking]: https://rust-lang.github.io/rust-project-goals/2025h1/safe-linking.html
+[safe-linking]: https://rust-lang.github.io/goals/2025h1/safe-linking.html
 
 ### Work items over the next year
 

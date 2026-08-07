@@ -6,7 +6,7 @@
 | Point of contact | @tmandry                           |
 | Status           | Accepted                           |
 | Flagship         | Yes                                |
-| Tracking issue   | [rust-lang/rust-project-goals#105] |
+| Tracking issue   | [rust-lang/goals#105] |
 | Zulip channel    | [#wg-async][channel]               |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/187312-wg-async/

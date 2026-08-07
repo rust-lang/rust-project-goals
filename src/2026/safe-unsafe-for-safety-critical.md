@@ -6,7 +6,7 @@
 | Status           | Accepted                                                                                                       |
 | What and why     | Normative documentation for common `unsafe` patterns so safety-critical developers have authoritative guidance |
 | Roadmap          | Safety-Critical Rust                                                                                           |
-| Tracking issue   | [rust-lang/rust-project-goals#644]                                                                             |
+| Tracking issue   | [rust-lang/goals#644]                                                                             |
 | Zulip channel    | N/A                                                                                                            |
 | [opsem] champion | @RalfJung                                                                                                      |
 

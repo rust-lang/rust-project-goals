@@ -5,7 +5,7 @@
 | Point of contact   | @tmandry                           |
 | Status             | Accepted                           |
 | Zulip channel      | N/A                                |
-| Tracking issue     | [rust-lang/rust-project-goals#253] |
+| Tracking issue     | [rust-lang/goals#253] |
 
 ## Summary
 

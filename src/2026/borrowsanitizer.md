@@ -4,7 +4,7 @@
 | :--                 | :--                                |
 | Point of contact    | @icmccorm                          |
 | Status              | Accepted                           |
-| Tracking issue      | [rust-lang/rust-project-goals#624] |
+| Tracking issue      | [rust-lang/goals#624] |
 | Zulip channel       | N/A                                |
 | [compiler] champion | @RalfJung                          |
 | [opsem] champion    | @RalfJung                          |
@@ -33,7 +33,7 @@ references are created and updated. Our LLVM pass lowers these intrinsics into r
 Our primary goal is for BorrowSanitizer to be useful in practice. This will require broad support for Rust, C, and C++ language features. We want to achieve better performance than Miri while fully supporting the different features of Tree Borrows. 
 
 ### Work items over the next year
-Throughout 2026, we will complete the remaining features needed for BorrowSanitizer to have parity with Miri for detecting aliasing violations. We will finish contributing the retag intrinsics described in [our previous project goal](https://rust-lang.github.io/rust-project-goals/2025h2/codegen_retags.html) and evaluate when and how the rest of BorrowSanitizer should be integrated with the compiler.
+Throughout 2026, we will complete the remaining features needed for BorrowSanitizer to have parity with Miri for detecting aliasing violations. We will finish contributing the retag intrinsics described in [our previous project goal](https://rust-lang.github.io/goals/2025h2/codegen_retags.html) and evaluate when and how the rest of BorrowSanitizer should be integrated with the compiler.
 
 One topic for discussion is whether the BorrowSanitizer itself should live in a subtree of rust-lang/rust, with a new Github repo under rust-lang, or as an independent project.
 

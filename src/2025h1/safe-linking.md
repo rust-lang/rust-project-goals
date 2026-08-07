@@ -5,7 +5,7 @@
 | Point of contact   | @m-ou-se                           |
 | Status             | Accepted                           |
 | Zulip channel      | N/A                                |
-| Tracking issue     | [rust-lang/rust-project-goals#267] |
+| Tracking issue     | [rust-lang/goals#267] |
 
 ## Summary
 

@@ -7,7 +7,7 @@
 | What and why     | Extend automatic reborrowing to user-defined types like `Pin<&mut T>` and custom smart pointers |
 | Timespan         | 2026-2027                          |
 | Roadmap          | Beyond the `&`                     |
-| Tracking issue   | [rust-lang/rust-project-goals#399] |
+| Tracking issue   | [rust-lang/goals#399] |
 | Zulip channel    | [#t-lang/custom-refs][channel]     |
 | [types] champion | @oli-obk                        |
 | [lang] champion  | @tmandry                           |
@@ -65,8 +65,8 @@ The fundamental design philosophy remains:
 
 | Task | Experience level | Time investment |
 |------|-----------------|-----------------|
-| Help with borrow checking ([context](https://github.com/rust-lang/rust-project-goals/issues/399#issuecomment-4917408838)) | If you're an expert on the internals of borrowck and have a good idea of how to teach borrowck about `&mut T` reborrows happening at arbitrary depths during a Reborrow, then please come talk to me! |  |
-| Help with rmeta / caching ([context](https://github.com/rust-lang/rust-project-goals/issues/399#issuecomment-4917408838)) | If you're an expert on rmeta / caching, then I'd again love your help on how to avoid/cache the Reborrow recursion result. |  |
+| Help with borrow checking ([context](https://github.com/rust-lang/goals/issues/399#issuecomment-4917408838)) | If you're an expert on the internals of borrowck and have a good idea of how to teach borrowck about `&mut T` reborrows happening at arbitrary depths during a Reborrow, then please come talk to me! |  |
+| Help with rmeta / caching ([context](https://github.com/rust-lang/goals/issues/399#issuecomment-4917408838)) | If you're an expert on rmeta / caching, then I'd again love your help on how to avoid/cache the Reborrow recursion result. |  |
 
 ## Frequently asked questions
 

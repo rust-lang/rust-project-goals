@@ -6,7 +6,7 @@
 | Status           | Accepted                                                                                   |
 | What and why     | A sustainable home in Clippy for safety-critical coding standard lints from the Consortium |
 | Roadmap          | Safety-Critical Rust                                                                       |
-| Tracking issue   | [rust-lang/rust-project-goals#631]                                                         |
+| Tracking issue   | [rust-lang/goals#631]                                                         |
 | Zulip channel    | N/A                                                                                        |
 
 

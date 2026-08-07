@@ -8,7 +8,7 @@
 | Timespan         | 2026-2028                          |
 | Roadmap          | Beyond the `&`                     |
 | Roadmap          | Rust for Linux                     |
-| Tracking issue   | [rust-lang/rust-project-goals#395] |
+| Tracking issue   | [rust-lang/goals#395] |
 | Zulip channel    | [#t-lang/in-place-init][channel]   |
 | [lang] champion  | @Darksonn                          |
 

@@ -4,7 +4,7 @@
 |:-----------------|------------------------------------|
 | Point of contact | @nikomatsakis                      |
 | Status           | Accepted                           |
-| Tracking issue   | [rust-lang/rust-project-goals#122] |
+| Tracking issue   | [rust-lang/goals#122] |
 | Zulip channel    | [#t-types/formality][channel]      |
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/402470-t-types.2Fformality
 

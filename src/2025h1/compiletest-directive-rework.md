@@ -5,7 +5,7 @@
 | Point of contact   | @jieyouxu                          |
 | Status             | Accepted                           |
 | Zulip channel      | N/A                                |
-| Tracking issue     | [rust-lang/rust-project-goals#259] |
+| Tracking issue     | [rust-lang/goals#259] |
 
 ## Summary
 

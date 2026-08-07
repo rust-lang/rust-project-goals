@@ -5,7 +5,7 @@
 | Point of contact    | @folkertdev                        |
 | Status              | Proposed                           |
 | Flagship            | Flexible, fast(er) compilation     |
-| Tracking issue      | [rust-lang/rust-project-goals#397] |
+| Tracking issue      | [rust-lang/goals#397] |
 | Zulip channel       |                                    |
 | [compiler] champion | @bjorn3                            |
 
@@ -73,6 +73,6 @@ Note: the `wg-compiler-performance` ask is a nice to have, and it is clear to bo
 - and that `wg-compiler-performance` can accept the ask conditionally on the above external requirements it doesn't control
 
 [Trifecta Tech Foundation]: https://github.com/trifectatechfoundation
-[rustc-perf infra]: https://rust-lang.github.io/rust-project-goals/2025h2/rustc-perf-improvements.html
+[rustc-perf infra]: https://rust-lang.github.io/goals/2025h2/rustc-perf-improvements.html
 
 ## Frequently asked questions

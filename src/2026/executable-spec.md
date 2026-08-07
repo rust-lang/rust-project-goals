@@ -5,7 +5,7 @@
 | Point of contact     | @Nadrieril                                                                |
 | What and why         | Build an executable specification for Rust that covers the whole language |
 | Status               | Accepted                                                                  |
-| Tracking issue       | [rust-lang/rust-project-goals#749]                                        |
+| Tracking issue       | [rust-lang/goals#749]                                        |
 | Zulip channel        | N/A                                                                       |
 | [formality] champion | @nikomatsakis                                                             |
 
@@ -195,7 +195,7 @@ which includes opinions about how I'd like us to formalize trait solving and oth
 static semantics.
 
 This mixes two things: the first is this here project of making an executable spec
-based on desugarings, the second is a distinct [idea](https://rust-lang.github.io/rust-project-goals/2026/dictionary-passing-style-experiment.html)
+based on desugarings, the second is a distinct [idea](https://rust-lang.github.io/goals/2026/dictionary-passing-style-experiment.html)
 about how we might go about formalizing trait solving.
 
 The two are rather independent, and this here proposal leaves all questions of specifying static

@@ -6,7 +6,7 @@ pub struct Repository {
     /// Something like `rust-lang`
     pub org: String,
 
-    /// Something like `rust-project-goals`
+    /// Something like `goals`
     pub repo: String,
 }
 

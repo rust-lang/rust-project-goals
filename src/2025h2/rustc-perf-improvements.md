@@ -5,7 +5,7 @@
 | Point of contact    | @Jamesbarford                                            |
 | Status              | Proposed                                                 |
 | Zulip channel       | [#project-goals/2025h1/rustc-perf-improvements][channel] |
-| Tracking issue      | [rust-lang/rust-project-goals#275]                       |
+| Tracking issue      | [rust-lang/goals#275]                       |
 | [compiler] champion | @davidtwco                                               |
 | [infra] champion    | @kobzol                                                  |
 

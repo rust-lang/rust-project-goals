@@ -1599,10 +1599,10 @@ fn extract_metadata(sections: &[Section]) -> Result<Option<Metadata>> {
             spanned::bail!(r[1], "accepted goals cannot have an empty tracking issue");
         }
 
-        if has_tracking_issue && !r[1].contains("rust-project-goals#") {
+        if has_tracking_issue && !r[1].contains("goals#") {
             spanned::bail!(
                 r[1],
-                "tracking issues are issues in the rust-project-goals repository. \
+                "tracking issues are issues in the rust-lang/goals repository. \
                 The `{}` issue can go in the `Other tracking issues` row.",
                 r[1].as_str(),
             );

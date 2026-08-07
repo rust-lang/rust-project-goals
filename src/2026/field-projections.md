@@ -8,7 +8,7 @@
 | Timespan             | 2026-2028                                 |
 | Roadmap              | Beyond the `&`                            |
 | Roadmap              | Rust for Linux                            |
-| Tracking issue       | [rust-lang/rust-project-goals#390]        |
+| Tracking issue       | [rust-lang/goals#390]        |
 | Highlight            | Custom pointer types                      |
 | Zulip channel        | [t-lang/custom-refs][custom-refs-channel] |
 | [lang] champion      | @tmandry                                  |
@@ -22,7 +22,7 @@
 
 We aim to explore and refine the *virtual places* approach for field projections, document its design and interactions in the [beyond-refs wiki](https://rust-lang.github.io/beyond-refs/), implement it as an experiment in the compiler, and prepare RFCs based on the findings.
 
-This is a continuing goal, see [the goal document of the previous period](https://rust-lang.github.io/rust-project-goals/2025h2/field-projections.html) for historical information.
+This is a continuing goal, see [the goal document of the previous period](https://rust-lang.github.io/goals/2025h2/field-projections.html) for historical information.
 
 ## Motivation
 
@@ -140,6 +140,6 @@ The lang team support level is Large, since we could end up with an RFC review a
 
 | Task | Experience level | Time investment |
 |------|-----------------|-----------------|
-| Fix a [bug in rustdoc](https://github.com/rust-lang/rust/issues/158768) ([context](https://github.com/rust-lang/rust-project-goals/issues/390#issuecomment-4881394710)) | Familiarity with rustdoc and procedural macros |  |
+| Fix a [bug in rustdoc](https://github.com/rust-lang/rust/issues/158768) ([context](https://github.com/rust-lang/goals/issues/390#issuecomment-4881394710)) | Familiarity with rustdoc and procedural macros |  |
 
 ## Frequently asked questions

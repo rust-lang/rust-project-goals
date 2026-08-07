@@ -24,7 +24,7 @@ struct Opt {
     cmd: Command,
 
     /// Repository to use if applicable
-    #[arg(long, default_value = "rust-lang/rust-project-goals")]
+    #[arg(long, default_value = "rust-lang/goals")]
     repository: Repository,
 }
 
@@ -51,7 +51,7 @@ enum Command {
         dry_run: bool,
     },
 
-    /// Use `gh` CLI tool to create issues on the rust-lang/rust-project-goals repository
+    /// Use `gh` CLI tool to create issues on the rust-lang/goals repository
     Issues {
         path: PathBuf,
 

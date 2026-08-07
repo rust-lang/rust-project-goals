@@ -7,7 +7,7 @@
 | What and why          | Let user-defined smart pointers work as method receivers and support `dyn Trait` coercion |
 | Roadmap               | Rust for Linux                                                                            |
 | Roadmap               | Beyond the `&`                                                                            |
-| Tracking issue        | [rust-lang/rust-project-goals#619]                                                        |
+| Tracking issue        | [rust-lang/goals#619]                                                        |
 | Other tracking issues | [rust-lang/rust#44874], [rust-lang/rust#146095], [rust-lang/rust#123430]                  |
 | Highlight             | Custom pointer types                                                                      |
 | Zulip channel         | N/A                                                                                       |

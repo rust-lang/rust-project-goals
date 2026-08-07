@@ -4,7 +4,7 @@
 | :--                 | :--                                                                          |
 | Point of contact    | @tomassedovic                                                                |
 | Status              | Proposed                                                                     |
-| Tracking issue      | [rust-lang/rust-project-goals#407]                                           |
+| Tracking issue      | [rust-lang/goals#407]                                           |
 | Zulip channel       | [#t-compiler][channel-t-compiler], [#rust-for-linux][channel-rust-for-linux] |
 | [compiler] champion | @WesleyWiser                                                                 |
 
@@ -17,7 +17,7 @@ Continue working towards Rust for Linux on stable. In particular, this goal is f
 
 ## Motivation
 
-Getting the Linux kernel to build with stable Rust and, more generally, supporting the needs of the Linux kernel to make Rust a success there, has been a priority for the Rust project and a previous flagship goal: [2024H2](https://rust-lang.github.io/rust-project-goals/2024h2/rfl_stable.html), [2025H1](https://rust-lang.github.io/rust-project-goals/2025h1/rfl.html).
+Getting the Linux kernel to build with stable Rust and, more generally, supporting the needs of the Linux kernel to make Rust a success there, has been a priority for the Rust project and a previous flagship goal: [2024H2](https://rust-lang.github.io/goals/2024h2/rfl_stable.html), [2025H1](https://rust-lang.github.io/goals/2025h1/rfl.html).
 
 One of the key areas are compiler features, which encompass a wide range of topics: architecture/target-related flags, sanitizers, mitigations, performance/optimization-oriented flags, and so on.
 
@@ -53,7 +53,7 @@ There are others that we will want to start using in the future, such as:
   - [`-Zsanitizer=kernel-hwaddress` and `-Zsanitizer-recover=kernel-hwaddress`](https://github.com/rust-lang/rust/issues/123615) (arm64).
   - [`-Zsanitize-kcfi-arity`](https://github.com/rust-lang/rust/issues/138311) (x86_64).
 
-Relatedly, there is also the [`build-std` project goal](https://github.com/rust-lang/rust-project-goals/pull/331) support that we need as well (or, rather, only "`build-core`" for the Linux kernel), and the [sanitizers project goal](https://github.com/rust-lang/rust-project-goals/pull/337).
+Relatedly, there is also the [`build-std` project goal](https://github.com/rust-lang/goals/pull/331) support that we need as well (or, rather, only "`build-core`" for the Linux kernel), and the [sanitizers project goal](https://github.com/rust-lang/goals/pull/337).
 
 ### The next 6 months
 

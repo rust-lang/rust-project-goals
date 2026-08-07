@@ -4,7 +4,7 @@
 | :--                   | :--                                                                  |
 | Point of contact      | @JohnTitor                                                           |
 | Status                | Accepted                                                             |
-| Tracking issue        | [rust-lang/rust-project-goals#657]                                   |
+| Tracking issue        | [rust-lang/goals#657]                                   |
 | Other tracking issues | [rust-lang/libc#3248]                                                |
 | Zulip channel         | N/A                                                                  |
 

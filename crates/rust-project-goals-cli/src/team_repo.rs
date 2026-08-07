@@ -91,10 +91,7 @@ fn ensure_person_file(owner: &str, team_repo_path: &std::path::PathBuf) -> Resul
 
 fn team_file(owners: &BTreeSet<&str>) -> Result<String> {
     let mut out = String::new();
-    writeln!(
-        out,
-        "# Auto-generated from the rust-project-goals repository"
-    )?;
+    writeln!(out, "# Auto-generated from the goals repository")?;
     writeln!(out, "name = \"goal-owners\"")?;
     writeln!(out, "kind = \"marker-team\"")?;
     writeln!(out, "")?;

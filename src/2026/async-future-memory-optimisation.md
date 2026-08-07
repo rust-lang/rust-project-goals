@@ -5,7 +5,7 @@
 | Point of contact    | @dingxiangfei2009                  |
 | Status              | Accepted                           |
 | Roadmap             | Binary size reduction              |
-| Tracking issue      | [rust-lang/rust-project-goals#622] |
+| Tracking issue      | [rust-lang/goals#622] |
 | Zulip channel       | N/A                                |
 | [compiler] champion | @tmandry                           |
 

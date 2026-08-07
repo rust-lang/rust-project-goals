@@ -5,7 +5,7 @@
 | Point of contact    | @bjorn3                            |
 | Funding contact     | [Tweede golf](https://tweedegolf.nl/) |
 | Status              | Accepted                           |
-| Tracking issue      | [rust-lang/rust-project-goals#639] |
+| Tracking issue      | [rust-lang/goals#639] |
 | Zulip channel       | N/A                                |
 | Roadmap             | Fast Builds                        |
 | [compiler] champion | @bjorn3                            |

@@ -5,7 +5,7 @@
 | Point of contact   | @veluca93                           |
 | Status             | Accepted                            |
 | Zulip channel      | [#project-portable-simd][channel]   |
-| Tracking issue     | [rust-lang/rust-project-goals#261]  |
+| Tracking issue     | [rust-lang/goals#261]  |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/257879-project-portable-simd/
 ## Summary

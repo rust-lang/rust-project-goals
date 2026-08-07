@@ -4,7 +4,7 @@
 | :--                 | :--                                |
 | Point of contact    | @JayanAXHF                         |
 | Status              | Accepted                           |
-| Tracking issue      | [rust-lang/rust-project-goals#628] |
+| Tracking issue      | [rust-lang/goals#628] |
 | Zulip channel       | N/A                                |
 | [lang] champion     | @Nadrieril                         |
 | [opsem] champion    | @CAD97                             |

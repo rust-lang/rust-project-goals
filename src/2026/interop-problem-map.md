@@ -4,7 +4,7 @@
 |:--------------------|:-----------------------------------|
 | Point of contact    | @teor2345                          |
 | Status              | Accepted                           |
-| Tracking issue      | [rust-lang/rust-project-goals#388] |
+| Tracking issue      | [rust-lang/goals#388] |
 | Zulip channel       | [t-lang/interop][channel]          |
 | [compiler] champion | @oli-obk                           |
 | [lang] champion     | @tmandry                           |

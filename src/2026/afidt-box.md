@@ -7,7 +7,7 @@
 | What and why        | Enable dyn dispatch for async traits   |
 | Timespan            | 2026-2027                              |
 | Roadmap             | Just add async                         |
-| Tracking issue      | [rust-lang/rust-project-goals#625]     |
+| Tracking issue      | [rust-lang/goals#625]     |
 | Highlight           | Async and ergonomic RC                 |
 | Zulip channel       | [#wg-async][channel]                   |
 | Funding contact     | [Jess Izen](https://book.jessizen.com) |

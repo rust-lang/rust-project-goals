@@ -5,7 +5,7 @@
 | Point of contact   | @folkertdev                        |
 | Status             | Accepted                           |
 | Zulip channel      | N/A                                |
-| Tracking issue     | [rust-lang/rust-project-goals#258] |
+| Tracking issue     | [rust-lang/goals#258] |
 
 ## Summary
 

@@ -5,7 +5,7 @@
 | Point of contact | @epage                             |
 | Status           | Accepted                           |
 | Needs            | Contributor                        |
-| Tracking issue   | [rust-lang/rust-project-goals#124] |
+| Tracking issue   | [rust-lang/goals#124] |
 | Zulip channel    | N/A                                |
 
 ## Summary

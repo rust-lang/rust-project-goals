@@ -7,7 +7,7 @@
 | What and why         | Compile-time type reflection via `const fn` so `serialize(&my_struct)` works without derives |
 | Timespan             | 2026-2028                          |
 | Roadmap              | Constify all the things            |
-| Tracking issue       | [rust-lang/rust-project-goals#406] |
+| Tracking issue       | [rust-lang/goals#406] |
 | Other Tracking issue | [rust-lang/rust#142577]            |
 | Highlight            | Const and reflection               |
 | Zulip channel        | N/A                                |

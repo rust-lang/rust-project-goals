@@ -5,7 +5,7 @@
 | Point of contact | @traviscross                       |
 | Status         | Accepted                           |
 | Flagship         | Yes                                |
-| Tracking issue | [rust-lang/rust-project-goals#117] |
+| Tracking issue | [rust-lang/goals#117] |
 | Zulip channel  | [#edition][channel]                |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/268952-edition

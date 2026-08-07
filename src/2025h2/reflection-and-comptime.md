@@ -9,7 +9,7 @@
 | [compiler] champion  | @oli-obk                                                                         |
 | [lang] champion      | @scottmcm                                                                        |
 | [libs] champion      | @joshtriplett                                                                    |
-| Tracking issue       | [rust-lang/rust-project-goals#406]                                               |
+| Tracking issue       | [rust-lang/goals#406]                                               |
 
 
 ## Summary

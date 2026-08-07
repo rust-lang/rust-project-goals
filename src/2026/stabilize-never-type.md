@@ -4,7 +4,7 @@
 | :--                     | :--                                            |
 | Point of contact        | @WaffleLapkin                                  |
 | Status                  | Accepted                                       |
-| Tracking issue          | [rust-lang/rust-project-goals#653]             |
+| Tracking issue          | [rust-lang/goals#653]             |
 | Other tracking issues   | [rust-lang/rust#35121]                         |
 | Highlight               | Try, never, extern types                       |
 | Zulip channel           | N/A                                            |

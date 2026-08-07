@@ -4,7 +4,7 @@
 |:-----------------|------------------------------------|
 | Point of contact | @eh2406                            |
 | Status           | Accepted                           |
-| Tracking issue   | [rust-lang/rust-project-goals#110] |
+| Tracking issue   | [rust-lang/goals#110] |
 | Zulip channel    | N/A                                |
 ## Summary
 

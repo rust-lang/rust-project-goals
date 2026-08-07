@@ -5,7 +5,7 @@
 | Point of contact   | @davidtwco                                               |
 | Status             | Accepted                                                 |
 | Zulip channel      | [#project-goals/2025h1/rustc-perf-improvements][channel] |
-| Tracking issue     | [rust-lang/rust-project-goals#275]                       |
+| Tracking issue     | [rust-lang/goals#275]                       |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/478771-project-goals.2F2025h1.2Frustc-perf-improvements
 
