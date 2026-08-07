@@ -4,10 +4,10 @@
 | :--                | :--                                                      |
 | Point of contact   | @davidtwco                                               |
 | Status             | Accepted                                                 |
-| Zulip channel      | [#project-goals/2025h1/rustc-perf-improvements][channel] |
+| Zulip channel      | [#goals/2025h1/rustc-perf-improvements][channel] |
 | Tracking issue     | [rust-lang/goals#275]                       |
 
-[channel]: https://rust-lang.zulipchat.com/#narrow/channel/478771-project-goals.2F2025h1.2Frustc-perf-improvements
+[channel]: https://rust-lang.zulipchat.com/#narrow/channel/478771-goals.2F2025h1.2Frustc-perf-improvements
 
 *Arm's Rust team is @davidtwco, @adamgemmell, @jacobbramley, @JamieCunliffe and @Jamesbarford.
 This goal will be primarily worked on by @Jamesbarford, but @davidtwco can always be contacted for

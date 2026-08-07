@@ -2,19 +2,19 @@
 
 ## Discussion channels
 
-The [project-goals channel][pg] on Zulip is used for discussing the "meat" of project goals: e.g., updates, proposed goals, etc.
+The [goals channel][pg] on Zulip is used for discussing the "meat" of project goals: e.g., updates, proposed goals, etc.
 
-[pg]: https://rust-lang.zulipchat.com/#narrow/channel/435869-project-goals
+[pg]: https://rust-lang.zulipchat.com/#narrow/channel/435869-goals
 
-The [project-goals/meta channel][pgm] on Zulip is used for meta discussions about running the program itself rest.
+The [goals/meta channel][pgm] on Zulip is used for meta discussions about running the program itself rest.
 
-[pgm]: https://rust-lang.zulipchat.com/#narrow/channel/478266-project-goals.2Fmeta
+[pgm]: https://rust-lang.zulipchat.com/#narrow/channel/478266-goals.2Fmeta
 
-To broadcast updates about the status of the goal program, we create a goal in every goal program corresponding to running the program. Updates posted on that tracking issue will be posted in `project-goals`.
+To broadcast updates about the status of the goal program, we create a goal in every goal program corresponding to running the program. Updates posted on that tracking issue will be posted in `goals`.
 
 ## Meetings
 
-We do not currently have a regularly scheduled meeting. Sync meetings are coordinated ad-hoc and typically take place on Zulip in the [project-goals/meta channel][pgm].
+We do not currently have a regularly scheduled meeting. Sync meetings are coordinated ad-hoc and typically take place on Zulip in the [goals/meta channel][pgm].
 
 ## Tracking our work
 

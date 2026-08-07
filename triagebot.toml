@@ -14,7 +14,7 @@ message_on_close = "goals#{number} has been closed. Thanks for participating!"
 message_on_reopen = "goals#{number} has been reopened. Pinging @*T-types*."
 
 [notify-zulip."C-goal-proposal"]
-zulip_stream = 546987 # #project-goals/2026-workshop
+zulip_stream = 546987 # #goals/proposed
 topic = "goals#{number}: {title}"
 message_on_add = """\
 New goal proposal: "{title}" (goals#{number}).

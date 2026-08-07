@@ -99,6 +99,6 @@ AdaCore plans to instruct customers to avoid pattern matching with an initial of
 GNATcoverage is AdaCore's coverage analysis tool. It can consume LLVM coverage data including MC/DC information. Having MC/DC support in rustc means GNATcoverage (and other LLVM-based coverage tools) can provide MC/DC reports for Rust code. This is valuable for organizations already using GNATcoverage for Ada/C in mixed-language safety-critical systems.
 
 [mcdc-wikipedia]: https://en.wikipedia.org/wiki/Modified_condition/decision_coverage
-[mcdc-zulip]: https://rust-lang.zulipchat.com/#narrow/channel/546987-project-goals.2F2026-workshop/topic/mcdc-support/with/569335878
+[mcdc-zulip]: https://rust-lang.zulipchat.com/#narrow/channel/546987-goals.2Fproposed/topic/mcdc-support/with/569335878
 [pattern-mcdc]: https://arc.aiaa.org/doi/10.2514/1.I011558
 [mcdc-design-doc]: https://hackmd.io/@renjisann/HJtqcTr_We
