@@ -52,7 +52,7 @@ Types implementing `!Move` cannot be moved and must keep a stable address for th
 
 ```rust
 // Types implementing !Forget must have their destructors run
-unsafe impl !Forget for ScopedTaskHandle {}
+impl !Forget for ScopedTaskHandle {}
 ```
 
 With `!Forget`, we could build safe scoped spawn: the handle's destructor joins the task, and because the handle can't be forgotten, the join is guaranteed. This unblocks patterns that are currently impossible in safe Rust.
