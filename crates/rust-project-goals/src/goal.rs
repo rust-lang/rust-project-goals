@@ -122,7 +122,10 @@ impl FundingStatus {
             FundingStatus::No
         } else if s.eq_ignore_ascii_case("partial") {
             FundingStatus::Partial(None)
-        } else if let Some(rest) = s.strip_prefix("Partial by ").or_else(|| s.strip_prefix("partial by ")) {
+        } else if let Some(rest) = s
+            .strip_prefix("Partial by ")
+            .or_else(|| s.strip_prefix("partial by "))
+        {
             FundingStatus::Partial(Some(rest.trim().to_string()))
         } else if s.eq_ignore_ascii_case("full") {
             FundingStatus::Funded(None)
@@ -1759,7 +1762,11 @@ fn extract_funding(sections: &[Section]) -> Result<Vec<FundingItem>> {
         let cost = FundingCost::parse(row[1].trim()).unwrap_or(FundingCost::Tbd);
         let sponsors = {
             let s = row[3].trim().to_string();
-            if s.is_empty() { None } else { Some(s) }
+            if s.is_empty() {
+                None
+            } else {
+                Some(s)
+            }
         };
         items.push(FundingItem {
             purpose: row[0].to_string(),
