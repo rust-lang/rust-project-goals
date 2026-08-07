@@ -6,7 +6,7 @@
 | Point of contact   | @walterhpearce                     |
 | Status             | Accepted                           |
 | Zulip channel      | N/A                                |
-| Tracking issue     | [rust-lang/rust-project-goals#271] |
+| Tracking issue     | [rust-lang/goals#271] |
 
 ## Summary
 

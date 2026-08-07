@@ -4,7 +4,7 @@
 | :--              | :--                                |
 | Point of contact | @joshtriplett                      |
 | Status           | Accepted                           |
-| Tracking issue   | [rust-lang/rust-project-goals#629] |
+| Tracking issue   | [rust-lang/goals#629] |
 | Zulip channel    | #t-lang                            |
 | [lang] champion  | @joshtriplett                      |
 
@@ -17,7 +17,7 @@ capable as proc macros while being easier to write and faster to compile.
 
 I'll also prototype extensions to the declarative macro system to make macros
 easier to write. I intend to collaborate with the ["Reflection and Comptime"
-goal](https://rust-lang.github.io/rust-project-goals/2026/reflection-and-comptime.html),
+goal](https://rust-lang.github.io/goals/2026/reflection-and-comptime.html),
 and work with experimental implementations of comptime when available.
 
 The initial focus of this goal is the stabilization of declarative attribute

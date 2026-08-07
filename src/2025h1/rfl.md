@@ -6,7 +6,7 @@
 | Point of contact | @nikomatsakis                      |
 | Status           | Accepted                           |
 | Flagship         | Yes                                |
-| Tracking issue   | [rust-lang/rust-project-goals#116] |
+| Tracking issue   | [rust-lang/goals#116] |
 | Zulip channel    | [#rust-for-linux][channel]         |
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/425075-rust-for-linux/
 ## Summary
@@ -49,7 +49,7 @@ For deeper background, please refer to these materials:
 
 ### What we have done so far
 
-We began the push towards stable support for RFL in 2024H2 with [a project goal focused on language features](https://github.com/rust-lang/rust-project-goals/issues/116). Over the course of those six months we:
+We began the push towards stable support for RFL in 2024H2 with [a project goal focused on language features](https://github.com/rust-lang/goals/issues/116). Over the course of those six months we:
 
 * Stabilized the `CoercePointee` derive, supporting the kernel's use of smart pointers to model intrusive linked lists.
 * Stabilized basic usage of `asm_goto`. Based on a survey of the kernel's usage, we [modified the existing design](https://github.com/rust-lang/rust/issues/132078) and also proposed [two](https://github.com/rust-lang/rust/issues/128464) [extensions](https://github.com/rust-lang/rust/pull/131523).

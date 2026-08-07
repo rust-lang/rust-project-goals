@@ -4,7 +4,7 @@
 |:-----------------|------------------------------------|
 | Point of contact | @BoxyUwU                           |
 | Status           | Accepted                           |
-| Tracking issue   | [rust-lang/rust-project-goals#100] |
+| Tracking issue   | [rust-lang/goals#100] |
 | Zulip channel    | [#project-const-generics][channel] |
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/260443-project-const-generics/
 ## Summary

@@ -1,10 +1,10 @@
-# Instructions for rust-project-goals work
+# Instructions for goals work
 
-This file provides instructions for contributing to the `rust-project-goals` repository.  It is intended to be self-contained: everything needed to work effectively in this repository is documented here or cited with a precise path.
+This file provides instructions for contributing to the `goals` repository.  It is intended to be self-contained: everything needed to work effectively in this repository is documented here or cited with a precise path.
 
 ## Repository overview
 
-This repository hosts the Rust project's **goal proposals** -- a bottom-up process where contributors propose goals, Rust teams review them, and accepted goals are tracked to completion.  The repository is published as an mdBook site at <https://rust-lang.github.io/rust-project-goals/>.
+This repository hosts the Rust project's **goal proposals** -- a bottom-up process where contributors propose goals, Rust teams review them, and accepted goals are tracked to completion.  The repository is published as an mdBook site at <https://rust-lang.github.io/goals/>.
 
 There are two kinds of content:
 
@@ -83,7 +83,7 @@ Immediately after the title, a two-column markdown table with the header `| Meta
 | `Point of contact`      | Yes      | Parsed       | Single GitHub `@username`                                                       |
 | `Status`                | Yes      | Parsed       | `Proposed`, `Invited`, `Accepted`, `Proposed for mentorship`, or `Not accepted` |
 | `Short title`           | No       | Parsed       | Alternate short title for tables; defaults to the `#` heading                   |
-| `Tracking issue`        | Note [1] | Parsed       | Must contain `rust-project-goals#NNN` if present                                |
+| `Tracking issue`        | Note [1] | Parsed       | Must contain `rust-lang/goals#NNN` if present                                   |
 | `Other tracking issues` | No       | Conventional | For issues in other repos; use `org/repo#NNN` format                            |
 | `Zulip channel`         | No       | Conventional | Link to Zulip stream                                                            |
 | `Help wanted`           | No       | Conventional | Informational                                                                   |

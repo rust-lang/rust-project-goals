@@ -6,7 +6,7 @@
 
 Goal proposed are submitted as Pull Requests:
 
-* Fork the [GitHub repository](https://github.com/rust-lang/rust-project-goals) and clone it locally
+* Fork the [GitHub repository](https://github.com/rust-lang/goals) and clone it locally
 * Copy the [`src/TEMPLATE.md`](../TEMPLATE.md) to a file like `src/2026/your-goal-name.md`. Don't forget to run `git add`.
 * Fill out the `your-goal-name.md` file with details, using the template and other goals as an example.
     * **The goal text does not have to be complete. It can be missing details.**

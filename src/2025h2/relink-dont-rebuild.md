@@ -4,7 +4,7 @@
 | :--              | :--                                |
 | Point of contact | @yaahc                             |
 | Status           | Proposed                           |
-| Tracking issue   | [rust-lang/rust-project-goals#400] |
+| Tracking issue   | [rust-lang/goals#400] |
 | Zulip channel    |                                    |
 | Flagship         | Flexible, fast(er) compilation    |
 | [cargo] champion | @weihanglo |

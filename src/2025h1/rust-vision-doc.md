@@ -5,7 +5,7 @@
 | Point of contact   | @nikomatsakis                      |
 | Status             | Accepted                           |
 | Zulip channel      | N/A                                |
-| Tracking issue     | [rust-lang/rust-project-goals#269] |
+| Tracking issue     | [rust-lang/goals#269] |
 
 ## Summary
 

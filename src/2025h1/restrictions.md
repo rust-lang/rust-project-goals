@@ -5,7 +5,7 @@
 | Point of contact   | @jhpratt                           |
 | Status             | Accepted                           |
 | Zulip channel      | N/A                                |
-| Tracking issue     | [rust-lang/rust-project-goals#257] |
+| Tracking issue     | [rust-lang/goals#257] |
 
 [rfc]: https://rust-lang.github.io/rfcs/3323-restrictions.html
 [pr]: https://github.com/rust-lang/rust/pull/106074

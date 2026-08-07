@@ -8,7 +8,7 @@
 | Roadmap               | Beyond the `&`                                                                                           |
 | Roadmap               | Rust for Linux                                                                                           |
 | [lang] champion       | @cramertj                                                                                                |
-| Tracking issue        | [rust-lang/rust-project-goals#636]                                                                       |
+| Tracking issue        | [rust-lang/goals#636]                                                                       |
 | Other tracking issues | [rust-lang/rust#149556]                                                                                  |
 | Zulip channel         | N/A                                                                                                      |
 

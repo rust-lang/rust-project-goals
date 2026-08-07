@@ -4,7 +4,7 @@
 |----------------|-------------------------------------------|
 | Point of contact | @lcnr                                   |
 | Status         | Accepted                                  |
-| Tracking issue | [rust-lang/rust-project-goals#113]        |
+| Tracking issue | [rust-lang/goals#113]        |
 | Zulip channel  | [#t-types/trait-system-refactor][channel] |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/364551-t-types.2Ftrait-system-refactor

@@ -950,8 +950,7 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             "🌐 Loading issues from GitHub API for milestone: {}",
             milestone
         );
-        let repository =
-            rust_project_goals::gh::issue_id::Repository::new("rust-lang", "rust-project-goals");
+        let repository = rust_project_goals::gh::issue_id::Repository::new("rust-lang", "goals");
         let issues =
             rust_project_goals::gh::issues::list_issues_in_milestone(&repository, milestone)
                 .map_err(|e| {
@@ -1272,9 +1271,8 @@ impl<'c> GoalPreprocessorWithContext<'c> {
         }
         .ok_or_else(|| anyhow::anyhow!("Invalid end date calculation for {}-{:02}", year, month))?;
 
-        // Get repository from context - assuming rust-lang/rust-project-goals as default
-        let repository =
-            rust_project_goals::gh::issue_id::Repository::new("rust-lang", "rust-project-goals");
+        // Get repository from context - assuming rust-lang/goals as default
+        let repository = rust_project_goals::gh::issue_id::Repository::new("rust-lang", "goals");
 
         // Use cached issues for this milestone
         let issues = self.get_or_load_milestone_issues(milestone)?;
@@ -1309,9 +1307,8 @@ impl<'c> GoalPreprocessorWithContext<'c> {
             team_name, milestone
         );
 
-        // Get repository from context - assuming rust-lang/rust-project-goals as default
-        let repository =
-            rust_project_goals::gh::issue_id::Repository::new("rust-lang", "rust-project-goals");
+        // Get repository from context - assuming rust-lang/goals as default
+        let repository = rust_project_goals::gh::issue_id::Repository::new("rust-lang", "goals");
 
         // Use cached issues for this milestone
         let issues = self.get_or_load_milestone_issues(milestone)?;

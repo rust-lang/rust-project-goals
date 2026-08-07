@@ -5,7 +5,7 @@
 | Point of contact   | @jswrenn                           |
 | Status             | Proposed                           |
 | Zulip channel      | N/A                                |
-| Tracking issue     | [rust-lang/rust-project-goals#273] |
+| Tracking issue     | [rust-lang/goals#273] |
 | [compiler] champion | @jswrenn |
 | [lang] champion | @scottmcm |
 

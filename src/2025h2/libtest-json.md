@@ -5,7 +5,7 @@
 | Point of contact   | @epage                             |
 | Status             | Proposed                           |
 | Zulip channel      | N/A                                |
-| Tracking issue     | [rust-lang/rust-project-goals#255] |
+| Tracking issue     | [rust-lang/goals#255] |
 | [cargo] champion | @epage |
 
 ## Summary

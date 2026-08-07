@@ -4,7 +4,7 @@
 | ---            | ---                                |
 | Point of contact | @weihanglo                         |
 | Status         | Accepted                           |
-| Tracking issue | [rust-lang/rust-project-goals#108] |
+| Tracking issue | [rust-lang/goals#108] |
 | Zulip channel  | N/A                                |
 ## Summary
 

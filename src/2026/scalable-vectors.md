@@ -4,7 +4,7 @@
 | :--                 | :--                                |
 | Point of contact    | @davidtwco                         |
 | Status              | Accepted                           |
-| Tracking issue      | [rust-lang/rust-project-goals#270] |
+| Tracking issue      | [rust-lang/goals#270] |
 | Highlight           | Try, never, extern types           |
 | [compiler] champion | @davidtwco                         |
 | [lang] champion     | @nikomatsakis                      |

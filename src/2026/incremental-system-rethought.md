@@ -4,7 +4,7 @@
 | :--                 | :--                                |
 | Point of contact    | @blyxyas                           |
 | Status              | Accepted                           |
-| Tracking issue      | [rust-lang/rust-project-goals#641] |
+| Tracking issue      | [rust-lang/goals#641] |
 | Roadmap             | Fast Builds                        |
 | [compiler] champion | @jackh726                          |
 | Zulip channel       | N/A                                |

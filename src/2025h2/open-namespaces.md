@@ -6,7 +6,7 @@
 | Status               | Proposed                           |
 | Needs                | Contributor                        |
 | Zulip channel        | N/A                                |
-| Tracking issue       | [rust-lang/rust-project-goals#256] |
+| Tracking issue       | [rust-lang/goals#256] |
 | [cargo] champion     | @epage                             |
 | [compiler] champion  | @b-naber                           |
 | [crates-io] champion | @carols10cents                     |

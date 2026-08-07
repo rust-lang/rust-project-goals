@@ -8,7 +8,7 @@
 | Flagship            | Constify all the things            |
 | [types] champion    | @oli-obk                           |
 | [compiler] champion | @petrochenkov                      |
-| Tracking issue      | [rust-lang/rust-project-goals#620] |
+| Tracking issue      | [rust-lang/goals#620] |
 | Zulip channel       | N/A                                |
 
 

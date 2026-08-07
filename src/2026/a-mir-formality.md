@@ -4,7 +4,7 @@
 | :--------------- | -------------------------------------------------------------------------------- |
 | Point of contact | @jackh726                                                                        |
 | Status           | Accepted                                                                         |
-| Tracking issue   | [rust-lang/rust-project-goals#122]                                               |
+| Tracking issue   | [rust-lang/goals#122]                                               |
 | Zulip channel    | [#types/formality]                                                               |
 | [types] champion | @jackh726                                                                        |
 

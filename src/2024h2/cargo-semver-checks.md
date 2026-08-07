@@ -4,7 +4,7 @@
 | ---            | ---                                |
 | Point of contact | @obi1kenobi                        |
 | Status         | Accepted                           |
-| Tracking issue | [rust-lang/rust-project-goals#104] |
+| Tracking issue | [rust-lang/goals#104] |
 | Zulip channel  | N/A                                |
 ## Summary
 

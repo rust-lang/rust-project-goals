@@ -4,7 +4,7 @@
 | ---            | ---                                         |
 | Point of contact | @fee1-dead                                |
 | Status         | Accepted                                    |
-| Tracking issue | [rust-lang/rust-project-goals#106]          |
+| Tracking issue | [rust-lang/goals#106]          |
 | Zulip channel  | [#t-compiler/project-const-traits][channel] |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/419616-t-compiler.2Fproject-const-traits

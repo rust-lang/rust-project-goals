@@ -5,7 +5,7 @@
 | Point of contact   | @davidtwco                         |
 | Status             | Accepted                           |
 | Zulip channel      | N/A                                |
-| Tracking issue     | [rust-lang/rust-project-goals#274] |
+| Tracking issue     | [rust-lang/goals#274] |
 
 *Arm's Rust team is @davidtwco, @adamgemmell, @jacobbramley, @JamieCunliffe and @Jamesbarford. This
 goal will be primarily worked on by @adamgemmell, but @davidtwco can always be contacted for

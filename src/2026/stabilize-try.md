@@ -9,7 +9,7 @@
 | Highlight             | Try, never, extern types           |
 | [lang] champion       | @tmandry                           |
 | [libs-api] champion   | @Amanieu                           |
-| Tracking issue        | [rust-lang/rust-project-goals#654] |
+| Tracking issue        | [rust-lang/goals#654] |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/605325-t-lang.2Ftry
 

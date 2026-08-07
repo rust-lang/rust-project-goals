@@ -4,15 +4,15 @@
 | :------------------| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Point of contact   | @1c3t3a                                                                                                                                 |
 | Status             | Proposed                                                                                                                                                             |
-| Tracking issue     | [rust-lang/rust-project-goals#262]                                                                                                                                   |
-| Zulip channel      | https://rust-lang.zulipchat.com/#narrow/channel/435869-project-goals/topic/Null.20and.20enum-discriminant.20runtime.20checks.20in.20.28goals.23262.29/with/508256920 |
+| Tracking issue     | [rust-lang/goals#262]                                                                                                                                   |
+| Zulip channel      | https://rust-lang.zulipchat.com/#narrow/channel/435869-goals/topic/Null.20and.20enum-discriminant.20runtime.20checks.20in.20.28goals.23262.29/with/508256920 |
 | [compiler] champion | @saethlin |
 | [opsem] champion | @saethlin |
 
 ## Summary
 
 Add runtime checks to rustc that check for valid niche values. This is an
-extension of a [previous project goal](https://rust-lang.github.io/rust-project-goals/2025h1/null-enum-discriminant-debug-checks.html)
+extension of a [previous project goal](https://rust-lang.github.io/goals/2025h1/null-enum-discriminant-debug-checks.html)
 that added null pointer and enum checks and generally works towards checking for
 Undefined behavior at runtime (in debug builds / behind compiler flags).
 
@@ -94,7 +94,7 @@ Eventually we would like to check (sanitize) most items listed as
 
 ### Definitions
 
-For definitions for terms used above, see the [About > Team Asks](https://rust-lang.github.io/rust-project-goals/about/team_asks.html) page.
+For definitions for terms used above, see the [About > Team Asks](https://rust-lang.github.io/goals/about/team_asks.html) page.
 
 * *Discussion and moral support* is the lowest level offering, basically committing the team to nothing but good vibes and general support for this endeavor.
 * *Author RFC* and *Implementation* means actually writing the code, document, whatever.

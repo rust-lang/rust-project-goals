@@ -6,7 +6,7 @@
 | Status           | Accepted                                                                                                                    |
 | What and why     | Experiment with converting where-clauses to use dictionary passing style, avoiding many implementation bugs by construction |
 | Roadmap          | Project Zero                                                                                                                |
-| Tracking issue   | [rust-lang/rust-project-goals#630]                                                                                          |
+| Tracking issue   | [rust-lang/goals#630]                                                                                          |
 | Zulip channel    |                                                                                                                             |
 | [types] champion | @lcnr                                                                                                                       |
 

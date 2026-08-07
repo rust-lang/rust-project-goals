@@ -5,7 +5,7 @@
 | Point of contact     | @joshtriplett                      |
 | Status               | Proposed                           |
 | Zulip channel        | [#t-spec][channel]                 |
-| Tracking issue       | [rust-lang/rust-project-goals#394] |
+| Tracking issue       | [rust-lang/goals#394] |
 | [lang-docs] champion | @joshtriplett                      |
 | [spec] champion      | @joshtriplett                      |
 

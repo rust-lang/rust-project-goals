@@ -23,7 +23,7 @@ The recognized fields are:
 | **Status** | Yes | One of `Proposed`, `Accepted`, or `Not accepted`. |
 | **Short title** | No | A shorter display name. Defaults to the `#` heading if omitted. |
 | **What and why** | No | A readable one-liner used in roadmap table cells. If omitted, the first sentence of the Summary section is used instead. |
-| **Tracking issue** | If Accepted | Must reference an issue in the rust-project-goals repository, e.g. `rust-lang/rust-project-goals#274`. Required for accepted goals; leave blank or omit for proposed goals. |
+| **Tracking issue** | If Accepted | Must reference an issue in the goals repository, e.g. `rust-lang/goals#274`. Required for accepted goals; leave blank or omit for proposed goals. |
 | **Other tracking issues** | No | Additional issue references in other repositories, e.g. `rust-lang/rust#44874`. |
 | **Zulip channel** | No | A link to the relevant Zulip stream for discussion. |
 | **Roadmap** | No | The name of a roadmap theme this goal belongs to, e.g. `Rust for Linux`. Can appear multiple times if the goal spans several roadmaps. |

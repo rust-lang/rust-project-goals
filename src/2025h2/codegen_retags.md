@@ -4,7 +4,7 @@
 | :--                 | :--                                |
 | Point of contact    | @icmccorm                          |
 | Status              | Proposed                           |
-| Tracking issue      | [rust-lang/rust-project-goals#392] |
+| Tracking issue      | [rust-lang/goals#392] |
 | Zulip channel       | N/A                                |
 | [compiler] champion | @RalfJung                          |
 | [lang] champion     | @tmandry                           |

@@ -4,7 +4,7 @@
 | :--                 | :--                                |
 | Point of contact    | @ZuseZ4                            |
 | Status              | Accepted                           |
-| Tracking issue      | [rust-lang/rust-project-goals#647] |
+| Tracking issue      | [rust-lang/goals#647] |
 | Zulip channel       | N/A                                |
 | [lang] champion     | @traviscross                       |
 | [compiler] champion | @oli-obk                           |

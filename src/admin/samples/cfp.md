@@ -9,20 +9,20 @@
 
 **As of today, we are officially accepting proposals for Rust Project Goals targeting YYYYHN (the (TBD) half of YYYY).** If you'd like to participate in the process, or just to follow along, please check out the [YYYYHN goal page][YYYYHN]. It includes listings of the goals currently under consideration , more details about the goals program, and instructions for how to submit a goal.
 
-[YYYYHN]: https://rust-lang.github.io/rust-project-goals/YYYYHN/index.html
+[YYYYHN]: https://rust-lang.github.io/goals/YYYYHN/index.html
 
 ## What is the project goals program and how does it work?
 
 Every six months, the Rust project commits to a set of goals for the upcoming half-year. The process involves:
 
 * the owner of the goal program (currently me) posts a call for proposals (this post);
-* would-be goal points of contact [open PRs][] against the [rust-project-goals] repository;
+* would-be goal points of contact [open PRs][] against the [goals] repository;
 * the goal-program owner gathers feedback on these goals and chooses some of them to be included in the RFC proposing the final slate of goals.
 
 To get an idea what the final slate of goals looks like, check out the RFC from the previous round of goals, [RFC (TBD)][]. The RFC describes a set of goals, designates a few of them as roadmap goals, and summarizes the work expected from each team. The RFC is approved by (at least) the leads of each team, effectively committing their team to prove the support that is described.
 
-[rust-project-goals]: https://rust-lang.github.io/rust-project-goals/
-[open PRs]: https://rust-lang.github.io/rust-project-goals/how_to/propose_a_goal.html
+[goals]: https://rust-lang.github.io/goals/
+[open PRs]: https://rust-lang.github.io/goals/how_to/propose_a_goal.html
 [May of 2024]: https://blog.rust-lang.org/inside-rust/2024/05/07/announcing-project-goals.html
 [RFC 3614]: https://github.com/rust-lang/rfcs/pull/3614
 [RFC (TBD)]: https://github.com/rust-lang/rfcs/pull/TBD

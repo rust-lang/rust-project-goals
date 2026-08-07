@@ -40,7 +40,7 @@ In February, an *alpha* version of this RFC is reviewed with teams. Teams vet th
 
 Once the Goals RFC is accepted, you can follow along with the progress on a goal in a few different ways:
 
-* Each goal has a tracking issue. Goal contributors and champions are expected to post regular updates. These updates are also posted to Zulip in the `#project-goals` channel.
+* Each goal has a tracking issue. Goal contributors and champions are expected to post regular updates. These updates are also posted to Zulip in the `#goals` channel.
 * Regular blog posts cover major happenings in goals.
 
 # Guide-level explanation

@@ -4,13 +4,13 @@
 |:-----------------|------------------------------------|
 | Point of contact | @obi1kenobi                        |
 | Status           | Accepted                           |
-| Tracking issue   | [rust-lang/rust-project-goals#104] |
+| Tracking issue   | [rust-lang/goals#104] |
 | Zulip channel    | N/A                                |
 ## Summary
 
 Design and implement `cargo-semver-checks` functionality that lies on the critical path for merging the tool into cargo itself. Continues the work of [the 2024h2 goal][2024h2-goal].
 
-[2024h2-goal]: https://rust-lang.github.io/rust-project-goals/2024h2/cargo-semver-checks.html
+[2024h2-goal]: https://rust-lang.github.io/goals/2024h2/cargo-semver-checks.html
 
 ## Motivation
 
@@ -45,7 +45,7 @@ Some work in each of these areas [already happened in the 2024h2 goal][2024h2-tr
 Fully resolving the [blockers][merge-blockers] is likely a 12-24 month undertaking, and beyond the scope of this goal on its own.
 Instead, this goal proposes to accomplish intermediate steps that create immediate value for users and derisk the overall endeavor, while needing only "moral support" from the [cargo] team as its only requirement.
 
-[2024h2-tracking]: https://github.com/rust-lang/rust-project-goals/issues/104
+[2024h2-tracking]: https://github.com/rust-lang/goals/issues/104
 [major-refactor]: https://github.com/obi1kenobi/cargo-semver-checks/pull/1001
 [compiler-mcp]: https://github.com/rust-lang/compiler-team/issues/635
 

@@ -4,7 +4,7 @@
 | :--                 | :--                                |
 | Point of contact    | @dianne                            |
 | Status              | Accepted                           |
-| Tracking issue      | [rust-lang/rust-project-goals#648] |
+| Tracking issue      | [rust-lang/goals#648] |
 | Zulip channel       | N/A                                |
 | [lang] champion     | @traviscross                       |
 | [compiler] champion | @dianne                            |
@@ -37,7 +37,7 @@ I aim to meet with the language team to discuss redesigning the `super let` feat
 
 Making it easier to extend the lifetimes of temporaries opens up the possibility of shortening Rust's default temporary scopes to help prevent bugs from drop-sensitive temporaries living unexpectedly long. This is a continuation of the [Temporary Lifetimes 2024](https://hackmd.io/LBCK4dQlT8ipGCNA6yM_Nw?view) effort.
 
-`super let` could tie into the ongoing [in-place initialization](https://github.com/rust-lang/rust-project-goals/issues/395) effort. In particular, one potential design direction for `super let` is to allow functions to produce temporaries when called, effectively extending temporary scopes across function boundaries. As a kind of [placing function](https://blog.yoshuawuyts.com/placing-functions/), these functions would desugar to initialize their temporaries in-place in a higher stack frame. Functions would then be able to return references to temporaries they defined with `super let`. This would allow APIs like `pin!` to be expressed as functions rather than as macros. Potentially with [pin ergonomics](https://github.com/rust-lang/rust/issues/130494), references taken with `&pin mut` could be returned from functions as well.
+`super let` could tie into the ongoing [in-place initialization](https://github.com/rust-lang/goals/issues/395) effort. In particular, one potential design direction for `super let` is to allow functions to produce temporaries when called, effectively extending temporary scopes across function boundaries. As a kind of [placing function](https://blog.yoshuawuyts.com/placing-functions/), these functions would desugar to initialize their temporaries in-place in a higher stack frame. Functions would then be able to return references to temporaries they defined with `super let`. This would allow APIs like `pin!` to be expressed as functions rather than as macros. Potentially with [pin ergonomics](https://github.com/rust-lang/rust/issues/130494), references taken with `&pin mut` could be returned from functions as well.
 
 ## Team asks
 

@@ -4,7 +4,7 @@
 | ---            | ---                                |
 | Point of contact | @lqd                               |
 | Status         | Accepted                           |
-| Tracking issue | [rust-lang/rust-project-goals#118] |
+| Tracking issue | [rust-lang/goals#118] |
 | Zulip channel  | [#t-types/polonius][channel]       |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/186049-t-types.2Fpolonius

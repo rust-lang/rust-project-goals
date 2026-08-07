@@ -4,7 +4,7 @@
 | :--                   | :--                                              |
 | Point of contact      | @orhun                                           |
 | Status                | Accepted                                         |
-| Tracking issue        | [rust-lang/rust-project-goals#642]               |
+| Tracking issue        | [rust-lang/goals#642]               |
 | Other tracking issues | [rust-lang/cargo#11213], [rust-lang/cargo#15473] |
 | Zulip channel         | [TUI for Cargo]                                  |
 

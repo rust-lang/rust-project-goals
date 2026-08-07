@@ -4,7 +4,7 @@
 | :--                   | :--                                             |
 | Point of contact      | @Shnatsel                                       |
 | Status                | Accepted                                        |
-| Tracking issue        | [rust-lang/rust-project-goals#649]              |
+| Tracking issue        | [rust-lang/goals#649]              |
 | Other tracking issues | [rust-lang/cargo#16565]                         |
 | Zulip channel         | N/A                                             |
 | [cargo] champion      | @weihanglo                                      |

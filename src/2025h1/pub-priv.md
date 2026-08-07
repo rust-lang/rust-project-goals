@@ -6,7 +6,7 @@
 | Status           | Accepted                           |
 | Needs            | Contributor                        |
 | Zulip channel    | N/A                                |
-| Tracking issue   | [rust-lang/rust-project-goals#272] |
+| Tracking issue   | [rust-lang/goals#272] |
 
 ## Summary
 

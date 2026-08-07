@@ -4,10 +4,10 @@
 | :--                | :--                                |
 | Point of contact   | @nikomatsakis                      |
 | Status             | Accepted                           |
-| Zulip channel      | [#project-goals][channel]          |
-| Tracking issue     | [rust-lang/rust-project-goals#268] |
+| Zulip channel      | [#goals][channel]          |
+| Tracking issue     | [rust-lang/goals#268] |
 
-[channel]: https://rust-lang.zulipchat.com/#narrow/channel/435869-project-goals
+[channel]: https://rust-lang.zulipchat.com/#narrow/channel/435869-goals
 
 ## Summary
 

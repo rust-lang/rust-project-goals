@@ -8,7 +8,7 @@
 | Timespan              | 2026-2027                                                                                            |
 | Roadmap               | [Just add async](./roadmap-just-add-async.md)                                                        |
 | Roadmap               | [Rust for Linux](./roadmap-rust-for-linux.md)                                                        |
-| Tracking issue        | [rust-lang/rust-project-goals#635]                                                                   |
+| Tracking issue        | [rust-lang/goals#635]                                                                   |
 | Other tracking issues | [rust-lang/rust#149607]                                      |
 | Zulip channel         | [#t-lang/move-trait](https://rust-lang.zulipchat.com/#narrow/channel/549962-t-lang.2Fmove-trait)     |
 | [types] champion      | @lcnr                                                                                                |
@@ -100,7 +100,7 @@ The [Sized hierarchy](./scalable-vectors.md) work establishes the pattern: Rust 
 
 ### How does this relate to the "pin ergonomics" initiative?
 
-This work is an alternative to [Project Goal 2025H2: Continue Experimentation with Pin Ergonomics](https://github.com/rust-lang/rust-project-goals/blob/main/src/2025h2/pin-ergonomics.md), which includes the following extensions:
+This work is an alternative to [Project Goal 2025H2: Continue Experimentation with Pin Ergonomics](https://github.com/rust-lang/goals/blob/main/src/2025h2/pin-ergonomics.md), which includes the following extensions:
 
  - A new item family `pin` in lvalues, e.g. `&pin x`, `&pin mut x`, `&pin const x`.
  - A one-off overload of Rust's `Drop` trait, e.g. `fn drop(&pin mut self)`.

@@ -5,7 +5,7 @@
 | Point of contact    | @davidtwco                         |
 | Status              | Proposed                           |
 | Zulip channel       | N/A                                |
-| Tracking issue      | [rust-lang/rust-project-goals#270] |
+| Tracking issue      | [rust-lang/goals#270] |
 | [compiler] champion | @davidtwco                         |
 | [lang] champion     | @nikomatsakis                      |
 | [libs] champion     | @Amanieu                           |

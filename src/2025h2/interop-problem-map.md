@@ -4,7 +4,7 @@
 | :--                 | :--                                                                                       |
 | Point of contact    | @JoelMarcey                                                                               |
 | Status              | Proposed                                                                                  |
-| Tracking issue      | [rust-lang/rust-project-goals#388]                                                        |
+| Tracking issue      | [rust-lang/goals#388]                                                        |
 | Zulip channel       | [t-lang/interop](https://rust-lang.zulipchat.com/#narrow/channel/427678-t-lang.2Finterop) |
 | [compiler] champion | @oli-obk                                                                                  |
 | [lang] champion     | @tmandry                                                                                  |

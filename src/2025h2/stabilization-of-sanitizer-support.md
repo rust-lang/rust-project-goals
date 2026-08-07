@@ -5,7 +5,7 @@
 | Point of contact | @jakos-sec                         |
 | Status           | Proposed                           |
 | flagship         | Flexible, fast(er) builds          |
-| Tracking issue   | [rust-lang/rust-project-goals#403] |
+| Tracking issue   | [rust-lang/goals#403] |
 | Zulip channel    | N/A                                |
 
 
@@ -46,7 +46,7 @@ In the meantime we work towards at least supporting [Tier 1](https://doc.rust-la
 
 ### Definitions
 
-For definitions for terms used above, see the [About > Team Asks](https://rust-lang.github.io/rust-project-goals/about/team_asks.html) page.
+For definitions for terms used above, see the [About > Team Asks](https://rust-lang.github.io/goals/about/team_asks.html) page.
 
 * *Discussion and moral support* is the lowest level offering, basically committing the team to nothing but good vibes and general support for this endeavor.
 * *Author RFC* and *Implementation* means actually writing the code, document, whatever.

@@ -184,7 +184,7 @@ pub struct UpdatesGoal {
     /// URL of the tracking issue
     pub issue_url: String,
 
-    /// Link text for the issue (e.g., "rust-lang/rust-project-goals#123")
+    /// Link text for the issue (e.g., "rust-lang/goals#123")
     pub issue_link_text: String,
 
     /// True if the issue is closed.

@@ -7,7 +7,7 @@
 | Status               | Accepted                                        |
 | Other tracking issue | [rust-lang/rust#148640]                         |
 | Zulip channel        | N/A                                             |
-| Tracking issue       | [rust-lang/rust-project-goals#618]              |
+| Tracking issue       | [rust-lang/goals#618]              |
 
 
 ## Summary

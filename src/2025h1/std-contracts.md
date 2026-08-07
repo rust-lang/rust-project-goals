@@ -4,7 +4,7 @@
 |:-----------------|------------------------------------|
 | Point of contact | @celinval                          |
 | Status           | Accepted                           |
-| Tracking issue   | [rust-lang/rust-project-goals#126] |
+| Tracking issue   | [rust-lang/goals#126] |
 | Zulip channel    | N/A                                |
 ## Summary
 

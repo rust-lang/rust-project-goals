@@ -4,7 +4,7 @@
 |----------------|------------------------------------|
 | Point of contact | @notriddle                         |
 | Status         | Accepted                           |
-| Tracking issue | [rust-lang/rust-project-goals#112] |
+| Tracking issue | [rust-lang/goals#112] |
 | Zulip channel  | N/A                                |
 ## Summary
 

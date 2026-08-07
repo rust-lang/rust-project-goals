@@ -4,7 +4,7 @@
 | ---            | ---                                |
 | Point of contact | @GuillaumeGomez                    |
 | Status         | Accepted                           |
-| Tracking issue | [rust-lang/rust-project-goals#111] |
+| Tracking issue | [rust-lang/goals#111] |
 | Zulip channel  | N/A                                |
 @GuillaumeGomez: https://github.com/GuillaumeGomez
 

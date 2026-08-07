@@ -5,7 +5,7 @@
 | Point of contact   | @joelmarcey                        |
 | Status             | Accepted                           |
 | Zulip channel      | [#t-spec][channel]                 |
-| Tracking issue     | [rust-lang/rust-project-goals#265] |
+| Tracking issue     | [rust-lang/goals#265] |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/399173-t-spec
 

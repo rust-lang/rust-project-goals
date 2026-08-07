@@ -5,7 +5,7 @@
 | Point of contact | @oli-obk                             |
 | Status           | Accepted                             |
 | Funding contact  | [RustNL](https://rustnl.org)         |
-| Tracking issue   | [rust-lang/rust-project-goals#711]   |
+| Tracking issue   | [rust-lang/goals#711]   |
 | Zulip channel    | [#t-types/early-late-cleanup][zulip] |
 | [types] champion | @BoxyUwU                             |
 | Funding contact  | [Hexcat](https://hexcat.nl/)         |

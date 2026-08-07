@@ -4,7 +4,7 @@
 | :--------------------------- | ---------------------------------------- |
 | Point of contact             | @petrochenkov                            |
 | Status                       | Accepted                                 |
-| Tracking issue               | [rust-lang/rust-project-goals#121]       |
+| Tracking issue               | [rust-lang/goals#121]       |
 | See also                     | [rust-lang/rust#113349]                  |
 | Zulip channel                | [#t-compiler/wg-parallel-rustc][channel] |
 | Roadmap                      | Fast Builds                              |
@@ -12,7 +12,7 @@
 
 ## Summary
 
-Continue with stabilization and performance improvements to the parallel front-end, continuing from the [2025h2 goal](https://rust-lang.github.io/rust-project-goals/2025h2/parallel-front-end.html).
+Continue with stabilization and performance improvements to the parallel front-end, continuing from the [2025h2 goal](https://rust-lang.github.io/goals/2025h2/parallel-front-end.html).
 
 ## Motivation
 

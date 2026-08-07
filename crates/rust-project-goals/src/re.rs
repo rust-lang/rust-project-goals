@@ -138,8 +138,7 @@ lazy_static! {
 
 // Funding legend showing emoji meanings
 lazy_static! {
-    pub static ref FUNDING_LEGEND: Regex =
-        Regex::new(r"\(\(\(FUNDING LEGEND\)\)\)").unwrap();
+    pub static ref FUNDING_LEGEND: Regex = Regex::new(r"\(\(\(FUNDING LEGEND\)\)\)").unwrap();
 }
 
 // Roadmap goal rows (no headers) filtered by roadmap name.

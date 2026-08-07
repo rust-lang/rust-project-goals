@@ -4,7 +4,7 @@
 | :--                   | :--                                |
 | Point of contact      | @jackh726                           |
 | Status                | Accepted                           |
-| Tracking issue        | [rust-lang/rust-project-goals#652] |
+| Tracking issue        | [rust-lang/goals#652] |
 | Zulip channel         | N/A                                |
 | Other tracking issues | [rust-lang/rust#31844]               |
 | [lang] champion       | @tmandry                           |

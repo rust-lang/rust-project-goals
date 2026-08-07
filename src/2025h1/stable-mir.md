@@ -5,7 +5,7 @@
 | Point of contact   | @celinval                          |
 | Status             | Accepted                           |
 | Zulip channel      | [#project-rustc-public][channel]     |
-| Tracking issue     | [rust-lang/rust-project-goals#266] |
+| Tracking issue     | [rust-lang/goals#266] |
 
 [channel]: https://rust-lang.zulipchat.com/#narrow/channel/320896-project-rustc-public
 

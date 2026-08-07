@@ -271,7 +271,7 @@ fn prepare_goals(
             issue_number: issue.number,
             issue_assignees: comma(&issue.assignees),
             issue_url: issue_id.url(),
-            issue_link_text: format!("rust-lang/rust-project-goals#{}", issue.number),
+            issue_link_text: format!("rust-lang/goals#{}", issue.number),
             progress,
             has_help_wanted,
             help_wanted,

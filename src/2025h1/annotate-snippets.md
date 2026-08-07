@@ -4,7 +4,7 @@
 |:-----------------|------------------------------------|
 | Point of contact | @Muscraft                          |
 | Status           | Accepted                           |
-| Tracking issue   | [rust-lang/rust-project-goals#123] |
+| Tracking issue   | [rust-lang/goals#123] |
 | Zulip channel    | N/A                                |
 ## Summary
 
@@ -33,7 +33,7 @@ The outputs of rustc and cargo are fully using annotate-snippets, with no regres
 
 - **Match rustc's output**: The output of annotate-snippets should match rustc, modulo reasonable non-significant divergences
 - **Works for Cargo (and other tools)**: annotate-snippets is meant to be used by any project that would like "Rust-style" output, so it should be designed to work with any project, not just rustc.
-[da]: https://rust-lang.github.io/rust-project-goals/about/design_axioms.html
+[da]: https://rust-lang.github.io/goals/about/design_axioms.html
 
 ## Ownership and team asks
 

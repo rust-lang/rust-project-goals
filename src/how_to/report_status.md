@@ -37,7 +37,7 @@ For larger project goals, it can be more convenient to track progress via github
 
 The first 3 lines should already exist. The last line is the one you have to add. The "value" column should have a markdown link, the contents of which begin with a repo name and then search parameters in GitHub's format. The tool will conduct the search and count the number of open vs closed issues. The `(...)` part of the link should be to github so that users can click to do the search on their own.
 
-You can find an example on the [Rust 2024 Edition tracking issue](https://github.com/rust-lang/rust-project-goals/issues/117).
+You can find an example on the [Rust 2024 Edition tracking issue](https://github.com/rust-lang/goals/issues/117).
 
 ### Use "See also" to refer to other tracking issues
 

@@ -7,7 +7,7 @@
 | What and why          | Replace the existing trait solver with a sound, maintainable implementation that unblocks soundness fixes and async features |
 | Roadmap               | Project Zero                 |
 | Roadmap               | Just add async                            |
-| Tracking issue        | [rust-lang/rust-project-goals#113]        |
+| Tracking issue        | [rust-lang/goals#113]        |
 | Other tracking issues | [rust-lang/rust#107374]                   |
 | Zulip channel         | [#t-types/trait-system-refactor][channel] |
 | Highlight             | Next-generation trait solver              |

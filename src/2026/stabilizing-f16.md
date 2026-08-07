@@ -4,7 +4,7 @@
 | :--                   | :--                                                   |
 | Point of contact      | @folkertdev                                           |
 | Status                | Accepted                                              |
-| Tracking issue        | [rust-lang/rust-project-goals#655]                    |
+| Tracking issue        | [rust-lang/goals#655]                    |
 | Other tracking issues | [rust-lang/rust#116909]                               |
 | Zulip channel         | N/A                                                   |
 | Funding contact       | [Trifecta Tech Foundation](https://trifectatech.org/) |

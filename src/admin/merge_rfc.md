@@ -14,7 +14,7 @@ This will create a `project-goal-owners` team containing all the project goal ow
 
 ## Create the milestone
 
-Next you need to (manually) create a milestone on the rust-project-goals repository with the appropriate name (e.g., `2025h1`). We usually create a paired meta milestone like `2025h1-meta` to track other tasks related to running the program.
+Next you need to (manually) create a milestone on the goals repository with the appropriate name (e.g., `2025h1`). We usually create a paired meta milestone like `2025h1-meta` to track other tasks related to running the program.
 
 ## Create tracking issues
 

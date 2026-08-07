@@ -4,7 +4,7 @@
 | ---            | ---                                |
 | Point of contact | @Nadrieril                         |
 | Status         | Accepted                           |
-| Tracking issue | [rust-lang/rust-project-goals#115] |
+| Tracking issue | [rust-lang/goals#115] |
 | Zulip channel  | N/A                                |
 ## Summary
 

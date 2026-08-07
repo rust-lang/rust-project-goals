@@ -4,7 +4,7 @@
 |:-----------------|----------------------------------------------------------------------------------|
 | Point of contact | @nikomatsakis                                                                    |
 | Status           | Proposed                                                                         |
-| Tracking issue   | [rust-lang/rust-project-goals#122]                                               |
+| Tracking issue   | [rust-lang/goals#122]                                               |
 | Zulip channel    | N/A (an existing stream can be re-used or new streams can be created on request) |
 | [types] champion | @nikomatsakis |
 
@@ -76,7 +76,7 @@ This section outlines the work to be done and the specific asks from Rust teams.
 
 ### Definitions
 
-For definitions for terms used above, see the [About > Team Asks](https://rust-lang.github.io/rust-project-goals/about/team_asks.html) page.
+For definitions for terms used above, see the [About > Team Asks](https://rust-lang.github.io/goals/about/team_asks.html) page.
 
 * *Standard reviews* refers to reviews for PRs against the repository; these PRs are not expected to be unduly large or complicated.
 * *Dedicated review* means identifying an individual (or group of individuals) who will review the changes, as they're expected to require significant context.

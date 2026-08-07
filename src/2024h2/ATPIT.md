@@ -4,7 +4,7 @@
 |----------------|------------------------------------|
 | Point of contact | @oli-obk                           |
 | Status         | Accepted                           |
-| Tracking issue | [rust-lang/rust-project-goals#103] |
+| Tracking issue | [rust-lang/goals#103] |
 | Zulip channel  | N/A                                |
 
 ## Summary

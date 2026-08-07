@@ -5,7 +5,7 @@
 | Point of contact    | @diondokter                        |
 | Status              | Accepted                           |
 | Roadmap             | Binary size reduction              |
-| Tracking issue      | [rust-lang/rust-project-goals#623] |
+| Tracking issue      | [rust-lang/goals#623] |
 | Zulip channel       | N/A                                |
 | [compiler] champion | @eholk                             |
 | Funding contact     | [Tweede golf](https://tweedegolf.nl/) |
